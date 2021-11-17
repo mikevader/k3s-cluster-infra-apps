@@ -8,6 +8,6 @@ spec:
   issuerRef:
     name: letsencrypt-staging
     kind: ClusterIssuer
-  commonName: k3s.framsburng.ch
+  commonName: k3s.framsburg.ch
   dnsNames:
   - k3s.framsburg.ch
