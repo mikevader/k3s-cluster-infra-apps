@@ -14,6 +14,8 @@ spec:
       name: letsencrypt-staging
     # Enable the HTTP-01 challenge provider
     solvers:
-    - http01:
-        ingress:
-          class: traefik
+    - dns01:
+        digitalocean:
+          tokenSecretRef:
+            name: digitalocean-token
+            key: access-token
