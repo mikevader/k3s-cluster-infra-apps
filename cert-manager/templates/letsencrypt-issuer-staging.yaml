@@ -19,3 +19,6 @@ spec:
           tokenSecretRef:
             name: digitalocean-token
             key: access-token
+      selector:
+        dnsZones:
+          - 'framsburg.ch'
