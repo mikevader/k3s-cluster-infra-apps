@@ -32,7 +32,18 @@ kube-prometheus-stack:
         - secretName: alertmanager-framsburg-ch-tls
           hosts:
             - alertmanager.framsburg.ch
-    grafana.ini:
-      server:
-        root_url: https://grafana.framsburg.ch
+
+  prometheus:
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      hosts:
+        - prometheus.framsburg.ch
+      tls:
+        - secretName: prometheus-framsburg-ch-tls
+          hosts:
+            - prometheus.framsburg.ch
 
