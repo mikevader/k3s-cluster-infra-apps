@@ -31,14 +31,14 @@ spec:
           - pathType: Prefix
             path: "/dashboard"
             backend:
-              serviceName: api@internal
-              serviceName: 80
+              service:
+                name: api@internal
           - pathType: Prefix
             path: "/api"
             backend:
-              serviceName: api@internal
-              serviceName: 80
+              service:
+                name: api@internal
   tls:
     - hosts:
       - traefik.framsburg.ch
-      secretName: traefik-framsburg.ch-tls
+      secretName: traefik-framsburg-ch-tls
