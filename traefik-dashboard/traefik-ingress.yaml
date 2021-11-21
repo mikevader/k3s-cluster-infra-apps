@@ -32,12 +32,12 @@ spec:
             path: "/dashboard"
             backend:
               service:
-                name: api@internal
+                name: "api@internal"
           - pathType: Prefix
             path: "/api"
             backend:
               service:
-                name: api@internal
+                name: "api@internal"
   tls:
     - hosts:
       - traefik.framsburg.ch
