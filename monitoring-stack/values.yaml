@@ -1,0 +1,36 @@
+argocdNamespace: monitoring
+kube-prometheus-stack:
+  grafana:
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      hosts:
+        - grafana.framsburg.ch
+      tls:
+        - secretName: grafana-framsburg-ch-tls
+          hosts:
+            - grafana.framsburg.ch
+    grafana.ini:
+      server:
+        root_url: https://grafana.framsburg.ch
+
+  alertmanager:
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      hosts:
+        - alertmanager.framsburg.ch
+      tls:
+        - secretName: alertmanager-framsburg-ch-tls
+          hosts:
+            - alertmanager.framsburg.ch
+    grafana.ini:
+      server:
+        root_url: https://grafana.framsburg.ch
+
