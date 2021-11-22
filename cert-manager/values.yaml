@@ -11,6 +11,7 @@ cert-manager:
     enabled: true
     servicemonitor:
       enabled: true
+      namespace: monitoring-stack
 
   image:
     repository: quay.io/jetstack/cert-manager-controller-arm
