@@ -51,6 +51,29 @@ kube-prometheus-stack:
             - alertmanager.framsburg.ch
 
   prometheus:
+    prometheusSpec:
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: longhorn
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 30Gi
+          selector: {}
+    additionalPodMonitors:
+      - name: traefik
+        jobLabel: traefik
+        selector:
+          matchLabels:
+            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/name: traefik
+        namespaceSelector:
+          any: true
+        podMetricsEndpoints:
+          - port: traefik
+            path: /metrics
+            scheme: http
     ingress:
       enabled: true
       annotations:
