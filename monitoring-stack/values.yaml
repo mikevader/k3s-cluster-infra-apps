@@ -71,7 +71,7 @@ kube-prometheus-stack:
         namespaceSelector:
           any: true
         podMetricsEndpoints:
-          - port: traefik
+          - port: metrics
             path: /metrics
             scheme: http
     ingress:
