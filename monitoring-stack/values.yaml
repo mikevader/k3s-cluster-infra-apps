@@ -52,10 +52,10 @@ kube-prometheus-stack:
 
   prometheus:
     prometheusSpec:
+      ruleSelectorNilUsesHelmValues: false
+      serviceMonitorSelectorNilUsesHelmValues: false
+      podMonitorSelectorNilUsesHelmValues: false
       storageSpec:
-        ruleSelectorNilUsesHelmValues: false
-        serviceMonitorSelectorNilUsesHelmValues: false
-        podMonitorSelectorNilUsesHelmValues: false
         volumeClaimTemplate:
           spec:
             storageClassName: longhorn
