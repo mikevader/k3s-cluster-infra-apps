@@ -60,7 +60,7 @@ kube-prometheus-stack:
             resources:
               requests:
                 storage: 30Gi
-          selector: {}
+          # selector: {}
     additionalPodMonitors:
       - name: traefik
         jobLabel: traefik
