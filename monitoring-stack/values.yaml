@@ -53,6 +53,9 @@ kube-prometheus-stack:
   prometheus:
     prometheusSpec:
       storageSpec:
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
         volumeClaimTemplate:
           spec:
             storageClassName: longhorn
@@ -60,7 +63,6 @@ kube-prometheus-stack:
             resources:
               requests:
                 storage: 30Gi
-          # selector: {}
     additionalPodMonitors:
       - name: traefik
         jobLabel: traefik
