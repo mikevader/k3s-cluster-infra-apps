@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: v2
 name: plex
 description: Plex Chart
 version: 1.0.0
