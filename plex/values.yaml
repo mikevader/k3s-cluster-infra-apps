@@ -2,5 +2,11 @@ plex:
   ingress:
     main:
       enabled: true
-      hosts: 
-        - host: plex.framsburg.ch
+      hosts:
+        - host: "plex.framsburg.ch"
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: plex
+

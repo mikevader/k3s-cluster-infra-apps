@@ -4,3 +4,9 @@ jellyfin:
       enabled: true
       hosts:
         - host: jellyfin.framsburg.ch
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: jellyfin
+
