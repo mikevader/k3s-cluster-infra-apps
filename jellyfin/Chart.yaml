@@ -5,4 +5,4 @@ version: 1.0.0
 dependencies:
   - name: jellyfin
     version: 9.1.0
-    repository: https://k8s-at-home.com/charts/jellyfin
+    repository: https://github.com/k8s-at-home/charts/tree/master/charts/stable/Jellyfin
