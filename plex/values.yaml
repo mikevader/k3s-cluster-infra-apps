@@ -1,0 +1,5 @@
+plex:
+  ingress:
+    main:
+      enabled: true
+      host: plex.framsburg.ch
