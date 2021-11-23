@@ -1,3 +1,6 @@
+common:
+  notes:
+    defaultNotes: {}
 plex:
   ingress:
     main:
