@@ -2,4 +2,5 @@ jellyfin:
   ingress:
     main:
       enabled: true
-      host: jellyfin.framsburg.ch
+      hosts:
+        - host: jellyfin.framsburg.ch
