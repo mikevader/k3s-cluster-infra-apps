@@ -1,0 +1,8 @@
+apiVersion: v1
+name: plex
+description: Plex Chart
+version: 1.0.0
+dependencies:
+  - name: plex
+    version: 6.1.0
+    repository: https://k8s-at-home.com/charts/plex
