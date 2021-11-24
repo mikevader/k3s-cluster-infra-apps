@@ -1,4 +1,7 @@
 plex:
+  persistence:
+    config:
+      enabled: true
   ingress:
     main:
       enabled: true
