@@ -5,7 +5,7 @@ jellyfin:
     media:
       enabled: true
       type: pvc
-      existingClaim: media
+      existingClaim: jellyfin-media
   ingress:
     main:
       enabled: true
