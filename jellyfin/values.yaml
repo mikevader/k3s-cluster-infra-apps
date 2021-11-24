@@ -1,4 +1,11 @@
 jellyfin:
+  persistence:
+    config:
+      enabled: true
+    media:
+      enabled: true
+      type: pvc
+      existingClaim: media
   ingress:
     main:
       enabled: true
