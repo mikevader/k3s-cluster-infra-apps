@@ -4,7 +4,7 @@ plex:
     # sed -n '/<Preferences/,$p' | tail -n +2 | sed 's,/>,,g' | \
     # sed '/\(OldestPreviousVersion\|MachineIdentifier\|^PlexOnline\|Certificate\|PubSub\|NeedsUpdate\)/d' | \
     # sed 's/"//g' | awk '{print "PLEX_PREFERENCE_"i++": \""$0"\""}'
-    PLEX_PREFERENCE_0: "allowedNetworks=10.43.0.0/16,172.16.0.0/16"
+    PLEX_PREFERENCE_0: "allowedNetworks=10.43.0.0/16,10.42.0.0/16,192.168.42.0/24"
     PLEX_PREFERENCE_1: "TranscoderTempDirectory=/transcode"
     PLEX_PREFERENCE_2: "FriendlyName=NickFlix"
     PLEX_PREFERENCE_3: "HardwareAcceleratedCodecs=1"
@@ -41,6 +41,14 @@ plex:
       enabled: true
       type: emptyDir
       mountPoint: /transcode
+    tv:
+      enabled: true
+      type: pvc
+      existingClaim: plex-tv
+    movies:
+      enabled: true
+      type: pvc
+      existingClaim: plex-movies
   podSecurityContext:
     runAsUser: 568
     runAsGroup: 500
