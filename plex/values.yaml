@@ -44,10 +44,12 @@ plex:
     tv:
       enabled: true
       type: pvc
+      mountPath: /mnt/media/tv
       existingClaim: plex-tv
     movies:
       enabled: true
       type: pvc
+      mountPath: /mnt/media/movies
       existingClaim: plex-movies
   podSecurityContext:
     runAsUser: 568
