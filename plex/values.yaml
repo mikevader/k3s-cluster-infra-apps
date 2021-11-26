@@ -1,4 +1,7 @@
 plex:
+  image:
+    repository: ghcr.io/k8s-at-home/plex
+    tag: v1.24.5.5173-8dcc73a59
   env:
     # cat /config/Library/Application\ Support/Plex\ Media\ Server/Preferences.xml | tr " " "\n" | \
     # sed -n '/<Preferences/,$p' | tail -n +2 | sed 's,/>,,g' | \
@@ -22,12 +25,12 @@ plex:
     PLEX_PREFERENCE_15: "CinemaTrailersType=1"
     PLEX_PREFERENCE_16: "MetricsEpoch=1"
     PLEX_PREFERENCE_17: "AcceptedEULA=1"
-    PLEX_PREFERENCE_18: "PublishServerOnPlexOnlineKey=1"
+    PLEX_PREFERENCE_18: "PublishServerOnPlexOnlineKey=0"
     PLEX_PREFERENCE_19: "DvrIncrementalEpgLoader=0"
     PLEX_PREFERENCE_20: "LastAutomaticMappedPort=0"
     PLEX_PREFERENCE_21: "DisableTLSv1_0=1"
     PLEX_PREFERENCE_22: "RelayEnabled=0"
-    PLEX_PREFERENCE_23: "TreatWanIpAsLocal=0"
+    PLEX_PREFERENCE_23: "TreatWanIpAsLocal=1"
     PLEX_PREFERENCE_24: "customConnections=https://plex.framsburg.ch"
     PLEX_PREFERENCE_25: "LanguageInCloud=1"
     PLEX_PREFERENCE_26: "GdmEnabled=0"
