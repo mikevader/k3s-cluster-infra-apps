@@ -47,10 +47,12 @@ plex:
     tv:
       enabled: true
       type: pvc
+      size: 20Gi
       mountPath: /mnt/media/tv
     movies:
       enabled: true
       type: pvc
+      size: 20Gi
       mountPath: /mnt/media/movies
   ingress:
     main:
