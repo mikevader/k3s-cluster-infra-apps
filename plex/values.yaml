@@ -48,11 +48,13 @@ plex:
       enabled: true
       type: pvc
       size: 10Gi
+      accessMode: ReadWriteOnce
       mountPath: /mnt/media/tv
     movies:
       enabled: true
       type: pvc
       size: 10Gi
+      accessMode: ReadWriteOnce
       mountPath: /mnt/media/movies
   ingress:
     main:
