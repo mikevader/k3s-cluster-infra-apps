@@ -55,7 +55,7 @@ kube-prometheus-stack:
       ruleSelectorNilUsesHelmValues: false
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
-      retentionSize: 25 GB
+      retentionSize: 25GB
       storageSpec:
         volumeClaimTemplate:
           spec:
