@@ -40,6 +40,7 @@ plex:
     config:
       enabled: true
       type: pvc
+      accessMode: ReadWriteOnce
     transcode:
       enabled: true
       type: emptyDir
