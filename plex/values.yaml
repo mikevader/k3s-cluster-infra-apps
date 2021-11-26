@@ -39,7 +39,7 @@ plex:
   persistence:
     config:
       enabled: true
-      type: emptyDir
+      type: pvc
     transcode:
       enabled: true
       type: emptyDir
@@ -48,12 +48,10 @@ plex:
       enabled: true
       type: pvc
       mountPath: /mnt/media/tv
-      existingClaim: plex-tv
     movies:
       enabled: true
       type: pvc
       mountPath: /mnt/media/movies
-      existingClaim: plex-movies
   ingress:
     main:
       enabled: true
