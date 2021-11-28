@@ -2,12 +2,10 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: opnsense-servicemonitor
+  name: opnsense--prometheus-servicemonitor
   namespace: monitoring-stack
   labels:
-    name: opnsense-servicemonitor
-    app: opnsense
-    jobLabel: firewall
+    name: opnsense--prometheus-servicemonitor
 spec:
   selector:
     matchLabels:
@@ -23,8 +21,11 @@ kind: Service
 metadata:
   name: opnsense-metrics-svc
   namespace: monitoring-stack
+  annotations:
+    prometheus.io/scrape: true
   labels:
     app: opnsense
+    jobLabel: firewall
 spec:
   type: ExternalName
   externalName: 192.168.42.1
