@@ -15,7 +15,7 @@ spec:
     matchNames:
       - monitoring-stack
   endpoints:
-    - port: manager
+    - port: metrics
 ---
 apiVersion: v1
 kind: Service
