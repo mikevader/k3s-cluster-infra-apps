@@ -2,10 +2,10 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: opnsense--prometheus-servicemonitor
+  name: opnsense-prometheus-servicemonitor
   namespace: monitoring-stack
   labels:
-    name: opnsense--prometheus-servicemonitor
+    name: opnsense-prometheus-servicemonitor
 spec:
   selector:
     matchLabels:
@@ -15,6 +15,7 @@ spec:
       - opnsense
   endpoints:
     - port: metrics
+      honorLabels: true
 ---
 apiVersion: v1
 kind: Service
