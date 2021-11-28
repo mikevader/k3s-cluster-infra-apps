@@ -12,7 +12,7 @@ spec:
       app: opnsense
   namespaceSelector:
     matchNames:
-      - monitoring-stack
+      - opnsense
   endpoints:
     - port: metrics
 ---
