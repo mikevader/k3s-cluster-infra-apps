@@ -22,7 +22,7 @@ metadata:
   name: opnsense-metrics-svc
   namespace: opnsense
   annotations:
-    prometheus.io/scrape: true
+    prometheus.io/scrape: "true"
   labels:
     app: opnsense
     jobLabel: firewall
