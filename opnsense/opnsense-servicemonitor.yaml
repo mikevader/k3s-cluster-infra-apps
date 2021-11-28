@@ -37,6 +37,8 @@ spec:
       port: 9100
       protocol: TCP
       targetPort: 9100
+  selector:
+    app: opnsense
 ---
 apiVersion: v1
 kind: Endpoints
