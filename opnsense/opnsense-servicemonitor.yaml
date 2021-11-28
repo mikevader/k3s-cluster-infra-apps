@@ -4,9 +4,12 @@ kind: ServiceMonitor
 metadata:
   name: opnsense-servicemonitor
   namespace: monitoring-stack
+  annotations:
+    prometheus.io/scrape: true
   labels:
     name: opnsense-servicemonitor
     app: opnsense
+    jobLabel: firewall
 spec:
   selector:
     matchLabels:
@@ -20,15 +23,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: opnsense-metrics-svc
-    namespace: monitoring-stack
-    labels:
-        app: opnsense
+  name: opnsense-metrics-svc
+  namespace: monitoring-stack
+  labels:
+    app: opnsense
 spec:
-    type: ExternalName
-    externalName: 192.168.42.1
-    clusterIP: ""
-    ports:
+  type: ExternalName
+  externalName: 192.168.42.1
+  clusterIP: ""
+  ports:
     - name: metrics
       port: 9100
       protocol: TCP
