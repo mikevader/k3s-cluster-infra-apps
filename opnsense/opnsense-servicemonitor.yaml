@@ -1,0 +1,53 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: opnsense-servicemonitor
+  namespace: monitoring-stack
+  labels:
+    name: opnsense-servicemonitor
+    app: opnsense
+spec:
+  selector:
+    matchLabels:
+      app: opnsense
+  namespaceSelector:
+    matchNames:
+      - monitoring-stack
+  endpoints:
+    - port: manager
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: opnsense-metrics-svc
+    namespace: monitoring-stack
+    labels:
+        app: opnsense
+spec:
+    type: ExternalName
+    externalName: 192.168.42.1
+    clusterIP: ""
+    ports:
+    - name: metrics
+      port: 9100
+      protocol: TCP
+      targetPort: 9100
+---
+apiVersion: v1
+kind: Endpoint
+metadata:
+  name: opnsense-metrics
+  namespace: monitoring-stack
+  labels:
+    prometheus: somevalue
+    app: opnsense
+subsets:
+  - addresses:
+      - ip: 192.168.42.1
+    ports:
+      - name: metrics
+        port: 9100
+        protocol: TCP
+
+
