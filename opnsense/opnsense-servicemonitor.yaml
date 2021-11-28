@@ -25,6 +25,7 @@ metadata:
   annotations:
     prometheus.io/scrape: "true"
   labels:
+    prometheus: kube-prometheus
     app: opnsense
     jobLabel: firewall
 spec:
