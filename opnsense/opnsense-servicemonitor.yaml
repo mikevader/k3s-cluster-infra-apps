@@ -4,8 +4,6 @@ kind: ServiceMonitor
 metadata:
   name: opnsense-servicemonitor
   namespace: monitoring-stack
-  annotations:
-    prometheus.io/scrape: true
   labels:
     name: opnsense-servicemonitor
     app: opnsense
