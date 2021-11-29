@@ -7,15 +7,16 @@ metadata:
   labels:
     name: opnsense-prometheus-servicemonitor
 spec:
-  selector:
-    matchLabels:
-      app: opnsense
+  endpoints:
+    - port: metrics
+      path: /metrics
+  jobLabel: firewall
   namespaceSelector:
     matchNames:
       - opnsense
-  endpoints:
-    - port: metrics
-      honorLabels: true
+  selector:
+    matchLabels:
+      app: opnsense
 ---
 apiVersion: v1
 kind: Service
@@ -27,7 +28,6 @@ metadata:
   labels:
     prometheus: kube-prometheus
     app: opnsense
-    jobLabel: firewall
 spec:
   type: ExternalName
   externalName: 192.168.42.1
