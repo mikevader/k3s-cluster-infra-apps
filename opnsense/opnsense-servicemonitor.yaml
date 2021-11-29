@@ -17,6 +17,8 @@ spec:
   selector:
     matchLabels:
       app: opnsense
+  targetLabel:
+    - group
 ---
 apiVersion: v1
 kind: Service
@@ -27,6 +29,7 @@ metadata:
     prometheus.io/scrape: "true"
   labels:
     app: opnsense
+    group: Firewall
 spec:
   type: ExternalName
   externalName: 192.168.42.1
