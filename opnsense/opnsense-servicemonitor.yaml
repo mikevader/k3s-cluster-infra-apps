@@ -2,10 +2,10 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: opnsense-prometheus-servicemonitor
+  name: opnsense-metrics
   namespace: monitoring-stack
   labels:
-    name: opnsense-prometheus-servicemonitor
+    app: opnsense-metrics
 spec:
   endpoints:
     - port: metrics
@@ -21,12 +21,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: opnsense-metrics-svc
+  name: opnsense-metrics
   namespace: opnsense
   annotations:
     prometheus.io/scrape: "true"
   labels:
-    prometheus: kube-prometheus
     app: opnsense
 spec:
   type: ExternalName
