@@ -17,7 +17,7 @@ spec:
   selector:
     matchLabels:
       app: opnsense
-  targetLabel:
+  targetLabels:
     - group
 ---
 apiVersion: v1
