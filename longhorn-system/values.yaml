@@ -1,7 +1,7 @@
 longhorn:
   defaultSettings:
     replicaAutoBalance: best-effort
-    defaultReplicaCount: 2
+    defaultReplicaCount: 3
   ingress:
     enabled: true
     annotations:
