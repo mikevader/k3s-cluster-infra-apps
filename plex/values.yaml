@@ -80,3 +80,10 @@ plex:
       tls:
         - hosts: [plex.framsburg.ch]
           secretName: plex-framsburg-ch-tls
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 1.5
+      memory: 4096Mi

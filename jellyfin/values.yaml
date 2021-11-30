@@ -6,6 +6,19 @@ jellyfin:
       enabled: true
       type: pvc
       existingClaim: jellyfin-media
+  podSecurityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    fsGroup: 568
+  affinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+            - key: kubernetes.io/role
+              operator: In
+              values:
+                - worker
   ingress:
     main:
       enabled: true
@@ -23,3 +36,10 @@ jellyfin:
       tls:
         - hosts: [jellyfin.framsburg.ch]
           secretName: jellyfin-framsburg-ch-tls
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 1.5
+      memory: 4096Mi
