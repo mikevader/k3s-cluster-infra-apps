@@ -11,14 +11,15 @@ jellyfin:
     runAsGroup: 568
     fsGroup: 568
   affinity:
-    preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 1
-        preference:
-          matchExpressions:
-            - key: kubernetes.io/role
-              operator: In
-              values:
-                - worker
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 1
+          preference:
+            matchExpressions:
+              - key: kubernetes.io/role
+                operator: In
+                values:
+                  - worker
   ingress:
     main:
       enabled: true
