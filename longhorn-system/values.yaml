@@ -1,4 +1,6 @@
 longhorn:
+  persistence:
+    defaultClassReplicaCount: 3
   defaultSettings:
     replicaAutoBalance: best-effort
     defaultReplicaCount: 3
