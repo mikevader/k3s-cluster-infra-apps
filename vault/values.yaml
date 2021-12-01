@@ -1,0 +1,28 @@
+vault:
+  server:
+    image:
+      repository: "vault"
+      tag: "1.8.5"
+      pullPolicy: IfNotPresent
+    ingress:
+      enabled: true
+      pathType: Prefix
+      annotations:
+        kubernetes.io/ingress.class: "traefik"
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.priority: "10"
+      hosts:
+        - host: vault.framsburg.ch
+          paths: [/]
+      tls:
+        - hosts: [vault.framsburg.ch]
+          secretName: vault-framsburg-ch-tls
+  dataStorage:
+    storageClass: longhorn
+  ui:
+    enabled: true
+  csi:
+    enabled: true
+  injector:
+    enabled: false
