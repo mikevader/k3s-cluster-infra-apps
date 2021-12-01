@@ -18,7 +18,7 @@ metadata:
   namespace: monitoring-stack
 subjects:
   - kind: User
-    name: someusername
+    name: default
     apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
