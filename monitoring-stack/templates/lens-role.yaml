@@ -9,7 +9,10 @@ metadata:
 rules:
 - apiGroups: [""]
   resources: ["pods/portforward", "services/proxy"]
-  verbs: ["create"]
+  resourceNames: ["prometheus-operated:9090"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- nonResourceURLs: ["/ui", "/ui/*", "/api/v1/namespaces/*/services/prometheus-operated:*/proxy/*"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
