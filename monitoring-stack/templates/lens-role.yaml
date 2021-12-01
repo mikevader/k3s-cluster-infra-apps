@@ -1,0 +1,12 @@
+---
+# Provides the required permissions for readonly users
+# to get metrics working in lens
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: port-forward-lens
+  namespace: monitoring-stack
+rules:
+- apiGroups: [""]
+  resources: ["pods/portforward", "services/proxy"]
+  verbs: ["create"]
