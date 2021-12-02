@@ -5,3 +5,6 @@ metadata:
   namespace: 
   annotations:
     storageclass.kubernetes.io/is-default-class: 'false'
+provisioner: rancher.io/local-path
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
