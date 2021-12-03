@@ -1,8 +1,8 @@
-apiVersion: v1
+apiVersion: v2
 name: monitoring-stack
 description: Bootstrap Chart for Argo CD
-version: 1.0.0
+version: 1.1.0
 dependencies:
   - name: kube-prometheus-stack
-    version: 20.0.1
+    version: 21.0.3
     repository: https://prometheus-community.github.io/helm-charts
