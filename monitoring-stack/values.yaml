@@ -162,7 +162,8 @@ kube-prometheus-stack:
       ruleSelectorNilUsesHelmValues: false
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
-      retentionSize: 25GB
+      retentionSize: 45GB
+      retentionTime: 4d
       storageSpec:
         volumeClaimTemplate:
           spec:
@@ -170,7 +171,7 @@ kube-prometheus-stack:
             accessModes: ["ReadWriteOnce"]
             resources:
               requests:
-                storage: 30Gi
+                storage: 50Gi
     additionalPodMonitors:
       - name: traefik
         jobLabel: traefik
