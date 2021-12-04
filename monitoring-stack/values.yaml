@@ -1,6 +1,29 @@
+global:
+  kube-master-ips:
+    - 192.168.42.120
+    - 192.168.42.121
+    - 192.168.42.122
+
 kube-prometheus-stack:
+  kubeApiServer:
+    enabled: true
+  kubeControllerManager:
+    enabled: true
+    endpoints: {{ toYaml .Values.global.kube-master-ips | nindent 6 }}
+  kubeScheduler:
+    enabled: true
+    endpoints: {{ toYaml .Values.global.kube-master-ips | nindent 6 }}
+  kubeProxy:
+    enabled: true
+    endpoints: {{ toYaml .Values.global.kube-master-ips | nindent 6 }}
   kubeEtcd:
     enabled: false
+    endpoints: {{ toYaml .Values.global.kube-master-ips | nindent 6 }}
+    service:
+      enabled: false
+      port: 2381
+      targetPort: 2381
+
 
   prometheusOperator:
     admissionWebhooks:
