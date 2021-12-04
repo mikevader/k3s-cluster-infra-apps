@@ -1,5 +1,5 @@
 global:
-  kube-master-ips:
+  kubeMasterIPs:
     - 192.168.42.120
     - 192.168.42.121
     - 192.168.42.122
@@ -9,16 +9,28 @@ kube-prometheus-stack:
     enabled: true
   kubeControllerManager:
     enabled: true
-    endpoints: {{ toYaml .Values.global.kube-master-ips | nindent 6 }}
+    endpoints:
+      - 192.168.42.120
+      - 192.168.42.121
+      - 192.168.42.122
   kubeScheduler:
     enabled: true
-    endpoints: {{ toYaml .Values.global.kube-master-ips | nindent 6 }}
+    endpoints:
+      - 192.168.42.120
+      - 192.168.42.121
+      - 192.168.42.122
   kubeProxy:
     enabled: true
-    endpoints: {{ toYaml .Values.global.kube-master-ips | nindent 6 }}
+    endpoints:
+      - 192.168.42.120
+      - 192.168.42.121
+      - 192.168.42.122
   kubeEtcd:
     enabled: false
-    endpoints: {{ toYaml .Values.global.kube-master-ips | nindent 6 }}
+    endpoints:
+      - 192.168.42.120
+      - 192.168.42.121
+      - 192.168.42.122
     service:
       enabled: false
       port: 2381
