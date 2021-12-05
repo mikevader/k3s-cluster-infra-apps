@@ -43,8 +43,8 @@ kube-prometheus-stack:
       - 192.168.42.122
     service:
       enabled: true
-      port: 10252
-      targetPort: 10252
+      port: 10250
+      targetPort: 10250
     serviceMonitor:
       enabled: true
       https: true
