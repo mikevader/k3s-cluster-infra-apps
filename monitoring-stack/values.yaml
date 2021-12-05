@@ -109,6 +109,9 @@ kube-prometheus-stack:
           - match:
               alertname: Watchdog
             receiver: 'null'
+          - match:
+              severity: info
+            receiver: 'null'
       receivers:
         - name: 'null'
         - name: slack
