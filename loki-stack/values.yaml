@@ -8,6 +8,7 @@ loki-stack:
     serviceMonitor:
       enabled: true
   promtail:
+    enabled: false
     fullnameOverride: promtail
     serviceMonitor:
       enabled: true
