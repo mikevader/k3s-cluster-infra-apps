@@ -3,8 +3,8 @@ promtail:
   serviceMonitor:
     enabled: true
   config:
-    serverPort: 3100
-    lokiAddress: http://loki.loki.svc/loki/api/v1/push
+    #serverPort: 3100
+    lokiAddress: http://loki.loki.svc:3100/loki/api/v1/push
     snippets:
       extraScrapeConfigs: |
         # Add an additional scrape config for syslog
