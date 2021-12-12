@@ -1,0 +1,24 @@
+# {{- if .Values.grafana.sidecar.datasources.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "loki.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ template "loki.name" . }}
+    chart: {{ template "loki.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    grafana_datasource: "1"
+data:
+  loki-stack-datasource.yaml: |-
+    apiVersion: 1
+    datasources:
+#{{- if .Values.loki.enabled }}
+    - name: Loki
+      type: loki
+      access: proxy
+      url: http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}
+      version: 1
+#{{- end }}
+#{{- end }}
