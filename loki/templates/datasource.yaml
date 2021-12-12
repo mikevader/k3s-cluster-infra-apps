@@ -1,4 +1,3 @@
-# {{- if .Values.grafana.sidecar.datasources.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -14,11 +13,8 @@ data:
   loki-stack-datasource.yaml: |-
     apiVersion: 1
     datasources:
-#{{- if .Values.loki.enabled }}
     - name: Loki
       type: loki
       access: proxy
       url: http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}
       version: 1
-#{{- end }}
-#{{- end }}
