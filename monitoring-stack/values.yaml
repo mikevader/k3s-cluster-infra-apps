@@ -85,8 +85,12 @@ kube-prometheus-stack:
             - grafana.framsburg.ch
     sidecar:
       dashboards:
+        enabled: true
+        label: grafana_dashboard
         searchNamespace: ALL
       datasources:
+        enabled: true
+        label: grafana_datasource
         searchNamespace: ALL
     plugins:
       - grafana-piechart-panel
