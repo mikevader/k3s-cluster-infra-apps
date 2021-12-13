@@ -50,7 +50,7 @@ plex:
     tv:
       enabled: true
       type: pvc
-      size: 10Gi
+      size: 50Gi
       accessMode: ReadWriteOnce
       mountPath: /mnt/media/tv
     movies:
