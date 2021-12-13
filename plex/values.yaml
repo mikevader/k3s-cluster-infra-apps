@@ -63,6 +63,17 @@ plex:
     runAsUser: 568
     runAsGroup: 568
     fsGroup: 568
+  probes:
+    liveness:
+      enabled: false
+      custom: true
+      spec:
+        initialDelaySeconds: 60
+        periodSeconds: 60
+        exec:
+          command:
+            - cat
+            - /tv/healthcheck
   ingress:
     main:
       enabled: true
