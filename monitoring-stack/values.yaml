@@ -103,20 +103,33 @@ kube-prometheus-stack:
       global:
         resolve_timeout: 5m
         slack_api_url_file: '/etc/alertmanager/secrets/slack-api-url/slack_api_url'
+      templates: ['/etc/alertmanager/config/**/*.tmpl']
       route:
         group_by: ['job']
         group_wait: 30s
         group_interval: 5m
-        repeat_interval: 12h
+        repeat_interval: 3h
         receiver: slack
         routes:
-          - match:
-              alertname: Watchdog
-            receiver: 'null'
-        routes:
-          - match:
-              severity: info
-            receiver: 'null'
+          - receiver: 'null'
+            matchers:
+              - alertname="Watchdog"
+          - receiver: 'null'
+            matchers:
+              - severity="info"
+      # Inhibition rules allow to mute a set of alerts given that another alert is
+      # firing.
+      # We use this to mute any warning-level notifications if the same alert is
+      # already critical.
+      inhibit_rules:
+        - source_matchers: [ severity="critical" ]
+          target_matchers: [ severity="warning" ]
+          # Apply inhibition if the alertname is the same.
+          # CAUTION:
+          #   If all label names listed in `equal` are missing
+          #   from both the source and target alerts,
+          #   the inhibition rule will apply!
+          equal: [ alertname, cluster, service ]
       receivers:
         - name: 'null'
         - name: slack
@@ -139,7 +152,6 @@ kube-prometheus-stack:
                 - type: button
                   text: 'Silence :no_bell:'
                   url: '{{ template "__alert_silence_link" . }}'
-      templates: ['/etc/alertmanager/config/**/*.tmpl']
     templateFiles:
       template_1.tmpl: |-
           {{ define "__alert_silence_link" -}}
