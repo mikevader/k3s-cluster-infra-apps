@@ -3,7 +3,8 @@ uptime-kuma:
     data:
       enabled: true
       type: pvc
-      existingClaim: jellyfin-media
+      size: 10Gi
+      accessMode: ReadWriteOnce
   podSecurityContext:
     runAsUser: 568
     runAsGroup: 568
@@ -20,6 +21,8 @@ uptime-kuma:
           paths:
             - path: /
               pathType: Prefix
+              service:
+                name: uptime-kuma
       tls:
         - hosts: [kuma.framsburg.ch]
           secretName: kuma-framsburg-ch-tls
