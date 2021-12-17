@@ -1,0 +1,103 @@
+{
+  "extends": [
+    "config:base",
+    ":disableRateLimiting",
+    "github>whitesource/merge-confidence:beta"
+  ],
+  "timezone": "Europe/Zuerich",
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dashboard",
+  "commitBody": "Signed-off-by: Mikevader <mikevader@users.noreply.github.com>",
+  "suppressNotifications": ["prIgnoreNotification"],
+  "rebaseWhen": "conflicted",
+  "commitBodyTable": true,
+  "ignorePaths": [".archived/**"],
+  "fetchReleaseNotes": true,
+  "labels": ["renovate"],
+  "packageRules": [
+    // Setup datasources
+    {
+      "matchDatasources": ["helm"],
+      "commitMessageTopic": "Helm chart {{depName}}",
+      "separateMinorPatch": true
+    },
+    {
+      "matchDatasources": ["docker"],
+      "commitMessageTopic": "Docker image {{depName}}",
+      "commitMessageExtra": "to {{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "enabled": true,
+    },
+    {
+      "matchDatasources": ["docker"],
+      "automergeType": "true",
+      "requiredStatusChecks": null,
+      "addLabels": [
+        "container"
+      ],
+      "matchUpdateTypes": ["major", "minor", "patch" ]
+    },
+    // Add labels according to package and update types
+    {
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["major"],
+      "labels": ["renovate/image-release", "dependency/major"]
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["minor"],
+      "labels": ["renovate/image-release", "dependency/minor"]
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["patch"],
+      "labels": ["renovate/image-release", "dependency/patch"]
+    },
+    {
+      "matchDatasources": ["helm"],
+      "matchUpdateTypes": ["major"],
+      "labels": ["renovate/helm-chart", "dependency/major"]
+    },
+    {
+      "matchDatasources": ["helm"],
+      "matchUpdateTypes": ["minor"],
+      "labels": ["renovate/helm-chart", "dependency/minor"]
+    },
+    {
+      "matchDatasources": ["helm"],
+      "matchUpdateTypes": ["patch"],
+      "labels": ["renovate/helm-chart", "dependency/patch"]
+    },
+    // Docker containers that are safe to auto merge
+    {
+      "matchDatasources": ["docker"],
+      "matchPackagePatterns": [
+        "^ghcr.io/k8s-at-home/.*",
+        "^bodnapa/azoth-empire-(bot|web-app|graphql-api)",
+        "ghcr.io/sct/overseerr",
+        "phasecorex/red-discordbot",
+        "ghcr.io/goauthentik/.*"
+      ],
+      "addLabels": ["action/automerge"],
+      "automerge": true,
+      "versioning": "loose"
+    },
+    // Docker containers that do not follow semver compliant tagging
+    {
+      "matchDatasources": ["docker"],
+      "matchPackagePatterns": [
+        "bitnami/external-dns",
+        "^ghcr.io/k8s-at-home/qbittorrent"
+      ],
+      "versioning": "loose"
+    }
+    // Helm charts that are safe to auto merge
+    //{
+    //  "matchDatasources": ["helm"],
+    //  "registryUrls": ["https://k8s-at-home.com/charts"],
+    //  "addLabels": ["action/automerge"],
+    //  "automerge": true,
+    //  "versioning": "loose"
+    //}
+  ]
+}
