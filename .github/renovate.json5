@@ -4,7 +4,7 @@
     ":disableRateLimiting",
     "github>whitesource/merge-confidence:beta"
   ],
-  "timezone": "Europe/Zuerich",
+  "timezone": "Europe/Zurich",
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard",
   "commitBody": "Signed-off-by: Mikevader <mikevader@users.noreply.github.com>",
