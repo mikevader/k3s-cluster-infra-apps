@@ -28,8 +28,8 @@ uptime-kuma:
           secretName: kuma-framsburg-ch-tls
   resources:
     requests:
-      cpu: 200m
-      memory: 256Mi
+      cpu: 10m
+      memory: 56Mi
     limits:
-      cpu: 0.5
-      memory: 1024Mi
+      cpu: 100m
+      memory: 128Mi
