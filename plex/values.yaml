@@ -41,8 +41,11 @@ plex:
   persistence:
     config:
       enabled: true
+      nameOverride: "-"
       type: pvc
+      size: 5Gi
       accessMode: ReadWriteOnce
+      retain: true
     transcode:
       enabled: true
       type: emptyDir
