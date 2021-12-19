@@ -22,11 +22,11 @@ vault:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.priority: "10"
       hosts:
-        - host: '{{ .Values.global.domainName }}'
+        - host: vault.framsburg.ch
           paths: [/]
       tls:
-        - hosts: ['{{ .Values.global.domainName }}']
-          secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
+        - hosts: [vault.framsburg.ch]
+          secretName: vault-framsburg-ch-tls
     readinessProbe:
       initialDelaySeconds: 20
       periodSeconds: 10
