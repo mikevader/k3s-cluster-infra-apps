@@ -43,4 +43,4 @@ jellyfin:
       memory: 256Mi
     limits:
       cpu: 1.5
-      memory: 4096Mi
+      memory: 1024Mi
