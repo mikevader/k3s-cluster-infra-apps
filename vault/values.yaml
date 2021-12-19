@@ -44,8 +44,6 @@ vault:
         memory: 256Mi
   csi:
     enabled: false
-    resources: {}
   injector:
     enabled: false
-    resources: {}
 
