@@ -2,6 +2,7 @@ longhorn:
   persistence:
     defaultClassReplicaCount: 2
   defaultSettings:
+    concurrentAutomaticEngineUpgradePerNodeLimit: 1
     replicaAutoBalance: best-effort
     defaultReplicaCount: 2
   ingress:
