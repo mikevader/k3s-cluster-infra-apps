@@ -32,3 +32,11 @@ promtail:
     - name: journal
       mountPath: /var/log/journal
       readOnly: true
+
+  resources:
+    requests:
+      cpu: 400m
+      memory: 256Mi
+    limits:
+      cpu: 100m
+      memory: 512Mi

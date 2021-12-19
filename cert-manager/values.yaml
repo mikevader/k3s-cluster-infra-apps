@@ -34,3 +34,11 @@ cert-manager:
   startupapicheck:
     image:
       repository: quay.io/jetstack/cert-manager-ctl-arm
+
+  resources:
+    requests:
+      cpu: 50m
+      memory: 96Mi
+    limits:
+      cpu: 100m
+      memory: 192Mi
