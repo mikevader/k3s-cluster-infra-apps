@@ -1,0 +1,24 @@
+promtail:
+  extraPorts:
+    syslog:
+      name: tcp-syslog
+      containerPort: 1514
+      service:
+        port: 80
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+        loadBalancerIP: 192.168.42.151
+
+  config:
+    snippets:
+      extraScrapeConfigs: |
+        # Add an additional scrape config for syslog
+        - job_name: firewall
+          syslog:
+            listen_address: 0.0.0.0:{{ .Values.extraPorts.syslog.containerPort }}
+            labels:
+              job: syslog
+          relabel_configs:
+            - source_labels:
+                - __syslog_message_hostname
+              target_label: hostname
