@@ -22,6 +22,27 @@ promtail:
                 - '__journal__hostname'
               target_label: 'hostname'
 
+        # Add an additional scrape config for syslog
+        - job_name: firewall
+          syslog:
+            listen_address: 0.0.0.0:{{ .Values.extraPorts.syslog.containerPort }}
+            labels:
+              job: syslog
+          relabel_configs:
+            - source_labels:
+                - __syslog_message_hostname
+              target_label: hostname
+
+  extraPorts:
+    syslog:
+      name: tcp-syslog
+      containerPort: 1514
+      service:
+        port: 514
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+        loadBalancerIP: 192.168.42.151
+
   # Mount journal directory into promtail pods
   extraVolumes:
     - name: journal
