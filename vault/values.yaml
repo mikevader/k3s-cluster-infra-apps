@@ -9,10 +9,10 @@ vault:
     enabled: true
 
   server:
-    image:
-      repository: "vault"
-      tag: "1.9.1"
-      pullPolicy: IfNotPresent
+    # image:
+    #   repository: "vault"
+    #   tag: "1.9.1"
+    #   pullPolicy: IfNotPresent
     ingress:
       enabled: true
       pathType: Prefix
