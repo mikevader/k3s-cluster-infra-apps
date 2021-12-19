@@ -27,6 +27,17 @@ vault:
       tls:
         - hosts: [vault.framsburg.ch]
           secretName: vault-framsburg-ch-tls
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - k3smaster2
+                    - k3smaster3
     readinessProbe:
       initialDelaySeconds: 20
       periodSeconds: 10
