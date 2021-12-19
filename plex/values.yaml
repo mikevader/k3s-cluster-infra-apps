@@ -102,7 +102,7 @@ plex:
           secretName: plex-framsburg-ch-tls
   resources:
     requests:
-      cpu: 20m
+      cpu: 200m
       memory: 128Mi
     limits:
       cpu: 1
