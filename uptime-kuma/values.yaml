@@ -22,6 +22,7 @@ uptime-kuma:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
       hosts:
         - host: '{{ .Values.global.domainName }}'
+          paths: []
       tls:
         - hosts: ['{{ .Values.global.domainName }}']
           secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
