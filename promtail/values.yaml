@@ -35,8 +35,8 @@ promtail:
 
   resources:
     requests:
-      cpu: 400m
-      memory: 256Mi
+      cpu: 100m
+      memory: 48Mi
     limits:
-      cpu: 1000m
-      memory: 512Mi
+      cpu: 200m
+      memory: 96Mi
