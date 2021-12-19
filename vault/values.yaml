@@ -1,4 +1,13 @@
+global:
+  domainName: vault.framsburg.ch
+
 vault:
+  dataStorage:
+    storageClass: longhorn
+
+  ui:
+    enabled: true
+
   server:
     image:
       repository: "vault"
@@ -13,24 +22,22 @@ vault:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.priority: "10"
       hosts:
-        - host: vault.framsburg.ch
+        - host: '{{ .Values.global.domainName }}'
           paths: [/]
       tls:
-        - hosts: [vault.framsburg.ch]
-          secretName: vault-framsburg-ch-tls
-  dataStorage:
-    storageClass: longhorn
-  ui:
-    enabled: true
+        - hosts: ['{{ .Values.global.domainName }}']
+          secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
+    resources:
+      requests:
+        cpu: 200m
+        memory: 128Mi
+      limits:
+        cpu: 400m
+        memory: 256Mi
   csi:
     enabled: false
+    resources: {}
   injector:
     enabled: false
+    resources: {}
 
-  resources:
-    requests:
-      cpu: 200m
-      memory: 128Mi
-    limits:
-      cpu: 400m
-      memory: 256Mi
