@@ -27,6 +27,14 @@ vault:
       tls:
         - hosts: ['{{ .Values.global.domainName }}']
           secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
+    readinessProbe:
+      initialDelaySeconds: 20
+      periodSeconds: 10
+      timeoutSeconds: 8
+    livenessProbe:
+      enabled: true
+      periodSeconds: 10
+      timeoutSeconds: 8
     resources:
       requests:
         cpu: 200m
