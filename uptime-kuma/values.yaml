@@ -9,6 +9,7 @@ uptime-kuma:
       enabled: true
       type: pvc
       size: 10Gi
+      accessMode: ReadWriteOnce
   # podSecurityContext:
   #   runAsUser: 568
   #   runAsGroup: 568
@@ -22,7 +23,6 @@ uptime-kuma:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
       hosts:
         - host: '{{ .Values.global.domainName }}'
-          paths: []
       tls:
         - hosts: ['{{ .Values.global.domainName }}']
           secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
