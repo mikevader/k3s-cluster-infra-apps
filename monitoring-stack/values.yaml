@@ -255,13 +255,13 @@ kube-prometheus-stack:
                     values:
                       - k3smaster3
                       - k3smaster2
-        resources:
-          requests:
-            cpu: 1
-            memory: 2048Mi
-          limits:
-            cpu: 2
-            memory: 5120Mi
+      resources:
+        requests:
+          cpu: 1
+          memory: 2048Mi
+        limits:
+          cpu: 2
+          memory: 5120Mi
       storageSpec:
         volumeClaimTemplate:
           spec:
