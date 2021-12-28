@@ -8,34 +8,30 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`traefik.framsburg.ch`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      match: Host(`traefik.framsburg.ch`)
       priority: 10
       services:
         - name: api@internal
           kind: TraefikService
+  tls:
+    secretName: traefik-framsburg-ch-tls
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: dashboardtls
   annotations:
+    # used only to automate certificate and dns. Point to metrics to ensure its not used
+    traefik.ingress.kubernetes.io/router.entrypoints: metrics
     kubernetes.io/ingress.class: "traefik"
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   rules:
     - host: traefik.framsburg.ch
       http:
         paths:
           - pathType: Prefix
-            path: "/dashboard"
-            backend:
-              service:
-                name: "traefik"
-                port:
-                  number: 80
-          - pathType: Prefix
-            path: "/api"
+            path: /
             backend:
               service:
                 name: "traefik"
