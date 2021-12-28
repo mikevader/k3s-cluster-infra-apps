@@ -1,0 +1,71 @@
+cluster: ""
+
+traefik:
+  fullnameOverride: traefik
+  image:
+    name: traefik
+    tag: 2.5.6
+  deployment:
+    annotations:
+      reloader.stakater.com/match: "true"
+  globalArguments:
+    - "--global.checknewversion"
+    - "--serverstransport.insecureskipverify=true"
+    - "--providers.kubernetesingress.ingressclass=traefik"
+    - "--metrics.prometheus=true"
+    - "--metrics.prometheus.entryPoint=metrics"
+    # - "--entrypoints.websecure.http.middlewares=ingress-error-pages@kubernetescrd"
+  logs:
+    general:
+      format: json
+      level: ERROR
+    access:
+      enabled: true
+      format: json
+  service:
+    spec:
+      externalTrafficPolicy: Local
+  ports:
+    web:
+      redirectTo: websecure
+    websecure:
+      tls:
+        enabled: true
+    metrics:
+      port: 9100
+      expose: true
+      exposedPort: 9100
+  ingressRoute:
+    dashboard:
+      enabled: false
+  ingressClass:
+    enabled: true
+    isDefaultClass: true
+    fallbackApiVersion: v1
+  rollingUpdate:
+    maxUnavailable: 3
+    maxSurge: 3
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "50Mi"
+    limits:
+      cpu: "300m"
+      memory: "150Mi"
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 5
+    metrics:
+      - type: Resource
+        resource:
+          name: memory
+          target:
+            type: Utilization
+            averageUtilization: 80
+      - type: Resource
+        resource:
+          name: cpu
+          target:
+            type: Utilization
+            averageUtilization: 80
