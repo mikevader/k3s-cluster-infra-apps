@@ -3,13 +3,13 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: dashboard
-  namespace: kube-system
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
-    - match: Host(`traefik.framsburg.ch`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
-      kind: Rule
+    - kind: Rule
+      match: Host(`traefik.framsburg.ch`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      priority: 10
       services:
         - name: api@internal
           kind: TraefikService
@@ -18,7 +18,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: dashboardtls
-  namespace: kube-system
   annotations:
     kubernetes.io/ingress.class: "traefik"
     cert-manager.io/cluster-issuer: letsencrypt-prod
