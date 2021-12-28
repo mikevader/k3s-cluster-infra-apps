@@ -5,7 +5,7 @@ traefik:
     tag: 2.5.6
   deployment:
     annotations:
-      reloader.stakater.com/match: "true"
+      # reloader.stakater.com/match: "true"
   globalArguments:
     - "--global.checknewversion"
     - "--serverstransport.insecureskipverify=true"
@@ -42,8 +42,8 @@ traefik:
     isDefaultClass: true
     fallbackApiVersion: v1
   rollingUpdate:
-    maxUnavailable: 3
-    maxSurge: 3
+    maxUnavailable: 1
+    maxSurge: 1
   resources:
     requests:
       cpu: "100m"
@@ -53,7 +53,7 @@ traefik:
       memory: "150Mi"
   autoscaling:
     enabled: false
-    minReplicas: 1
+    minReplicas: 2
     maxReplicas: 5
     metrics:
       - type: Resource
