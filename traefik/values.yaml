@@ -1,5 +1,3 @@
-cluster: ""
-
 traefik:
   fullnameOverride: traefik
   image:
@@ -24,6 +22,7 @@ traefik:
       format: json
   service:
     spec:
+      loadBalancerIP: 192.168.42.150
       externalTrafficPolicy: Local
   ports:
     web:
