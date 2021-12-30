@@ -24,7 +24,8 @@ heimdall:
       hosts:
         - host: '{{ .Values.global.domainName }}'
           paths:
-            - pathType: ImplementationSpecific
+            - path: null
+              pathType: ImplementationSpecific
               service:
                 name: heimdall
       tls:
