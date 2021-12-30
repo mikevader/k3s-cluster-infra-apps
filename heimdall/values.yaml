@@ -1,5 +1,5 @@
 global:
-    domainName: heimdall.framsburg.ch
+  domainName: heimdall.framsburg.ch
 
 heimdall:
   env:
@@ -24,8 +24,7 @@ heimdall:
       hosts:
         - host: '{{ .Values.global.domainName }}'
           paths:
-            - path: /
-              pathType: Prefix
+            - pathType: ImplementationSpecific
               service:
                 name: heimdall
       tls:
