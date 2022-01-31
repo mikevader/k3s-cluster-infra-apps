@@ -1,0 +1,53 @@
+argocd:
+  global:
+    image:
+      repository: alinbalutoiu/argocd
+      tag: v2.2.2
+  configs:
+    repositories:
+      stable-helm-repo:
+        name: stable
+        type: helm
+        url: https://charts.helm.sh/stable
+      jetstack-helm-repo:
+        name: jetstack
+        type: helm
+        url: https://charts.jetstack.io
+      bitnami-helm-repo:
+        name: bitnami
+        type: helm
+        url: https://charts.bitnami.com/bitnami
+      rancher-latest-helm-repo:
+        name: rancher-latest
+        type: helm
+        url: https://releases.rancher.com/server-charts/latest
+  server:
+    extraArgs:
+      - --insecure
+    ingress:
+      enabled: true
+      hosts:
+        - argocd.framsburg.ch
+    additionalApplications:
+      - name: bootstrap
+        namespace: argocd-system
+        finalizers:
+          - resources-finalizer.argocd.argoproj.io
+        destination:
+          namespace: argocd-system
+          server: https://kubernetes.default.svc
+        project: default
+        # source:
+        #   path: bootstrap/
+        #   repoURL: https://github.com/mikevader/k3s-apps-root-config.git
+        #   targetRevision: master
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: true
+
+applicationset:
+  fullnameOverride: applicationset
+  image:
+    repository: docker.io/baloisemichaelmuehlebach/argocd-applicationset
+    tag: v0.2.0
