@@ -37,10 +37,10 @@ argo-cd:
           namespace: argocd-system
           server: https://kubernetes.default.svc
         project: default
-        # source:
-        #   path: bootstrap/
-        #   repoURL: https://github.com/mikevader/k3s-apps-root-config.git
-        #   targetRevision: master
+        source:
+          path: bootstrap/
+          repoURL: https://github.com/mikevader/k3s-apps-root-config.git
+          targetRevision: master
         syncPolicy:
           automated:
             prune: true
