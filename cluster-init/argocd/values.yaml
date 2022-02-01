@@ -28,23 +28,23 @@ argo-cd:
       enabled: true
       hosts:
         - argocd.framsburg.ch
-    additionalApplications:
-      - name: bootstrap
-        namespace: argocd-system
-        finalizers:
-          - resources-finalizer.argocd.argoproj.io
-        destination:
-          namespace: argocd-system
-          server: https://kubernetes.default.svc
-        project: default
-        source:
-          path: bootstrap/
-          repoURL: https://github.com/mikevader/k3s-apps-root-config.git
-          targetRevision: master
-        syncPolicy:
-          automated:
-            prune: true
-            selfHeal: true
+    # additionalApplications:
+    #   - name: bootstrap
+    #     namespace: argocd-system
+    #     finalizers:
+    #       - resources-finalizer.argocd.argoproj.io
+    #     destination:
+    #       namespace: argocd-system
+    #       server: https://kubernetes.default.svc
+    #     project: default
+    #     source:
+    #       path: bootstrap/
+    #       repoURL: https://github.com/mikevader/k3s-apps-root-config.git
+    #       targetRevision: master
+    #     syncPolicy:
+    #       automated:
+    #         prune: true
+    #         selfHeal: true
 
 applicationset:
   fullnameOverride: applicationset
