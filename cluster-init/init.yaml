@@ -12,7 +12,7 @@ spec:
       - path: cluster-init/*
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: '{{ path.basename }}'
     spec:
       destination:
         name: in-cluster
@@ -20,8 +20,16 @@ spec:
       project: default
       source:
         repoURL: https://github.com/mikevader/k3s-cluster-infra-apps.git
-        path: '{{path}}'
+        path: '{{ path }}'
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
+        retry:
+          limit: 10
+          backoff:
+            duration: 1m
+            factor: 2
+            maxDuration: 16m
+        syncOptions:
+          - CreateNamespace=true
