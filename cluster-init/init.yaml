@@ -16,6 +16,7 @@ spec:
     spec:
       destination:
         name: in-cluster
+        namespace: argocd-system
       project: default
       source:
         repoURL: https://github.com/mikevader/k3s-cluster-infra-apps.git
