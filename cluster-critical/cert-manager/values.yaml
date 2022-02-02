@@ -5,7 +5,7 @@ cert-manager:
   # Default values for cert-manager.
   # This is a YAML-formatted file.
   # Declare variables to be passed into your templates.
-  installCRDs: true
+  installCRDs: false
 
   prometheus:
     enabled: true
