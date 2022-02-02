@@ -1,0 +1,8 @@
+---
+gitops:
+  repo: https://github.com/mikevader/k3s-cluster-infra-apps.git
+  revision: master
+stacks:
+  - name: cluster-init
+    namespace: argocd-system  # Override default value
+  - name: cluster-critical
