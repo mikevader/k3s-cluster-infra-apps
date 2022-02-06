@@ -26,8 +26,16 @@ argo-cd:
       - --insecure
     ingress:
       enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "traefik"
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
       hosts:
         - argocd.framsburg.ch
+      tls:
+        - hosts:
+          - argocd.framsburg.ch
+          secretName: argocd-framsburg-ch-tls
     # additionalApplications:
     #   - name: bootstrap
     #     namespace: argocd-system
