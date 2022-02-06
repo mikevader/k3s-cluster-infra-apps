@@ -1,7 +1,7 @@
 cert-manager:
   extraArgs:
     - --dns01-recursive-nameservers-only
-    - --dns01-recursive-nameservers="8.8.8.8:53"
+    - --dns01-recursive-nameservers="192.168.1.1:53"
   # Default values for cert-manager.
   # This is a YAML-formatted file.
   # Declare variables to be passed into your templates.
@@ -13,16 +13,16 @@ cert-manager:
       enabled: false
       namespace: monitoring-stack
 
-  image:
-    repository: quay.io/jetstack/cert-manager-controller-arm
+  # image:
+  #   repository: quay.io/jetstack/cert-manager-controller-arm
 
-  webhook:
-    image:
-      repository: quay.io/jetstack/cert-manager-webhook-arm
+  # webhook:
+  #   image:
+  #     repository: quay.io/jetstack/cert-manager-webhook-arm
 
-  cainjector:
-    image:
-      repository: quay.io/jetstack/cert-manager-cainjector-arm
+  # cainjector:
+  #   image:
+  #     repository: quay.io/jetstack/cert-manager-cainjector-arm
 
   # This startupapicheck is a Helm post-install hook that waits for the webhook
   # endpoints to become available.
