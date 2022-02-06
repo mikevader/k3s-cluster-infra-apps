@@ -41,6 +41,10 @@ traefik:
     enabled: true
     isDefaultClass: true
     fallbackApiVersion: v1
+  providers:
+    kubernetesIngress:
+      publishedService:
+        enabled: true
   rollingUpdate:
     maxUnavailable: 1
     maxSurge: 1
