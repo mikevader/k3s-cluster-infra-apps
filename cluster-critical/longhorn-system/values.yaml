@@ -5,6 +5,7 @@ longhorn:
     concurrentAutomaticEngineUpgradePerNodeLimit: 1
     replicaAutoBalance: best-effort
     defaultReplicaCount: 2
+    createDefaultDiskLabeledNodes: true
   ingress:
     enabled: true
     annotations:
@@ -15,9 +16,9 @@ longhorn:
     host: longhorn.framsburg.ch
     tls: true
     tlsSecret: longhorn-framsburg-ch-tls
-  longhornManager:
-    nodeSelector:
-      longhorn_enabled: "yes"
-  longhornDriver:
-    nodeSelector:
-      longhorn_enabled: "yes"
+  # longhornManager:
+  #   nodeSelector:
+  #     longhorn_enabled: "yes"
+  # longhornDriver:
+  #   nodeSelector:
+  #     longhorn_enabled: "yes"
