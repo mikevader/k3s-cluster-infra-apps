@@ -14,3 +14,6 @@ Order on initialization:
     2. cert-manager
         * Add token for digital ocean
     3. traefik
+    4. longhorn
+        * longhorn disks mounted
+    5. 
