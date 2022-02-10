@@ -15,3 +15,9 @@ longhorn:
     host: longhorn.framsburg.ch
     tls: true
     tlsSecret: longhorn-framsburg-ch-tls
+  longhornManager:
+    nodeSelector:
+      longhorn_enabled: yes
+  longhornDriver:
+    nodeSelector:
+      longhorn_enabled: yes
