@@ -9,12 +9,12 @@ kube-prometheus-stack:
     enabled: true
   kubeControllerManager:
     enabled: true
-    endpoints:
-      - 192.168.42.120
-      - 192.168.42.121
-      - 192.168.42.122
-    service:
-      enabled: true
+    # endpoints:
+    #   - 192.168.42.120
+    #   - 192.168.42.121
+    #   - 192.168.42.122
+    # service:
+    #   enabled: true
       # port: 10259
       # targetPort: 10259
     serviceMonitor:
@@ -23,12 +23,12 @@ kube-prometheus-stack:
       insecureSkipVerify: true
   kubeScheduler:
     enabled: true
-    endpoints:
-      - 192.168.42.120
-      - 192.168.42.121
-      - 192.168.42.122
-    service:
-      enabled: true
+    # endpoints:
+    #   - 192.168.42.120
+    #   - 192.168.42.121
+    #   - 192.168.42.122
+    # service:
+    #   enabled: true
       # port: 10259
       # targetPort: 10259
     serviceMonitor:
@@ -37,12 +37,12 @@ kube-prometheus-stack:
       insecureSkipVerify: true
   kubeProxy:
     enabled: true
-    endpoints:
-      - 192.168.42.120
-      - 192.168.42.121
-      - 192.168.42.122
-    service:
-      enabled: true
+    # endpoints:
+    #   - 192.168.42.120
+    #   - 192.168.42.121
+    #   - 192.168.42.122
+    # service:
+    #   enabled: true
       # port: 10250
       # targetPort: 10250
     serviceMonitor:
@@ -51,12 +51,12 @@ kube-prometheus-stack:
       insecureSkipVerify: true
   kubeEtcd:
     enabled: true
-    endpoints:
-      - 192.168.42.120
-      - 192.168.42.121
-      - 192.168.42.122
-    service:
-      enabled: true
+    # endpoints:
+    #   - 192.168.42.120
+    #   - 192.168.42.121
+    #   - 192.168.42.122
+    # service:
+    #   enabled: true
       # port: 2381
       # targetPort: 2381
 
