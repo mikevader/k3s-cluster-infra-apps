@@ -15,8 +15,8 @@ kube-prometheus-stack:
       - 192.168.42.122
     service:
       enabled: true
-      port: 10257
-      targetPort: 10257
+      # port: 10259
+      # targetPort: 10259
     serviceMonitor:
       enabled: true
       https: true
@@ -29,8 +29,8 @@ kube-prometheus-stack:
       - 192.168.42.122
     service:
       enabled: true
-      port: 10259
-      targetPort: 10259
+      # port: 10259
+      # targetPort: 10259
     serviceMonitor:
       enabled: true
       https: true
@@ -43,22 +43,22 @@ kube-prometheus-stack:
       - 192.168.42.122
     service:
       enabled: true
-      port: 10250
-      targetPort: 10250
+      # port: 10250
+      # targetPort: 10250
     serviceMonitor:
       enabled: true
       https: true
       insecureSkipVerify: true
   kubeEtcd:
-    enabled: false
+    enabled: true
     endpoints:
       - 192.168.42.120
       - 192.168.42.121
       - 192.168.42.122
     service:
-      enabled: false
-      port: 2381
-      targetPort: 2381
+      enabled: true
+      # port: 2381
+      # targetPort: 2381
 
 
   prometheusOperator:
@@ -83,6 +83,8 @@ kube-prometheus-stack:
         - secretName: grafana-framsburg-ch-tls
           hosts:
             - grafana.framsburg.ch
+    serviceMonitor:
+      enabled: true
     sidecar:
       dashboards:
         enabled: true
