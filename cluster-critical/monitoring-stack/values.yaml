@@ -41,10 +41,10 @@ kube-prometheus-stack:
     #   - 192.168.42.120
     #   - 192.168.42.121
     #   - 192.168.42.122
-    # service:
-    #   enabled: true
-      # port: 10250
-      # targetPort: 10250
+    service:
+      enabled: true
+      port: 10249
+      targetPort: 10249
     serviceMonitor:
       enabled: true
       https: true
@@ -55,10 +55,10 @@ kube-prometheus-stack:
     #   - 192.168.42.120
     #   - 192.168.42.121
     #   - 192.168.42.122
-    # service:
-    #   enabled: true
-    #   port: 2381
-    #   targetPort: 2381
+    service:
+      enabled: true
+      port: 2379
+      targetPort: 2379
 
   prometheusOperator:
     admissionWebhooks:
