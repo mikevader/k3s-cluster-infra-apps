@@ -60,7 +60,10 @@ promtail:
     - name: journal
       mountPath: /var/log/journal
       readOnly: true
-
+  tolerations:
+    - key: CriticalAddonsOnly
+      operator: Exists
+      effect: NoSchedule
   resources:
     requests:
       cpu: 100m
