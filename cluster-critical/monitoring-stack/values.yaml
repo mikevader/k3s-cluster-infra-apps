@@ -9,10 +9,7 @@ kube-prometheus-stack:
     enabled: true
   kubeControllerManager:
     enabled: true
-    # endpoints:
-    #   - 192.168.42.120
-    #   - 192.168.42.121
-    #   - 192.168.42.122
+    endpoints: {{ toYaml .Values.global.kubeMasterIPs | nindent 6 }}
     service:
       enabled: true
       port: 10257
