@@ -246,17 +246,17 @@ kube-prometheus-stack:
       retentionSize: 40GB
       retention: 4d
       podAntiAffinity: soft
-      affinity:
-        nodeAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 1
-              preference:
-                matchExpressions:
-                  - key: kubernetes.io/hostname
-                    operator: In
-                    values:
-                      - k3smaster3
-                      - k3smaster2
+      # affinity:
+      #   nodeAffinity:
+      #     preferredDuringSchedulingIgnoredDuringExecution:
+      #       - weight: 1
+      #         preference:
+      #           matchExpressions:
+      #             - key: kubernetes.io/hostname
+      #               operator: In
+      #               values:
+      #                 - k3smaster3
+      #                 - k3smaster2
       resources:
         requests:
           cpu: 1
