@@ -57,8 +57,8 @@ kube-prometheus-stack:
       - 192.168.42.122
     service:
       enabled: true
-      port: 2379
-      targetPort: 2379
+      port: 2381
+      targetPort: 2381
 
   prometheusOperator:
     admissionWebhooks:
