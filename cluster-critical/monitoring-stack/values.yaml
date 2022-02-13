@@ -23,10 +23,10 @@ kube-prometheus-stack:
       insecureSkipVerify: true
   kubeScheduler:
     enabled: true
-    # endpoints:
-    #   - 192.168.42.120
-    #   - 192.168.42.121
-    #   - 192.168.42.122
+    endpoints:
+      - 192.168.42.120
+      - 192.168.42.121
+      - 192.168.42.122
     service:
       enabled: true
       port: 10259
@@ -37,10 +37,10 @@ kube-prometheus-stack:
       insecureSkipVerify: true
   kubeProxy:
     enabled: true
-    # endpoints:
-    #   - 192.168.42.120
-    #   - 192.168.42.121
-    #   - 192.168.42.122
+    endpoints:
+      - 192.168.42.120
+      - 192.168.42.121
+      - 192.168.42.122
     service:
       enabled: true
       port: 10249
@@ -51,10 +51,10 @@ kube-prometheus-stack:
       insecureSkipVerify: true
   kubeEtcd:
     enabled: true
-    # endpoints:
-    #   - 192.168.42.120
-    #   - 192.168.42.121
-    #   - 192.168.42.122
+    endpoints:
+      - 192.168.42.120
+      - 192.168.42.121
+      - 192.168.42.122
     service:
       enabled: true
       port: 2379
