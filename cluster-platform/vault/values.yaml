@@ -9,6 +9,8 @@ vault:
     enabled: true
 
   server:
+    dev:
+      enabled: true
     # image:
     #   repository: "vault"
     #   tag: "1.9.1"
