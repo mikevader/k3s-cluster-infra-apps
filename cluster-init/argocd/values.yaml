@@ -1,8 +1,8 @@
 argo-cd:
   global:
     image:
-      repository: alinbalutoiu/argocd
-      tag: v2.2.2
+      # repository: alinbalutoiu/argocd
+      tag: v2.3.0-rc5
   configs:
     repositories:
       stable-helm-repo:
@@ -54,8 +54,8 @@ argo-cd:
     #         prune: true
     #         selfHeal: true
 
-applicationset:
-  fullnameOverride: applicationset
-  image:
-    repository: docker.io/baloisemichaelmuehlebach/argocd-applicationset
-    tag: v0.2.0
+# applicationset:
+#   fullnameOverride: applicationset
+#   image:
+#     repository: docker.io/baloisemichaelmuehlebach/argocd-applicationset
+#     tag: v0.2.0
