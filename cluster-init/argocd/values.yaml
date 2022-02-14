@@ -54,8 +54,8 @@ argo-cd:
     #         prune: true
     #         selfHeal: true
 
-# applicationset:
-#   fullnameOverride: applicationset
-#   image:
-#     repository: docker.io/baloisemichaelmuehlebach/argocd-applicationset
-#     tag: v0.2.0
+applicationset:
+  fullnameOverride: applicationset
+  image:
+    repository: docker.io/baloisemichaelmuehlebach/argocd-applicationset
+    tag: v0.2.0
