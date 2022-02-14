@@ -5,7 +5,7 @@ global:
 dex:
   config:
     # Set it to a valid URL
-    issuer: 'https://{{ .Values.global.domainName }}'
+    issuer: 'https://dex.framsburg.ch'
 
     # See https://dexidp.io/docs/storage/ for more options
     storage:
@@ -25,11 +25,11 @@ dex:
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
 
     hosts:
-      - host: '{{ .Values.global.domainName }}'
+      - host: 'dex.framsburg.ch'
         paths:
           - path: /
             pathType: Prefix
 
     tls:
       - secretName: 'dex-framsburg-ch-tls'
-        hosts: ['{{ .Values.global.domainName }}']
+        hosts: ['dex.framsburg.ch']
