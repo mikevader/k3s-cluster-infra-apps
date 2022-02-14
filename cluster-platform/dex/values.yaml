@@ -1,6 +1,7 @@
 ---
 global:
   domainName: dex.framsburg.ch
+
 dex:
   config:
     # Set it to a valid URL
@@ -16,6 +17,7 @@ dex:
 
   ingress:
     enabled: true
+    ingressClassName: traefik
 
     annotations:
       kubernetes.io/ingress.class: "traefik"
@@ -28,5 +30,5 @@ dex:
           - path: /
 
     tls:
-      - hosts: ['{{ .Values.global.domainName }}']
-        secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
+      - secretName: 'dex-framsburg-ch-tls'
+        hosts: ['{{ .Values.global.domainName }}']
