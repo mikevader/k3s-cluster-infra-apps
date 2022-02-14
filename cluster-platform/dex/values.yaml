@@ -28,6 +28,7 @@ dex:
       - host: '{{ .Values.global.domainName }}'
         paths:
           - path: /
+            pathType: Prefix
 
     tls:
       - secretName: 'dex-framsburg-ch-tls'
