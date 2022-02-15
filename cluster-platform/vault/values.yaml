@@ -5,6 +5,11 @@ vault:
   dataStorage:
     storageClass: longhorn
 
+  csi:
+    enabled: false
+  injector:
+    enabled: true
+
   ui:
     enabled: true
 
@@ -55,8 +60,4 @@ vault:
       limits:
         cpu: 400m
         memory: 256Mi
-  csi:
-    enabled: false
-  injector:
-    enabled: false
 
