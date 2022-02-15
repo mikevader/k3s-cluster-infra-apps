@@ -95,6 +95,12 @@ kube-prometheus-stack:
         searchNamespace: ALL
     plugins:
       - grafana-piechart-panel
+    dashboards:
+      default:
+        k8s-cluster-summary:
+          gnetId: 4475
+          revision: 5
+          datasource: Prometheus
     grafana.ini:
       server:
         root_url: https://grafana.framsburg.ch
