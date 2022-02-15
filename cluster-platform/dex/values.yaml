@@ -30,6 +30,6 @@ dex:
           - path: /
             pathType: Prefix
 
-    tls:
-      - secretName: 'dex-framsburg-ch-tls'
-        hosts: ['dex.framsburg.ch']
+    # tls:
+    #   - secretName: 'dex-framsburg-ch-tls'
+    #     hosts: ['dex.framsburg.ch']
