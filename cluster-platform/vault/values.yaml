@@ -8,7 +8,7 @@ vault:
   csi:
     enabled: false
   injector:
-    enabled: true
+    enabled: false
 
   ui:
     enabled: true
@@ -20,6 +20,13 @@ vault:
     #   repository: "vault"
     #   tag: "1.9.1"
     #   pullPolicy: IfNotPresent
+    postStart:
+      - /bin/sh
+      - -ec
+      - >
+        sleep 5;
+        vault auth enable kubernetes;
+        vault write auth/kubernetes/config token_reviewer_jwt="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" kubernetes_host="$KUBERNETES_PORT_443_TCP_ADDR:443" kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
     ingress:
       enabled: true
       pathType: Prefix
