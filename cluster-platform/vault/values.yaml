@@ -6,7 +6,7 @@ vault:
     storageClass: longhorn
 
   csi:
-    enabled: false
+    enabled: true
   injector:
     enabled: false
 
