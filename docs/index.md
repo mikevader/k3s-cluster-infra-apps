@@ -19,8 +19,10 @@ That means, at least for me, to stay true to the following points:
 
 One way to use credentials from the vault inside pods is with CSI.
 
+* Vault post-start command to enable kubernetes auth-method
 * Use Vault with CSI
 * Install CSI Driver CRD with Chart
+* Define a generic SecretProviderClass template as it is needed for each secret (quite a lot of boilerplate)
 
 
 
