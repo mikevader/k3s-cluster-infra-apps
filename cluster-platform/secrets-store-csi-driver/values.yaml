@@ -42,7 +42,7 @@ secrets-store-csi-driver:
   logFormatJSON: false
 
   rbac:
-    install: true
+    install: false
 
   syncSecret:
     enabled: false
