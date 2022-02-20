@@ -17,6 +17,10 @@ argo-cd:
         name: bitnami
         type: helm
         url: https://charts.bitnami.com/bitnami
+      dex-helm-repo:
+        name: dex
+        type: helm
+        url: https://charts.dexidp.io
       rancher-latest-helm-repo:
         name: rancher-latest
         type: helm
