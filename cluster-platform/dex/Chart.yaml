@@ -6,6 +6,6 @@ dependencies:
   - name: dex
     version: 0.6.5
     repository: https://charts.dexidp.io
-  - name: templates
+  - name: addons
     version: 1.0.0
-    repository: file://../../templates
+    repository: file://../../addons
