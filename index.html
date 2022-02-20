@@ -316,8 +316,10 @@ That means, at least for me, to stay true to the following points:</p>
 <h2 id="vault-secret-injection-with-csi">Vault Secret Injection with CSI</h2>
 <p>One way to use credentials from the vault inside pods is with CSI.</p>
 <ul>
+<li>Vault post-start command to enable kubernetes auth-method</li>
 <li>Use Vault with CSI</li>
 <li>Install CSI Driver CRD with Chart</li>
+<li>Define a generic SecretProviderClass template as it is needed for each secret (quite a lot of boilerplate)</li>
 </ul>
 <p>--8&lt;-- "includes/abbreviations.md"</p>
 
