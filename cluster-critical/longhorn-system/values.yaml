@@ -22,3 +22,11 @@ longhorn:
   # longhornDriver:
   #   nodeSelector:
   #     longhorn_enabled: "yes"
+
+  resources:
+    limits:
+    cpu: 100m
+    memory: 128Mi
+    requests:
+    cpu: 100m
+    memory: 128Mi
