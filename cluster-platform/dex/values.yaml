@@ -31,9 +31,9 @@ dex:
         secretKeyRef:
           name: github-client-conf
           key: secret
-  envFrom:
-    - secretRef:
-        name: secrets-store-inline
+  # envFrom:
+  #   - secretRef:
+  #       name: secrets-store-inline
   config:
     # Set it to a valid URL
     issuer: 'https://dex.framsburg.ch'
