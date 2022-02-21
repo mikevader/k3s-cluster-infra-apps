@@ -25,6 +25,7 @@ argo-cd:
         name: rancher-latest
         type: helm
         url: https://releases.rancher.com/server-charts/latest
+  
   server:
     extraArgs:
       - --insecure
@@ -57,6 +58,10 @@ argo-cd:
     #       automated:
     #         prune: true
     #         selfHeal: true
+  repoServer:
+    env:
+      - name: ARGOCD_EXEC_TIMEOUT
+        value: '240s'
 
 applicationset:
   fullnameOverride: applicationset
