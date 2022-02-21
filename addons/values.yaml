@@ -2,7 +2,7 @@ spc:
   enabled: false
   provider: vault
   role: csi-secrets-store
-  vaultAddress: https://vault.framsburg.ch
+  vaultAddress: 'https://vault.framsburg.ch'
   defaultSecretMountPath: kv-v2
   defaultObjectPath: ""
   secretObjects: false
@@ -11,5 +11,5 @@ spc:
     - name: config.php
       key: config.php
       mount: kv-v2
-      path: k8s/framsburg/backbone
+      path: 'k8s/framsburg/backbone'
       secretName: ""
