@@ -1,8 +1,7 @@
 argo-cd:
   global:
     image:
-      # repository: alinbalutoiu/argocd
-      tag: v2.3.0-rc5
+      tag: v2.3.0
   configs:
     repositories:
       stable-helm-repo:
