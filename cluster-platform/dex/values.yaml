@@ -24,12 +24,12 @@ dex:
     - name: GITHUB_CLIENT_ID
       valueFrom:
         secretKeyRef:
-          name: github-client-conf
+          name: dex
           key: id
     - name: GITHUB_CLIENT_SECRET
       valueFrom:
         secretKeyRef:
-          name: github-client-conf
+          name: dex
           key: secret
   # envFrom:
   #   - secretRef:
