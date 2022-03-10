@@ -8,8 +8,8 @@ addons:
     defaultObjectPath: 'k8s/framsburg/dex'
     secretObjects: true
     objects:
-      - name: GITHUB_CLIENT_ID
-      - name: GITHUB_CLIENT_SECRET
+      - name: client-id
+      - name: client-secret
     extraSecretObjects:
       - type: Opaque
         secretName: github-client-conf
