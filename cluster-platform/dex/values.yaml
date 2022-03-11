@@ -126,6 +126,10 @@ dex:
       cpu: 100m
       memory: 128Mi
 
+  volumeMounts:
+    - name: 'secrets-store-inline'
+      mountPath: '/mnt/secrets-store'
+      readOnly: true
   volumes:
     - name: secrets-store-inline
       csi:
