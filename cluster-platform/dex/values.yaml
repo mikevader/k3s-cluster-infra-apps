@@ -25,12 +25,12 @@ dex:
       valueFrom:
         secretKeyRef:
           name: dex
-          key: id
+          key: client-id
     - name: GITHUB_CLIENT_SECRET
       valueFrom:
         secretKeyRef:
           name: dex
-          key: secret
+          key: client-secret
   # envFrom:
   #   - secretRef:
   #       name: secrets-store-inline
