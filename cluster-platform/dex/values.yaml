@@ -10,14 +10,14 @@ addons:
     objects:
       - name: client-id
       - name: client-secret
-    extraSecretObjects:
-      - type: Opaque
-        secretName: github-client-conf
-        data:
-          - key: id
-            objectName: client-id
-          - key: secret
-            objectName: client-secret
+    # extraSecretObjects:
+    #   - type: Opaque
+    #     secretName: github-client-conf
+    #     data:
+    #       - key: id
+    #         objectName: client-id
+    #       - key: secret
+    #         objectName: client-secret
 
 dex:
   envVars:
