@@ -2,7 +2,8 @@ spc:
   enabled: false
   provider: vault
   role: csi-secrets-store
-  vaultAddress: 'https://vault.framsburg.ch'
+  vaultAddress: 'https://vault.vault:8200'
+  vaultCACertPath: '/vault/tls/ca.crt'
   defaultSecretMountPath: kv-v2
   defaultObjectPath: ""
   secretObjects: false
