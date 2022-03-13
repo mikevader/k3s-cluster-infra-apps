@@ -13,5 +13,5 @@ spec:
         secretPath: "secret/data/db-pass"
         secretKey: "password"
       - objectName: "hello"
-        secretPath: "kv-v2/hello"
+        secretPath: "kv-v2/data/hello"
         secretKey: "username"
