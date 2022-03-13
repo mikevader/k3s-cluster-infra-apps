@@ -2,35 +2,35 @@
 global:
   cluster: framsburg
 
-addons:
-  spc:
-    enabled: true
-    defaultObjectPath: 'k8s/framsburg/dex'
-    secretObjects: true
-    objects:
-      - name: client-id
-      - name: client-secret
-    # extraSecretObjects:
-    #   - type: Opaque
-    #     secretName: github-client-conf
-    #     data:
-    #       - key: id
-    #         objectName: client-id
-    #       - key: secret
-    #         objectName: client-secret
+# addons:
+#   spc:
+#     enabled: true
+#     defaultObjectPath: 'k8s/framsburg/dex'
+#     secretObjects: true
+#     objects:
+#       - name: client-id
+#       - name: client-secret
+#     # extraSecretObjects:
+#     #   - type: Opaque
+#     #     secretName: github-client-conf
+#     #     data:
+#     #       - key: id
+#     #         objectName: client-id
+#     #       - key: secret
+#     #         objectName: client-secret
 
 dex:
   envVars:
     - name: GITHUB_CLIENT_ID
       valueFrom:
         secretKeyRef:
-          name: dex
-          key: client-id
+          name: oidc
+          key: id
     - name: GITHUB_CLIENT_SECRET
       valueFrom:
         secretKeyRef:
-          name: dex
-          key: client-secret
+          name: oidc
+          key: secret
   # envFrom:
   #   - secretRef:
   #       name: secrets-store-inline
@@ -136,4 +136,4 @@ dex:
         driver: secrets-store.csi.k8s.io
         readOnly: true
         volumeAttributes:
-          secretProviderClass: dex
+          secretProviderClass: vault-dex
