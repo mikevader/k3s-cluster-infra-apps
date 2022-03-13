@@ -17,7 +17,7 @@ spec:
         secretKey: "username"
   secretObjects:
     - data:
-        - key: username
+        - key: client-id
           objectName: hello
-      secretName: dex
+      secretName: github-client
       type: Opaque

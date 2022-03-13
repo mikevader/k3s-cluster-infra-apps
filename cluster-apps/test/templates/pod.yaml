@@ -16,8 +16,8 @@ spec:
     - name: GITHUB_CLIENT_ID
       valueFrom:
         secretKeyRef:
-          name: dex
-          key: username
+          name: github-client
+          key: client-id
 
   volumes:
     - name: secrets-store-inline
