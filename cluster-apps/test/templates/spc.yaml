@@ -15,3 +15,9 @@ spec:
       - objectName: "hello"
         secretPath: "kv-v2/data/hello"
         secretKey: "username"
+  secretObjects:
+    - data:
+        - key: username
+          objectName: hello
+      secretName: dex
+      type: Opaque
