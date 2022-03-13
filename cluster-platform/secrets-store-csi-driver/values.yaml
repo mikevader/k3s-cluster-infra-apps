@@ -45,7 +45,7 @@ secrets-store-csi-driver:
     install: true
 
   syncSecret:
-    enabled: false
+    enabled: true
 
   enableSecretRotation: false
   rotationPollInterval: "120s"
