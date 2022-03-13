@@ -9,3 +9,7 @@ theme:
   name: material
   icon:
     repo: fontawesome/brands/github
+
+markdown_extensions:
+  - abbr
+  - pymdownx.snippets
