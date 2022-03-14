@@ -31,9 +31,9 @@ dex:
         secretKeyRef:
           name: oidc
           key: secret
-  # envFrom:
-  #   - secretRef:
-  #       name: secrets-store-inline
+  envFrom:
+    - secretRef:
+        name: oidc
   config:
     # Set it to a valid URL
     issuer: 'https://dex.framsburg.ch'
@@ -53,8 +53,8 @@ dex:
         name: GitHub
         config:
           # Credentials can be string literals or pulled from the environment.
-          clientID: $GITHUB_CLIENT_ID**
-          clientSecret: $GITHUB_CLIENT_SECRET**
+          clientID: $id
+          clientSecret: $secret
           redirectURI: "https://dex.framsburg.ch/callback"
 
           # Optional organizations and teams, communicated through the "groups" scope.
