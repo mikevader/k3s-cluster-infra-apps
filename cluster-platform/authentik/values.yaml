@@ -5,7 +5,7 @@ authentik:
   authentik:
     secret_key: dontjudgemethisisjustfortesting    # TODO
     postgresql:
-      password: &postgresql_password IKnowThisIsNotASecurePasswordJust4Testing    # TODO
+      password: IKnowThisIsNotASecurePasswordJust4Testing    # TODO
 
   ingress:
     enabled: true
@@ -45,7 +45,7 @@ postgres:
   userDatabase:
     name: "authentik"
     user: "authentik"
-    password: *postgresql_password
+    password: IKnowThisIsNotASecurePasswordJust4Testing
   storage:
     className: longhorn
     requestedSize: 10Gi
