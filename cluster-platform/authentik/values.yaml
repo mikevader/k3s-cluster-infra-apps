@@ -42,7 +42,10 @@ authentik:
         size: 10Gi
 
 postgres:
-  settings.superuserPassword: *postgresql_password
+  userDatabase:
+    name: "authentik"
+    user: "authentik"
+    password: *postgresql_password
   storage:
     className: longhorn
     requestedSize: 10Gi
