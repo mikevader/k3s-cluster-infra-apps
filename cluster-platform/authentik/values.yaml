@@ -5,7 +5,7 @@ authentik:
   authentik:
     secret_key: dontjudgemethisisjustfortesting    # TODO
     postgresql:
-      password: IKnowThisIsNotASecurePasswordJust4Testing    # TODO
+      password: "IKnowThisIsNotASecurePasswordJust4Testing"    # TODO
 
   ingress:
     enabled: true
@@ -23,31 +23,13 @@ authentik:
       - secretName: 'authentik-framsburg-ch-tls'
         hosts: ['authentik.framsburg.ch']
 
-  postgresql:
-    enabled: false
-    postgresqlPassword: IKnowThisIsNotASecurePasswordJust4Testing
-    persistence:
-      enabled: true
-      storageClass: longhorn
-      size: 10Gi
-  redis:
-    enabled: false
-    image:
-      repository: redis
-      tag: 6.2.6-apline
-    master:
-      persistence:
-        enabled: true
-        storageClass: longhorn
-        size: 10Gi
-
 postgres:
   settings:
-    superuserPassword: IKnowThisIsNotASecurePasswordJust4Testing
+    superuserPassword: "IKnowThisIsNotASecurePasswordJust4Testing"
   userDatabase:
     name: "authentik"
     user: "authentik"
-    password: IKnowThisIsNotASecurePasswordJust4Testing
+    password: "IKnowThisIsNotASecurePasswordJust4Testing"
   storage:
     className: longhorn
     requestedSize: 10Gi
