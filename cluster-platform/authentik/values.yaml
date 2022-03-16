@@ -24,7 +24,10 @@ authentik:
         hosts: ['authentik.framsburg.ch']
 
 postgres:
+  env:
+    POSTGRES_PASSWORD: "IKnowThisIsNotASecurePasswordJust4Testing"
   settings:
+    superuser: 'postgres'
     superuserPassword: "IKnowThisIsNotASecurePasswordJust4Testing"
   userDatabase:
     name: "authentik"
