@@ -29,10 +29,11 @@ authentik:
     persistence:
       enabled: true
       storageClass: longhorn
+      size: 10Gi
   redis:
     enabled: true
     master:
       persistence:
         enabled: true
         storageClass: longhorn
-        size: 1Gi
+        size: 10Gi
