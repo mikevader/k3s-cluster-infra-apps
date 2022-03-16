@@ -24,14 +24,14 @@ authentik:
         hosts: ['authentik.framsburg.ch']
 
   postgresql:
-    enabled: true
+    enabled: false
     postgresqlPassword: *postgresql_password
     persistence:
       enabled: true
       storageClass: longhorn
       size: 10Gi
   redis:
-    enabled: true
+    enabled: false
     image:
       repository: redis
       tag: 6.2.6-apline
@@ -40,3 +40,13 @@ authentik:
         enabled: true
         storageClass: longhorn
         size: 10Gi
+
+postgresql:
+  settings.superuserPassword: *postgresql_password
+  storage:
+    className: longhorn
+    requestedSize: 10Gi
+redis:
+  storage:
+    className: longhorn
+    requestedSize: 10Gi
