@@ -15,13 +15,13 @@ authentik:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
     hosts:
-      - host: '{{ .Values.global.domainName }}'
+      - host: 'authentik.framsburg.ch'
         paths:
           - path: /
             pathType: Prefix
     tls:
-      - secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
-        hosts: ['{{ .Values.global.domainName }}']
+      - secretName: 'authentik-framsburg-ch-tls'
+        hosts: ['authentik.framsburg.ch']
 
   postgresql:
     enabled: true
