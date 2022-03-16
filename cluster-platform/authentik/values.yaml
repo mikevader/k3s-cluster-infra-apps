@@ -41,7 +41,7 @@ authentik:
         storageClass: longhorn
         size: 10Gi
 
-postgresql:
+postgres:
   settings.superuserPassword: *postgresql_password
   storage:
     className: longhorn
