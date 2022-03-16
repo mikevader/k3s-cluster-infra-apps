@@ -242,6 +242,26 @@
     Vault Secret Injection with CSI
   </a>
   
+    <nav class="md-nav" aria-label="Vault Secret Injection with CSI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secret-class" class="md-nav__link">
+    Secret Class
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volumes-in-a-chart" class="md-nav__link">
+    Volumes in a Chart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -283,6 +303,26 @@
     Vault Secret Injection with CSI
   </a>
   
+    <nav class="md-nav" aria-label="Vault Secret Injection with CSI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secret-class" class="md-nav__link">
+    Secret Class
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volumes-in-a-chart" class="md-nav__link">
+    Volumes in a Chart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -322,6 +362,93 @@ That means, at least for me, to stay true to the following points:</p>
 <li>Install <abbr title="Container Storage Interface">CSI</abbr> Driver CRD with Chart</li>
 <li>Define a generic SecretProviderClass template as it is needed for each secret (quite a lot of boilerplate)</li>
 </ul>
+<p>In case you need the vault command you can easily log into the shell with:</p>
+<pre><code class="language-bash">$ kubectl exec -it vault-0 -- /bin/sh
+</code></pre>
+<p>Create the secrets with:</p>
+<pre><code class="language-bash">$ vault kv put kv-v2/k8s/framsburg/dex client-id=&quot;someID&quot; client-secret=&quot;someSecret&quot;
+</code></pre>
+<p>Enable and activate kubernetes auth method</p>
+<pre><code class="language-bash">$ vault auth enable kubernetes
+$ vault write auth/kubernetes/config \
+    issuer=&quot;https://kubernetes.default.svc.cluster.local&quot; \
+    token_reviewer_jwt=&quot;$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)&quot; \
+    kubernetes_host=&quot;https://$KUBERNETES_PORT_443_TCP_ADDR:443&quot; \
+    kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+</code></pre>
+<p>Create a policy:</p>
+<pre><code class="language-bash">$ vault policy write dex-app - &lt;&lt;EOF
+policy dex-app:
+path &quot;kv-v2/data/k8s/framsburg/dex&quot; {
+  capabilities = [&quot;read&quot;]
+}
+EOF
+</code></pre>
+<p>Write a role to map a service account with a policy</p>
+<pre><code class="language-bash">$ vault write auth/kubernetes/role/dex-app \
+    bound_service_account_names=dex \
+    bound_service_account_namespaces=dex \
+    policies=dex-app \
+    ttl=20m
+Success! Data written to: auth/kubernetes/role/dex-app
+</code></pre>
+<h3 id="secret-class">Secret Class</h3>
+<pre><code class="language-yaml">---
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: vault-dex
+spec:
+  provider: vault
+  parameters:
+    vaultAddress: &quot;http://vault.vault:8200&quot;
+    roleName: &quot;dex-app&quot;
+    objects: |
+      - objectName: &quot;oidc-id&quot;
+        secretPath: &quot;kv-v2/data/k8s/framsburg/dex&quot;
+        secretKey: &quot;client-id&quot;
+      - objectName: &quot;oidc-secret&quot;
+        secretPath: &quot;kv-v2/data/k8s/framsburg/dex&quot;
+        secretKey: &quot;client-secret&quot;
+  secretObjects:
+    - data:
+        - key: id
+          objectName: oidc-id
+        - key: secret
+          objectName: oidc-secret
+      secretName: oidc
+      type: Opaque
+</code></pre>
+<h3 id="volumes-in-a-chart">Volumes in a Chart</h3>
+<pre><code class="language-yaml">...
+  env:
+    - name: GITHUB_CLIENT_ID
+      valueFrom:
+        secretKeyRef:
+          name: oidc
+          key: id
+    - name: GITHUB_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: oidc
+          key: secret
+  envFrom:
+    - secretRef:
+        name: oidc
+...
+  volumeMounts:
+    - name: 'secrets-store-inline'
+      mountPath: '/mnt/secrets-store'
+      readOnly: true
+  volumes:
+    - name: secrets-store-inline
+      csi:
+        driver: secrets-store.csi.k8s.io
+        readOnly: true
+        volumeAttributes:
+          secretProviderClass: vault-dex
+
+</code></pre>
 
               
             </article>
