@@ -40,6 +40,8 @@ postgresql:
   storage:
     className: longhorn
     requestedSize: 10Gi
+  securityContext:
+    fsGroupChangePolicy: "OnRootMismatch"
 redis:
   storage:
     className: longhorn
