@@ -25,7 +25,8 @@ authentik:
 
 postgres:
   env:
-    - POSTGRES_PASSWORD: "IKnowThisIsNotASecurePasswordJust4Testing"
+    - name: POSTGRES_PASSWORD
+      value: "IKnowThisIsNotASecurePasswordJust4Testing"
   settings:
     superuser: 'postgres'
     superuserPassword: "IKnowThisIsNotASecurePasswordJust4Testing"
