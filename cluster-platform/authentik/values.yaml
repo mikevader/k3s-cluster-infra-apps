@@ -28,6 +28,7 @@ postgresql:
     - name: POSTGRES_PASSWORD
       value: "IKnowThisIsNotASecurePasswordJust4Testing"
   settings:
+    authMethod: 'md5'
     superuser: 'postgres'
     superuserPassword: "IKnowThisIsNotASecurePasswordJust4Testing"
   userDatabase:
