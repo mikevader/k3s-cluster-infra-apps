@@ -40,7 +40,7 @@ postgresql:
   storage:
     className: longhorn
     requestedSize: 10Gi
-  securityContext:
+  podSecurityContext:
     fsGroupChangePolicy: "OnRootMismatch"
 redis:
   storage:
