@@ -6,6 +6,8 @@ authentik:
     secret_key: dontjudgemethisisjustfortesting    # TODO
     postgresql:
       password: "IKnowThisIsNotASecurePasswordJust4Testing"    # TODO
+    redis:
+      host: '{{ .Release.Name }}-redis'
 
   ingress:
     enabled: true
