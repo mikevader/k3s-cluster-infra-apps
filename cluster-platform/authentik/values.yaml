@@ -24,8 +24,8 @@ authentik:
         hosts: ['authentik.framsburg.ch']
 
 postgresql:
-  image:
-    tag: 13.5-alpine
+#  image:
+#    tag: 13.5-alpine
   env:
     - name: POSTGRES_PASSWORD
       value: "IKnowThisIsNotASecurePasswordJust4Testing"

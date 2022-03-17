@@ -7,7 +7,7 @@ dependencies:
     repository: https://charts.goauthentik.io
 
   - name: postgres
-    version: 0.3.8
+    version: 0.2.19
     repository: https://groundhog2k.github.io/helm-charts
     alias: postgresql
 
