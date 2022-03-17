@@ -23,7 +23,7 @@ authentik:
       - secretName: 'authentik-framsburg-ch-tls'
         hosts: ['authentik.framsburg.ch']
 
-postgres:
+postgresql:
   env:
     - name: POSTGRES_PASSWORD
       value: "IKnowThisIsNotASecurePasswordJust4Testing"
