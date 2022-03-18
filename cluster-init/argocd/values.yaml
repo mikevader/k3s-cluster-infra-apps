@@ -80,6 +80,11 @@ argo-cd:
           volumeAttributes:
             secretProviderClass: 'vault-argocd'
 
+  controller:
+    args:
+      repoServerTimeoutSeconds: '120'
+      selfHealTimeout: '15'
+
   repoServer:
     env:
       - name: ARGOCD_EXEC_TIMEOUT
