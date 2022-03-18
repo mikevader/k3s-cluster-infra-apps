@@ -57,6 +57,15 @@ argo-cd:
     #       automated:
     #         prune: true
     #         selfHeal: true
+    config:
+      url: https://argocd.framsburg.ch
+      oidc.config: | 
+        name: Authentik
+        issuer: https://authentik.framsburg.ch/application/o/argocd/
+        clientID: $oidc.client-id
+        clientSecret: $oidc.client-secret
+        logoutURL: https://authentik.framsburg.ch/if/session-end/argocd/
+
     volumeMounts:
       - name: 'secrets-store-inline'
         mountPath: '/mnt/secrets-store'
