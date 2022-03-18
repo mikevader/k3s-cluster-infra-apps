@@ -1,0 +1,25 @@
+---
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: vault-argocd
+spec:
+  provider: vault
+  parameters:
+    vaultAddress: "http://vault.vault:8200"
+    roleName: "argocd-app"
+    objects: |
+      - objectName: "oidc-id"
+        secretPath: "kv-v2/data/framsburg/argocd/oidc"
+        secretKey: "client-id"
+      - objectName: "oidc-secret"
+        secretPath: "kv-v2/data/framsburg/argocd/oidc"
+        secretKey: "client-secret"
+  secretObjects:
+    - data:
+        - key: client-id
+          objectName: oidc-id
+        - key: client-secret
+          objectName: oidc-secret
+      secretName: oidc
+      type: Opaque
