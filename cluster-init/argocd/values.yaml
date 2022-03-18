@@ -57,6 +57,18 @@ argo-cd:
     #       automated:
     #         prune: true
     #         selfHeal: true
+    volumeMounts:
+      - name: 'secrets-store-inline'
+        mountPath: '/mnt/secrets-store'
+        readOnly: true
+    volumes:
+      - name: secrets-store-inline
+        csi:
+          driver: 'secrets-store.csi.k8s.io'
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: 'vault-argocd'
+
   repoServer:
     env:
       - name: ARGOCD_EXEC_TIMEOUT
