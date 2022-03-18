@@ -24,6 +24,8 @@ argo-cd:
         name: rancher-latest
         type: helm
         url: https://releases.rancher.com/server-charts/latest
+  dex:
+    enabled: false
   
   server:
     extraArgs:
