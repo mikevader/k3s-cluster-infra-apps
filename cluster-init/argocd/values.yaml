@@ -64,8 +64,8 @@ argo-cd:
       oidc.config: | 
         name: Authentik
         issuer: https://authentik.framsburg.ch/application/o/argocd/
-        clientID: $oidc.client-id
-        clientSecret: $oidc.client-secret
+        clientID: $oidc:client-id
+        clientSecret: $oidc:client-secret
         logoutURL: https://authentik.framsburg.ch/if/session-end/argocd/
 
     volumeMounts:
