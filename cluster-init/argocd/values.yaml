@@ -66,20 +66,12 @@ argo-cd:
         issuer: https://authentik.framsburg.ch/application/o/argocd/
         clientID: c579d3195f85aeccaf1ecce35ef5501e023c2a6a
         clientSecret: $oidc:client-secret
-        requestedScopes: ["openid", "profile", "email", "groups"]
+        requestedScopes: ["openid", "profile", "email"]
         logoutURL: https://authentik.framsburg.ch/if/session-end/argocd/
-    rbac:
+    rbacConfig:
         policy.default: role:readonly
         policy.csv: |
-          p, role:org-admin, applications, *, */*, allow
-          p, role:org-admin, clusters, get, *, allow
-          p, role:org-admin, repositories, get, *, allow
-          p, role:org-admin, repositories, create, *, allow
-          p, role:org-admin, repositories, update, *, allow
-          p, role:org-admin, repositories, delete, *, allow
-          p, role:org-admin, logs, get, *, allow
-
-          g, 'authentik Admins', role:org-admin
+        g, 'authentik Admins', role:admin
 
     volumeMounts:
       - name: 'secrets-store-inline'
