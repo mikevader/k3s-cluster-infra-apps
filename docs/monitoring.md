@@ -100,38 +100,48 @@ to be added to the prometheusSpec.
 
 ```yaml title="cluster-critical/monitoring-stack/values.yaml"
 kube-prometheus-stack:
-  prometheus:
-    prometheusSpec:
+  grafana:
 ...
-      volumeMounts:
-          - name: 'secrets-store-inline'
-          mountPath: '/mnt/secrets-store'
+    extraVolumeMounts:
+      - name: 'secrets-store-inline'
+        mountPath: '/mnt/secrets-store'
+        readOnly: true
+    extraContainerVolumes:
+      - name: secrets-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
           readOnly: true
-      volumes:
-          - name: secrets-store-inline
-          csi:
-              driver: secrets-store.csi.k8s.io
-              readOnly: true
-              volumeAttributes:
-              secretProviderClass: vault-grafana
+          volumeAttributes:
+            secretProviderClass: vault-grafana
 ```
 
 ### Set environment variables incl secrets
 
-```yaml
+```yaml title="cluster-critical/monitoring-stack/values.yaml"
+kube-prometheus-stack:
+  grafana:
 ...
-  env:
-    - name: GITHUB_CLIENT_ID
-      valueFrom:
+    env:
+      GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
+      GF_AUTH_GENERIC_OAUTH_NAME: "authentik"
+      GF_AUTH_GENERIC_OAUTH_SCOPES: "openid profile email"
+      GF_AUTH_GENERIC_OAUTH_AUTH_URL: "https://authentik.framsburg.ch/application/o/authorize/"
+      GF_AUTH_GENERIC_OAUTH_TOKEN_URL: "https://authentik.framsburg.ch/application/o/token/"
+      GF_AUTH_GENERIC_OAUTH_API_URL: "https://authentik.framsburg.ch/application/o/userinfo/"
+      GF_AUTH_SIGNOUT_REDIRECT_URL: "https://authentik.framsburg.ch/application/o/grafana/end-session/"
+      # Optionally enable auto-login (bypasses Grafana login screen)
+      # GF_AUTH_OAUTH_AUTO_LOGIN: "true"
+      # Optionally map user groups to Grafana roles
+      # GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
+
+    envValueFrom:
+      GF_AUTH_GENERIC_OAUTH_CLIENT_ID:
         secretKeyRef:
           name: oidc
-          key: id
-    - name: GITHUB_CLIENT_SECRET
-      valueFrom:
+          key: clientId
+
+      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
         secretKeyRef:
           name: oidc
-          key: secret
-  envFrom:
-    - secretRef:
-        name: oidc
+          key: clientSecret
 ```
