@@ -1,3 +1,128 @@
 # Monitoring with Prometheus Stack
 
 
+
+
+
+## Part Two: OIDC Integration
+
+This part should follow after [Vault] and [Authentik] are up and running.
+
+### Create Application in Authentik
+
+Create a new OIDC provider in authentik with _Redirect URIs/Origin_ pointing to [https://grafana.framsburg.ch]
+
+Afterwards create a new application which uses the before created provider. Don't forget to create bindings
+for uses or groups. You will need the following three informations out of authentik in the next steps.
+
+* OpenID Configuration Issuer
+* Client ID
+* Client Secret
+
+
+### Add secrets to vault
+
+To use the vault CLI use the folling command:
+
+```bash
+$ kubectl exec -it vault-0 -n vault -- /bin/sh
+```
+
+Add the _Client ID_ and the _Client Secret_ as values to the vault:
+
+Create the secrets with:
+
+```bash
+$ vault kv put kv-v2/framsburg/grafana/oidc client-id="someID" client-secret="someSecret"
+```
+
+Create a policy to access the secrets:
+```bash
+$ vault policy write grafana-app - <<EOF
+path "kv-v2/data/framsburg/grafana/*" {
+  capabilities = ["read", "list"]
+}
+EOF
+```
+
+!!! note
+
+    Please be aware of the added `/data/`. This is not a typo but something the Vault expects when referencing
+    this secret. It is not displayed in the UI either.
+
+
+And as last step create a role which maps the k8s service account with the policy:
+
+```bash
+$ vault write auth/kubernetes/role/grafana-app \
+    bound_service_account_names=monitoring-stack-grafana \
+    bound_service_account_namespaces=monitoring-stack \
+    policies=grafana-app \
+    ttl=20m
+```
+
+### Secret Class
+
+Create a SecretProviderClass in the templates
+
+```yaml title="templates/spc.yaml"
+---
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: vault-grafana
+spec:
+  provider: vault
+  parameters:
+    vaultAddress: "http://vault.vault:8200"
+    roleName: "grafana-app"
+    objects: |
+      - objectName: "oidc-id"
+        secretPath: "kv-v2/data/framsburg/grafana"
+        secretKey: "client-id"
+      - objectName: "oidc-secret"
+        secretPath: "kv-v2/data/framsburg/grafana"
+        secretKey: "client-secret"
+  secretObjects:
+    - data:
+        - key: clientId
+          objectName: oidc-id
+        - key: clientSecret
+          objectName: oidc-secret
+      secretName: oidc
+      type: Opaque
+```
+
+### Volumes in a Chart
+
+```yaml
+...
+  env:
+    - name: GITHUB_CLIENT_ID
+      valueFrom:
+        secretKeyRef:
+          name: oidc
+          key: id
+    - name: GITHUB_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: oidc
+          key: secret
+  envFrom:
+    - secretRef:
+        name: oidc
+...
+  volumeMounts:
+    - name: 'secrets-store-inline'
+      mountPath: '/mnt/secrets-store'
+      readOnly: true
+  volumes:
+    - name: secrets-store-inline
+      csi:
+        driver: secrets-store.csi.k8s.io
+        readOnly: true
+        volumeAttributes:
+          secretProviderClass: vault-dex
+
+```
+
