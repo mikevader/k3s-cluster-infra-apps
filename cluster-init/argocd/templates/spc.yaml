@@ -17,9 +17,9 @@ spec:
         secretKey: "client-secret"
   secretObjects:
     - data:
-        - key: client-id
+        - key: oidc.authentik.clientId
           objectName: oidc-id
-        - key: client-secret
+        - key: oidc.authentik.clientSecret
           objectName: oidc-secret
-      secretName: oidc
+      secretName: argocd-secret
       type: Opaque
