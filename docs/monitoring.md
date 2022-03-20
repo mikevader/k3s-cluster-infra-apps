@@ -95,19 +95,18 @@ spec:
 
 ### Add Volumes in a Chart
 
-As the **kube-prometheus-stack**-Chart doesn't provide values to add volumes to grafana, the CSI mounts have
-to be added to the prometheusSpec.
+The Grafana-Chart doesn't allow CSI volumes to be added to the normal volume
+list. But it has a special value `extraSecretMount` for those volumes which
+thankfully even combines the volume and mount entry into one.
 
 ```yaml title="cluster-critical/monitoring-stack/values.yaml"
 kube-prometheus-stack:
   grafana:
 ...
-    extraVolumeMounts:
+    extraSecretMounts:
       - name: 'secrets-store-inline'
         mountPath: '/mnt/secrets-store'
         readOnly: true
-    extraContainerVolumes:
-      - name: secrets-store-inline
         csi:
           driver: secrets-store.csi.k8s.io
           readOnly: true
