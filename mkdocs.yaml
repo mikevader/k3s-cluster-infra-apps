@@ -13,3 +13,20 @@ theme:
 markdown_extensions:
   - abbr
   - pymdownx.snippets
+
+
+nav:
+  - Home: index.md
+  - Cluster:
+    - ArgoCD: argocd.md
+  - Critial Systems:
+    - MetalLB: metallb.md
+    - Cert Manager: cert-manager.md
+    - Traefik: traefik.md
+    - Longhorn: longhorn.md
+    - Monitoring: monitoring.md
+  - Platform:
+    - Authentik: authentik.md
+    - Hashicorp Vault: vault.md
+    - Secrets-CSI: secrets-csi.md
+
