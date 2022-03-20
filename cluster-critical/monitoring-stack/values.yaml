@@ -93,12 +93,10 @@ kube-prometheus-stack:
         secretKeyRef:
           name: oidc
           key: clientSecret
-    extraVolumeMounts:
+    extraSecretMounts:
       - name: 'secrets-store-inline'
         mountPath: '/mnt/secrets-store'
         readOnly: true
-    extraContainerVolumes:
-      - name: secrets-store-inline
         csi:
           driver: secrets-store.csi.k8s.io
           readOnly: true
