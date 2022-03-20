@@ -65,7 +65,7 @@ $ vault write auth/kubernetes/role/grafana-app \
 
 Create a SecretProviderClass in the templates
 
-```yaml title="templates/spc.yaml"
+```yaml title="cluster-critical/monitoring-stack/templates/spc.yaml"
 ---
 apiVersion: secrets-store.csi.x-k8s.io/v1
 kind: SecretProviderClass
@@ -93,7 +93,30 @@ spec:
       type: Opaque
 ```
 
-### Volumes in a Chart
+### Add Volumes in a Chart
+
+As the **kube-prometheus-stack**-Chart doesn't provide values to add volumes to grafana, the CSI mounts have
+to be added to the prometheusSpec.
+
+```yaml title="cluster-critical/monitoring-stack/values.yaml"
+kube-prometheus-stack:
+  prometheus:
+    prometheusSpec:
+...
+      volumeMounts:
+          - name: 'secrets-store-inline'
+          mountPath: '/mnt/secrets-store'
+          readOnly: true
+      volumes:
+          - name: secrets-store-inline
+          csi:
+              driver: secrets-store.csi.k8s.io
+              readOnly: true
+              volumeAttributes:
+              secretProviderClass: vault-grafana
+```
+
+### Set environment variables incl secrets
 
 ```yaml
 ...
@@ -111,18 +134,4 @@ spec:
   envFrom:
     - secretRef:
         name: oidc
-...
-  volumeMounts:
-    - name: 'secrets-store-inline'
-      mountPath: '/mnt/secrets-store'
-      readOnly: true
-  volumes:
-    - name: secrets-store-inline
-      csi:
-        driver: secrets-store.csi.k8s.io
-        readOnly: true
-        volumeAttributes:
-          secretProviderClass: vault-dex
-
 ```
-
