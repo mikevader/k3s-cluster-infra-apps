@@ -1,7 +1,7 @@
 site_name: Raspberry Pi GitOps Stack
 site_url: https://mikevader.github.io/gitops
 
-repo_url: https://gihub.com/mikevader/k3s-cluster-infra-apps
+repo_url: https://github.com/mikevader/k3s-cluster-infra-apps
 repo_name: mikevader/k3s-cluster-infra-apps
 
 
