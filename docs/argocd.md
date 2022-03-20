@@ -1,6 +1,6 @@
 # Argo CD
 
-## Part Two: Argo CD integration
+## Part Two: OIDC integration
 
 This part should follow after [Vault] and [Authentik] are up and running.
 
