@@ -23,3 +23,5 @@ spec:
           objectName: oidc-secret
       secretName: oidc
       type: Opaque
+      labels:
+        app.kubernetes.io/part-of: argocd
