@@ -78,10 +78,10 @@ spec:
     roleName: "grafana-app"
     objects: |
       - objectName: "oidc-id"
-        secretPath: "kv-v2/data/framsburg/grafana"
+        secretPath: "kv-v2/data/framsburg/grafana/oidc"
         secretKey: "client-id"
       - objectName: "oidc-secret"
-        secretPath: "kv-v2/data/framsburg/grafana"
+        secretPath: "kv-v2/data/framsburg/grafana/oidc"
         secretKey: "client-secret"
   secretObjects:
     - data:
