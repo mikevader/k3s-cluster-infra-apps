@@ -77,7 +77,7 @@ kube-prometheus-stack:
       GF_AUTH_GENERIC_OAUTH_AUTH_URL: "https://authentik.framsburg.ch/application/o/authorize/"
       GF_AUTH_GENERIC_OAUTH_TOKEN_URL: "https://authentik.framsburg.ch/application/o/token/"
       GF_AUTH_GENERIC_OAUTH_API_URL: "https://authentik.framsburg.ch/application/o/userinfo/"
-      GF_AUTH_SIGNOUT_REDIRECT_URL: "https://authentik.framsburg.ch/application/o/grafana/end-session/"
+      GF_AUTH_SIGNOUT_REDIRECT_URL: "https://authentik.framsburg.ch/if/session-end/grafana/"
       # Optionally enable auto-login (bypasses Grafana login screen)
       # GF_AUTH_OAUTH_AUTO_LOGIN: "true"
       # Optionally map user groups to Grafana roles
