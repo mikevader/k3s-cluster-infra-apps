@@ -3,7 +3,7 @@ global:
 
 authentik:
   image:
-    tag: 2022.3.2
+    tag: 2022.3.3
   authentik:
     secret_key: dontjudgemethisisjustfortesting    # TODO
     postgresql:
