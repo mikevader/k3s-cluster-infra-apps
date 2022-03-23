@@ -66,12 +66,12 @@ argo-cd:
           issuer: "https://authentik.framsburg.ch/application/o/argocd/"
           clientID: "c579d3195f85aeccaf1ecce35ef5501e023c2a6a"
           clientSecret: "$oidc:oidc.authentik.clientSecret"
-          requestedScopes: ["openid", "profile", "email", "groups"]
+          requestedScopes: ["openid", "profile", "email"]
           logoutURL: "https://authentik.framsburg.ch/if/session-end/argocd/"
     rbacConfig:
       policy.default: role:readonly
       policy.csv: |
-          g, 'fb-admins', role:admin
+          g, fb-admins, role:admin
     volumeMounts:
       - name: 'secrets-store-inline'
         mountPath: '/mnt/secrets-store'
