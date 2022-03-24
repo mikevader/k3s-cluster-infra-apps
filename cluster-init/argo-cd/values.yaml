@@ -21,10 +21,19 @@ argo-cd:
         name: rancher-latest
         type: helm
         url: https://releases.rancher.com/server-charts/latest
+  redis-ha:
+    enabled: true
+  
+  controller:
+    enableStatefulSet: true
+
   dex:
     enabled: false
-  
+
   server:
+    autoscaling:
+      enabled: true
+      minReplicas: 2
     extraArgs:
       - --insecure
     ingress:
@@ -87,6 +96,9 @@ argo-cd:
       selfHealTimeout: '15'
 
   repoServer:
+    autoscaling:
+      enabled: true
+      minReplicas: 2
     env:
       - name: ARGOCD_EXEC_TIMEOUT
         value: '240s'
