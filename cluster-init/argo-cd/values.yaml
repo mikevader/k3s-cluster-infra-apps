@@ -31,9 +31,14 @@ argo-cd:
     enabled: false
 
   server:
-    autoscaling:
-      enabled: true
-      minReplicas: 2
+    # autoscaling:
+    #   enabled: true
+    #   minReplicas: 2
+    replicas: 2
+    env:
+      - name: ARGOCD_API_SERVER_REPLICAS
+        value: '2'
+
     extraArgs:
       - --insecure
     ingress:
@@ -96,9 +101,10 @@ argo-cd:
       selfHealTimeout: '15'
 
   repoServer:
-    autoscaling:
-      enabled: true
-      minReplicas: 2
+    replicas: 2
+    # autoscaling:
+    #   enabled: true
+    #   minReplicas: 2
     env:
       - name: ARGOCD_EXEC_TIMEOUT
         value: '240s'
