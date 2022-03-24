@@ -95,7 +95,7 @@ argo-cd:
         value: '240s'
 
   applicationSet:
-    fullnameOverride: applicationset
+    enabled: true
     image:
       repository: docker.io/baloisemichaelmuehlebach/argocd-applicationset
       tag: v0.4.1
