@@ -94,8 +94,8 @@ argo-cd:
       - name: ARGOCD_EXEC_TIMEOUT
         value: '240s'
 
-applicationset:
-  fullnameOverride: applicationset
-  image:
-    repository: docker.io/baloisemichaelmuehlebach/argocd-applicationset
-    tag: v0.2.0
+  applicationSet:
+    fullnameOverride: applicationset
+    image:
+      repository: docker.io/baloisemichaelmuehlebach/argocd-applicationset
+      tag: v0.4.1

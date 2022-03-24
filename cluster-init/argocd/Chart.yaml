@@ -4,9 +4,9 @@ description: Bootstrap Chart for Argo CD
 version: 0.0.0
 dependencies:
   - name: argo-cd
-    version: 3.35.2
+    version: 4.2.2
     repository: https://argoproj.github.io/argo-helm
-  - name: argocd-applicationset
-    version: 1.11.0
-    repository: https://argoproj.github.io/argo-helm
-    alias: applicationset
+  # - name: argocd-applicationset
+  #   version: 1.11.0
+  #   repository: https://argoproj.github.io/argo-helm
+  #   alias: applicationset
