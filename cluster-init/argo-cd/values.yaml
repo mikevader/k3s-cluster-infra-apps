@@ -9,14 +9,6 @@ argo-cd:
         name: jetstack
         type: helm
         url: https://charts.jetstack.io
-      bitnami-helm-repo:
-        name: bitnami
-        type: helm
-        url: https://charts.bitnami.com/bitnami
-      dex-helm-repo:
-        name: dex
-        type: helm
-        url: https://charts.dexidp.io
       rancher-latest-helm-repo:
         name: rancher-latest
         type: helm
@@ -55,23 +47,6 @@ argo-cd:
         - hosts:
           - argocd.framsburg.ch
           secretName: argocd-framsburg-ch-tls
-    # additionalApplications:
-    #   - name: bootstrap
-    #     namespace: argocd-system
-    #     finalizers:
-    #       - resources-finalizer.argocd.argoproj.io
-    #     destination:
-    #       namespace: argocd-system
-    #       server: https://kubernetes.default.svc
-    #     project: default
-    #     source:
-    #       path: bootstrap/
-    #       repoURL: https://github.com/mikevader/k3s-apps-root-config.git
-    #       targetRevision: master
-    #     syncPolicy:
-    #       automated:
-    #         prune: true
-    #         selfHeal: true
     config:
       url: https://argocd.framsburg.ch
       oidc.config: | 
