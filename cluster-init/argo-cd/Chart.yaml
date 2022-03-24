@@ -1,7 +1,7 @@
 apiVersion: v2
 name: argo-cd
 description: Bootstrap Chart for Argo CD
-version: 0.0.0
+version: 0.1.0
 dependencies:
   - name: argo-cd
     version: 4.2.2
