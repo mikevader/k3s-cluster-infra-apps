@@ -23,6 +23,8 @@ argo-cd:
         url: https://releases.rancher.com/server-charts/latest
   redis-ha:
     enabled: true
+    exporter:
+      enabled: false
   
   controller:
     enableStatefulSet: true
