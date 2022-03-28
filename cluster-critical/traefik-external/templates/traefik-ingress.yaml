@@ -34,7 +34,7 @@ spec:
             path: /
             backend:
               service:
-                name: "traefik"
+                name: "traefik-external"
                 port:
                   number: 80
   tls:
