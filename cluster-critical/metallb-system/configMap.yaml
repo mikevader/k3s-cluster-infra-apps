@@ -14,4 +14,4 @@ data:
     - name: metallb_external_ip_range
       protocol: layer2
       addresses:
-      - 192.168.10.150-192.168.10.155
+      - 192.168.10.150-192.168.10.152
