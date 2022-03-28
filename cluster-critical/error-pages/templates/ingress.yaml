@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: error-pages
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+    - host: error-pages.framsburg.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: "error-pages"
+                port:
+                  number: 8080
+  tls:
+    - hosts:
+      - error-pages.framsburg.ch
+      secretName: error-pages-framsburg-ch-tls
