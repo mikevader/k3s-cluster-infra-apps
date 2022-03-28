@@ -8,8 +8,8 @@ traefik:
       # reloader.stakater.com/match: "true"
   globalArguments:
     - "--global.checknewversion"
-    - "--serverstransport.insecureskipverify=true"
-    - "--providers.kubernetesingress.ingressclass=traefik"
+    # - "--serverstransport.insecureskipverify=true"
+    # - "--providers.kubernetesingress.ingressclass=traefik"
     - "--metrics.prometheus=true"
     - "--metrics.prometheus.entryPoint=metrics"
     # - "--entrypoints.websecure.http.middlewares=ingress-error-pages@kubernetescrd"
@@ -43,8 +43,9 @@ traefik:
     fallbackApiVersion: v1
   providers:
     kubernetesIngress:
+      ingressClass: traefik-external
       publishedService:
-        enabled: true
+        enabled: false
   rollingUpdate:
     maxUnavailable: 1
     maxSurge: 1
