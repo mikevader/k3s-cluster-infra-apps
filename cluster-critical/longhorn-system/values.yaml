@@ -8,6 +8,7 @@ longhorn:
     createDefaultDiskLabeledNodes: true
     backupTarget: 's3://longhorn@us-east-1/'
     backupTargetCredentialSecret: minio-secret
+    defaultLonghornStaticStorageClass: longhorn
   ingress:
     enabled: true
     annotations:
