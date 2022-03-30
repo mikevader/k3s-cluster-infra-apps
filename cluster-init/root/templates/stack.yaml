@@ -24,9 +24,11 @@ spec:
         repoURL: {{ $.Values.gitops.repo }}
         path: '{{ `{{path}}` }}'
       syncPolicy:
+        {{- if $stack.autosync_enabled != false }}
         automated:
           prune: true
           selfHeal: true
+        {{- end }}
         retry:
           limit: 10
           backoff:
