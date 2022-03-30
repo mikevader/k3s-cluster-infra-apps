@@ -24,7 +24,7 @@ spec:
         repoURL: {{ $.Values.gitops.repo }}
         path: '{{ `{{path}}` }}'
       syncPolicy:
-        {{- if not eq $stack.autosync_enabled false }}
+        {{- if ne $stack.autosync_enabled false }}
         automated:
           prune: true
           selfHeal: true
