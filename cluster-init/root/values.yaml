@@ -6,6 +6,6 @@ stacks:
   - name: cluster-init
     namespace: argocd-system  # Override default value
   - name: cluster-critical
-    autosync_enabled: false
+#    autosync_enabled: false
   - name: cluster-platform
   - name: cluster-apps
