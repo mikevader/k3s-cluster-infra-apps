@@ -35,4 +35,6 @@ nav:
     - Authentik: authentik.md
     - Hashicorp Vault: vault.md
     - Secrets-CSI: secrets-csi.md
+  - Apps:
+    - Uptime Kuma: uptime-kuma.md
 
