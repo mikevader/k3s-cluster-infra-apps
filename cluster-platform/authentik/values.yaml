@@ -11,6 +11,22 @@ authentik:
     redis:
       host: '{{ .Release.Name }}-redis'
 
+  env:
+
+  envValueFrom:
+    AUTHENTIK_SECRET_KEY:
+      secretKeyRef:
+        name: oidc
+        key: clientId
+    AUTHENTIK_POSTGRESQL__USER:
+      secretKeyRef:
+        name: oidc
+        key: clientId
+    AUTHENTIK_POSTGRESQL__PASSWORD:
+      secretKeyRef:
+        name: oidc
+        key: clientId
+
   ingress:
     enabled: true
     # ingressClassName: traefik
@@ -27,9 +43,40 @@ authentik:
       - secretName: 'authentik-framsburg-ch-tls'
         hosts: ['authentik.framsburg.ch']
 
+  volumeMounts:
+
+  volumes:
+
 postgresql:
 #  image:
 #    tag: 13.5-alpine
+  env:
+    - name: POSTGRES_USER
+      valueFrom:
+        secretKeyRef:
+          name: mysecret
+          key: username
+    - name: POSTGRES_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name:
+          key:
+    - name: POSTGRES_DB
+      valueFrom:
+        secretKeyRef:
+          name:
+          key:
+    - name: USERDB_USER
+      valueFrom:
+        secretKeyRef:
+          name:
+          key:
+    - name: USERDB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name:
+          key:
+
   env:
     - name: POSTGRES_PASSWORD
       value: "IKnowThisIsNotASecurePasswordJust4Testing"
@@ -41,6 +88,10 @@ postgresql:
     name: "authentik"
     user: "authentik"
     password: "IKnowThisIsNotASecurePasswordJust4Testing"
+
+  extraSecrets:
+    - name: 'secrets-store-inline'
+      mountPath: '/mnt/secrets-store'
   storage:
     className: longhorn
     requestedSize: 10Gi
