@@ -23,9 +23,9 @@ metadata:
   annotations:
     # used only to automate certificate and dns. Point to metrics to ensure its not used
     traefik.ingress.kubernetes.io/router.entrypoints: metrics
-    kubernetes.io/ingress.class: "traefik"
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
+  ingressClassName: traefik
   rules:
     - host: traefik.framsburg.ch
       http:
