@@ -9,7 +9,7 @@ traefik:
   globalArguments:
     - "--global.checknewversion"
     # - "--serverstransport.insecureskipverify=true"
-    # - "--providers.kubernetesingress.ingressclass=traefik"
+    - "--providers.kubernetesingress.ingressclass=traefik-external"
     - "--metrics.prometheus=true"
     - "--metrics.prometheus.entryPoint=metrics"
     # - "--entrypoints.websecure.http.middlewares=ingress-error-pages@kubernetescrd"
@@ -45,7 +45,7 @@ traefik:
     kubernetesIngress:
       ingressClass: traefik-external
       publishedService:
-        enabled: false
+        enabled: true
   rollingUpdate:
     maxUnavailable: 1
     maxSurge: 1
