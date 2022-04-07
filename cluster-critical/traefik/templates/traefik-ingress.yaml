@@ -1,20 +1,21 @@
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: dashboard
-# spec:
-#   entryPoints:
-#     - websecure
-#   routes:
-#     - kind: Rule
-#       match: Host(`traefik.framsburg.ch`)
-#       priority: 10
-#       services:
-#         - name: api@internal
-#           kind: TraefikService
-#   tls:
-#     secretName: traefik-framsburg-ch-tls
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`traefik.framsburg.ch`)
+      priority: 10
+      services:
+        - name: api@internal
+          kind: TraefikService
+          namespace: traefik
+  tls:
+    secretName: traefik-framsburg-ch-tls
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
