@@ -11,7 +11,7 @@ spec:
       match: Host(`traefikext.framsburg.ch`)
       priority: 10
       services:
-        - name: api@internal
+        - name: traefik-external-api@internal
           kind: TraefikService
           namespace: traefik-external
   tls:
