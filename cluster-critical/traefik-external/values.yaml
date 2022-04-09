@@ -12,7 +12,7 @@ traefik:
     - "--providers.kubernetesingress.ingressclass=traefik-external"
     - "--metrics.prometheus=true"
     - "--metrics.prometheus.entryPoint=metrics"
-    # - "--entrypoints.websecure.http.middlewares=ingress-error-pages@kubernetescrd"
+    - "--entrypoints.websecure.http.middlewares=error-pages-error-pages@kubernetescrd"
   logs:
     general:
       format: json
@@ -22,7 +22,7 @@ traefik:
       format: json
   service:
     spec:
-      loadBalancerIP: 192.168.10.150
+      loadBalancerIP: 192.168.99.150
       externalTrafficPolicy: Local
   ports:
     web:
