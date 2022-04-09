@@ -16,7 +16,7 @@ uptime-kuma:
   #   fsGroup: 568
   ingress:
     main:
-      enabled: true
+      enabled: false
       ingressClassName: traefik
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -32,7 +32,7 @@ uptime-kuma:
         - hosts: ['{{ .Values.global.domainName }}']
           secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
     external:
-      enabled: true
+      enabled: false
       ingressClassName: traefik-external
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
