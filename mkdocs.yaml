@@ -23,6 +23,8 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Bare-Metal: bare-metal.md
+  - Network: network.md
   - Cluster:
     - ArgoCD: argocd.md
   - Critial Systems:
