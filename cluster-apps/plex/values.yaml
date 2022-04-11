@@ -9,9 +9,9 @@ plex:
     # sed 's/"//g' | awk '{print "PLEX_PREFERENCE_"i++": \""$0"\""}'
     PLEX_UID: 568
     PLEX_GID: 568
-    PLEX_PREFERENCE_0: "allowedNetworks=10.43.0.0/16,10.42.0.0/16,192.168.42.0/24"
+    PLEX_PREFERENCE_0: "allowedNetworks=10.43.0.0/16,10.42.0.0/16,192.168.42.0/24,192.168.99.0/24"
     PLEX_PREFERENCE_1: "TranscoderTempDirectory=/transcode"
-    PLEX_PREFERENCE_2: "FriendlyName=NickFlix"
+    PLEX_PREFERENCE_2: "FriendlyName=MikeFlix"
     PLEX_PREFERENCE_3: "HardwareAcceleratedCodecs=1"
     PLEX_PREFERENCE_4: "autoEmptyTrash=1"
     PLEX_PREFERENCE_5: "ManualPortMappingPort=443"
