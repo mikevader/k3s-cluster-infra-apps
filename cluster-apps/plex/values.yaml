@@ -10,7 +10,7 @@ plex:
     PLEX_UID: 568
     PLEX_GID: 568
     PLEX_CLAIM: "claim-zuyN9eB1zVkrc4twN6q6"
-    PLEX_PREFERENCE_0: "allowedNetworks=10.43.0.0/16,10.42.0.0/16,192.168.42.0/24,192.168.99.0/24"
+    PLEX_PREFERENCE_0: "allowedNetworks=10.43.0.0/16,10.42.0.0/16,192.168.42.0/24"
     PLEX_PREFERENCE_1: "TranscoderTempDirectory=/transcode"
     PLEX_PREFERENCE_2: "FriendlyName=MikeFlix"
     PLEX_PREFERENCE_3: "HardwareAcceleratedCodecs=1"
