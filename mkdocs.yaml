@@ -39,4 +39,5 @@ nav:
     - Secrets-CSI: secrets-csi.md
   - Apps:
     - Uptime Kuma: uptime-kuma.md
+    - Plex: plex.md
 

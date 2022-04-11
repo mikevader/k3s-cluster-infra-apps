@@ -53,13 +53,13 @@ plex:
     tv:
       enabled: true
       type: pvc
-      size: 100Gi
+      size: 500Gi
       accessMode: ReadWriteOnce
       mountPath: /mnt/media/tv
     movies:
       enabled: true
       type: pvc
-      size: 50Gi
+      size: 200Gi
       accessMode: ReadWriteOnce
       mountPath: /mnt/media/movies
     audiobooks:
