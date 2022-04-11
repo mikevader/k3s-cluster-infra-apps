@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://mikevader.github.io/gitops/cert-manager/">
+        <link rel="canonical" href="https://mikevader.github.io/gitops/network/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.9">
     
     
       
-        <title>Cert Manager - Raspberry Pi GitOps Stack</title>
+        <title>Network - Raspberry Pi GitOps Stack</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cert-manager" class="md-skip">
+        <a href="#network" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Cert Manager
+              Network
             
           </span>
         </div>
@@ -232,11 +232,52 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../network/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Network
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Network
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#opnsense" class="md-nav__link">
+    Opnsense
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -295,14 +336,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       
       
@@ -337,21 +376,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../cert-manager/" class="md-nav__link">
         Cert Manager
       </a>
-      
     </li>
   
 
@@ -549,6 +578,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#opnsense" class="md-nav__link">
+    Opnsense
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -559,13 +603,24 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/mikevader/k3s-cluster-infra-apps/edit/master/docs/cert-manager.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/mikevader/k3s-cluster-infra-apps/edit/master/docs/network.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="cert-manager">Cert-Manager</h1>
+<h1 id="network">Network</h1>
+<p>The Raspberries are in two networks. The internal network and a special DMZ for the external communication
+of the K8S Cluster. This is not done by actual multiple network interfaces but with vlan.</p>
+<p>Just by chance my firewall had a free network interface so I chose to actually use a seperate network
+interface for the DMZ there. I would have used vlan there as well.</p>
+<p>I could use pure port-forwarding to the MetalLB-IP of the Cluster.</p>
+<h2 id="opnsense">Opnsense</h2>
+<p>On my Opnsense firewall I have to configure several things:</p>
+<ol>
+<li>WAN interface to accept inbound web (443) traffic</li>
+<li>Add NAT port-forward for the MetalLB-IP</li>
+</ol>
 
               
             </article>
@@ -579,7 +634,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../metallb/" class="md-footer__link md-footer__link--prev" aria-label="Previous: MetalLB" rel="prev">
+        <a href="../bare-metal/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Bare-Metal" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -588,20 +643,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              MetalLB
+              Bare-Metal
             </div>
           </div>
         </a>
       
       
         
-        <a href="../traefik/" class="md-footer__link md-footer__link--next" aria-label="Next: Traefik" rel="next">
+        <a href="../argocd/" class="md-footer__link md-footer__link--next" aria-label="Next: ArgoCD" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Traefik
+              ArgoCD
             </div>
           </div>
           <div class="md-footer__button md-icon">
