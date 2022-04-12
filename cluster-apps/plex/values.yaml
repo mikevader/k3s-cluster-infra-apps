@@ -105,7 +105,7 @@ plex:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure,plex
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
       ingressClassName: traefik-external
       hosts:
         - host: plex.framsburg.ch
