@@ -17,7 +17,7 @@ traefik:
 ...
   ports:
     plex:
-      port: 2000
+      port: 32400
       expose: true
       exposedPort: 2000
 ...
