@@ -19,3 +19,10 @@ and Path Prefix like `/web`.
 
 To upload a lot of files it might be helpful to use `ReadWriteMany` volumes. This way the can be exposed
 for upload over samba, nfs or other setups.
+
+
+## Upload
+
+```
+kubectl cp <some-namespace>/<some-pod>:/tmp/foo /tmp/bar
+```
