@@ -573,6 +573,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#upload" class="md-nav__link">
+    Upload
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -635,6 +642,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#upload" class="md-nav__link">
+    Upload
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -664,6 +678,9 @@ and Path Prefix like <code>/web</code>.</p>
 <h2 id="readwritemany-for-storage">ReadWriteMany for storage</h2>
 <p>To upload a lot of files it might be helpful to use <code>ReadWriteMany</code> volumes. This way the can be exposed
 for upload over samba, nfs or other setups.</p>
+<h2 id="upload">Upload</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kubectl cp &lt;some-namespace&gt;/&lt;some-pod&gt;:/tmp/foo /tmp/bar
+</code></pre></div>
 
               
             </article>
