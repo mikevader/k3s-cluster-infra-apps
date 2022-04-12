@@ -31,10 +31,6 @@ traefik:
     websecure:
       tls:
         enabled: true
-    plex:
-      port: 32400
-      expose: true
-      exposedPort: 2000
     metrics:
       port: 9100
       expose: true
