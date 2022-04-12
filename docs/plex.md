@@ -9,16 +9,13 @@ Set the env variable `PLEX_CLAIM` to the generated claim token.
 
 ## Remote Access
 
-Add additional entrypoint for plex port (I chose 2000 but can be anything)
-Set it in plex
+Either add an additional entrypoint or use the custom port 443 for the remote port.
 
-```
-traefik:
-...
-  ports:
-    plex:
-      port: 32400
-      expose: true
-      exposedPort: 2000
-...
-```
+It is important to adapt the custom hostname to the correct URL including protocol (`https://`)
+and Path Prefix like `/web`.
+
+
+## ReadWriteMany for storage
+
+To upload a lot of files it might be helpful to use `ReadWriteMany` volumes. This way the can be exposed
+for upload over samba, nfs or other setups.
