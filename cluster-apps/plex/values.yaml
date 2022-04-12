@@ -65,20 +65,13 @@ plex:
       readOnly: true
       accessMode: ReadWriteOnce
       mountPath: /mnt/media/movies
-    audiobooks:
-      enabled: true
-      type: pvc
-      size: 20Gi
-      readOnly: true
-      accessMode: ReadWriteOnce
-      mountPath: /mnt/media/audiobooks
-    audiobooks2:
-      enabled: true
-      type: pvc
-      size: 20Gi
-      readOnly: true
-      accessMode: ReadWriteMany
-      mountPath: /mnt/media/audiobooks2
+    # audiobooks:
+    #   enabled: true
+    #   type: pvc
+    #   size: 50Gi
+    #   readOnly: true
+    #   accessMode: ReadWriteMany
+    #   mountPath: /mnt/media/audiobooks
   podSecurityContext:
     runAsUser: 568
     runAsGroup: 568
