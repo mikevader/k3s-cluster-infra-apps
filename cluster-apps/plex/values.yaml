@@ -69,6 +69,12 @@ plex:
       size: 20Gi
       accessMode: ReadWriteOnce
       mountPath: /mnt/media/audiobooks
+    audiobooks2:
+      enabled: true
+      type: pvc
+      size: 20Gi
+      accessMode: ReadWriteMany
+      mountPath: /mnt/media/audiobooks2
   podSecurityContext:
     runAsUser: 568
     runAsGroup: 568
