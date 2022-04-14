@@ -38,8 +38,8 @@ samba:
       enabled: true
       type: pvc
       retain: true
+      volumeName: pvc-2bc7917b-a4b9-4a96-bf3d-cfaae319c123
       accessMode: ReadWriteMany
-      existingClaim: plex-audiobooks
       mountPath: /mnt/media/audiobooks
 
   podSecurityContext:
