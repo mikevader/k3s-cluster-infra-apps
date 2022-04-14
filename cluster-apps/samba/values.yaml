@@ -1,0 +1,73 @@
+global:
+  domainName: samba.framsburg.ch
+
+samba:
+  env:
+    TZ: Europe/Zurich
+    SAMBA_HOSTS_ALLOW: 192.168.42.0/24
+
+  configmap:
+    config:
+      enabled: true
+      data:
+        config.yaml: |
+          auth:
+            - user: foo
+              group: foo
+              uid: 568
+              gid: 568
+              password: bar
+
+          global:
+            - "force user = foo"
+            - "force group = foo"
+
+          share:
+            - name: foo
+              path: /mnt/media/audiobooks
+              browsable: yes
+              readonly: no
+              guestok: no
+              validusers: foo
+              writelist: foo
+              veto: no
+              hidefiles: /_*/
+
+  persistence:
+    audiobooks:
+      enabled: true
+      type: pvc
+      retain: true
+      accessMode: ReadWriteMany
+      existingClaim: plex-audiobooks
+      mountPath: /mnt/media/audiobooks
+
+  podSecurityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    fsGroup: 568
+
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      ingressClassName: traefik
+      hosts:
+        - host: '{{ .Values.global.domainName }}'
+          paths:
+            - path: ""
+              pathType: ImplementationSpecific
+              service:
+                name: samba
+      tls:
+        - hosts: ['{{ .Values.global.domainName }}']
+          secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
