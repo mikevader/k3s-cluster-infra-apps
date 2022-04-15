@@ -1,5 +1,3 @@
 {
-    "values": {
-        "namespace": "plex"
-    }
+    "orNamespace": "plex"
 }
