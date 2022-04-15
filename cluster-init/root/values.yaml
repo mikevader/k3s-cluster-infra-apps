@@ -4,7 +4,7 @@ gitops:
   revision: master
 stacks:
   - name: cluster-init
-    namespace: argocd-system  # Override default value
+  #  namespace: argocd-system  # Override default value
   - name: cluster-critical
 #    autosync_enabled: false
   - name: cluster-platform
