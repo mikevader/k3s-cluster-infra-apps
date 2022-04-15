@@ -28,7 +28,7 @@ spec:
     spec:
       destination:
         name: in-cluster
-        namespace: '{{ .orNamespace | default $stack.namespace | default `{{path.basename}}` }}'
+        namespace: '{{ $.ornamespace | default $stack.namespace | default `{{path.basename}}` }}'
       project: default # TODO
       source:
         repoURL: {{ $.Values.gitops.repo }}
