@@ -7,11 +7,21 @@ metadata:
   namespace: {{ $.Release.Namespace }}
 spec:
   generators:
-    - git:
-        repoURL: {{ $.Values.gitops.repo }}
-        revision: {{ $.Values.gitops.revision }}
-        directories:
-          - path: {{ $stack.name }}/*
+    - merge:
+        mergeKeys:
+          - path
+        generators:
+          - git:
+              repoURL: {{ $.Values.gitops.repo }}
+              revision: {{ $.Values.gitops.revision }}
+              directories:
+                - path: {{ $stack.name }}/*
+          - git:
+              repoURL: {{ $.Values.gitops.repo }}
+              revision: {{ $.Values.gitops.revision }}
+              files:
+                - path: {{ $stack.name }}/**/config.json
+          
   template:
     metadata:
       name: '{{ `{{path.basename}}` }}'
