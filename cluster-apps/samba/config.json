@@ -1,5 +1,3 @@
 {
-    "destination": {
-        "namespace": "plex"
-    }
+    "namespace": "plex"
 }
