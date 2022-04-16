@@ -1,3 +1,5 @@
 {
-    "ornamespace": "plex"
+    "destination": {
+        "namespace": "plex"
+    }
 }
