@@ -117,20 +117,11 @@ metadata:
   namespace: {{ $.Release.Namespace }}
 spec:
   generators:
-    - merge:
-        mergeKeys:
-          - path
-        generators:
-          - git:
-              repoURL: {{ $.Values.gitops.repo }}
-              revision: {{ $.Values.gitops.revision }}
-              directories:
-                - path: cluster-apps/*
-          - git:
-              repoURL: {{ $.Values.gitops.repo }}
-              revision: {{ $.Values.gitops.revision }}
-              files:
-                - path: cluster-apps/**/config.json
+    - git:
+        repoURL: {{ $.Values.gitops.repo }}
+        revision: {{ $.Values.gitops.revision }}
+        directories:
+          - path: cluster-apps/*
           
   template:
     metadata:
