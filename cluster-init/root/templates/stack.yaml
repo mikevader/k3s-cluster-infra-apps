@@ -3,12 +3,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: cluster-init
-  namespace: argocd-system
+  namespace: {{ .Release.Namespace }}
 spec:
   generators:
     - git:
-        repoURL: {{ $.Values.gitops.repo }}
-        revision: {{ $.Values.gitops.revision }}
+        repoURL: {{ .Values.gitops.repo }}
+        revision: {{ .Values.gitops.revision }}
         directories:
           - path: cluster-init/*
 
@@ -21,7 +21,7 @@ spec:
         namespace: 'argocd-system'
       project: default # TODO
       source:
-        repoURL: {{ $.Values.gitops.repo }}
+        repoURL: {{ .Values.gitops.repo }}
         path: '{{ `{{path}}` }}'
       syncPolicy:
         automated:
@@ -40,12 +40,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: cluster-critical
-  namespace: argocd-system
+  namespace: {{ .Release.Namespace }}
 spec:
   generators:
     - git:
-        repoURL: {{ $.Values.gitops.repo }}
-        revision: {{ $.Values.gitops.revision }}
+        repoURL: {{ .Values.gitops.repo }}
+        revision: {{ .Values.gitops.revision }}
         directories:
           - path: cluster-critical/*
 
@@ -58,7 +58,7 @@ spec:
         namespace: '{{ `{{path.basename}}` }}'
       project: default # TODO
       source:
-        repoURL: {{ $.Values.gitops.repo }}
+        repoURL: {{ .Values.gitops.repo }}
         path: '{{ `{{path}}` }}'
       syncPolicy:
         automated:
@@ -77,12 +77,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: cluster-platform
-  namespace: argocd-system
+  namespace: {{ .Release.Namespace }}
 spec:
   generators:
     - git:
-        repoURL: {{ $.Values.gitops.repo }}
-        revision: {{ $.Values.gitops.revision }}
+        repoURL: {{ .Values.gitops.repo }}
+        revision: {{ .Values.gitops.revision }}
         directories:
           - path: cluster-platform/*
 
@@ -95,7 +95,7 @@ spec:
         namespace: '{{ `{{path.basename}}` }}'
       project: default # TODO
       source:
-        repoURL: {{ $.Values.gitops.repo }}
+        repoURL: {{ .Values.gitops.repo }}
         path: '{{ `{{path}}` }}'
       syncPolicy:
         automated:
@@ -114,12 +114,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: cluster-apps
-  namespace: argocd-system
+  namespace: {{ .Release.Namespace }}
 spec:
   generators:
     - git:
-        repoURL: {{ $.Values.gitops.repo }}
-        revision: {{ $.Values.gitops.revision }}
+        repoURL: {{ .Values.gitops.repo }}
+        revision: {{ .Values.gitops.revision }}
         directories:
           - path: cluster-apps/*
 
@@ -132,7 +132,7 @@ spec:
         namespace: '{{ `{{path.basename}}` }}'
       project: default # TODO
       source:
-        repoURL: {{ $.Values.gitops.repo }}
+        repoURL: {{ .Values.gitops.repo }}
         path: '{{ `{{path}}` }}'
       syncPolicy:
         automated:
