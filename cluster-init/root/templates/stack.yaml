@@ -14,7 +14,7 @@ spec:
 
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: '{{ `{{path.basename}}` }}'
     spec:
       destination:
         name: in-cluster
@@ -22,7 +22,7 @@ spec:
       project: default # TODO
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
-        path: '{{path}}'
+        path: '{{ `{{path}}` }}'
       syncPolicy:
         automated:
           prune: true
@@ -51,15 +51,15 @@ spec:
 
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: '{{ `{{path.basename}}` }}'
     spec:
       destination:
         name: in-cluster
-        namespace: '{{path.basename}}'
+        namespace: '{{ `{{path.basename}}` }}'
       project: default # TODO
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
-        path: '{{path}}'
+        path: '{{ `{{path}}` }}'
       syncPolicy:
         automated:
           prune: true
@@ -88,15 +88,15 @@ spec:
 
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: '{{ `{{path.basename}}` }}'
     spec:
       destination:
         name: in-cluster
-        namespace: '{{path.basename}}'
+        namespace: '{{ `{{path.basename}}` }}'
       project: default # TODO
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
-        path: '{{path}}'
+        path: '{{ `{{path}}` }}'
       syncPolicy:
         automated:
           prune: true
@@ -125,15 +125,15 @@ spec:
 
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: '{{ `{{path.basename}}` }}'
     spec:
       destination:
         name: in-cluster
-        namespace: '{{path.basename}}'
+        namespace: '{{ `{{path.basename}}` }}'
       project: default # TODO
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
-        path: '{{path}}'
+        path: '{{ `{{path}}` }}'
       syncPolicy:
         automated:
           prune: true
