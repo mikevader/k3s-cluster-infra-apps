@@ -1,9 +1,119 @@
-{{- range $index, $stack := .Values.stacks }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: {{ $stack.name }}
+  name: cluster-init
+  namespace: {{ $.Release.Namespace }}
+spec:
+  generators:
+    - git:
+        repoURL: {{ $.Values.gitops.repo }}
+        revision: {{ $.Values.gitops.revision }}
+        directories:
+          - path: cluster-init/*
+          
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      destination:
+        name: in-cluster
+        namespace: 'argocd-system'
+      project: default # TODO
+      source:
+        repoURL: {{ $.Values.gitops.repo }}
+        path: '{{path}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          limit: 10
+          backoff:
+            duration: 1m
+            factor: 2
+            maxDuration: 16m
+        syncOptions:
+          - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-critical
+  namespace: {{ $.Release.Namespace }}
+spec:
+  generators:
+    - git:
+        repoURL: {{ $.Values.gitops.repo }}
+        revision: {{ $.Values.gitops.revision }}
+        directories:
+          - path: cluster-critical/*
+          
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      destination:
+        name: in-cluster
+        namespace: '{{path.basename}}'
+      project: default # TODO
+      source:
+        repoURL: {{ $.Values.gitops.repo }}
+        path: '{{path}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          limit: 10
+          backoff:
+            duration: 1m
+            factor: 2
+            maxDuration: 16m
+        syncOptions:
+          - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-platform
+  namespace: {{ $.Release.Namespace }}
+spec:
+  generators:
+    - git:
+        repoURL: {{ $.Values.gitops.repo }}
+        revision: {{ $.Values.gitops.revision }}
+        directories:
+          - path: cluster-platform/*
+          
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      destination:
+        name: in-cluster
+        namespace: '{{path.basename}}'
+      project: default # TODO
+      source:
+        repoURL: {{ $.Values.gitops.repo }}
+        path: '{{path}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          limit: 10
+          backoff:
+            duration: 1m
+            factor: 2
+            maxDuration: 16m
+        syncOptions:
+          - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-apps
   namespace: {{ $.Release.Namespace }}
 spec:
   generators:
@@ -15,30 +125,28 @@ spec:
               repoURL: {{ $.Values.gitops.repo }}
               revision: {{ $.Values.gitops.revision }}
               directories:
-                - path: {{ $stack.name }}/*
+                - path: cluster-apps/*
           - git:
               repoURL: {{ $.Values.gitops.repo }}
               revision: {{ $.Values.gitops.revision }}
               files:
-                - path: {{ $stack.name }}/**/config.json
+                - path: cluster-apps/**/config.json
           
   template:
     metadata:
-      name: '{{ `{{path.basename}}` }}'
+      name: '{{path.basename}}'
     spec:
       destination:
         name: in-cluster
-        namespace: '{{ ornamespace | default path.basename }}'
+        namespace: '{{ornamespace | default path.basename}}'
       project: default # TODO
       source:
         repoURL: {{ $.Values.gitops.repo }}
-        path: '{{ `{{path}}` }}'
+        path: '{{path}}'
       syncPolicy:
-        {{- if ne $stack.autosync_enabled false }}
         automated:
           prune: true
           selfHeal: true
-        {{- end }}
         retry:
           limit: 10
           backoff:
@@ -47,4 +155,3 @@ spec:
             maxDuration: 16m
         syncOptions:
           - CreateNamespace=true
-{{- end }}
