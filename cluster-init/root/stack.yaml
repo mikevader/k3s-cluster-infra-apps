@@ -7,8 +7,8 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: {{ .Values.gitops.repo }}
-        revision: {{ .Values.gitops.revision }}
+        repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
+        revision: 'master'
         directories:
           - path: cluster-init/*
 
@@ -21,7 +21,7 @@ spec:
         namespace: 'argocd-system'
       project: default # TODO
       source:
-        repoURL: {{ .Values.gitops.repo }}
+        repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{ `{{path}}` }}'
       syncPolicy:
         automated:
@@ -44,8 +44,8 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: {{ .Values.gitops.repo }}
-        revision: {{ .Values.gitops.revision }}
+        repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
+        revision: 'master'
         directories:
           - path: cluster-critical/*
 
@@ -58,7 +58,7 @@ spec:
         namespace: '{{ `{{path.basename}}` }}'
       project: default # TODO
       source:
-        repoURL: {{ .Values.gitops.repo }}
+        repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{ `{{path}}` }}'
       syncPolicy:
         automated:
@@ -81,8 +81,8 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: {{ .Values.gitops.repo }}
-        revision: {{ .Values.gitops.revision }}
+        repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
+        revision: 'master'
         directories:
           - path: cluster-platform/*
 
@@ -95,7 +95,7 @@ spec:
         namespace: '{{ `{{path.basename}}` }}'
       project: default # TODO
       source:
-        repoURL: {{ .Values.gitops.repo }}
+        repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{ `{{path}}` }}'
       syncPolicy:
         automated:
@@ -118,8 +118,8 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: {{ .Values.gitops.repo }}
-        revision: {{ .Values.gitops.revision }}
+        repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
+        revision: 'master'
         directories:
           - path: cluster-apps/*
 
@@ -132,7 +132,7 @@ spec:
         namespace: '{{ `{{path.basename}}` }}'
       project: default # TODO
       source:
-        repoURL: {{ .Values.gitops.repo }}
+        repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{ `{{path}}` }}'
       syncPolicy:
         automated:
