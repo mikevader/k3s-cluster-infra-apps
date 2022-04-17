@@ -18,7 +18,7 @@ spec:
     spec:
       destination:
         name: in-cluster
-        namespace: 'argocd-system'
+        namespace: argocd-system
       project: default # TODO
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
