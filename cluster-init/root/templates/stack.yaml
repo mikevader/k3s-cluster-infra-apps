@@ -127,7 +127,7 @@ spec:
               directories:
                 - path: cluster-apps/*
               values:
-                namespace: {{path.basename}}
+                namespace: '{{ `{{path.basename}}` }}'
           - git:
               repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
               revision: 'master'
