@@ -1,3 +1,5 @@
 {
-    "or-namespace": "plex"
+    "values": {
+        "namespace" : "plex"
+    }
 }
