@@ -139,7 +139,7 @@ spec:
     spec:
       destination:
         name: in-cluster
-        namespace: '{{values.namespace}}'
+        namespace: '{{ `{{values.namespace}}` }}'
       project: default # TODO
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
