@@ -42,10 +42,10 @@ samba:
       existingClaim: plex-audiobooks
       mountPath: /mnt/media/audiobooks
 
-  podSecurityContext:
-    runAsUser: 568
-    runAsGroup: 568
-    fsGroup: 568
+  # podSecurityContext:
+  #   runAsUser: 568
+  #   runAsGroup: 568
+  #   fsGroup: 568
 
   ingress:
     main:
