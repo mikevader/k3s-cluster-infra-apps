@@ -48,7 +48,22 @@ spec:
         revision: 'master'
         directories:
           - path: cluster-critical/*
-
+          - path: cluster-critical/monitoring-stack
+            exclude: true
+    - git:
+        repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
+        revision: 'master'
+        files:
+          - path: cluster-apps/**/config.json
+        template:
+          metadata: {}
+          spec:
+            source:
+              repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
+              path: '{{ `{{path}}` }}'
+              helm:
+                skipCrds: true
+            destination: {}
   template:
     metadata:
       name: '{{ `{{path.basename}}` }}'
