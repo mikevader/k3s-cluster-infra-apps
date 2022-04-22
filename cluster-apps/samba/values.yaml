@@ -5,6 +5,9 @@ samba:
   env:
     TZ: Europe/Zurich
     SAMBA_HOSTS_ALLOW: 192.168.42.0/24
+    PERMISSIONS: 
+    USERID: 568
+    GROUPID: 568
 
   configmap:
     config:
