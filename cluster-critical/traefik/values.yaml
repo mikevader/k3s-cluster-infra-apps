@@ -25,6 +25,8 @@ traefik:
       metallb.universe.tf/address-pool: default
     spec:
       externalTrafficPolicy: Local
+  securityContext:
+    runAsNonRoot: false
   ports:
     web:
       redirectTo: websecure
