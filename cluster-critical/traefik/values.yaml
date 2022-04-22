@@ -27,6 +27,8 @@ traefik:
       externalTrafficPolicy: Local
   securityContext:
     runAsNonRoot: false
+  podSecurityPolicy:
+    enabled: true
   ports:
     web:
       redirectTo: websecure
