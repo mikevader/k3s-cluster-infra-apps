@@ -9,7 +9,7 @@ traefik:
   globalArguments:
     - "--global.checknewversion"
     - "--serverstransport.insecureskipverify=true"
-    - "--providers.kubernetesingress.ingressclass=traefik"
+    # - "--providers.kubernetesingress.ingressclass=traefik"
     - "--metrics.prometheus=true"
     - "--metrics.prometheus.entryPoint=metrics"
     - "--entrypoints.websecure.http.middlewares=error-pages-error-pages@kubernetescrd"
@@ -36,11 +36,11 @@ traefik:
     websecure:
       tls:
         enabled: true
-    netbios:
-      port: 139
-      expose: true
-      exposedPort: 139
-      protocol: TCP
+    # netbios:
+    #   port: 139
+    #   expose: true
+    #   exposedPort: 139
+    #   protocol: TCP
     smb:
       port: 445
       expose: true
