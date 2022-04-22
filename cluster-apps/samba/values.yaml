@@ -36,6 +36,7 @@ samba:
   persistence:
     audiobooks:
       enabled: true
+      type: pvc
       retain: true
       storageClass: "-"
       existingClaim: plex-audiobooks
