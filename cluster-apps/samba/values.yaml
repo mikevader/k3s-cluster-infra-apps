@@ -24,6 +24,8 @@ samba:
           global:
             - "force user = foo"
             - "force group = foo"
+            - "vfs objects = fruit streams_xattr recycle"
+            - "ea support = yes"
 
           share:
             - name: foo
@@ -35,8 +37,6 @@ samba:
               writelist: foo
               veto: no
               hidefiles: /_*/
-              'ea support': yes
-              'vfs objects': fruit streams_xattr recycle
 
   persistence:
     audiobooks:
