@@ -30,6 +30,7 @@ traefik:
       drop: [ALL]
       add: [NET_BIND_SERVICE]
     runAsNonRoot: false
+  hostNetwork: true
   ports:
     web:
       redirectTo: websecure
