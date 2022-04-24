@@ -35,6 +35,8 @@ samba:
               writelist: foo
               veto: no
               hidefiles: /_*/
+              'ea support': yes
+              'vfs objects': fruit streams_xattr recycle
 
   persistence:
     audiobooks:
