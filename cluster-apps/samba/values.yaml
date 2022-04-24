@@ -24,8 +24,16 @@ samba:
           global:
             - "force user = foo"
             - "force group = foo"
-            - "vfs objects = fruit streams_xattr recycle"
-            - "ea support = no"
+            - "min protocol = SMB2"
+            - "ea support = yes"
+            - "vfs objects = fruit streams_xattr"
+            - "fruit:metadata = stream"
+            - "fruit:model = MacSamba"
+            - "fruit:veto_appledouble = no"
+            - "fruit:posix_rename = yes"
+            - "fruit:zero_file_id = yes"
+            - "fruit:wipe_intentionally_left_blank_rfork = yes"
+            - "fruit:delete_empty_adfiles = yes"
 
           share:
             - name: audiobooks
