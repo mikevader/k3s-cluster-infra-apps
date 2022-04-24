@@ -4,7 +4,7 @@ global:
 samba:
   env:
     TZ: Europe/Zurich
-    SAMBA_HOSTS_ALLOW: 192.168.42.0/24
+    SAMBA_HOSTS_ALLOW: 127.0.0.1/32 192.168.42.0/24
     PERMISSIONS: 
     USERID: 568
     GROUPID: 568
