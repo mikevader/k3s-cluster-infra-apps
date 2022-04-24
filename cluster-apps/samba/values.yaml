@@ -25,11 +25,31 @@ samba:
             - "force user = foo"
             - "force group = foo"
             - "vfs objects = fruit streams_xattr recycle"
-            - "ea support = yes"
+            - "ea support = no"
 
           share:
-            - name: foo
+            - name: audiobooks
               path: /mnt/media/audiobooks
+              browsable: yes
+              readonly: no
+              guestok: no
+              validusers: foo
+              writelist: foo
+              veto: no
+              hidefiles: /_*/
+
+            - name: movies
+              path: /mnt/media/movies
+              browsable: yes
+              readonly: no
+              guestok: no
+              validusers: foo
+              writelist: foo
+              veto: no
+              hidefiles: /_*/
+
+            - name: tv
+              path: /mnt/media/tv
               browsable: yes
               readonly: no
               guestok: no
@@ -46,6 +66,22 @@ samba:
       storageClass: "-"
       existingClaim: plex-audiobooks
       mountPath: /mnt/media/audiobooks
+
+    movies:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: plex-movies
+      mountPath: /mnt/media/movies
+
+    tv:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: plex-tv
+      mountPath: /mnt/media/tv
 
   # podSecurityContext:
   #   runAsUser: 568
