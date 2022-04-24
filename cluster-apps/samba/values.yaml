@@ -13,7 +13,7 @@ samba:
     config:
       enabled: true
       data:
-        config.yaml: |
+        config.yml: |
           auth:
             - user: foo
               group: foo
