@@ -30,6 +30,9 @@ traefik:
       drop: [ALL]
       add: [NET_BIND_SERVICE]
     runAsNonRoot: false
+    readOnlyRootFilesystem: true
+    runAsGroup: 0
+    runAsUser: 0
   hostNetwork: true
   ports:
     web:
@@ -44,6 +47,7 @@ traefik:
     #   protocol: TCP
     smb:
       port: 445
+      hostPort: 445
       expose: true
       exposedPort: 445
       protocol: TCP
