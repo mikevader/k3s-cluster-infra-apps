@@ -54,7 +54,7 @@ samba:
 
   ingress:
     main:
-      enabled: true
+      enabled: false
       annotations:
         # cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: netbios,smb
