@@ -27,7 +27,7 @@ samba:
             - "min protocol = SMB2"
             - "ea support = yes"
             - "vfs objects = fruit streams_xattr"
-            - "fruit:metadata = stream"
+            - "fruit:metadata = netatalk"
             - "fruit:model = MacSamba"
             - "fruit:veto_appledouble = no"
             - "fruit:posix_rename = yes"
