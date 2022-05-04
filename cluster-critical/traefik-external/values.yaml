@@ -33,8 +33,8 @@ traefik:
         enabled: true
     metrics:
       port: 9100
-      expose: true
-      exposedPort: 9100
+      #expose: true
+      #exposedPort: 9100
   ingressRoute:
     dashboard:
       enabled: false
