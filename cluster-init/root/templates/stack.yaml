@@ -58,12 +58,15 @@ spec:
         template:
           metadata: {}
           spec:
+            destination:
+              name: in-cluster
+              namespace: '{{ `{{path.basename}}` }}'
+            project: default # TODO
             source:
               repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
               path: '{{ `{{path}}` }}'
               helm:
                 skipCrds: true
-            destination: {}
   template:
     metadata:
       name: '{{ `{{path.basename}}` }}'
