@@ -4,5 +4,5 @@ description: Jellyfin Chart
 version: 1.0.0
 dependencies:
   - name: jellyfin
-    version: 9.2.0
+    version: 9.4.2
     repository: https://k8s-at-home.com/charts
