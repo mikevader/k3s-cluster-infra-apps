@@ -4,5 +4,5 @@ description: Uptime Kuma
 version: 1.0.0
 dependencies:
   - name: uptime-kuma
-    version: 1.2.0
+    version: 1.3.2
     repository: https://k8s-at-home.com/charts
