@@ -67,6 +67,9 @@ spec:
               path: '{{ `{{path}}` }}'
               helm:
                 skipCrds: true
+            helm:
+              skipCrds: true
+            helmSkipCrds: true
   template:
     metadata:
       name: '{{ `{{path.basename}}` }}'
