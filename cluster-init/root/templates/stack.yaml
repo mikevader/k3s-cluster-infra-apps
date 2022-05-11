@@ -67,9 +67,6 @@ spec:
               path: '{{ `{{path}}` }}'
               helm:
                 skipCrds: true
-            helm:
-              skipCrds: true
-            helmSkipCrds: true
   template:
     metadata:
       name: '{{ `{{path.basename}}` }}'
@@ -81,6 +78,8 @@ spec:
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{ `{{path}}` }}'
+        helm:
+          skipCrds: true
       syncPolicy:
         automated:
           prune: true
