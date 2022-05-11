@@ -14,12 +14,17 @@ vault:
     enabled: true
 
   server:
-    dev:
-      enabled: true
+    # dev:
+    #   enabled: true
     # image:
     #   repository: "vault"
     #   tag: "1.9.1"
     #   pullPolicy: IfNotPresent
+    ha:
+      enabled: true
+      raft:
+        enabled: true
+
     postStart:
       - /bin/sh
       - -ec
