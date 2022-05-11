@@ -1,0 +1,7 @@
+apiVersion: v2
+name: vault-operator
+version: 0.0.0
+dependencies:
+  - name: vault-operator
+    version: 1.15.6
+    repository: https://kubernetes-charts.banzaicloud.com
