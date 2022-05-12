@@ -30,6 +30,7 @@ spec:
     # to support TLS backends
     annotations:
       kubernetes.io/ingress.class: "traefik"
+      ingress.kubernetes.io/protocol: https
       cert-manager.io/cluster-issuer: letsencrypt-prod
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
     # Override the default Ingress specification here
