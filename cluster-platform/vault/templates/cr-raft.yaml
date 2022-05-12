@@ -42,6 +42,11 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                backend:
+                  service:
+                    name: vault
+                    port:
+                      number: 8200
       tls:
         - hosts: ['vault.framsburg.ch']
           secretName: 'vault-framsburg-ch-tls'
@@ -144,8 +149,6 @@ spec:
       spec:
         accessModes:
           - ReadWriteOnce
-        hostPath:
-          path: "/vault/raft"
         resources:
           requests:
             storage: 1Gi
