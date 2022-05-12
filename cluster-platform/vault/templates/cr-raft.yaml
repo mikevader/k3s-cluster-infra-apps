@@ -39,7 +39,7 @@ spec:
     spec:
       rules:
         - host: 'vault.framsburg.ch'
-          https:
+          http:
             paths:
               - path: /
                 pathType: Prefix
