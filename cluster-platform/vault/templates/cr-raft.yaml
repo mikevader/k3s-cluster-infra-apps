@@ -55,11 +55,8 @@ spec:
   # See https://www.vaultproject.io/docs/configuration/ for more information.
   config:
     storage:
-      file:
-        path: /vault/file
-    ha_storage:
       raft:
-        path: /vault/raft
+        path: /vault/file
     listener:
       tcp:
         address: "0.0.0.0:8200"
@@ -131,16 +128,8 @@ spec:
         cpu: "100m"
 
   volumeMounts:
-    - name: vault-file
-      mountPath: /vault/file
     - name: vault-raft
-      mountPath: /vault/raft
-
-  # Use local disk to store Vault file data, see config section.
-  volumes:
-    - name: vault-file
-      persistentVolumeClaim:
-        claimName: vault-file
+      mountPath: /vault/file
 
   # Use local disk to store Vault file data, see config section.
   volumeClaimTemplates:
@@ -149,23 +138,10 @@ spec:
       spec:
         accessModes:
           - ReadWriteOnce
+        volumeMode: Filesystem
         resources:
           requests:
             storage: 1Gi
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: vault-file
-spec:
-  # https://kubernetes.io/docs/concepts/storage/persistent-volumes/#class-1
-  volumeName: vault-file
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 250Mi
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
