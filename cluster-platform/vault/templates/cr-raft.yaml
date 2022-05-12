@@ -8,17 +8,17 @@ spec:
   bankVaultsImage: ghcr.io/banzaicloud/bank-vaults:latest
 
   # Schedule the pods on the same node, since we are using hostPath storage
-  affinity:
-    nodeAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 100
-        podAffinityTerm:
-          labelSelector:
-            matchExpressions:
-            - key: app.kubernetes.io/name
-              operator: In
-              values:
-              - S2
+  # affinity:
+  #   nodeAffinity:
+  #     preferredDuringSchedulingIgnoredDuringExecution:
+  #     - weight: 100
+  #       podAffinityTerm:
+  #         labelSelector:
+  #           matchExpressions:
+  #           - key: app.kubernetes.io/name
+  #             operator: In
+  #             values:
+  #             - S2
 
   # Specify the ServiceAccount where the Vault Pod and the Bank-Vaults configurer/unsealer is running
   serviceAccount: vault
@@ -86,6 +86,21 @@ spec:
             policies: ["allow_secrets", "allow_pki"]
             ttl: 1h
 
+      - type: jwt
+        config:
+          oidc_discovery_url: https://kubernetes
+          oidc_discovery_ca_pem: ${ file `/var/run/secrets/kubernetes.io/serviceaccount/ca.crt` }
+          bound_issuer: https://kubernetes
+          default_role: default
+        roles:
+          - name: default
+            role_type: jwt
+            bound_audiences: vault
+            bound_subject: system:serviceaccount:default:default
+            user_claim: sub
+            policies: allow_secrets
+            ttl: 1h
+
     secrets:
       - path: secret
         type: kv
@@ -129,7 +144,6 @@ spec:
       spec:
         accessModes:
           - ReadWriteOnce
-        volumeMode: Filesystem
         hostPath:
           path: "/vault/raft"
         resources:
@@ -143,7 +157,6 @@ metadata:
   name: vault-file
 spec:
   # https://kubernetes.io/docs/concepts/storage/persistent-volumes/#class-1
-  storageClassName: ""
   volumeName: vault-file
   accessModes:
     - ReadWriteMany
@@ -152,15 +165,15 @@ spec:
       storage: 250Mi
 
 ---
-apiVersion: v1
-kind: PersistentVolume
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
 metadata:
-  name: vault-file
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-  - ReadWriteMany
-  persistentVolumeReclaimPolicy: Recycle
-  hostPath:
-    path: /vault/file
+  name: oidc-reviewer
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:service-account-issuer-discovery
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: system:unauthenticated
