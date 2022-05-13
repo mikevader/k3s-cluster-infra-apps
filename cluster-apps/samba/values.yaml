@@ -33,6 +33,8 @@ samba:
             - "fruit:wipe_intentionally_left_blank_rfork = yes"
             - "fruit:delete_empty_adfiles = yes"
             - "fruit:nfs_aces = no"
+            - "veto files = /._*/.DS_Store/"
+            - "delete veto files = yes"
 
           share:
             - name: audiobooks
