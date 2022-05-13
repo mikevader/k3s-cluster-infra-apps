@@ -9,7 +9,7 @@ spec:
   entryPoints:
     - smb
   routes:
-    - match: HostSNI('{{ .Values.global.domainName }}')
+    - match: "HostSNI('{{ .Values.global.domainName }}')"
       services:
         - name: samba
           port: 445

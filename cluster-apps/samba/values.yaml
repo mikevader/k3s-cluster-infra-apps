@@ -37,14 +37,6 @@ samba:
           share:
             - name: audiobooks
               path: /mnt/media/audiobooks
-              browsable: yes
-              writeable: yes
-              readonly: no
-              guestok: no
-              validusers: foo
-              writelist: foo
-              veto: no
-              hidefiles: /_*/
 
             - name: movies
               path: /mnt/media/movies
