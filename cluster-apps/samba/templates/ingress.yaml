@@ -1,19 +1,15 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
 metadata:
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/router.entrypoints: smb
   name: samba
+  namespace: plex
+
 spec:
-  rules:
-    - host: '{{ .Values.global.domainName }}'
-      tcp:
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: samba
-                port:
-                  number: 445
+  entryPoints:
+    - smb
+  routes:
+    - match: HostSNI('{{ .Values.global.domainName }}')
+      services:
+        - name: samba
+          port: 445
