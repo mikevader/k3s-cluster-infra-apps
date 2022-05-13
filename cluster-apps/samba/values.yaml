@@ -35,10 +35,19 @@ samba:
             - "fruit:nfs_aces = no"
             - "veto files = /._*/.DS_Store/"
             - "delete veto files = yes"
+            - "spotlight = no"
 
           share:
             - name: audiobooks
               path: /mnt/media/audiobooks
+              browsable: yes
+              readonly: no
+              writable: yes
+              guestok: no
+              validusers: foo
+              writelist: foo
+              veto: no
+              hidefiles: /_*/
 
             - name: movies
               path: /mnt/media/movies
