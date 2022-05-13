@@ -89,20 +89,20 @@ spec:
             policies: ["allow_secrets", "allow_pki"]
             ttl: 1h
 
-      - type: jwt
-        config:
-          oidc_discovery_url: https://kubernetes
-          oidc_discovery_ca_pem: ${ file `/var/run/secrets/kubernetes.io/serviceaccount/ca.crt` }
-          bound_issuer: https://kubernetes
-          default_role: default
-        roles:
-          - name: default
-            role_type: jwt
-            bound_audiences: vault
-            bound_subject: system:serviceaccount:default:default
-            user_claim: sub
-            policies: allow_secrets
-            ttl: 1h
+      # - type: jwt
+      #   config:
+      #     oidc_discovery_url: https://kubernetes
+      #     oidc_discovery_ca_pem: ${ file `/var/run/secrets/kubernetes.io/serviceaccount/ca.crt` }
+      #     bound_issuer: https://kubernetes
+      #     default_role: default
+      #   roles:
+      #     - name: default
+      #       role_type: jwt
+      #       bound_audiences: vault
+      #       bound_subject: system:serviceaccount:default:default
+      #       user_claim: sub
+      #       policies: allow_secrets
+      #       ttl: 1h
 
     secrets:
       - path: secret
@@ -113,7 +113,7 @@ spec:
 
   vaultEnvsConfig:
     - name: VAULT_LOG_LEVEL
-      value: debug
+      value: info
 
   serviceRegistrationEnabled: true
 
