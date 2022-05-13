@@ -29,6 +29,7 @@ samba:
             - "vfs objects = fruit streams_xattr"
             - "fruit:metadata = stream"
             - "fruit:resource = stream"
+            - "fruit:aapl = yes"
             - "fruit:model = MacSamba"
             - "fruit:veto_appledouble = no"
             - "fruit:posix_rename = yes"
@@ -40,6 +41,7 @@ samba:
             - name: audiobooks
               path: /mnt/media/audiobooks
               browsable: yes
+              writeable: yes
               readonly: no
               guestok: no
               validusers: foo
