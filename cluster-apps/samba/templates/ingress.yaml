@@ -4,6 +4,9 @@ kind: IngressRouteTCP
 metadata:
   name: samba
   namespace: plex
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/router.entrypoints: smb
 
 spec:
   entryPoints:
