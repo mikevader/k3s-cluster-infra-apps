@@ -25,9 +25,9 @@ samba:
             - "force user = foo"
             - "force group = foo"
             - "create mask = 0666"
-            - "force create mask = 0666"
+            - "force create mode = 0666"
             - "directory mask = 0777"
-            - "force directory mask = 0777"
+            - "force directory mode = 0777"
             - "min protocol = SMB2"
             - "vfs objects = fruit streams_xattr recycle"
             - "fruit:metadata = stream"
@@ -40,7 +40,7 @@ samba:
             - "veto files = /._*/.DS_Store/"
             - "delete veto files = yes"
             - "spotlight = no"
-            - "smb ports = 4445 4139"
+            - "smb ports = 4445"
 
           share:
             - name: audiobooks
@@ -103,7 +103,13 @@ samba:
   #   runAsUser: 568
   #   runAsGroup: 568
   #   fsGroup: 568
-
+  service:
+    main:
+      ports:
+        tcp:
+          enabled: true
+          protocol: TCP
+          port: 4445
   # ingress:
   #   main:
   #     enabled: true
