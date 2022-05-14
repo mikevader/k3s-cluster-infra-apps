@@ -24,22 +24,6 @@ samba:
           global:
             - "force user = foo"
             - "force group = foo"
-            - "create mask = 0666"
-            - "force create mode = 0666"
-            - "directory mask = 0777"
-            - "force directory mode = 0777"
-            - "min protocol = SMB2"
-            - "vfs objects = fruit streams_xattr recycle"
-            - "fruit:metadata = stream"
-            - "fruit:model = MacSamba"
-            - "fruit:posix_rename = yes"
-            - "fruit:veto_appledouble = no"
-            - "fruit:wipe_intentionally_left_blank_rfork = yes"
-            - "fruit:delete_empty_adfiles = yes"
-            - "fruit:nfs_aces = no"
-            - "veto files = /._*/.DS_Store/"
-            - "delete veto files = yes"
-            - "spotlight = no"
             - "smb ports = 4445"
 
           share:
