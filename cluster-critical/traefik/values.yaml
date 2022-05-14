@@ -50,7 +50,7 @@ traefik:
     #   hostPort: 445
       expose: true
       exposedPort: 4445
-    #   protocol: TCP
+      protocol: TCP
     metrics:
       port: 9100
       #expose: true
