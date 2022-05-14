@@ -46,7 +46,7 @@ traefik:
     #   exposedPort: 139
     #   protocol: TCP
     smb:
-      port: 4445
+      port: 445
     #   hostPort: 445
       expose: true
       exposedPort: 4445
