@@ -15,4 +15,4 @@ spec:
     - match: "HostSNI(`{{ .Values.global.domainName }}`)"
       services:
         - name: samba
-          port: 445
+          port: 4445
