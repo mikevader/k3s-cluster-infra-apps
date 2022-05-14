@@ -25,6 +25,23 @@ samba:
             - "force user = foo"
             - "force group = foo"
             - "smb ports = 4445"
+            - "create mask = 0666"
+            - "force create mode = 0666"
+            - "directory mask = 0777"
+            - "force directory mode = 0777"
+            - "min protocol = SMB2"
+            - "vfs objects = fruit streams_xattr recycle"
+            - "fruit:metadata = stream"
+            - "fruit:model = MacSamba"
+            - "fruit:posix_rename = yes"
+            - "fruit:veto_appledouble = no"
+            - "fruit:wipe_intentionally_left_blank_rfork = yes"
+            - "fruit:delete_empty_adfiles = yes"
+            - "fruit:nfs_aces = no"
+            - "veto files = /._*/.DS_Store/"
+            - "delete veto files = yes"
+            - "spotlight = no"
+            - "fruit:time machine = yes"
 
           share:
             - name: audiobooks
@@ -37,11 +54,13 @@ samba:
               writelist: foo
               veto: no
               hidefiles: /_*/
+              spotlight: no
 
             - name: movies
               path: /mnt/media/movies
               browsable: yes
               readonly: no
+              writable: yes
               guestok: no
               validusers: foo
               writelist: foo
@@ -52,6 +71,7 @@ samba:
               path: /mnt/media/tv
               browsable: yes
               readonly: no
+              writable: yes
               guestok: no
               validusers: foo
               writelist: foo
