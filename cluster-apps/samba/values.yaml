@@ -24,8 +24,12 @@ samba:
           global:
             - "force user = foo"
             - "force group = foo"
+            - "create mask = 0666"
+            - "force create mask = 0666"
+            - "directory mask = 0777"
+            - "force directory mask = 0777"
             - "min protocol = SMB2"
-            - "vfs objects = fruit streams_xattr"
+            - "vfs objects = fruit streams_xattr recycle"
             - "fruit:metadata = stream"
             - "fruit:model = MacSamba"
             - "fruit:posix_rename = yes"
