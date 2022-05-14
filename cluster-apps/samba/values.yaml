@@ -40,6 +40,7 @@ samba:
             - "veto files = /._*/.DS_Store/"
             - "delete veto files = yes"
             - "spotlight = no"
+            - "smb ports = 4445 4139"
 
           share:
             - name: audiobooks
