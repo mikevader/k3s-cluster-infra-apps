@@ -22,6 +22,7 @@ samba:
               password: bar
 
           global:
+            - "posix:eadb = /usr/local/samba/private/eadb.tdb"
             - "force user = foo"
             - "force group = foo"
             - "smb ports = 4445"
