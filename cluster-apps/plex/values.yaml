@@ -55,18 +55,21 @@ plex:
       enabled: true
       type: pvc
       size: 500Gi
+      storageClass: longhorn-nolock-nfs
       accessMode: ReadWriteMany
       mountPath: /mnt/media/tv
     movies:
       enabled: true
       type: pvc
       size: 200Gi
+      storageClass: longhorn-nolock-nfs
       accessMode: ReadWriteMany
       mountPath: /mnt/media/movies
     audiobooks:
       enabled: true
       type: pvc
       size: 50Gi
+      storageClass: longhorn-nolock-nfs
       accessMode: ReadWriteMany
       mountPath: /mnt/media/audiobooks
   podSecurityContext:
