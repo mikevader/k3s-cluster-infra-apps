@@ -4,7 +4,7 @@ metadata:
   name: "vault"
 spec:
   size: 3
-  image: vault:1.6.2
+  image: vault:1.9.6
   bankVaultsImage: ghcr.io/banzaicloud/bank-vaults:latest
 
   # Schedule the pods on the same node, since we are using hostPath storage
@@ -99,8 +99,8 @@ spec:
             policies: ["allow_secrets"]
             ttl: 1h
           - name: test
-            bound_service_account_names: ["default", "webapp-sa"]
-            bound_service_account_namespaces: ["test"]
+            bound_service_account_names: ["*"]
+            bound_service_account_namespaces: ["*"]
             policies: ["allow_secrets"]
             ttl: 1h
 
