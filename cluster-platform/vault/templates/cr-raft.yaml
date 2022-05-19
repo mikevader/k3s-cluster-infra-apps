@@ -67,7 +67,7 @@ spec:
         # tls_key_file: /vault/tls/server.key
     telemetry:
       statsd_address: localhost:9125
-    api_addr: http://vault.vault:8200
+    api_addr: http://vault.vault.svc:8200
     cluster_addr: "http://${.Env.POD_NAME}:8201"
     ui: true
 
