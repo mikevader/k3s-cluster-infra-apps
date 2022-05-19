@@ -46,3 +46,6 @@ subjects:
   - kind: ServiceAccount
     name: vault
     namespace: default
+  - kind: ServiceAccount
+    name: vault
+    namespace: vault

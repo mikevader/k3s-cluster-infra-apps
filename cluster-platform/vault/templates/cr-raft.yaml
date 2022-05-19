@@ -67,7 +67,7 @@ spec:
         # tls_key_file: /vault/tls/server.key
     telemetry:
       statsd_address: localhost:9125
-    api_addr: http://vault.default:8200
+    api_addr: http://vault.vault:8200
     cluster_addr: "http://${.Env.POD_NAME}:8201"
     ui: true
 
@@ -87,6 +87,16 @@ spec:
             bound_service_account_names: ["default", "vault-secrets-webhook", "vault"]
             bound_service_account_namespaces: ["default", "vswh"]
             policies: ["allow_secrets", "allow_pki"]
+            ttl: 1h
+          - name: grafana
+            bound_service_account_names: ["default", "monitoring-stack-grafana"]
+            bound_service_account_namespaces: ["monitoring-stack"]
+            policies: ["allow_secrets"]
+            ttl: 1h
+          - name: argocd
+            bound_service_account_names: ["default", "argocd-server"]
+            bound_service_account_namespaces: ["argocd-system"]
+            policies: ["allow_secrets"]
             ttl: 1h
 
       # - type: jwt
