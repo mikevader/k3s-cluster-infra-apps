@@ -2,3 +2,5 @@ vault-secrets-webhook:
   certificate:
     generate: false
     useCertManager: true
+  podAnnotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
