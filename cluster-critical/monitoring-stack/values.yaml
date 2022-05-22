@@ -83,26 +83,8 @@ kube-prometheus-stack:
       # Optionally map user groups to Grafana roles
       GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups[*], 'fb-admins') && 'Admin' || contains(groups[*], 'fb-users') && 'Editor' || 'Viewer'"
 
-    envValueFrom:
-      GF_AUTH_GENERIC_OAUTH_CLIENT_ID:
-        secretKeyRef:
-          name: oidc
-          key: clientId
-
-      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
-        secretKeyRef:
-          name: oidc
-          key: clientSecret
-    extraSecretMounts:
-      - name: 'secrets-store-inline'
-        mountPath: '/mnt/secrets-store'
-        readOnly: true
-        csi:
-          driver: secrets-store.csi.k8s.io
-          readOnly: true
-          volumeAttributes:
-            secretProviderClass: vault-grafana
-
+      GF_AUTH_GENERIC_OAUTH_CLIENT_ID: vault:secret/data/framsburg/grafana/oidc#client-id
+      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: vault:secret/data/framsburg/grafana/oidc#client-secret
     ingress:
       enabled: true
       ingressClassName: traefik
