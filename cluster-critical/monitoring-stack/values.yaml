@@ -71,9 +71,9 @@ kube-prometheus-stack:
 
   grafana:
     annotations:
-      vault.security.banzaicloud.io/vault-addr: "https://vault.vault.svc:8200"
+      vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
     podAnnotations:
-      vault.security.banzaicloud.io/vault-addr: "https://vault.vault.svc:8200"
+      vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
     env:
       GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
       GF_AUTH_GENERIC_OAUTH_NAME: "authentik"
