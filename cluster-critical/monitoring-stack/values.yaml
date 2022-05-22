@@ -70,6 +70,8 @@ kube-prometheus-stack:
           kind: "ClusterIssuer"
 
   grafana:
+    annotations:
+      vault.security.banzaicloud.io/vault-addr: "https://vault.vault.svc:8200"
     env:
       GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
       GF_AUTH_GENERIC_OAUTH_NAME: "authentik"
