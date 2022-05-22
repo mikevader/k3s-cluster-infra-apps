@@ -1,0 +1,7 @@
+apiVersion: v2
+name: vault-infra
+version: 0.0.0
+dependencies:
+  - name: vault-secrets-webhook
+    version: 1.15.9
+    repository: https://kubernetes-charts.banzaicloud.com

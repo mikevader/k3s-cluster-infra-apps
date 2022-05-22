@@ -1,0 +1,4 @@
+vault-secrets-webhook:
+  certificate:
+    generate: false
+    useCertManager: true
