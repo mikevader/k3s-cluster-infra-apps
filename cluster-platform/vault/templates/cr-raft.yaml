@@ -89,8 +89,8 @@ spec:
             policies: ["allow_secrets", "allow_pki"]
             ttl: 1h
           - name: grafana
-            bound_service_account_names: ["default", "monitoring-stack-grafana"]
-            bound_service_account_namespaces: ["monitoring-stack"]
+            bound_service_account_names: ["*"] # ["default", "monitoring-stack-grafana"]
+            bound_service_account_namespaces: ["*"] # ["monitoring-stack"]
             policies: ["allow_secrets"]
             ttl: 1h
           - name: argocd
