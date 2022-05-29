@@ -1,1 +1,3 @@
-vault-secrets-webhook: {}
+vault-secrets-webhook:
+  env:
+    VAULT_IMAGE: vault:1.9.6
