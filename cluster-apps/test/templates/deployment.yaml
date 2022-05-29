@@ -13,6 +13,8 @@ spec:
   template:
     metadata:
       annotations:
+        vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
+        vault.security.banzaicloud.io/vault-role: "grafana"
       labels:
         app: demo
     spec:
