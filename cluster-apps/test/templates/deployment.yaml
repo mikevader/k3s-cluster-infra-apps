@@ -14,7 +14,7 @@ spec:
     metadata:
       annotations:
         vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
-        vault.security.banzaicloud.io/vault-path: "kubernetes/"
+        vault.security.banzaicloud.io/vault-path: "kubernetes"
         vault.security.banzaicloud.io/vault-role: "test"
         vault.security.banzaicloud.io/vault-skip-verify: "true"
       labels:
