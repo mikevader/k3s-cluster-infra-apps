@@ -44,7 +44,7 @@ spec:
             name: index-html-cm
         - name: nginx-conf
           configMap:
-            name: nginx-conf
+            name: nginx-conf-cm
             items:
               - key: nginx.conf
                 path: nginx.conf
