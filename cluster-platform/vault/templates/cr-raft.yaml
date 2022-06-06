@@ -84,7 +84,7 @@ spec:
         roles:
           # Allow every pod in the default namespace to use the secret kv store
           - name: default
-            bound_service_account_names: ["default", "vault-secrets-webhook", "vault"]
+            bound_service_account_names: ["default", "vault-infra-vault-secrets-webhook", "vault"]
             bound_service_account_namespaces: ["default", "vault-infra"]
             policies: ["allow_secrets", "allow_pki"]
             ttl: 1h
@@ -99,8 +99,8 @@ spec:
             policies: ["allow_secrets"]
             ttl: 1h
           - name: test
-            bound_service_account_names: ["*"]
-            bound_service_account_namespaces: ["*"]
+            bound_service_account_names: ["default", "vault-infra-vault-secrets-webhook", "vault", "test"]
+            bound_service_account_namespaces: ["default", "vault-infra", "webapp-sa"]
             policies: ["allow_secrets"]
             ttl: 1h
 
@@ -128,7 +128,7 @@ spec:
 
   vaultEnvsConfig:
     - name: VAULT_LOG_LEVEL
-      value: info
+      value: debug
 
   serviceRegistrationEnabled: true
 
