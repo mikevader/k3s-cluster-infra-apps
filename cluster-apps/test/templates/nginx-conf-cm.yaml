@@ -4,11 +4,13 @@ metadata:
   name: default-conf-cm
 data:
   default.conf: |
-    # listen 80;
-    # server_name localhost;
-    # location / {
-    #   root /usr/share/nginx/html; #Change this line
-    #   ssi on;
-    #   set $token "${GITHUB_CLIENT_ID}";
-    #   index index.html index.htm;
-    # }
+    server {
+      listen 80;
+      server_name localhost;
+      location / {
+        root /usr/share/nginx/html; #Change this line
+        ssi on;
+        set $token "${GITHUB_CLIENT_ID}";
+        index index.html index.htm;
+      }
+    }
