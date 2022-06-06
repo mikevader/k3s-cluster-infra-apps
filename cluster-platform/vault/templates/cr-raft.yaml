@@ -15,8 +15,7 @@ spec:
             topologyKey: kubernetes.io/hostname
             labelSelector:
               matchLabels:
-                app.kubernetes.io/name: "vault"
-                app.kubernetes.io/instance: {{ .Release.Name | quote }}
+                app.kubernetes.io/name: {{ .Release.Name | quote }}
 
   # Specify the ServiceAccount where the Vault Pod and the Bank-Vaults configurer/unsealer is running
   serviceAccount: vault
