@@ -7,18 +7,16 @@ spec:
   image: vault:1.9.6
   bankVaultsImage: ghcr.io/banzaicloud/bank-vaults:latest
 
-  # Schedule the pods on the same node, since we are using hostPath storage
-  # affinity:
-  #   nodeAffinity:
-  #     preferredDuringSchedulingIgnoredDuringExecution:
-  #     - weight: 100
-  #       podAffinityTerm:
-  #         labelSelector:
-  #           matchExpressions:
-  #           - key: app.kubernetes.io/name
-  #             operator: In
-  #             values:
-  #             - S2
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            topologyKey: kubernetes.io/hostname
+            labelSelector:
+              matchLabels:
+                app.kubernetes.io/name: {{ template "vault.fullname" . }}
+                app.kubernetes.io/instance: {{ .Release.Name | quote }}
 
   # Specify the ServiceAccount where the Vault Pod and the Bank-Vaults configurer/unsealer is running
   serviceAccount: vault
@@ -147,7 +145,6 @@ spec:
     - name: vault-raft
       mountPath: /vault/file
 
-  # Use local disk to store Vault file data, see config section.
   volumeClaimTemplates:
     - metadata:
         name: vault-raft
