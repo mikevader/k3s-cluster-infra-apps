@@ -1,4 +1,5 @@
 vault-operator:
+  debug: true
   crdAnnotations:
       "helm.sh/hook": crd-install
 
