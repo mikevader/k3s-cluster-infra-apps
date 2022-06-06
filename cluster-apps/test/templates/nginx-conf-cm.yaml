@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: nginx-conf-cm
+  name: default-conf-cm
 data:
-  nginx.conf: |
+  default.conf: |
     location / {
       root /usr/share/nginx/html; #Change this line
       ssi on;
