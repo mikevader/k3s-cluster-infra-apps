@@ -28,4 +28,4 @@ spec:
           image: nginx:latest
           env:
             - name: GITHUB_CLIENT_ID
-              value: "vault:secret/data/framsburg/test#GITHUB_CLIENT_ID"
+              value: vault:secret/data/framsburg/test#GITHUB_CLIENT_ID
