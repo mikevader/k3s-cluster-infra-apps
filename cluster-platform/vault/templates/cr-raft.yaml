@@ -99,8 +99,8 @@ spec:
             policies: ["allow_secrets"]
             ttl: 1h
           - name: test
-            bound_service_account_names: ["default", "vault-infra-vault-secrets-webhook", "vault", "test"]
-            bound_service_account_namespaces: ["default", "vault-infra", "webapp-sa"]
+            bound_service_account_names: ["default", "vault-infra-vault-secrets-webhook", "vault", "webapp-sa"]
+            bound_service_account_namespaces: ["default", "vault-infra", "test"]
             policies: ["allow_secrets"]
             ttl: 1h
 
