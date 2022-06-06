@@ -5,19 +5,19 @@ metadata:
 data:
   nginx.conf: |
     user nginx;
-    worker_processes  1;
+    worker_processes 1;
     events {
-      worker_connections  10240;
+      worker_connections 10240;
     }
     http {
       server {
-          listen       80;
-          server_name  localhost;
-          location / {
-            root   /usr/share/nginx/html; #Change this line
-            ssi on;
-            set $token "${GITHUB_CLIENT_ID}";
-            index  index.html index.htm;
+        listen 80;
+        server_name localhost;
+        location / {
+          root /usr/share/nginx/html; #Change this line
+          ssi on;
+          set $token "${GITHUB_CLIENT_ID}";
+          index index.html index.htm;
         }
       }
     }
