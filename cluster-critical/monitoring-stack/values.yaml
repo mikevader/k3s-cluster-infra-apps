@@ -72,12 +72,14 @@ kube-prometheus-stack:
   grafana:
     annotations:
       vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
+      vault.security.banzaicloud.io/vault-path: "kubernetes"
       vault.security.banzaicloud.io/vault-role: "grafana"
-      vault.security.banzaicloud.io/vault-env-from-path: "vault:secret/data/framsburg/grafana/oidc"
+      vault.security.banzaicloud.io/vault-skip-verify: "true"
     podAnnotations:
       vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
+      vault.security.banzaicloud.io/vault-path: "kubernetes"
       vault.security.banzaicloud.io/vault-role: "grafana"
-      vault.security.banzaicloud.io/vault-env-from-path: "vault:secret/data/framsburg/grafana/oidc"
+      vault.security.banzaicloud.io/vault-skip-verify: "true"
     env:
       GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
       GF_AUTH_GENERIC_OAUTH_NAME: "authentik"
@@ -99,14 +101,6 @@ kube-prometheus-stack:
       GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
         configMapKeyRef:
           name: grafana-oidc-configmap
-          key: oidc-secret
-      GF2_AUTH_GENERIC_OAUTH_CLIENT_ID:
-        secretKeyRef:
-          name: grafana-oidc-secret
-          key: oidc-id
-      GF2_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
-        secretKeyRef:
-          name: grafana-oidc-secret
           key: oidc-secret
     ingress:
       enabled: true

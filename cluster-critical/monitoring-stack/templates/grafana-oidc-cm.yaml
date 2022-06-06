@@ -6,7 +6,9 @@ metadata:
   namespace: monitoring-stack
   annotations:
     vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
+    vault.security.banzaicloud.io/vault-path: "kubernetes"
     vault.security.banzaicloud.io/vault-role: "grafana"
+    vault.security.banzaicloud.io/vault-skip-verify: "true"
 data:
   oidc-id: "vault:secret/data/framsburg/grafana/oidc#client-id"
   oidc-secret: "vault:secret/data/framsburg/grafana/oidc#client-secret"
