@@ -4,11 +4,6 @@ metadata:
   name: nginx-conf-cm
 data:
   nginx.conf: |
-    user nginx;
-    worker_processes 1;
-    events {
-      worker_connections 10240;
-    }
     http {
       server {
         listen 80;
