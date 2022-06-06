@@ -16,7 +16,7 @@ data:
         location / {
           root /usr/share/nginx/html; #Change this line
           ssi on;
-          set $token "aaaa";
+          set $token "${GITHUB_CLIENT_ID}";
           index index.html index.htm;
         }
       }

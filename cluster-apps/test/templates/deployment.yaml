@@ -35,7 +35,7 @@ spec:
             - name: nginx-index-file
               mountPath: /usr/share/nginx/html/
             - name: nginx-conf
-              mountPath: /etc/nginx/nginx.conf
+              mountPath: /etc/nginx/templates/nginx.conf.template
               subPath: nginx.conf
               readOnly: true      
       volumes:
