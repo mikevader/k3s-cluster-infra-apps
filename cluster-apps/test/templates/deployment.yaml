@@ -18,6 +18,7 @@ spec:
         vault.security.banzaicloud.io/vault-path: "kubernetes"
         vault.security.banzaicloud.io/vault-role: "test"
         vault.security.banzaicloud.io/vault-skip-verify: "true"
+        vault.security.banzaicloud.io/vault-env-from-path: "secret/data/framsburg/test"
       labels:
         app: demo
     spec:
