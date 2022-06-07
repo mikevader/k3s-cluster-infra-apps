@@ -91,8 +91,8 @@ spec:
             policies: ["allow_secrets"]
             ttl: 1h
           - name: argocd
-            bound_service_account_names: ["default", "argocd-server"]
-            bound_service_account_namespaces: ["argocd-system"]
+            bound_service_account_names: ["*"] # ["default", "argocd-server"]
+            bound_service_account_namespaces: ["*"] # ["argocd-system"]
             policies: ["allow_secrets"]
             ttl: 1h
           - name: test
