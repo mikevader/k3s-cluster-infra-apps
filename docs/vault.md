@@ -71,3 +71,56 @@ subjects:
     namespace: default
 ```
 
+## Use secrets
+
+You always have to map the secrets in different ways. You can find a detailed
+description on [banzais website](https://banzaicloud.com/docs/bank-vaults/mutating-webhook/)
+
+### As envrionment variable
+
+Pod should have the following annotations:
+
+```yaml
+annotations:
+  vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
+  vault.security.banzaicloud.io/vault-path: "kubernetes"
+  vault.security.banzaicloud.io/vault-role: "test"
+  vault.security.banzaicloud.io/vault-skip-verify: "true"
+```
+
+You should adapt the role to the corresponding role you want to use.
+You can then use secrets in environment variables like this:
+
+```yaml
+env:
+  - name: GITHUB_CLIENT_ID
+    value: vault:secret/data/framsburg/test#github_token
+```
+
+### As secret
+
+The approach with secrets looks quite similar. The main difference is, that you
+have to provide the path to the secret **base64** encoded.
+
+```bash
+$ echo -n vault:secret/data/framsburg/test#github_token | base64
+dmF1bHQ6c2VjcmV0L2RhdGEvZnJhbXNidXJnL3Rlc3QjZ2l0aHViX3Rva2Vu
+```
+
+Then prepare the secret accodringly:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: some-secret
+data:
+  GITHUB_CLIENT_ID: dmF1bHQ6c2VjcmV0L2RhdGEvZnJhbXNidXJnL3Rlc3QjZ2l0aHViX3Rva2Vu
+type: Opaque
+```
+
+### Inline
+
+Instead of environment variables or secrets you can use the vault key reference
+anywhere in resources and the webhook will replace it with the secret.
+
