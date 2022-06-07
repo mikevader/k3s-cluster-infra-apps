@@ -1,4 +1,14 @@
 argo-cd:
+  global:
+    podAnnotations:
+      vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
+      vault.security.banzaicloud.io/vault-path: "kubernetes"
+      vault.security.banzaicloud.io/vault-role: "argocd"
+      vault.security.banzaicloud.io/vault-skip-verify: "true" 
+
+    # image:
+    #   repository: ghcr.io/argoproj/argocd
+    #   tag: 2.4.0-dd4dbe2a
   configs:
     repositories:
       stable-helm-repo:
