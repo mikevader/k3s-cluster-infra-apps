@@ -2,3 +2,4 @@ vault-secrets-webhook:
   debug: true
   env:
     VAULT_IMAGE: vault:1.9.6
+  configMapMutation: true
