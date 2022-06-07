@@ -1,14 +1,8 @@
-global:
-  kubeMasterIPs:
-    - 192.168.42.120
-    - 192.168.42.121
-    - 192.168.42.122
-
 kube-prometheus-stack:
   kubeApiServer:
     enabled: true
   kubeControllerManager:
-    enabled: true
+    enabled: false
     endpoints:
       - 192.168.42.120
       - 192.168.42.121
@@ -22,7 +16,7 @@ kube-prometheus-stack:
       https: true
       insecureSkipVerify: true
   kubeScheduler:
-    enabled: true
+    enabled: false
     endpoints:
       - 192.168.42.120
       - 192.168.42.121
@@ -36,7 +30,7 @@ kube-prometheus-stack:
       https: true
       insecureSkipVerify: true
   kubeProxy:
-    enabled: true
+    enabled: false
     endpoints:
       - 192.168.42.120
       - 192.168.42.121
@@ -59,6 +53,11 @@ kube-prometheus-stack:
       enabled: true
       port: 2381
       targetPort: 2381
+
+  defaultRules:
+    kubeProxy: false
+    kubeScheduler: false
+    kubeControllerManager: false
 
   prometheusOperator:
     admissionWebhooks:
