@@ -43,6 +43,12 @@ argo-cd:
       - name: ARGOCD_API_SERVER_REPLICAS
         value: '2'
 
+    configAnnotations:
+      vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
+      vault.security.banzaicloud.io/vault-path: "kubernetes"
+      vault.security.banzaicloud.io/vault-role: "argocd"
+      vault.security.banzaicloud.io/vault-skip-verify: "true" 
+
     extraArgs:
       - --insecure
     ingress:
