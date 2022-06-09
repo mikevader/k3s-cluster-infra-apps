@@ -10,10 +10,10 @@ uptime-kuma:
       type: pvc
       size: 10Gi
       accessMode: ReadWriteOnce
-  # podSecurityContext:
-  #   runAsUser: 568
-  #   runAsGroup: 568
-  #   fsGroup: 568
+  podSecurityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    fsGroup: 568
   ingress:
     main:
       enabled: true
