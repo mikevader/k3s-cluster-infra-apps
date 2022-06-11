@@ -35,8 +35,8 @@ heimdall:
           secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
   resources:
     requests:
-      cpu: 200m
+      cpu: 400m
       memory: 256Mi
     limits:
-      cpu: 500m
+      cpu: 600m
       memory: 512Mi
