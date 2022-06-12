@@ -2,8 +2,6 @@ global:
   domainName: authentik.framsburg.ch
 
 authentik:
-  image:
-    tag: 2022.6.1
   authentik:
     secret_key: dontjudgemethisisjustfortesting    # TODO
     postgresql:
