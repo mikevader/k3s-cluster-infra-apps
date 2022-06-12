@@ -150,6 +150,11 @@ spec:
         name: in-cluster
         namespace: '{{ `{{values.namespace}}` }}'
       project: default # TODO
+      ignoreDifferences:
+        - group: ""
+          kind: ConfigMap
+          jsonPointers:
+            - /data/oidc.config
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{ `{{path}}` }}'
