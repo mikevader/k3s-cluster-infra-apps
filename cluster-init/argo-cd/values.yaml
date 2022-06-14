@@ -93,6 +93,6 @@ argo-cd:
 
   applicationSet:
     enabled: true
-    image:
-      repository: docker.io/baloisemichaelmuehlebach/argocd-applicationset
-      tag: v0.4.1
+    # image:
+    #   repository: docker.io/baloisemichaelmuehlebach/argocd-applicationset
+    #   tag: v0.4.1
