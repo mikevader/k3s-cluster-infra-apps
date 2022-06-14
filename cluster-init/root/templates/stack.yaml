@@ -155,6 +155,10 @@ spec:
           kind: ConfigMap
           jsonPointers:
             - /data/oidc.config
+        - group: ""
+          kind: Secret
+          jsonPointers:
+            - /data/oidc.authentik.clientSecret
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{ `{{path}}` }}'
