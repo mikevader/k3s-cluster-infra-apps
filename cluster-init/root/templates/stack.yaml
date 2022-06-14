@@ -20,6 +20,15 @@ spec:
         name: in-cluster
         namespace: argocd-system
       project: default # TODO
+      ignoreDifferences:
+        - group: ""
+          kind: ConfigMap
+          jsonPointers:
+            - /data/oidc.config
+        - group: ""
+          kind: Secret
+          jsonPointers:
+            - /data/oidc.authentik.clientSecret
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{ `{{path}}` }}'
