@@ -87,9 +87,10 @@ spec:
       ignoreDifferences:
         - group: ""
           kind: Secret
+          name: grafana-oidc-secret
+          namespace: monitoring-stack
           jsonPointers:
-            - /data/client-id
-            - /data/client-secret
+            - /data
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{ `{{path}}` }}'
