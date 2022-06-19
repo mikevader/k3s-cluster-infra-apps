@@ -94,12 +94,12 @@ kube-prometheus-stack:
 
     envValueFrom:
       GF_AUTH_GENERIC_OAUTH_CLIENT_ID:
-        configMapKeyRef:
-          name: grafana-oidc-configmap
+        secretKeyRef:
+          name: grafana-oidc-secret
           key: oidc-id
       GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
-        configMapKeyRef:
-          name: grafana-oidc-configmap
+        secretKeyRef:
+          name: grafana-oidc-secret
           key: oidc-secret
     ingress:
       enabled: true
