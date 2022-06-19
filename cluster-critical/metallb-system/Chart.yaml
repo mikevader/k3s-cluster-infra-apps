@@ -1,0 +1,4 @@
+apiVersion: v2
+name: metallb
+description: Bootstrap Chart for MetalLB
+version: 1.0.0
