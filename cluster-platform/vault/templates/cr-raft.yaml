@@ -4,7 +4,7 @@ metadata:
   name: "vault"
 spec:
   size: 3
-  image: vault:1.9.6
+  image: vault:1.10.4
   bankVaultsImage: ghcr.io/banzaicloud/bank-vaults:latest
 
   affinity:
