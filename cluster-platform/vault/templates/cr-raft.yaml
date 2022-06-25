@@ -135,7 +135,7 @@ spec:
       valueFrom:
         secretKeyRef:
           name: vault-oidc-secret
-          key: oidc-client
+          key: oidc-id
     - name: OIDC_CLIENT_SECRET
       valueFrom:
         secretKeyRef:
