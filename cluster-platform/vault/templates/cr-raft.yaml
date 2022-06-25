@@ -128,7 +128,7 @@ spec:
           oidc_discovery_url: "${env `OIDC_DISCOVERY_URL`}"
           oidc_client_id: "${env `OIDC_CLIENT_ID`}"
           oidc_client_secret: "${env `OIDC_CLIENT_SECRET`}"
-          allowed_redirect_uris: "https://vault.framsburg.ch"
+          allowed_redirect_uris: ["https://vault.framsburg.ch"]
           default_role: default
 
         roles:
@@ -136,6 +136,8 @@ spec:
             oidc_scopes: ["openid", "profile", "email"]
             user_claim: sub
             policies: allow_secrets
+            allowed_redirect_uris: ["https://vault.framsburg.ch"]
+            ttl: 1h
 
     secrets:
       - path: secret
