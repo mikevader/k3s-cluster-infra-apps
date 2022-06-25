@@ -130,6 +130,13 @@ spec:
         name: in-cluster
         namespace: '{{ `{{path.basename}}` }}'
       project: default # TODO
+      ignoreDifferences:
+        - group: ""
+          kind: Secret
+          name: vault-oidc-secret
+          namespace: vault
+          jsonPointers:
+            - /data
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{ `{{path}}` }}'
