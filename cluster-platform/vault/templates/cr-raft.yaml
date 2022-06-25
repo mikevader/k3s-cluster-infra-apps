@@ -142,7 +142,7 @@ spec:
           name: vault-oidc-secret
           key: oidc-secret
     - name: OIDC_DISCOVERY_URL
-      values: https://authentik.framsburg.ch/application/o/vault/.well-known/openid-configuration
+      value: https://authentik.framsburg.ch/application/o/vault/.well-known/openid-configuration
 
   serviceRegistrationEnabled: true
 
