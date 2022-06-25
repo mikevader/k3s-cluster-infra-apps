@@ -95,26 +95,29 @@ spec:
             bound_service_account_namespaces: ["*"] # ["argocd-system"]
             policies: ["allow_secrets"]
             ttl: 1h
+          - name: vault
+            bound_service_account_names: ["*"] # ["default", "argocd-server"]
+            bound_service_account_namespaces: ["*"] # ["argocd-system"]
+            policies: ["allow_secrets"]
+            ttl: 1h
           - name: test
             bound_service_account_names: ["default", "vault-infra-vault-secrets-webhook", "vault", "webapp-sa"]
             bound_service_account_namespaces: ["default", "vault-infra", "test"]
             policies: ["allow_secrets"]
             ttl: 1h
 
-      # - type: jwt
-      #   config:
-      #     oidc_discovery_url: https://kubernetes
-      #     oidc_discovery_ca_pem: ${ file `/var/run/secrets/kubernetes.io/serviceaccount/ca.crt` }
-      #     bound_issuer: https://kubernetes
-      #     default_role: default
-      #   roles:
-      #     - name: default
-      #       role_type: jwt
-      #       bound_audiences: vault
-      #       bound_subject: system:serviceaccount:default:default
-      #       user_claim: sub
-      #       policies: allow_secrets
-      #       ttl: 1h
+      - type: oidc
+        config:
+          oidc_discovery_url: "${env `OIDC_DISCOVERY_URL`}"
+          oidc_client_id: "${env `OIDC_CLIENT_ID`}"
+          oidc_client_secret: "${env `OIDC_CLIENT_SECRET`}"
+          default_role: default
+
+        roles:
+          - name: default
+            oidc_scopes: ["openid", "profile", "email"]
+            user_claim: sub
+            policies: allow_secrets
 
     secrets:
       - path: secret
@@ -125,7 +128,21 @@ spec:
 
   vaultEnvsConfig:
     - name: VAULT_LOG_LEVEL
-      value: debug
+      value: info
+
+  envsConfig:
+    - name: OIDC_CLIENT_ID
+      valueFrom:
+        secretKeyRef:
+          name: vault-oidc-secret
+          key: oidc-client
+    - name: OIDC_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: vault-oidc-secret
+          key: oidc-secret
+    - name: OIDC_DISCOVERY_URL
+      values: https://authentik.framsburg.ch/application/o/vault/.well-known/openid-configuration
 
   serviceRegistrationEnabled: true
 
