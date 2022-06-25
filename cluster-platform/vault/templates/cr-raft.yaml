@@ -168,10 +168,10 @@ spec:
 
   vaultPodSpec:
     containers:
-      livenessProbe:
-        initialDelaySeconds: 120
-      readinessProbe:
-        initialDelaySeconds: 120
+      - livenessProbe:
+          initialDelaySeconds: 120
+      - readinessProbe:
+          initialDelaySeconds: 120
 
   resources:
     # A YAML representation of resource ResourceRequirements for vault container
