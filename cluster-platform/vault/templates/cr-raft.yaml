@@ -168,9 +168,10 @@ spec:
 
   vaultPodSpec:
     containers:
-      - livenessProbe:
+      - name: vault-2
+        livenessProbe:
           initialDelaySeconds: 120
-      - readinessProbe:
+        readinessProbe:
           initialDelaySeconds: 120
 
   resources:
