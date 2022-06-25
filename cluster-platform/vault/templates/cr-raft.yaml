@@ -124,9 +124,11 @@ spec:
 
       - type: oidc
         config:
+          role_type: oidc
           oidc_discovery_url: "${env `OIDC_DISCOVERY_URL`}"
           oidc_client_id: "${env `OIDC_CLIENT_ID`}"
           oidc_client_secret: "${env `OIDC_CLIENT_SECRET`}"
+          allowed_redirect_uris: https://vault.framsburg.ch
           default_role: default
 
         roles:
