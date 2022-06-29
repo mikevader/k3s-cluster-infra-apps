@@ -45,8 +45,8 @@ uptime-kuma:
           secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls-external'
   resources:
     requests:
-      cpu: 10m
-      memory: 56Mi
-    limits:
       cpu: 100m
-      memory: 128Mi
+      memory: 96Mi
+    limits:
+      cpu: 500m
+      memory: 192Mi
