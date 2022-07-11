@@ -1,0 +1,162 @@
+global:
+  domainName: framsburg.ch
+  app: sonarr
+  quality: 1080p
+  iteration: 1
+
+qbittorrent:
+  image:
+    repository: ghcr.io/k8s-at-home/qbittorrent
+    pullPolicy: IfNotPresent
+    tag: v4.4.2
+
+  strategy:
+    type: Recreate
+
+  env:
+    TZ: Europe/Zurich
+ 
+    QBT_Bittorrent__MaxRatioAction: '3' # Remove torrent and files
+    QBT_BitTorrent__Session__BTProtocol: TCP
+    QBT_BitTorrent__Session__DisableAutoTMMByDefault: 'false'
+    QBT_BitTorrent__Session__DisableAutoTMMTriggers__CategorySavePathChanged: 'false'
+    QBT_BitTorrent__Session__DisableAutoTMMTriggers__DefaultSavePathChanged: 'false'
+    QBT_BitTorrent__Session__DefaultSavePath: /mnt/media/torrents/completed/sonarr/
+    QBT_BitTorrent__Session__TempPath: /mnt/media/torrents/incomplete/sonarr/
+    QBT_BitTorrent__Session__TempPathEnabled: 'true'
+    QBT_BitTorrent__Session__Categories: '@Variant(\0\0\0\b\0\0\0\x2\0\0\0\f\0s\0o\0n\0\x61\0r\0r\0\0\0\n\0\0\0J\0/\0m\0n\0t\0/\0m\0\x65\0\x64\0i\0\x61\0/\0t\0o\0r\0r\0\x65\0n\0t\0s\0/\0\x63\0o\0m\0p\0l\0\x65\0t\0\x65\0\x64\0/\0s\0o\0n\0\x61\0r\0r\0/\0\0\0\x10\0i\0m\0p\0o\0r\0t\0\x65\0\x64\0\0\0\n\0\0\0J\0/\0m\0n\0t\0/\0m\0\x65\0\x64\0i\0\x61\0/\0t\0o\0r\0r\0\x65\0n\0t\0s\0/\0\x63\0o\0m\0p\0l\0\x65\0t\0\x65\0\x64\0/\0s\0o\0n\0\x61\0r\0r\0/)'
+    QBT_Core__AutoDeleteAddedTorrentFile: Never
+
+    QBT_Preferences__Advanced__RecheckOnCompletion: 'false'
+
+    QBT_Preferences__Bittorrent__DHT: 'false'
+    QBT_Preferences__Bittorrent__PeX: 'false'
+    QBT_Preferences__Bittorrent__LSD: 'false'
+    QBT_Preferences__Bittorrent__Encryption: '1'
+    QBT_Preferences__Bittorrent__MaxUploads: '1000'
+    QBT_Preferences__Bittorrent__MaxUploadsPerTorrent: '10'
+
+    QBT_Preferences__Connection__GlobalDLLimit: '31250'
+    QBT_Preferences__Connection__GlobalDLLimitAlt: '12500'
+    QBT_Preferences__Connection__GlobalUPLimitAlt: '0'
+    QBT_Preferences__Connection__PortRangeMin: '50213'
+    QBT_Preferences__Connection__ResolvePeerCountries: 'true'
+    QBT_Preferences__Connection__UPnP: 'false'
+    QBT_Preferences__Connection__alt_speeds_on: 'false'
+
+    QBT_Preferences__Downloads__DiskWriteCacheSize: '256'
+    QBT_Preferences__Downloads__SavePath: /mnt/media/torrents/completed/sonarr/
+    QBT_Preferences__Downloads__SaveResumeDataInterval: '15'
+    QBT_Preferences__Downloads__TempPath: /mnt/media/torrents/incomplete/sonarr/
+    QBT_Preferences__Downloads__TempPathEnabled: 'true'
+    QBT_Preferences__Downloads__UseIncompleteExtension: 'true'
+
+    QBT_Preferences__General__Locale: en
+
+    QBT_Preferences__Queueing__IgnoreSlowTorrents: 'true'
+    QBT_Preferences__Queueing__MaxActiveDownloads: '10'
+    QBT_Preferences__Queueing__MaxActiveTorrents: '1010'
+    QBT_Preferences__Queueing__MaxActiveUploads: '1000'
+    QBT_Preferences__Queueing__QueueingEnabled: 'true'
+
+    QBT_Preferences__Scheduler__Enabled: 'true'
+    QBT_Preferences__Scheduler__days: '1' # Weekdays
+    QBT_Preferences__Scheduler__end_time: '@Variant(\0\0\0\xf\x4\xb8\x7f\0)' # 13:00 UTC
+    QBT_Preferences__Scheduler__start_time: '@Variant(\0\0\0\xf\x2\xca\x1c\x80)' # 22:00 UTC
+
+    QBT_Preferences__WebUI__Address: '*'
+    QBT_Preferences__WebUI__AlternativeUIEnabled: 'false'
+    QBT_Preferences__WebUI__AuthSubnetWhitelist: 0.0.0.0/0
+    QBT_Preferences__WebUI__AuthSubnetWhitelistEnabled: 'false'
+    QBT_Preferences__WebUI__LocalHostAuth: 'true'
+    QBT_Preferences__WebUI__MaxAuthenticationFailCount: '5'
+    QBT_Preferences__WebUI__Port: '8080'
+    QBT_Preferences__WebUI__SecureCookie: 'true'
+    QBT_Preferences__WebUI__ServerDomains: '*'
+    QBT_Preferences__WebUI__SessionTimeout: '3600'
+    QBT_Preferences__WebUI__UseUPnP: 'false'
+    QBT_Preferences__WebUI__Username: nick
+
+    QBT_Session__GlobalMaxSeedingMinutes: '43800' # one month in minutes
+
+  service:
+    bittorrent:
+      enabled: true
+      type: LoadBalancer
+      externalIPs:
+        - 192.168.42.152
+      ports:
+        bittorrent:
+          enabled: true
+          port: 50213
+          name: bittorrent
+          protocol: TCP
+          targetPort: 50213
+
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      ingressClassName: traefik
+      hosts:
+        - host: '{{ printf "%v.%s.%s.torrents.%s" .Values.global.iteration .Values.global.quality .Values.global.app .Values.global.domainName }}'
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts: ['{{ printf "%v.%s.%s.torrents.%s" .Values.global.iteration .Values.global.quality .Values.global.app .Values.global.domainName }}']
+          secretName: '{{ printf "%v-%s-%s-torrents-%s" .Values.global.iteration .Values.global.quality .Values.global.app .Values.global.domainName | replace "." "-" }}'
+
+  tolerations:
+    - key: role
+      value: storage
+      effect: NoSchedule
+
+  nodeSelector:
+    node-role.kubernetes.io/storage: ""
+
+  persistence:
+    config:
+      enabled: true
+      type: hostPath
+      mountPath: /config
+      hostPath: /mnt/qbittorrent/sonarr/1080p
+      hostPathType: DirectoryOrCreate
+    incomplete:
+      enabled: true
+      type: hostPath
+      setPermissions: false
+      mountPath: /mnt/media/torrents/incomplete/sonarr
+      hostPath: /mnt/media/torrents/incomplete/sonarr
+      hostPathType: DirectoryOrCreate
+    completed:
+      enabled: true
+      type: hostPath
+      setPermissions: false
+      mountPath: /mnt/media/torrents/completed/sonarr
+      hostPath: /mnt/media/torrents/completed/sonarr
+      hostPathType: DirectoryOrCreate
+
+  podSecurityContext:
+    # kah user
+    runAsUser: 568
+    # media group
+    runAsGroup: 500
+
+  resources:
+    limits:
+      cpu: "1"
+      memory: "10Gi"
+    requests:
+      cpu: "200m"
+      memory: "600Mi"
+
+  probes:
+    liveness:
+      spec:
+        failureThreshold: 60
+    readiness:
+      spec:
+        failureThreshold: 60
