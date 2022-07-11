@@ -1,0 +1,10 @@
+{{- if eq .Values.qbittorrent.persistence.config.hostPath "/mnt/qbittorrent/sonarr/1080p" -}}
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: quadruple-strip-prefix
+spec:
+  stripPrefixRegex:
+    regex:
+      - "/[a-z0-9_]+/[a-z0-9_]+/[a-z0-9_]+/[a-z0-9_]+"
+{{- end -}}
