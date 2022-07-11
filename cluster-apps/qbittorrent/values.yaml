@@ -75,7 +75,7 @@ qbittorrent:
     QBT_Preferences__WebUI__ServerDomains: '*'
     QBT_Preferences__WebUI__SessionTimeout: '3600'
     QBT_Preferences__WebUI__UseUPnP: 'false'
-    QBT_Preferences__WebUI__Username: nick
+    QBT_Preferences__WebUI__Username: mike
 
     QBT_Session__GlobalMaxSeedingMinutes: '43800' # one month in minutes
 
