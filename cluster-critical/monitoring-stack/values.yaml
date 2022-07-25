@@ -155,6 +155,9 @@ kube-prometheus-stack:
           - receiver: 'null'
             matchers:
               - severity="info"
+          - receiver: 'null'
+            matchers:
+              - alertname="InfoInhibitor"
       # Inhibition rules allow to mute a set of alerts given that another alert is
       # firing.
       # We use this to mute any warning-level notifications if the same alert is
