@@ -3,7 +3,7 @@ global:
 
 image:
   repository: tarampampam/error-pages
-  tag: 2.16.0
+  tag: 2.17.0
 
 env:
   TEMPLATE_NAME: connection
