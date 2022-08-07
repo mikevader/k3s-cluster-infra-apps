@@ -7,6 +7,8 @@ loki:
     enabled: true
   persistence:
     enabled: true
+    size: 20Gi
+    existingClaim: storage-loki-0
   ingress:
     enabled: false
     ingressClassName: traefik
