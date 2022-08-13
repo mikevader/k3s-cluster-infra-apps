@@ -1,0 +1,8 @@
+apiVersion: v2
+name: pihole
+description: pihole
+version: 1.0.0
+dependencies:
+  - name: adguard-home
+    version: 5.5.2
+    repository: https://k8s-at-home.com/charts/
