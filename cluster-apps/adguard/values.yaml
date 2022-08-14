@@ -14,9 +14,11 @@ adguard-home:
     dns-tcp:
       annotations:
         metallb.universe.tf/allow-shared-ip: shared
+      type: LoadBalancer
     dns-udp:
       annotations:
         metallb.universe.tf/allow-shared-ip: shared
+      type: LoadBalancer        
 
   ingress:
     main:
@@ -132,10 +134,14 @@ adguard-home:
       url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
       name: AdGuard DNS filter
       id: 1
-    - enabled: false
+    - enabled: true
       url: https://adaway.org/hosts.txt
       name: AdAway Default Blocklist
       id: 2
+    - enabled: true
+      url: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+      name: StevenBlack Blocklist
+      id: 3
     whitelist_filters: []
     user_rules: []
     dhcp:
