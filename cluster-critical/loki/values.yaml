@@ -5,9 +5,12 @@ loki:
   fullnameOverride: loki
   serviceMonitor:
     enabled: true
-  persistence:
-    enabled: true
-    size: 20Gi
+  # persistence:
+  #   enabled: true
+  #   size: 20Gi
+  config:
+    compactor:
+      retention_enabled: true
   ingress:
     enabled: false
     ingressClassName: traefik
