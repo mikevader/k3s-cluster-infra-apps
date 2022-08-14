@@ -45,6 +45,11 @@ traefik:
       expose: true
       exposedPort: 53
       protocol: UDP
+    dns-tcp:
+      port: 53
+      expose: true
+      exposedPort: 53
+      protocol: TCP
     # netbios:
     #   port: 139
     #   expose: true
