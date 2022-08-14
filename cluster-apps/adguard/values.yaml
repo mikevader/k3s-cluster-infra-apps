@@ -9,6 +9,15 @@ adguard-home:
   env:
     TZ: Europe/Zurich
 
+
+  service:
+    dns-tcp:
+      annotations:
+        metallb.universe.tf/allow-shared-ip: shared
+    dns-udp:
+      annotations:
+        metallb.universe.tf/allow-shared-ip: shared
+
   ingress:
     main:
       enabled: true
