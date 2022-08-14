@@ -40,6 +40,11 @@ traefik:
     websecure:
       tls:
         enabled: true
+    dns-udp:
+      port: 53
+      expose: true
+      exposedPort: 53
+      protocol: UDP
     # netbios:
     #   port: 139
     #   expose: true
