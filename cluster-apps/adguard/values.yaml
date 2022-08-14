@@ -105,7 +105,7 @@ adguard-home:
       local_ptr_upstreams: []
     tls:
       enabled: false
-      server_name: ""
+      server_name: "adguard.framsburg.ch"
       force_https: false
       port_https: 443
       port_dns_over_tls: 853
