@@ -23,6 +23,7 @@ traefik:
   service:
     annotations:
       metallb.universe.tf/address-pool: default
+      metallb.universe.tf/allow-shared-ip: shared
     spec:
       externalTrafficPolicy: Local
   # securityContext:
