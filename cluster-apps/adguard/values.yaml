@@ -15,12 +15,12 @@ adguard-home:
       annotations:
         metallb.universe.tf/allow-shared-ip: shared
       type: LoadBalancer
-      loadBalancerIP: 192.168.42.150
+      loadBalancerIP: 192.168.42.152
     dns-udp:
       annotations:
         metallb.universe.tf/allow-shared-ip: shared
       type: LoadBalancer
-      loadBalancerIP: 192.168.42.150
+      loadBalancerIP: 192.168.42.152
 
   ingress:
     main:
