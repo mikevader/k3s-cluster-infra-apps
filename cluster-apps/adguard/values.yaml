@@ -4,7 +4,7 @@ global:
 adguard-home:
   image:
     repository: adguard/adguardhome
-    tag: v0.107.10
+    tag: v0.107.11
 
   env:
     TZ: Europe/Zurich
