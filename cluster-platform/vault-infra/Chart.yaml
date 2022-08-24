@@ -3,5 +3,5 @@ name: vault-infra
 version: 0.0.0
 dependencies:
   - name: vault-secrets-webhook
-    version: 1.15.11
+    version: 1.16.0
     repository: https://kubernetes-charts.banzaicloud.com
