@@ -42,3 +42,13 @@ nav:
     - Plex: plex.md
     - AdGuard: adguard.md
 
+
+extra:
+  copyright: Copyright &copy; 2020 - 2022 Michael M&uuml;hlebach
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/mikevader
+    - icon: fontawesome/brands/twitter 
+      link: https://twitter.com/muehlebam
+    - icon: fontawesome/brands/linkedin
+      link: www.linkedin.com/in/michaelmuehlebach
