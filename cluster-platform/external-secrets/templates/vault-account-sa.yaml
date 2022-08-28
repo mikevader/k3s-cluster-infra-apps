@@ -3,4 +3,14 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: vault-account
-automountServiceAccountToken: true
+secrets:
+  - name: vault-account-token
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: vault-account-token
+  annotations:
+    kubernetes.io/service-account.name: vault-account
+type: kubernetes.io/service-account-token
