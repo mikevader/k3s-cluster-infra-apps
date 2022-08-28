@@ -67,12 +67,12 @@ promtail:
       operator: Exists
       effect: NoSchedule
   readinessProbe:
-    successThreshold: 2
-    timeoutSeconds: 2
+    successThreshold: 4
+    timeoutSeconds: 4
   resources:
     requests:
       cpu: 100m
       memory: 48Mi
     limits:
-      cpu: 300m
+      cpu: 1000m
       memory: 96Mi
