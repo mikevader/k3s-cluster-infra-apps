@@ -66,10 +66,13 @@ promtail:
     - key: CriticalAddonsOnly
       operator: Exists
       effect: NoSchedule
+  readinessProbe:
+    successThreshold: 1.5
+    timeoutSeconds: 1.5
   resources:
     requests:
       cpu: 100m
       memory: 48Mi
     limits:
-      cpu: 200m
+      cpu: 300m
       memory: 96Mi
