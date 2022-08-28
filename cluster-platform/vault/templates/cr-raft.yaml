@@ -117,8 +117,8 @@ spec:
             policies: ["allow_secrets"]
             ttl: 1h
           - name: externalsecrets
-            bound_service_account_names: ["*"] # ["default", "argocd-server"]
-            bound_service_account_namespaces: ["*"] # ["argocd-system"]
+            bound_service_account_names: ["external-secrets"] # ["default", "argocd-server"]
+            bound_service_account_namespaces: ["external-secrets"] # ["argocd-system"]
             policies: ["allow_secrets"]
             ttl: 1h
           - name: test
