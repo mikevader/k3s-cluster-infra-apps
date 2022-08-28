@@ -37,6 +37,7 @@ nav:
     - Authentik: authentik.md
     - Hashicorp Vault: vault.md
     - Secrets-CSI: secrets-csi.md
+    - External-Secrets: external-secrets.md
   - Apps:
     - Uptime Kuma: uptime-kuma.md
     - Plex: plex.md
@@ -49,6 +50,6 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/mikevader
     - icon: fontawesome/brands/twitter 
-      link: https://twitter.com/muehlebam
+      link: https://twitter.com/muhlebam
     - icon: fontawesome/brands/linkedin
       link: www.linkedin.com/in/michaelmuehlebach
