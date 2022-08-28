@@ -116,6 +116,11 @@ spec:
             bound_service_account_namespaces: ["*"] # ["argocd-system"]
             policies: ["allow_secrets"]
             ttl: 1h
+          - name: externalSecrets
+            bound_service_account_names: ["*"] # ["default", "argocd-server"]
+            bound_service_account_namespaces: ["*"] # ["argocd-system"]
+            policies: ["allow_secrets"]
+            ttl: 1h
           - name: test
             bound_service_account_names: ["default", "vault-infra-vault-secrets-webhook", "vault", "webapp-sa"]
             bound_service_account_namespaces: ["default", "vault-infra", "test"]
