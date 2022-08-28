@@ -20,15 +20,6 @@ spec:
         name: in-cluster
         namespace: argocd-system
       project: default # TODO
-      ignoreDifferences:
-        - group: ""
-          kind: ConfigMap
-          jsonPointers:
-            - /data/oidc.config
-        - group: ""
-          kind: Secret
-          jsonPointers:
-            - /data/oidc.authentik.clientSecret
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{ `{{path}}` }}'
@@ -84,13 +75,6 @@ spec:
         name: in-cluster
         namespace: '{{ `{{path.basename}}` }}'
       project: default # TODO
-      ignoreDifferences:
-        - group: ""
-          kind: Secret
-          name: grafana-oidc-secret
-          namespace: monitoring-stack
-          jsonPointers:
-            - /data
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{ `{{path}}` }}'
@@ -130,13 +114,6 @@ spec:
         name: in-cluster
         namespace: '{{ `{{path.basename}}` }}'
       project: default # TODO
-      ignoreDifferences:
-        - group: ""
-          kind: Secret
-          name: vault-oidc-secret
-          namespace: vault
-          jsonPointers:
-            - /data
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{ `{{path}}` }}'
@@ -173,15 +150,6 @@ spec:
         name: in-cluster
         namespace: '{{ `{{values.namespace}}` }}'
       project: default # TODO
-      ignoreDifferences:
-        - group: ""
-          kind: ConfigMap
-          jsonPointers:
-            - /data/oidc.config
-        - group: ""
-          kind: Secret
-          jsonPointers:
-            - /data/oidc.authentik.clientSecret
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{ `{{path}}` }}'

@@ -1,5 +1,34 @@
 # Argo CD
 
+
+## ApplicationSet
+
+### Ignore Diffs
+
+``` yaml title="diff in applicationset"
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-init
+  namespace: argocd-system
+spec:
+  generators:
+    ...
+  template:
+    spec:
+      project: default
+      ignoreDifferences:
+        - group: ""
+          kind: ConfigMap
+          jsonPointers:
+            - /data/oidc.config
+        - group: ""
+          kind: Secret
+          jsonPointers:
+            - /data/oidc.authentik.clientSecret
+      ...
+```
+
 ## Part Two: OIDC integration
 
 This part should follow after [Vault] and [Authentik] are up and running.
