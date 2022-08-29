@@ -1,9 +1,18 @@
+
+# Project information
 site_name: Raspberry Pi GitOps Stack
 site_url: https://mikevader.github.io/gitops
+site_author: Michael M&uuml;hlebach
+site_description: >-
+  Documentation on how I setup and configure my k8s-at-home cluster
+  over gitops
 
-repo_url: https://github.com/mikevader/k3s-cluster-infra-apps
+# Repository
 repo_name: mikevader/k3s-cluster-infra-apps
+repo_url: https://github.com/mikevader/k3s-cluster-infra-apps
 
+# Copyright
+copyright: Copyright &copy; 2020 - 2022 Michael M&uuml;hlebach
 
 theme:
   name: material
@@ -45,7 +54,6 @@ nav:
 
 
 extra:
-  copyright: Copyright &copy; 2020 - 2022 Michael M&uuml;hlebach
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/mikevader
