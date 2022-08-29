@@ -69,16 +69,6 @@ kube-prometheus-stack:
           kind: "ClusterIssuer"
 
   grafana:
-    annotations:
-      vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
-      vault.security.banzaicloud.io/vault-path: "kubernetes"
-      vault.security.banzaicloud.io/vault-role: "grafana"
-      vault.security.banzaicloud.io/vault-skip-verify: "true"
-    podAnnotations:
-      vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
-      vault.security.banzaicloud.io/vault-path: "kubernetes"
-      vault.security.banzaicloud.io/vault-role: "grafana"
-      vault.security.banzaicloud.io/vault-skip-verify: "true"
     env:
       GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
       GF_AUTH_GENERIC_OAUTH_NAME: "authentik"
