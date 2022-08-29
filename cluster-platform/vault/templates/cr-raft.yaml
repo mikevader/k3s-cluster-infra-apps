@@ -7,22 +7,6 @@ spec:
   image: vault:1.11.2
   bankVaultsImage: ghcr.io/banzaicloud/bank-vaults:latest
 
-  # annotations:
-  #   vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
-  #   vault.security.banzaicloud.io/vault-path: "kubernetes"
-  #   vault.security.banzaicloud.io/vault-role: "vault"
-  #   vault.security.banzaicloud.io/vault-skip-verify: "true"
-  # vaultAnnotations:
-  #   vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
-  #   vault.security.banzaicloud.io/vault-path: "kubernetes"
-  #   vault.security.banzaicloud.io/vault-role: "vault"
-  #   vault.security.banzaicloud.io/vault-skip-verify: "true"
-  # vaultConfigurerAnnotations:
-  #   vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
-  #   vault.security.banzaicloud.io/vault-path: "kubernetes"
-  #   vault.security.banzaicloud.io/vault-role: "vault"
-  #   vault.security.banzaicloud.io/vault-skip-verify: "true"
-
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
