@@ -62,8 +62,8 @@ spec:
             name: "external-secrets"
 ```
 
-1. This role name has to be created in the Vault or configured for the operator
-   to create it.
+1.  This role name has to be created in the Vault or configured for the operator
+    to create it.
 
 ## Use/Create external secret
 
@@ -103,12 +103,12 @@ spec:
             key: secret/data/framsburg/grafana/oidc
             property: client-secret
 ```
-1. Name of the configured Secret Store (Make sure the kind is in sync with your
-   Secret Store)
-2. Path of the secret in Vault. `secret` is the name of the secret engine,
-   `data` is part of the path although not visible in Vault ... some Hashicorp
-   Vault shenanigan
-3. Key of the secret
+1.  Name of the configured Secret Store (Make sure the kind is in sync with your
+    Secret Store)
+2.  Path of the secret in Vault. `secret` is the name of the secret engine,
+    `data` is part of the path although not visible in Vault ... some Hashicorp
+    Vault shenanigan
+3.  Key of the secret
 
 The generated secret will look like this:
 
