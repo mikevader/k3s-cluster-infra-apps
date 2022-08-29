@@ -1,10 +1,4 @@
 argo-cd:
-  global:
-    podAnnotations:
-      vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
-      vault.security.banzaicloud.io/vault-path: "kubernetes"
-      vault.security.banzaicloud.io/vault-role: "argocd"
-      vault.security.banzaicloud.io/vault-skip-verify: "true" 
 
     # image:
     #   repository: ghcr.io/argoproj/argocd
@@ -43,12 +37,6 @@ argo-cd:
       - name: ARGOCD_API_SERVER_REPLICAS
         value: '2'
 
-    configAnnotations:
-      vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc:8200"
-      vault.security.banzaicloud.io/vault-path: "kubernetes"
-      vault.security.banzaicloud.io/vault-role: "argocd"
-      vault.security.banzaicloud.io/vault-skip-verify: "true" 
-
     extraArgs:
       - --insecure
     ingress:
@@ -69,7 +57,7 @@ argo-cd:
           name: Authentik
           issuer: "https://authentik.framsburg.ch/application/o/argocd/"
           clientID: "c579d3195f85aeccaf1ecce35ef5501e023c2a6a"
-          clientSecret: "${vault:secret/data/framsburg/argocd/oidc#client-secret}"
+          clientSecret: $argocd-oidc-secret:oidc.authentik.clientSecret
           requestedScopes: ["openid", "profile", "email"]
           logoutURL: "https://authentik.framsburg.ch/if/session-end/argocd/"
     rbacConfig:
