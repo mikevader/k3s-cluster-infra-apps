@@ -753,7 +753,7 @@ To make it an easy setup, this is part of the external secrets application.</p>
 </code></pre></div>
 <ol>
 <li>This role name has to be created in the Vault or configured for the operator
-   to create it.</li>
+    to create it.</li>
 </ol>
 <h2 id="usecreate-external-secret">Use/Create external secret</h2>
 <p>Last step: create a secret over the external secrets operator. Because the store
@@ -814,12 +814,12 @@ manifest resides in the templates folder of the monitoring stack.</p>
 <a id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="w">            </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret/data/framsburg/grafana/oidc</span><span class="w"></span>
 <a id="__codelineno-3-26" name="__codelineno-3-26"></a><span class="w">            </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">client-secret</span><span class="w"></span>
 </code></pre></div></td></tr></table></div>
-1. Name of the configured Secret Store (Make sure the kind is in sync with your
-   Secret Store)
-2. Path of the secret in Vault. <code>secret</code> is the name of the secret engine,
-   <code>data</code> is part of the path although not visible in Vault ... some Hashicorp
-   Vault shenanigan
-3. Key of the secret</p>
+1.  Name of the configured Secret Store (Make sure the kind is in sync with your
+    Secret Store)
+2.  Path of the secret in Vault. <code>secret</code> is the name of the secret engine,
+    <code>data</code> is part of the path although not visible in Vault ... some Hashicorp
+    Vault shenanigan
+3.  Key of the secret</p>
 <p>The generated secret will look like this:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>
 </code></pre></div>
