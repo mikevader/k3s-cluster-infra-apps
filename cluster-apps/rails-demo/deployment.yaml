@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rails-demo-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rails-app
+  template:
+    metadata:
+      labels:
+        app: rails-app
+    spec:
+      containers:
+      - name: rails-app
+        image: ghcr.io/mikevader/rails-demo:v1.0
+        envFrom:
+        - configMapRef:
+            name: env
+        ports:
+        - containerPort: 3000
