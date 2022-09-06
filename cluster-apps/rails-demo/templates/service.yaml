@@ -8,6 +8,6 @@ spec:
     app: rails-app
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 3000
+      port: 3000
+      targetPort: http
       name: http
