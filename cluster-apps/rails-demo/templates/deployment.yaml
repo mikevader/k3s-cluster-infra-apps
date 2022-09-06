@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: rails-app
-        image: ghcr.io/mikevader/rails-demo:v1.0
+        image: ghcr.io/mikevader/rails-demo:v1.1
         envFrom:
         - configMapRef:
             name: env
