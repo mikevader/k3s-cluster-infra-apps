@@ -10,7 +10,9 @@ serviceMonitor:
   # -- Alternative namespace for ServiceMonitor resources
   namespace: null
   # -- Namespace selector for ServiceMonitor resources
-  namespaceSelector: {}
+  namespaceSelector:
+    matchNames:
+    - rails-demo
   # -- ServiceMonitor annotations
   annotations: {}
   # -- Additional ServiceMonitor labels
