@@ -7,7 +7,10 @@ spec:
   selector:
     app: rails-app
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 3000
       targetPort: http
-      name: http
+    - name: http-metrics
+      port: 9394
+      protocol: TCP
