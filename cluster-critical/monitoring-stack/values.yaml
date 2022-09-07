@@ -303,28 +303,6 @@ kube-prometheus-stack:
               requests:
                 storage: 100Gi
 
-    additionalServiceMonitors:
-      - name: apps
-        jobLabel: apps
-        namespaceSelector:
-          matchNames:
-            - rails-demo
-            - adguard
-            - argocd-system
-            - authentik
-            - cert-manager
-            - error-pages
-            - plex
-            - heimdall
-            - loki
-            - longhorn-system
-            - metallb-system
-            - test
-            - traefik-external
-            - uptime-kuma
-            - vault
-            - vault-operator
-
     additionalPodMonitors:
       - name: traefik
         jobLabel: traefik
@@ -332,6 +310,18 @@ kube-prometheus-stack:
           matchLabels:
             app.kubernetes.io/instance: traefik
             app.kubernetes.io/name: traefik
+        namespaceSelector:
+          any: true
+        podMetricsEndpoints:
+          - port: metrics
+            path: /metrics
+            scheme: http
+      - name: traefik-external
+        jobLabel: traefik-external
+        selector:
+          matchLabels:
+            app.kubernetes.io/instance: traefik-external
+            app.kubernetes.io/name: traefik-external
         namespaceSelector:
           any: true
         podMetricsEndpoints:
