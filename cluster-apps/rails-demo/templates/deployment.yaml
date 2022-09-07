@@ -1,19 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rails-demo-deployment
+  name: rails-demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rails-app
+      app: rails-demo
   template:
     metadata:
       labels:
-        app: rails-app
+        app.kubernetes.io/instance: rails-demo
+        app.kubernetes.io/name: rails-demo
+        app: rails-demo
     spec:
       containers:
-      - name: rails-app
+      - name: rails-demo
         image: ghcr.io/mikevader/rails-demo:v1.5
         envFrom:
         - configMapRef:
@@ -22,11 +24,11 @@ spec:
         - name: http
           containerPort: 3000
           protocol: TCP
-      - name: rails-app-metrics
+      - name: rails-demo-metrics
         image: ghcr.io/mikevader/rails-demo:v1.5
         command: ["bundle"]
         args: ["exec", "prometheus_exporter", "--prefix", "''"]
         ports:
-        - name: metrics
+        - name: http-metrics
           containerPort: 9394
           protocol: TCP

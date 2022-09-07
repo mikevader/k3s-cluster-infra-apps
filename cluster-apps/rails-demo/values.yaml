@@ -1,0 +1,3 @@
+rails-demo:
+  serviceMonitor:
+    enabled: true

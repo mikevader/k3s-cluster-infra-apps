@@ -6,8 +6,8 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
   labels:
-    app: rails-app
-  name: rails-app
+    app: rails-demo
+  name: rails-demo
 spec:
   rules:
     - host: 'rails-demo.framsburg.ch'
@@ -17,7 +17,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: rails-demo-service
+                name: rails-demo
                 port:
                   number: 3000
   tls:
