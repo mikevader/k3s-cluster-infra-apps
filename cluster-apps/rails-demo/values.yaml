@@ -1,3 +1,30 @@
-rails-demo:
-  serviceMonitor:
-    enabled: true
+# -- Overrides the chart's name
+nameOverride: null
+
+# -- Overrides the chart's computed fullname
+fullnameOverride: null
+
+serviceMonitor:
+  # -- If enabled, ServiceMonitor resources for Prometheus Operator are created
+  enabled: true
+  # -- Alternative namespace for ServiceMonitor resources
+  namespace: null
+  # -- Namespace selector for ServiceMonitor resources
+  namespaceSelector: {}
+  # -- ServiceMonitor annotations
+  annotations: {}
+  # -- Additional ServiceMonitor labels
+  labels: {}
+  # -- ServiceMonitor scrape interval
+  interval: null
+  # -- ServiceMonitor scrape timeout in Go duration format (e.g. 15s)
+  scrapeTimeout: null
+  # -- ServiceMonitor relabel configs to apply to samples before scraping
+  # https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
+  # (defines `relabel_configs`)
+  relabelings: []
+  # -- ServiceMonitor relabel configs to apply to samples as the last
+  # step before ingestion
+  # https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
+  # (defines `metric_relabel_configs`)
+  metricRelabelings: []
