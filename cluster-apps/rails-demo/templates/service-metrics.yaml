@@ -11,7 +11,7 @@ spec:
   ports:
     - name: http-metrics
       port: 9394
-      targetPort: http-metrics
+      targetPort: 9394
       protocol: TCP
   selector:
     {{- include "rails-demo.selectorLabels" . | nindent 4 }}
