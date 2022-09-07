@@ -321,7 +321,7 @@ kube-prometheus-stack:
         selector:
           matchLabels:
             app.kubernetes.io/instance: traefik-external
-            app.kubernetes.io/name: traefik-external
+            app.kubernetes.io/name: traefik
         namespaceSelector:
           any: true
         podMetricsEndpoints:
