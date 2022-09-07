@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: rails-app
-        image: ghcr.io/mikevader/rails-demo:v1.4
+        image: ghcr.io/mikevader/rails-demo:v1.5
         envFrom:
         - configMapRef:
             name: env
@@ -23,9 +23,9 @@ spec:
           containerPort: 3000
           protocol: TCP
       - name: rails-app-metrics
-        image: ghcr.io/mikevader/rails-demo:v1.4
+        image: ghcr.io/mikevader/rails-demo:v1.5
         command: ["bundle"]
-        args: ["exec", "prometheus_exporter"]
+        args: ["exec", "prometheus_exporter", "--prefix", "''"]
         ports:
         - name: metrics
           containerPort: 9394
