@@ -10,7 +10,7 @@ spec:
   clusterIP: None
   ports:
     - name: http-metrics
-      port: {{ .Values.config.serverPort }}
+      port: 9394
       targetPort: http-metrics
       protocol: TCP
   selector:
