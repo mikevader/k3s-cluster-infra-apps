@@ -27,7 +27,7 @@ spec:
       - name: rails-demo-metrics
         image: ghcr.io/mikevader/rails-demo:v1.5
         command: ["bundle"]
-        args: ["exec", "prometheus_exporter", "--prefix", "''"]
+        args: ["exec", "prometheus_exporter"]
         ports:
         - name: http-metrics
           containerPort: 9394
