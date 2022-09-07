@@ -24,7 +24,7 @@ spec:
           protocol: TCP
       - name: rails-app-metrics
         image: ghcr.io/mikevader/rails-demo:v1.3
-        command: bundle exec prometheus_exporter
+        command: ["bundle exec prometheus_exporter"]
         ports:
         - name: metrics
           containerPort: 9394
