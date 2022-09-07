@@ -16,8 +16,7 @@ serviceMonitor:
   # -- ServiceMonitor annotations
   annotations: {}
   # -- Additional ServiceMonitor labels
-  labels:
-    app: rails-demo
+  labels: {}
   # -- ServiceMonitor scrape interval
   interval: null
   # -- ServiceMonitor scrape timeout in Go duration format (e.g. 15s)
