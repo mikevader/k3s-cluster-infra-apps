@@ -7,7 +7,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    {{- include "external-secrets.selectorLabels" . | nindent 4 }}
+    {{- include "rails-demo.selectorLabels" . | nindent 4 }}
   ports:
     - name: http
       protocol: TCP
