@@ -64,5 +64,5 @@ promtail:
       cpu: 50m
       memory: 48Mi
     limits:
-      cpu: 200m
+      cpu: 500m
       memory: 96Mi
