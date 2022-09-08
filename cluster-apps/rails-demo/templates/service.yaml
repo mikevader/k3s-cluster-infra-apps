@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: rails-demo
+  labels:
+    {{- include "rails-demo.labels" $ | nindent 4 }}
 spec:
   type: ClusterIP
   selector:
