@@ -1,44 +1,39 @@
 {{- if .Values.serviceMonitor.enabled }}
-apiVersion: monitoring.coreos.com/v1
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "rails-demo.fullname" . }}-metrics
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "rails-demo.selectorLabels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 9394
+      protocol: TCP
+      name: metrics
+  selector:
+    {{- include "rails-demo.selectorLabels" . | nindent 4 }}
+---
+apiVersion: "monitoring.coreos.com/v1"
 kind: ServiceMonitor
 metadata:
-  name: {{ include "rails-demo.fullname" $ }}
-  {{- if .Values.serviceMonitor.namespace }}
-  namespace: {{ .Values.serviceMonitor.namespace }}
-  {{- else }}
-  namespace: {{ .Release.Namespace }}
-  {{- end }}
-  {{- with .Values.serviceMonitor.annotations }}
-  annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
   labels:
-    {{- include "rails-demo.labels" $ | nindent 4 }}
-    {{- with .Values.serviceMonitor.labels }}
-    {{- toYaml . | nindent 4 }}
-    {{- end }}
+    {{- include "rails-demo.labels" . | nindent 4 }}
+{{- if .Values.serviceMonitor.additionalLabels }}
+{{ toYaml .Values.serviceMonitor.additionalLabels | indent 4 }}
+{{- end }}
+  name: {{ include "rails-demo.fullname" . }}-metrics
+  namespace: {{ .Release.Namespace | quote }}
 spec:
-  {{- with .Values.serviceMonitor.namespaceSelector }}
-  namespaceSelector:
-  {{- toYaml . | nindent 4 }}
-  {{- end }}
   selector:
     matchLabels:
-      {{- include "rails-demo.selectorLabels" . | nindent 6 }}
+      {{- include "external-secrets.selectorLabels" . | nindent 6 }}
+  namespaceSelector:
+    matchNames:
+    - {{ .Release.Namespace | quote }}
   endpoints:
-    - port: http-metrics
-      {{- with .Values.serviceMonitor.interval }}
-      interval: {{ . }}
-      {{- end }}
-      {{- with .Values.serviceMonitor.scrapeTimeout }}
-      scrapeTimeout: {{ . }}
-      {{- end }}
-      {{- with .Values.serviceMonitor.relabelings }}
-      relabelings:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.serviceMonitor.metricRelabelings }}
-      metricRelabelings:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+  - port: metrics
+    interval: {{ .Values.serviceMonitor.interval }}
+    scrapeTimeout: {{ .Values.serviceMonitor.scrapeTimeout }}
 {{- end }}

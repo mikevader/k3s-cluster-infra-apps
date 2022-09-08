@@ -1,18 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rails-demo
+  name: {{ include "rails-demo.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "rails-demo.labels" . | nindent 4 }}
+  {{- with .Values.deploymentAnnotations }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rails-demo
+      {{- include "external-secrets.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/instance: rails-demo
-        app.kubernetes.io/name: rails-demo
-        app: rails-demo
+        {{- include "external-secrets.selectorLabels" . | nindent 8 }}
     spec:
       containers:
       - name: rails-demo
@@ -29,6 +31,6 @@ spec:
         command: ["bundle"]
         args: ["exec", "prometheus_exporter"]
         ports:
-        - name: http-metrics
+        - name: metrics
           containerPort: 9394
           protocol: TCP

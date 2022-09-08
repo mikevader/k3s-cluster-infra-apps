@@ -5,28 +5,14 @@ nameOverride: null
 fullnameOverride: null
 
 serviceMonitor:
-  # -- If enabled, ServiceMonitor resources for Prometheus Operator are created
+  # -- Specifies whether to create a ServiceMonitor resource for collecting Prometheus metrics
   enabled: true
-  # -- Alternative namespace for ServiceMonitor resources
-  namespace: null
-  # -- Namespace selector for ServiceMonitor resources
-  namespaceSelector:
-    matchNames:
-    - rails-demo
-  # -- ServiceMonitor annotations
-  annotations: {}
-  # -- Additional ServiceMonitor labels
-  labels: {}
-  # -- ServiceMonitor scrape interval
-  interval: null
-  # -- ServiceMonitor scrape timeout in Go duration format (e.g. 15s)
-  scrapeTimeout: null
-  # -- ServiceMonitor relabel configs to apply to samples before scraping
-  # https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
-  # (defines `relabel_configs`)
-  relabelings: []
-  # -- ServiceMonitor relabel configs to apply to samples as the last
-  # step before ingestion
-  # https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
-  # (defines `metric_relabel_configs`)
-  metricRelabelings: []
+
+  # -- Additional labels
+  additionalLabels: {}
+
+  # --  Interval to scrape metrics
+  interval: 30s
+
+  # -- Timeout if metrics can't be retrieved in given time interval
+  scrapeTimeout: 25s

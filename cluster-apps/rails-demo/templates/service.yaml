@@ -12,6 +12,3 @@ spec:
     - name: http
       protocol: TCP
       port: 3000
-    - name: http-metrics
-      port: 9394
-      protocol: TCP
