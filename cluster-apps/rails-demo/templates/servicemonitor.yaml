@@ -28,7 +28,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      {{- include "external-secrets.selectorLabels" . | nindent 6 }}
+      {{- include "rails-demo.selectorLabels" . | nindent 6 }}
   namespaceSelector:
     matchNames:
     - {{ .Release.Namespace | quote }}

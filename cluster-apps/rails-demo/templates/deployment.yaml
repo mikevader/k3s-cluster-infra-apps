@@ -6,15 +6,18 @@ metadata:
   labels:
     {{- include "rails-demo.labels" . | nindent 4 }}
   {{- with .Values.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      {{- include "external-secrets.selectorLabels" . | nindent 6 }}
+      {{- include "rails-demo.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "external-secrets.selectorLabels" . | nindent 8 }}
+        {{- include "rails-demo.selectorLabels" . | nindent 8 }}
     spec:
       containers:
       - name: rails-demo
