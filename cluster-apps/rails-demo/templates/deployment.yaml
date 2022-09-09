@@ -29,11 +29,14 @@ spec:
         - name: http
           containerPort: 3000
           protocol: TCP
-      - name: rails-demo-metrics
-        image: ghcr.io/mikevader/rails-demo:v1.5
-        command: ["bundle"]
-        args: ["exec", "prometheus_exporter", "-b", "0.0.0.0", "-p", "3100"]
-        ports:
         - name: metrics
           containerPort: 3100
           protocol: TCP
+      # - name: rails-demo-metrics
+      #   image: ghcr.io/mikevader/rails-demo:v1.5
+      #   command: ["bundle"]
+      #   args: ["exec", "prometheus_exporter", "-b", "0.0.0.0", "-p", "3100"]
+      #   ports:
+      #   - name: metrics
+      #     containerPort: 3100
+      #     protocol: TCP
