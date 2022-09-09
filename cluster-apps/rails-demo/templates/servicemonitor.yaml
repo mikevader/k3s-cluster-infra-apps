@@ -9,10 +9,10 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 3100
+    - port: 9394
       protocol: TCP
       name: metrics
-      targetPort: 3100
+      targetPort: 9394
   selector:
     {{- include "rails-demo.selectorLabels" . | nindent 4 }}
 ---
