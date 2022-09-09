@@ -35,5 +35,5 @@ spec:
         args: ["exec", "prometheus_exporter"]
         ports:
         - name: metrics
-          containerPort: 9394
+          containerPort: 3100
           protocol: TCP
