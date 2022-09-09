@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: rails-demo
-        image: ghcr.io/mikevader/rails-demo:v1.5
+        image: ghcr.io/mikevader/rails-demo:v1.6
         envFrom:
         - configMapRef:
             name: env
@@ -30,7 +30,7 @@ spec:
           containerPort: 3000
           protocol: TCP
       - name: rails-demo-metrics
-        image: ghcr.io/mikevader/rails-demo:v1.5
+        image: ghcr.io/mikevader/rails-demo:v1.6
         command: ["bundle"]
         args: ["exec", "prometheus_exporter", "-b", "0.0.0.0"]
         ports:
