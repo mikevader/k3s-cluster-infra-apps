@@ -37,6 +37,9 @@ spec:
   - port: metrics
     interval: {{ .Values.serviceMonitor.interval }}
     scrapeTimeout: {{ .Values.serviceMonitor.scrapeTimeout }}
+    relabelings:
+    - sourceLabels: ["status"]
+      targetLabel: code
     metricRelabelings:
     - sourceLabels: ["status"]
       targetLabel: code
