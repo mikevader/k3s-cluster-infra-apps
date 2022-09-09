@@ -38,6 +38,6 @@ spec:
     interval: {{ .Values.serviceMonitor.interval }}
     scrapeTimeout: {{ .Values.serviceMonitor.scrapeTimeout }}
     metricRelabelings:
-    - sourceLabels: status
+    - sourceLabels: ["status"]
       targetLabel: code
 {{- end }}
