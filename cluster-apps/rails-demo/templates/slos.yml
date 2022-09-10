@@ -1,8 +1,8 @@
 apiVersion: sloth.slok.dev/v1
 kind: PrometheusServiceLevel
 metadata:
-  name: sloth-slo-my-service
-  namespace: monitoring-stack
+  name: rails-demo-sla
+  namespace: rails-demo
 spec:
   service: "rails-demo"
   labels:
@@ -11,12 +11,12 @@ spec:
     tier: "2"
   slos:
     - name: "requests-availability"
-      objective: 99.9
+      objective: 99.5
       description: "Common SLO based on availability for HTTP request responses."
       sli:
         events:
-          errorQuery: sum(rate(ruby_http_request_duration_seconds_count{job="rails-demo-metrics",code=~"(5..|429)"}[{{.window}}]))
-          totalQuery: sum(rate(ruby_http_request_duration_seconds_count{job="rails-demo-metrics"}[{{.window}}]))
+          errorQuery: 'sum(rate(ruby_http_request_duration_seconds_count{job="rails-demo-metrics",code=~"(5..|429)"}[{{.window}}]))'
+          totalQuery: 'sum(rate(ruby_http_request_duration_seconds_count{job="rails-demo-metrics"}[{{.window}}]))'
       alerting:
         page_alert:
           disable: true
