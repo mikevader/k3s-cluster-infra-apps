@@ -18,7 +18,7 @@ spec:
           errorQuery: 'sum(rate(ruby_http_request_duration_seconds_count{job="rails-demo-metrics",code=~"(5..|429)"}[{{.window}}]))'
           totalQuery: 'sum(rate(ruby_http_request_duration_seconds_count{job="rails-demo-metrics"}[{{.window}}]))'
       alerting:
-        page_alert:
+        pageAlert:
           disable: true
-        ticket_alert:
+        ticketAlert:
           disable: true
