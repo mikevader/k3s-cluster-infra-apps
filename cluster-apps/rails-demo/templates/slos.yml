@@ -15,8 +15,8 @@ spec:
       description: "Common SLO based on availability for HTTP request responses."
       sli:
         events:
-          errorQuery: 'sum(rate(ruby_http_request_duration_seconds_count{job="rails-demo-metrics",code=~"(5..|429)"}[{{.window}}]))'
-          totalQuery: 'sum(rate(ruby_http_request_duration_seconds_count{job="rails-demo-metrics"}[{{.window}}]))'
+          errorQuery: 'sum(rate(ruby_http_request_duration_seconds_count{job="rails-demo-metrics",code=~"(5..|429)"}[{{.window:}}]))'
+          totalQuery: 'sum(rate(ruby_http_request_duration_seconds_count{job="rails-demo-metrics"}[{{.window:}}]))'
       alerting:
         pageAlert:
           disable: true
