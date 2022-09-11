@@ -310,7 +310,7 @@ data:
               "exemplar": true,
               "expr": "slo:current_burn_rate:ratio > ${min_burning_rate}",
               "interval": "",
-              "legendFormat": "{{sloth_id}}",
+              "legendFormat": "{{ `{{sloth_id}}` }}",
               "queryType": "randomWalk",
               "refId": "A"
             }
@@ -405,7 +405,7 @@ data:
               "format": "time_series",
               "instant": true,
               "interval": "",
-              "legendFormat": "{{sloth_id}}",
+              "legendFormat": "{{ `{{sloth_id}}` }}",
               "queryType": "randomWalk",
               "refId": "A"
             }
@@ -619,7 +619,7 @@ data:
               "expr": "sloth_slo_info{sloth_service=\"${service}\", sloth_slo=\"${slo}\"}",
               "instant": true,
               "interval": "",
-              "legendFormat": "Objective {{sloth_objective}}%",
+              "legendFormat": "Objective {{ `{{sloth_objective}}` }}%",
               "queryType": "randomWalk",
               "refId": "A"
             }
