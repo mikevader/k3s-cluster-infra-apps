@@ -1,0 +1,7 @@
+apiVersion: v2
+name: sloth
+version: 0.0.0
+dependencies:
+  - name: sloth
+    version: 0.5.2
+    repository: https://slok.github.io/sloth
