@@ -6,3 +6,6 @@ dependencies:
   - name: kube-prometheus-stack
     version: 39.12.0
     repository: https://prometheus-community.github.io/helm-charts
+  - name: sloth
+    version: 0.5.2
+    repository: https://slok.github.io/sloth

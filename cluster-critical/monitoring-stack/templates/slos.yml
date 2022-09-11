@@ -2,7 +2,7 @@ apiVersion: sloth.slok.dev/v1
 kind: PrometheusServiceLevel
 metadata:
   name: rails-demo-sla-2
-  namespace: sloth
+  namespace: monitoring-stack
 spec:
   service: "rails-demo"
   labels:
