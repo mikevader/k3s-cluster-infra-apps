@@ -15,8 +15,8 @@ spec:
       description: "Common SLO based on availability for HTTP request responses."
       sli:
         events:
-          errorQuery: sum(rate(ruby_http_requests_total{code=~"(5..|429)"}[{{`{{ ".window" }}`}}]))
-          totalQuery: sum(rate(ruby_http_requests_total[{{`{{ ".window" }}`}}])) 
+          errorQuery: sum(rate(ruby_http_requests_total{code=~"(5..|429)"}[{{`{{ .window }}`}}]))
+          totalQuery: sum(rate(ruby_http_requests_total[{{`{{ .window }}`}}])) 
       alerting:
         pageAlert:
           disable: true
