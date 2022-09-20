@@ -8,8 +8,8 @@ promtail:
       - url: http://loki.loki.svc:3100/loki/api/v1/push
 
     limit_config:
-      readline_rate: 1000
-      readline_burst: 2000
+      readline_rate: 800
+      readline_burst: 800
       readline_rate_enabled: true
 
     snippets:
@@ -64,5 +64,5 @@ promtail:
       cpu: 50m
       memory: 48Mi
     limits:
-      cpu: 500m
+      cpu: 800m
       memory: 96Mi
