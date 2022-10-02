@@ -8,9 +8,14 @@ loki:
   # persistence:
   #   enabled: true
   #   size: 20Gi
-  config:
-    compactor:
-      retention_enabled: true
+  loki:
+    commonConfig:
+      replication_factor: 1
+    storage:
+      type: 'filesystem'
+    config:
+      compactor:
+        retention_enabled: true
   ingress:
     enabled: false
     ingressClassName: traefik
