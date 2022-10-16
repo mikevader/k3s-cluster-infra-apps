@@ -34,6 +34,7 @@ nav:
   - Home: index.md
   - Bare-Metal: bare-metal.md
   - Network: network.md
+  - Custom Images: custom-images.md
   - Cluster:
     - ArgoCD: argocd.md
   - Critial Systems:
@@ -51,6 +52,7 @@ nav:
     - Uptime Kuma: uptime-kuma.md
     - Plex: plex.md
     - AdGuard: adguard.md
+    - Airprint: airprint.mc
 
 
 extra:
