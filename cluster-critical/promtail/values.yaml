@@ -42,16 +42,16 @@ promtail:
         externalTrafficPolicy: Local
         loadBalancerIP: 192.168.42.151
 
-  # Mount journal directory into promtail pods
-  extraVolumes:
-    - name: journal
-      hostPath:
-        path: /var/log/journal
+  # # Mount journal directory into promtail pods
+  # extraVolumes:
+  #   - name: journal
+  #     hostPath:
+  #       path: /var/log/journal
 
-  extraVolumeMounts:
-    - name: journal
-      mountPath: /var/log/journal
-      readOnly: true
+  # extraVolumeMounts:
+  #   - name: journal
+  #     mountPath: /var/log/journal
+  #     readOnly: true
   tolerations:
     - key: CriticalAddonsOnly
       operator: Exists
