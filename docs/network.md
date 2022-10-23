@@ -16,3 +16,11 @@ On my Opnsense firewall I have to configure several things:
 1. WAN interface to accept inbound web (443) traffic
 2. Add NAT port-forward for the MetalLB-IP
 
+## VPN
+
+The firewall has OpenVPN installed. The users are configured on the firewall
+and the authentication uses OTPT.
+
+The OTP from the Google Authenticator is entered with the password in the
+following form: `<password><otp>`.
+
