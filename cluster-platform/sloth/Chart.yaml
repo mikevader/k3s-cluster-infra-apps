@@ -3,5 +3,5 @@ name: sloth
 version: 0.0.0
 dependencies:
   - name: sloth
-    version: 0.6.2
+    version: 0.6.4
     repository: https://slok.github.io/sloth
