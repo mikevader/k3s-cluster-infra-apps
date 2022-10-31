@@ -53,6 +53,8 @@ $ mc admin policy add myminio k3s-backups-policy /tmp/k3s-backups-policy.json
 $ mc admin policy set myminio k3s-backups-policy user=longhorn
 ```
 
+## Define backup target in longhorn
+
 ```yaml title="longhorn values.yaml"
 longhorn:
   defaultSettings:
