@@ -6,7 +6,7 @@ longhorn:
     replicaAutoBalance: best-effort
     defaultReplicaCount: 2
     createDefaultDiskLabeledNodes: true
-    backupTarget: 's3://longhorn@us-east-1/longhorn'
+    backupTarget: 's3://k3sbackups@us-east-1/longhorn'
     backupTargetCredentialSecret: minio-secret
     defaultLonghornStaticStorageClass: longhorn
   ingress:
