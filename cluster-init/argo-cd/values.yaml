@@ -52,6 +52,7 @@ argo-cd:
           - argocd.framsburg.ch
           secretName: argocd-framsburg-ch-tls
     config:
+      kustomize.buildOptions: "--enable-helm"
       url: https://argocd.framsburg.ch
       oidc.config: | 
           name: Authentik
