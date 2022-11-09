@@ -112,7 +112,6 @@
       ],
       "addLabels": ["action/automerge"],
       "automerge": true,
-      "versioning": "loose"
     }
   ]
 }
