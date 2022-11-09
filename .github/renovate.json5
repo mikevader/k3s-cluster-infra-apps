@@ -103,12 +103,14 @@
       "enabled": true,
     }
     // Helm charts that are safe to auto merge
-    //{
-    //  "matchDatasources": ["helm"],
+    {
+      "matchDatasources": ["helm"],
+      "matchUpdateTypes": ["patch"],
     //  "registryUrls": ["https://k8s-at-home.com/charts"],
-    //  "addLabels": ["action/automerge"],
-    //  "automerge": true,
-    //  "versioning": "loose"
-    //}
+      "registryUrls": ["https://argoproj.github.io/argo-helm"],
+      "addLabels": ["action/automerge"],
+      "automerge": true,
+      "versioning": "loose"
+    }
   ]
 }
