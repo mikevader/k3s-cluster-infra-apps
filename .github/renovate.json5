@@ -101,7 +101,7 @@
       "commitMessageExtra": "to {{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
       "matchUpdateTypes": ["major", "minor", "patch"],
       "enabled": true,
-    }
+    },
     // Helm charts that are safe to auto merge
     {
       "matchDatasources": ["helm"],
