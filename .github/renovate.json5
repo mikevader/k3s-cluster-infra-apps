@@ -107,7 +107,9 @@
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["patch"],
     //  "registryUrls": ["https://k8s-at-home.com/charts"],
-      "registryUrls": ["https://argoproj.github.io/argo-helm"],
+      "matchPackagePatterns": [
+        "argo-cd"
+      ],
       "addLabels": ["action/automerge"],
       "automerge": true,
       "versioning": "loose"
