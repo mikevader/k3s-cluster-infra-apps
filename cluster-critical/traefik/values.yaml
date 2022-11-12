@@ -1,8 +1,5 @@
 traefik:
   fullnameOverride: traefik
-  # image:
-  #   name: traefik
-  #   tag: 2.5.6
   deployment:
     annotations:
       # reloader.stakater.com/match: "true"
