@@ -15,5 +15,5 @@ data:
     - name: Loki
       type: loki
       access: proxy
-      url: http://{{ .Release.Name }}.{{ .Release.Namespace }}.svc:{{ .Values.loki.service.port }}
+      url: http://loki.loki.svc:3100
       version: 1
