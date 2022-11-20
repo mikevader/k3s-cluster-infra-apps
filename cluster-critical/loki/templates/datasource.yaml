@@ -1,19 +1,19 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Release.Name }}
-  namespace: monitoring-stack
-  labels:
-    app: {{ .Release.Name }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-    grafana_datasource: "1"
-data:
-  loki-stack-datasource.yaml: |-
-    apiVersion: 1
-    datasources:
-    - name: Loki
-      type: loki
-      access: proxy
-      url: http://loki.loki.svc:3100
-      version: 1
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: {{ .Release.Name }}
+#   namespace: monitoring-stack
+#   labels:
+#     app: {{ .Release.Name }}
+#     release: {{ .Release.Name }}
+#     heritage: {{ .Release.Service }}
+#     grafana_datasource: "1"
+# data:
+#   loki-stack-datasource.yaml: |-
+#     apiVersion: 1
+#     datasources:
+#     - name: Loki
+#       type: loki
+#       access: proxy
+#       url: http://loki.loki.svc:3100
+#       version: 1

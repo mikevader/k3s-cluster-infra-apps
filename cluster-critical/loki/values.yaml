@@ -1,7 +1,5 @@
 loki:
   fullnameOverride: loki
-  serviceMonitor:
-    enabled: true
   # persistence:
   #   enabled: true
   #   size: 20Gi
@@ -22,11 +20,3 @@ loki:
     tls:
       - hosts: ['loki.framsburg.ch']
         secretName: 'loki-framsburg-ch-tls'
-  singleBinary:
-    resources:
-      requests:
-        cpu: 100m
-        memory: 128Mi
-      limits:
-        cpu: 200m
-        memory: 256Mi
