@@ -10,8 +10,6 @@ loki:
       replication_factor: 1
     storage:
       type: 'filesystem'
-    compactor:
-      retention_enabled: true
   ingress:
     enabled: false
     ingressClassName: traefik
@@ -24,11 +22,11 @@ loki:
     tls:
       - hosts: ['loki.framsburg.ch']
         secretName: 'loki-framsburg-ch-tls'
-  resources:
-    requests:
-      cpu: 100m
-      memory: 128Mi
-    limits:
-      cpu: 200m
-      memory: 256Mi
-
+  singleBinary:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 200m
+        memory: 256Mi
