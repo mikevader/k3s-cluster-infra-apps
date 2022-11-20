@@ -5,7 +5,7 @@ jellyfin:
     media:
       enabled: true
       type: pvc
-      existingClaim: jellyfin-media
+      # existingClaim: jellyfin-media
   podSecurityContext:
     runAsUser: 568
     runAsGroup: 568
