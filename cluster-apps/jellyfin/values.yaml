@@ -5,6 +5,9 @@ jellyfin:
     media:
       enabled: true
       type: pvc
+      size: 5Gi
+      accessMode: ReadWriteOnce
+      retain: true
       # existingClaim: jellyfin-media
   podSecurityContext:
     runAsUser: 568
