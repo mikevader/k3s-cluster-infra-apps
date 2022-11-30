@@ -24,6 +24,10 @@ argo-cd:
   
   controller:
     enableStatefulSet: true
+    replicas: 1
+    args:
+      repoServerTimeoutSeconds: '120'
+      selfHealTimeout: '15'
 
   dex:
     enabled: false
@@ -66,11 +70,6 @@ argo-cd:
       policy.csv: |
           g, fb-admins, role:admin
 
-  controller:
-    args:
-      repoServerTimeoutSeconds: '120'
-      selfHealTimeout: '15'
-
   repoServer:
     replicas: 2
     # autoscaling:
@@ -82,6 +81,7 @@ argo-cd:
 
   applicationSet:
     enabled: true
+    replicaCount: 2
     # image:
     #   repository: docker.io/baloisemichaelmuehlebach/argocd-applicationset
     #   tag: v0.4.1
