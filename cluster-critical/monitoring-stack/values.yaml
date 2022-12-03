@@ -127,8 +127,6 @@ kube-prometheus-stack:
         root_url: https://grafana.framsburg.ch
 
   alertmanager:
-    serviceMonitor:
-      enableHttp2: false
     config:
       global:
         resolve_timeout: 5m
