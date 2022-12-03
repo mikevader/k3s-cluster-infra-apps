@@ -3,3 +3,4 @@ gitops.code-workspace
 **.iml
 *.ignore
 *.tgz
+charts
