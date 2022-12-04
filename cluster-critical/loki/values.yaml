@@ -9,5 +9,5 @@ loki:
     storage:
       type: 'filesystem'
   monitoring:
-    alerts:
+    rules:
       enabled: false
