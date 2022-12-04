@@ -8,5 +8,3 @@ loki:
       replication_factor: 1
     storage:
       type: 'filesystem'
-  alerts:
-    enabled: false
