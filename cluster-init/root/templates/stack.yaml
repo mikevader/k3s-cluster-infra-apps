@@ -78,6 +78,8 @@ spec:
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{ `{{path}}` }}'
+        helm:
+          skipCrds: true
       syncPolicy:
         automated:
           prune: true
