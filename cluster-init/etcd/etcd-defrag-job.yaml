@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: etcd-defrag-job
+spec:
+  schedule: "0 0 * * 0"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: etcd-defrag-container
+            image: quay.io/coreos/etcd:latest
+            command: ["etcd", "defrag"]
+          restartPolicy: OnFailure
+      backoffLimit: 4
