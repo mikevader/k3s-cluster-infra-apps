@@ -2,6 +2,8 @@ global:
   domainName: filebrowser.framsburg.ch
 
 filebrowser:
+  controller:
+    enabled: false
   env:
     TZ: Europe/Zurich
 
