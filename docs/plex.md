@@ -26,3 +26,14 @@ for upload over samba, nfs or other setups.
 ```
 kubectl cp <some-namespace>/<some-pod>:/tmp/foo /tmp/bar
 ```
+
+## Change video containers with ffmpeg
+
+```
+ffmpeg -i example.mkv -c copy -tag:v hvc1 example.mp4
+```
+
+
+```
+for f in *.mkv; do ffmpeg -i "$f" -c copy -tag:v hvc1 "${f%.mkv}.mp4"; rm "$f"; done
+```
