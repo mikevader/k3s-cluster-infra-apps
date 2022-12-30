@@ -1,0 +1,6 @@
+---
+apiVersion: v2
+name: rails-demo
+type: application
+appVersion: 2.6.1
+version: 1.0.0

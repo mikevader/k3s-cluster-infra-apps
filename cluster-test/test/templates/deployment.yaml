@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "rails-demo.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "rails-demo.labels" . | nindent 4 }}
+  {{- with .Values.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "rails-demo.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "rails-demo.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - name: rails-demo
+        image: ghcr.io/mikevader/rails-demo:v1.7
+        envFrom:
+        - configMapRef:
+            name: env
+        ports:
+        - name: http
+          containerPort: 3000
+          protocol: TCP
+      - name: rails-demo-metrics
+        image: ghcr.io/mikevader/rails-demo:v1.7
+        command: ["bundle"]
+        args: ["exec", "prometheus_exporter", "-b", "0.0.0.0"]
+        ports:
+        - name: metrics
+          containerPort: 9394
+          protocol: TCP

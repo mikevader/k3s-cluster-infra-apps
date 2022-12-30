@@ -1,0 +1,18 @@
+# -- Overrides the chart's name
+nameOverride: null
+
+# -- Overrides the chart's computed fullname
+fullnameOverride: null
+
+serviceMonitor:
+  # -- Specifies whether to create a ServiceMonitor resource for collecting Prometheus metrics
+  enabled: true
+
+  # -- Additional labels
+  additionalLabels: {}
+
+  # --  Interval to scrape metrics
+  interval: 30s
+
+  # -- Timeout if metrics can't be retrieved in given time interval
+  scrapeTimeout: 25s
