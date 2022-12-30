@@ -13,7 +13,7 @@ resources:
 helmCharts:
 - name: longhorn
   releaseName: longhorn
-  version: 1.3.2
+  version: 1.4.0
   repo: https://charts.longhorn.io
   valuesInline:
     persistence:
