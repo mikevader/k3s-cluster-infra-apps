@@ -7,7 +7,7 @@ mountOptions:
 provisioner: driver.longhorn.io
 parameters:
   fsType: ext4
-  numberOfReplicas: '2'
+  numberOfReplicas: '3'
   staleReplicaTimeout: '30'
 reclaimPolicy: Delete
 allowVolumeExpansion: true
