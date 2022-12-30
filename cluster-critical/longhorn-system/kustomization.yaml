@@ -1,13 +1,7 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-
-namespace: longhorn-system
-
 resources:
 - templates/disable-local-path.yaml
 - templates/longhorn-middleware.yaml
 - templates/longhorn-nfs-single.yaml
-# - templates/longhorn-servicemonitor.yaml
 - templates/minio-secret.yaml
 
 helmCharts:
@@ -15,38 +9,4 @@ helmCharts:
   releaseName: longhorn
   version: 1.4.0
   repo: https://charts.longhorn.io
-  valuesInline:
-    persistence:
-      defaultClassReplicaCount: 2
-    defaultSettings:
-      concurrentAutomaticEngineUpgradePerNodeLimit: 1
-      replicaAutoBalance: best-effort
-      defaultReplicaCount: 2
-      createDefaultDiskLabeledNodes: true
-      backupTarget: 's3://k3sbackups@us-east-1/longhorn'
-      backupTargetCredentialSecret: minio-secret
-      defaultLonghornStaticStorageClass: longhorn
-    ingress:
-      enabled: true
-      ingressClassName: traefik
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: longhorn-system-svc-longhorn-headers@kubernetescrd
-      host: longhorn.framsburg.ch
-      tls: true
-      tlsSecret: longhorn-framsburg-ch-tls
-    # longhornManager:
-    #   nodeSelector:
-    #     longhorn_enabled: "yes"
-    # longhornDriver:
-    #   nodeSelector:
-    #     longhorn_enabled: "yes"
-
-    resources:
-      limits:
-      cpu: 100m
-      memory: 128Mi
-      requests:
-      cpu: 100m
-      memory: 128Mi
+  valuesFile: values.yaml
