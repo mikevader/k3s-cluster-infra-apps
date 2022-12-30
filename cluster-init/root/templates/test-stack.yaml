@@ -16,15 +16,15 @@ spec:
     metadata:
       name: '{{.path.basename}}'
     spec:
-      destination:
-        name: in-cluster
-        namespace: '{{.path.basename}}-test'
       project: default # TODO
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{.path.path}}'
         # helm:
         #   skipCrds: true
+      destination:
+        name: in-cluster
+        namespace: '{{.path.basename}}-test'
       syncPolicy:
         automated:
           prune: true
@@ -35,6 +35,6 @@ spec:
             duration: 1m
             factor: 2
             maxDuration: 16m
-        # syncOptions:
-        #   - CreateNamespace=true
+        syncOptions:
+          - CreateNamespace=true
         #   - ServerSideApply=true
