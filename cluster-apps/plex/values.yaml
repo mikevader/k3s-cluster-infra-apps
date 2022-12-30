@@ -56,7 +56,7 @@ plex:
     tv:
       enabled: true
       type: pvc
-      size: 700Gi
+      size: 1024Gi
       accessMode: ReadWriteMany
       retain: true
       mountPath: /mnt/media/tv
