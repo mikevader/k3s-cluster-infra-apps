@@ -14,7 +14,7 @@ spec:
           - path: cluster-test/**/config.yaml
   template:
     metadata:
-      name: '{{.hello}}'
+      name: '{{ .path }}'
     spec:
       project: default # TODO
       source:
