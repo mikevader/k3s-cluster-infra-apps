@@ -40,13 +40,13 @@ filebrowser:
       existingClaim: plex-movies
       mountPath: /mnt/media/movies
 
-    tv:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: plex-tv
-      mountPath: /mnt/media/tv
+    # tv:
+    #   enabled: true
+    #   type: pvc
+    #   retain: true
+    #   storageClass: "-"
+    #   existingClaim: plex-tv
+    #   mountPath: /mnt/media/tv
 
   ingress:
     main:
