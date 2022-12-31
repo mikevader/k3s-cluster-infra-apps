@@ -53,7 +53,14 @@ plex:
       enabled: true
       type: emptyDir
       mountPoint: /transcode
-    tv:
+    # tv:
+    #   enabled: true
+    #   type: pvc
+    #   size: 1024Gi
+    #   accessMode: ReadWriteMany
+    #   retain: true
+    #   mountPath: /mnt/media/tv
+    tvABCD:
       enabled: true
       type: pvc
       size: 1024Gi
