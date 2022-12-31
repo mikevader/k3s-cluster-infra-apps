@@ -48,21 +48,21 @@ filebrowser:
     #   existingClaim: plex-tv
     #   mountPath: /mnt/media/tv
 
-    tvABCD:
+    tv-abcd:
       enabled: true
       type: pvc
       retain: true
       storageClass: "-"
-      existingClaim: plex-tvABCD
-      mountPath: /mnt/media/tvABCD
+      existingClaim: plex-tv-abcd
+      mountPath: /mnt/media/tv-abcd
 
-    tvEFGH:
+    tv-efgh:
       enabled: true
       type: pvc
       retain: true
       storageClass: "-"
-      existingClaim: plex-tvEFGH
-      mountPath: /mnt/media/tvEFGH
+      existingClaim: plex-tv-efgh
+      mountPath: /mnt/media/tv-efgh
 
   ingress:
     main:
