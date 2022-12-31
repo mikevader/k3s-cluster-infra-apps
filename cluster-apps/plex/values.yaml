@@ -60,20 +60,20 @@ plex:
     #   accessMode: ReadWriteMany
     #   retain: true
     #   mountPath: /mnt/media/tv
-    tvABCD:
+    tv-abcd:
       enabled: true
       type: pvc
       size: 256Gi
       accessMode: ReadWriteMany
       retain: true
-      mountPath: /mnt/media/tvABCD
-    tvEFGH:
+      mountPath: /mnt/media/tv-abcd
+    tv-efgh:
       enabled: true
       type: pvc
       size: 256Gi
       accessMode: ReadWriteMany
       retain: true
-      mountPath: /mnt/media/tvEFGH
+      mountPath: /mnt/media/tv-efgh
     movies:
       enabled: true
       type: pvc
