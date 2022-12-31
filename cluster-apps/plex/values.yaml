@@ -63,10 +63,17 @@ plex:
     tvABCD:
       enabled: true
       type: pvc
-      size: 1024Gi
+      size: 256Gi
       accessMode: ReadWriteMany
       retain: true
-      mountPath: /mnt/media/tv
+      mountPath: /mnt/media/tvABCD
+    tvEFGH:
+      enabled: true
+      type: pvc
+      size: 256Gi
+      accessMode: ReadWriteMany
+      retain: true
+      mountPath: /mnt/media/tvEFGH
     movies:
       enabled: true
       type: pvc
