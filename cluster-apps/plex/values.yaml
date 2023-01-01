@@ -62,6 +62,7 @@ plex:
     #   mountPath: /mnt/media/tv
     tv-abcd:
       enabled: true
+      readonly: true
       type: pvc
       size: 256Gi
       accessMode: ReadWriteMany
@@ -69,6 +70,7 @@ plex:
       mountPath: /mnt/media/tv-abcd
     tv-efgh:
       enabled: true
+      readonly: true
       type: pvc
       size: 256Gi
       accessMode: ReadWriteMany
