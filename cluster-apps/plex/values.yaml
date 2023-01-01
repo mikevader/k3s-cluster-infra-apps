@@ -78,6 +78,7 @@ plex:
       mountPath: /mnt/media/tv-efgh
     movies:
       enabled: true
+      readonly: true
       type: pvc
       size: 200Gi
       # storageClass: longhorn-nolock-nfs
@@ -86,6 +87,7 @@ plex:
       mountPath: /mnt/media/movies
     audiobooks:
       enabled: true
+      readonly: true
       type: pvc
       size: 50Gi
       accessMode: ReadWriteMany
