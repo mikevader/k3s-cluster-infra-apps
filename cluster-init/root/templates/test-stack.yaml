@@ -20,7 +20,7 @@ spec:
       project: default # TODO
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
-        path: '{{ .path.path }}'
+        path: 'cluster-test/test'
         # helm:
         #   skipCrds: true
       destination:
