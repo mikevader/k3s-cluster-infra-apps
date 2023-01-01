@@ -14,7 +14,8 @@ spec:
           - path: cluster-test/**/config.yaml
   template:
     metadata:
-      name: '{{ .path.basename }}'
+      name: '{{ .hello }}'
+      annotations: '{{ .path }}'
     spec:
       project: default # TODO
       source:
@@ -24,7 +25,7 @@ spec:
         #   skipCrds: true
       destination:
         name: in-cluster
-        namespace: '{{ .path.basename }}-test'
+        namespace: '{{ .hello }}-test'
       syncPolicy:
         automated:
           prune: true
