@@ -15,7 +15,8 @@ spec:
   template:
     metadata:
       name: '{{ .hello }}'
-      annotations: '{{ .path }}'
+      annotations:
+        path: '{{ .path }}'
     spec:
       project: default # TODO
       source:
