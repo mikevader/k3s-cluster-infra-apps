@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  labels:
+    app: rails-demo
+  name: rails-demo
+spec:
+  rules:
+    - host: 'rails-demo-raw.framsburg.ch'
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rails-demo
+                port:
+                  number: 3000
+  tls:
+    - hosts: ['rails-demo-raw.framsburg.ch']
+      secretName: 'rails-demo-raw-framsburg-ch-tls'
