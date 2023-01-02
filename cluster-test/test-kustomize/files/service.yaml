@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rails-demo
+  labels:
+    app.kubernetes.io/name: rails-demo-raw
+    app.kubernetes.io/instance: rails-demo-raw
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: rails-demo-raw
+    app.kubernetes.io/instance: rails-demo-raw
+  ports:
+    - name: http
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
