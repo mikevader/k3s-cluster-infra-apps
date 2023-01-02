@@ -1,4 +1,4 @@
-{{- range $index, $root := .Values.app_roots }}
+{{- range $index, $root := .Values.gitops.app_roots }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
