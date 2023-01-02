@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: {{ $.Values.gitops.repo }}
     targetRevision: {{ $.Values.gitops.revision }}
-    path: "cluster-init/app-root/{{ $root.name }}"
+    path: "{{ $root.name }}"
   destination:
     namespace: argocd-system
     name: in-cluster
