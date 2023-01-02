@@ -14,19 +14,17 @@ spec:
           - path: cluster-test/**/config.yaml
   template:
     metadata:
-      name: '{{ .hello }}'
-      annotations:
-        path: '{{ .path }}'
+      name: '{{ .path.basename }}'
     spec:
       project: default # TODO
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
-        path: 'cluster-test/test'
+        path: '{{ .path.path }}'
         # helm:
         #   skipCrds: true
       destination:
         name: in-cluster
-        namespace: '{{ .hello }}-test'
+        namespace: '{{ .path.basename }}-test'
       syncPolicy:
         automated:
           prune: true
