@@ -3,7 +3,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: $root.name
+  name: {{ $root.name }}
   # You'll usually want to add your resources to the argocd namespace.
   namespace: argocd-system
   # Add a this finalizer ONLY if you want these to cascade delete.
@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: {{ $.Values.gitops.repo }}
     targetRevision: {{ $.Values.gitops.revision }}
-    path: "{{ $root.name }}"
+    path: {{ $root.name }}
   destination:
     namespace: argocd-system
     name: in-cluster
