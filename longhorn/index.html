@@ -14,8 +14,14 @@
       
         <link rel="canonical" href="https://mikevader.github.io/gitops/longhorn/">
       
+      
+        <link rel="prev" href="../traefik/">
+      
+      
+        <link rel="next" href="../monitoring/">
+      
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.1">
     
     
       
@@ -23,11 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.3bd4f189.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -58,7 +63,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="None" data-md-color-accent="None">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
   
     
     
@@ -699,20 +704,19 @@
                 
                   
 
-  <a href="https://github.com/mikevader/k3s-cluster-infra-apps/edit/master/docs/longhorn.md" title="Edit this page" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+  
+  
+
 
 
 <h1 id="longhorn">Longhorn</h1>
 <h2 id="setup-minio-for-backup">Setup Minio for Backup</h2>
 <p>Use the minio cli <code>mc</code> which has an alias called <code>myminio</code></p>
-<div class="highlight"><span class="filename">Create minio bucket</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$ mc mb myminio/k3sbackups
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>$ mc mb myminio/k3sbackups/longhorn
+<div class="highlight"><span class="filename">Create minio bucket</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>mc<span class="w"> </span>mb<span class="w"> </span>myminio/k3sbackups
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>$<span class="w"> </span>mc<span class="w"> </span>mb<span class="w"> </span>myminio/k3sbackups/longhorn
 </code></pre></div>
-<div class="highlight"><span class="filename">Create user with policy</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ mc admin user add myminio longhorn mypass
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>$ cat &gt; /tmp/k3s-backups-policy.json <span class="s">&lt;&lt;EOF</span>
+<div class="highlight"><span class="filename">Create user with policy</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>mc<span class="w"> </span>admin<span class="w"> </span>user<span class="w"> </span>add<span class="w"> </span>myminio<span class="w"> </span>longhorn<span class="w"> </span>mypass
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/tmp/k3s-backups-policy.json<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="s">{</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="s">  &quot;Version&quot;: &quot;2012-10-17&quot;,</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="s">      &quot;Statement&quot;: [</span>
@@ -748,16 +752,16 @@
 <a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="s">}</span>
 <a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="s">EOF</span>
 <a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
-<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>$ mc admin policy add myminio k3s-backups-policy /tmp/k3s-backups-policy.json
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>$<span class="w"> </span>mc<span class="w"> </span>admin<span class="w"> </span>policy<span class="w"> </span>add<span class="w"> </span>myminio<span class="w"> </span>k3s-backups-policy<span class="w"> </span>/tmp/k3s-backups-policy.json
 <a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
-<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>$ mc admin policy <span class="nb">set</span> myminio k3s-backups-policy <span class="nv">user</span><span class="o">=</span>longhorn
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>$<span class="w"> </span>mc<span class="w"> </span>admin<span class="w"> </span>policy<span class="w"> </span><span class="nb">set</span><span class="w"> </span>myminio<span class="w"> </span>k3s-backups-policy<span class="w"> </span><span class="nv">user</span><span class="o">=</span>longhorn
 </code></pre></div>
 <h2 id="define-backup-target-in-longhorn">Define backup target in longhorn</h2>
-<div class="highlight"><span class="filename">longhorn values.yaml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">longhorn</span><span class="p">:</span><span class="w"></span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">defaultSettings</span><span class="p">:</span><span class="w"></span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">backupTarget</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;s3://k3sbackups@us-east-1/longhorn&#39;</span><span class="w"></span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">backupTargetCredentialSecret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minio-secret</span><span class="w"></span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nn">...</span><span class="w"></span>
+<div class="highlight"><span class="filename">longhorn values.yaml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">longhorn</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">defaultSettings</span><span class="p">:</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">backupTarget</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;s3://k3sbackups@us-east-1/longhorn&#39;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">backupTargetCredentialSecret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minio-secret</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nn">...</span>
 </code></pre></div>
 
 
@@ -774,42 +778,6 @@
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href="../traefik/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Traefik" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Traefik
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../monitoring/" class="md-footer__link md-footer__link--next" aria-label="Next: Monitoring" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Monitoring
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -864,12 +832,11 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
-    
     
   </body>
 </html>
