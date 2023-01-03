@@ -1,0 +1,13 @@
+loki:
+  # fullnameOverride: loki
+  # persistence:
+  #   enabled: true
+  #   size: 20Gi
+  loki:
+    commonConfig:
+      replication_factor: 1
+    storage:
+      type: 'filesystem'
+  monitoring:
+    rules:
+      enabled: false
