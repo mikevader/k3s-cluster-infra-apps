@@ -6,4 +6,4 @@ gitops:
     - name: cluster-test
       autosync_enabled: true
     - name: cluster-apps
-      autosync_enabled: false
+      autosync_enabled: true
