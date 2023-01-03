@@ -1,2 +1,3 @@
-hello: world
+name: test-kustomize-test
+namespace: test-kustomize-test
 serverSideApply: false
