@@ -29,7 +29,7 @@ spec:
         namespace: '{{or .namespace .path.basename }}'
       syncPolicy:
         automated:
-          prune: true
+          prune: false
           selfHeal: true
         retry:
           limit: 10
