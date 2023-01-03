@@ -5,6 +5,8 @@ metadata:
   name: cluster-init
   namespace: argocd-system
 spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
   generators:
     - git:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
@@ -42,6 +44,8 @@ metadata:
   name: cluster-critical
   namespace: argocd-system
 spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
   generators:
     - git:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
@@ -100,6 +104,8 @@ metadata:
   name: cluster-platform
   namespace: argocd-system
 spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
   generators:
     - git:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
@@ -137,6 +143,8 @@ metadata:
   name: cluster-apps
   namespace: argocd-system
 spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
   generators:
     - git:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
