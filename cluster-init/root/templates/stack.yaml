@@ -97,45 +97,45 @@ spec:
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true
----
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: cluster-platform
-  namespace: argocd-system
-spec:
-  syncPolicy:
-    preserveResourcesOnDeletion: true
-  generators:
-    - git:
-        repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
-        revision: 'master'
-        directories:
-          - path: cluster-platform/*
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: cluster-platform
+#   namespace: argocd-system
+# spec:
+#   syncPolicy:
+#     preserveResourcesOnDeletion: true
+#   generators:
+#     - git:
+#         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
+#         revision: 'master'
+#         directories:
+#           - path: cluster-platform/*
 
-  template:
-    metadata:
-      name: '{{ `{{path.basename}}` }}'
-    spec:
-      destination:
-        name: in-cluster
-        namespace: '{{ `{{path.basename}}` }}'
-      project: default # TODO
-      source:
-        repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
-        path: '{{ `{{path}}` }}'
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        retry:
-          limit: 10
-          backoff:
-            duration: 1m
-            factor: 2
-            maxDuration: 16m
-        syncOptions:
-          - CreateNamespace=true
+#   template:
+#     metadata:
+#       name: '{{ `{{path.basename}}` }}'
+#     spec:
+#       destination:
+#         name: in-cluster
+#         namespace: '{{ `{{path.basename}}` }}'
+#       project: default # TODO
+#       source:
+#         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
+#         path: '{{ `{{path}}` }}'
+#       syncPolicy:
+#         automated:
+#           prune: true
+#           selfHeal: true
+#         retry:
+#           limit: 10
+#           backoff:
+#             duration: 1m
+#             factor: 2
+#             maxDuration: 16m
+#         syncOptions:
+#           - CreateNamespace=true
 # ---
 # apiVersion: argoproj.io/v1alpha1
 # kind: ApplicationSet
