@@ -103,3 +103,21 @@ argo-cd:
           volumeAttributes:
             secretProviderClass: 'vault-argocd'
 ```
+
+## Rename Applicationset
+
+kubectl delete ApplicationSet (NAME) --cascade=false
+
+on new and old applicationset, with identical names!!!
+.spec.syncPolicy.preserveResourcesOnDeletion
+
+--> Warning should occur of applicationsets are part of two applications (it's
+actually wrong, but apparently applicationsets are identified only by name)
+
+Remove old application set -
+
+- Add app for new applicationset
+- Add preserve resources in old and new applicationset
+- Remove old applicationset
+- Add app to new applicationset one by one
+
