@@ -156,7 +156,7 @@ spec:
         path: '{{ `{{path}}` }}'
       syncPolicy:
         automated:
-          prune: true
+          prune: false
           selfHeal: true
         retry:
           limit: 10
