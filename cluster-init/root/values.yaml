@@ -5,6 +5,8 @@ gitops:
   app_roots:
     - name: cluster-test
       autosync_enabled: true
+    - name: cluster-init
+      autosync_enabled: true
     - name: cluster-critical
       autosync_enabled: true
     - name: cluster-platform
