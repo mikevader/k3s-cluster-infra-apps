@@ -1,1 +1,2 @@
 description: 'Monitoring Stack'
+serverSideApply: true
