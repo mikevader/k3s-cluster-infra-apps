@@ -1,1 +1,2 @@
 description: 'Argo CD'
+namespace: argocd-system
