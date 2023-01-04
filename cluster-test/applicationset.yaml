@@ -20,11 +20,6 @@ spec:
       source:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
         path: '{{or .pathOverride .path.path }}'
-        helm:
-          skipCrds: true
-        directory:
-          recurse: false
-        kustomize:
       destination:
         name: in-cluster
         namespace: '{{or .namespace .path.basename }}'
