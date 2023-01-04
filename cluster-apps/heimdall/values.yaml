@@ -6,8 +6,6 @@ heimdall:
     TZ: Europe/Zurich
   image:
     tag: 2.4.10
-  controller:
-    enabled: false
   persistence:
     config:
       enabled: true
