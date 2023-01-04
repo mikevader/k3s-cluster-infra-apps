@@ -6,11 +6,14 @@ heimdall:
     TZ: Europe/Zurich
   image:
     tag: 2.4.10
+  controller:
+    enabled: false
   persistence:
     config:
       enabled: true
       type: pvc
       size: 10Gi
+      retain: true
       nameOverride: heimdall-config
   # podSecurityContext:
   #   runAsUser: 568
@@ -35,8 +38,8 @@ heimdall:
           secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
   resources:
     requests:
-      cpu: 400m
-      memory: 256Mi
+      cpu: 200m
+      memory: 128Mi
     limits:
-      cpu: 600m
-      memory: 512Mi
+      cpu: 500m
+      memory: 256Mi
