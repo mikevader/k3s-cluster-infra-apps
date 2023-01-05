@@ -23,7 +23,8 @@ namespaceResourceBlacklist:
 #  - group: 'apps'
 #    kind: 'DaemonSet'
 
-applications: {}
-#  test-helm: {}
+applications:
+  test-helm-test:
+    path: test-helm
 #  test-kustomize: {}
 #  test-raw: {}
