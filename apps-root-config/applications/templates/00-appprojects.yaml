@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ default "argocd-system" .Values.argocdNamespace}}
+spec:
+  sourceRepos:
+    - '{{ .Values.repository }}'
+{{- if eq (len .Values.applications ) 0 }}
+  destinations: []
+{{- else }}
+  destinations:
+{{- if .Values.allowAllNamespaces }}
+    - namespace: '*'
+      server: https://kubernetes.default.svc
+{{- else }}
+{{- range $key, $value := .Values.applications }}
+    - namespace: {{ $key }}
+      server: https://kubernetes.default.svc
+{{- end }}
+{{- end }}
+{{- end }}
+{{- if .Values.clusterResourceWhitelist }}
+  clusterResourceWhitelist:
+  {{- toYaml .Values.clusterResourceWhitelist | nindent 4 }}
+{{- end }}
+{{- if .Values.namespaceResourceBlacklist }}
+  namespaceResourceBlacklist:
+{{- toYaml .Values.namespaceResourceBlacklist | nindent 4 -}}
+{{- end }}

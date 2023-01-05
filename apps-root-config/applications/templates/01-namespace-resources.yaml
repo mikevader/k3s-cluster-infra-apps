@@ -1,0 +1,99 @@
+{{- range $key, $value := .Values.applications -}}
+{{- $disableNamespaceCreation := false -}}
+{{- if . -}}
+{{- $disableNamespaceCreation = .disableNamespaceCreation -}}
+{{- end }}
+{{- if not $disableNamespaceCreation }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ $key }}
+{{ if $.Values.namespace.annotations }}
+  annotations:
+    openshift.io/requester: {{ .Release.Name }}
+{{ toYaml $.Values.namespace.annotations | indent 4 }}
+{{- end }}
+{{ if $.Values.namespace.labels }}
+  labels:
+{{ toYaml $.Values.namespace.labels | indent 4 }}
+{{- end }}
+{{ if $.Values.enableDefaultLimitRange }}
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: core-resource-limits
+  namespace: "{{ $key }}"
+spec:
+  limits:
+    - type: Pod
+      max:
+        cpu: "4"
+        memory: 8Gi
+      min:
+        cpu: 1m
+        memory: 1
+    - type: Container
+      default:
+        cpu: 2
+        memory: 1Gi
+      defaultRequest:
+        cpu: 25m
+        memory: 512Mi
+{{- end }}
+{{- if $.Values.enableDefaultNetworkPolicy }}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-from-openshift-ingress
+  namespace: {{ $key }}
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              network.openshift.io/policy-group: ingress
+  podSelector: {}
+  policyTypes:
+    - Ingress
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-same-namespace
+  namespace: {{ $key }}
+spec:
+  podSelector: {}
+  ingress:
+    - from:
+        - podSelector: {}
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: deny-by-default
+  namespace: {{ $key }}
+spec:
+  podSelector: {}
+  ingress: []
+{{ end }}
+{{ range $.Values.roleBindings -}}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ printf "%s-%s" .name .clusterRoleName}}
+  namespace: "{{ $key }}"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .clusterRoleName }}
+subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: {{ .kind }}
+    name: {{ .name }}
+{{ end }}
+{{ end }}
+{{ end }}
