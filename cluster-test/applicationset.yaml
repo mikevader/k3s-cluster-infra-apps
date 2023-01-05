@@ -6,6 +6,8 @@ metadata:
   namespace: argocd-system
 spec:
   goTemplate: true
+  syncPolicy:
+    preserveResourcesOnDeletion: true
   generators:
     - git:
         repoURL: 'https://github.com/mikevader/k3s-cluster-infra-apps.git'
@@ -24,9 +26,6 @@ spec:
         name: in-cluster
         namespace: '{{or .namespace .path.basename }}'
       syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
         retry:
           limit: 10
           backoff:
