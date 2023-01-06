@@ -24,4 +24,10 @@ namespaceResourceBlacklist:
 #    kind: 'DaemonSet'
 
 applications:
+  cert-manager: {}
   error-pages: {}
+  loki: {}
+  metallb-system: {}
+  opnsense: {}
+  traefik: {}
+  traefik-external: {}
