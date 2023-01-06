@@ -426,6 +426,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#add-new-app-of-apps" class="md-nav__link">
+    Add new app of apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-app-to-app-of-apps" class="md-nav__link">
+    Add app to app of apps
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -845,6 +859,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#add-new-app-of-apps" class="md-nav__link">
+    Add new app of apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-app-to-app-of-apps" class="md-nav__link">
+    Add app to app of apps
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1013,6 +1041,19 @@ remove the applicationset from <code>cluster-init/root</code>.</p>
 If this is not the case you can manually remove them with the following command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>kubectl<span class="w"> </span>delete<span class="w"> </span>ApplicationSet<span class="w"> </span>&lt;NAME&gt;<span class="w"> </span>-n<span class="w"> </span>argocd-system<span class="w"> </span>--cascade<span class="o">=</span><span class="nb">false</span>
 </code></pre></div>
+<h3 id="add-new-app-of-apps">Add new app of apps</h3>
+<p>This can be done anytime even before you start, if your new app of apps does not
+share the name with an existing application.</p>
+<p>This is quite straight forward. Add new app of apps to the bootstrap start under
+<code>apps-root-config/bootstrap/values.yaml</code>.</p>
+<h3 id="add-app-to-app-of-apps">Add app to app of apps</h3>
+<p>First make sure the application you want to add is in the right folder. Don't
+move aka remove it from the old folder as the old application still exists and 
+would sync your change aka remove the app!</p>
+<p>Add your app to the new app of apps for example under
+<code>apps-root-config/applications/cluster-utility-apps.yaml</code></p>
+<p><strong>This assumes the application name has not changed!</strong>. You can now remove the
+app files from the old folder.</p>
 
 
 
