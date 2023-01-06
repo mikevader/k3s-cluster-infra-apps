@@ -1,0 +1,15 @@
+global:
+  fullnameOverride: error-pages
+
+image:
+  repository: tarampampam/error-pages
+  tag: 2.19.0
+
+env:
+  TEMPLATE_NAME: connection
+
+service:
+  main:
+    ports:
+      http:
+        port: 8080

@@ -1,0 +1,108 @@
+traefik:
+  fullnameOverride: traefik
+  deployment:
+    annotations:
+      # reloader.stakater.com/match: "true"
+  globalArguments:
+    - "--global.checknewversion"
+    - "--serverstransport.insecureskipverify=true"
+    - "--providers.kubernetesingress.ingressclass=traefik"
+    - "--metrics.prometheus=true"
+    - "--metrics.prometheus.entryPoint=metrics"
+    - "--entrypoints.websecure.http.middlewares=error-pages-error-pages@kubernetescrd"
+  logs:
+    general:
+      format: json
+      level: ERROR
+    access:
+      enabled: true
+      format: json
+  service:
+    annotations:
+      metallb.universe.tf/address-pool: default
+      metallb.universe.tf/allow-shared-ip: shared
+    spec:
+      externalTrafficPolicy: Local
+  # securityContext:
+  #   capabilities:
+  #     drop: [ALL]
+  #     add: [NET_BIND_SERVICE]
+  #   runAsNonRoot: false
+  #   readOnlyRootFilesystem: true
+  #   runAsGroup: 0
+  #   runAsUser: 0
+  # hostNetwork: true
+  ports:
+    web:
+      redirectTo: websecure
+    websecure:
+      tls:
+        enabled: true
+    cups:
+      port: 631
+      expose: true
+      exposedPort: 631
+      protocol: TCP
+    # dns-udp:
+    #   port: 53
+    #   expose: true
+    #   exposedPort: 53
+    #   protocol: UDP
+    # dns-tcp:
+    #   port: 53
+    #   expose: true
+    #   exposedPort: 53
+    #   protocol: TCP
+    # netbios:
+    #   port: 139
+    #   expose: true
+    #   exposedPort: 139
+    #   protocol: TCP
+    smb:
+      port: 4445
+    #   hostPort: 445
+      expose: true
+      exposedPort: 4445
+      protocol: TCP
+    metrics:
+      port: 9100
+      #expose: true
+      #exposedPort: 9100
+  ingressRoute:
+    dashboard:
+      enabled: false
+  ingressClass:
+    enabled: true
+    isDefaultClass: true
+    fallbackApiVersion: v1
+  providers:
+    kubernetesIngress:
+      publishedService:
+        enabled: true
+  rollingUpdate:
+    maxUnavailable: 1
+    maxSurge: 1
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "50Mi"
+    limits:
+      cpu: "300m"
+      memory: "150Mi"
+  autoscaling:
+    enabled: false
+    minReplicas: 2
+    maxReplicas: 5
+    metrics:
+      - type: Resource
+        resource:
+          name: memory
+          target:
+            type: Utilization
+            averageUtilization: 80
+      - type: Resource
+        resource:
+          name: cpu
+          target:
+            type: Utilization
+            averageUtilization: 80

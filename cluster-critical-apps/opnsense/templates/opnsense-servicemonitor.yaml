@@ -1,0 +1,58 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: opnsense-metrics
+  namespace: monitoring-stack
+  labels:
+    app: opnsense-metrics
+spec:
+  endpoints:
+    - port: metrics
+      path: /metrics
+  jobLabel: firewall
+  namespaceSelector:
+    matchNames:
+      - opnsense
+  selector:
+    matchLabels:
+      app: opnsense
+  targetLabels:
+    - group
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opnsense-metrics
+  namespace: opnsense
+  annotations:
+    prometheus.io/scrape: "true"
+  labels:
+    app: opnsense
+    group: Firewall
+spec:
+  type: ExternalName
+  externalName: 192.168.42.1
+  clusterIP: ""
+  ports:
+    - name: metrics
+      port: 9100
+      protocol: TCP
+      targetPort: 9100
+  selector:
+    app: opnsense
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: opnsense-metrics
+  namespace: opnsense
+  labels:
+    app: opnsense
+subsets:
+  - addresses:
+      - ip: 192.168.42.1
+    ports:
+      - name: metrics
+        port: 9100
+        protocol: TCP

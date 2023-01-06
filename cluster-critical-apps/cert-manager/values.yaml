@@ -1,0 +1,44 @@
+cert-manager:
+  extraArgs:
+    - --dns01-recursive-nameservers-only
+    - --dns01-recursive-nameservers="8.8.8.8:53"
+  # Default values for cert-manager.
+  # This is a YAML-formatted file.
+  # Declare variables to be passed into your templates.
+  installCRDs: true
+
+  prometheus:
+    enabled: false
+    servicemonitor:
+      enabled: false
+      namespace: monitoring-stack
+
+  # image:
+  #   repository: quay.io/jetstack/cert-manager-controller-arm
+
+  # webhook:
+  #   image:
+  #     repository: quay.io/jetstack/cert-manager-webhook-arm
+
+  # cainjector:
+  #   image:
+  #     repository: quay.io/jetstack/cert-manager-cainjector-arm
+
+  # This startupapicheck is a Helm post-install hook that waits for the webhook
+  # endpoints to become available.
+  # The check is implemented using a Kubernetes Job- if you are injecting mesh
+  # sidecar proxies into cert-manager pods, you probably want to ensure that they
+  # are not injected into this Job's pod. Otherwise the installation may time out
+  # due to the Job never being completed because the sidecar proxy does not exit.
+  # See https://github.com/jetstack/cert-manager/pull/4414 for context.
+  startupapicheck:
+    image:
+      repository: quay.io/jetstack/cert-manager-ctl-arm
+
+  resources:
+    requests:
+      cpu: 50m
+      memory: 96Mi
+    limits:
+      cpu: 100m
+      memory: 192Mi

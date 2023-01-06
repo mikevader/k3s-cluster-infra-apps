@@ -1,0 +1,358 @@
+kube-prometheus-stack:
+  kubeApiServer:
+    enabled: true
+  kubeControllerManager:
+    enabled: false
+    endpoints:
+      - 192.168.42.120
+      - 192.168.42.121
+      - 192.168.42.122
+    service:
+      enabled: true
+      port: 10257
+      targetPort: 10257
+    serviceMonitor:
+      enabled: true
+      https: true
+      insecureSkipVerify: true
+  kubeScheduler:
+    enabled: false
+    endpoints:
+      - 192.168.42.120
+      - 192.168.42.121
+      - 192.168.42.122
+    service:
+      enabled: true
+      port: 10259
+      targetPort: 10259
+    serviceMonitor:
+      enabled: true
+      https: true
+      insecureSkipVerify: true
+  kubeProxy:
+    enabled: false
+    endpoints:
+      - 192.168.42.120
+      - 192.168.42.121
+      - 192.168.42.122
+    service:
+      enabled: true
+      port: 10249
+      targetPort: 10249
+    serviceMonitor:
+      enabled: true
+      https: true
+      insecureSkipVerify: true
+  kubeEtcd:
+    enabled: true
+    endpoints:
+      - 192.168.42.120
+      - 192.168.42.121
+      - 192.168.42.122
+    service:
+      enabled: true
+      port: 2381
+      targetPort: 2381
+
+  defaultRules:
+    kubeProxy: false
+    kubeScheduler: false
+    kubeControllerManager: false
+
+  prometheusOperator:
+    admissionWebhooks:
+      enabled: false
+      certManager:
+        enabled: true
+        certRef:
+          name: "issuer"
+          kind: "ClusterIssuer"
+
+  grafana:
+    env:
+      GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
+      GF_AUTH_GENERIC_OAUTH_NAME: "authentik"
+      GF_AUTH_GENERIC_OAUTH_SCOPES: "openid profile email"
+      GF_AUTH_GENERIC_OAUTH_AUTH_URL: "https://authentik.framsburg.ch/application/o/authorize/"
+      GF_AUTH_GENERIC_OAUTH_TOKEN_URL: "https://authentik.framsburg.ch/application/o/token/"
+      GF_AUTH_GENERIC_OAUTH_API_URL: "https://authentik.framsburg.ch/application/o/userinfo/"
+      GF_AUTH_SIGNOUT_REDIRECT_URL: "https://authentik.framsburg.ch/if/session-end/grafana/"
+      # Optionally enable auto-login (bypasses Grafana login screen)
+      # GF_AUTH_OAUTH_AUTO_LOGIN: "true"
+      # Optionally map user groups to Grafana roles
+      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups[*], 'fb-admins') && 'Admin' || contains(groups[*], 'fb-users') && 'Editor' || 'Viewer'"
+
+    envValueFrom:
+      GF_AUTH_GENERIC_OAUTH_CLIENT_ID:
+        secretKeyRef:
+          name: grafana-oidc-secret
+          key: oidc-id
+      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
+        secretKeyRef:
+          name: grafana-oidc-secret
+          key: oidc-secret
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      hosts:
+        - grafana.framsburg.ch
+      tls:
+        - secretName: grafana-framsburg-ch-tls
+          hosts:
+            - grafana.framsburg.ch
+    serviceMonitor:
+      enabled: true
+    sidecar:
+      dashboards:
+        enabled: true
+        label: grafana_dashboard
+        searchNamespace: ALL
+      datasources:
+        enabled: true
+        label: grafana_datasource
+        searchNamespace: ALL
+    plugins:
+      - grafana-piechart-panel
+    dashboards:
+      default:
+        k8s-cluster-summary:
+          gnetId: 4475
+          revision: 5
+          datasource: Prometheus
+    grafana.ini:
+      server:
+        root_url: https://grafana.framsburg.ch
+
+  alertmanager:
+    config:
+      global:
+        resolve_timeout: 5m
+        slack_api_url_file: '/etc/alertmanager/secrets/slack-api-url/slack_api_url'
+      templates: ['/etc/alertmanager/config/**/*.tmpl']
+      route:
+        group_by: ['job']
+        group_wait: 30s
+        group_interval: 5m
+        repeat_interval: 3h
+        receiver: slack
+        routes:
+          - receiver: 'null'
+            matchers:
+              - alertname="Watchdog"
+          - receiver: 'null'
+            matchers:
+              - severity="info"
+          - receiver: 'null'
+            matchers:
+              - alertname="InfoInhibitor"
+      # Inhibition rules allow to mute a set of alerts given that another alert is
+      # firing.
+      # We use this to mute any warning-level notifications if the same alert is
+      # already critical.
+      inhibit_rules:
+        - source_matchers: [ severity="critical" ]
+          target_matchers: [ severity="warning" ]
+          # Apply inhibition if the alertname is the same.
+          # CAUTION:
+          #   If all label names listed in `equal` are missing
+          #   from both the source and target alerts,
+          #   the inhibition rule will apply!
+          equal: [ alertname, cluster, service ]
+      receivers:
+        - name: 'null'
+        - name: slack
+          slack_configs:
+            - channel: '#alerts'
+              color: '{{ template "slack.color" . }}'
+              title: '{{ template "slack.title" . }}'
+              text: '{{ template "slack.text" . }}'
+              send_resolved: true
+              actions:
+                - type: button
+                  text: 'Runbook :green_book:'
+                  url: '{{ (index .Alerts 0).Annotations.runbook_url }}'
+                - type: button
+                  text: 'Query :mag:'
+                  url: '{{ (index .Alerts 0).GeneratorURL }}'
+                - type: button
+                  text: 'Dashboard :chart_with_upwards_trend:'
+                  url: '{{ (index .Alerts 0).Annotations.dashboard_url }}'
+                - type: button
+                  text: 'Silence :no_bell:'
+                  url: '{{ template "__alert_silence_link" . }}'
+    templateFiles:
+      template_1.tmpl: |-
+          {{ define "__alert_silence_link" -}}
+              {{ .ExternalURL }}/#/silences/new?filter=%7B
+              {{- range .CommonLabels.SortedPairs -}}
+                  {{- if ne .Name "alertname" -}}
+                      {{- .Name }}%3D"{{- .Value -}}"%2C%20
+                  {{- end -}}
+              {{- end -}}
+              alertname%3D"{{- .CommonLabels.alertname -}}"%7D
+          {{- end }}
+          {{ define "__alert_severity" -}}
+              {{- if eq .CommonLabels.severity "critical" -}}
+              *Severity:* `Critical`
+              {{- else if eq .CommonLabels.severity "warning" -}}
+              *Severity:* `Warning`
+              {{- else if eq .CommonLabels.severity "info" -}}
+              *Severity:* `Info`
+              {{- else -}}
+              *Severity:* :question: {{ .CommonLabels.severity }}
+              {{- end }}
+          {{- end }}
+          {{ define "slack.title" -}}
+            [{{ .Status | toUpper -}}
+            {{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{- end -}}
+            ] {{ .CommonLabels.alertname }}
+          {{- end }}
+          {{ define "slack.text" -}}
+
+              {{ template "__alert_severity" . }}
+              {{- if (index .Alerts 0).Annotations.summary }}
+              {{- "\n" -}}
+              *Summary:* {{ (index .Alerts 0).Annotations.summary }}
+              {{- end }}
+
+              {{ range .Alerts }}
+
+                  {{- if .Annotations.description }}
+                  {{- "\n" -}}
+                  {{ .Annotations.description }}
+                  {{- "\n" -}}
+                  {{- end }}
+                  {{- if .Annotations.message }}
+                  {{- "\n" -}}
+                  {{ .Annotations.message }}
+                  {{- "\n" -}}
+                  {{- end }}
+
+              {{- end }}
+
+          {{- end }}
+          {{ define "slack.color" -}}
+              {{ if eq .Status "firing" -}}
+                  {{ if eq .CommonLabels.severity "warning" -}}
+                      warning
+                  {{- else if eq .CommonLabels.severity "critical" -}}
+                      danger
+                  {{- else -}}
+                      #439FE0
+                  {{- end -}}
+              {{ else -}}
+              good
+              {{- end }}
+          {{- end }}
+
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      hosts:
+        - alertmanager.framsburg.ch
+      tls:
+        - secretName: alertmanager-framsburg-ch-tls
+          hosts:
+            - alertmanager.framsburg.ch
+ 
+    alertmanagerSpec:
+      secrets:
+        - slack-api-url
+      externalUrl: https://alertmanager.framsburg.ch
+
+  prometheus:
+    prometheusSpec:
+      externalUrl: https://prometheus.framsburg.ch
+      ruleSelectorNilUsesHelmValues: false
+      serviceMonitorSelectorNilUsesHelmValues: false
+      podMonitorSelectorNilUsesHelmValues: false
+      enableAdminAPI: true
+      retentionSize: 10GB
+      retention: 3d
+      retentionTime: 3d
+      walCompression: false
+      podAntiAffinity: soft
+      # affinity:
+      #   nodeAffinity:
+      #     preferredDuringSchedulingIgnoredDuringExecution:
+      #       - weight: 1
+      #         preference:
+      #           matchExpressions:
+      #             - key: kubernetes.io/hostname
+      #               operator: In
+      #               values:
+      #                 - k3smaster3
+      #                 - k3smaster2
+      resources:
+        requests:
+          cpu: 1
+          memory: 2048Mi
+        limits:
+          cpu: 2
+          memory: 5120Mi
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: longhorn
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 100Gi
+
+    additionalPodMonitors:
+      - name: traefik
+        jobLabel: traefik
+        selector:
+          matchLabels:
+            app.kubernetes.io/instance: traefik
+            app.kubernetes.io/name: traefik
+        namespaceSelector:
+          any: true
+        podMetricsEndpoints:
+          - port: metrics
+            path: /metrics
+            scheme: http
+      - name: traefik-external
+        jobLabel: traefik-external
+        selector:
+          matchLabels:
+            app.kubernetes.io/instance: traefik-external
+            app.kubernetes.io/name: traefik
+        namespaceSelector:
+          any: true
+        podMetricsEndpoints:
+          - port: metrics
+            path: /metrics
+            scheme: http
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      hosts:
+        - prometheus.framsburg.ch
+      tls:
+        - secretName: prometheus-framsburg-ch-tls
+          hosts:
+            - prometheus.framsburg.ch
+
+    # thanosIngress:
+    #   enabled: true
+    #   annotations:
+    #     kubernetes.io/ingress.class: traefik
+    #     cert-manager.io/cluster-issuer: letsencrypt-prod
+    #     traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    #   hosts:
+    #     - thanos.framsburg.ch
+    #   tls:
+    #     - secretName: thanos-framsburg-ch-tls
+    #       hosts:
+    #         - thanos.framsburg.ch
+

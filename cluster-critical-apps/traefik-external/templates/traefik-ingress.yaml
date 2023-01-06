@@ -1,0 +1,44 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`traefikext.framsburg.ch`)
+      priority: 10
+      services:
+        - name: api@internal
+          kind: TraefikService
+          namespace: traefik-external
+  tls:
+    secretName: traefikext-framsburg-ch-tls
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dashboardtls
+  annotations:
+    # used only to automate certificate and dns. Point to metrics to ensure its not used
+    traefik.ingress.kubernetes.io/router.entrypoints: metrics
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: traefikext.framsburg.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: "traefik-external"
+                port:
+                  number: 80
+  tls:
+    - hosts:
+      - traefikext.framsburg.ch
+      secretName: traefikext-framsburg-ch-tls
