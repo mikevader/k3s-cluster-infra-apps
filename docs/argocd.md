@@ -181,5 +181,23 @@ If this is not the case you can manually remove them with the following command:
 $ kubectl delete ApplicationSet <NAME> -n argocd-system --cascade=false
 ```
 
+### Add new app of apps
 
+This can be done anytime even before you start, if your new app of apps does not
+share the name with an existing application.
+
+This is quite straight forward. Add new app of apps to the bootstrap start under
+`apps-root-config/bootstrap/values.yaml`.
+
+### Add app to app of apps
+
+First make sure the application you want to add is in the right folder. Don't
+move aka remove it from the old folder as the old application still exists and 
+would sync your change aka remove the app!
+
+Add your app to the new app of apps for example under
+`apps-root-config/applications/cluster-utility-apps.yaml`
+
+**This assumes the application name has not changed!**. You can now remove the
+app files from the old folder.
 

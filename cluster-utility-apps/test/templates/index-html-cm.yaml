@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: index-html-cm
+data:
+  index.html: |
+    <html>
+    <h1>Welcome</h1>
+    </br>
+    <h1>Hi! This is a configmap Index file: <!--#echo var="token"--></h1>
+    </html
