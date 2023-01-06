@@ -5,4 +5,5 @@ bootstrap:
 # - name: cluster-critical
 # - name: cluster-platform
  - name: cluster-utility-apps
+ - name: cluster-media-apps
  - name: cluster-test
