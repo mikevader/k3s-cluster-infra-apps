@@ -23,5 +23,9 @@ namespaceResourceBlacklist:
 #  - group: 'apps'
 #    kind: 'DaemonSet'
 
-applications: {}
+applications: 
+  filebrowser:
+    disableNamespaceCreation: true
+    destinationNamespace: plex
+#  plex: {}
 
