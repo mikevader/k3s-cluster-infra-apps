@@ -1,0 +1,37 @@
+{{- range $index, $root := .Values.gitops.app_roots }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $root.name }}
+  # You'll usually want to add your resources to the argocd namespace.
+  namespace: argocd-system
+  # Add a this finalizer ONLY if you want these to cascade delete.
+  # finalizers:
+  #   - resources-finalizer.argocd.argoproj.io
+spec:
+  # The project the application belongs to.
+  project: default
+  source:
+    repoURL: {{ $.Values.gitops.repo }}
+    targetRevision: {{ $.Values.gitops.revision }}
+    path: {{ $root.name }}
+  destination:
+    namespace: argocd-system
+    name: in-cluster
+#    server: https://kubernetes.default.svc
+  syncPolicy:
+    {{- if ne $root.autosync_enabled false }}
+    automated:
+      prune: true
+      selfHeal: true
+    {{- end }}
+    retry:
+      limit: 10
+      backoff:
+        duration: 1m
+        factor: 2
+        maxDuration: 16m
+    syncOptions:
+      - CreateNamespace=true
+{{- end }}

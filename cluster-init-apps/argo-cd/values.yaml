@@ -1,0 +1,87 @@
+argo-cd:
+
+    # image:
+    #   repository: ghcr.io/argoproj/argocd
+    #   tag: 2.4.0-dd4dbe2a
+  configs:
+    repositories:
+      stable-helm-repo:
+        name: stable
+        type: helm
+        url: https://charts.helm.sh/stable
+      jetstack-helm-repo:
+        name: jetstack
+        type: helm
+        url: https://charts.jetstack.io
+      rancher-latest-helm-repo:
+        name: rancher-latest
+        type: helm
+        url: https://releases.rancher.com/server-charts/latest
+  redis-ha:
+    enabled: true
+    exporter:
+      enabled: false
+  
+  controller:
+    enableStatefulSet: true
+    replicas: 1
+    args:
+      repoServerTimeoutSeconds: '120'
+      selfHealTimeout: '15'
+
+  dex:
+    enabled: false
+
+  server:
+    # autoscaling:
+    #   enabled: true
+    #   minReplicas: 2
+    replicas: 2
+    env:
+      - name: ARGOCD_API_SERVER_REPLICAS
+        value: '2'
+
+    extraArgs:
+      - --insecure
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      hosts:
+        - argocd.framsburg.ch
+      tls:
+        - hosts:
+          - argocd.framsburg.ch
+          secretName: argocd-framsburg-ch-tls
+    config:
+      kustomize.buildOptions: "--enable-helm"
+      url: https://argocd.framsburg.ch
+      oidc.config: | 
+          name: Authentik
+          issuer: "https://authentik.framsburg.ch/application/o/argocd/"
+          clientID: "c579d3195f85aeccaf1ecce35ef5501e023c2a6a"
+          clientSecret: $argocd-oidc-secret:oidc.authentik.clientSecret
+          requestedScopes: ["openid", "profile", "email"]
+          logoutURL: "https://authentik.framsburg.ch/if/session-end/argocd/"
+    rbacConfig:
+      policy.default: role:readonly
+      policy.csv: |
+          g, fb-admins, role:admin
+
+  repoServer:
+    replicas: 2
+    # autoscaling:
+    #   enabled: true
+    #   minReplicas: 2
+    env:
+      - name: ARGOCD_EXEC_TIMEOUT
+        value: '240s'
+
+  applicationSet:
+    enabled: true
+    replicaCount: 2
+    # image:
+    #   repository: docker.io/baloisemichaelmuehlebach/argocd-applicationset
+    #   tag: v0.4.1
