@@ -4,5 +4,5 @@ bootstrap:
 #   argocdNamespace: asdfasdf
 # - name: cluster-critical
 # - name: cluster-platform
-# - name: cluster-apps
+ - name: cluster-utility-apps
  - name: cluster-test
