@@ -106,18 +106,80 @@ argo-cd:
 
 ## Rename Applicationset
 
-kubectl delete ApplicationSet (NAME) --cascade=false
+**Important**: Remove Applicationset without cascade delete with the following
+two options.
 
-on new and old applicationset, with identical names!!!
-.spec.syncPolicy.preserveResourcesOnDeletion
+### Variant A: Delete over CLI
+
+```bash
+$ kubectl delete ApplicationSet (NAME) --cascade=false
+```
+
+### Variant B: Delete over GitOps
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-apps
+  namespace: argocd-system
+spec:
+  goTemplate: true
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+```
 
 --> Warning should occur of applicationsets are part of two applications (it's
 actually wrong, but apparently applicationsets are identified only by name)
 
 Remove old application set -
 
-- Add app for new applicationset
-- Add preserve resources in old and new applicationset
-- Remove old applicationset
-- Add app to new applicationset one by one
+Go through the following steps
+
+1. Add app for new applicationset
+2. Add preserve resources in old and new applicationset
+3. Remove old applicationset
+4. Add app to new applicationset one by one
+
+
+## Switch from Applicationset to App of Apps
+
+To switch from applicationsets to an App of Apps setup we want to delete the
+superstructure of applicationsets and applications without removing the
+underlying resources like Pods or VolumeClaims. We do this in multiple steps
+
+### Disable cascading
+
+Configure all application sets to preserve their resources. Otherwise the remove
+of the application set will trigger a deletion cascade to applications and pods,
+etc.
+
+You can do this by defining the following option on the applicationset spec (not
+the template!!):
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-apps
+  namespace: argocd-system
+spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+```
+
+### Remove applicationset
+
+Next step is to delete the applicationset. Make sure to remove them from the
+initial bootstrap setup otherwise they will be recreated again. This means
+remove the applicationset from `cluster-init/root`.
+
+After the sync the applicationset should be removed as well as the applications.
+If this is not the case you can manually remove them with the following command:
+
+```bash
+$ kubectl delete ApplicationSet <NAME> -n argocd-system --cascade=false
+```
+
+
 
