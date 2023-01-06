@@ -26,7 +26,9 @@ namespaceResourceBlacklist:
 applications:
   test-helm-test:
     path: test-helm
+    destinationNamespace: test-helm-test
   test-kustomize-test:
     path: test-kustomize
+    destinationNamespace: test-kustomize-test
   test-raw-test:
     path: test-raw
