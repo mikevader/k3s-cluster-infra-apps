@@ -4,7 +4,7 @@ gitops:
   revision: master
   app_roots:
     - name: cluster-test
-      autosync_enabled: true
+      autosync_enabled: false
     - name: cluster-init
       autosync_enabled: true
     - name: cluster-critical
