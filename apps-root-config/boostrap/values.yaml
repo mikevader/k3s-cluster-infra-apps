@@ -1,9 +1,9 @@
 repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
 bootstrap:
-# - name: cluster-init
+ - name: cluster-init-apps
 #   argocdNamespace: asdfasdf
-# - name: cluster-critical
-# - name: cluster-platform
+ - name: cluster-critical-apps
+ - name: cluster-platform-apps
  - name: cluster-utility-apps
  - name: cluster-media-apps
  - name: cluster-test
