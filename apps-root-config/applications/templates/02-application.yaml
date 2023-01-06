@@ -8,6 +8,7 @@
 {{- $enableHelmKustomize := default false .enableHelmKustomize }}
 {{- $automatedPrune := default true .automatedPrune }}
 {{- $selfHeal := default true .selfHeal }}
+{{- $helmServerSideApply := default false .helmServerSideApply }}
 {{- if not $disabled }}
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -37,6 +38,9 @@ spec:
   syncPolicy:
     syncOptions:
       - ApplyOutOfSyncOnly=true
+{{- if $helmServerSideApply }}
+      - ServerSideApply=true
+{{- end }}
     automated:
       prune: {{ default true $automatedPrune }}
       selfHeal: {{ default true $selfHeal }}

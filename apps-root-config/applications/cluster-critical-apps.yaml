@@ -29,7 +29,8 @@ applications:
   loki: {}
   longhorn-system: {}
   metallb-system: {}
-  monitoring-stack: {}
+  monitoring-stack:
+    helmServerSideApply: true
   opnsense: {}
   traefik: {}
   traefik-external: {}
