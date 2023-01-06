@@ -27,7 +27,9 @@ applications:
   cert-manager: {}
   error-pages: {}
   loki: {}
+  longhorn-system: {}
   metallb-system: {}
+  monitoring-stack: {}
   opnsense: {}
   traefik: {}
   traefik-external: {}
