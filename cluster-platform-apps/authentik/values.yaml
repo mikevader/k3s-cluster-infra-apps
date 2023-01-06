@@ -1,0 +1,50 @@
+global:
+  domainName: authentik.framsburg.ch
+
+authentik:
+  authentik:
+    secret_key: dontjudgemethisisjustfortesting    # TODO
+    postgresql:
+      password: "IKnowThisIsNotASecurePasswordJust4Testing"    # TODO
+    redis:
+      host: '{{ .Release.Name }}-redis'
+
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    hosts:
+      - host: 'authentik.framsburg.ch'
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: 'authentik-framsburg-ch-tls'
+        hosts: ['authentik.framsburg.ch']
+
+postgresql:
+#  image:
+#    tag: 13.5-alpine
+  env:
+    - name: POSTGRES_PASSWORD
+      value: "IKnowThisIsNotASecurePasswordJust4Testing"
+  settings:
+    authMethod: 'md5'
+    superuser: 'postgres'
+    superuserPassword: "IKnowThisIsNotASecurePasswordJust4Testing"
+  userDatabase:
+    name: "authentik"
+    user: "authentik"
+    password: "IKnowThisIsNotASecurePasswordJust4Testing"
+  storage:
+    className: longhorn
+    requestedSize: 10Gi
+  podSecurityContext:
+    fsGroupChangePolicy: "OnRootMismatch"
+redis:
+  revisionHistoryLimit: 0
+  storage:
+    className: longhorn
+    requestedSize: 10Gi
