@@ -26,5 +26,7 @@ namespaceResourceBlacklist:
 applications:
   test-helm-test:
     path: test-helm
-#  test-kustomize: {}
-#  test-raw: {}
+  test-kustomize-test:
+    path: test-kustomize
+  test-raw-test:
+    path: test-raw
