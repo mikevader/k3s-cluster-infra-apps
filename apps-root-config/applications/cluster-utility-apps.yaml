@@ -23,4 +23,5 @@ namespaceResourceBlacklist:
 #  - group: 'apps'
 #    kind: 'DaemonSet'
 
-applications: {}
+applications:
+  heimdall: {}
