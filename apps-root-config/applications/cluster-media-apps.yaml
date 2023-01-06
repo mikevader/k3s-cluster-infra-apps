@@ -27,5 +27,5 @@ applications:
   filebrowser:
     disableNamespaceCreation: true
     destinationNamespace: plex
-#  plex: {}
+  plex: {}
 
