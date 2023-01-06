@@ -18,7 +18,7 @@ metadata:
   namespace: {{ default "argocd-system" $.Values.argocdNamespace }}
 spec:
   destination:
-    namespace: {{ default $key $path }}
+    namespace: {{ $key }} # {{ default $key $path }}
     server: {{ default  $server }}
   project: {{ $.Release.Name }}
   source:
