@@ -1,0 +1,192 @@
+plex:
+  controller:
+    enabled: true
+  image:
+    repository: ghcr.io/mikevader/plex
+    tag: v1.30.0.6486-629d58034
+  env:
+    # cat /config/Library/Application\ Support/Plex\ Media\ Server/Preferences.xml | tr " " "\n" | \
+    # sed -n '/<Preferences/,$p' | tail -n +2 | sed 's,/>,,g' | \
+    # sed '/\(OldestPreviousVersion\|MachineIdentifier\|^PlexOnline\|Certificate\|PubSub\|NeedsUpdate\)/d' | \
+    # sed 's/"//g' | awk '{print "PLEX_PREFERENCE_"i++": \""$0"\""}'
+    PLEX_UID: 568
+    PLEX_GID: 568
+    PLEX_CLAIM: "claim-z6APwzcuTys17_L4tSSc"
+    PLEX_PREFERENCE_0: "allowedNetworks=10.43.0.0/16,10.42.0.0/16,192.168.42.0/24"
+    # PLEX_PREFERENCE_1: "TranscoderTempDirectory=/transcode"
+    # PLEX_PREFERENCE_2: "FriendlyName=MikeFlix"
+    # PLEX_PREFERENCE_3: "HardwareAcceleratedCodecs=1"
+    # PLEX_PREFERENCE_4: "autoEmptyTrash=1"
+    # PLEX_PREFERENCE_5: "ManualPortMappingPort=443"
+    # PLEX_PREFERENCE_6: "ScheduledLibraryUpdateInterval=86400"
+    # PLEX_PREFERENCE_7: "TranscoderCanOnlyRemuxVideo=0"
+    # PLEX_PREFERENCE_8: "HardwareAcceleratedEncoders=1"
+    # PLEX_PREFERENCE_9: "EnableIPv6=0"
+    # PLEX_PREFERENCE_10: "sendCrashReports=0"
+    # PLEX_PREFERENCE_11: "DlnaEnabled=0"
+    # PLEX_PREFERENCE_12: "ManualPortMappingMode=1"
+    # PLEX_PREFERENCE_13: "ScheduledLibraryUpdatesEnabled=1"
+    # PLEX_PREFERENCE_14: "CinemaTrailersFromLibrary=0"
+    # PLEX_PREFERENCE_15: "CinemaTrailersType=1"
+    # PLEX_PREFERENCE_16: "MetricsEpoch=1"
+    # PLEX_PREFERENCE_17: "AcceptedEULA=1"
+    # PLEX_PREFERENCE_18: "PublishServerOnPlexOnlineKey=0"
+    # PLEX_PREFERENCE_19: "DvrIncrementalEpgLoader=0"
+    # PLEX_PREFERENCE_20: "LastAutomaticMappedPort=0"
+    # PLEX_PREFERENCE_21: "DisableTLSv1_0=1"
+    # PLEX_PREFERENCE_22: "RelayEnabled=0"
+    # PLEX_PREFERENCE_23: "TreatWanIpAsLocal=1"
+    # PLEX_PREFERENCE_24: "customConnections=https://plex.framsburg.ch"
+    # PLEX_PREFERENCE_25: "LanguageInCloud=1"
+    # PLEX_PREFERENCE_26: "GdmEnabled=0"
+    # PLEX_PREFERENCE_27: "secureConnections=2"
+    # PLEX_PREFERENCE_28: "TranscoderToneMapping=0"
+  persistence:
+    config:
+      enabled: true
+      nameOverride: "-"
+      type: pvc
+      size: 5Gi
+      accessMode: ReadWriteOnce
+      retain: true
+    transcode:
+      enabled: true
+      type: emptyDir
+      mountPoint: /transcode
+    # tv:
+    #   enabled: true
+    #   type: pvc
+    #   size: 1024Gi
+    #   accessMode: ReadWriteMany
+    #   retain: true
+    #   mountPath: /mnt/media/tv
+    tv-abcd:
+      enabled: true
+      readonly: true
+      type: pvc
+      size: 256Gi
+      accessMode: ReadWriteMany
+      retain: true
+      mountPath: /mnt/media/tv-abcd
+    tv-efgh:
+      enabled: true
+      readonly: true
+      type: pvc
+      size: 256Gi
+      accessMode: ReadWriteMany
+      retain: true
+      mountPath: /mnt/media/tv-efgh
+    tv-ijkl:
+      enabled: true
+      readonly: true
+      type: pvc
+      size: 256Gi
+      accessMode: ReadWriteMany
+      retain: true
+      mountPath: /mnt/media/tv-ijkl
+    tv-mnop:
+      enabled: true
+      readonly: true
+      type: pvc
+      size: 256Gi
+      accessMode: ReadWriteMany
+      retain: true
+      mountPath: /mnt/media/tv-mnop
+    tv-qrst:
+      enabled: true
+      readonly: true
+      type: pvc
+      size: 256Gi
+      accessMode: ReadWriteMany
+      retain: true
+      mountPath: /mnt/media/tv-qrst
+    tv-uvw:
+      enabled: true
+      readonly: true
+      type: pvc
+      size: 256Gi
+      accessMode: ReadWriteMany
+      retain: true
+      mountPath: /mnt/media/tv-uvw
+    tv-xyz:
+      enabled: true
+      readonly: true
+      type: pvc
+      size: 128Gi
+      accessMode: ReadWriteMany
+      retain: true
+      mountPath: /mnt/media/tv-xyz
+    movies:
+      enabled: true
+      readonly: true
+      type: pvc
+      size: 200Gi
+      # storageClass: longhorn-nolock-nfs
+      accessMode: ReadWriteMany
+      retain: true
+      mountPath: /mnt/media/movies
+    audiobooks:
+      enabled: true
+      readonly: true
+      type: pvc
+      size: 50Gi
+      accessMode: ReadWriteMany
+      retain: true
+      mountPath: /mnt/media/audiobooks
+  podSecurityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    fsGroup: 568
+  probes:
+    liveness:
+      enabled: false
+      custom: true
+      spec:
+        initialDelaySeconds: 60
+        periodSeconds: 60
+        exec:
+          command:
+            - cat
+            - /tv/healthcheck
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
+      ingressClassName: traefik
+      hosts:
+        - host: plex.framsburg.ch
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: plex
+      tls:
+        - hosts: [plex.framsburg.ch]
+          secretName: plex-framsburg-ch-tls
+    external:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
+      ingressClassName: traefik-external
+      hosts:
+        - host: plex.framsburg.ch
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: plex
+      tls:
+        - hosts: [plex.framsburg.ch]
+          secretName: plex-framsburg-ch-tls-external
+  resources:
+    requests:
+      cpu: 200m
+      memory: 128Mi
+    limits:
+      cpu: 1
+      memory: 512Mi
