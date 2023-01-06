@@ -24,4 +24,8 @@ namespaceResourceBlacklist:
 #    kind: 'DaemonSet'
 
 applications:
+  authentik: {}
+  external-secrets: {}
   sloth: {}
+  vault: {}
+  vault-operator: {}
