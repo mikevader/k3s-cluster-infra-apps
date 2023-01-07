@@ -2,6 +2,7 @@
 {{- $disabled := default false .disabled }}
 {{- $destinationNamespace := default $key .destinationNamespace }}
 {{- $server := "https://kubernetes.default.svc" }}
+{{- $project := default $.Release.Name .project }}
 {{- $path := default (printf "%s/%s" $.Values.subFolder $key) .path }}
 {{- $source := default false .source }}
 {{- $disableAutoSync := default false .disableAutoSync }}
@@ -23,7 +24,7 @@ spec:
     namespace: {{ default $key $destinationNamespace }}
     name: in-cluster
 #    server: {{ default  $server }}
-  project: {{ $.Release.Name }}
+  project: {{ $project }}
   source:
     path: {{ $path }}
     repoURL: {{ $.Values.repository }}
