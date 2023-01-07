@@ -35,7 +35,8 @@ applications:
     path: apps-root-config/bootstrap
     source:
       helm:
-        valueFiles: values.yaml
+        valueFiles:
+          - values.yaml
   etcd:
     disableNamespaceCreation: true
     destinationNamespace: argocd-system
