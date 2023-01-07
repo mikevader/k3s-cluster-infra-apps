@@ -27,4 +27,6 @@ applications: {}
   # argo-cd: 
   #   disableAutoSync: true
   # root: {}
-  # etcd: {}
+  etcd:
+    disableNamespaceCreation: true
+    destinationNamespace: argocd-system
