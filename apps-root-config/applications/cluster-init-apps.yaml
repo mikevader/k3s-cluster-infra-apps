@@ -23,7 +23,7 @@ namespaceResourceBlacklist:
 #  - group: 'apps'
 #    kind: 'DaemonSet'
 
-applications: {}
+applications:
   # argo-cd: 
   #   disableAutoSync: true
   # root: {}
