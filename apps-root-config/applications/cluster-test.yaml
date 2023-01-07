@@ -25,10 +25,10 @@ namespaceResourceBlacklist:
 
 applications:
   test-helm-test:
-    path: test-helm
+    path: cluster-test/test-helm
     destinationNamespace: test-helm-test
   test-kustomize-test:
-    path: test-kustomize
+    path: cluster-test/test-kustomize
     destinationNamespace: test-kustomize-test
   test-raw-test:
-    path: test-raw
+    path: cluster-test/test-raw

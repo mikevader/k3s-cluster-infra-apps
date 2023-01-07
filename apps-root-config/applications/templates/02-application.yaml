@@ -2,7 +2,7 @@
 {{- $disabled := default false .disabled }}
 {{- $destinationNamespace := default $key .destinationNamespace }}
 {{- $server := "https://kubernetes.default.svc" }}
-{{- $path := default $key .path }}
+{{- $path := default (printf "%s/%s" $.Values.subFolder $key) .path }}
 {{- $source := default false .source }}
 {{- $disableAutoSync := default false .disableAutoSync }}
 {{- $enableHelmKustomize := default false .enableHelmKustomize }}
@@ -25,7 +25,7 @@ spec:
 #    server: {{ default  $server }}
   project: {{ $.Release.Name }}
   source:
-    path: {{ $.Values.subFolder }}/{{ $path }}
+    path: {{ $path }}
     repoURL: {{ $.Values.repository }}
 {{ if $source -}}
 {{- toYaml $source | indent 4 }}
