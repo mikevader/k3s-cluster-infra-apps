@@ -28,7 +28,14 @@ applications:
     disableNamespaceCreation: true
     destinationNamespace: argocd-system
     disableAutoSync: true
-  # root: {}
+  bootstrap:
+    disableNamespaceCreation: true
+    destinationNamespace: argocd-system
+    project: default
+    path: apps-root-config/bootstrap
+    source:
+      helm:
+        valueFiles: values.yaml
   etcd:
     disableNamespaceCreation: true
     destinationNamespace: argocd-system
