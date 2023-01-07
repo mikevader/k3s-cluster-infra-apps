@@ -31,6 +31,9 @@ applications:
   metallb-system: {}
   monitoring-stack:
     helmServerSideApply: true
+    source:
+      helm:
+        skipCrds: true
   opnsense: {}
   traefik: {}
   traefik-external: {}
