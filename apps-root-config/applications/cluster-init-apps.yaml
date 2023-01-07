@@ -24,8 +24,10 @@ namespaceResourceBlacklist:
 #    kind: 'DaemonSet'
 
 applications:
-  # argo-cd: 
-  #   disableAutoSync: true
+  argo-cd: 
+    disableNamespaceCreation: true
+    destinationNamespace: argocd-system
+    disableAutoSync: true
   # root: {}
   etcd:
     disableNamespaceCreation: true
