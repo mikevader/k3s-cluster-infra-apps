@@ -133,6 +133,17 @@ plex:
       accessMode: ReadWriteMany
       retain: true
       mountPath: /mnt/media/audiobooks
+    tlsCerts:
+      enabled: true
+      type: secret
+      name: plex-framsburg-ch-tls-external
+      mountPath: /secrets
+      items:
+        - key: tls.crt
+          path: tls.crt
+        - key: tls.key
+          path: tls.pk12
+
   podSecurityContext:
     runAsUser: 568
     runAsGroup: 568
