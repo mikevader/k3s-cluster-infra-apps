@@ -133,7 +133,7 @@ plex:
       accessMode: ReadWriteMany
       retain: true
       mountPath: /mnt/media/audiobooks
-    tlsCerts:
+    tls-certs:
       enabled: true
       type: secret
       name: plex-framsburg-ch-tls-external
