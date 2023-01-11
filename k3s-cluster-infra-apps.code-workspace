@@ -5,6 +5,10 @@
 		},
 		{
 			"path": "../container-images"
+		},
+		{
+			"name": "charts",
+			"path": "../charts"
 		}
 	],
 	"settings": {}
