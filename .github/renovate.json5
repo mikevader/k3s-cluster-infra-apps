@@ -112,8 +112,7 @@
         "argo-cd"
       ],
       "addLabels": ["action/automerge"],
-      "automerge": true,
-      "versioning": "loose"
+      "automerge": true
     }
   ]
 }
