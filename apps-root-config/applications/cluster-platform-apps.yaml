@@ -26,6 +26,7 @@ namespaceResourceBlacklist:
 applications:
   authentik: {}
   external-secrets: {}
+  k8s-dashboard: {}
   sloth: {}
   vault: {}
   vault-operator: {}
