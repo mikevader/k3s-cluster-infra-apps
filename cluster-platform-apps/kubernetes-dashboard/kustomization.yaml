@@ -2,4 +2,14 @@ namespace: kubernetes-dashboard
 
 resources:
   - https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+  - resources/ingress.yaml
+  - resources/user.yaml
+  - resources/rolebinding.yaml
 
+patchesStrategicMerge:
+- |-
+  $patch: delete
+  apiVersion: v1
+  kind: Namespace
+  metadata:
+    name: kubernetes-dashboard

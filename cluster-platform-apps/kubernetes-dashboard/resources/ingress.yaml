@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: dashboard.framsburg.ch
+      http:
+        paths:
+          - backend:
+              service:
+                name: kubernetes-dashboard
+                port:
+                  number: 443
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - dashboard.framsburg.ch
+      secretName: dashboard-framsburg-ch-tls
