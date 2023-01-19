@@ -30,7 +30,7 @@ applications:
   longhorn-system: {}
   metallb-system: {}
   monitoring-stack:
-    helmServerSideApply: true
+    # helmServerSideApply: true
     source:
       helm:
         skipCrds: true
