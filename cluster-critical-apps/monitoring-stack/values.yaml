@@ -273,10 +273,9 @@ kube-prometheus-stack:
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
       enableAdminAPI: true
-      retentionSize: 10GB
-      retention: 3d
-      retentionTime: 3d
-      walCompression: false
+      retentionSize: 2GB
+      retentionTime: 1d
+      walCompression: true
       podAntiAffinity: soft
       # affinity:
       #   nodeAffinity:
