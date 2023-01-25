@@ -4,8 +4,8 @@ metadata:
   name: "vault"
 spec:
   size: 3
-  image: vault:1.11.5
-  bankVaultsImage: ghcr.io/banzaicloud/bank-vaults:latest
+  image: vault:1.12.2
+  # bankVaultsImage: ghcr.io/banzaicloud/bank-vaults:latest
 
   affinity:
     podAntiAffinity:
