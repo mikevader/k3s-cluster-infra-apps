@@ -201,3 +201,21 @@ Add your app to the new app of apps for example under
 **This assumes the application name has not changed!**. You can now remove the
 app files from the old folder.
 
+
+## GitHub Webhook
+
+This documentation describes how to setup a git webhook which notifies Argo CD
+on any source changes immedietly. Otherwise Argo CD will pull changes on a three
+minutes intervall. This follows the [Argo CD documentation](https://argo-cd.readthedocs.io/en/stable/operator-manual/webhook/)
+
+### Create Secret in Vault
+
+First create an arbitrary secret in the vault for GitHub to use and Argo CD to
+verify. This is important: As the callback URL must be publicly accessible
+(because GitHub is public) it opens an attack vector for a DDoS attack. As it
+not be changed frequently, go for something long ... 50 chars?
+
+Add it under `framsburg/argocd/github` and under key `webhook-secret`.
+
+Create the following external secret which provides this vault secret under the
+correct secret name. Remeber the k8s secret must be named `webhook.github.secret`
