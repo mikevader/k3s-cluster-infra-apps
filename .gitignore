@@ -4,3 +4,4 @@ gitops.code-workspace
 *.ignore
 *.tgz
 charts
+Chart.lock
