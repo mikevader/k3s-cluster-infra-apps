@@ -17,7 +17,7 @@ spec:
               service:
                 name: argo-cd-argocd-server
                 port:
-                  name: 80
+                  name: http
   tls:
     - hosts:
       - argocd-callback.framsburg.ch
