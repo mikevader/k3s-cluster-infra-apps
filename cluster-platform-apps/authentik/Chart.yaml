@@ -3,7 +3,7 @@ name: authentik
 version: 0.0.0
 dependencies:
   - name: authentik
-    version: 2023.1.2
+    version: 2023.2.2
     repository: https://charts.goauthentik.io
 
   - name: postgres
