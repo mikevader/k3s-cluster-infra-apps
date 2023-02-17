@@ -1,6 +1,6 @@
 plex:
   controller:
-    enabled: false
+    enabled: true
   image:
     repository: ghcr.io/mikevader/plex
     tag: v1.31.0.6654-02189b09f
