@@ -73,7 +73,7 @@
       "matchDatasources": ["docker"],
       "matchPackagePatterns": [
         "^ghcr.io/k8s-at-home/.*",
-        "^ghcr.io/mikevader/.*",
+//        "^ghcr.io/mikevader/.*",
         "^bodnapa/azoth-empire-(bot|web-app|graphql-api)",
         "ghcr.io/sct/overseerr",
         "phasecorex/red-discordbot",
