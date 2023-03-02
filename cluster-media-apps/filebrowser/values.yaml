@@ -16,7 +16,9 @@ filebrowser:
       "address": "",
       "log": "stdout",
       "database": "/config/database.db",
-      "root": "/mnt/media"
+      "root": "/mnt/media",
+      "authMethod": "proxy",
+      "header": "X-authentik-username"
     }
   
   service:
