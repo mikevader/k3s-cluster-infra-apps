@@ -4,6 +4,8 @@ global:
 filebrowser:
   controller:
     enabled: true
+  image:
+    tag: v2.23.0
   env:
     TZ: Europe/Zurich
 
