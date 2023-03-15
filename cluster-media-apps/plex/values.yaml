@@ -3,7 +3,7 @@ plex:
     enabled: true
   image:
     repository: ghcr.io/mikevader/plex
-    tag: v1.31.1.6782-77dfff442
+    tag: v1.31.2.6810-a607d384f
   env:
     # cat /config/Library/Application\ Support/Plex\ Media\ Server/Preferences.xml | tr " " "\n" | \
     # sed -n '/<Preferences/,$p' | tail -n +2 | sed 's,/>,,g' | \
