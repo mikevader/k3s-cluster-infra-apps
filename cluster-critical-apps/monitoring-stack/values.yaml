@@ -145,6 +145,7 @@ kube-prometheus-stack:
           - receiver: 'null'
             matchers:
               - severity="info"
+              - severity="warning"
           - receiver: 'null'
             matchers:
               - alertname="InfoInhibitor"
