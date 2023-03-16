@@ -106,3 +106,10 @@ traefik:
           target:
             type: Utilization
             averageUtilization: 80
+    behavior:
+      scaleDown:
+        stabilizationWindowSeconds: 300
+        policies:
+        - type: Pods
+          value: 1
+          periodSeconds: 60
