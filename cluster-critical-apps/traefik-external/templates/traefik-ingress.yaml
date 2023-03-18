@@ -10,6 +10,9 @@ spec:
     - kind: Rule
       match: Host(`traefikext.framsburg.ch`)
       priority: 10
+      middlewares:
+        - name: authentik
+          namespace: authentik
       services:
         - name: api@internal
           kind: TraefikService

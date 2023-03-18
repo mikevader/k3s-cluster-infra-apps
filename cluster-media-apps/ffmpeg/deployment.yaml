@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ffmpeg
+  namespace: plex
+  labels:
+    app: ffmpeg
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ffmpeg
+  template:
+    metadata:
+      labels:
+        app: ffmpeg
+    spec:
+      containers:
+        - name: ffmpeg
+          image: lscr.io/linuxserver/ffmpeg:latest
+          command: [ "/bin/bash", "-c", "--" ]
+          args: [ "while true; do sleep 30; done;" ]
+          volumeMounts:
+            - name: tv
+              mountPath: /mnt/media/tv
+      volumes:
+        - name: tv
+          persistentVolumeClaim:
+            claimName: plex-tv
