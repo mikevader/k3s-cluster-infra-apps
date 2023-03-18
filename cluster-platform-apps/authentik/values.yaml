@@ -44,6 +44,7 @@ postgresql:
   podSecurityContext:
     fsGroupChangePolicy: "OnRootMismatch"
 redis:
+  useDeploymentWhenNonHA: false
   revisionHistoryLimit: 0
   storage:
     className: longhorn
