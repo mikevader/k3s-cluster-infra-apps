@@ -9,7 +9,7 @@ traefik:
     - "--providers.kubernetesingress.ingressclass=traefik"
     - "--metrics.prometheus=true"
     - "--metrics.prometheus.entryPoint=metrics"
-    - "--entrypoints.websecure.http.middlewares=error-pages-error-pages@kubernetescrd"
+    - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd,error-pages-error-pages@kubernetescrd"
   logs:
     general:
       format: json
