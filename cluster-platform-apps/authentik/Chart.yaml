@@ -12,5 +12,5 @@ dependencies:
     alias: postgresql
 
   - name: redis
-    version: 0.6.5
+    version: 0.6.7
     repository: https://groundhog2k.github.io/helm-charts
