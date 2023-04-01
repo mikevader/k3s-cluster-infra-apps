@@ -9,6 +9,9 @@
 		{
 			"name": "charts",
 			"path": "../charts"
+		},
+		{
+			"path": "../monitoring"
 		}
 	],
 	"settings": {}
