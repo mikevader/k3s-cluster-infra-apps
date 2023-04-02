@@ -26,4 +26,4 @@ namespaceResourceBlacklist:
 applications:
   heimdall: {}
   uptime-kuma: {}
-  test: {}
+#  test: {}

@@ -23,12 +23,12 @@ namespaceResourceBlacklist:
 #  - group: 'apps'
 #    kind: 'DaemonSet'
 
-applications:
-  test-helm-test:
-    path: cluster-test/test-helm
-    destinationNamespace: test-helm-test
-  test-kustomize-test:
-    path: cluster-test/test-kustomize
-    destinationNamespace: test-kustomize-test
-  test-raw-test:
-    path: cluster-test/test-raw
+applications: {}
+  # test-helm-test:
+  #   path: cluster-test/test-helm
+  #   destinationNamespace: test-helm-test
+  # test-kustomize-test:
+  #   path: cluster-test/test-kustomize
+  #   destinationNamespace: test-kustomize-test
+  # test-raw-test:
+  #   path: cluster-test/test-raw
