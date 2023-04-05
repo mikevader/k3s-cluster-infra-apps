@@ -104,3 +104,16 @@ every node sequentially (we have no special requirement on performance) and
 cares about draining nodes correctly.
 
 Ideally we can reuse roles from the cluster setup playbook.
+
+
+## Update K3S Version
+
+Update version in hosts or manifest
+
+Use playbook `07_k3s_update` and start with the master nodes individually.
+Be aware that Longhorn and other systems need time to recover from the reboots
+otherwise they will block a shutdown or might loose data.
+
+```bash
+ansible-playbook playbooks/07_k3s_update.yml --limit k3smaster1
+```
