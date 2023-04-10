@@ -159,6 +159,16 @@ plex:
           command:
             - cat
             - /tv/healthcheck
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - preference:
+            matchExpressions:
+              - key: performance
+                operator: In
+                values:
+                  - medium
+
   ingress:
     main:
       enabled: true
