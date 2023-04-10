@@ -162,7 +162,8 @@ plex:
   affinity:
     nodeAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
-        - preference:
+        - weight: 50
+          preference:
             matchExpressions:
               - key: performance
                 operator: In
