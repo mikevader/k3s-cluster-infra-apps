@@ -106,7 +106,7 @@
     // Helm charts that are safe to auto merge
     {
       "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["patch"],
+      //"matchUpdateTypes": ["patch"],
       "registryUrls": ["https://k8s-at-home.com/charts", "https://mikevader.github.io/charts"],
       "matchPackagePatterns": [
         "argo-cd"
