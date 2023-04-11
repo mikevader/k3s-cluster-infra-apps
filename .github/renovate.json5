@@ -107,7 +107,7 @@
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["patch"],
-    //  "registryUrls": ["https://k8s-at-home.com/charts"],
+      "registryUrls": ["https://k8s-at-home.com/charts", "https://mikevader.github.io/charts"],
       "matchPackagePatterns": [
         "argo-cd"
       ],
