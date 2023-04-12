@@ -2,6 +2,17 @@ global:
   domainName: authentik.framsburg.ch
 
 authentik:
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 50
+          preference:
+            matchExpressions:
+              - key: performance
+                operator: In
+                values:
+                  - medium
+
   authentik:
     secret_key: dontjudgemethisisjustfortesting    # TODO
     postgresql:
