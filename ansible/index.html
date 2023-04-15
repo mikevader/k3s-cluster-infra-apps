@@ -12,20 +12,20 @@
         <meta name="author" content="Michael M&uuml;hlebach">
       
       
-        <link rel="canonical" href="https://mikevader.github.io/gitops/cert-manager/">
+        <link rel="canonical" href="https://mikevader.github.io/gitops/ansible/">
       
       
-        <link rel="prev" href="../metallb/">
+        <link rel="prev" href="../custom-images/">
       
       
-        <link rel="next" href="../traefik/">
+        <link rel="next" href="../argocd/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
     
     
       
-        <title>Cert Manager - Raspberry Pi GitOps Stack</title>
+        <title>Ansible - Raspberry Pi GitOps Stack</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cert-manager" class="md-skip">
+        <a href="#pi-farm-the-river" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Cert Manager
+              Ansible
             
           </span>
         </div>
@@ -276,14 +276,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
       
       
       
@@ -292,7 +294,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           Cluster
@@ -303,11 +305,93 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../ansible/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Ansible
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Ansible
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#first-time" class="md-nav__link">
+    First Time
+  </a>
+  
+    <nav class="md-nav" aria-label="First Time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-roles-from-the-ansible-galixy" class="md-nav__link">
+    Download roles from the ansible galixy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-servers" class="md-nav__link">
+    New servers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-the-site" class="md-nav__link">
+    Deploy the site
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrade-all-servers-to-latest-versions" class="md-nav__link">
+    Upgrade all servers to latest versions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -339,16 +423,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
       
@@ -357,7 +439,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           Critial Systems
@@ -382,21 +464,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../cert-manager/" class="md-nav__link">
         Cert Manager
       </a>
-      
     </li>
   
 
@@ -715,6 +787,62 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#first-time" class="md-nav__link">
+    First Time
+  </a>
+  
+    <nav class="md-nav" aria-label="First Time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-roles-from-the-ansible-galixy" class="md-nav__link">
+    Download roles from the ansible galixy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-servers" class="md-nav__link">
+    New servers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-the-site" class="md-nav__link">
+    Deploy the site
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrade-all-servers-to-latest-versions" class="md-nav__link">
+    Upgrade all servers to latest versions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -731,7 +859,227 @@
   
 
 
-<h1 id="cert-manager">Cert-Manager</h1>
+<h1 id="pi-farm-the-river">Pi Farm @ the river</h1>
+<h2 id="first-time">First Time</h2>
+<p>Create credentials file in devops home, named <code>.vault-credentials</code> with permission 0600.
+This file contains the passphrase for the ansible vault.</p>
+<h3 id="download-roles-from-the-ansible-galixy">Download roles from the ansible galixy</h3>
+<p><code>ansible-galaxy install -r roles/requirements.yml</code></p>
+<h2 id="new-servers">New servers</h2>
+<p>To provision new (or existing systems) with the correct users and keys do the following:</p>
+<ul>
+<li>Add system to the hosts file</li>
+<li>Ensure the default user exists in <code>group_vars/&lt;distribution-name&gt;.yaml</code>
+  Otherwise add a file with the variable <code>ansible_user_first_run</code></li>
+<li>Run ansible with <code>ansible-playbook add-user-ssh.yaml --limit k3sworker05</code></li>
+</ul>
+<h2 id="deploy-the-site">Deploy the site</h2>
+<p><code>ansible-playbook site.yml</code></p>
+<h2 id="upgrade-all-servers-to-latest-versions">Upgrade all servers to latest versions</h2>
+<p><code>ansible-playbook upgrade.yml</code></p>
+<h2 id="references">References</h2>
+<ul>
+<li>https://github.com/prometheus/demo-site</li>
+</ul>
+<h1 id="raspberry-firmware-update">Raspberry Firmware Update</h1>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$ sudo rpi-eeprom-update
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>$ sudo apt-get install rpi-eeprom
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>$ sudo rpi-eeprom-update -a
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>$ sudo raspi-config
+</code></pre></div>
+<p>TODO:</p>
+<h1 id="setup-requirements">setup requirements</h1>
+<ul>
+<li>
+<p>update hostname: <code>sudo hostnamectl set-hostname k3s...</code></p>
+</li>
+<li>
+<p>cgroupt in /boot/firmware/cmdline.txt: (on ubuntu /boot/fir)
+append <code>cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1 swapaccount=1</code></p>
+</li>
+</ul>
+<h1 id="install-k3s-server">install k3s server</h1>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ export K3S_DATASTORE_ENDPOINT=&#39;postgres://k3s:12345678@192.168.42.221:5432/k3s?sslmode=disable&#39;
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>$ curl -sfL https://get.k3s.io | sh -s - server --node-taint CriticalAddonsOnly=true:NoExecute --tls-san 192.168.42.60
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>--datastore-endpoint postgres://k3s:12345678@192.168.42.221:5432/k3s?sslmode=disable
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>--tls-san k3s.framsburg.ch
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$ sudo journalctl -u k3s.service
+</code></pre></div>
+<p>get token <code>sudo cat /var/lib/rancher/k3s/server/node-token</code></p>
+<h1 id="add-second-server">add second server</h1>
+<p>export database
+export Token
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ export K3S_DATASTORE_ENDPOINT=&#39;postgres://k3s:12345678@192.168.42.221:5432/k3s?sslmode=disable&#39;
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>$ export K3S_TOKEN=K10c72f4e5f9fd862f0a1e91f9d1f91b16b2580621273705ee76528a66ed45f9819::server:5401d36937aa612639acb4d1083c2800
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>curl -sfL https://get.k3s.io | sh -s - server \
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>--datastore-endpoint postgres://k3s:12345678@192.168.42.221:5432/k3s?sslmode=disable \
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>--tls-san k3s.framsburg.ch
+</code></pre></div></p>
+<h1 id="install-agent">install agent</h1>
+<p>log into agent node
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>export K3S_URL=https://k3s.framsburg.ch:6443
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>export K3S_TOKEN=K10c72f4e5f9fd862f0a1e91f9d1f91b16b2580621273705ee76528a66ed45f9819::server:5401d36937aa612639acb4d1083c2800
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>curl -sfL https://get.k3s.io | sh -
+</code></pre></div></p>
+<h1 id="metallb">MetalLB</h1>
+<p><code>kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)" --dry-run -o yaml | kubectl apply -f -</code></p>
+<p>use ansible vault for secretkey.</p>
+<h1 id="dual-stack-ingress">Dual Stack Ingress</h1>
+<p><a href="https://digitalis.io/blog/k3s-lightweight-kubernetes-made-ready-for-production-part-1/">Ideas from Digitalis</a></p>
+<h1 id="install-longhorn">Install Longhorn</h1>
+<p>https://www.ekervhen.xyz/posts/2021-02/troubleshooting-longhorn-and-dns-networking/</p>
+<h2 id="new-disk">New disk</h2>
+<p>find out device <code>lsblk -f</code>
+on new devices <code>wipefs -a /dev/{{ var_disk }}</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$ sudo fdisk -l
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>$ sudo fdisk /dev/sdb
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Command: n
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Partition number: 1 (default)
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>First sector: (default)
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Last sector: (default)
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>Command: w
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>$ sudo fdisk -l
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$ sudo mkfs -t ext4 /dev/sdb1
+</code></pre></div>
+<h1 id="install-cert-manager">install cert-manager</h1>
+<p>log into localhost or commander
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$ export KUBECONFIG=&#39;~/.kube/config-k3s&#39;
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a># If you have installed the CRDs manually instead of with the `--set installCRDs=true` option added to your Helm install command, you should upgrade your CRD resources before upgrading the Helm chart:
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>$ kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.1/cert-manager.crds.yaml
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a># Add the Jetstack Helm repository
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>helm repo add jetstack https://charts.jetstack.io
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a># Update your local Helm chart repository cache
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>$ helm repo update
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a># Install the cert-manager Helm chart
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>$ helm install cert-manager jetstack/cert-manager \
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>  --namespace cert-manager \
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>  --create-namespace \
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>  --version v1.5.4 \
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>  --set installCRDs=true \
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>  --debug
+</code></pre></div></p>
+<h1 id="install-rancher">install rancher</h1>
+<p>log into localhost or commander
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$ export KUBECONFIG=&#39;~/.kube/config-k3s&#39;
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>$ helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>$ kubectl create namespace cattle-system
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a># Update your local Helm chart repository cache
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>$ helm repo update
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>$ helm install rancher rancher-latest/rancher \
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>  --namespace cattle-system \
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>  --create-namespace \
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>  --set hostname=rancher.framsburg.ch \
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>  --set bootstrapPassword=admin \
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>  --set ingress.tls.source=rancher  --wait --debug --timeout 10m0s
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>$ kubectl -n cattle-system rollout status deploy/rancher
+</code></pre></div></p>
+<p>uninstall cert-manager:
+- helm uninstall cert-manager -n cert-manager
+- kubectl delete -f https://github.com/jetstack/cert-manager/releases/download/v1.5.4/cert-manager.crds.yaml
+- kubectl delete  job.batch/cert-manager-startupapicheck -n cert-manager
+- kubectl delete rolebinding.rbac.authorization.k8s.io/cert-manager-startupapicheck:create-cert -n cert-manager
+- kubectl delete role.rbac.authorization.k8s.io/cert-manager-startupapicheck:create-cert -n cert-manager</p>
+<h1 id="argo-cd">argo cd</h1>
+<h2 id="prerequisites">prerequisites</h2>
+<p>Install Go
+* [https://golang.org/doc/install]</p>
+<p>Install Docker
+* [https://docs.docker.com/engine/install/ubuntu/]</p>
+<p>Clone and build argo-cd according to <a href="https://github.com/argoproj/argo-cd/pull/3554">^argocdarm</a>
+* <code>git clone https://github.com/argoproj/argo-cd.git</code>
+* <code>cd argo-cd</code>
+* <code>make armimage</code></p>
+<h1 id="plex">Plex</h1>
+<p>Plex image after <a href="https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex">k8s-at-home/plex</a>
+has an initial issue with recognising itself as plex media server.
+The reason is the claim token (https://raw.githubusercontent.com/uglymagoo/plex-claim-server/master/plex-claim-server.sh)</p>
+<p>if [ ! -z "${PLEX_CLAIM}" ] &amp;&amp; [ -z "${token}" ]; then
+  echo "Attempting to obtain server token from claim token"
+  loginInfo="$(curl -X POST \
+        -H 'X-Plex-Client-Identifier: '${clientId} \
+        -H 'X-Plex-Product: Plex Media Server'\
+        -H 'X-Plex-Version: 1.1' \
+        -H 'X-Plex-Provides: server' \
+        -H 'X-Plex-Platform: Linux' \
+        -H 'X-Plex-Platform-Version: 1.0' \
+        -H 'X-Plex-Device-Name: PlexMediaServer' \
+        -H 'X-Plex-Device: Linux' \
+        "https://plex.tv/api/claim/exchange?token=${PLEX_CLAIM}")"
+  token="$(echo "$loginInfo" | sed -n 's/.<em><authentication-token>(.</em>)&lt;\/authentication-token&gt;.*/\1/p')"</p>
+<p>if [ "$token" ]; then
+    setPref "PlexOnlineToken" "${token}"
+    echo "Plex Media Server successfully claimed"
+  fi
+fi</p>
+<h1 id="tips-tricks">Tips &amp; Tricks</h1>
+<h2 id="get-rid-of-node">Get rid of node:</h2>
+<p>kubectl drain <node>
+kubectl delete <node></p>
+<h2 id="list-all-helm-installations">list all helm installations:</h2>
+<p>helm list -a  -A</p>
+<h2 id="uninstall-helm-installation">uninstall helm installation:</h2>
+<p>helm uninstall <name> -n <namespace></p>
+<h2 id="remove-dangling-namespaces">Remove dangling namespaces:</h2>
+<p>(
+NAMESPACE=your-rogue-namespace
+kubectl proxy &amp;
+kubectl get namespace $NAMESPACE -o json |jq '.spec = {"finalizers":[]}' &gt;temp.json
+curl -k -H "Content-Type: application/json" -X PUT --data-binary @temp.json 127.0.0.1:8001/api/v1/namespaces/$NAMESPACE/finalize
+)</p>
+<h2 id="remove-old-logs">Remove old logs:</h2>
+<p>sudo journalctl --rotate --vacuum-time=5s
+sudo journalctl --rotate --vacuum-size=500M</p>
+<h2 id="remove-ssh-keys">Remove SSH keys</h2>
+<p><code>sudo ssh-keygen -f "/root/.ssh/known_hosts" -R "k3sworker02"</code>
+<code>ssh-keygen -f "/home/devops/.ssh/known_hosts" -R "k3sworker02"</code></p>
+<h2 id="replace-master-node">Replace master node</h2>
+<ul>
+<li>Drain master node</li>
+<li>Move master node to end of ansible master group list (if it is at the top, it will be initialized as new cluster)</li>
+<li></li>
+</ul>
+<h2 id="install-etcdctl">Install etcdctl</h2>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$ VERSION=&quot;v3.5.4&quot;
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>$ curl -L https://github.com/etcd-io/etcd/releases/download/${VERSION}/etcd-${VERSION}-linux-arm64.tar.gz --output etcdctl-linux-arm64.tar.gz
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>$ sudo tar -zxvf etcdctl-linux-arm64.tar.gz --strip-components=1 -C /usr/local/bin etcd-${VERSION}-linux-arm64/etcdctl
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$ sudo etcdctl --cacert=/var/lib/rancher/k3s/server/tls/etcd/server-ca.crt --cert=/var/lib/rancher/k3s/server/tls/etcd/client.crt --key=/var/lib/rancher/k3s/server/tls/etcd/client.key version
+</code></pre></div></p>
+<h2 id="unix-utils">Unix Utils</h2>
+<p>Find listening ports:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>$ sudo lsof -i -P -n | grep LISTEN
+</code></pre></div></p>
+<h1 id="next-steps">Next Steps:</h1>
+<ul>
+<li>https://greg.jeanmart.me/2020/04/13/deploy-prometheus-and-grafana-to-monitor-a-k/</li>
+<li>https://www.civo.com/learn/monitoring-k3s-with-the-prometheus-operator-and-custom-email-alerts</li>
+<li>https://github.com/atoy3731/k8s-tools-app</li>
+</ul>
+<h1 id="references_1">References:</h1>
+<ul>
+<li>https://rpi4cluster.com/k3s/k3s-hardware/</li>
+<li></li>
+<li>argocd selfdeploy: [https://www.arthurkoziel.com/setting-up-argocd-with-helm/]</li>
+</ul>
 
 
 

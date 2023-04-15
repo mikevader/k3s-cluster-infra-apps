@@ -12,20 +12,18 @@
         <meta name="author" content="Michael M&uuml;hlebach">
       
       
-        <link rel="canonical" href="https://mikevader.github.io/gitops/cert-manager/">
+        <link rel="canonical" href="https://mikevader.github.io/gitops/vpn/">
       
       
-        <link rel="prev" href="../metallb/">
+        <link rel="prev" href="../network/">
       
-      
-        <link rel="next" href="../traefik/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
     
     
       
-        <title>Cert Manager - Raspberry Pi GitOps Stack</title>
+        <title>VPN - Raspberry Pi GitOps Stack</title>
       
     
     
@@ -73,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cert-manager" class="md-skip">
+        <a href="#vpn" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Cert Manager
+              VPN
             
           </span>
         </div>
@@ -339,16 +337,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
       
@@ -357,7 +353,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           Critial Systems
@@ -382,21 +378,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../cert-manager/" class="md-nav__link">
         Cert Manager
       </a>
-      
     </li>
   
 
@@ -638,14 +624,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
       
       
       
@@ -654,7 +642,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_9">
           <span class="md-nav__icon md-icon"></span>
           Extras
@@ -679,11 +667,79 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../vpn/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          VPN
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         VPN
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup-client" class="md-nav__link">
+    Setup Client
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshoot" class="md-nav__link">
+    Troubleshoot
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshoot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#renew-openvpn-certificate" class="md-nav__link">
+    Renew OpenVPN Certificate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renew-client-certificate" class="md-nav__link">
+    Renew Client Certificate
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -715,6 +771,48 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup-client" class="md-nav__link">
+    Setup Client
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshoot" class="md-nav__link">
+    Troubleshoot
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshoot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#renew-openvpn-certificate" class="md-nav__link">
+    Renew OpenVPN Certificate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renew-client-certificate" class="md-nav__link">
+    Renew Client Certificate
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -731,7 +829,38 @@
   
 
 
-<h1 id="cert-manager">Cert-Manager</h1>
+<h1 id="vpn">VPN</h1>
+<h2 id="setup-client">Setup Client</h2>
+<p>https://docs.opnsense.org/manual/how-tos/sslvpn_client.html#create-a-server-certificate</p>
+<h2 id="troubleshoot">Troubleshoot</h2>
+<h3 id="renew-openvpn-certificate">Renew OpenVPN Certificate</h3>
+<p>System &gt;&gt; Trust &gt;&gt; Certificates</p>
+<ul>
+<li>Create Certificate</li>
+<li>Create internal certificate</li>
+<li>Descriptive name: SSL VPN Server Certificate <year></li>
+<li>CA: SSL VPN CA (newest)</li>
+<li>Type: Server Certificate</li>
+<li>Length: 4096</li>
+<li>Digest: SHA512</li>
+<li>Common Name: SSL VPN Server Certificate <year></li>
+</ul>
+<h3 id="renew-client-certificate">Renew Client Certificate</h3>
+<p>System &gt;&gt; Trust &gt;&gt; Certificates</p>
+<ul>
+<li>Create Certificate</li>
+<li>Create internal certificate</li>
+</ul>
+<p>System &gt;&gt; Access &gt;&gt; Users</p>
+<ul>
+<li>Edit user</li>
+<li>Select new Certificate</li>
+</ul>
+<p>VPN &gt;&gt; OpenVPN &gt;&gt; Client Export</p>
+<ul>
+<li>Download certifcate for user</li>
+<li>Use new config in OpenVPN Client</li>
+</ul>
 
 
 

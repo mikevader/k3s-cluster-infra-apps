@@ -12,20 +12,20 @@
         <meta name="author" content="Michael M&uuml;hlebach">
       
       
-        <link rel="canonical" href="https://mikevader.github.io/gitops/cert-manager/">
+        <link rel="canonical" href="https://mikevader.github.io/gitops/proxmox-setup/">
       
       
-        <link rel="prev" href="../metallb/">
+        <link rel="prev" href="../bare-metal/">
       
       
-        <link rel="next" href="../traefik/">
+        <link rel="next" href="../custom-images/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
     
     
       
-        <title>Cert Manager - Raspberry Pi GitOps Stack</title>
+        <title>Proxmox - Raspberry Pi GitOps Stack</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cert-manager" class="md-skip">
+        <a href="#setup-proxmox" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Cert Manager
+              Proxmox
             
           </span>
         </div>
@@ -246,11 +246,120 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../proxmox-setup/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Proxmox
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Proxmox
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-proxmox" class="md-nav__link">
+    Install Proxmox
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-steps-on-a-new-proxmox-server" class="md-nav__link">
+    First steps on a new Proxmox server
+  </a>
+  
+    <nav class="md-nav" aria-label="First steps on a new Proxmox server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#updates" class="md-nav__link">
+    Updates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage" class="md-nav__link">
+    Storage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vlan-aware" class="md-nav__link">
+    VLAN Aware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isos" class="md-nav__link">
+    ISOs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-worker-node" class="md-nav__link">
+    Setup worker node
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup worker node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-qemu-agent" class="md-nav__link">
+    Install Qemu Agent
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -339,16 +448,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
       
@@ -357,7 +464,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           Critial Systems
@@ -382,21 +489,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../cert-manager/" class="md-nav__link">
         Cert Manager
       </a>
-      
     </li>
   
 
@@ -715,6 +812,89 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-proxmox" class="md-nav__link">
+    Install Proxmox
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-steps-on-a-new-proxmox-server" class="md-nav__link">
+    First steps on a new Proxmox server
+  </a>
+  
+    <nav class="md-nav" aria-label="First steps on a new Proxmox server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#updates" class="md-nav__link">
+    Updates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage" class="md-nav__link">
+    Storage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vlan-aware" class="md-nav__link">
+    VLAN Aware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isos" class="md-nav__link">
+    ISOs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-worker-node" class="md-nav__link">
+    Setup worker node
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup worker node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-qemu-agent" class="md-nav__link">
+    Install Qemu Agent
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -731,7 +911,142 @@
   
 
 
-<h1 id="cert-manager">Cert-Manager</h1>
+<h1 id="setup-proxmox">Setup Proxmox</h1>
+<p>Proxmox is an OpenSource virtualization software. The largere nodes are setup
+with it and the nodes on it virtualized.</p>
+<h2 id="install-proxmox">Install Proxmox</h2>
+<p>First create a boot USB stick with Proxmox VE Installer ISO.</p>
+<p>Select ZFS as filesystem as it will set the bootloader to systemd-boot instead of GRUB.</p>
+<h2 id="first-steps-on-a-new-proxmox-server">First steps on a new Proxmox server</h2>
+<p>After setting up a new Proxmox server, there are a few things to do before they
+can be used. Idealy those steps would be automated but ...</p>
+<p>Those steps are heavily inspired by <a href="https://docs.technotim.live/posts/first-11-things-proxmox/">techno tim setup article</a></p>
+<h3 id="updates">Updates</h3>
+<p>Edit <code>/etc/apt/sources.list</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>deb<span class="w"> </span>http://ftp.debian.org/debian<span class="w"> </span>bullseye<span class="w"> </span>main<span class="w"> </span>contrib
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>deb<span class="w"> </span>http://ftp.debian.org/debian<span class="w"> </span>bullseye-updates<span class="w"> </span>main<span class="w"> </span>contrib
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># security updates</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>deb<span class="w"> </span>http://security.debian.org/debian-security<span class="w"> </span>bullseye-security<span class="w"> </span>main<span class="w"> </span>contrib
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># PVE pve-no-subscription repository provided by proxmox.com,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># NOT recommended for production use</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>deb<span class="w"> </span>http://download.proxmox.com/debian/pve<span class="w"> </span>bullseye<span class="w"> </span>pve-no-subscription
+</code></pre></div>
+<p>Edit <code>/etc/apt/sources.list.d/pve-enterprise.list</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># deb https://enterprise.proxmox.com/debian/pve buster pve-enterprise</span>
+</code></pre></div>
+<p>Run</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>apt-get<span class="w"> </span>update
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>apt<span class="w"> </span>full-upgrade
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>reboot
+</code></pre></div>
+<h3 id="storage">Storage</h3>
+<p>BE CAREFUL. This is meant for the storage/longhorn disks as it will wipe it</p>
+<p>```shell caption="select the correct disk device"
+fdisk /dev/sda
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Then P for partition, then D for delete and W for write.
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>### IOMMU  (PCI Passthrough)
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>See [Proxmox PCI Passthrough](https://pve.proxmox.com/wiki/Pci_passthrough)
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>First make sure IOMMU is enabled in the BIOS.
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>`nano /etc/kernel/cmdline`
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>Add `intel_iommu=on iommu=pt` to the end of this line without line breaks. (for
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>AMD processors add `amd_iommu=on ...`)
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>```shell
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on iommu=pt
+</code></pre></div></p>
+<p>Edit <code>/etc/modules</code> and add</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>vfio
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>vfio_iommu_type1
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>vfio_pci
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>vfio_virqfd
+</code></pre></div>
+<p>run</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>update-initramfs<span class="w"> </span>-u<span class="w"> </span>-k<span class="w"> </span>all
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># or proxmox-boot-tool refresh</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>reboot
+</code></pre></div>
+<h3 id="vlan-aware">VLAN Aware</h3>
+<p>Setup the network interface to handle VLANs.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>nano<span class="w"> </span>/etc/network/interfaces
+</code></pre></div>
+<p>Add the following lines to the main network interface</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>bridge-vlan-aware<span class="w"> </span>yes
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>bridge-vids<span class="w"> </span><span class="m">2</span>-4094
+</code></pre></div>
+<h3 id="isos">ISOs</h3>
+<p>Define images:</p>
+<ul>
+<li>https://releases.ubuntu.com/22.10/ubuntu-22.10-live-server-amd64.iso</li>
+</ul>
+<h2 id="setup-worker-node">Setup worker node</h2>
+<p>Depending on the usage the parameters may vary. But following is a node which is
+part of the longhorn storage and has an interface to the internet.</p>
+<ul>
+<li>General:</li>
+<li>Node: pve1-x</li>
+<li>Name: k3sworker</li>
+<li>Start at boot: true</li>
+<li>OS:</li>
+<li>ISO Image: ubuntu server installer</li>
+<li>System:</li>
+<li>Qemu Agent: true</li>
+<li>Disks:</li>
+<li>disk 1:<ul>
+<li>Storage: virtual</li>
+<li>Size: 64 GB</li>
+<li>Backup: yes</li>
+<li>Skip replication: no</li>
+<li>Discard: yes</li>
+<li>SSD emulation: yes</li>
+</ul>
+</li>
+<li>disk 2:<ul>
+<li>Storage: virtual</li>
+<li>Size: &gt;512 GB</li>
+<li>Backup: no</li>
+<li>Skip replication: yes</li>
+<li>Discard: yes</li>
+<li>SSD emulation: yes</li>
+</ul>
+</li>
+<li>CPU:</li>
+<li>Sockets: 1</li>
+<li>Cores: 2-12</li>
+<li>Memory:</li>
+<li>min 32 GB</li>
+<li>max 64 GB</li>
+<li>Network:</li>
+<li>net0<ul>
+<li>Bridge: vmbr0</li>
+</ul>
+</li>
+<li>net1<ul>
+<li>Bridge: vmbr0</li>
+<li>vlan tag: 99</li>
+</ul>
+</li>
+</ul>
+<p>Don't forget to define the generated mac address in DHCP</p>
+<h3 id="install-qemu-agent">Install Qemu Agent</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ssh<span class="w"> </span>devops@k3sworker&lt;xy&gt;
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>qemu-guest-agent
+</code></pre></div>
+<h2 id="references">References</h2>
+<ul>
+<li>[CSI]: Container Storage Interface</li>
+<li>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></li>
+</ul>
 
 
 
