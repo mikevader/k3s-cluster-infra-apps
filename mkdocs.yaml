@@ -12,7 +12,7 @@ repo_name: mikevader/k3s-cluster-infra-apps
 repo_url: https://github.com/mikevader/k3s-cluster-infra-apps
 
 # Copyright
-copyright: Copyright &copy; 2020 - 2022 Michael M&uuml;hlebach
+copyright: Copyright &copy; 2020 - 2023 Michael M&uuml;hlebach
 
 theme:
   name: material
@@ -33,9 +33,10 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Bare-Metal: bare-metal.md
-  - Network: network.md
+  - Proxmox: proxmox-setup.md
   - Custom Images: custom-images.md
   - Cluster:
+    - Ansible: ansible.md
     - ArgoCD: argocd.md
   - Critial Systems:
     - MetalLB: metallb.md
@@ -53,6 +54,9 @@ nav:
     - Plex: plex.md
     - AdGuard: adguard.md
     - Airprint: airprint.mc
+  - Extras:
+    - Network: network.md
+    - VPN: vpn.md
 
 
 extra:

@@ -15,5 +15,16 @@ That means, at least for me, to stay true to the following points:
 * Critical parts of the system (like control-plane, networking, etc) are setup in HA
 
 
+## Hardware
+
+I use the following harware setup for this:
+
+* 3 Raspberry PI 4s with 8GB Ram and Corsair GTX USB Stick as Disk
+* 4 Raspberry PI 4s with 8GB Ram, Corsair GTX USB Stick as Boot Disk and an
+  external USB/NVME Drive (which has to be powered separatly)
+
+The first are used for the control plane, the other fours are used as worker
+nodes. Some of them are powered with PoE hats. The faster external drives are
+used for longhorn.
 
 --8<-- "includes/abbreviations.md"
