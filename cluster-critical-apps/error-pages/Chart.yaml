@@ -4,5 +4,5 @@ apiVersion: v2
 version: 1.0.0
 dependencies:
   - name: common
-    repository: https://library-charts.k8s-at-home.com
+    repository: https://mikevader.github.io/charts
     version: 4.5.2
