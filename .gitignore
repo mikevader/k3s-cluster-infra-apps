@@ -5,3 +5,4 @@ gitops.code-workspace
 *.tgz
 charts
 Chart.lock
+k3s-cluster-infra-apps.code-workspace
