@@ -95,6 +95,11 @@ spec:
             bound_service_account_namespaces: ["*"] # ["argocd-system"]
             policies: ["allow_secrets"]
             ttl: 1h
+          - name: renovate
+            bound_service_account_names: ["*"] # ["default", "argocd-server"]
+            bound_service_account_namespaces: ["renovate"] # ["argocd-system"]
+            policies: ["allow_secrets"]
+            ttl: 1h
           - name: vault
             bound_service_account_names: ["*"] # ["default", "argocd-server"]
             bound_service_account_namespaces: ["*"] # ["argocd-system"]
