@@ -27,6 +27,7 @@ applications:
   authentik: {}
   external-secrets: {}
   kubernetes-dashboard: {}
+  renovate: {}
   sloth: {}
   vault: {}
   vault-operator: {}
