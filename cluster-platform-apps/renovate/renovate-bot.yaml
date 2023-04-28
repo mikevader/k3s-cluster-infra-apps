@@ -30,6 +30,11 @@ spec:
                 - name: RENOVATE_GIT_AUTHOR
                   value: 'Renovate Bot <bot@renovateapp.com>'
 
+                - name: RENOVATE_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: renovate-secret
+                      key: github-token
                 - name: GITHUB_COM_TOKEN
                   valueFrom:
                     secretKeyRef:
