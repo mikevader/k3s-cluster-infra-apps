@@ -6,5 +6,7 @@ metadata:
 data:
   config.json: |-
     {
+      "allowPostUpgradeCommandTemplating": true,
+      "allowedPostUpgradeCommands": ["^.*$", "^sed -i"],
       "repositories": ["mikevader/charts","mikevader/container-images","mikevader/k3s-cluster-infra-apps"]
     }
