@@ -8,5 +8,5 @@ data:
     {
       "allowPostUpgradeCommandTemplating": true,
       "allowedPostUpgradeCommands": ["^.*$", "^sed -i"],
-      "repositories": ["mikevader/charts","mikevader/container-images","mikevader/k3s-cluster-infra-apps"]
+      "repositories": ["mikevader/charts"]
     }
