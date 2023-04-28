@@ -6,6 +6,5 @@ metadata:
 data:
   config.json: |-
     {
-      "repositories": ["mikevader/charts","mikevader/images","mikevader/k3s-cluster-infra-apps"],
-      "dryRun" : "true"
+      "repositories": ["mikevader/charts","mikevader/container-images","mikevader/k3s-cluster-infra-apps"]
     }
