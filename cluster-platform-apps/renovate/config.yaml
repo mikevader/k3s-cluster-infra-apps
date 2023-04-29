@@ -7,6 +7,6 @@ data:
   config.json: |-
     {
       "allowPostUpgradeCommandTemplating": true,
-      "allowedPostUpgradeCommands": ["^.*$", "^sed -i"],
+      "allowedPostUpgradeCommands": ["^.*$", "^sed -i", "^cd "],
       "repositories": ["mikevader/charts"]
     }
