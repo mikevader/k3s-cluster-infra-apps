@@ -1,4 +1,4 @@
-
+error-pages:
   env:
     TEMPLATE_NAME: connection
 
