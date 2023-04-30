@@ -1,0 +1,9 @@
+# kustomization.yml
+namespace: metallb-system
+
+resources:
+  - templates/kubeProxyConfig.yaml
+  - github.com/metallb/metallb/config/native?ref=v0.13.9
+  - templates/addressPoolDefault.yaml
+  - templates/addressPoolExternal.yaml
+
