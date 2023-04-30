@@ -1,8 +1,6 @@
-global:
-  fullnameOverride: error-pages
 
-env:
-  TEMPLATE_NAME: connection
+  env:
+    TEMPLATE_NAME: connection
 
   ingress:
     main:
