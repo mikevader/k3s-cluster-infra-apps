@@ -3,6 +3,6 @@ name: error-pages
 apiVersion: v2
 version: 1.0.0
 dependencies:
-  - name: common
+  - name: error-pages
     repository: https://mikevader.github.io/charts
-    version: 4.5.3
+    version: 1.4.3

@@ -4,8 +4,20 @@ global:
 env:
   TEMPLATE_NAME: connection
 
-service:
-  main:
-    ports:
-      http:
-        port: 8080
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      ingressClassName: traefik
+      hosts:
+        - host: error-pages.framsburg.ch
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: error-pages
+      tls:
+        - hosts: [error-pages.framsburg.ch]
+          secretName: error-pages-framsburg-ch-tls
