@@ -1,10 +1,6 @@
 global:
   fullnameOverride: error-pages
 
-image:
-  repository: tarampampam/error-pages
-  tag: 2.24.0
-
 env:
   TEMPLATE_NAME: connection
 
