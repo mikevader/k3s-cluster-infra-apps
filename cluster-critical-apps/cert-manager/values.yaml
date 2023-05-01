@@ -31,9 +31,9 @@ cert-manager:
   # are not injected into this Job's pod. Otherwise the installation may time out
   # due to the Job never being completed because the sidecar proxy does not exit.
   # See https://github.com/jetstack/cert-manager/pull/4414 for context.
-  startupapicheck:
-    image:
-      repository: quay.io/jetstack/cert-manager-ctl-arm
+  # startupapicheck:
+  #   image:
+  #     repository: quay.io/jetstack/cert-manager-ctl-arm
 
   resources:
     requests:
