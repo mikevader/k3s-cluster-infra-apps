@@ -22,7 +22,7 @@ traefik:
       format: json
   service:
     annotations:
-      metallb.universe.tf/address-pool: metallb_external_ip_range
+      metallb.universe.tf/address-pool: metallb-external-ip-range
     spec:
       externalTrafficPolicy: Local
   ports:

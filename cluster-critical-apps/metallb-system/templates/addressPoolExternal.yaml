@@ -3,7 +3,7 @@ apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
   creationTimestamp: null
-  name: metallb_external_ip_range
+  name: metallb-external-ip-range
   namespace: metallb-system
 spec:
   addresses:
@@ -18,6 +18,6 @@ metadata:
   namespace: metallb-system
 spec:
   ipAddressPools:
-  - metallb_external_ip_range
+  - metallb-external-ip-range
 status: {}
 
