@@ -1,0 +1,9 @@
+---
+apiVersion: v2
+name: metallb-system
+description: Base LoadBalancer
+version: 1.0.0
+dependencies:
+  - name: metallb
+    version: 0.13.9
+    repository: https://metallb.github.io/metallb
