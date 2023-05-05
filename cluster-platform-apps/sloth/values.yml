@@ -1,0 +1,8 @@
+sloth:
+  resources:
+    limits:
+      cpu: 200m
+      memory: 150Mi
+    requests:
+      cpu: 5m
+      memory: 75Mi
