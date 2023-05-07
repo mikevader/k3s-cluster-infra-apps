@@ -13,7 +13,8 @@ data:
         {
           "hostType": "docker",
           "matchHost": "ghcr.io",
-          "token": "{{ secrets.GITHUB_TOKEN}}"
+          "username": "",
+          "password": "{{ secrets.GITHUB_TOKEN}}"
         }
       ]
     }
