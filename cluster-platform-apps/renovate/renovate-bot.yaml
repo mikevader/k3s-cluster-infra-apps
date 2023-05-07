@@ -40,9 +40,14 @@ spec:
                     secretKeyRef:
                       name: renovate-secret
                       key: github-token
+                - name: GITHUB_TOKEN_BASE64
+                  valueFrom:
+                    secretKeyRef:
+                      name: renovate-secret
+                      key: github-token-base64
                 
                 - name: RENOVATE_SECRETS
-                  value: "{\"GITHUB_TOKEN\":\"$(GITHUB_COM_TOKEN | base64)\"}"
+                  value: "{\"GITHUB_TOKEN\":\"$(GITHUB_TOKEN_BASE64)\"}"
 
               volumeMounts:
                 - name: config-volume
