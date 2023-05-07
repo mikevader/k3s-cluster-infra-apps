@@ -40,6 +40,9 @@ spec:
                     secretKeyRef:
                       name: renovate-secret
                       key: github-token
+                
+                - name: RENOVATE_SECRETS
+                  value: "{\"GITHUB_TOKEN\":\"${GITHUB_COM_TOKEN}\"}"
 
               volumeMounts:
                 - name: config-volume
