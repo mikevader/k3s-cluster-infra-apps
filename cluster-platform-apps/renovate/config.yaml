@@ -18,8 +18,18 @@ data:
         },
         {
           "hostType": "docker",
-          "matchHost": "https://ghcr.io/v2",
+          "matchHost": "https://ghcr.io/mikevader/plex",
           "password": "{{ secrets.GITHUB_TOKEN}}",
+          "token": "{{ secrets.GITHUB_TOKEN}}"
+        },
+        {
+          "hostType": "docker",
+          "matchHost": "https://ghcr.io/v2/mikevader/plex",
+          "password": "{{ secrets.GITHUB_TOKEN}}",
+          "token": "{{ secrets.GITHUB_TOKEN}}"
+        },
+        {
+          "hostType": "github",
           "token": "{{ secrets.GITHUB_TOKEN}}"
         }
       ]
