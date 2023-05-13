@@ -20,7 +20,7 @@ spec:
                     values:
                     - amd64     
           containers:
-            - image: renovate/renovate:35.14.4
+            - image: renovate/renovate:35.81.0
               name: renovate-bot
               env: # For illustration purposes, please use secrets.
                 - name: RENOVATE_PLATFORM
