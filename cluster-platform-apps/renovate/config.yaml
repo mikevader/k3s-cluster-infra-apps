@@ -12,8 +12,9 @@ data:
       "hostRules": [
         {
           "hostType": "docker",
-          "matchHost": "https://ghcr.io/mikevader/plex",
-          "token": "{{ secrets.GITHUB_TOKEN}}"
+          "matchHost": "https://ghcr.io",
+          "username": "USERNAME",
+          "password": "{{ secrets.GITHUB_TOKEN}}"
         }
       ]
     }
