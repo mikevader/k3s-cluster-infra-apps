@@ -5,4 +5,4 @@ version: 1.0.0
 dependencies:
   - name: error-pages
     repository: https://mikevader.github.io/charts
-    version: 1.4.6
+    version: 1.4.7
