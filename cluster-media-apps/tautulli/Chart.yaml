@@ -1,0 +1,8 @@
+apiVersion: v2
+name: filebrowser
+description: Filebrowser Chart
+version: 1.0.0
+dependencies:
+  - name: tautulli
+    version: 11.5.1
+    repository: https://mikevader.github.io/charts

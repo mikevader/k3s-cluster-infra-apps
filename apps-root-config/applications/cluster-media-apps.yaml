@@ -28,4 +28,5 @@ applications:
     disableNamespaceCreation: true
     destinationNamespace: plex
   plex: {}
+  tautulli: {}
 
