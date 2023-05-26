@@ -28,6 +28,9 @@ firefly:
       ingressClassName: traefik
       hosts:
         - host: '{{ .Values.global.domainName }}'
+          paths:
+            - path: /
+              pathType: Prefix
       tls:
         - hosts: ['{{ .Values.global.domainName }}']
           secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
