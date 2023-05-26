@@ -32,3 +32,4 @@ applications: {}
   #   destinationNamespace: test-kustomize-test
   # test-raw-test:
   #   path: cluster-test/test-raw
+  firefly-iii: {}
