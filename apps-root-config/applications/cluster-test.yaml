@@ -33,3 +33,4 @@ applications: {}
   # test-raw-test:
   #   path: cluster-test/test-raw
   firefly-iii: {}
+  foundryvtt: {}
