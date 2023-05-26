@@ -34,3 +34,4 @@ applications: {}
   #   path: cluster-test/test-raw
   firefly-iii: {}
   foundryvtt: {}
+  recipes: {}
