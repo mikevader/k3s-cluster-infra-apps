@@ -3,6 +3,7 @@ name: firefly-iii
 description: A personal finances manager
 version: 1.0.0
 dependencies:
-  - name: firefly
+  - name: firefly-iii
     version: 2.2.5
     repository: https://mikevader.github.io/charts
+    alias: firefly
