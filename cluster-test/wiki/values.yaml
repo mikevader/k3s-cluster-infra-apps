@@ -41,7 +41,7 @@ wiki:
       memory: 512Mi
   
   postgresql:
-    primary:
+    master:
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
