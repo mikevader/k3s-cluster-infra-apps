@@ -1,0 +1,8 @@
+apiVersion: v2
+name: wiki
+description: Make documentation a joy to write using Wiki.js's beautiful and intuitive interface!
+version: 1.0.0
+dependencies:
+  - name: wiki
+    version: 2.2.20
+    repository: https://charts.js.wiki
