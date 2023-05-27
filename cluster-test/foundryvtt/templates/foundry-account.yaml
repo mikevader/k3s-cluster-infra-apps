@@ -1,0 +1,24 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: foundry-account-ext-secret
+spec:
+  refreshInterval: 1m
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: foundry-account-secret
+  data:
+    - secretKey: username
+      remoteRef:
+        key: secret/data/framsburg/foundryvtt/account
+        property: username
+    - secretKey: password
+      remoteRef:
+        key: secret/data/framsburg/foundryvtt/account
+        property: password
+    - secretKey: admin-key
+      remoteRef:
+        key: secret/data/framsburg/foundryvtt/config
+        property: admin-key

@@ -7,6 +7,22 @@ foundryvtt:
   env:
     TZ: Europe/Zurich
 
+    FOUNDRY_USERNAME:
+      valueFrom:
+        secretKeyRef:
+          name: foundry-account-secret
+          key: username
+    FOUNDRY_PASSWORD:
+      valueFrom:
+        secretKeyRef:
+          name: foundry-account-secret
+          key: password
+    FOUNDRY_ADMIN_KEY:
+      valueFrom:
+        secretKeyRef:
+          name: foundry-account-secret
+          key: admin-key
+
   ingress:
     main:
       enabled: true
