@@ -1,10 +1,8 @@
-global:
-  domainName: wiki.framsburg.ch
-
 wiki:
   replicacount: 1
 
   image:
+    repository: requarks/wiki
     tag: 2.5.298
 
   affinity:
@@ -26,13 +24,13 @@ wiki:
       traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
     ingressClassName: traefik
     hosts:
-      - host: '{{ .Values.global.domainName }}'
+      - host: 'wiki.framsburg.ch'
         paths:
           - path: /
             pathType: Prefix
     tls:
-      - hosts: ['{{ .Values.global.domainName }}']
-        secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
+      - hosts: ['wiki.framsburg.ch']
+        secretName: 'wiki-framsburg-ch-tls'
 
   resources:
     requests:
