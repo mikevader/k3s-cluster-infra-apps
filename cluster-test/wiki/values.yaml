@@ -39,3 +39,16 @@ wiki:
     limits:
       cpu: 500m
       memory: 512Mi
+  
+  postgresql:
+    primary:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 50
+              preference:
+                matchExpressions:
+                  - key: performance
+                    operator: In
+                    values:
+                      - medium
