@@ -13,8 +13,21 @@ firefly:
     enabled: true
     image:
       tag: "version-1.2.2"
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 50
+            preference:
+              matchExpressions:
+                - key: performance
+                  operator: In
+                  values:
+                    - medium
     specs:
       - accessToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzkxM2I3ZDJmMmYwZTg1NTIyNmQyY2FmY2EwNjIxNjJkNDMxMWFhMzIwYmUyMzJkZTM4ZjU4MWI1NjU5NWM4NTliMjkyNTUzY2U4MTZmMzEiLCJpYXQiOjE2ODUzMTI3MTkuNDY3NzcyLCJuYmYiOjE2ODUzMTI3MTkuNDY3Nzc1LCJleHAiOjE3MTY5MzUxMTkuMzk0NTk0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.Xne92unV-YaPpx_A_uyOW2QYyykfhUZPATQcS9MDTklZUMdYFOzwbe5Q-Hj4uxrg21g_wEpoCkHuQ-dox8dzZQ_hOICMhvuJvj276YPR237Yq5UixcWWKwSRacYG6zXIz2QYCPWZ9PUg6J43rhREb61V8YFqOhw5uvGQ2QhMfJ4Z6XJoM2a-S_Zo5uYu0a9sN1krx_bfiuBvKYKhXVb3qRqdL6F94cTDrvOcZwhK4H-rWBGeDAttq-buFbsT-w-4mbKHns0oudRQi0F6m62JuBqPUAJf7m6ol58Nxai-m4wLdOR9O5yZq1vkh4UxMS0awLDbt8XJSCeEE_8X0aWwNHN7TOySnr66-Q_gTo2ZbppgtG1bO9VTsSDIGO_fYLFbSZPLAc3svSwpMQsOles9x7x1uy7EtVPuLdoaEr8piJ-SnzarC6x6OTeCxQieTnU63CLxdKPoNfK4Z7qe30CpQCUlKZ7g1dfdtRfL7eERXt4oNmURIGC-DMfs9zVimnxzGok0ks-8WrNehnbJtFOGSueJeSRxHnuxgRPHvYWwcIrr7-uLgxabimaHj8uAO-7Kq9Zc7SPraFsmJilCHzH2vOuZdYWtD2hJN3BqQNS6iPwqW5oJaIWX9erKJTVHRenccyvRuDlqYouYH4GK9rl_12KWu0Lc-gCr5EWu0tvBNOk"
+        importerName: "default-importer"
+        port: 8080
+        replicaCount: 1
 
   affinity:
     nodeAffinity:
