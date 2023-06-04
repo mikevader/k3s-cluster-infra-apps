@@ -144,8 +144,7 @@ kube-prometheus-stack:
               - alertname="Watchdog"
           - receiver: 'null'
             matchers:
-              - severity="info"
-              - severity="warning"
+              - severity =~ "warning|info"
           - receiver: 'null'
             matchers:
               - alertname="InfoInhibitor"
