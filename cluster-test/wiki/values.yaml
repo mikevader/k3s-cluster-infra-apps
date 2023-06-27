@@ -3,7 +3,7 @@ wiki:
 
   image:
     repository: requarks/wiki
-    tag: 2.5.298
+    tag: 2.5.299
 
   affinity:
     nodeAffinity:
