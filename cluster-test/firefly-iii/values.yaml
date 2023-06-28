@@ -8,6 +8,7 @@ firefly:
     tag: "version-6.0.11"
   env:
     TZ: Europe/Zurich
+    APP_URL: https://firefly.framsburg.ch
 
   importer:
     enabled: true
