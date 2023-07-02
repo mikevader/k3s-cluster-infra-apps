@@ -225,5 +225,5 @@ plex:
       cpu: 200m
       memory: 128Mi
     limits:
-      cpu: 2
-      memory: 2048Mi
+      cpu: 12
+      memory: 16384Mi
