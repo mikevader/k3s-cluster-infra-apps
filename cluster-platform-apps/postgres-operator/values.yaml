@@ -1,2 +1,26 @@
 operator: {}
-ui: {}
+ui:
+  envs:
+    # IMPORTANT: While operator chart and UI chart are independent, this is the interface between
+    # UI and operator API. Insert the service name of the operator API here!
+    appUrl: "https://postgres.framsburg.ch"
+    operatorApiUrl: "http://postgres-operator.postgres-operator.svc:8080"
+    operatorClusterNameLabel: "cluster-name"
+    resourcesVisible: "True"
+    targetNamespace: "postgres-operator"
+    teams:
+      - "acid"
+
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    ingressClassName: traefik
+    hosts:
+      - host: postgres.framsburg.ch
+        paths: [""]
+    tls:
+     - secretName: postgres-framsburg-ch-tls
+       hosts:
+         - postgres.framsburg.ch
