@@ -1,0 +1,9 @@
+apiVersion: v2
+name: firefly-iii
+description: A personal finances manager
+version: 1.0.0
+dependencies:
+  - name: firefly-iii-stack
+    version: 0.7.2
+    repository: https://firefly-iii.github.io/kubernetes
+    alias: firefly
