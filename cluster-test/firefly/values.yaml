@@ -1,6 +1,3 @@
-global:
-  domainName: firefly2.framsburg.ch
-
 firefly:
   firefly-iii:
     image:
@@ -24,13 +21,13 @@ firefly:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
       className: traefik
       hosts:
-        - host: '{{ .Values.global.domainName }}'
+        - host: 'firefly2.framsburg.ch'
           paths:
             - path: /
               pathType: Prefix
       tls:
-        - hosts: ['{{ .Values.global.domainName }}']
-          secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
+        - hosts: ['firefly2.framsburg.ch']
+          secretName: 'firefly2-framsburg-ch-tls'
 
   importer:
     enabled: true
@@ -38,7 +35,7 @@ firefly:
       tag: "version-1.3.1"
 
     fireflyiii:
-      url: 'https://{{ .Values.global.domainName }}'
+      url: 'https://firefly2.framsburg.ch'
 
     affinity:
       nodeAffinity:
@@ -59,10 +56,10 @@ firefly:
         traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
       className: traefik
       hosts:
-        - host: 'import-{{ .Values.global.domainName }}'
+        - host: 'import-firefly2.framsburg.ch'
           paths:
             - path: /
               pathType: Prefix
       tls:
-        - hosts: ['import-{{ .Values.global.domainName }}']
-          secretName: 'import-{{ .Values.global.domainName | replace "." "-" }}-tls'
+        - hosts: ['import-firefly2.framsburg.ch']
+          secretName: 'import-firefly2-framsburg-ch-tls'
