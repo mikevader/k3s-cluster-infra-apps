@@ -1,7 +1,24 @@
 firefly:
+  firefly-db:
+    enabled: false
+
+
   firefly-iii:
     image:
       tag: "version-6.0.16"
+
+    config:
+      env:
+        DB_CONNECTION: hello-world.postgres-operator.svc
+        DB_PORT: "5432"
+        DB_DATABASE: fireflydb
+        DB_USERNAME: firefly
+        TZ: "Europe/Zurich"
+
+    # -- Create a new Secret from values file to store sensitive environment variables. Make sure to keep your secrets encrypted in the repository! For example, you can use the 'helm secrets' plugin (https://github.com/jkroepke/helm-secrets) to encrypt and manage secrets. If the 'config.existingSecret' value is set, a new Secret will not be created.
+    secrets:
+      env:
+        DB_PASSWORD: "ojfFYz1kdNGQiEFdG1RRaQH5fLd2LmoOHd5to5WQLFr3swgliyMqu178W7iZ75Y0"
 
     affinity:
       nodeAffinity:
