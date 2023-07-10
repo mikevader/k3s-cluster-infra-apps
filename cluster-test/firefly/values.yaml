@@ -45,10 +45,7 @@ firefly:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
       className: traefik
       hosts:
-        - host: 'firefly2.framsburg.ch'
-          paths:
-            - path: /
-              pathType: Prefix
+        - 'firefly2.framsburg.ch'
       tls:
         - hosts: ['firefly2.framsburg.ch']
           secretName: 'firefly2-framsburg-ch-tls'
@@ -80,10 +77,7 @@ firefly:
         traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
       className: traefik
       hosts:
-        - host: 'firefly2import.framsburg.ch'
-          paths:
-            - path: /
-              pathType: Prefix
+        - 'firefly2import.framsburg.ch'
       tls:
         - hosts: ['firefly2import.framsburg.ch']
           secretName: 'firefly2import-framsburg-ch-tls'
