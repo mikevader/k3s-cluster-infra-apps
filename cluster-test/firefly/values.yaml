@@ -10,7 +10,8 @@ firefly:
     config:
       env:
         APP_URL: 'https://firefly2.framsburg.ch'
-        DB_CONNECTION: hello-world.postgres-operator.svc
+        DB_CONNECTION: pgsql
+        DB_HOST: hello-world.postgres-operator.svc
         DB_PORT: "5432"
         DB_DATABASE: fireflydb
         DB_USERNAME: firefly
