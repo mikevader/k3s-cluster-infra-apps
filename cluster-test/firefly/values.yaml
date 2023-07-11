@@ -50,6 +50,15 @@ firefly:
         - hosts: ['firefly2.framsburg.ch']
           secretName: 'firefly2-framsburg-ch-tls'
 
+    resources:
+      requests:
+        cpu: 200m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
+
+
   importer:
     enabled: true
     image:
@@ -83,3 +92,11 @@ firefly:
       tls:
         - hosts: ['firefly2import.framsburg.ch']
           secretName: 'firefly2import-framsburg-ch-tls'
+
+    resources:
+      requests:
+        cpu: 200m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
