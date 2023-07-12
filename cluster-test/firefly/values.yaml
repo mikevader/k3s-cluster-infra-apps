@@ -6,7 +6,7 @@ firefly:
   firefly-iii:
     image:
       tag: "develop"
-      imagePullPolicy: Always
+      pullPolicy: Always
 
     config:
       env:
@@ -64,7 +64,7 @@ firefly:
     enabled: true
     image:
       tag: "develop"
-      imagePullPolicy: Always
+      pullPolicy: Always
 
     fireflyiii:
       url: 'https://firefly2.framsburg.ch'
