@@ -62,7 +62,8 @@ firefly:
   importer:
     enabled: true
     image:
-      tag: "develop"
+      repository: "fireflyiii/data-importer@sha256:2f6bb50166ced6c4e0bc15f9c31d3e52d14df58a275f948986600b030f4cc373"
+      tag: ""
 
     fireflyiii:
       url: 'https://firefly2.framsburg.ch'
