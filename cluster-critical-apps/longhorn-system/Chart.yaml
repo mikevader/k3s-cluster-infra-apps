@@ -4,5 +4,5 @@ description: Longhorn Chart
 version: 1.0.0
 dependencies:
   - name: longhorn
-    version: 1.4.2
+    version: 1.4.3
     repository: https://charts.longhorn.io
