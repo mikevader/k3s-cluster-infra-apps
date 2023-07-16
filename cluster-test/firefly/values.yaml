@@ -5,7 +5,7 @@ firefly:
 
   firefly-iii:
     image:
-      tag: "v6.0.17"
+      tag: "vervion-6.0.17"
       pullPolicy: Always
 
     config:
@@ -63,7 +63,7 @@ firefly:
   importer:
     enabled: true
     image:
-      tag: "v1.3.3"
+      tag: "version-1.3.3"
       pullPolicy: Always
 
     fireflyiii:
