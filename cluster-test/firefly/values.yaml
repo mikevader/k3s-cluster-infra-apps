@@ -5,7 +5,7 @@ firefly:
 
   firefly-iii:
     image:
-      tag: "develop"
+      tag: "v6.0.17"
       pullPolicy: Always
 
     config:
@@ -63,7 +63,7 @@ firefly:
   importer:
     enabled: true
     image:
-      tag: "develop"
+      tag: "v1.3.3"
       pullPolicy: Always
 
     fireflyiii:
