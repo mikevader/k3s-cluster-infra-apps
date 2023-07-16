@@ -117,3 +117,16 @@ otherwise they will block a shutdown or might loose data.
 ```bash
 ansible-playbook playbooks/07_k3s_update.yml --limit k3smaster1
 ```
+
+
+## Lenovo nic e1000
+
+Some tiny servers might have an issue with their network card specifically with
+the offloading. In case the network adapter hangs itself up the following
+command might help:
+
+```shell
+ethtool -K <ADAPTER> gso off gro off tso off 
+```
+
+This should be added as startup command to `/etc/network/if-up.d/`
