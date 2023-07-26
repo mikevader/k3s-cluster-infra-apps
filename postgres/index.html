@@ -12,18 +12,20 @@
         <meta name="author" content="Michael M&uuml;hlebach">
       
       
-        <link rel="canonical" href="https://mikevader.github.io/gitops/vpn/">
+        <link rel="canonical" href="https://mikevader.github.io/gitops/postgres/">
       
       
-        <link rel="prev" href="../network/">
+        <link rel="prev" href="../external-secrets/">
       
+      
+        <link rel="next" href="../uptime-kuma/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
     
     
       
-        <title>VPN - Raspberry Pi GitOps Stack</title>
+        <title>Postgres Cluster - Raspberry Pi GitOps Stack</title>
       
     
     
@@ -65,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#vpn" class="md-skip">
+        <a href="#database-cluster" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              VPN
+              Postgres Cluster
             
           </span>
         </div>
@@ -436,14 +438,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
       
       
       
@@ -452,7 +456,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
           Platform
@@ -519,11 +523,72 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../postgres/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Postgres Cluster
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Postgres Cluster
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#operator-setup" class="md-nav__link">
+    Operator setup
+  </a>
+  
+    <nav class="md-nav" aria-label="Operator setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backup" class="md-nav__link">
+    Backup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-cluster" class="md-nav__link">
+    Setup Cluster
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -660,16 +725,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
       
@@ -678,7 +741,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_9">
           <span class="md-nav__icon md-icon"></span>
           Extras
@@ -703,79 +766,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          VPN
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../vpn/" class="md-nav__link">
         VPN
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#setup-client" class="md-nav__link">
-    Setup Client
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshoot" class="md-nav__link">
-    Troubleshoot
-  </a>
-  
-    <nav class="md-nav" aria-label="Troubleshoot">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#renew-openvpn-certificate" class="md-nav__link">
-    Renew OpenVPN Certificate
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#renew-client-certificate" class="md-nav__link">
-    Renew Client Certificate
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -814,36 +809,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setup-client" class="md-nav__link">
-    Setup Client
+  <a href="#operator-setup" class="md-nav__link">
+    Operator setup
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshoot" class="md-nav__link">
-    Troubleshoot
-  </a>
-  
-    <nav class="md-nav" aria-label="Troubleshoot">
+    <nav class="md-nav" aria-label="Operator setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#renew-openvpn-certificate" class="md-nav__link">
-    Renew OpenVPN Certificate
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#renew-client-certificate" class="md-nav__link">
-    Renew Client Certificate
+  <a href="#backup" class="md-nav__link">
+    Backup
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-cluster" class="md-nav__link">
+    Setup Cluster
+  </a>
   
 </li>
       
@@ -865,38 +853,36 @@
   
 
 
-<h1 id="vpn">VPN</h1>
-<h2 id="setup-client">Setup Client</h2>
-<p>https://docs.opnsense.org/manual/how-tos/sslvpn_client.html#create-a-server-certificate</p>
-<h2 id="troubleshoot">Troubleshoot</h2>
-<h3 id="renew-openvpn-certificate">Renew OpenVPN Certificate</h3>
-<p>System &gt;&gt; Trust &gt;&gt; Certificates</p>
-<ul>
-<li>Create Certificate</li>
-<li>Create internal certificate</li>
-<li>Descriptive name: SSL VPN Server Certificate <year></li>
-<li>CA: SSL VPN CA (newest)</li>
-<li>Type: Server Certificate</li>
-<li>Length: 4096</li>
-<li>Digest: SHA512</li>
-<li>Common Name: SSL VPN Server Certificate <year></li>
-</ul>
-<h3 id="renew-client-certificate">Renew Client Certificate</h3>
-<p>System &gt;&gt; Trust &gt;&gt; Certificates</p>
-<ul>
-<li>Create Certificate</li>
-<li>Create internal certificate</li>
-</ul>
-<p>System &gt;&gt; Access &gt;&gt; Users</p>
-<ul>
-<li>Edit user</li>
-<li>Select new Certificate</li>
-</ul>
-<p>VPN &gt;&gt; OpenVPN &gt;&gt; Client Export</p>
-<ul>
-<li>Download certifcate for user</li>
-<li>Use new config in OpenVPN Client</li>
-</ul>
+<h1 id="database-cluster">Database Cluster</h1>
+<p>The database setup is based on the <a href="https://opensource.zalando.com/postgres-operator/">zalando-operator</a>. With one cluster for
+all productive applications and one or multipe for test purposes.</p>
+<p>The productive cluster is created as HA cluster with pg_bouncer but without a
+standby database.</p>
+<h2 id="operator-setup">Operator setup</h2>
+<h3 id="backup">Backup</h3>
+<p>Use own Minio for Backup.</p>
+<p>Create new Policy with the name <code>SpiloS3Access</code>
+and the poliy configuration:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">            </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">            </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">                </span><span class="s2">&quot;s3:*&quot;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">            </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">                </span><span class="s2">&quot;arn:aws:s3:::postgres-backups&quot;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">                </span><span class="s2">&quot;arn:aws:s3:::postgres-backups/*&quot;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">            </span><span class="p">]</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="p">]</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">}</span>
+</code></pre></div></p>
+<p>Create new identity with <code>postgres-pod-role</code> with password and assign the
+previously created policy.
+Store both in the Vault under <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code></p>
+<h2 id="setup-cluster">Setup Cluster</h2>
 
 
 

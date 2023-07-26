@@ -12,18 +12,20 @@
         <meta name="author" content="Michael M&uuml;hlebach">
       
       
-        <link rel="canonical" href="https://mikevader.github.io/gitops/vpn/">
+        <link rel="canonical" href="https://mikevader.github.io/gitops/securitycam/">
       
       
-        <link rel="prev" href="../network/">
+        <link rel="prev" href="../adguard/">
       
+      
+        <link rel="next" href="../rails-app/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
     
     
       
-        <title>VPN - Raspberry Pi GitOps Stack</title>
+        <title>Security Cam - Raspberry Pi GitOps Stack</title>
       
     
     
@@ -65,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#vpn" class="md-skip">
+        <a href="#config-for-pi0w-cam" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              VPN
+              Security Cam
             
           </span>
         </div>
@@ -541,14 +543,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
       
       
       
@@ -557,7 +561,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
           Apps
@@ -624,11 +628,55 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../securitycam/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Security Cam
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Security Cam
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#config-for-pi0w-cam" class="md-nav__link">
+    Config for PI0w Cam
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stream" class="md-nav__link">
+    Stream
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -660,16 +708,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
       
@@ -678,7 +724,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_9">
           <span class="md-nav__icon md-icon"></span>
           Extras
@@ -703,79 +749,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          VPN
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../vpn/" class="md-nav__link">
         VPN
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#setup-client" class="md-nav__link">
-    Setup Client
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshoot" class="md-nav__link">
-    Troubleshoot
-  </a>
-  
-    <nav class="md-nav" aria-label="Troubleshoot">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#renew-openvpn-certificate" class="md-nav__link">
-    Renew OpenVPN Certificate
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#renew-client-certificate" class="md-nav__link">
-    Renew Client Certificate
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -804,8 +782,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -814,36 +790,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setup-client" class="md-nav__link">
-    Setup Client
+  <a href="#config-for-pi0w-cam" class="md-nav__link">
+    Config for PI0w Cam
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshoot" class="md-nav__link">
-    Troubleshoot
+  <a href="#stream" class="md-nav__link">
+    Stream
   </a>
-  
-    <nav class="md-nav" aria-label="Troubleshoot">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#renew-openvpn-certificate" class="md-nav__link">
-    Renew OpenVPN Certificate
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#renew-client-certificate" class="md-nav__link">
-    Renew Client Certificate
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -865,38 +821,25 @@
   
 
 
-<h1 id="vpn">VPN</h1>
-<h2 id="setup-client">Setup Client</h2>
-<p>https://docs.opnsense.org/manual/how-tos/sslvpn_client.html#create-a-server-certificate</p>
-<h2 id="troubleshoot">Troubleshoot</h2>
-<h3 id="renew-openvpn-certificate">Renew OpenVPN Certificate</h3>
-<p>System &gt;&gt; Trust &gt;&gt; Certificates</p>
-<ul>
-<li>Create Certificate</li>
-<li>Create internal certificate</li>
-<li>Descriptive name: SSL VPN Server Certificate <year></li>
-<li>CA: SSL VPN CA (newest)</li>
-<li>Type: Server Certificate</li>
-<li>Length: 4096</li>
-<li>Digest: SHA512</li>
-<li>Common Name: SSL VPN Server Certificate <year></li>
-</ul>
-<h3 id="renew-client-certificate">Renew Client Certificate</h3>
-<p>System &gt;&gt; Trust &gt;&gt; Certificates</p>
-<ul>
-<li>Create Certificate</li>
-<li>Create internal certificate</li>
-</ul>
-<p>System &gt;&gt; Access &gt;&gt; Users</p>
-<ul>
-<li>Edit user</li>
-<li>Select new Certificate</li>
-</ul>
-<p>VPN &gt;&gt; OpenVPN &gt;&gt; Client Export</p>
-<ul>
-<li>Download certifcate for user</li>
-<li>Use new config in OpenVPN Client</li>
-</ul>
+  <h1>Security Cam</h1>
+
+<h2 id="config-for-pi0w-cam">Config for PI0w Cam</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>dtparam=audio=on
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>dtoverlay=vc4-kms-v3d
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>max_framebuffers=2
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>camera_auto_detect=1
+</code></pre></div>
+<p>sudo modprobe bcm2835-v4l2</p>
+<h2 id="stream">Stream</h2>
+<p>motion</p>
+<p>libcamerify motion</p>
+<p>sudo service motion status</p>
+<p>libcamera-vid -n --level 4.2 --denoise cdn_off -t 0 --inline --autofocus-mode continuous  --width 1920 --height 1080 --framerate 30 -o - | cvlc -vvv stream:///dev/stdin :demux=h264 --no-audio --sout '#rtp{sdp=http://:8554/x}'</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>libcamera-vid<span class="w"> </span>-t<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span>--inline<span class="w"> </span>-o<span class="w"> </span>-<span class="w"> </span><span class="p">|</span><span class="w"> </span>gst-launch-1.0<span class="w"> </span>fdsrc<span class="w"> </span><span class="nv">fd</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>!<span class="w"> </span>h264parse<span class="w"> </span>!<span class="w"> </span>rtph264pay<span class="w"> </span>!<span class="w"> </span>udpsink<span class="w"> </span><span class="nv">host</span><span class="o">=</span>overseer<span class="w"> </span><span class="nv">port</span><span class="o">=</span><span class="m">5000</span>
+</code></pre></div>
+<p>with cvlc</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>libcamera-vid<span class="w"> </span>-t<span class="w"> </span><span class="m">0</span><span class="w"> </span>--inline<span class="w"> </span>-o<span class="w"> </span>-<span class="w"> </span><span class="p">|</span><span class="w"> </span>cvlc<span class="w"> </span>stream:///dev/stdin<span class="w"> </span>--sout<span class="w"> </span><span class="s1">&#39;#rtp{sdp=rtsp://:8554/stream1}&#39;</span><span class="w"> </span>:demux<span class="o">=</span>h264
+</code></pre></div>
 
 
 
