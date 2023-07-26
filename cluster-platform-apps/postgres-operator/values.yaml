@@ -32,8 +32,10 @@ ui:
       - "acid"
 
   extraEnvs:
-    - name: WALE_S3_ENDPOINT
+    - name: AWS_ENDPOINT
       value: https://michaels-mini.local:9000
+    - name: WALE_S3_ENDPOINT
+      value: https+path://michaels-mini.local:9000
     - name: AWS_ACCESS_KEY_ID
       valueFrom:
         secretKeyRef:
