@@ -1,4 +1,24 @@
-operator: {}
+operator:
+  configGeneral: {}
+
+  configMajorVersionUpgrade:
+    major_version_upgrade_mode: "manual"
+
+  configKubernetes:
+    enable_cross_namespace_secrets: true
+
+    pod_environment_configmap: "pod-config"
+
+    pod_environment_secret: "pod-secret"
+
+  configAwsOrGcp:
+    additional_secret_mount: "pod-secrets-ca"
+    additional_secret_mount_path: "/tlsca"
+
+    aws_region: us-east-1
+
+  configLogicalBackup: {}
+
 ui:
   envs:
     # IMPORTANT: While operator chart and UI chart are independent, this is the interface between
