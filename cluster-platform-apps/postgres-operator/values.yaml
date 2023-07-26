@@ -5,7 +5,7 @@ operator:
     major_version_upgrade_mode: "manual"
 
   configKubernetes:
-    enable_cross_namespace_secrets: true
+    enable_cross_namespace_secret: true
 
     pod_environment_configmap: "pod-config"
 
