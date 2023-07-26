@@ -49,11 +49,14 @@ nav:
     - Hashicorp Vault: vault.md
     - Secrets-CSI: secrets-csi.md
     - External-Secrets: external-secrets.md
+    - Postgres Cluster: postgres.md
   - Apps:
     - Uptime Kuma: uptime-kuma.md
     - Plex: plex.md
     - AdGuard: adguard.md
-    - Airprint: airprint.mc
+    - Airprint: airprint.md
+    - Security Cam: securitycam.md
+    - Rails Demo: rails-app.md
   - Extras:
     - Network: network.md
     - VPN: vpn.md
