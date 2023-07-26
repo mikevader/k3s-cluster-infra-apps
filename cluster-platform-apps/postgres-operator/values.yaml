@@ -31,6 +31,24 @@ ui:
     teams:
       - "acid"
 
+  extraEnvs:
+    - name: WALE_S3_ENDPOINT
+      value: https://michaels-mini.local:9000
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          name: "pod-secrets"
+          key: AWS_ACCESS_KEY_ID
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: "pod-secrets"
+          key: AWS_SECRET_ACCESS_KEY
+    - name: AWS_DEFAULT_REGION
+      value: "us-east-1"
+    - name: SPILO_S3_BACKUP_BUCKET
+      value: "postgres-backups"
+
   ingress:
     enabled: true
     annotations:
