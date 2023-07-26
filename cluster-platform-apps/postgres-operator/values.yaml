@@ -9,7 +9,7 @@ operator:
 
     pod_environment_configmap: "pod-config"
 
-    pod_environment_secret: "pod-secret"
+    pod_environment_secret: "pod-secrets"
 
   configAwsOrGcp:
     additional_secret_mount: "pod-secrets-ca"
