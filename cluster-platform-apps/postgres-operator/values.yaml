@@ -6,15 +6,10 @@ operator:
 
   configKubernetes:
     enable_cross_namespace_secret: true
-
     pod_environment_configmap: "pod-config"
-
     pod_environment_secret: "pod-secrets"
 
   configAwsOrGcp:
-    additional_secret_mount: "pod-secrets-ca"
-    additional_secret_mount_path: "/tlsca"
-
     aws_region: us-east-1
 
   configLogicalBackup: {}
@@ -33,9 +28,9 @@ ui:
 
   extraEnvs:
     - name: AWS_ENDPOINT
-      value: https://michaels-mini.local:9000
+      value: https://minio.framsburg.net
     - name: WALE_S3_ENDPOINT
-      value: https+path://michaels-mini.local:9000
+      value: https+path://minio.framsburg.net
     - name: AWS_ACCESS_KEY_ID
       valueFrom:
         secretKeyRef:

@@ -11,9 +11,8 @@ data:
   BACKUP_SCHEDULE: '*/30 * * * *'
   AWS_S3_FORCE_PATH_STYLE: "true" # needed for MinIO
   AWS_REGION: us-east-1
-  AWS_ENDPOINT: https://michaels-mini.local:9000 # Endpoint URL to your S3 Endpoint; MinIO in this example
-  WALE_S3_ENDPOINT: https://michaels-mini.local:9000
+  AWS_ENDPOINT: https://minio.framsburg.net # Endpoint URL to your S3 Endpoint; MinIO in this example
+  WALE_S3_ENDPOINT: https://minio.framsburg.net
   WALG_DISABLE_S3_SSE: "true"
-  WALG_S3_CA_CERT_FILE: "/tlsca/MINIO_CA_FILE"
   BACKUP_NUM_TO_RETAIN: "5"
   CLONE_USE_WALG_RESTORE: "true"

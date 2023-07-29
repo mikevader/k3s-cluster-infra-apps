@@ -2,6 +2,27 @@
 
 The initial setup is done with Ansible.
 
+## Setup Minio
+
+Install Minio with installer.
+
+It is recommended to setup MinIO with a correct Domain and Certificate because,
+several systems either do not support insecure connections, custom certificates
+or disabling verification. The [MinIO Documentation][1] has a good guide how to
+use `certbot` to install this. 
+
+You can use HTTP or DNS challenge. The latter is dicribed on [digitalocean][2]
+```bash
+$ certbot certonly --config-dir config --work-dir workdir --logs-dir logs  --manual  --preferred-challenges dns --debug-challenges -d minio.framsburg.net
+```
+
+During the execution, certbot requires you to add a specific DNS entry to your
+Domain. This looks similar to:
+
+![DNS Record on Digitalocean](dns-record.png)
+
+
+
 ## Setup Minio Bucket for Backup
 
 ```bash title="Create minio bucket"
@@ -130,3 +151,7 @@ ethtool -K <ADAPTER> gso off gro off tso off
 ```
 
 This should be added as startup command to `/etc/network/if-up.d/`
+
+
+[1]: https://min.io/docs/minio/linux/integrations/generate-lets-encrypt-certificate-using-certbot-for-minio.html
+[2]: https://www.digitalocean.com/community/tutorials/how-to-acquire-a-let-s-encrypt-certificate-using-dns-validation-with-acme-dns-certbot-on-ubuntu-18-04
