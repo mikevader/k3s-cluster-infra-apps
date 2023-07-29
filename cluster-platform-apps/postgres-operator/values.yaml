@@ -8,11 +8,24 @@ operator:
     enable_cross_namespace_secret: true
     pod_environment_configmap: "pod-config"
     pod_environment_secret: "pod-secrets"
+    node_readiness_label:
+      perfomance: medium
 
   configAwsOrGcp:
     aws_region: us-east-1
 
   configLogicalBackup: {}
+
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 50
+          preference:
+            matchExpressions:
+              - key: performance
+                operator: In
+                values:
+                  - medium
 
 ui:
   envs:
