@@ -9,7 +9,7 @@ operator:
     pod_environment_configmap: "pod-config"
     pod_environment_secret: "pod-secrets"
     node_readiness_label:
-      perfomance: medium
+      performance: medium
 
   configAwsOrGcp:
     additional_secret_mount: "pod-secrets-ca"
