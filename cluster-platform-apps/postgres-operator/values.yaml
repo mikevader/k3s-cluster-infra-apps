@@ -12,6 +12,8 @@ operator:
       perfomance: medium
 
   configAwsOrGcp:
+    additional_secret_mount: "pod-secrets-ca"
+    additional_secret_mount_path: "/tlsca"
     aws_region: us-east-1
 
   configLogicalBackup: {}
