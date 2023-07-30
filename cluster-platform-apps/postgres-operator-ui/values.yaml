@@ -5,7 +5,7 @@ envs:
   operatorApiUrl: "http://postgres-operator.postgres-operator.svc:8080"
   operatorClusterNameLabel: "cluster-name"
   resourcesVisible: "True"
-  targetNamespace: "postgres-operator"
+  targetNamespace: "*"
   teams:
     - "acid"
 
