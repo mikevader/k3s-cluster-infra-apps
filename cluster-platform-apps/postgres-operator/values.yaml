@@ -13,8 +13,6 @@ operator:
       performance: medium
 
   configAwsOrGcp:
-    additional_secret_mount: "pod-secrets-ca"
-    additional_secret_mount_path: "/tlsca"
     aws_region: us-east-1
     wal_s3_bucket: postgres-backups
     kube_iam_role: postgres-pod-role
