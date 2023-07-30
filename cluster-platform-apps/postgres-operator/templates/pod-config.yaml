@@ -12,7 +12,7 @@ data:
   AWS_S3_FORCE_PATH_STYLE: "true" # needed for MinIO
   AWS_REGION: us-east-1
   AWS_ENDPOINT: https://minio.framsburg.net # Endpoint URL to your S3 Endpoint; MinIO in this example
-  WALE_S3_ENDPOINT: https://minio.framsburg.net
+  WALE_S3_ENDPOINT: https+path://minio.framsburg.net
   WALG_DISABLE_S3_SSE: "true"
   BACKUP_NUM_TO_RETAIN: "5"
   CLONE_USE_WALG_RESTORE: "true"
