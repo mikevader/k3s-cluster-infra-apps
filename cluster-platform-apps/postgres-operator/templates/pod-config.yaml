@@ -5,7 +5,7 @@ metadata:
 data:
   AWS_ENDPOINT: 'https://minio.framsburg.ch'
   WALE_S3_ENDPOINT: 'https+path://minio.framsburg.ch'
-  WALE_S3_PREFIX: "$WAL_S3_BUCKET/spilo/{WAL_BUCKET_SCOPE_PREFIX}{SCOPE}{WAL_BUCKET_SCOPE_SUFFIX}/wal/{PGVERSION}"
+  #WALE_S3_PREFIX: "$WAL_S3_BUCKET/spilo/{WAL_BUCKET_SCOPE_PREFIX}{SCOPE}{WAL_BUCKET_SCOPE_SUFFIX}/wal/{PGVERSION}"
   USE_WALG_BACKUP: "true"
   USE_WALG_RESTORE: "true"
   BACKUP_SCHEDULE: '*/30 * * * *'
