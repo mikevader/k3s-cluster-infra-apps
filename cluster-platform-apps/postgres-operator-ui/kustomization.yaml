@@ -1,0 +1,28 @@
+
+helmCharts:
+- name: postgres-operator-ui
+  releaseName: postgres-operator-ui
+  version: 1.10.0
+  repo: https://opensource.zalando.com/postgres-operator/charts/postgres-operator-ui
+  valuesFile: values.yaml
+
+patches:
+  - patch: |-
+      kind: Deployment
+      metadata:
+        name: postgres-operator-ui
+      spec:
+        template:
+          spec:
+            affinity:
+              nodeAffinity:
+                preferredDuringSchedulingIgnoredDuringExecution:
+                  - weight: 50
+                    preference:
+                      matchExpressions:
+                        - key: performance
+                          operator: In
+                          values:
+                            - medium
+    target:
+      kind: Deployment
