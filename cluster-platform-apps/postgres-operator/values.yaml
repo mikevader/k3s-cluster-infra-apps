@@ -8,7 +8,7 @@ operator:
     enable_cross_namespace_secret: true
     enable_pod_antiaffinity: true
     pod_environment_configmap: "postgres-operator/pod-config"
-    pod_environment_secret: "postgres-operator/pod-secrets"
+    pod_environment_secret: "pod-secrets"
     node_readiness_label:
       performance: medium
 
