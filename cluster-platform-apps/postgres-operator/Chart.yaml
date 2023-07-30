@@ -6,7 +6,7 @@ dependencies:
     version: 1.10.0
     repository: https://opensource.zalando.com/postgres-operator/charts/postgres-operator
     alias: operator
-  - name: postgres-operator-ui
-    version: 1.10.0
-    repository: https://opensource.zalando.com/postgres-operator/charts/postgres-operator-ui
-    alias: ui
+  # - name: postgres-operator-ui
+  #   version: 1.10.0
+  #   repository: https://opensource.zalando.com/postgres-operator/charts/postgres-operator-ui
+  #   alias: ui
