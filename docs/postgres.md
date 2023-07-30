@@ -40,10 +40,13 @@ Store both in the Vault under `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
 
 ## Setup Cluster
 
+Setup Cluster with own S3 Buckets, like Minio, requires some additional
+configurations. Some leads can be found [here][2]
 
 
 
 
 
 [1]: https://opensource.zalando.com/postgres-operator/
+[2]: https://thedatabaseme.de/2022/03/26/backup-to-s3-configure-zalando-postgres-operator-backup-with-wal-g/
 
