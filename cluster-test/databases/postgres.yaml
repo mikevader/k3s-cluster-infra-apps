@@ -5,7 +5,7 @@ metadata:
     team: acid
   name: apps-cluster-test
 spec:
-  enableLogicalBackup: true
+  enableLogicalBackup: false
   databases:
     fireflydb: firefly
   numberOfInstances: 2
