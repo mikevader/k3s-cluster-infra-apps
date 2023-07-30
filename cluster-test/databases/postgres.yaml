@@ -8,7 +8,7 @@ spec:
   enableLogicalBackup: true
   databases:
     fireflydb: firefly
-  numberOfInstances: 1
+  numberOfInstances: 2
   postgresql:
     version: '15'
   resources:
