@@ -6,8 +6,9 @@ operator:
 
   configKubernetes:
     enable_cross_namespace_secret: true
-    pod_environment_configmap: "pod-config"
-    pod_environment_secret: "pod-secrets"
+    enable_pod_antiaffinity: true
+    pod_environment_configmap: "postgres-operator/pod-config"
+    pod_environment_secret: "postgres-operator/pod-secrets"
     node_readiness_label:
       performance: medium
 
