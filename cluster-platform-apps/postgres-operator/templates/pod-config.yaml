@@ -3,16 +3,11 @@ kind: ConfigMap
 metadata:
   name: pod-config
 data:
-  WAL_S3_BUCKET: postgres-backups
-  WAL_BUCKET_SCOPE_PREFIX: ""
-  WAL_BUCKET_SCOPE_SUFFIX: ""
   USE_WALG_BACKUP: "true"
   USE_WALG_RESTORE: "true"
   BACKUP_SCHEDULE: '*/30 * * * *'
   AWS_S3_FORCE_PATH_STYLE: "true" # needed for MinIO
   AWS_REGION: us-east-1
-  AWS_ENDPOINT: https://minio.framsburg.net # Endpoint URL to your S3 Endpoint; MinIO in this example
-  WALE_S3_ENDPOINT: https+path://minio.framsburg.net
   WALG_DISABLE_S3_SSE: "true"
   BACKUP_NUM_TO_RETAIN: "5"
   CLONE_USE_WALG_RESTORE: "true"
