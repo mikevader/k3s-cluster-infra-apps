@@ -2,117 +2,117 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://mikevader.github.io/gitops/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/adguard/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/ansible/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/argocd/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/authentik/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/bare-metal/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/cert-manager/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/custom-images/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/external-secrets/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/longhorn/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/metallb/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/monitoring/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/network/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/plex/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/postgres/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/proxmox-setup/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/rails-app/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/secrets-csi/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/securitycam/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/traefik/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/uptime-kuma/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/vault/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mikevader.github.io/gitops/vpn/</loc>
-         <lastmod>2023-07-29</lastmod>
+         <lastmod>2023-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
