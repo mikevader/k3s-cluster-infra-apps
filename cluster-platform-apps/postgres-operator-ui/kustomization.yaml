@@ -1,4 +1,6 @@
 
+namespace: postgres-operator
+
 helmCharts:
 - name: postgres-operator-ui
   releaseName: postgres-operator-ui
