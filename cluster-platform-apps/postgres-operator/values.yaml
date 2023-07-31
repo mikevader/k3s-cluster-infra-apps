@@ -18,8 +18,9 @@ operator:
     kube_iam_role: postgres-pod-role
 
   configLogicalBackup:
-    logical_backup_s3_access_key_id: ''
-    logical_backup_s3_bucket: 'postgres-logical-backups'
+    logical_backup_s3_access_key_id: 'postgres-pod-role-logical'
+    logical_backup_s3_secret_access_key: 'D6UCDLVFYrS4skDBmXvVX'
+    logical_backup_s3_bucket: 'postgres-backups'
     logical_backup_s3_region: 'us-east-1'
     logical_backup_s3_endpoint: 'https://minio.framsburg.net'
     logical_backup_s3_retention_time: "2 week"
