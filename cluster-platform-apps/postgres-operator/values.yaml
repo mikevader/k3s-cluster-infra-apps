@@ -17,7 +17,13 @@ operator:
     wal_s3_bucket: postgres-backups
     kube_iam_role: postgres-pod-role
 
-  configLogicalBackup: {}
+  configLogicalBackup:
+    logical_backup_s3_access_key_id: ''
+    logical_backup_s3_bucket: 'postgres-logical-backups'
+    logical_backup_s3_region: 'us-east-1'
+    logical_backup_s3_endpoint: 'https://minio.framsburg.net'
+    logical_backup_s3_retention_time: "2 week"
+    logical_backup_schedule: "*/30 * * * *"
 
   affinity:
     nodeAffinity:
