@@ -12,20 +12,16 @@
         <meta name="author" content="Michael M&uuml;hlebach">
       
       
-        <link rel="canonical" href="https://mikevader.github.io/gitops/postgres/">
+        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/postgres-zalando/">
       
       
-        <link rel="prev" href="../external-secrets/">
-      
-      
-        <link rel="next" href="../uptime-kuma/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.1, mkdocs-material-9.1.21">
     
     
       
-        <title>Postgres Cluster - Raspberry Pi GitOps Stack</title>
+        <title>Database Cluster on Zalando Postgres Operator - Raspberry Pi GitOps Stack</title>
       
     
     
@@ -67,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#database-cluster" class="md-skip">
+        <a href="#database-cluster-on-zalando-postgres-operator" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Postgres Cluster
+              Database Cluster on Zalando Postgres Operator
             
           </span>
         </div>
@@ -438,16 +434,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
       
@@ -456,7 +450,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
           Platform
@@ -523,72 +517,25 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Postgres Cluster
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Postgres Cluster
+    <li class="md-nav__item">
+      <a href="../postgres-cnpg/" class="md-nav__link">
+        Postgres with CNPG
       </a>
-      
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+            
+          
+            
+              
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#operator-setup" class="md-nav__link">
-    Operator setup
-  </a>
-  
-    <nav class="md-nav" aria-label="Operator setup">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#backup" class="md-nav__link">
-    Backup
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setup-cluster" class="md-nav__link">
-    Setup Cluster
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
+    <li class="md-nav__item">
+      <a href="../postgres-zalanod.md" class="md-nav__link">
+        Postgres with Zalando
+      </a>
     </li>
   
 
@@ -853,7 +800,7 @@
   
 
 
-<h1 id="database-cluster">Database Cluster</h1>
+<h1 id="database-cluster-on-zalando-postgres-operator">Database Cluster on Zalando Postgres Operator</h1>
 <p>The database setup is based on the <a href="https://opensource.zalando.com/postgres-operator/">zalando-operator</a>. With one cluster for
 all productive applications and one or multipe for test purposes.</p>
 <p>The productive cluster is created as HA cluster with pg_bouncer but without a
