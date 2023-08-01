@@ -3,16 +3,17 @@ cloudnative-pg:
   crds:
     create: true
 
-  affinity:
-    nodeAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 50
-          preference:
-            matchExpressions:
-              - key: performance
-                operator: In
-                values:
-                  - medium
+  # # According to registry info the images are compatible with ARM64
+  # affinity:
+  #   nodeAffinity:
+  #     preferredDuringSchedulingIgnoredDuringExecution:
+  #       - weight: 50
+  #         preference:
+  #           matchExpressions:
+  #             - key: performance
+  #               operator: In
+  #               values:
+  #                 - medium
 
 
   monitoring:
