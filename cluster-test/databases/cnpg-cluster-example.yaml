@@ -28,10 +28,6 @@ spec:
         secretAccessKey:
           name: cnpg-minio-access
           key: AWS_SECRET_ACCESS_KEY
-      tags:
-        backupRetentionPolicy: "expire"
-      historyTags:
-        backupRetentionPolicy: "keep"
     retentionPolicy: "30d"
   
   affinity:
