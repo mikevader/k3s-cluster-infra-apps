@@ -39,3 +39,13 @@ spec:
   
   monitoring:
     enablePodMonitor: true
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: backup-example
+spec:
+  schedule: "*/30 * * * * *"
+  backupOwnerReference: self
+  cluster:
+    name: cluster-example

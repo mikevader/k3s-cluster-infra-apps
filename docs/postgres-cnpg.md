@@ -43,3 +43,9 @@ spec:
 ```bash
 kubectl cnpg reload
 ```
+
+
+## Monitoring
+
+
+
