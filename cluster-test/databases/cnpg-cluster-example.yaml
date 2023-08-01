@@ -16,3 +16,23 @@ spec:
   # Require 1Gi of space
   storage:
     size: 1Gi
+  
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://cnpg-bakcups/
+      endpointURL: https://minio.framsburg.net
+      s3Credentionals:
+        accessKeyId:
+          name: cnpg-minio-access
+          key: AWS_ACCESS_KEY_ID
+        secretAccessKey:
+          name: cnpg-minio-access
+          key: AWS_SECRET_ACCESS_KEY
+      tags:
+        backupRetentionPolicy: "expire"
+      historyTags:
+        backupRetentionPolicy: "keep"
+    retentionPolicy: "30d"
+  
+  affinity:
+    enablePodAntiAffinity: true
