@@ -32,7 +32,7 @@ spec:
         backupRetentionPolicy: "expire"
       historyTags:
         backupRetentionPolicy: "keep"
-    retentionPolicy: "30d"
+    retentionPolicy: "32d"
   
   affinity:
     enablePodAntiAffinity: true
