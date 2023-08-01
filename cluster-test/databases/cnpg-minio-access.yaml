@@ -12,7 +12,7 @@ spec:
     template:
       metadata:
         labels:
-          "cnpg.io/reload": ""
+          "cnpg.io/reload": "true"
   data:
     - secretKey: AWS_ACCESS_KEY_ID
       remoteRef:

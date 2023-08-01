@@ -35,7 +35,7 @@ spec:
     template:
       metadata:
         labels:
-          "cnpg.io/reload": ""
+          "cnpg.io/reload": "true"
   data:
 
 ```
