@@ -17,5 +17,5 @@ cloudnative-pg:
 
 
   monitoring:
-    podMonitoringEnabled: true
+    podMonitorEnabled: true
 
