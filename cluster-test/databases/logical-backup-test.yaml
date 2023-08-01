@@ -3,12 +3,12 @@ kind: postgresql
 metadata:
   labels:
     team: acid
-  name: replication-test
+  name: logical-backup-test
 spec:
-  enableLogicalBackup: false
+  enableLogicalBackup: true
   databases:
     fireflydb: firefly
-  numberOfInstances: 2
+  numberOfInstances: 1
   postgresql:
     version: '15'
   resources:
