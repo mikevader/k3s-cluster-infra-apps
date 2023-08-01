@@ -45,7 +45,7 @@ kind: ScheduledBackup
 metadata:
   name: backup-example
 spec:
-  schedule: "*/30 * * * * *"
+  schedule: "*/30 * * * *"
   backupOwnerReference: self
   cluster:
     name: cluster-example
