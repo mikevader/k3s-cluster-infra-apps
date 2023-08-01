@@ -1,7 +1,7 @@
 
 # Project information
 site_name: Raspberry Pi GitOps Stack
-site_url: https://mikevader.github.io/gitops
+site_url: https://mikevader.github.io/k3s-cluster-infra-apps/
 site_author: Michael M&uuml;hlebach
 site_description: >-
   Documentation on how I setup and configure my k8s-at-home cluster
@@ -49,7 +49,8 @@ nav:
     - Hashicorp Vault: vault.md
     - Secrets-CSI: secrets-csi.md
     - External-Secrets: external-secrets.md
-    - Postgres Cluster: postgres.md
+    - Postgres with CNPG: postgres-cnpg.md
+    - Postgres with Zalando: postgres-zalanod.md
   - Apps:
     - Uptime Kuma: uptime-kuma.md
     - Plex: plex.md

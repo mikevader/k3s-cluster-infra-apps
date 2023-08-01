@@ -1,0 +1,20 @@
+cloudnative-pg:
+
+  crds:
+    create: true
+
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 50
+          preference:
+            matchExpressions:
+              - key: performance
+                operator: In
+                values:
+                  - medium
+
+
+  monitoring:
+    podMonitoringEnabled: true
+

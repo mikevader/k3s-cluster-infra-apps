@@ -1,4 +1,4 @@
-# Database Cluster
+# Database Cluster on Zalando Postgres Operator
 
 The database setup is based on the [zalando-operator][1]. With one cluster for
 all productive applications and one or multipe for test purposes.

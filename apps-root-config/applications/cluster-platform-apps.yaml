@@ -25,6 +25,7 @@ namespaceResourceBlacklist:
 
 applications:
   authentik: {}
+  cnpg-system: {}
   external-secrets: {}
   kubernetes-dashboard: {}
   postgres-operator: {}
