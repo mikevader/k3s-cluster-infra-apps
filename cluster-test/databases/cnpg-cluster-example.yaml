@@ -36,3 +36,6 @@ spec:
   
   affinity:
     enablePodAntiAffinity: true
+  
+  monitoring:
+    enablePodMonitor: true
