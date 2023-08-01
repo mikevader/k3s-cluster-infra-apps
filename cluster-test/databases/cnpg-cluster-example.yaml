@@ -21,7 +21,7 @@ spec:
     barmanObjectStore:
       destinationPath: s3://cnpg-bakcups/
       endpointURL: https://minio.framsburg.net
-      s3Credentionals:
+      s3Credentials:
         accessKeyId:
           name: cnpg-minio-access
           key: AWS_ACCESS_KEY_ID
