@@ -9,6 +9,10 @@ spec:
     kind: ClusterSecretStore
   target:
     name: cnpg-minio-access
+    template:
+      metadata:
+        labels:
+          "cnpg.io/reload": ""
   data:
     - secretKey: AWS_ACCESS_KEY_ID
       remoteRef:
