@@ -24,6 +24,7 @@ operator:
     logical_backup_s3_region: 'us-east-1'
     logical_backup_s3_endpoint: 'https://minio.framsburg.net'
     logical_backup_s3_retention_time: "2 week"
+    logical_backup_s3_sse: ""
     logical_backup_schedule: "*/30 * * * *"
 
   affinity:
