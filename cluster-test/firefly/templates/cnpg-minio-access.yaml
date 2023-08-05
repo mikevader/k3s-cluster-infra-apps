@@ -1,0 +1,24 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: cnpg-minio-access
+spec:
+  refreshInterval: 1m
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: cnpg-minio-access
+    template:
+      metadata:
+        labels:
+          "cnpg.io/reload": "true"
+  data:
+    - secretKey: AWS_ACCESS_KEY_ID
+      remoteRef:
+        key: secret/data/framsburg/cnpg/minio-access
+        property: AWS_ACCESS_KEY_ID
+    - secretKey: AWS_SECRET_ACCESS_KEY
+      remoteRef:
+        key: secret/data/framsburg/cnpg/minio-access
+        property: AWS_SECRET_ACCESS_KEY

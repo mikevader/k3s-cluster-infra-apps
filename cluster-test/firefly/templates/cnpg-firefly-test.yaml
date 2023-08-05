@@ -2,7 +2,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: firefly-test
+  name: firefly-test2
 spec:
   instances: 3
 
@@ -43,9 +43,9 @@ spec:
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: backup-firefly-test
+  name: backup-firefly-test2
 spec:
   schedule: "0 */30 * * * *"
   backupOwnerReference: self
   cluster:
-    name: firefly-test
+    name: firefly-test2
