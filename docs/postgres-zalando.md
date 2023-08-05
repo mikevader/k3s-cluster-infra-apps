@@ -49,4 +49,5 @@ configurations. Some leads can be found [here][2]
 
 [1]: https://opensource.zalando.com/postgres-operator/
 [2]: https://thedatabaseme.de/2022/03/26/backup-to-s3-configure-zalando-postgres-operator-backup-with-wal-g/
-
+[3]: https://thedatabaseme.de/2022/03/13/keep-the-elefants-in-line-deploy-zalando-operator-on-your-kubernetes-cluster/
+[4]: https://blog.palark.com/our-experience-with-postgres-operator-for-kubernetes-by-zalando/
