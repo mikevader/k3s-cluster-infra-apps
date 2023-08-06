@@ -71,8 +71,9 @@ firefly:
   importer:
     enabled: true
     image:
-      tag: "develop" # "version-1.3.3"
+      repository: "fireflyiii/data-importer@sha256:c663a2de156170fd4db551be00924d436ec6bdcf6e1bedf514ff9581e856c0c5"
       pullPolicy: Always
+      # tag: "develop" # "version-1.3.3"
 
     fireflyiii:
       url: 'https://firefly2.framsburg.ch'
