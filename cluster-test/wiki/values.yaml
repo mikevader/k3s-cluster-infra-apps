@@ -49,4 +49,4 @@ wiki:
     postgresqlDatabase: app
     postgresqlUser: app
     existingSecret: wiki-test-app
-    secretKey: password
+    existingSecretKey: password
