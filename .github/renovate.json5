@@ -109,7 +109,8 @@
       "matchUpdateTypes": ["patch"],
       // "registryUrls": ["https://k8s-at-home.com/charts", "https://mikevader.github.io/charts"],
       "matchPackagePatterns": [
-        "argo-cd"
+        "argo-cd",
+        "plex"
       ],
       "addLabels": ["action/automerge"],
       "automerge": true
