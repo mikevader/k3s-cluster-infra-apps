@@ -71,7 +71,7 @@ firefly:
   importer:
     enabled: true
     image:
-      tag: "version-1.3.3"
+      tag: "develop" # "version-1.3.3"
       pullPolicy: Always
 
     fireflyiii:
