@@ -5,16 +5,19 @@ wiki:
     repository: requarks/wiki
     tag: 2.5.299
 
-  affinity:
-    nodeAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 50
-          preference:
-            matchExpressions:
-              - key: performance
-                operator: In
-                values:
-                  - medium
+  # nodeSelector:
+  #   kubernetes.io/arch: arm64
+
+  # affinity:
+  #   nodeAffinity:
+  #     preferredDuringSchedulingIgnoredDuringExecution:
+  #       - weight: 50
+  #         preference:
+  #           matchExpressions:
+  #             - key: performance
+  #               operator: In
+  #               values:
+  #                 - medium
 
   ingress:
     enabled: true
@@ -41,14 +44,9 @@ wiki:
       memory: 512Mi
   
   postgresql:
-    master:
-      affinity:
-        nodeAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 50
-              preference:
-                matchExpressions:
-                  - key: performance
-                    operator: In
-                    values:
-                      - medium
+    enabled: false
+    postgresqlHost: wiki-test-rw.wiki.svc
+    postgresqlDatabase: app
+    postgresqlUser: app
+    existingSecret: wiki-test-app
+    secretKey: password
