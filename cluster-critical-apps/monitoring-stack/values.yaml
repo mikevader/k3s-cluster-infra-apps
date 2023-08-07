@@ -137,7 +137,7 @@ kube-prometheus-stack:
           datasource: Prometheus
         node-exporter-full:
           gnetId: 1860
-          revision: 32
+          revision: 31
           datasource: Prometheus
     grafana.ini:
       server:
