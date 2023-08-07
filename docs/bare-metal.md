@@ -2,6 +2,11 @@
 
 The initial setup is done with Ansible.
 
+## PoE HAT
+
+The fan of the PoE HAT tends to occelate between min and max speed. Accoding to
+an [article by Jeff Geerling][3] this can be adjusted.
+
 ## Setup Minio
 
 Install Minio with installer.
@@ -155,3 +160,4 @@ This should be added as startup command to `/etc/network/if-up.d/`
 
 [1]: https://min.io/docs/minio/linux/integrations/generate-lets-encrypt-certificate-using-certbot-for-minio.html
 [2]: https://www.digitalocean.com/community/tutorials/how-to-acquire-a-let-s-encrypt-certificate-using-dns-validation-with-acme-dns-certbot-on-ubuntu-18-04
+[3]: https://www.jeffgeerling.com/blog/2021/taking-control-pi-poe-hats-overly-aggressive-fan
