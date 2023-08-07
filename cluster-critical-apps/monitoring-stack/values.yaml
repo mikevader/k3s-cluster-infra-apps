@@ -117,16 +117,16 @@ kube-prometheus-stack:
 
     dashboardProviders:
       dashboardproviders.yaml:
-      apiVersion: 1
-      providers:
-      - name: 'default'
-        orgId: 1
-        folder: 'default'
-        type: file
-        disableDeletion: true
-        editable: true
-        options:
-          path: /var/lib/grafana/dashboards/default
+        apiVersion: 1
+        providers:
+          - name: 'default'
+            orgId: 1
+            folder: 'default'
+            type: file
+            disableDeletion: true
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/default
     plugins:
       - grafana-piechart-panel
     dashboards:
