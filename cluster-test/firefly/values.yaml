@@ -73,7 +73,7 @@ firefly:
     image:
       repository: "fireflyiii/data-importer@sha256"
       pullPolicy: Always
-      tag: "ef08c73cb4bc52d28c3b9f936a927f4d817ecc205416ac29f3974a82f1f4d0a2"
+      tag: "d4f2764b13ac098253f66d9021c67470dc4cbee4bb95c3cfcf2258a2bb1183ba"
       # tag: "develop" # "version-1.3.3"
 
     fireflyiii:
