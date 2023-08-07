@@ -114,6 +114,19 @@ kube-prometheus-stack:
         enabled: true
         label: grafana_datasource
         searchNamespace: ALL
+
+    dashboardProviders:
+      dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+      - name: 'default'
+        orgId: 1
+        folder: 'default'
+        type: file
+        disableDeletion: true
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/default
     plugins:
       - grafana-piechart-panel
     dashboards:
@@ -121,6 +134,10 @@ kube-prometheus-stack:
         k8s-cluster-summary:
           gnetId: 4475
           revision: 5
+          datasource: Prometheus
+        node-exporter-full:
+          gnetId: 1860
+          revision: 32
           datasource: Prometheus
     grafana.ini:
       server:
