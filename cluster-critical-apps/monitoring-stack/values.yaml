@@ -119,7 +119,7 @@ kube-prometheus-stack:
       - name: Loki
         type: loki
         access: proxy
-        url: http://loki.loki.svc:3100
+        url: http://loki-gateway.loki.svc:80
         # basicAuth: true
         # basicAuthUser: my_user
         # jsonData:
