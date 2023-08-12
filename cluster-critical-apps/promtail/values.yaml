@@ -1,10 +1,10 @@
 promtail:
   # serviceMonitor:
   #   enabled: true
-  # config:
-  #   #serverPort: 3100
-  #   clients:
-  #     - url: http://loki-gateway.loki.svc/loki/api/v1/push
+  config:
+    #serverPort: 3100
+    clients:
+      - url: http://loki-gateway.loki.svc/loki/api/v1/push
 
     # limit_config:
     #   readline_rate: 800
