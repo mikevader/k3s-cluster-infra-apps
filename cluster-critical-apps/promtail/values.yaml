@@ -5,6 +5,7 @@ promtail:
     #serverPort: 3100
     clients:
       - url: http://loki-gateway.loki.svc/loki/api/v1/push
+        tenant_id: "1"
 
     # limit_config:
     #   readline_rate: 800
