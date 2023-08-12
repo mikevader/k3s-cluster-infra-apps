@@ -144,3 +144,9 @@ kube-prometheus-stack:
           name: oidc
           key: clientSecret
 ```
+
+
+## References
+
+[1]: https://medium.com/aeturnuminc/monitoring-stack-deployment-to-a-kubernetes-cluster-prometheus-grafana-alertmanager-loki-dcc7339d4f19
+

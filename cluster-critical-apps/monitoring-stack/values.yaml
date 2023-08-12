@@ -114,6 +114,34 @@ kube-prometheus-stack:
         enabled: true
         label: grafana_datasource
         searchNamespace: ALL
+    
+    additionalDataSources:
+    datasources:
+      - name: Loki
+        type: loki
+        access: proxy
+        url: http://loki.loki.svc:3100
+        # basicAuth: true
+        # basicAuthUser: my_user
+        # jsonData:
+        #   maxLines: 1000
+        #   derivedFields:
+        #     # Field with internal link pointing to data source in Grafana.
+        #     # Right now, Grafana supports only Jaeger and Zipkin data sources as link targets.
+        #     # datasourceUid value can be anything, but it should be unique across all defined data source uids.
+        #     - datasourceUid: my_jaeger_uid
+        #       matcherRegex: "traceID=(\\w+)"
+        #       name: TraceID
+        #       # url will be interpreted as query for the datasource
+        #       url: '$${__value.raw}'
+
+        #     # Field with external link.
+        #     - matcherRegex: "traceID=(\\w+)"
+        #       name: TraceID
+        #       url: 'http://localhost:16686/trace/$${__value.raw}'
+        # secureJsonData:
+        #   basicAuthPassword: test_password
+
 
     dashboardProviders:
       dashboardproviders.yaml:
@@ -133,11 +161,21 @@ kube-prometheus-stack:
       default:
         k8s-cluster-summary:
           gnetId: 4475
-          revision: 5
           datasource: Prometheus
         node-exporter-full:
           gnetId: 1860
-          revision: 31
+          datasource: Prometheus
+        pod-memory-table:
+          gnetId: 11672
+          datasource: Prometheus
+        advanced-node-metrics:
+          gnetId: 11074
+          datasource: Prometheus
+        application-logs:
+          gnetId: 13639
+          datasource: Loki
+        k8s-cluster-monitoring:
+          gnetId: 3119
           datasource: Prometheus
     grafana.ini:
       server:
