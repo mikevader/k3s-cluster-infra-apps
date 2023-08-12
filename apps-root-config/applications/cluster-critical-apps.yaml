@@ -38,5 +38,6 @@ applications:
       helm:
         skipCrds: true
   opnsense: {}
+  promtail: {}
   traefik: {}
   traefik-external: {}
