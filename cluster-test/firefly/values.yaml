@@ -36,7 +36,7 @@ firefly:
         APP_KEY: 'SomeRandomStringOf32CharsExactly'
         APP_PASSWORD: "CHANGE_ENCRYPT_ME"
 
-    nodesSelector:
+    nodeSelector:
       kubernetes.io/arch: amd64
 
     ingress:
