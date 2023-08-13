@@ -36,16 +36,8 @@ firefly:
         APP_KEY: 'SomeRandomStringOf32CharsExactly'
         APP_PASSWORD: "CHANGE_ENCRYPT_ME"
 
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 50
-            preference:
-              matchExpressions:
-                - key: performance
-                  operator: In
-                  values:
-                    - medium
+    nodesSelector:
+      kubernetes.io/arch: amd64
 
     ingress:
       enabled: true
@@ -81,16 +73,8 @@ firefly:
       auth:
         accessToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNDkzN2Q0YTM4ZmVhZjM4MmVmZmMwN2EyOTI4MzljM2E3NDBmNTAyMDY2MTk3ZmM4ZWUyOTkxZjIwZGM5MWM2ODcyMDlkNGQ2OWE1NjcxMTEiLCJpYXQiOjE2OTEzMDI5MDEuODg5ODQ0LCJuYmYiOjE2OTEzMDI5MDEuODg5ODQ0LCJleHAiOjE3MjI5MjUzMDEuODcxMjMsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.B5dTEB4LCDtM8zqaVPkkXpxJJkAD2JLhL4V5GW8KKGrte21grkVmjANPmWXM_oHVoCYJGJVJZocEzuHaIMNf9WRIHzjtbRaI9t24jSn87BJtFy6XhYj6lQknuZFL2dxgTTNMymsMCnuhIA6D3erYioP7XJ-3pIa4UHnvO2F8K9zwBHT9L2FxmonsiyhQn1s2571TZkxFxlVSVKTbGNQgkCWvcQXQKyif_AFrDk6NGt6a9YQRlzi8cMzMUKD9k57jLFF__05XLNAvpVH-VAV5ZpDjuINvkydDLkKzkeNzdK2rHyfJ_Rv0m70p5c2mnnXUgyYvgZdpLUVsNZF8rFsj27rtu-AF3EY6b-NsqqqBoHYzvZFkCjCVZ1RJDfM8xKYPNuhbn6nEKqq_tmZYGo-ed8IM1HCmYk__jfKkjcOGdBoCOgkrhbMfnE8rWpwkbYz5wkGrZ1HjVadgMroPTwqzScQQ1LArBrRsVODljMH3rdaf10yKFJ_F0HW-idtlYocmfH9Sj1qmiXhVNTfTSPb1zUnxmmz3B7jktdnEqwXVQQyVGHSgqciFalNl-VddFg6a-WMB5X4aFgCl4gQ40hQzwW_h6wQDjhGfpy3dTxdjzkTsLoLtJiVXwh3RK3hdWqiaOfYiDnoq_TBM5wpAgnDl5rASVCjbBDyvyff0UQLejMA'
 
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 50
-            preference:
-              matchExpressions:
-                - key: performance
-                  operator: In
-                  values:
-                    - medium
+    nodeSelector:
+      kubernetes.io/arch: amd64
 
     ingress:
       enabled: true

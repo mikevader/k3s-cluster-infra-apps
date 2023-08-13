@@ -10,15 +10,8 @@ spec:
     spec:
       template:
         spec:
-          affinity:
-            nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                - matchExpressions:
-                  - key: beta.kubernetes.io/arch
-                    operator: In
-                    values:
-                    - amd64     
+          nodeSelector:
+            kubernetes.io/arch: amd64
           containers:
             - image: renovate/renovate:35.81.0
               name: renovate-bot

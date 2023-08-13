@@ -11,11 +11,11 @@ loki:
   singleBinary:
     replicas: 1
     nodeSelector:
-      kubernetes.io/arch: arm64
+      kubernetes.io/arch: amd64
   
   gateway:
     nodeSelector:
-      kubernetes.io/arch: arm64
+      kubernetes.io/arch: amd64
   
   monitoring:
     rules:
