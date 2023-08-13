@@ -7,40 +7,40 @@ promtail:
       - url: http://loki-gateway.loki.svc/loki/api/v1/push
         tenant_id: "1"
 
-    # limit_config:
-    #   readline_rate: 800
-    #   readline_burst: 800
-    #   readline_rate_enabled: true
+    limit_config:
+      readline_rate: 800
+      readline_burst: 800
+      readline_rate_enabled: true
 
-    # snippets:
-    #   extraScrapeConfigs: |
-    #     # Add an additional scrape config for syslog
-    #     - job_name: firewall
-    #       syslog:
-    #         listen_address: 0.0.0.0:{{ .Values.extraPorts.syslog.containerPort }}
-    #         idle_timeout: 60s
-    #         label_structured_data: yes
-    #         labels:
-    #           job: firewall
-    #       relabel_configs:
-    #         - source_labels: ['__syslog_message_hostname']
-    #           target_label: hostname
-    #         - source_labels: ['__syslog_message_severity']
-    #           target_label: 'severity'
-    #         - source_labels: ['__syslog_message_facility']
-    #           target_label: 'facility'
-    #         - source_labels: ['__syslog_message_app_name']
-    #           target_label: 'appname'
+    snippets:
+      extraScrapeConfigs: |
+        # Add an additional scrape config for syslog
+        - job_name: firewall
+          syslog:
+            listen_address: 0.0.0.0:{{ .Values.extraPorts.syslog.containerPort }}
+            idle_timeout: 60s
+            label_structured_data: yes
+            labels:
+              job: firewall
+          relabel_configs:
+            - source_labels: ['__syslog_message_hostname']
+              target_label: hostname
+            - source_labels: ['__syslog_message_severity']
+              target_label: 'severity'
+            - source_labels: ['__syslog_message_facility']
+              target_label: 'facility'
+            - source_labels: ['__syslog_message_app_name']
+              target_label: 'appname'
 
-  # extraPorts:
-  #   syslog:
-  #     name: tcp-syslog
-  #     containerPort: 1514
-  #     service:
-  #       port: 514
-  #       type: LoadBalancer
-  #       externalTrafficPolicy: Local
-  #       loadBalancerIP: 192.168.42.151
+  extraPorts:
+    syslog:
+      name: tcp-syslog
+      containerPort: 1514
+      service:
+        port: 514
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+        loadBalancerIP: 192.168.42.151
 
   # # Mount journal directory into promtail pods
   # extraVolumes:
