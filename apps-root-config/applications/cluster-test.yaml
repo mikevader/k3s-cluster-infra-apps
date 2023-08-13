@@ -33,7 +33,6 @@ applications:
   # test-raw-test:
   #   path: cluster-test/test-raw
   databases: {}
-  firefly-iii: {}
   firefly: {}
   foundryvtt: {}
   recipes: {}
