@@ -15,13 +15,13 @@ promtail:
     snippets:
       extraScrapeConfigs: |
         # Add an additional scrape config for syslog
-        - job_name: firewall
+        - job_name: syslog
           syslog:
             listen_address: 0.0.0.0:{{ .Values.extraPorts.syslog.containerPort }}
             idle_timeout: 60s
             label_structured_data: yes
             labels:
-              job: firewall
+              job: syslog
           relabel_configs:
             - source_labels: ['__syslog_message_hostname']
               target_label: host
@@ -42,16 +42,17 @@ promtail:
                 selector: '{host="OPNsense.local"}'
                 stages:
                   - regex:
-                      expression: '^(?P<rule_number>[\d]+),(?P<sub_rule_number>[\d]*),(?P<anchor>[\d]*),(?P<tracker>[\d]*),(?P<interface>[\w\d]*),(?P<reason>[\w]*),(?P<action>[\w]*),(?P<direction>[\w]*),(?P<ip_version>[\d]*),[x\da-f]*,[x\da-f]*,(?P<packet_ttl>[\d]*),(?P<packet_id>[\d]*),(?P<fragment_offset>[\w]*),(?P<ip_flags>.*?),(?P<protocol_id>[\d]*),(?P<protocol_name>[\w]*),(?P<source_port>[\d]*),(?P<source_ip>[\d.]*),(?P<dest_ip>[\d.]*),(?P<dest_port>[\d]*),'
+                      expression: '^(?P<message>(?P<rule>[^,]*),(?P<sub_rule>[^,]*),(?P<anchor>[^,]*),(?P<tracker>[^,]*),(?P<interface>[^,]*),(?P<reason>[^,]*),(?P<action>[^,]*),(?P<direction>[^,]*),(?P<ip_version>[^,]*),(?P<tos>[^,]*),(?P<ecn>[^,]*),(?P<ttl>[^,]*),(?P<id>[^,]*),(?P<offset>[^,]*),(?P<flags>[^,]*),(?P<protocol_id>[^,]*),(?P<protocol>tcp),(?P<length>[^,]*),(?P<source_ip>[^,]*),(?P<destination_ip>[^,]*),(?P<source_port>[^,]*),(?P<destination_port>[^,]*),(?P<data_length>[^,]*),(?P<tcp_flags>[^,]*),(?P<sequence_number>[^,]*),(?P<ack_number>[^,]*),(?P<tcp_window>[^,]*),(?P<urg>[^,]*),(?P<tcp_options>[^,]*))$'
                   - labels:
                       interface:
+                      reason:
                       action:
                       direction:
-                      protocol_name:
+                      protocol:
                       source_ip:
                       source_port:
-                      dest_ip:
-                      dest_port:
+                      destination_ip:
+                      destination_port:
 
   extraPorts:
     syslog:

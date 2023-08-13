@@ -149,4 +149,7 @@ kube-prometheus-stack:
 ## References
 
 [1]: https://medium.com/aeturnuminc/monitoring-stack-deployment-to-a-kubernetes-cluster-prometheus-grafana-alertmanager-loki-dcc7339d4f19
-
+[2]: https://grafana.com/docs/loki/latest/clients/promtail/configuration/#relabel_configs
+[3]: https://akyriako.medium.com/linux-logging-with-grafana-loki-custom-promtail-labels-from-openstack-or-aws-ec2-metadata-436625cb644c
+[4]: https://github.com/opnsense/core/issues/4911
+[5]: https://grafana.com/grafana/dashboards/17547-opnsense-ids-ips/
