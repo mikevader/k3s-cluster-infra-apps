@@ -110,6 +110,9 @@ kube-prometheus-stack:
         enabled: true
         label: grafana_dashboard
         searchNamespace: ALL
+        folderAnnotation: grafana_folder
+        provider:
+          foldersFromFilesStructure: true
       datasources:
         enabled: true
         label: grafana_datasource
