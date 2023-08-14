@@ -186,6 +186,8 @@ kube-prometheus-stack:
     grafana.ini:
       server:
         root_url: https://grafana.framsburg.ch
+      date_formats:
+        default_timezone: 'Europe/Zurich'
 
   alertmanager:
     config:
