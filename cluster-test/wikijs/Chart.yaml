@@ -4,5 +4,5 @@ description: Make documentation a joy to write using Wiki.js's beautiful and int
 version: 1.0.0
 dependencies:
   - name: wikijs
-    version: 6.4.6
+    version: 6.4.7
     repository: https://mikevader.github.io/charts
