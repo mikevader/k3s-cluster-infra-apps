@@ -56,6 +56,10 @@ promtail:
                       source_port:
                       destination_ip:
                       destination_port:
+                  - geoip
+                      db: "/mnt/geoipdb/GeoIP2-City.mmdb"
+                      source: "source_ip"
+                      db_type: "city"
 
   extraPorts:
     syslog:
@@ -66,6 +70,10 @@ promtail:
         type: LoadBalancer
         externalTrafficPolicy: Local
         loadBalancerIP: 192.168.42.151
+  
+  extraVolumeMounts:
+    - name: geoipdb
+      mountPath: /mnt/geoipdb/
 
   # # Mount journal directory into promtail pods
   # extraVolumes:
