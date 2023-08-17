@@ -502,6 +502,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#loki" class="md-nav__link">
+    Loki
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     References
   </a>
@@ -899,6 +906,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#loki" class="md-nav__link">
+    Loki
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     References
   </a>
@@ -1035,6 +1049,12 @@ thankfully even combines the volume and mount entry into one.</p>
 <a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oidc</span>
 <a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clientSecret</span>
 </code></pre></div>
+<h2 id="loki">Loki</h2>
+<p>Opnsense is a very interessting source for logs, but two steps are necessary.
+The syslog source has to be configures for opnsense to forward the syslog
+entries<a href="https://alexandre.deverteuil.net/post/syslog-relay-for-loki/">7</a>. The second step is to parse the syslog entries and turn them into
+sensible logfmt messages with labels<a href="https://github.com/onedr0p/home-ops/blob/61c672be2fa7c3cbb97eac523495affef5c6af07/cluster/apps/monitoring/vector/aggregator/filterlog-regex.txt">4</a>.</p>
+<p>You can add as a bonus the geoip.</p>
 <h2 id="references">References</h2>
 
 
