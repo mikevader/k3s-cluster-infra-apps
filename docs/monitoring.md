@@ -146,6 +146,16 @@ kube-prometheus-stack:
 ```
 
 
+## Loki
+
+Opnsense is a very interessting source for logs, but two steps are necessary.
+The syslog source has to be configures for opnsense to forward the syslog
+entries[7]. The second step is to parse the syslog entries and turn them into
+sensible logfmt messages with labels[4][6].
+
+You can add as a bonus the geoip.
+
+
 ## References
 
 [1]: https://medium.com/aeturnuminc/monitoring-stack-deployment-to-a-kubernetes-cluster-prometheus-grafana-alertmanager-loki-dcc7339d4f19
@@ -153,3 +163,6 @@ kube-prometheus-stack:
 [3]: https://akyriako.medium.com/linux-logging-with-grafana-loki-custom-promtail-labels-from-openstack-or-aws-ec2-metadata-436625cb644c
 [4]: https://github.com/opnsense/core/issues/4911
 [5]: https://grafana.com/grafana/dashboards/17547-opnsense-ids-ips/
+[6]: https://github.com/onedr0p/home-ops/blob/61c672be2fa7c3cbb97eac523495affef5c6af07/cluster/apps/monitoring/vector/aggregator/filterlog-regex.txt
+[7]: https://alexandre.deverteuil.net/post/syslog-relay-for-loki/
+
