@@ -56,7 +56,7 @@ promtail:
                       source_port:
                       destination_ip:
                       destination_port:
-                  - geoip
+                  - geoip:
                       db: "/mnt/geoipdb/GeoIP2-City.mmdb"
                       source: "source_ip"
                       db_type: "city"
