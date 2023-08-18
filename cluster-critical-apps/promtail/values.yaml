@@ -75,6 +75,10 @@ promtail:
     - name: geoipdb
       mountPath: /mnt/geoipdb/
 
+  extraVolumes:
+    - name: geoipdb
+      emptydir: {}
+
   # # Mount journal directory into promtail pods
   # extraVolumes:
   #   - name: journal
