@@ -57,9 +57,31 @@ promtail:
                       destination_ip:
                       destination_port:
                   - geoip:
-                      db: "/mnt/geoipdb/GeoIP2-City.mmdb"
+                      db: "/mnt/geoipdb/GeoLite2-City.mmdb"
                       source: "source_ip"
                       db_type: "city"
+
+  initContainer:
+    - name: geo-ip
+      image: ghcr.io/maxmind/geoipupdate:v6.0
+      volumeMounts:
+        - name: geoipdb
+          mountPath: /etc/geoip
+      env:
+        - name: GEOIPUPDATE_ACCOUNT_ID
+          valueFrom:
+            secretKeyRef:
+              name: promtail-secret
+              key: license.id
+        - name: GEOIPUPDATE_LICENSE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: promtail-secret
+              key: license.key
+        - name: GEOIPUPDATE_EDITION_IDS
+          value: "GeoLite2-City GeoLite2-Country"
+        - name: GEOIPUPDATE_DB_DIR
+          value: "/etc/geoip"
 
   extraPorts:
     syslog:
@@ -73,7 +95,7 @@ promtail:
   
   extraVolumeMounts:
     - name: geoipdb
-      mountPath: /mnt/geoipdb/
+      mountPath: /mnt/geoipdb
 
   extraVolumes:
     - name: geoipdb
