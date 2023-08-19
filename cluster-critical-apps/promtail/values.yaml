@@ -47,6 +47,10 @@ promtail:
                       expression: '^(?P<message>(?P<rule>[^,]*),(?P<sub_rule>[^,]*),(?P<anchor>[^,]*),(?P<tracker>[^,]*),(?P<interface>[^,]*),(?P<reason>[^,]*),(?P<action>[^,]*),(?P<direction>[^,]*),(?P<ip_version>[^,]*),(?P<tos>[^,]*),(?P<ecn>[^,]*),(?P<ttl>[^,]*),(?P<id>[^,]*),(?P<offset>[^,]*),(?P<flags>[^,]*),(?P<protocol_id>[^,]*),(?P<protocol>udp),(?P<length>[^,]*),(?P<source_ip>[^,]*),(?P<destination_ip>[^,]*),(?P<source_port>[^,]*),(?P<destination_port>[^,]*),(?P<data_length>[^,]*))$'
                   - regex:
                       expression: '^(?P<message>(?P<rule>[^,]*),(?P<sub_rule>[^,]*),(?P<anchor>[^,]*),(?P<tracker>[^,]*),(?P<interface>[^,]*),(?P<reason>[^,]*),(?P<action>[^,]*),(?P<direction>[^,]*),(?P<ip_version>[^,]*),(?P<tos>[^,]*),(?P<ecn>[^,]*),(?P<ttl>[^,]*),(?P<id>[^,]*),(?P<offset>[^,]*),(?P<flags>[^,]*),(?P<protocol_id>[^,]*),(?P<protocol>icmp|igmp|gre),(?P<length>[^,]*),(?P<source_ip>[^,]*),(?P<destination_ip>[^,]*),(?P<data>[^,]*))$'
+                  - geoip:
+                      db: "/mnt/geoipdb/GeoLite2-City.mmdb"
+                      source: "source_ip"
+                      db_type: "city"
                   - labels:
                       interface:
                       action:
@@ -56,10 +60,8 @@ promtail:
                       source_port:
                       destination_ip:
                       destination_port:
-                  - geoip:
-                      db: "/mnt/geoipdb/GeoLite2-City.mmdb"
-                      source: "source_ip"
-                      db_type: "city"
+                      geoip_city_name:
+                      geoip_country_name:
 
   initContainer:
     - name: geo-ip
