@@ -10,9 +10,11 @@ loki:
       type: 'filesystem'
 
   tableManager:
-    enabled: true
+    enabled: false
     retention_deletes_enabled: true
     retention_period: 72h
+    nodeSelector:
+      kubernetes.io/arch: amd64
 
   singleBinary:
     replicas: 1
