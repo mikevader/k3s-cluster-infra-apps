@@ -8,6 +8,12 @@ loki:
       replication_factor: 1
     storage:
       type: 'filesystem'
+
+  tableManager:
+    enabled: true
+    retention_deletes_enabled: true
+    retention_period: 72h
+
   singleBinary:
     replicas: 1
     nodeSelector:
