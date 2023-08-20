@@ -57,6 +57,9 @@ promtail:
                       direction:
                       protocol:
                       source_ip:
+                      source_port:
+                      destination_ip:
+                      destination_port:
 
   initContainer:
     - name: geo-ip
