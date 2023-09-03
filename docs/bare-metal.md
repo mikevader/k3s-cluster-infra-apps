@@ -1,5 +1,7 @@
 # Harware Setup of Raspberry PIs
 
+https://www.blinkstick.com/products/blinkstick-nano
+
 The initial setup is done with Ansible.
 
 ## PoE HAT
@@ -7,7 +9,16 @@ The initial setup is done with Ansible.
 The fan of the PoE HAT tends to occelate between min and max speed. Accoding to
 an [article by Jeff Geerling][3] this can be adjusted.
 
+## PSU
+
+https://github.com/dzomaya/NUTandRpi
+
+
 ## Setup Minio
+
+
+TLS:
+https://docs.ansible.com/ansible/latest/collections/community/crypto/acme_certificate_module.html
 
 Install Minio with installer.
 

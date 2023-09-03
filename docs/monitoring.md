@@ -156,6 +156,10 @@ sensible logfmt messages with labels[4][6].
 You can add as a bonus the geoip.
 
 
+## Custom Dashboard
+
+https://www.mostlychris.com/keeping-tabs-on-your-network/
+
 ## References
 
 [1]: https://medium.com/aeturnuminc/monitoring-stack-deployment-to-a-kubernetes-cluster-prometheus-grafana-alertmanager-loki-dcc7339d4f19
@@ -165,4 +169,5 @@ You can add as a bonus the geoip.
 [5]: https://grafana.com/grafana/dashboards/17547-opnsense-ids-ips/
 [6]: https://github.com/onedr0p/home-ops/blob/61c672be2fa7c3cbb97eac523495affef5c6af07/cluster/apps/monitoring/vector/aggregator/filterlog-regex.txt
 [7]: https://alexandre.deverteuil.net/post/syslog-relay-for-loki/
+
 
