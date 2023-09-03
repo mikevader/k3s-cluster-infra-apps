@@ -9,12 +9,27 @@ loki:
     storage:
       type: 'filesystem'
 
-  tableManager:
-    enabled: false
-    retention_deletes_enabled: true
-    retention_period: 72h
-    nodeSelector:
-      kubernetes.io/arch: amd64
+    compactor:
+      retention_enabled: true
+      compaction_interval: 10m
+      retention_delete_delay: 2h
+
+    limits_config:
+      retention_period: 72h
+
+    # retention_period: 744h
+    # retention_stream:
+    # - selector: '{namespace="dev"}'
+    #   priority: 1
+    #   period: 24h
+    # per_tenant_override_config: /etc/overrides.yaml
+
+  # tableManager:
+  #   enabled: false
+  #   retention_deletes_enabled: true
+  #   retention_period: 72h
+  #   nodeSelector:
+  #     kubernetes.io/arch: amd64
 
   singleBinary:
     replicas: 1
