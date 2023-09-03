@@ -33,6 +33,9 @@ loki:
 
   singleBinary:
     replicas: 1
+    persistence:
+      enabled: true
+      size: 100Gi
     nodeSelector:
       kubernetes.io/arch: amd64
   
