@@ -39,7 +39,7 @@ promtail:
               target_label: 'connection_hostname'
           pipeline_stages:
             - match:
-                selector: '{host="OPNsense.local"}'
+                selector: '{host="OPNsense.home.arpa"}'
                 stages:
                   - regex:
                       expression: '^(?P<message>(?P<rule>[^,]*),(?P<sub_rule>[^,]*),(?P<anchor>[^,]*),(?P<tracker>[^,]*),(?P<interface>[^,]*),(?P<reason>[^,]*),(?P<action>[^,]*),(?P<direction>[^,]*),(?P<ip_version>[^,]*),(?P<tos>[^,]*),(?P<ecn>[^,]*),(?P<ttl>[^,]*),(?P<id>[^,]*),(?P<offset>[^,]*),(?P<flags>[^,]*),(?P<protocol_id>[^,]*),(?P<protocol>tcp),(?P<length>[^,]*),(?P<source_ip>[^,]*),(?P<destination_ip>[^,]*),(?P<source_port>[^,]*),(?P<destination_port>[^,]*),(?P<data_length>[^,]*),(?P<tcp_flags>[^,]*),(?P<sequence_number>[^,]*),(?P<ack_number>[^,]*),(?P<tcp_window>[^,]*),(?P<urg>[^,]*),(?P<tcp_options>[^,]*))$'
