@@ -20,6 +20,8 @@ traefik:
     access:
       enabled: true
       format: json
+  metrics:
+    prometheus: {}
   service:
     annotations:
       metallb.universe.tf/address-pool: metallb-external-ip-range
