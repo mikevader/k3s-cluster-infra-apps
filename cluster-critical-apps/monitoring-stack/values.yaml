@@ -345,6 +345,12 @@ kube-prometheus-stack:
           scheme: https
           static_configs:
             - targets: [minio.framsburg.net]
+        - job_name: minio-job-node
+          bearer_token: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4NDc0NTYxNDEsImlzcyI6InByb21ldGhldXMiLCJzdWIiOiJhZG1pbiJ9.BSoeoQwnQjYWIbllH5Wl4aEMp3QftAJ3cyIXY_YzV8EwKWwCGIgxaiWMfSsSqobelwz9I6j79Zj8ng8yblG5nQ # If you get into my network you're allowed to access my buckets ;)
+          metrics_path: /minio/v2/metrics/node
+          scheme: https
+          static_configs:
+            - targets: [minio.framsburg.net]
         - job_name: minio-job-bucket
           bearer_token: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4NDc0NTYxNDEsImlzcyI6InByb21ldGhldXMiLCJzdWIiOiJhZG1pbiJ9.BSoeoQwnQjYWIbllH5Wl4aEMp3QftAJ3cyIXY_YzV8EwKWwCGIgxaiWMfSsSqobelwz9I6j79Zj8ng8yblG5nQ # If you get into my network you're allowed to access my buckets ;)
           metrics_path: /minio/v2/metrics/bucket

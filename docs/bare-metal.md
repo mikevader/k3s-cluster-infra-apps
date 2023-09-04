@@ -46,6 +46,9 @@ export MINIO_PROMETHEUS_URL=https://prometheus.framsburg.ch
 export MINIO_PROMETHEUS_JOB_ID=minio-job
 ```
 
+Additionally you might need to set `MINIO_PROMETHEUS_AUTH_TYPE` to `public` as
+authentication over jwt is the default.
+
 
 ## Setup Minio Bucket for Backup
 
