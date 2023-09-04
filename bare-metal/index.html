@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.7">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.8">
     
     
       
@@ -301,6 +301,13 @@
         <li class="md-nav__item">
   <a href="#setup-minio" class="md-nav__link">
     Setup Minio
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-minio-monitoring" class="md-nav__link">
+    Setup Minio Monitoring
   </a>
   
 </li>
@@ -1059,6 +1066,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#setup-minio-monitoring" class="md-nav__link">
+    Setup Minio Monitoring
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#setup-minio-bucket-for-backup" class="md-nav__link">
     Setup Minio Bucket for Backup
   </a>
@@ -1133,77 +1147,82 @@ use <code>certbot</code> to install this. </p>
 <p>During the execution, certbot requires you to add a specific DNS entry to your
 Domain. This looks similar to:</p>
 <p><img alt="DNS Record on Digitalocean" src="../dns-record.png" /></p>
-<h2 id="setup-minio-bucket-for-backup">Setup Minio Bucket for Backup</h2>
-<div class="highlight"><span class="filename">Create minio bucket</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>mc<span class="w"> </span>mb<span class="w"> </span>myminio/k3s
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>$<span class="w"> </span>mc<span class="w"> </span>mb<span class="w"> </span>myminio/k3s/etcd-snapshot
+<h2 id="setup-minio-monitoring">Setup Minio Monitoring</h2>
+<p>Minio requires two env variables to connect to prometheus metrics:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MINIO_PROMETHEUS_URL</span><span class="o">=</span>https://prometheus.framsburg.ch
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MINIO_PROMETHEUS_JOB_ID</span><span class="o">=</span>minio-job
 </code></pre></div>
-<div class="highlight"><span class="filename">Create user with policy</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>mc<span class="w"> </span>admin<span class="w"> </span>user<span class="w"> </span>add<span class="w"> </span>myminio<span class="w"> </span>k3s<span class="w"> </span>k3sk3sk3s
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/tmp/etcd-backups-policy.json<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="s">{</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="s">  &quot;Version&quot;: &quot;2012-10-17&quot;,</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="s">      &quot;Statement&quot;: [</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="s">    {</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="s">      &quot;Action&quot;: [</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="s">        &quot;s3:PutBucketPolicy&quot;,</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="s">        &quot;s3:GetBucketPolicy&quot;,</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="s">        &quot;s3:DeleteBucketPolicy&quot;,</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="s">        &quot;s3:ListAllMyBuckets&quot;,</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="s">        &quot;s3:ListBucket&quot;</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="s">      ],</span>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="s">      &quot;Effect&quot;: &quot;Allow&quot;,</span>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="s">      &quot;Resource&quot;: [</span>
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="s">        &quot;arn:aws:s3:::k3s&quot;</span>
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="s">      ],</span>
-<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="s">      &quot;Sid&quot;: &quot;&quot;</span>
-<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="s">    },</span>
-<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="s">    {</span>
-<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="s">      &quot;Action&quot;: [</span>
-<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="s">        &quot;s3:AbortMultipartUpload&quot;,</span>
-<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="s">        &quot;s3:DeleteObject&quot;,</span>
-<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="s">        &quot;s3:GetObject&quot;,</span>
-<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="s">        &quot;s3:ListMultipartUploadParts&quot;,</span>
-<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="s">        &quot;s3:PutObject&quot;</span>
-<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="s">      ],</span>
-<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="s">      &quot;Effect&quot;: &quot;Allow&quot;,</span>
-<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="s">      &quot;Resource&quot;: [</span>
-<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="s">        &quot;arn:aws:s3:::k3s/*&quot;</span>
-<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="s">      ],</span>
-<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="s">      &quot;Sid&quot;: &quot;&quot;</span>
-<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="s">    }</span>
-<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="s">  ]</span>
-<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="s">}</span>
-<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="s">EOF</span>
-<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>
-<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>$<span class="w"> </span>mc<span class="w"> </span>admin<span class="w"> </span>policy<span class="w"> </span>add<span class="w"> </span>myminio<span class="w"> </span>etcd-backups-policy<span class="w"> </span>/tmp/etcd-backups-policy.json
-<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>
-<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>$<span class="w"> </span>mc<span class="w"> </span>admin<span class="w"> </span>policy<span class="w"> </span><span class="nb">set</span><span class="w"> </span>myminio<span class="w"> </span>etcd-backups-policy<span class="w"> </span><span class="nv">user</span><span class="o">=</span>k3s
+<h2 id="setup-minio-bucket-for-backup">Setup Minio Bucket for Backup</h2>
+<div class="highlight"><span class="filename">Create minio bucket</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>mc<span class="w"> </span>mb<span class="w"> </span>myminio/k3s
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>$<span class="w"> </span>mc<span class="w"> </span>mb<span class="w"> </span>myminio/k3s/etcd-snapshot
+</code></pre></div>
+<div class="highlight"><span class="filename">Create user with policy</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span>mc<span class="w"> </span>admin<span class="w"> </span>user<span class="w"> </span>add<span class="w"> </span>myminio<span class="w"> </span>k3s<span class="w"> </span>k3sk3sk3s
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/tmp/etcd-backups-policy.json<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="s">{</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="s">  &quot;Version&quot;: &quot;2012-10-17&quot;,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="s">      &quot;Statement&quot;: [</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="s">    {</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="s">      &quot;Action&quot;: [</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="s">        &quot;s3:PutBucketPolicy&quot;,</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="s">        &quot;s3:GetBucketPolicy&quot;,</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="s">        &quot;s3:DeleteBucketPolicy&quot;,</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="s">        &quot;s3:ListAllMyBuckets&quot;,</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="s">        &quot;s3:ListBucket&quot;</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="s">      ],</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="s">      &quot;Effect&quot;: &quot;Allow&quot;,</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="s">      &quot;Resource&quot;: [</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="s">        &quot;arn:aws:s3:::k3s&quot;</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="s">      ],</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="s">      &quot;Sid&quot;: &quot;&quot;</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="s">    },</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="s">    {</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="s">      &quot;Action&quot;: [</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="s">        &quot;s3:AbortMultipartUpload&quot;,</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="s">        &quot;s3:DeleteObject&quot;,</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="s">        &quot;s3:GetObject&quot;,</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="s">        &quot;s3:ListMultipartUploadParts&quot;,</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="s">        &quot;s3:PutObject&quot;</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="s">      ],</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="s">      &quot;Effect&quot;: &quot;Allow&quot;,</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="s">      &quot;Resource&quot;: [</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="s">        &quot;arn:aws:s3:::k3s/*&quot;</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="s">      ],</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="s">      &quot;Sid&quot;: &quot;&quot;</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="s">    }</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="s">  ]</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="s">}</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="s">EOF</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>$<span class="w"> </span>mc<span class="w"> </span>admin<span class="w"> </span>policy<span class="w"> </span>add<span class="w"> </span>myminio<span class="w"> </span>etcd-backups-policy<span class="w"> </span>/tmp/etcd-backups-policy.json
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>$<span class="w"> </span>mc<span class="w"> </span>admin<span class="w"> </span>policy<span class="w"> </span><span class="nb">set</span><span class="w"> </span>myminio<span class="w"> </span>etcd-backups-policy<span class="w"> </span><span class="nv">user</span><span class="o">=</span>k3s
 </code></pre></div>
 <h2 id="define-k3s-backup-target">Define K3S backup target</h2>
-<div class="highlight"><span class="filename">k3s-server.services</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>[Service]
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ExecStart={{ k3s_binary_path }}/k3s server \
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>...
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>{% if backup_s3_enabled %}
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    --etcd-s3 \
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    --etcd-snapshot-schedule-cron=&#39;{{ backup_schedule_cron }}&#39; \
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    --etcd-s3-endpoint=&#39;{{ backup_s3_endpoint }}&#39; \
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    --etcd-s3-endpoint-ca=&#39;{{ systemd_dir }}/k3s-server.service.crt&#39; \
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    --etcd-s3-bucket=&#39;{{ backup_s3_bucket }}&#39; \
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    --etcd-s3-folder=&#39;{{ backup_s3_folder }}&#39; \
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    --etcd-s3-access-key=&#39;{{ backup_s3_access_key }}&#39; \
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    --etcd-s3-secret-key=&#39;{{ backup_s3_secret_key }}&#39; \
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>{% endif %}
+<div class="highlight"><span class="filename">k3s-server.services</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>[Service]
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ExecStart={{ k3s_binary_path }}/k3s server \
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>...
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>{% if backup_s3_enabled %}
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    --etcd-s3 \
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    --etcd-snapshot-schedule-cron=&#39;{{ backup_schedule_cron }}&#39; \
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    --etcd-s3-endpoint=&#39;{{ backup_s3_endpoint }}&#39; \
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    --etcd-s3-endpoint-ca=&#39;{{ systemd_dir }}/k3s-server.service.crt&#39; \
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    --etcd-s3-bucket=&#39;{{ backup_s3_bucket }}&#39; \
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    --etcd-s3-folder=&#39;{{ backup_s3_folder }}&#39; \
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    --etcd-s3-access-key=&#39;{{ backup_s3_access_key }}&#39; \
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    --etcd-s3-secret-key=&#39;{{ backup_s3_secret_key }}&#39; \
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>{% endif %}
 </code></pre></div>
 <p>Define in ansible vault <code>ansible-vault edit group_vars/all.yaml</code> the four coordinates:
-<div class="highlight"><span class="filename">vault</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="na">backup_s3_access_key</span><span class="o">:</span><span class="w"> </span><span class="s">k3s</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="na">backup_s3_secret_key</span><span class="o">:</span><span class="w"> </span><span class="s">k3sk3sk3s</span>
+<div class="highlight"><span class="filename">vault</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="na">backup_s3_access_key</span><span class="o">:</span><span class="w"> </span><span class="s">k3s</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="na">backup_s3_secret_key</span><span class="o">:</span><span class="w"> </span><span class="s">k3sk3sk3s</span>
 </code></pre></div></p>
-<div class="highlight"><span class="filename">hosts</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="na">backup_schedule_cron</span><span class="o">:</span><span class="w"> </span><span class="s">&#39;0 */6 * * *&#39;</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="na">backup_s3_bucket</span><span class="o">:</span><span class="w"> </span><span class="s">k3s</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="na">backup_s3_folder</span><span class="o">:</span><span class="w"> </span><span class="s">etcd-snapshot</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="na">backup_s3_endpoint_ca</span><span class="o">:</span><span class="w"> </span><span class="s">|</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">          </span><span class="na">-----BEGIN</span><span class="w"> </span><span class="s">CERTIFICATE-----</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">          </span><span class="na">MIIDgTCCAmmgAwIBAgIJAJ85e+K5ngFRMA0GCSqGSIb3DQEBCwUAMGsxCzAJBgNV</span>
+<div class="highlight"><span class="filename">hosts</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="na">backup_schedule_cron</span><span class="o">:</span><span class="w"> </span><span class="s">&#39;0 */6 * * *&#39;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="na">backup_s3_bucket</span><span class="o">:</span><span class="w"> </span><span class="s">k3s</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="na">backup_s3_folder</span><span class="o">:</span><span class="w"> </span><span class="s">etcd-snapshot</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="na">backup_s3_endpoint_ca</span><span class="o">:</span><span class="w"> </span><span class="s">|</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">          </span><span class="na">-----BEGIN</span><span class="w"> </span><span class="s">CERTIFICATE-----</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">          </span><span class="na">MIIDgTCCAmmgAwIBAgIJAJ85e+K5ngFRMA0GCSqGSIb3DQEBCwUAMGsxCzAJBgNV</span>
 </code></pre></div>
 <h2 id="optional-rolling-update">(Optional) Rolling Update</h2>
 <p>The initial ansible script is not very suitable for rolling updates as it
@@ -1223,13 +1242,13 @@ cares about draining nodes correctly.</p>
 <p>Use playbook <code>07_k3s_update</code> and start with the master nodes individually.
 Be aware that Longhorn and other systems need time to recover from the reboots
 otherwise they will block a shutdown or might loose data.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ansible-playbook<span class="w"> </span>playbooks/07_k3s_update.yml<span class="w"> </span>--limit<span class="w"> </span>k3smaster1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ansible-playbook<span class="w"> </span>playbooks/07_k3s_update.yml<span class="w"> </span>--limit<span class="w"> </span>k3smaster1
 </code></pre></div>
 <h2 id="lenovo-nic-e1000">Lenovo nic e1000</h2>
 <p>Some tiny servers might have an issue with their network card specifically with
 the offloading. In case the network adapter hangs itself up the following
 command might help:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ethtool<span class="w"> </span>-K<span class="w"> </span>&lt;ADAPTER&gt;<span class="w"> </span>gso<span class="w"> </span>off<span class="w"> </span>gro<span class="w"> </span>off<span class="w"> </span>tso<span class="w"> </span>off<span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ethtool<span class="w"> </span>-K<span class="w"> </span>&lt;ADAPTER&gt;<span class="w"> </span>gso<span class="w"> </span>off<span class="w"> </span>gro<span class="w"> </span>off<span class="w"> </span>tso<span class="w"> </span>off<span class="w"> </span>
 </code></pre></div>
 <p>This should be added as startup command to <code>/etc/network/if-up.d/</code></p>
 
