@@ -37,6 +37,14 @@ Domain. This looks similar to:
 
 ![DNS Record on Digitalocean](dns-record.png)
 
+## Setup Minio Monitoring
+
+Minio requires two env variables to connect to prometheus metrics:
+
+```bash
+export MINIO_PROMETHEUS_URL=https://prometheus.framsburg.ch
+export MINIO_PROMETHEUS_JOB_ID=minio-job
+```
 
 
 ## Setup Minio Bucket for Backup
