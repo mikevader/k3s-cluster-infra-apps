@@ -1152,6 +1152,8 @@ Domain. This looks similar to:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MINIO_PROMETHEUS_URL</span><span class="o">=</span>https://prometheus.framsburg.ch
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MINIO_PROMETHEUS_JOB_ID</span><span class="o">=</span>minio-job
 </code></pre></div>
+<p>Additionally you might need to set <code>MINIO_PROMETHEUS_AUTH_TYPE</code> to <code>public</code> as
+authentication over jwt is the default.</p>
 <h2 id="setup-minio-bucket-for-backup">Setup Minio Bucket for Backup</h2>
 <div class="highlight"><span class="filename">Create minio bucket</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>mc<span class="w"> </span>mb<span class="w"> </span>myminio/k3s
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>$<span class="w"> </span>mc<span class="w"> </span>mb<span class="w"> </span>myminio/k3s/etcd-snapshot
