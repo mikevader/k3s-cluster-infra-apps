@@ -183,6 +183,9 @@ kube-prometheus-stack:
         k8s-cluster-monitoring:
           gnetId: 3119
           datasource: Prometheus
+        alertmanager:
+          gnetId: 12947
+          datasource: Prometheus
     grafana.ini:
       server:
         root_url: https://grafana.framsburg.ch
