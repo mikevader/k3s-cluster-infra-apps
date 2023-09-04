@@ -32,6 +32,7 @@ applications:
         skipCrds: true
   longhorn-system: {}
   metallb-system: {}
+  minio: {}
   monitoring-stack:
     # helmServerSideApply: true
     source:
