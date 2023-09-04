@@ -338,6 +338,13 @@ kube-prometheus-stack:
       ruleSelectorNilUsesHelmValues: false
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
+      additionalScrapeConfigs:
+        - job_name: minio-job
+          bearer_token: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4NDc0NTYxNDEsImlzcyI6InByb21ldGhldXMiLCJzdWIiOiJhZG1pbiJ9.BSoeoQwnQjYWIbllH5Wl4aEMp3QftAJ3cyIXY_YzV8EwKWwCGIgxaiWMfSsSqobelwz9I6j79Zj8ng8yblG5nQ
+          metrics_path: /minio/v2/metrics/cluster
+          scheme: https
+          static_configs:
+            - targets: [minio.framsburg.net]
       enableAdminAPI: true
       retentionSize: 100GB
       retention: 90d
@@ -395,15 +402,7 @@ kube-prometheus-stack:
           - port: metrics
             path: /metrics
             scheme: http
-    
-    additionalScrapeConfigs:
-      - job_name: minio-job
-        bearer_token: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4NDc0NTYxNDEsImlzcyI6InByb21ldGhldXMiLCJzdWIiOiJhZG1pbiJ9.BSoeoQwnQjYWIbllH5Wl4aEMp3QftAJ3cyIXY_YzV8EwKWwCGIgxaiWMfSsSqobelwz9I6j79Zj8ng8yblG5nQ
-        metrics_path: /minio/v2/metrics/cluster
-        scheme: https
-        static_configs:
-          - targets: [minio.framsburg.net]
-    
+
     ingress:
       enabled: true
       ingressClassName: traefik
