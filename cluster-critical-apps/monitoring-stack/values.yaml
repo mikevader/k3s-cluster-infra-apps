@@ -163,7 +163,6 @@ kube-prometheus-stack:
               path: /var/lib/grafana/dashboards/default
     plugins:
       - grafana-piechart-panel
-      - camptocamp-prometheus-alertmanager-datasource
     dashboards:
       default:
         k8s-cluster-summary:
