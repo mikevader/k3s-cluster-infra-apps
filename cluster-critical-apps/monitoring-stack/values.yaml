@@ -117,7 +117,7 @@ kube-prometheus-stack:
         enabled: true
         label: grafana_datasource
         searchNamespace: ALL
-    
+
     additionalDataSources:
       - name: Loki
         type: loki
@@ -163,6 +163,7 @@ kube-prometheus-stack:
               path: /var/lib/grafana/dashboards/default
     plugins:
       - grafana-piechart-panel
+      - camptocamp-prometheus-alertmanager-datasource
     dashboards:
       default:
         k8s-cluster-summary:
