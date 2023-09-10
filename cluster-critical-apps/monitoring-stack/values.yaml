@@ -155,7 +155,7 @@ kube-prometheus-stack:
         providers:
           - name: 'default'
             orgId: 1
-            folder: 'default'
+            folder: 'General'
             type: file
             disableDeletion: true
             editable: true
@@ -182,9 +182,6 @@ kube-prometheus-stack:
           datasource: Loki
         k8s-cluster-monitoring:
           gnetId: 3119
-          datasource: Prometheus
-        alertmanager:
-          gnetId: 12947
           datasource: Prometheus
     grafana.ini:
       server:
