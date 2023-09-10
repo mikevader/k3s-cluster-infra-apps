@@ -155,7 +155,7 @@ kube-prometheus-stack:
         providers:
           - name: 'default'
             orgId: 1
-            folder: 'General'
+            folder: 'default'
             type: file
             disableDeletion: true
             editable: true
