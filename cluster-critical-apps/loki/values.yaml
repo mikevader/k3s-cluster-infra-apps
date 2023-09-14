@@ -45,4 +45,5 @@ loki:
   
   monitoring:
     rules:
-      enabled: false
+      enabled: true
+      alerting: false
