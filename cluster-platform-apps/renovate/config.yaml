@@ -8,7 +8,12 @@ data:
     {
       "allowPostUpgradeCommandTemplating": true,
       "allowedPostUpgradeCommands": ["^.*$", "^sed -i", "^cd "],
-      "repositories": ["mikevader/container-images","mikevader/charts","mikevader/k3s-cluster-infra-apps"],
+      "repositories": [
+        "mikevader/container-images",
+        "mikevader/charts",
+        "mikevader/k3s-cluster-infra-apps",
+        "mikevader/dm-workshop"
+      ],
       "hostRules": [
         {
           "hostType": "docker",
