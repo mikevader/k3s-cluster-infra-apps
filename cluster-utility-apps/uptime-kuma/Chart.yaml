@@ -4,5 +4,5 @@ description: Uptime Kuma
 version: 1.0.0
 dependencies:
   - name: uptime-kuma
-    version: 1.5.10
+    version: 1.5.11
     repository: https://mikevader.github.io/charts
