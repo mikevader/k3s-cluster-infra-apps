@@ -1,16 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
+    "config:recommended",
+    ":gitSignOff",
     "mergeConfidence:all-badges"
   ],
   "timezone": "Europe/Zurich",
-  "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard",
-  "commitBody": "Signed-off-by: Mikevader <mikevader@users.noreply.github.com>",
+  "assigneesFromCodeOwners": true,
+  "reviewersFromCodeOwners": true,
   "suppressNotifications": ["prIgnoreNotification"],
   "rebaseWhen": "conflicted",
-  "commitBodyTable": true,
   "ignorePaths": [".archived/**", ".disabled/**"],
   "labels": ["renovate"],
   "packageRules": [
