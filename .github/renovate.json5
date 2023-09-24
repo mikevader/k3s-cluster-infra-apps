@@ -12,7 +12,6 @@
   "rebaseWhen": "conflicted",
   "commitBodyTable": true,
   "ignorePaths": [".archived/**", ".disabled/**"],
-  "fetchReleaseNotes": true,
   "labels": ["renovate"],
   "packageRules": [
     // Setup datasources
@@ -26,7 +25,7 @@
       "commitMessageTopic": "Docker image {{depName}}",
       "commitMessageExtra": "to {{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
       "matchUpdateTypes": ["major", "minor", "patch"],
-      "enabled": true,
+      "enabled": true
     },
     {
       "matchDatasources": ["docker"],
@@ -101,7 +100,7 @@
       "commitMessageTopic": "Docker image {{depName}}",
       "commitMessageExtra": "to {{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
       "matchUpdateTypes": ["major", "minor", "patch"],
-      "enabled": true,
+      "enabled": true
     },
     // Helm charts that are safe to auto merge
     {
