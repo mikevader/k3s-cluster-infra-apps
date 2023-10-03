@@ -1,0 +1,9 @@
+dmw:
+  railsEnvironment: development
+
+# podSecurityContext:
+#  sysctls:
+#    - name: fs.inotify.max_user_instances
+#      value: "256"
+
+
