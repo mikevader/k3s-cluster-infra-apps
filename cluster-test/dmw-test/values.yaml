@@ -1,7 +1,22 @@
 dmw:
   railsEnvironment: development
   image:
-    tag: develop@sha256:08da35d524bb47bfb13c8814e6e3e795e684dc48a0303486f812f39e6c5049df
+    tag: develop
+
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      # traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+    hosts:
+      - host: 'dmw-test.framsburg.ch'
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - hosts: ['dmw-test.framsburg.ch']
+        secretName: 'dmw-test-framsburg-ch-tls'
 
 # podSecurityContext:
 #  sysctls:
