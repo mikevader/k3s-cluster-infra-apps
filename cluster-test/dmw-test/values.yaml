@@ -18,6 +18,10 @@ dmw:
       - hosts: ['dmw-test.framsburg.ch']
         secretName: 'dmw-test-framsburg-ch-tls'
 
+  env:
+    - name: SERVER_HOST_NAME
+      value: 'dmw-test'
+
 # podSecurityContext:
 #  sysctls:
 #    - name: fs.inotify.max_user_instances
