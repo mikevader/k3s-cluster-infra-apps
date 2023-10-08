@@ -20,7 +20,7 @@ dmw:
 
   env:
     - name: SERVER_HOST_NAME
-      value: 'dmw-test'
+      value: 'dmw-test.framsburg.ch'
 
 # podSecurityContext:
 #  sysctls:
