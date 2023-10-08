@@ -40,6 +40,9 @@ spec:
               value: {{ .Values.s3.accessKey }}
             - name: S3_SECRET_KEY
               value: {{ .Values.s3.secretKey }}
+            {{- range .Values.env }}
+            - {{ . | toYaml | nindent 14 -}}
+            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
