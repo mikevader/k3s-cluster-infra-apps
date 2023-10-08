@@ -1,5 +1,7 @@
 dmw:
   railsEnvironment: development
+  image:
+    tag: develop@sha256:08da35d524bb47bfb13c8814e6e3e795e684dc48a0303486f812f39e6c5049df
 
 # podSecurityContext:
 #  sysctls:
