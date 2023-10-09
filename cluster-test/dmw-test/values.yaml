@@ -1,7 +1,7 @@
 dmw:
   railsEnvironment: development
   image:
-    tag: develop
+    tag: develop@sha256:6dce3ea3487578d5841d3313d789ed9ceb735577e60aee41d71678e589676285
 
   ingress:
     enabled: true
