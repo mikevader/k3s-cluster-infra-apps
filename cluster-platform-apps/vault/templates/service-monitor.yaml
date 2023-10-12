@@ -6,7 +6,7 @@ spec:
   endpoints:
     - interval: 30s
       path: /v1/sys/metrics
-      port: prometheus
+      port: metrics
       scrapeTimeout: 25s
   namespaceSelector:
     matchNames:
