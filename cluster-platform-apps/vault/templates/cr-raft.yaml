@@ -63,6 +63,8 @@ spec:
         # tls_cert_file: /vault/tls/server.crt
         # tls_key_file: /vault/tls/server.key
     telemetry:
+      disable_hostname: true
+      prometheus_retention_time: "12h"
       statsd_address: localhost:9125
     api_addr: http://vault.vault.svc:8200
     cluster_addr: "http://${.Env.POD_NAME}:8201"
