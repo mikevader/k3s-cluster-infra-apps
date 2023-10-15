@@ -28,10 +28,6 @@ applications:
   cnpg-system: {}
   external-secrets: {}
   kubernetes-dashboard: {}
-  postgres-operator: {}
-  postgres-operator-ui:
-    disableNamespaceCreation: true
-    destinationNamespace: postgres-operator
   renovate: {}
   sloth: {}
   vault: {}
