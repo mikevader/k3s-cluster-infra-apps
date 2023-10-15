@@ -38,5 +38,5 @@ applications:
   foundryvtt: {}
   recipes: {}
   shinobi: {}
-  wikijs: {}
-  wiki: {}
+#  wikijs: {}
+#  wiki: {}
