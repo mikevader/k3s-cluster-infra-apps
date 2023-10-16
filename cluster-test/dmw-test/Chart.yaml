@@ -4,5 +4,5 @@ description: Dungeon Master Workshop app
 version: 1.0.0
 dependencies:
   - name: dmw
-    version: 1.0.0
-    repository: file://../dmw-test/charts/dmw
+    repository: https://mikevader.github.io/charts
+    version: 1.0.0-dev.4c36ba3
