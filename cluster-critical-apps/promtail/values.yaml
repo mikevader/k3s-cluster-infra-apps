@@ -13,6 +13,11 @@ promtail:
       readline_rate_enabled: true
 
     snippets:
+      pipelineStages:
+        - cri: {}
+        - labels:
+            level:
+            severity:
       extraScrapeConfigs: |
         # Add an additional scrape config for syslog
         - job_name: syslog
