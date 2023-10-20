@@ -37,3 +37,14 @@ ffmpeg -i example.mkv -c copy -tag:v hvc1 example.mp4
 ```
 for f in *.mkv; do ffmpeg -i "$f" -c copy -tag:v hvc1 "${f%.mkv}.mp4"; rm "$f"; done
 ```
+
+## Proxy rewrite
+
+To remove the annoying `/web` I follow some existing guides like [^1].
+The main challenge is to do this correctly with traefik and inside K8S.
+
+
+
+
+
+[^1]: https://matt.coneybeare.me/how-to-map-plex-media-server-to-your-home-domain/

@@ -1,0 +1,14 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: web-redirect
+  namespace: plex
+spec:
+  redirectRegex:
+    regex: "^/$"
+    replacement: "/web/"
+  regex: "^/web"
+  header:
+    name: "X-Plex-Device"
+    value: ""

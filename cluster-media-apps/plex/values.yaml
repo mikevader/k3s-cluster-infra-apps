@@ -173,7 +173,7 @@ plex:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
+        traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd,plex-web-redirect@kubernetescrd
       ingressClassName: traefik
       hosts:
         - host: plex.framsburg.ch
