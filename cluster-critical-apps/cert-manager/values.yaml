@@ -8,10 +8,9 @@ cert-manager:
   dns01RecursiveNameservers: "8.8.8.8:53"
 
   prometheus:
-    enabled: false
+    enabled: true
     servicemonitor:
-      enabled: false
-      namespace: monitoring-stack
+      enabled: true
 
   # image:
   #   repository: quay.io/jetstack/cert-manager-controller-arm
