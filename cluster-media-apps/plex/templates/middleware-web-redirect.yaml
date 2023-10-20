@@ -8,7 +8,7 @@ spec:
   redirectRegex:
     regex: "^/$"
     replacement: "/web/"
-  regex: "^/web"
-  header:
-    name: "X-Plex-Device"
-    value: ""
+  # regex: "^/web"
+  # header:
+  #   name: "X-Plex-Device"
+  #   value: ""
