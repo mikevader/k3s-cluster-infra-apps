@@ -20,4 +20,4 @@ spec:
     secretName: plex2-framsburg-ch-tls
     certResolver: letsencrypt
     domains:
-      - main: plex.framsburg.ch
+      - main: plex2.framsburg.ch
