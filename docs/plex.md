@@ -43,7 +43,37 @@ for f in *.mkv; do ffmpeg -i "$f" -c copy -tag:v hvc1 "${f%.mkv}.mp4"; rm "$f"; 
 To remove the annoying `/web` I follow some existing guides like [^1].
 The main challenge is to do this correctly with traefik and inside K8S.
 
+What I did was basically translate the Apache redirect to a traefik middleware
+which is doing basically the same thing.
 
+```xaml title='apache config'
+<VirtualHost *:80>
+
+  RewriteEngine on
+  RewriteCond %{REQUEST_URI} !^/web
+  RewriteCond %{HTTP:X-Plex-Device} ^$
+  RewriteRule ^/$ /web/$1 [R,L]
+</VirtualHost>
+```
+
+Because Traefik has no conditions we solve it with two different routes.
+
+```yaml title='traefik middleware'
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: web-redirect
+  namespace: plex
+spec:
+  redirectRegex:
+    regex: "^/$"
+    replacement: "/web/"
+  regex: "^/web"
+  header:
+    name: "X-Plex-Device"
+    value: ""
+```
 
 
 

@@ -185,30 +185,13 @@ plex:
       tls:
         - hosts: [plex.framsburg.ch]
           secretName: plex-framsburg-ch-tls
-    # main2:
-    #   enabled: true
-    #   annotations:
-    #     cert-manager.io/cluster-issuer: letsencrypt-prod
-    #     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    #     traefik.ingress.kubernetes.io/router.middlewares: plex-replace-with-web@kubernetescrd,plex-svc-plex-headers@kubernetescrd
-    #   ingressClassName: traefik
-    #   hosts:
-    #     - host: plex2.framsburg.ch
-    #       paths:
-    #         - path: /
-    #           pathType: Prefix
-    #           service:
-    #             name: plex
-    #   tls:
-    #     - hosts: [plex2.framsburg.ch]
-    #       secretName: plex2-framsburg-ch-tls
       
     external:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
+        traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd,plex-web-redirect@kubernetescrd
       ingressClassName: traefik-external
       hosts:
         - host: plex.framsburg.ch
