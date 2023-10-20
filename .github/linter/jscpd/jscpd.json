@@ -6,6 +6,7 @@
       "console"
     ],
     "ignore": [
+      ".disabled/**",
       "**/node_modules/**",
       "**/.git/**",
       "**/.direnv/**",
@@ -19,8 +20,7 @@
       "**/*.yml",
       "**/*.md",
       "**/*.html",
-      "**/*.xml",
-      "kubernetes/**/scripts/pushover-notify.sh"
+      "**/*.xml"
     ]
   }
   

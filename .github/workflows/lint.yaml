@@ -40,7 +40,6 @@ jobs:
                     "KUBERNETES_KUBESCAPE",
                     "MARKDOWN_MARKDOWNLINT",
                     "REPOSITORY_GIT_DIFF",
-                    "REPOSITORY_SECRETLINT",
                     "YAML_PRETTIER",
                     "YAML_YAMLLINT"
                   ]
