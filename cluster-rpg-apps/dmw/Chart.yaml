@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 name: dmw
 description: Dungeon Master Workshop app
