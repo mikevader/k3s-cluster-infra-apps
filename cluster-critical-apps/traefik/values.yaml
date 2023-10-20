@@ -3,6 +3,13 @@ traefik:
   deployment:
     annotations:
       # reloader.stakater.com/match: "true"
+    initContainers:
+      - name: volume-permissions
+        image: busybox:latest
+        command: ["sh", "-c", "touch /data/acme.json; chmod -v 600 /data/acme.json"]
+        volumeMounts:
+        - mountPath: /data
+          name: data
   globalArguments:
     - "--global.checknewversion"
     - "--serverstransport.insecureskipverify=true"
@@ -11,6 +18,9 @@ traefik:
     - "--metrics.prometheus.entryPoint=metrics"
     - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd,error-pages-error-pages@kubernetescrd"
   
+  persistence:
+    enabled: true
+
   certResolvers:
     letsencrypt:
       email: mmuehlebach+acme@gmail.com
@@ -18,6 +28,7 @@ traefik:
         provider: digitalocean
         resolvers:
           - 8.8.8.8
+      storage: /data/acme.json
 
   env:
     - name: DO_AUTH_TOKEN
