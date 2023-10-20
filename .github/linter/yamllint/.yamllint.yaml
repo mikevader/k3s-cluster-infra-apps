@@ -1,5 +1,6 @@
 ---
 ignore: |
+  .disabled/
   .ansible/
   .direnv/
   .private/

@@ -40,7 +40,6 @@ jobs:
                     "KUBERNETES_KUBESCAPE",
                     "MARKDOWN_MARKDOWNLINT",
                     "REPOSITORY_GIT_DIFF",
-                    "REPOSITORY_SECRETLINT",
                     "YAML_PRETTIER",
                     "YAML_YAMLLINT"
                   ]
@@ -50,8 +49,8 @@ jobs:
             }}
           COPYPASTE_JSCPD_CONFIG_FILE: .github/linter/jscpd/jscpd.json
           KUBERNETES_DIRECTORY: ''
-          KUBERNETES_KUBEVAL_ARGUMENTS: --ignore-missing-schemas
-          KUBERNETES_KUBEVAL_FILTER_REGEX_INCLUDE: "(kubernetes)"
+          KUBERNETES_KUBECONFORM_ARGUMENTS: --ignore-missing-schemas
+          KUBERNETES_KUBECONFORM_FILTER_REGEX_EXCLUDE: "(Chart.yaml|values.yaml)"
           MARKDOWN_MARKDOWNLINT_CONFIG_FILE: .github/linter/markdownlint/markdownlint.yaml
           YAML_YAMLLINT_CONFIG_FILE: .github/linter/yamllint/.yamllint.yaml
           YAML_PRETTIER_CONFIG_FILE: .github/linter/prettier/.prettierrc.yaml
