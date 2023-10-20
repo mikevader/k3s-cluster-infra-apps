@@ -11,6 +11,7 @@ spec:
       kind: Rule
       services:
         - name: plex
+          port: http
       middlewares:
         - name: svc-plex-headers
           namespace: plex
