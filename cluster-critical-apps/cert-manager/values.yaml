@@ -1,11 +1,11 @@
 cert-manager:
-  extraArgs:
-    - --dns01-recursive-nameservers-only
-    - --dns01-recursive-nameservers="8.8.8.8:53"
   # Default values for cert-manager.
   # This is a YAML-formatted file.
   # Declare variables to be passed into your templates.
   installCRDs: true
+
+  dns01RecursiveNameserversOnly: true
+  dns01RecursiveNameservers: "8.8.8.8:53"
 
   prometheus:
     enabled: false
