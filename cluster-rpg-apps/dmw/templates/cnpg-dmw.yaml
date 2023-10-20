@@ -15,7 +15,7 @@ spec:
 
   # Require 1Gi of space
   storage:
-    size: 1Gi
+    size: 5Gi
   
   backup:
     barmanObjectStore:
