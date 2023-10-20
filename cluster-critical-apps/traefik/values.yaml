@@ -10,6 +10,22 @@ traefik:
     - "--metrics.prometheus=true"
     - "--metrics.prometheus.entryPoint=metrics"
     - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd,error-pages-error-pages@kubernetescrd"
+  
+  certResolvers:
+    letsencrypt:
+      email: mmuehlebach+acme@gmail.com
+      dnsChallenge:
+        provider: digitalocean
+        resolvers:
+          - 8.8.8.8
+
+  env:
+    - name: DO_AUTH_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: digitalocean-token
+          key: access-token
+
   logs:
     general:
       format: json
