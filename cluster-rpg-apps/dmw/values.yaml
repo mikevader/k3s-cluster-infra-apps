@@ -1,6 +1,6 @@
 ---
 dmw:
-  railsEnvironment: development
+  railsEnvironment: production
 
   ingress:
     enabled: true
@@ -20,6 +20,18 @@ dmw:
   env:
     - name: SERVER_HOST_NAME
       value: 'dmw.framsburg.ch'
+    - name: DATABASE_URL
+      value: postgresql://dmw-rw.dmw:5432
+    - name: DATABASE_USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: dmw-app
+          key: username
+    - name: DATABASE_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: dmw-app
+          key: password
 
 # podSecurityContext:
 #  sysctls:
