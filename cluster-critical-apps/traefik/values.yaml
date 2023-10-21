@@ -18,7 +18,7 @@ traefik:
     - "--metrics.prometheus.entryPoint=metrics"
     - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd,error-pages-error-pages@kubernetescrd"
 
-  persistance:
+  persistence:
     enabled: true
 
   certResolvers:
