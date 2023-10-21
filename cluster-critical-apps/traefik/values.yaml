@@ -23,6 +23,7 @@ traefik:
       email: mmuehlebach+acme@gmail.com
       dnsChallenge:
         provider: digitalocean
+        delayBeforeCheck: 20
         resolvers:
           - 8.8.8.8
       storage: /data/acme.json
@@ -33,6 +34,8 @@ traefik:
         secretKeyRef:
           name: digitalocean-token
           key: access-token
+    - name: DO_TTL
+      value: "60"
 
   logs:
     general:
