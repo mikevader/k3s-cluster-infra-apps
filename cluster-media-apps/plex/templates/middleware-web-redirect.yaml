@@ -1,5 +1,5 @@
 ---
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: web-redirect
@@ -8,7 +8,3 @@ spec:
   redirectRegex:
     regex: "^/$"
     replacement: "/web/"
-  # regex: "^/web"
-  # header:
-  #   name: "X-Plex-Device"
-  #   value: ""

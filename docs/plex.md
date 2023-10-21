@@ -56,11 +56,51 @@ which is doing basically the same thing.
 </VirtualHost>
 ```
 
-Because Traefik has no conditions we solve it with two different routes.
+Because Traefik has no conditions we solve it with two different routes. But this
+is only possible with the propriatary IngressRoute.
+
+```yaml title='traefik ingressroute'
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: plex3
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`plex3.framsburg.ch`) && (PathPrefix(`/web`) || HeadersRegexp('X-Plex-Device', '.*'))
+      kind: Rule
+      priority: 100
+      services:
+        - name: plex
+          port: http
+      middlewares:
+        - name: svc-plex-headers
+          namespace: plex
+    - match: Host(`plex3.framsburg.ch`)
+      kind: Rule
+      priority: 50
+      services:
+        - name: plex
+          port: http
+      middlewares:
+        - name: svc-plex-headers
+          namespace: plex
+        - name: web-redirect
+          namespace: plex
+  tls:
+    certResolver: letsencrypt
+    domains:
+      - main: plex3.framsburg.ch
+```
+
+
+With the following Middleware to redirect the path:
 
 ```yaml title='traefik middleware'
 ---
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: web-redirect
@@ -69,10 +109,6 @@ spec:
   redirectRegex:
     regex: "^/$"
     replacement: "/web/"
-  regex: "^/web"
-  header:
-    name: "X-Plex-Device"
-    value: ""
 ```
 
 
