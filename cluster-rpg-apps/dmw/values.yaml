@@ -20,6 +20,13 @@ dmw:
   env:
     - name: SERVER_HOST_NAME
       value: 'dmw.framsburg.ch'
+    - name: MAIL_HOST
+      value: 'dmw.framsburg.ch'
+    - name: SENDGRID_API_KEY
+      valueFrom:
+        secretKeyRef:
+          name: dmw
+          key: SENDGRID_API_KEY
     - name: DATABASE_USERNAME
       valueFrom:
         secretKeyRef:
