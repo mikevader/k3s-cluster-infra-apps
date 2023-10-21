@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`plex3.framsburg.ch`) && (PathPrefix(`/web`) || HeadersRegexp('X-Plex-Device', '.*'))
+    - match: Host(`plex3.framsburg.ch`) && (PathPrefix(`/web`) || HeadersRegexp(`X-Plex-Device`, `.*`))
       kind: Rule
       priority: 100
       services:
