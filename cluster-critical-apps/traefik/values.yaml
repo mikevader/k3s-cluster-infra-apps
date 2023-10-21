@@ -24,7 +24,7 @@ traefik:
 
   certResolvers:
     letsencrypt:
-      caserver: https://acme-staging-v02.api.letsencrypt.org/directory
+      # caserver: https://acme-staging-v02.api.letsencrypt.org/directory
       email: mmuehlebach+acme@gmail.com
       dnsChallenge:
         provider: digitalocean
