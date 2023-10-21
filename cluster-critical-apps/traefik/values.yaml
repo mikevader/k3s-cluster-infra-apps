@@ -23,9 +23,9 @@ traefik:
       email: mmuehlebach+acme@gmail.com
       dnsChallenge:
         provider: digitalocean
-        delayBeforeCheck: 30
+        delayBeforeCheck: 0
         resolvers:
-          - 8.8.8.8
+          - "8.8.8.8:53"
       storage: /data/acme.json
 
   env:
