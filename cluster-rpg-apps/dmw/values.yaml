@@ -20,10 +20,6 @@ dmw:
   env:
     - name: SERVER_HOST_NAME
       value: 'dmw.framsburg.ch'
-    - name: DATABASE_URL
-      value: postgresql://dmw-rw.dmw:5432
-    - name: DATABASE_NAME
-      value: app
     - name: DATABASE_USERNAME
       valueFrom:
         secretKeyRef:
@@ -34,6 +30,26 @@ dmw:
         secretKeyRef:
           name: dmw-app
           key: password
+    - name: DATABASE_HOST
+      valueFrom:
+        secretKeyRef:
+          name: dmw-app
+          key: host
+    - name: DATABASE_PORT
+      valueFrom:
+        secretKeyRef:
+          name: dmw-app
+          key: port
+    - name: DATABASE_NAME
+      valueFrom:
+        secretKeyRef:
+          name: dmw-app
+          key: dbname
+    - name: DATABASE_URL
+      valueFrom:
+        secretKeyRef:
+          name: dmw-app
+          key: uri
 
 # podSecurityContext:
 #  sysctls:
