@@ -25,7 +25,7 @@ traefik:
         provider: digitalocean
         resolvers:
           - 8.8.8.8
-      storage: acme.json
+      storage: /data/acme.json
 
   env:
     - name: DO_AUTH_TOKEN
