@@ -4,5 +4,5 @@ description: Recipes is a Django application to manage, tag and search recipes u
 version: 1.0.0
 dependencies:
   - name: recipes
-    version: 6.6.11
+    version: 6.6.12
     repository: https://mikevader.github.io/charts
