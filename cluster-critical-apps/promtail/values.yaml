@@ -19,6 +19,10 @@ promtail:
             mapping:
               level:
               severity:
+        - json:
+            expressions:
+              level:
+              severity:
         - labels:
             level:
             severity:
