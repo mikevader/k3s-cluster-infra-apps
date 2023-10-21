@@ -2,12 +2,12 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: plex2
+  name: plex3
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`plex2.framsburg.ch`) && PathPrefix(`/`)
+    - match: Host(`plex3.framsburg.ch`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: plex
@@ -17,7 +17,7 @@ spec:
           namespace: plex
 
   tls:
-    secretName: plex2-framsburg-ch-tls
+    secretName: plex3-framsburg-ch-tls
     certResolver: letsencrypt
     domains:
-      - main: plex2.framsburg.ch
+      - main: plex3.framsburg.ch
