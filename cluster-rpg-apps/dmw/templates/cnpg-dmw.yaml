@@ -46,7 +46,7 @@ kind: ScheduledBackup
 metadata:
   name: backup-dmw
 spec:
-  schedule: "0 */30 * * * *"
+  schedule: "0 0 12 * * *"
   backupOwnerReference: self
   cluster:
     name: dmw
