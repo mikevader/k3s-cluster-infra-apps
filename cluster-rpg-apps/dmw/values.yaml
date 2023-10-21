@@ -22,6 +22,8 @@ dmw:
       value: 'dmw.framsburg.ch'
     - name: DATABASE_URL
       value: postgresql://dmw-rw.dmw:5432
+    - name: DATABASE_NAME
+      value: app
     - name: DATABASE_USERNAME
       valueFrom:
         secretKeyRef:
