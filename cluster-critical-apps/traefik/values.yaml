@@ -19,7 +19,7 @@ traefik:
     - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd,error-pages-error-pages@kubernetescrd"
 
   persistence:
-    enabled: false
+    enabled: true
     accessMode: ReadWriteMany
 
   certResolvers:
