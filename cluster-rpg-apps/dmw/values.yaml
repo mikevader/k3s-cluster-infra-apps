@@ -23,7 +23,7 @@ dmw:
     - name: MAIL_HOST
       value: 'dmw.framsburg.ch'
     - name: SMTP_DEFAULT_FROM
-      value: 'michael@anduin.ch'
+      value: 'noreply@dmw.framsburg.ch'
     - name: SENDGRID_API_KEY
       valueFrom:
         secretKeyRef:
