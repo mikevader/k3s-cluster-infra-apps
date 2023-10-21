@@ -29,6 +29,7 @@ traefik:
       dnsChallenge:
         provider: digitalocean
         delayBeforeCheck: 0
+        disablepropagationcheck: true
         resolvers:
           - "1.1.1.1:53"
           - "8.8.8.8:53"
