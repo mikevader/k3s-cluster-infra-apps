@@ -18,8 +18,12 @@ traefik:
     - "--metrics.prometheus.entryPoint=metrics"
     - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd,error-pages-error-pages@kubernetescrd"
 
+  persistance:
+    enabled: true
+
   certResolvers:
     letsencrypt:
+      caserver: https://acme-staging-v02.api.letsencrypt.org/directory
       email: mmuehlebach+acme@gmail.com
       dnsChallenge:
         provider: digitalocean
