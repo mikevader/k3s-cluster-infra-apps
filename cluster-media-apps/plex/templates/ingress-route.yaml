@@ -17,7 +17,6 @@ spec:
           namespace: plex
 
   tls:
-    secretName: plex3-framsburg-ch-tls
     certResolver: letsencrypt
     domains:
       - main: plex3.framsburg.ch
