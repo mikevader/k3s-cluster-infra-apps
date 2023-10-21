@@ -186,24 +186,6 @@ plex:
         - hosts: [plex.framsburg.ch]
           secretName: plex-framsburg-ch-tls
 
-    other:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
-      ingressClassName: traefik
-      hosts:
-        - host: plex99.framsburg.ch
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                name: plex
-      tls:
-        - hosts: [plex99.framsburg.ch]
-          secretName: plex99-framsburg-ch-tls
-
     external:
       enabled: true
       annotations:
