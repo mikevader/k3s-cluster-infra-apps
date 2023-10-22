@@ -29,4 +29,5 @@ applications:
     destinationNamespace: plex
   plex: {}
   tautulli: {}
+  torrent: {}
 
