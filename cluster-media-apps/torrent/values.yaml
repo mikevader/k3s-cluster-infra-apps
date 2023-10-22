@@ -2,7 +2,7 @@ global:
   domainName: framsburg.ch
   app: radarr
   quality: 1080p
-  iteration: ''
+  iteration: '1'
 
 qbittorrent:
   strategy:
