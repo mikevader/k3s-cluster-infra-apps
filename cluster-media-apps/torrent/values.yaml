@@ -107,11 +107,11 @@ qbittorrent:
       accessMode: ReadWriteOnce
       mountPath: /data
 
-  podSecurityContext:
-    # kah user
-    runAsUser: 666
-    # media group
-    runAsGroup: 666
+  # podSecurityContext:
+  #   # kah user
+  #   runAsUser: 666
+  #   # media group
+  #   runAsGroup: 666
 
   resources:
     limits:
