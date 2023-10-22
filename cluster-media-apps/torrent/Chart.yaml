@@ -4,7 +4,7 @@ description: Torrent clients
 version: 1.0.0
 dependencies:
   - name: qbittorrent
-    version: 13.5.9
+    version: 13.5.10
     repository: https://mikevader.github.io/charts
   # - name: transmission
   #   version: 8.4.3
