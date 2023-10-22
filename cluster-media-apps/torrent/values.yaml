@@ -90,8 +90,8 @@ qbittorrent:
   #     value: storage
   #     effect: NoSchedule
 
-  nodeSelector:
-    node-role.kubernetes.io/storage: ""
+  # nodeSelector:
+  #   node-role.kubernetes.io/storage: ""
 
   persistence:
     config:
