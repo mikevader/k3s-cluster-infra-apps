@@ -39,7 +39,7 @@ radarr:
       type: pvc
       retain: true
       storageClass: "-"
-      existingClaim: plex-qbittorrent-media
+      existingClaim: torrent-qbittorrent-data
       mountPath: /mnt/media/movies
 
   podSecurityContext:
