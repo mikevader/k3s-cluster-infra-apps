@@ -124,3 +124,9 @@ type: Opaque
 Instead of environment variables or secrets you can use the vault key reference
 anywhere in resources and the webhook will replace it with the secret.
 
+
+## Monitoring
+
+* https://github.com/hashicorp/vault/issues/13978
+* https://developer.hashicorp.com/vault/tutorials/monitoring/monitor-telemetry-grafana-prometheus
+* https://developer.hashicorp.com/vault/tutorials/monitoring/usage-metrics

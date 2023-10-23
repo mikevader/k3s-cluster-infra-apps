@@ -27,4 +27,12 @@ The first are used for the control plane, the other fours are used as worker
 nodes. Some of them are powered with PoE hats. The faster external drives are
 used for longhorn.
 
+## GitOps
+
+Inspired from
+* https://github.com/onedr0p/home-ops
+* https://github.com/bjw-s/home-ops
+* https://github.com/dirtycajunrice/gitops
+* 
+
 --8<-- "includes/abbreviations.md"

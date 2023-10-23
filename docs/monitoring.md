@@ -160,6 +160,13 @@ You can add as a bonus the geoip.
 
 https://www.mostlychris.com/keeping-tabs-on-your-network/
 
+## Loki k8s events
+
+* https://medium.com/@lysetskyyv/collecting-and-visualizing-kubernetes-events-with-loki-and-kubernetes-event-exporter-8f764b78185c
+* https://github.com/resmoio/kubernetes-event-exporter
+* https://grafana.com/docs/agent/latest/flow/reference/components/loki.source.kubernetes_events/
+* 
+
 ## References
 
 [1]: https://medium.com/aeturnuminc/monitoring-stack-deployment-to-a-kubernetes-cluster-prometheus-grafana-alertmanager-loki-dcc7339d4f19
