@@ -45,6 +45,7 @@ radarr:
   podSecurityContext:
     runAsUser: 666
     runAsGroup: 666
+    fsGroup: 666
 
   probes:
     liveness:
