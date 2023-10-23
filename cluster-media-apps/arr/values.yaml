@@ -1,6 +1,6 @@
 global:
-  domainName: "framsburg.ch"
-  fullnameOverride: "radarr"
+  domainName: "radarr.framsburg.ch"
+  # fullnameOverride: "radarr"
 
 radarr:
   env:
@@ -21,7 +21,7 @@ radarr:
       hosts:
         - host: '{{ .Values.global.domainName }}'
           paths:
-            - path: '{{ printf "/%s" (replace "-" "/" .Values.global.fullnameOverride) }}'
+            - path: '/'
               pathType: Prefix
       tls:
         - hosts: ['{{ .Values.global.domainName }}']
