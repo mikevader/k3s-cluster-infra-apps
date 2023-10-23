@@ -1,5 +1,6 @@
 global:
-  domainName: "radarr.framsburg.ch"
+  domainName: "framsburg.ch"
+  fullnameOverride: "radarr"
 
 radarr:
   env:
