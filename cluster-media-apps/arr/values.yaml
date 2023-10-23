@@ -40,7 +40,7 @@ radarr:
       retain: true
       storageClass: "-"
       existingClaim: torrent-qbittorrent-data
-      mountPath: /mnt/media/movies
+      mountPath: /mnt/media
 
   podSecurityContext:
     runAsUser: 666
