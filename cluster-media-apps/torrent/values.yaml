@@ -112,6 +112,7 @@ qbittorrent:
     runAsUser: 666
     # media group
     runAsGroup: 666
+    fsGroup: 666
 
   resources:
     limits:
