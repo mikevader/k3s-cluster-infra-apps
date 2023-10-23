@@ -24,10 +24,17 @@ namespaceResourceBlacklist:
 #    kind: 'DaemonSet'
 
 applications: 
+  plex: {}
+  arr:
+    disableNamespaceCreation: true
+    destinationNamespace: plex
   filebrowser:
     disableNamespaceCreation: true
     destinationNamespace: plex
-  plex: {}
-  tautulli: {}
-  torrent: {}
+  tautulli:
+    disableNamespaceCreation: true
+    destinationNamespace: plex
+  torrent:
+    disableNamespaceCreation: true
+    destinationNamespace: plex
 
