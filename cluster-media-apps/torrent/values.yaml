@@ -130,6 +130,40 @@ qbittorrent:
       spec:
         failureThreshold: 60
 
+jackett:
+  env:
+    TZ: Europe/Zurich
+
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.priority: "10"
+      hosts:
+        - host: 'jackett.framsburg.ch'
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts: ['jackett.framsburg.ch']
+          secretName: 'jackett-framsburg-ch-tls'
+
+  persistence:
+    config:
+      enabled: true
+      type: pvc
+      size: 1Gi
+      accessMode: ReadWriteOnce
+      mountPath: /config
+
+  podSecurityContext:
+    # kah user
+    runAsUser: 666
+    # media group
+    runAsGroup: 666
+    fsGroup: 666
 
 transmission: {}
 
