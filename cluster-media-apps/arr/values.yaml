@@ -4,7 +4,7 @@ global:
 
 radarr:
   env:
-    TZ: America/Chicago
+    TZ: Europe/Zurich
     APP_NAME:
       fieldRef:
         fieldPath: "metadata.labels['app.kubernetes.io/instance']"
@@ -58,6 +58,58 @@ radarr:
             - curl --fail localhost:${APP_PORT}/${APP_NAME/-//}/api/v3/system/status?apiKey=`IFS=\> && while
               read -d \< E C; do if [[ $E = "ApiKey" ]]; then echo $C; fi; done < /config/config.xml`
 
+
+sonarr:
+  env:
+    TZ: Europe/Zurich
+    APP_NAME:
+      fieldRef:
+        fieldPath: "metadata.labels['app.kubernetes.io/instance']"
+    APP_PORT: "8989"
+
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.priority: "10"
+
+      hosts:
+        - host: 'sonarr.framsburg.ch'
+          paths:
+            - path: '/'
+              pathType: Prefix
+      tls:
+        - hosts: ['sonarr.framsburg.ch']
+          secretName: 'sonarr-framsburg-ch-tls'
+
+  persistence:
+    config:
+      enabled: true
+      type: pvc
+      size: 10Gi
+      accessMode: ReadWriteOnce
+
+    media:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: torrent-qbittorrent-data
+      mountPath: /mnt/media
+
+  podSecurityContext:
+    runAsUser: 666
+    runAsGroup: 666
+    fsGroup: 666
+
+  probes:
+    liveness:
+      enabled: false
+    readiness:
+      enabled: false
+
 prowlarr:
   env:
     TZ: Europe/Zurich
@@ -95,3 +147,13 @@ prowlarr:
     runAsGroup: 666
     fsGroup: 666
 
+  probes:
+    liveness:
+      spec:
+        exec:
+          command:
+            - /usr/bin/env
+            - bash
+            - -c
+            - curl --fail localhost:${APP_PORT}/${APP_NAME/-//}/api/v3/system/status?apiKey=`IFS=\> && while
+              read -d \< E C; do if [[ $E = "ApiKey" ]]; then echo $C; fi; done < /config/config.xml`
