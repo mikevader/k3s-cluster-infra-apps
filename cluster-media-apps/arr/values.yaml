@@ -112,7 +112,8 @@ sonarr:
 
 prowlarr:
   initContainers:
-    - name: config-prowlarr
+    prowlarr:
+      name: config-prowlarr
       image: docker.io/ubuntu:groovy
       securityContext:
         runAsUser: 666
