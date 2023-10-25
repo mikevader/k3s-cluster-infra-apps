@@ -117,8 +117,8 @@ prowlarr:
       fieldRef:
         fieldPath: "metadata.labels['app.kubernetes.io/instance']"
     APP_PORT: "9696"
-    PGID: "666"
-    PUID: "666"
+    PGID: "1090"
+    PUID: "1090"
     
 
   ingress:
@@ -146,9 +146,9 @@ prowlarr:
       accessMode: ReadWriteOnce
 
   podSecurityContext:
-    runAsUser: 666
-    runAsGroup: 666
-    fsGroup: 666
+    runAsUser: 1090
+    runAsGroup: 1090
+    fsGroup: 1090
 
   probes:
     liveness:
