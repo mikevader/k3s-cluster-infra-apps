@@ -117,6 +117,9 @@ prowlarr:
       fieldRef:
         fieldPath: "metadata.labels['app.kubernetes.io/instance']"
     APP_PORT: "9696"
+    PGID: "666"
+    PUID: "666"
+    
 
   ingress:
     main:
@@ -149,11 +152,6 @@ prowlarr:
 
   probes:
     liveness:
-      spec:
-        exec:
-          command:
-            - /usr/bin/env
-            - bash
-            - -c
-            - curl --fail localhost:${APP_PORT}/${APP_NAME/-//}/api/v3/system/status?apiKey=`IFS=\> && while
-              read -d \< E C; do if [[ $E = "ApiKey" ]]; then echo $C; fi; done < /config/config.xml`
+      enabled: false
+    readiness:
+      enabled: false
