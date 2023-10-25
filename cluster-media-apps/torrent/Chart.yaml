@@ -7,7 +7,7 @@ dependencies:
     version: 13.5.10
     repository: https://mikevader.github.io/charts
   - name: jackett
-    version: 11.7.2
+    version: 11.8.0
     repository: https://mikevader.github.io/charts
   # - name: transmission
   #   version: 8.4.3
