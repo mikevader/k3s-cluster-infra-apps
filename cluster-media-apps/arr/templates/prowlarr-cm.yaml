@@ -1,0 +1,9 @@
+---
+## APPLICATION
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prowlarr-config
+data:
+  PGID: "666"
+  PUID: "666"

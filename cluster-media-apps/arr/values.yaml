@@ -111,15 +111,23 @@ sonarr:
       enabled: false
 
 prowlarr:
+  initContainers:
+    - name: config-prowlarr
+      image: docker.io/ubuntu:groovy
+      securityContext:
+        runAsUser: 666
+        runAsGroup: 666
+
   env:
     TZ: Europe/Zurich
     APP_NAME:
       fieldRef:
         fieldPath: "metadata.labels['app.kubernetes.io/instance']"
     APP_PORT: "9696"
-    PGID: "1090"
-    PUID: "1090"
-    
+
+  envFrom:
+    - configMapRef:
+        name: prowlarr-config
 
   ingress:
     main:
@@ -144,11 +152,6 @@ prowlarr:
       type: pvc
       size: 10Gi
       accessMode: ReadWriteOnce
-
-  podSecurityContext:
-    runAsUser: 1090
-    runAsGroup: 1090
-    fsGroup: 1090
 
   probes:
     liveness:
