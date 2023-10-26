@@ -5,6 +5,9 @@ global:
   iteration: '1'
 
 qbittorrent:
+  controller:
+    enabled: false
+
   strategy:
     type: Recreate
 
@@ -103,7 +106,7 @@ qbittorrent:
     data:
       enabled: true
       type: pvc
-      size: 20Gi
+      size: 40Gi
       accessMode: ReadWriteMany
       mountPath: /mnt/media
 
@@ -131,6 +134,9 @@ qbittorrent:
         failureThreshold: 60
 
 jackett:
+  controller:
+    enabled: false
+
   env:
     TZ: Europe/Zurich
 

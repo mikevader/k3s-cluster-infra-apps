@@ -3,6 +3,9 @@ global:
   # fullnameOverride: "radarr"
 
 radarr:
+  controller:
+    enabled: false
+
   env:
     TZ: Europe/Zurich
     APP_NAME:
@@ -60,6 +63,9 @@ radarr:
 
 
 sonarr:
+  controller:
+    enabled: false
+
   env:
     TZ: Europe/Zurich
     APP_NAME:
@@ -111,6 +117,9 @@ sonarr:
       enabled: false
 
 prowlarr:
+  controller:
+    enabled: false
+
   initContainers:
     prowlarr:
       name: config-prowlarr
