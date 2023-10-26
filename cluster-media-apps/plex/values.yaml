@@ -73,14 +73,6 @@ plex:
       accessMode: ReadWriteMany
       retain: true
       mountPath: /mnt/media/tv-efgh
-    tv-ijkl:
-      enabled: true
-      readonly: true
-      type: pvc
-      size: 256Gi
-      accessMode: ReadWriteMany
-      retain: true
-      mountPath: /mnt/media/tv-ijkl
     tv-mnop:
       enabled: true
       readonly: true
@@ -97,22 +89,6 @@ plex:
       accessMode: ReadWriteMany
       retain: true
       mountPath: /mnt/media/tv-qrst
-    tv-uvw:
-      enabled: true
-      readonly: true
-      type: pvc
-      size: 256Gi
-      accessMode: ReadWriteMany
-      retain: true
-      mountPath: /mnt/media/tv-uvw
-    tv-xyz:
-      enabled: true
-      readonly: true
-      type: pvc
-      size: 128Gi
-      accessMode: ReadWriteMany
-      retain: true
-      mountPath: /mnt/media/tv-xyz
     movies:
       enabled: true
       readonly: true
