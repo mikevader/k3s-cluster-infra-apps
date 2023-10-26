@@ -82,22 +82,6 @@ filebrowser:
       existingClaim: plex-tv-qrst
       mountPath: /mnt/media/tv-qrst
 
-    tv-uvw:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: plex-tv-uvw
-      mountPath: /mnt/media/tv-uvw
-
-    tv-xyz:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: plex-tv-xyz
-      mountPath: /mnt/media/tv-xyz
-
   ingress:
     main:
       enabled: true
