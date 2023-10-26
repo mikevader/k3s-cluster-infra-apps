@@ -66,14 +66,6 @@ filebrowser:
       existingClaim: plex-tv-efgh
       mountPath: /mnt/media/tv-efgh
 
-    tv-ijkl:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: plex-tv-ijkl
-      mountPath: /mnt/media/tv-ijkl
-
     tv-mnop:
       enabled: true
       type: pvc
