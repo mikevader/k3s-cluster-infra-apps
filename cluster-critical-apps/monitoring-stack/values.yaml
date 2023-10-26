@@ -186,6 +186,9 @@ kube-prometheus-stack:
         vault:
           gnetId: 12904
           datasource: Prometheus
+        longhorn:
+          gnetId: 13032
+          datasource: Prometheus
     grafana.ini:
       server:
         root_url: https://grafana.framsburg.ch
