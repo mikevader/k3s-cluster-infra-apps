@@ -6,7 +6,7 @@ global:
 
 qbittorrent:
   controller:
-    enabled: false
+    enabled: true
 
   strategy:
     type: Recreate
@@ -106,7 +106,7 @@ qbittorrent:
     data:
       enabled: true
       type: pvc
-      size: 40Gi
+      size: 60Gi
       accessMode: ReadWriteMany
       mountPath: /mnt/media
 
