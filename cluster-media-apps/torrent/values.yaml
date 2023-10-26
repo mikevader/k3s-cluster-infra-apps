@@ -6,7 +6,7 @@ global:
 
 qbittorrent:
   controller:
-    enabled: true
+    enabled: false
 
   strategy:
     type: Recreate
