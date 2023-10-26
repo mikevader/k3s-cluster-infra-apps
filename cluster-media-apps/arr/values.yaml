@@ -4,7 +4,7 @@ global:
 
 radarr:
   controller:
-    enabled: false
+    enabled: true
 
   env:
     TZ: Europe/Zurich
@@ -45,6 +45,14 @@ radarr:
       existingClaim: torrent-qbittorrent-data
       mountPath: /mnt/media
 
+    movies:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: plex-movies
+      mountPath: /mnt/media/movies
+
   podSecurityContext:
     runAsUser: 666
     runAsGroup: 666
@@ -64,7 +72,7 @@ radarr:
 
 sonarr:
   controller:
-    enabled: false
+    enabled: true
 
   env:
     TZ: Europe/Zurich
@@ -105,6 +113,14 @@ sonarr:
       existingClaim: torrent-qbittorrent-data
       mountPath: /mnt/media
 
+    tv-efgh:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: plex-tv-efgh
+      mountPath: /mnt/media/tv-efgh
+
   podSecurityContext:
     runAsUser: 666
     runAsGroup: 666
@@ -118,7 +134,7 @@ sonarr:
 
 prowlarr:
   controller:
-    enabled: false
+    enabled: true
 
   initContainers:
     prowlarr:
@@ -171,7 +187,7 @@ prowlarr:
 
 tdarr:
   controller:
-    enabled: false
+    enabled: true
 
   env:
     TZ: Europe/Zurich
