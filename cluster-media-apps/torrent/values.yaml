@@ -107,6 +107,7 @@ qbittorrent:
       enabled: true
       type: pvc
       size: 60Gi
+      storageClass: longhorn-nfs-v1
       accessMode: ReadWriteMany
       mountPath: /mnt/media
 
