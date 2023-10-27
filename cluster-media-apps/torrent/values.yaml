@@ -232,6 +232,10 @@ flood:
       tls:
         - hosts: ['flood.framsburg.ch']
           secretName: 'flood-framsburg-ch-tls'
+  persistence:
+    data:
+      enabled: false
+      nameSuffix: "-"
 
   additionalVolumeMounts:
     - mountPath: /config
