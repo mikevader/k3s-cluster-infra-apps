@@ -172,6 +172,74 @@ jackett:
     runAsGroup: 666
     fsGroup: 666
 
-transmission: {}
+transmission:
+  controller:
+    enabled: true
 
-flood: {}
+  env:
+    TZ: Europe/Zurich
+
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.priority: "10"
+      hosts:
+        - host: 'transmission.framsburg.ch'
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts: ['transmission.framsburg.ch']
+          secretName: 'transmission-framsburg-ch-tls'
+
+  persistence:
+    config:
+      enabled: true
+      type: pvc
+      size: 1Gi
+      accessMode: ReadWriteOnce
+      mountPath: /config
+
+  podSecurityContext:
+    # kah user
+    runAsUser: 666
+    # media group
+    runAsGroup: 666
+    fsGroup: 666
+
+
+flood:
+  controller:
+    enabled: false
+
+  env:
+    TZ: Europe/Zurich
+    FLOOD_OPTION_rundir: /data
+    FLOOD_OPTION_auth: none
+
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.priority: "10"
+      hosts:
+        - host: 'flood.framsburg.ch'
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts: ['flood.framsburg.ch']
+          secretName: 'flood-framsburg-ch-tls'
+
+  additionalVolumeMounts:
+    - mountPath: /config
+      name: config
+    - mountPath: /mnt
+      name: media
+    - mountPath: /data
+      name: data

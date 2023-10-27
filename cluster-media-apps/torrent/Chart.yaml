@@ -9,9 +9,9 @@ dependencies:
   - name: jackett
     version: 11.8.0
     repository: https://mikevader.github.io/charts
-  # - name: transmission
-  #   version: 8.4.3
-  #   repository: https://mikevader.github.io/charts
-  # - name: flood
-  #   version: 6.4.2
-  #   repository: https://mikevader.github.io/charts
+  - name: transmission
+    version: 8.4.3
+    repository: https://mikevader.github.io/charts
+  - name: flood
+    version: 6.4.3
+    repository: https://mikevader.github.io/charts
