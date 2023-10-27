@@ -178,6 +178,8 @@ transmission:
 
   env:
     TZ: Europe/Zurich
+    PUID: 666
+    PGID: 666
 
   ingress:
     main:
@@ -203,12 +205,6 @@ transmission:
       accessMode: ReadWriteOnce
       mountPath: /config
 
-  podSecurityContext:
-    # kah user
-    runAsUser: 666
-    # media group
-    runAsGroup: 666
-    fsGroup: 666
 
 
 flood:
