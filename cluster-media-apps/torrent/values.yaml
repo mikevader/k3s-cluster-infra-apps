@@ -180,6 +180,7 @@ transmission:
     TZ: Europe/Zurich
     PUID: 666
     PGID: 666
+    TRANSMISSION_WEB_HOME: null
 
   ingress:
     main:
