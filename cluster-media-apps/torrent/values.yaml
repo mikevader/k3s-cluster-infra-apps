@@ -254,10 +254,8 @@ flood:
       enabled: false
       nameSuffix: "-"
 
-  additionalVolumeMounts:
-    - mountPath: /config
-      name: config
-    - mountPath: /mnt
-      name: media
-    - mountPath: /data
-      name: data
+  probes:
+    liveness:
+      enabled: false
+    readiness:
+      enabled: false
