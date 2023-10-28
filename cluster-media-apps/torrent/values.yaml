@@ -181,6 +181,7 @@ transmission:
     PUID: 666
     PGID: 666
     TRANSMISSION_WEB_HOME: ""
+    WHITELIST: "transmission.framsburg.ch, 192.168.42.150, 192.168.42.*"
 
   ingress:
     main:
@@ -237,6 +238,7 @@ flood:
       tls:
         - hosts: ['flood.framsburg.ch']
           secretName: 'flood-framsburg-ch-tls'
+
   persistence:
     data:
       enabled: false
