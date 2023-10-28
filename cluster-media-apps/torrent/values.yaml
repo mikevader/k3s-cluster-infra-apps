@@ -189,7 +189,7 @@ transmission:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
-        traefik.passHostHeader: true
+        traefik.passHostHeader: "true"
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.priority: "10"
       hosts:
