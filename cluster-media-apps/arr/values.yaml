@@ -53,6 +53,14 @@ radarr:
       existingClaim: plex-movies
       mountPath: /mnt/media/movies
 
+    downloads:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: torrent-transmission-downloads
+      mountPath: /downloads
+
   podSecurityContext:
     runAsUser: 666
     runAsGroup: 666
