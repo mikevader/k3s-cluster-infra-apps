@@ -251,8 +251,11 @@ flood:
 
   persistence:
     data:
-      enabled: false
-      nameSuffix: "-"
+      enabled: true
+      type: pvc
+      size: 1Gi
+      accessMode: ReadWriteOnce
+      mountPath: /data
 
   probes:
     liveness:
