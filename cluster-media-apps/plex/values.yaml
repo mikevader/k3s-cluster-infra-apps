@@ -143,46 +143,46 @@ plex:
                 values:
                   - medium
 
-  ingress:
-    main:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
-      ingressClassName: traefik
-      hosts:
-        - host: plex.framsburg.ch
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                name: plex
-      tls:
-        - hosts: [plex.framsburg.ch]
-          secretName: plex-framsburg-ch-tls
+  # ingress:
+  #   main:
+  #     enabled: true
+  #     annotations:
+  #       cert-manager.io/cluster-issuer: letsencrypt-prod
+  #       traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  #       traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
+  #     ingressClassName: traefik
+  #     hosts:
+  #       - host: plex.framsburg.ch
+  #         paths:
+  #           - path: /
+  #             pathType: Prefix
+  #             service:
+  #               name: plex
+  #     tls:
+  #       - hosts: [plex.framsburg.ch]
+  #         secretName: plex-framsburg-ch-tls
 
-    external:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
-      ingressClassName: traefik-external
-      hosts:
-        - host: plex.framsburg.ch
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                name: plex
-      tls:
-        - hosts: [plex.framsburg.ch]
-          secretName: plex-framsburg-ch-tls-external
-  resources:
-    requests:
-      cpu: 200m
-      memory: 128Mi
-    limits:
-      cpu: 12
-      memory: 16384Mi
+  #   external:
+  #     enabled: true
+  #     annotations:
+  #       cert-manager.io/cluster-issuer: letsencrypt-prod
+  #       traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  #       traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
+  #     ingressClassName: traefik-external
+  #     hosts:
+  #       - host: plex.framsburg.ch
+  #         paths:
+  #           - path: /
+  #             pathType: Prefix
+  #             service:
+  #               name: plex
+  #     tls:
+  #       - hosts: [plex.framsburg.ch]
+  #         secretName: plex-framsburg-ch-tls-external
+  # resources:
+  #   requests:
+  #     cpu: 200m
+  #     memory: 128Mi
+  #   limits:
+  #     cpu: 12
+  #     memory: 16384Mi

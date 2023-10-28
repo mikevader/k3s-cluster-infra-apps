@@ -6,5 +6,5 @@ metadata:
   namespace: plex
 spec:
   redirectRegex:
-    regex: "^https://plex3\\.framsburg\\.ch/(.*)$"
-    replacement: "https://plex3.framsburg.ch/web/${1}"
+    regex: "^https://plex\\.framsburg\\.ch/(.*)$"
+    replacement: "https://plex.framsburg.ch/web/${1}"
