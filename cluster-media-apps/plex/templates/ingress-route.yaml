@@ -1,72 +1,72 @@
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  name: plex
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`plex.framsburg.ch`) && (PathPrefix(`/web`) || HeadersRegexp(`X-Plex-Device`, `.*`))
-      kind: Rule
-      priority: 100
-      services:
-        - name: plex
-          port: http
-      middlewares:
-        - name: svc-plex-headers
-          namespace: plex
-    - match: Host(`plex.framsburg.ch`)
-      kind: Rule
-      priority: 50
-      services:
-        - name: plex
-          port: http
-      middlewares:
-        - name: svc-plex-headers
-          namespace: plex
-        - name: web-redirect
-          namespace: plex
-  tls:
-    certResolver: letsencrypt
-    domains:
-      - main: plex.framsburg.ch
-    secretName: plex-framsburg-ch-tls
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  name: plex-external
-  annotations:
-    kubernetes.io/ingress.class: "traefik-external"
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`plex.framsburg.ch`) && (PathPrefix(`/web`) || HeadersRegexp(`X-Plex-Device`, `.*`))
-      kind: Rule
-      priority: 100
-      services:
-        - name: plex
-          port: http
-      middlewares:
-        - name: svc-plex-headers
-          namespace: plex
-    - match: Host(`plex.framsburg.ch`)
-      kind: Rule
-      priority: 50
-      services:
-        - name: plex
-          port: http
-      middlewares:
-        - name: svc-plex-headers
-          namespace: plex
-        - name: web-redirect
-          namespace: plex
-  tls:
-    certResolver: letsencrypt
-    domains:
-      - main: plex.framsburg.ch
-    secretName: plex-framsburg-ch-tls-external
+# ---
+# apiVersion: traefik.io/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: plex
+#   annotations:
+#     kubernetes.io/ingress.class: "traefik"
+# spec:
+#   entryPoints:
+#     - websecure
+#   routes:
+#     - match: Host(`plex.framsburg.ch`) && (PathPrefix(`/web`) || HeadersRegexp(`X-Plex-Device`, `.*`))
+#       kind: Rule
+#       priority: 100
+#       services:
+#         - name: plex
+#           port: http
+#       middlewares:
+#         - name: svc-plex-headers
+#           namespace: plex
+#     - match: Host(`plex.framsburg.ch`)
+#       kind: Rule
+#       priority: 50
+#       services:
+#         - name: plex
+#           port: http
+#       middlewares:
+#         - name: svc-plex-headers
+#           namespace: plex
+#         - name: web-redirect
+#           namespace: plex
+#   tls:
+#     certResolver: letsencrypt
+#     domains:
+#       - main: plex.framsburg.ch
+#     secretName: plex-framsburg-ch-tls
+# ---
+# apiVersion: traefik.io/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: plex-external
+#   annotations:
+#     kubernetes.io/ingress.class: "traefik-external"
+# spec:
+#   entryPoints:
+#     - websecure
+#   routes:
+#     - match: Host(`plex.framsburg.ch`) && (PathPrefix(`/web`) || HeadersRegexp(`X-Plex-Device`, `.*`))
+#       kind: Rule
+#       priority: 100
+#       services:
+#         - name: plex
+#           port: http
+#       middlewares:
+#         - name: svc-plex-headers
+#           namespace: plex
+#     - match: Host(`plex.framsburg.ch`)
+#       kind: Rule
+#       priority: 50
+#       services:
+#         - name: plex
+#           port: http
+#       middlewares:
+#         - name: svc-plex-headers
+#           namespace: plex
+#         - name: web-redirect
+#           namespace: plex
+#   tls:
+#     certResolver: letsencrypt
+#     domains:
+#       - main: plex.framsburg.ch
+#     secretName: plex-framsburg-ch-tls-external
