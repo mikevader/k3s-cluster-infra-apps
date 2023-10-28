@@ -33,6 +33,7 @@ spec:
     certResolver: letsencrypt
     domains:
       - main: plex.framsburg.ch
+    secretName: plex-framsburg-ch-tls
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
@@ -68,3 +69,4 @@ spec:
     certResolver: letsencrypt
     domains:
       - main: plex.framsburg.ch
+    secretName: plex-framsburg-ch-tls-external
