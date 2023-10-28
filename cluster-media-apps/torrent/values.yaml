@@ -182,6 +182,7 @@ transmission:
     PGID: 666
     TRANSMISSION_WEB_HOME: ""
     WHITELIST: "transmission.framsburg.ch, 192.168.42.150, 192.168.42.*, 10.43.*.*, 10.42.*.*"
+    RPC_URL: https://transmission.framsburg.ch/transmission/rpc
 
   ingress:
     main:
