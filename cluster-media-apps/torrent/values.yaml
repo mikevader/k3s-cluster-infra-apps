@@ -204,7 +204,12 @@ transmission:
       type: pvc
       size: 1Gi
       accessMode: ReadWriteOnce
-      mountPath: /config
+    downloads:
+      enabled: true
+      type: pvc
+      size: 60Gi
+      storageClass: longhorn-nfs-v1
+      accessMode: ReadWriteMany
 
 
 
