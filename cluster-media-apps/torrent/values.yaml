@@ -181,7 +181,7 @@ transmission:
     PUID: 666
     PGID: 666
     TRANSMISSION_WEB_HOME: ""
-    WHITELIST: "transmission.framsburg.ch, 192.168.42.150, 192.168.42.*"
+    WHITELIST: "transmission.framsburg.ch, 192.168.42.150, 192.168.42.*, 10.43.*.*, 10.42.*.*"
 
   ingress:
     main:
@@ -238,6 +238,13 @@ flood:
       tls:
         - hosts: ['flood.framsburg.ch']
           secretName: 'flood-framsburg-ch-tls'
+
+  podSecurityContext:
+    # kah user
+    runAsUser: 666
+    # media group
+    runAsGroup: 666
+    fsGroup: 666
 
   persistence:
     data:
