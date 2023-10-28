@@ -37,7 +37,7 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: plex
+  name: plex-external
   annotations:
     kubernetes.io/ingress.class: "traefik-external"
 spec:
