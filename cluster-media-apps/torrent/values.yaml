@@ -194,7 +194,7 @@ transmission:
       hosts:
         - host: 'transmission.framsburg.ch'
           paths:
-            - path: /
+            - path: /transmission
               pathType: Prefix
       tls:
         - hosts: ['transmission.framsburg.ch']
