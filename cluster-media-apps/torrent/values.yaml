@@ -224,7 +224,7 @@ flood:
     TZ: Europe/Zurich
     # FLOOD_OPTION_rundir: /data
     FLOOD_OPTION_auth: none
-    FLOOD_OPTION_trurl: 'http://torrent-transmission:9091/transmission/rpc'
+    # FLOOD_OPTION_trurl: 'http://torrent-transmission:9091/transmission/rpc'
 
   ingress:
     main:
