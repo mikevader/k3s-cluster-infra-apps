@@ -37,13 +37,13 @@ radarr:
       size: 10Gi
       accessMode: ReadWriteOnce
 
-    media:
+    downloads:
       enabled: true
       type: pvc
       retain: true
       storageClass: "-"
-      existingClaim: torrent-qbittorrent-data
-      mountPath: /mnt/media
+      existingClaim: torrent-transmission-downloads
+      mountPath: /downloads
 
     movies:
       enabled: true
@@ -52,14 +52,6 @@ radarr:
       storageClass: "-"
       existingClaim: plex-movies
       mountPath: /mnt/media/movies
-
-    downloads:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: torrent-transmission-downloads
-      mountPath: /downloads
 
   podSecurityContext:
     runAsUser: 666
@@ -113,13 +105,13 @@ sonarr:
       size: 10Gi
       accessMode: ReadWriteOnce
 
-    media:
+    downloads:
       enabled: true
       type: pvc
       retain: true
       storageClass: "-"
-      existingClaim: torrent-qbittorrent-data
-      mountPath: /mnt/media
+      existingClaim: torrent-transmission-downloads
+      mountPath: /downloads
 
     tv-efgh:
       enabled: true
