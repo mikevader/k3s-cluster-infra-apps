@@ -3,7 +3,7 @@ global:
 
 filebrowser:
   controller:
-    enabled: false
+    enabled: true
   env:
     TZ: Europe/Zurich
 
@@ -15,8 +15,10 @@ filebrowser:
       "log": "stdout",
       "database": "/config/database.db",
       "root": "/mnt/media",
-      "authMethod": "proxy",
-      "header": "X-authentik-username"
+      "auth": {
+        "method": "proxy",
+        "header": "X-authentik-username"
+      }
     }
   
   service:
