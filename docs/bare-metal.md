@@ -27,6 +27,8 @@ several systems either do not support insecure connections, custom certificates
 or disabling verification. The [MinIO Documentation][1] has a good guide how to
 use `certbot` to install this. 
 
+### Certs over certbot
+
 You can use HTTP or DNS challenge. The latter is dicribed on [digitalocean][2]
 ```bash
 $ certbot certonly --config-dir config --work-dir workdir --logs-dir logs  --manual  --preferred-challenges dns --debug-challenges -d minio.framsburg.net
@@ -36,6 +38,31 @@ During the execution, certbot requires you to add a specific DNS entry to your
 Domain. This looks similar to:
 
 ![DNS Record on Digitalocean](dns-record.png)
+
+### Certs over ACME Client (Opnsense)
+
+Opnsense has a service plugin for the ACME protocol to create certificates. The
+tricky part is how to get the certificates from Opnsense to Minio. The plugin
+allows to create automations to do for example a SFTP copy of the certs to the
+minio server.
+
+The only small pitfall is that Minio users for the public cert not the pure cert
+file put the full chain, which is a combination of the cert + ca as described
+in the [MinIO Documentation][4].
+
+So your Opnsense Config looks something like this:
+
+|------------------------|----------------------------------|
+| Field                  | Value                            |
+|------------------------|----------------------------------|
+| Name                   | Upload Minio Certificate         |
+| Run Command            | Upload certificate via SFTP      |
+| SFTP Host              | minio.server                     |
+| SFTP Port              | 22                               |
+| Removte Path           | /path-to-minio-home/.minio/certs |
+| Naming "key.pem"       | private.key                      |
+| Naming "fullchain.pem" | public.crt                       |
+
 
 ## Setup Minio Monitoring
 
@@ -183,3 +210,4 @@ This should be added as startup command to `/etc/network/if-up.d/`
 [1]: https://min.io/docs/minio/linux/integrations/generate-lets-encrypt-certificate-using-certbot-for-minio.html
 [2]: https://www.digitalocean.com/community/tutorials/how-to-acquire-a-let-s-encrypt-certificate-using-dns-validation-with-acme-dns-certbot-on-ubuntu-18-04
 [3]: https://www.jeffgeerling.com/blog/2021/taking-control-pi-poe-hats-overly-aggressive-fan
+[4]: https://min.io/docs/minio/linux/integrations/generate-lets-encrypt-certificate-using-certbot-for-minio.html#step-4-set-up-ssl-on-minio-server-with-the-certificates
