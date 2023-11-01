@@ -6,8 +6,9 @@ plex:
     # sed -n '/<Preferences/,$p' | tail -n +2 | sed 's,/>,,g' | \
     # sed '/\(OldestPreviousVersion\|MachineIdentifier\|^PlexOnline\|Certificate\|PubSub\|NeedsUpdate\)/d' | \
     # sed 's/"//g' | awk '{print "PLEX_PREFERENCE_"i++": \""$0"\""}'
-    PLEX_UID: 568
-    PLEX_GID: 568
+    TZ: Europe/Zurich
+    PLEX_UID: 666
+    PLEX_GID: 666
     PLEX_CLAIM: "claim-z6APwzcuTys17_L4tSSc"
     PLEX_PREFERENCE_0: "allowedNetworks=10.43.0.0/16,10.42.0.0/16,192.168.42.0/24"
     # PLEX_PREFERENCE_1: "TranscoderTempDirectory=/transcode"
@@ -118,9 +119,9 @@ plex:
           path: tls.pk12
 
   podSecurityContext:
-    runAsUser: 568
-    runAsGroup: 568
-    fsGroup: 568
+    runAsUser: 666
+    runAsGroup: 666
+    fsGroup: 666
   probes:
     liveness:
       enabled: false
