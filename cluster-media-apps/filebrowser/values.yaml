@@ -3,7 +3,7 @@ global:
 
 filebrowser:
   controller:
-    enabled: true
+    enabled: false
   env:
     TZ: Europe/Zurich
 
