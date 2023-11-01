@@ -158,10 +158,8 @@ prowlarr:
       fieldRef:
         fieldPath: "metadata.labels['app.kubernetes.io/instance']"
     APP_PORT: "9696"
-
-  envFrom:
-    - configMapRef:
-        name: prowlarr-config
+    PGID: "666"
+    PUID: "666"
 
   ingress:
     main:
