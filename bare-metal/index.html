@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.7">
     
     
       
@@ -30,7 +30,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.4b4a2bd9.min.css">
       
       
 
@@ -302,6 +302,26 @@
   <a href="#setup-minio" class="md-nav__link">
     Setup Minio
   </a>
+  
+    <nav class="md-nav" aria-label="Setup Minio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#certs-over-certbot" class="md-nav__link">
+    Certs over certbot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#certs-over-acme-client-opnsense" class="md-nav__link">
+    Certs over ACME Client (Opnsense)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1073,6 +1093,26 @@
     Setup Minio
   </a>
   
+    <nav class="md-nav" aria-label="Setup Minio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#certs-over-certbot" class="md-nav__link">
+    Certs over certbot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#certs-over-acme-client-opnsense" class="md-nav__link">
+    Certs over ACME Client (Opnsense)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1151,12 +1191,32 @@ https://docs.ansible.com/ansible/latest/collections/community/crypto/acme_certif
 several systems either do not support insecure connections, custom certificates
 or disabling verification. The <a href="https://min.io/docs/minio/linux/integrations/generate-lets-encrypt-certificate-using-certbot-for-minio.html">MinIO Documentation</a> has a good guide how to
 use <code>certbot</code> to install this. </p>
+<h3 id="certs-over-certbot">Certs over certbot</h3>
 <p>You can use HTTP or DNS challenge. The latter is dicribed on <a href="https://www.digitalocean.com/community/tutorials/how-to-acquire-a-let-s-encrypt-certificate-using-dns-validation-with-acme-dns-certbot-on-ubuntu-18-04">digitalocean</a>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>certbot<span class="w"> </span>certonly<span class="w"> </span>--config-dir<span class="w"> </span>config<span class="w"> </span>--work-dir<span class="w"> </span>workdir<span class="w"> </span>--logs-dir<span class="w"> </span>logs<span class="w">  </span>--manual<span class="w">  </span>--preferred-challenges<span class="w"> </span>dns<span class="w"> </span>--debug-challenges<span class="w"> </span>-d<span class="w"> </span>minio.framsburg.net
 </code></pre></div></p>
 <p>During the execution, certbot requires you to add a specific DNS entry to your
 Domain. This looks similar to:</p>
 <p><img alt="DNS Record on Digitalocean" src="../dns-record.png" /></p>
+<h3 id="certs-over-acme-client-opnsense">Certs over ACME Client (Opnsense)</h3>
+<p>Opnsense has a service plugin for the ACME protocol to create certificates. The
+tricky part is how to get the certificates from Opnsense to Minio. The plugin
+allows to create automations to do for example a SFTP copy of the certs to the
+minio server.</p>
+<p>The only small pitfall is that Minio users for the public cert not the pure cert
+file put the full chain, which is a combination of the cert + ca as described
+in the <a href="https://min.io/docs/minio/linux/integrations/generate-lets-encrypt-certificate-using-certbot-for-minio.html#step-4-set-up-ssl-on-minio-server-with-the-certificates">MinIO Documentation</a>.</p>
+<p>So your Opnsense Config looks something like this:</p>
+<p>|------------------------|----------------------------------|
+| Field                  | Value                            |
+|------------------------|----------------------------------|
+| Name                   | Upload Minio Certificate         |
+| Run Command            | Upload certificate via SFTP      |
+| SFTP Host              | minio.server                     |
+| SFTP Port              | 22                               |
+| Removte Path           | /path-to-minio-home/.minio/certs |
+| Naming "key.pem"       | private.key                      |
+| Naming "fullchain.pem" | public.crt                       |</p>
 <h2 id="setup-minio-monitoring">Setup Minio Monitoring</h2>
 <p>Minio requires two env variables to connect to prometheus metrics:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MINIO_PROMETHEUS_URL</span><span class="o">=</span>https://prometheus.framsburg.ch
