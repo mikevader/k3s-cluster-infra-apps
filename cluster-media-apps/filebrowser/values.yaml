@@ -82,6 +82,14 @@ filebrowser:
       existingClaim: plex-tv-qrst
       mountPath: /mnt/media/tv-qrst
 
+    downloads:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: torrent-transmission-downloads
+      mountPath: /mnt/media/downloads
+
   ingress:
     main:
       enabled: true
