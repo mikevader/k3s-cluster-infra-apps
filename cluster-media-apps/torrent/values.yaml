@@ -36,11 +36,12 @@ transmission:
       type: pvc
       size: 1Gi
       accessMode: ReadWriteOnce
+
     downloads:
       enabled: true
       type: pvc
-      size: 300Gi
-      storageClass: longhorn-nfs-transient-v1
+      size: 60Gi
+      storageClass: longhorn-nfs-v1
       accessMode: ReadWriteMany
 
 flood:
