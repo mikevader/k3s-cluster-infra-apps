@@ -4,7 +4,7 @@ global:
 
 radarr:
   controller:
-    enabled: false
+    enabled: true
 
   env:
     TZ: Europe/Zurich
@@ -72,7 +72,7 @@ radarr:
 
 sonarr:
   controller:
-    enabled: false
+    enabled: true
 
   env:
     TZ: Europe/Zurich
