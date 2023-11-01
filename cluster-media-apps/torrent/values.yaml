@@ -30,6 +30,10 @@ transmission:
         - hosts: ['transmission.framsburg.ch']
           secretName: 'transmission-framsburg-ch-tls'
 
+  securityContext:
+    fsGroup: 666
+    fsGroupChangePolicy: Always
+
   persistence:
     config:
       enabled: true
@@ -73,9 +77,7 @@ flood:
           secretName: 'flood-framsburg-ch-tls'
 
   podSecurityContext:
-    # kah user
     runAsUser: 666
-    # media group
     runAsGroup: 666
     fsGroup: 666
 

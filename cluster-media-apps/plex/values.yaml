@@ -122,6 +122,7 @@ plex:
     runAsUser: 666
     runAsGroup: 666
     fsGroup: 666
+    fsGroupChangePolicy: Always
   probes:
     liveness:
       enabled: false
