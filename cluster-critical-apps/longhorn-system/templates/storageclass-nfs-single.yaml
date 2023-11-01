@@ -5,10 +5,16 @@ metadata:
 mountOptions:
   - nolock
 provisioner: driver.longhorn.io
+reclaimPolicy: Delete
+allowVolumeExpansion: true
+volumeBindingMode: Immediate
 parameters:
   fsType: ext4
   numberOfReplicas: '2'
   staleReplicaTimeout: '30'
-reclaimPolicy: Delete
-allowVolumeExpansion: true
-volumeBindingMode: Immediate
+  recurringJobSelector: '[
+      {
+        "name":"backup",
+        "isGroup":true
+      }
+    ]'

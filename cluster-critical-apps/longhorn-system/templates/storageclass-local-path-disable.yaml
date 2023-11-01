@@ -8,3 +8,10 @@ metadata:
 provisioner: rancher.io/local-path
 reclaimPolicy: Delete
 volumeBindingMode: WaitForFirstConsumer
+parameters:
+  recurringJobSelector: '[
+      {
+        "name":"backup",
+        "isGroup":false
+      }
+    ]'
