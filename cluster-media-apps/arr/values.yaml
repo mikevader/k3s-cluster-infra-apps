@@ -219,10 +219,3 @@ tdarr:
       type: pvc
       size: 10Gi
       accessMode: ReadWriteOnce
-
-    media:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: torrent-qbittorrent-data
