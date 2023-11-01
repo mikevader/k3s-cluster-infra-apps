@@ -34,6 +34,12 @@ filebrowser:
           port: 8080
 
   persistence:
+    config:
+      enabled: true
+      type: pvc
+      size: 1Gi
+      accessMode: ReadWriteOnce
+
     audiobooks:
       enabled: true
       type: pvc
