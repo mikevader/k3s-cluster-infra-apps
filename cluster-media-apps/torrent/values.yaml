@@ -16,8 +16,14 @@ transmission:
   service:
     utptcp:
       enabled: true
+      type: LoadBalancer
+      externalIPs:
+        - 192.168.42.152
     utpudp:
       enabled: true
+      type: LoadBalancer
+      externalIPs:
+        - 192.168.42.152
 
   ingress:
     main:
