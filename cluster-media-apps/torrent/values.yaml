@@ -13,6 +13,12 @@ transmission:
     # WHITELIST: "transmission.framsburg.ch, 192.168.42.150, 192.168.42.*, 10.43.*.*, 10.42.*.*"
     RPC_URL: https://transmission.framsburg.ch/transmission/rpc
 
+  service:
+    utptcp:
+      enabled: true
+    utpudp:
+      enabled: true
+
   ingress:
     main:
       enabled: true
