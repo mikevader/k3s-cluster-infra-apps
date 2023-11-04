@@ -8,9 +8,7 @@ radarr:
 
   env:
     TZ: Europe/Zurich
-    APP_NAME:
-      fieldRef:
-        fieldPath: "metadata.labels['app.kubernetes.io/instance']"
+    APP_NAME: Radarr
     APP_PORT: "7878"
 
   ingress:
@@ -20,6 +18,7 @@ radarr:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.priority: "10"
+        traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
 
       hosts:
         - host: '{{ .Values.global.domainName }}'
@@ -77,9 +76,7 @@ sonarr:
 
   env:
     TZ: Europe/Zurich
-    APP_NAME:
-      fieldRef:
-        fieldPath: "metadata.labels['app.kubernetes.io/instance']"
+    APP_NAME: Sonarr
     APP_PORT: "8989"
 
   ingress:
@@ -172,9 +169,7 @@ prowlarr:
 
   env:
     TZ: Europe/Zurich
-    APP_NAME:
-      fieldRef:
-        fieldPath: "metadata.labels['app.kubernetes.io/instance']"
+    APP_NAME: Prowlarr
     APP_PORT: "9696"
     PGID: "666"
     PUID: "666"
