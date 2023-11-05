@@ -10,6 +10,7 @@
 {{- $automatedPrune := default true .automatedPrune }}
 {{- $selfHeal := default true .selfHeal }}
 {{- $helmServerSideApply := default false .helmServerSideApply }}
+{{- $ignoreDifferences := default false .ignoreDifferences -}}
 {{- if not $disabled }}
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -34,6 +35,10 @@ spec:
 {{- if $enableHelmKustomize }}
     plugin:
       name: kustomized-helm
+{{- end }}
+{{- if $ignoreDifferences }}
+  ignoreDifferences:
+    {{- toYaml $ignoreDifferences | indent 4 }}
 {{- end }}
 {{- if not $disableAutoSync }}
   syncPolicy:
