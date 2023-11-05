@@ -10,6 +10,7 @@ radarr:
     TZ: Europe/Zurich
     APP_NAME: Radarr
     APP_PORT: "7878"
+    RADARR__AUTHENTICATION_METHOD: "External"
 
   ingress:
     main:
@@ -78,6 +79,7 @@ sonarr:
     TZ: Europe/Zurich
     APP_NAME: Sonarr
     APP_PORT: "8989"
+    SONARR__AUTHENTICATION_METHOD: "External"
 
   ingress:
     main:
@@ -86,6 +88,7 @@ sonarr:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.priority: "10"
+        traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
 
       hosts:
         - host: 'sonarr.framsburg.ch'
@@ -151,9 +154,14 @@ sonarr:
 
   probes:
     liveness:
-      enabled: false
-    readiness:
-      enabled: false
+      spec:
+        exec:
+          command:
+            - /usr/bin/env
+            - bash
+            - -c
+            - curl --fail localhost:${APP_PORT}/${APP_NAME/-//}/api/v3/system/status?apiKey=`IFS=\> && while
+              read -d \< E C; do if [[ $E = "ApiKey" ]]; then echo $C; fi; done < /config/config.xml`
 
 prowlarr:
   controller:
@@ -181,6 +189,7 @@ prowlarr:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.priority: "10"
+        traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
 
       hosts:
         - host: 'prowlarr.framsburg.ch'
@@ -200,9 +209,14 @@ prowlarr:
 
   probes:
     liveness:
-      enabled: false
-    readiness:
-      enabled: false
+      spec:
+        exec:
+          command:
+            - /usr/bin/env
+            - bash
+            - -c
+            - curl --fail localhost:${APP_PORT}/${APP_NAME/-//}/api/v1/system/status?apiKey=`IFS=\> && while
+              read -d \< E C; do if [[ $E = "ApiKey" ]]; then echo $C; fi; done < /config/config.xml`
 
 tdarr:
   controller:
@@ -218,6 +232,7 @@ tdarr:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.priority: "10"
+        traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
 
       hosts:
         - host: 'tdarr.framsburg.ch'
