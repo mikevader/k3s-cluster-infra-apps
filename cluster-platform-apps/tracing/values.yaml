@@ -15,6 +15,10 @@ jaeger:
   elasticsearch:
     sysctlInitContainer:
       enabled: false
+    resources:
+      requests:
+        cpu: '0.5'
+        memory: 256Mi
   hotrod:
     enabled: true
     extraArgs:
