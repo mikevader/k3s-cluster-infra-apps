@@ -11,5 +11,5 @@ data:
       - name: jaeger
         editable: false
         type: jaeger
-        url: http://monitoring-stack-jaeger-query.tracing.svc:80
+        url: http://tracing-jaeger-query.tracing.svc:80
 
