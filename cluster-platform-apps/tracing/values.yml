@@ -23,6 +23,7 @@ jaeger:
       - name: OTEL_EXPORTER_OTLP_ENDPOINT
         value: http://monitoring-stack-opentelemetry-collector:4318
 
+mode: deployment
 # OpenTelemetry Collector
 opentelemetry-collector:
   mode: deployment
