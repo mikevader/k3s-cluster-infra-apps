@@ -12,11 +12,7 @@ jaeger:
   provisionDataStore:
     cassandra: false
     elasticsearch: true
-  cassandra:
-    config:
-      cluster_size: 2
   elasticsearch:
-    replicas: 2
     sysctlInitContainer:
       enabled: false
   hotrod:
@@ -52,7 +48,6 @@ jaeger:
           hosts:
             - jaeger.framsburg.ch
 
-mode: deployment
 # OpenTelemetry Collector
 otelcollector:
   mode: deployment
