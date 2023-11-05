@@ -18,8 +18,8 @@ argo-cd:
         type: helm
         url: https://releases.rancher.com/server-charts/latest
 
-    secret:
-      githubSecret: $argocd-github-secret:webhook.github.secret
+    # secret:
+    #   githubSecret: $argocd-github-secret:webhook.github.secret
   
     # secrets:
     #   extra:

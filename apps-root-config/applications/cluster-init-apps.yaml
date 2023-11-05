@@ -28,11 +28,14 @@ applications:
     disableNamespaceCreation: true
     destinationNamespace: argocd-system
     disableAutoSync: true
-    ignoreDifferences:
-      - group: ""
-        name: argocd-secret
-        namespace: argocd-system
-        kind: Secret
+    # ignoreDifferences:
+    #   - group: ""
+    #     name: argocd-secret
+    #     namespace: argocd-system
+    #     kind: Secret
+    #     jsonPointers:
+    #       - /data/webhook.github.secret
+    #       - /metadata/labels
   bootstrap:
     disableNamespaceCreation: true
     destinationNamespace: argocd-system
