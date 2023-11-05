@@ -10,7 +10,7 @@
 {{- $automatedPrune := default true .automatedPrune }}
 {{- $selfHeal := default true .selfHeal }}
 {{- $helmServerSideApply := default false .helmServerSideApply }}
-{{- $ignoreDifferences := default false .ignoreDifferences -}}
+{{- $ignoreDifferences := default false .ignoreDifferences }}
 {{- if not $disabled }}
 ---
 apiVersion: argoproj.io/v1alpha1
