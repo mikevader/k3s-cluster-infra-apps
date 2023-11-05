@@ -33,8 +33,6 @@ applications:
         name: argocd-secret
         namespace: argocd-system
         kind: Secret
-        jsonPointers:
-          - /data/webhook.github.secret
   bootstrap:
     disableNamespaceCreation: true
     destinationNamespace: argocd-system
