@@ -23,7 +23,7 @@ thanosQuerier:
 # jaeger
 jaeger:
   mode: deployment
-  tag: 1.46
+  # tag: 1.46
   collector:
     extraEnv:
       - name: COLLECTOR_OTLP_ENABLED
@@ -33,7 +33,12 @@ jaeger:
   provisionDataStore:
     cassandra: false
     elasticsearch: true
+  cassandra:
+    config:
+      cluster_size: 2
   elasticsearch:
+    elasticsearch:
+      replicas: 2
     sysctlInitContainer:
       enabled: false
   hotrod:
