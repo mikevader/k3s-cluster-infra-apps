@@ -154,14 +154,9 @@ sonarr:
 
   probes:
     liveness:
-      spec:
-        exec:
-          command:
-            - /usr/bin/env
-            - bash
-            - -c
-            - curl --fail localhost:${APP_PORT}/${APP_NAME/-//}/api/v3/system/status?apiKey=`IFS=\> && while
-              read -d \< E C; do if [[ $E = "ApiKey" ]]; then echo $C; fi; done < /config/config.xml`
+      enabled: false
+    readiness:
+      enabled: false
 
 prowlarr:
   controller:
