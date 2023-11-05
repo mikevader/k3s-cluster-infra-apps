@@ -1,0 +1,100 @@
+---
+# jaeger
+jaeger:
+  # tag: 1.46
+  collector:
+    extraEnv:
+      - name: COLLECTOR_OTLP_ENABLED
+        value: 'true'
+  storage:
+    type: elasticsearch
+    
+  provisionDataStore:
+    cassandra: false
+    elasticsearch: true
+  cassandra:
+    config:
+      cluster_size: 2
+  elasticsearch:
+    replicas: 2
+    sysctlInitContainer:
+      enabled: false
+  hotrod:
+    enabled: true
+    extraArgs:
+      - --otel-exporter=otlp
+    extraEnv:
+      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+        value: http://monitoring-stack-opentelemetry-collector:4318
+
+  query:
+    ingress:
+      enabled: true
+      # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
+      # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
+      # ingressClassName: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+
+      labels: {}
+      # Used to create an Ingress record.
+      hosts:
+        - jaeger.framsburg.ch
+      # annotations:
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+      # labels:
+      # app: jaeger-query
+      tls:
+      # Secrets must be manually created in the namespace.
+        - secretName: jaeger-framsburg-ch-tls
+          hosts:
+            - jaeger.framsburg.ch
+
+mode: deployment
+# OpenTelemetry Collector
+otelcollector:
+  mode: deployment
+  serviceMonitor:
+    enabled: true
+  config:
+    exporters:
+      jaeger:
+        endpoint: "http://monitoring-stack-jaeger-collector:14250"
+        tls:
+          insecure: true
+      prometheus:
+        endpoint: "0.0.0.0:8889"
+    processors:
+      batch:
+      spanmetrics:
+        metrics_exporter: prometheus
+    receivers:
+      otlp:
+        protocols:
+          http:
+            endpoint: "0.0.0.0:4318"
+          grpc:
+            endpoint: "0.0.0.0:4317"
+      otlp/spanmetrics:
+        protocols:
+          grpc:
+            endpoint: "localhost:65535"
+    service:
+      pipelines:
+        traces:
+          receivers:
+            - otlp
+          processors:
+            - spanmetrics
+            - batch
+          exporters:
+            - jaeger
+        metrics:
+          receivers:
+            - otlp/spanmetrics
+          processors:
+            - batch
+          exporters:
+            - prometheus
