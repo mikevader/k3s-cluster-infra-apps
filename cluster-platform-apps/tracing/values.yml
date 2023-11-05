@@ -1,0 +1,75 @@
+
+
+# jaeger
+jaeger:
+  tag: 1.46
+  collector:
+    extraEnv:
+      - name: COLLECTOR_OTLP_ENABLED
+        value: 'true'
+  storage:
+    type: elasticsearch
+  provisionDataStore:
+    cassandra: false
+    elasticsearch: true
+  elasticsearch:
+    sysctlInitContainer:
+      enabled: false
+    securityContext:
+      runAsUser: 1001050000
+    podSecurityContext:
+      fsGroup: 1001050000
+      runAsUser: 1001050000
+  hotrod:
+    enabled: true
+    extraArgs:
+      - --otel-exporter=otlp
+    extraEnv:
+      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+        value: http://monitoring-stack-opentelemetry-collector:4318
+
+# OpenTelemetry Collector
+opentelemetry-collector:
+  mode: deployment
+  serviceMonitor:
+    enabled: true
+  config:
+    exporters:
+      jaeger:
+        endpoint: "http://monitoring-stack-jaeger-collector:14250"
+        tls:
+          insecure: true
+      prometheus:
+        endpoint: "0.0.0.0:8889"
+    processors:
+      batch:
+      spanmetrics:
+        metrics_exporter: prometheus
+    receivers:
+      otlp:
+        protocols:
+          http:
+            endpoint: "0.0.0.0:4318"
+          grpc:
+            endpoint: "0.0.0.0:4317"
+      otlp/spanmetrics:
+        protocols:
+          grpc:
+            endpoint: "localhost:65535"
+    service:
+      pipelines:
+        traces:
+          receivers:
+            - otlp
+          processors:
+            - spanmetrics
+            - batch
+          exporters:
+            - jaeger
+        metrics:
+          receivers:
+            - otlp/spanmetrics
+          processors:
+            - batch
+          exporters:
+            - prometheus
