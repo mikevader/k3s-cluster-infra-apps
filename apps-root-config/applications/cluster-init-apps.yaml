@@ -30,6 +30,8 @@ applications:
     disableAutoSync: true
     ignoreDifferences:
       - group: ""
+        name: argocd-secret
+        namespace: argocd-system
         kind: Secret
         jsonPointers:
           - /data/webhook.github.secret
