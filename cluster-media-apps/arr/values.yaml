@@ -79,7 +79,7 @@ sonarr:
     TZ: Europe/Zurich
     APP_NAME: Sonarr
     APP_PORT: "8989"
-    # SONARR__AUTHENTICATION_METHOD: "External"
+    SONARR__AUTHENTICATION_METHOD: "None" # v4: External
 
   ingress:
     main:
