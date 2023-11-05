@@ -79,7 +79,7 @@ sonarr:
     TZ: Europe/Zurich
     APP_NAME: Sonarr
     APP_PORT: "8989"
-    SONARR__AUTHENTICATION_METHOD: "External"
+    # SONARR__AUTHENTICATION_METHOD: "External"
 
   ingress:
     main:
@@ -154,9 +154,14 @@ sonarr:
 
   probes:
     liveness:
-      enabled: false
-    readiness:
-      enabled: false
+      spec:
+        exec:
+          command:
+            - /usr/bin/env
+            - bash
+            - -c
+            - curl --fail localhost:${APP_PORT}/${APP_NAME/-//}/api/v3/system/status?apiKey=`IFS=\> && while
+              read -d \< E C; do if [[ $E = "ApiKey" ]]; then echo $C; fi; done < /config/config.xml`
 
 prowlarr:
   controller:
