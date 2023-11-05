@@ -37,8 +37,7 @@ jaeger:
     config:
       cluster_size: 2
   elasticsearch:
-    elasticsearch:
-      replicas: 2
+    replicas: 2
     sysctlInitContainer:
       enabled: false
   hotrod:
