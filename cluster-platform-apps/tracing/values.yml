@@ -1,7 +1,28 @@
 
+# cluster
+clusterName: incubator
+responsible: codecamp@baloise.dev
+routeDomain: apps.baloise.dev
+clusterEnvironment: nonprod
+appEnvironment: nonprod
+infraCluster: true
+
+# monitoring
+enableMonitoring: true
+enablespringBootMonitoring: true
+clusterMonitoringNamespace: platform-monitoring
+alertmanager:
+  mailAlerts: false
+  teams:
+    enabled: false
+thanosQuerier:
+  enableLocalClusterMonitoring: true
+  clusterTargets: {}
+
 
 # jaeger
 jaeger:
+  mode: deployment
   tag: 1.46
   collector:
     extraEnv:
@@ -23,49 +44,49 @@ jaeger:
       - name: OTEL_EXPORTER_OTLP_ENDPOINT
         value: http://monitoring-stack-opentelemetry-collector:4318
 
-mode: deployment
-# OpenTelemetry Collector
-opentelemetry-collector:
-  mode: deployment
-  serviceMonitor:
-    enabled: true
-  config:
-    exporters:
-      jaeger:
-        endpoint: "http://monitoring-stack-jaeger-collector:14250"
-        tls:
-          insecure: true
-      prometheus:
-        endpoint: "0.0.0.0:8889"
-    processors:
-      batch:
-      spanmetrics:
-        metrics_exporter: prometheus
-    receivers:
-      otlp:
-        protocols:
-          http:
-            endpoint: "0.0.0.0:4318"
-          grpc:
-            endpoint: "0.0.0.0:4317"
-      otlp/spanmetrics:
-        protocols:
-          grpc:
-            endpoint: "localhost:65535"
-    service:
-      pipelines:
-        traces:
-          receivers:
-            - otlp
-          processors:
-            - spanmetrics
-            - batch
-          exporters:
-            - jaeger
-        metrics:
-          receivers:
-            - otlp/spanmetrics
-          processors:
-            - batch
-          exporters:
-            - prometheus
+# mode: deployment
+# # OpenTelemetry Collector
+# otelcollector:
+#   mode: deployment
+#   serviceMonitor:
+#     enabled: true
+#   config:
+#     exporters:
+#       jaeger:
+#         endpoint: "http://monitoring-stack-jaeger-collector:14250"
+#         tls:
+#           insecure: true
+#       prometheus:
+#         endpoint: "0.0.0.0:8889"
+#     processors:
+#       batch:
+#       spanmetrics:
+#         metrics_exporter: prometheus
+#     receivers:
+#       otlp:
+#         protocols:
+#           http:
+#             endpoint: "0.0.0.0:4318"
+#           grpc:
+#             endpoint: "0.0.0.0:4317"
+#       otlp/spanmetrics:
+#         protocols:
+#           grpc:
+#             endpoint: "localhost:65535"
+#     service:
+#       pipelines:
+#         traces:
+#           receivers:
+#             - otlp
+#           processors:
+#             - spanmetrics
+#             - batch
+#           exporters:
+#             - jaeger
+#         metrics:
+#           receivers:
+#             - otlp/spanmetrics
+#           processors:
+#             - batch
+#           exporters:
+#             - prometheus

@@ -5,6 +5,7 @@ dependencies:
 - name: jaeger
   version: 0.71.17
   repository: https://jaegertracing.github.io/helm-charts
-- name: opentelemetry-collector
-  version: 0.61.0
-  repository: https://open-telemetry.github.io/opentelemetry-helm-charts
+# - name: opentelemetry-collector
+#   version: 0.61.0
+#   repository: https://open-telemetry.github.io/opentelemetry-helm-charts
+#   alias: otelcollector
