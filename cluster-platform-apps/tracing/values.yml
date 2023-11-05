@@ -15,11 +15,6 @@ jaeger:
   elasticsearch:
     sysctlInitContainer:
       enabled: false
-    securityContext:
-      runAsUser: 1001050000
-    podSecurityContext:
-      fsGroup: 1001050000
-      runAsUser: 1001050000
   hotrod:
     enabled: true
     extraArgs:
