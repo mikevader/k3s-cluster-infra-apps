@@ -6,6 +6,10 @@ filebrowser:
     enabled: true
   env:
     TZ: Europe/Zurich
+    JAEGER_AGENT_HOST:
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
 
   config: |
     {

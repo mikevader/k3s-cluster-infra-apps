@@ -12,6 +12,10 @@ transmission:
     TRANSMISSION_RPC_AUTHENTICATION_REQUIRED: "true"
     # WHITELIST: "transmission.framsburg.ch, 192.168.42.150, 192.168.42.*, 10.43.*.*, 10.42.*.*"
     RPC_URL: https://transmission.framsburg.ch/transmission/rpc
+    JAEGER_AGENT_HOST:
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
 
   service:
     utptcp:
@@ -71,6 +75,10 @@ flood:
     FLOOD_OPTION_trurl: 'http://torrent-transmission:9091/transmission/rpc'
     FLOOD_OPTION_truser: 'admin'
     FLOOD_OPTION_trpass: 'adminadmin'
+    JAEGER_AGENT_HOST:
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
 
   ingress:
     main:

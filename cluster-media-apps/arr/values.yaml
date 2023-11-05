@@ -11,6 +11,10 @@ radarr:
     APP_NAME: Radarr
     APP_PORT: "7878"
     RADARR__AUTHENTICATION_METHOD: "External"
+    JAEGER_AGENT_HOST:
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
 
   ingress:
     main:
@@ -80,6 +84,10 @@ sonarr:
     APP_NAME: Sonarr
     APP_PORT: "8989"
     SONARR__AUTHENTICATION_METHOD: "None" # v4: External
+    JAEGER_AGENT_HOST:
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
 
   ingress:
     main:
@@ -181,6 +189,10 @@ prowlarr:
     APP_PORT: "9696"
     PGID: "666"
     PUID: "666"
+    JAEGER_AGENT_HOST:
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
 
   ingress:
     main:
@@ -224,6 +236,10 @@ tdarr:
 
   env:
     TZ: Europe/Zurich
+    JAEGER_AGENT_HOST:
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
 
   ingress:
     main:
