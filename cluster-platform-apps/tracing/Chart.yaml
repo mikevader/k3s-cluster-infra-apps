@@ -3,7 +3,7 @@ name: tracing
 version: 0.0.0
 dependencies:
 - name: jaeger
-  version: 0.71.17
+  version: 0.71.18
   repository: https://jaegertracing.github.io/helm-charts
 # - name: opentelemetry-collector
 #   version: 0.61.0
