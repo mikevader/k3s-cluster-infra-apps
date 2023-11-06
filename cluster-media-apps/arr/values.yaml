@@ -15,6 +15,7 @@ radarr:
       valueFrom:
         fieldRef:
           fieldPath: status.hostIP
+    JAEGER_AGENT_PORT: "6831"
 
   ingress:
     main:
@@ -88,6 +89,7 @@ sonarr:
       valueFrom:
         fieldRef:
           fieldPath: status.hostIP
+    JAEGER_AGENT_PORT: "6831"
 
   ingress:
     main:
@@ -193,6 +195,7 @@ prowlarr:
       valueFrom:
         fieldRef:
           fieldPath: status.hostIP
+    JAEGER_AGENT_PORT: "6831"
 
   ingress:
     main:
@@ -240,6 +243,7 @@ tdarr:
       valueFrom:
         fieldRef:
           fieldPath: status.hostIP
+    JAEGER_AGENT_PORT: "6831"
 
   ingress:
     main:
