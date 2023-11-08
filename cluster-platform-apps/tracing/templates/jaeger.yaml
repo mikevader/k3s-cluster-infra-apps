@@ -1,0 +1,19 @@
+---
+apiVersion: jaegertracing.io/v1
+kind: Jaeger
+metadata:
+  name: simplest
+# spec:
+#   strategy: production
+#
+#   storage:
+#     type: elasticsearch
+
+  # ingress:
+  #  enabled: true
+  #  annotations:
+  #    cert-manager.io/cluster-issuer: letsencrypt-prod
+  #    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  #  hosts:
+  #    - jaeger.framsburg.ch
+  #  secretName: jaeger-framsburg-ch-tls
