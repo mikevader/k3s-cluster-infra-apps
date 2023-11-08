@@ -1,4 +1,7 @@
 ---
+jaeger-operator: {}
+
+
 # jaeger
 jaeger:
   # tag: 1.46
@@ -60,7 +63,7 @@ otelcollector:
   config:
     exporters:
       jaeger:
-        endpoint: "http://monitoring-stack-jaeger-collector:14250"
+        endpoint: "http://tracing-jaeger-collector.tracing.svc:14250"
         tls:
           insecure: true
       prometheus:
