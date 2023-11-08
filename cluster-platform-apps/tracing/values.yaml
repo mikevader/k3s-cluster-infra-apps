@@ -1,5 +1,8 @@
 ---
-jaeger-operator: {}
+jaeger-operator:
+  jaeger:
+    create: true
+    namespace: tracing
 
 
 # jaeger
