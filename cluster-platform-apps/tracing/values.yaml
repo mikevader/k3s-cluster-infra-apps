@@ -1,5 +1,8 @@
 ---
-jaeger-operator: {}
+jaeger-operator:
+  rbac:
+    create: true
+    clusterRole: true
 
 
 # jaeger
