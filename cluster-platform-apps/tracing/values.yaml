@@ -3,7 +3,8 @@ jaeger-operator:
   rbac:
     create: true
     clusterRole: true
-
+  nodeSelector:
+    kubernetes.io/arch: amd64
 
 # jaeger
 jaeger:
