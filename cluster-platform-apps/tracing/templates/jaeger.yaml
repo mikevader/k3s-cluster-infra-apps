@@ -21,4 +21,4 @@ spec:
       - hosts:
           - jaeger.framsburg.ch
         secretName: jaeger-framsburg-ch-tls
-    secretName: jaeger-framsburg-ch-tls
+    secretName: jaeger-ingress-secret
