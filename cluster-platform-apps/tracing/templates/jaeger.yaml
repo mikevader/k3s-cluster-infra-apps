@@ -17,4 +17,8 @@ spec:
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
     hosts:
       - jaeger.framsburg.ch
+    tls:
+      - hosts:
+          - jaeger.framsburg.ch
+        secretName: jaeger-framsburg-ch-tls
     secretName: jaeger-framsburg-ch-tls
