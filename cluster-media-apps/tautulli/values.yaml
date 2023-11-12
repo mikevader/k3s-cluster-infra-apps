@@ -29,6 +29,12 @@ tautulli:
         - hosts: ['{{ .Values.global.domainName }}']
           secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
 
+  podSecurityContext:
+    runAsUser: 666
+    runAsGroup: 666
+    fsGroup: 666
+    fsGroupChangePolicy: Always
+
   persistence:
     config:
       enabled: true
