@@ -329,3 +329,11 @@ whisparr:
       size: 1Gi
       retain: true
       accessMode: ReadWriteOnce
+
+    downloads:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: torrent-transmission-downloads
+      mountPath: /downloads
