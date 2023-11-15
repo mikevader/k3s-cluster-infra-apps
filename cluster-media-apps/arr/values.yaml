@@ -277,6 +277,9 @@ tdarr:
       accessMode: ReadWriteOnce
 
 overseerr:
+  operator:
+    verify:
+      failOnError: false
   ingress:
     main:
       enabled: true
@@ -302,6 +305,9 @@ overseerr:
       accessMode: ReadWriteOnce
 
 whisparr:
+  operator:
+    verify:
+      failOnError: false
   ingress:
     main:
       enabled: true
