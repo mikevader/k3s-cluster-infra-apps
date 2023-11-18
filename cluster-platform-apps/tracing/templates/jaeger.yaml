@@ -16,6 +16,7 @@ spec:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    ingressClassName: traefik
     hosts:
       - jaeger.framsburg.ch
     tls:
