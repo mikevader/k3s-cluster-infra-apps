@@ -82,6 +82,8 @@ radarr:
 sonarr:
   controller:
     enabled: true
+    annotations:
+      "sidecar.jaegertracing.io/inject": "true"
 
   env:
     TZ: Europe/Zurich
@@ -179,6 +181,8 @@ sonarr:
 prowlarr:
   controller:
     enabled: true
+    annotations:
+      "sidecar.jaegertracing.io/inject": "true"
 
   initContainers:
     prowlarr:
