@@ -6,8 +6,8 @@ radarr:
   controller:
     enabled: true
 
-  annotations:
-    "sidecar.jaegertracing.io/inject": "true"
+    annotations:
+      "sidecar.jaegertracing.io/inject": "true"
 
   env:
     TZ: Europe/Zurich
