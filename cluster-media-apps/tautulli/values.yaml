@@ -5,6 +5,8 @@ global:
 tautulli:
   controller:
     enabled: true
+    annotations:
+      "sidecar.jaegertracing.io/inject": "true"
   env:
     TZ: Europe/Zurich
     JAEGER_AGENT_HOST:

@@ -1,6 +1,8 @@
 transmission:
   controller:
     enabled: true
+    annotations:
+      "sidecar.jaegertracing.io/inject": "true"
 
   env:
     TZ: Europe/Zurich
@@ -67,6 +69,8 @@ transmission:
 flood:
   controller:
     enabled: true
+    annotations:
+      "sidecar.jaegertracing.io/inject": "true"
 
   env:
     TZ: Europe/Zurich
