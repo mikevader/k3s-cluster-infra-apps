@@ -7,7 +7,7 @@ dependencies:
     version: 8.4.3
     repository: https://mikevader.github.io/charts
   - name: flood
-    version: 6.4.3
+    version: 6.4.4
     repository: https://mikevader.github.io/charts
   - name: qbittorrent
     version: 13.5.12
