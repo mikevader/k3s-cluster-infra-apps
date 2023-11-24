@@ -119,6 +119,7 @@ filebrowser:
                 operator: In
                 values:
                   - plex
+          topologyKey: kubernetes.io/hostname
 
   ingress:
     main:
