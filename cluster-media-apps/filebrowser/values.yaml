@@ -110,6 +110,16 @@ filebrowser:
       existingClaim: torrent-transmission-downloads
       mountPath: /mnt/media/downloads
 
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - plex
+
   ingress:
     main:
       enabled: true
