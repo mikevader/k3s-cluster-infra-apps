@@ -4,8 +4,8 @@ kind: PersistentVolume
 metadata:
   name: media-movies-pv
 spec:
-  # capacity:
-  #   storage: 500Gi
+  capacity:
+    storage: 500Gi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
@@ -26,8 +26,8 @@ kind: PersistentVolume
 metadata:
   name: media-tvshows-pv
 spec:
-  # capacity:
-  #   storage: 500Gi
+  capacity:
+    storage: 1000Gi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
