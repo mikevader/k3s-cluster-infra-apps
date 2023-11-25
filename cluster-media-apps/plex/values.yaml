@@ -127,13 +127,14 @@ plex:
             - cat
             - /tv/healthcheck
   affinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: kubernetes.io/hostname
-              operator: In
-              values:
-                - k3sworker05
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                  - k3sworker05
 #    nodeAffinity:
 #      preferredDuringSchedulingIgnoredDuringExecution:
 #        - weight: 50
