@@ -68,6 +68,13 @@ plex:
       accessMode: ReadWriteMany
       retain: true
       mountPath: /mnt/media/tv-qrst
+    tv2:
+      enabled: true
+      readonly: true
+      type: hostPath
+      hostPath: /mnt/media/root/TVShows
+      hostPathType: Directory
+      mountPath: /mnt/media/tv2
     movies:
       enabled: true
       readonly: true
@@ -77,6 +84,13 @@ plex:
       accessMode: ReadWriteMany
       retain: true
       mountPath: /mnt/media/movies
+    movies2:
+      enabled: true
+      readonly: true
+      type: hostPath
+      hostPath: /mnt/media/root/Movies
+      hostPathType: Directory
+      mountPath: /mnt/media/movies2
     audiobooks:
       enabled: true
       readonly: true
