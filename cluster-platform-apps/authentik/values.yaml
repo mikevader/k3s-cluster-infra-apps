@@ -2,6 +2,9 @@ global:
   domainName: authentik.framsburg.ch
 
 authentik:
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+
   affinity:
     nodeAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
