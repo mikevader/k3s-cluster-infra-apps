@@ -7,7 +7,7 @@ dependencies:
     version: 16.3.9
     repository: https://mikevader.github.io/charts
   - name: sonarr
-    version: 16.3.6
+    version: 16.3.8
     repository: https://mikevader.github.io/charts
   - name: prowlarr
     version: 5.0.1
