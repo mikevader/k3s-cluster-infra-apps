@@ -10,7 +10,7 @@ dependencies:
     version: 16.3.8
     repository: https://mikevader.github.io/charts
   - name: prowlarr
-    version: 5.0.1
+    version: 5.0.2
     repository: https://mikevader.github.io/charts
   - name: tdarr
     version: 4.7.5
