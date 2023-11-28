@@ -60,12 +60,30 @@ radarr:
       storageClass: "-"
       existingClaim: plex-movies
       mountPath: /mnt/media/movies
+    movies2:
+      enabled: true
+      readonly: true
+      type: hostPath
+      hostPath: /mnt/media/root/Movies
+      hostPathType: Directory
+      mountPath: /mnt/media/movies2
 
   podSecurityContext:
     runAsUser: 666
     runAsGroup: 666
     fsGroup: 666
     fsGroupChangePolicy: Always
+
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - plex
+          topologyKey: kubernetes.io/hostname
 
   probes:
     liveness:
@@ -160,12 +178,30 @@ sonarr:
       storageClass: "-"
       existingClaim: plex-tv-qrst
       mountPath: /mnt/media/tv-qrst
+    tv2:
+      enabled: true
+      readonly: true
+      type: hostPath
+      hostPath: /mnt/media/root/TVShows
+      hostPathType: Directory
+      mountPath: /mnt/media/tv2
 
   podSecurityContext:
     runAsUser: 666
     runAsGroup: 666
     fsGroup: 666
     fsGroupChangePolicy: Always
+
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - plex
+          topologyKey: kubernetes.io/hostname
 
   probes:
     liveness:
@@ -228,6 +264,17 @@ prowlarr:
       type: pvc
       size: 10Gi
       accessMode: ReadWriteOnce
+
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - plex
+          topologyKey: kubernetes.io/hostname
 
   probes:
     liveness:
