@@ -170,6 +170,15 @@ sudo apt-get install qemu-guest-agent
 ```
 
 
+## Tips & Trick
+
+### Resize disk
+
+```bash
+sudo lvresize -l +100%FREE --resizefs /dev/mapper/ubuntu--vg-ubuntu--lv
+```
+
+6510C08A-590C-477C-A72E-D3E25B972D5E
 
 ## References
 
