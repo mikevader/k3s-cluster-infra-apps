@@ -163,13 +163,13 @@ sonarr:
       existingClaim: plex-tv-efgh
       mountPath: /mnt/media/tv-efgh
 
-#    tv-mnop:
-#      enabled: true
-#      type: pvc
-#      retain: true
-#      storageClass: "-"
-#      existingClaim: plex-tv-mnop
-#      mountPath: /mnt/media/tv-mnop
+    tv-mnop:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: plex-tv-mnop
+      mountPath: /mnt/media/tv-mnop
 
     tv-qrst:
       enabled: true

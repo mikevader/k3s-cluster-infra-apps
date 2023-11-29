@@ -52,14 +52,14 @@ plex:
       accessMode: ReadWriteMany
       retain: true
       mountPath: /mnt/media/tv-efgh
-#    tv-mnop:
-#      enabled: true
-#      readonly: true
-#      type: pvc
-#      size: 256Gi
-#      accessMode: ReadWriteMany
-#      retain: true
-#      mountPath: /mnt/media/tv-mnop
+    tv-mnop:
+      enabled: true
+      readonly: true
+      type: pvc
+      size: 256Gi
+      accessMode: ReadWriteMany
+      retain: true
+      mountPath: /mnt/media/tv-mnop
     tv-qrst:
       enabled: true
       readonly: true
