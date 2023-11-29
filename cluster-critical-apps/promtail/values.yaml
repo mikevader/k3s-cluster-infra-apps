@@ -15,10 +15,10 @@ promtail:
     snippets:
       pipelineStages:
         - cri: {}
-        - logfmt:
-            mapping:
-              level:
-              severity:
+#        - logfmt:
+#            mapping:
+#              level:
+#              severity:
         - json:
             expressions:
               level:
