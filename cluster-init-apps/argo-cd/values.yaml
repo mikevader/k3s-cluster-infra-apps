@@ -1,5 +1,9 @@
 argo-cd:
 
+  global:
+    logging:
+      level: warn
+
     # image:
     #   repository: ghcr.io/argoproj/argocd
     #   tag: 2.4.0-dd4dbe2a
