@@ -49,7 +49,7 @@ traefik:
   logs:
     general:
       format: json
-      level: DEBUG
+      level: ERROR
     access:
       enabled: true
       format: json
