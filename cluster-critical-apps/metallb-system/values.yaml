@@ -1,1 +1,6 @@
-metallb: {}
+metallb:
+  controller:
+    logLevel: warn
+
+  speaker:
+    logLevel: warn
