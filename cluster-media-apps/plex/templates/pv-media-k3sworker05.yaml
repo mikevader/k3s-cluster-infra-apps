@@ -11,7 +11,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-path
   local:
-    path: /mnt/media/root/Movies
+    path: /mnt/media2/movies
   nodeAffinity:
     required:
       nodeSelectorTerms:
