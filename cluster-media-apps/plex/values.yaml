@@ -88,7 +88,7 @@ plex:
       enabled: true
       readonly: true
       type: hostPath
-      hostPath: /mnt/media/movies
+      hostPath: /mnt/media2/movies
       hostPathType: Directory
       mountPath: /mnt/media/movies2
     audiobooks:
