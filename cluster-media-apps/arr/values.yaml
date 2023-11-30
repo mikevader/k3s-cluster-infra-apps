@@ -64,7 +64,7 @@ radarr:
       enabled: true
       readonly: true
       type: hostPath
-      hostPath: /mnt/media/root/Movies
+      hostPath: /mnt/media/movies
       hostPathType: Directory
       mountPath: /mnt/media/movies2
 
