@@ -182,7 +182,7 @@ sonarr:
       enabled: true
       readonly: true
       type: hostPath
-      hostPath: /mnt/media/root/TVShows
+      hostPath: /mnt/media2/tvshows
       hostPathType: Directory
       mountPath: /mnt/media/tv2
 
