@@ -4,15 +4,9 @@ global:
 
 tautulli:
   controller:
-    enabled: true
-    annotations:
-      "sidecar.jaegertracing.io/inject": "true"
+    enabled: false
   env:
     TZ: Europe/Zurich
-    JAEGER_AGENT_HOST:
-      valueFrom:
-        fieldRef:
-          fieldPath: status.hostIP
 
   ingress:
     main:
