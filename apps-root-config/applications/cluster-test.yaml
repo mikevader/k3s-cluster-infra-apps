@@ -34,9 +34,7 @@ applications:
   #   path: cluster-test/test-raw
   databases: {}
   dmw-test: {}
-  firefly: {}
+  # firefly: {}
   foundryvtt: {}
+  open-telemetry: {}
   recipes: {}
-  shinobi: {}
-#  wikijs: {}
-#  wiki: {}
