@@ -10,7 +10,8 @@ opentelemetry-demo:
 #            receivers: [otlp, spanmetrics]
 #            processors: [memory_limiter, filter/ottl, transform, resource, batch]
 #            exporters: [otlphttp/prometheus, debug]
-
+      connectors:
+        spanmetrics: null
       service:
         extensions: [health_check, memory_ballast]
         pipelines:
@@ -21,8 +22,8 @@ opentelemetry-demo:
           traces:
             receivers: [otlp, jaeger, zipkin]
             processors: [k8sattributes, memory_limiter, resource, batch]
-            exporters: [otlp, debug]
+            exporters: [otlp, debug, spanmetrics]
           metrics:
-            receivers: [otlp]
+            receivers: [otlp, spanmetrics]
             processors: [k8sattributes, memory_limiter, filter/ottl, transform, resource, batch]
             exporters: [otlphttp/prometheus, debug]
