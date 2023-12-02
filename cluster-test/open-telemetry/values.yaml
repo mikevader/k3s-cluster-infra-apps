@@ -21,7 +21,7 @@ opentelemetry-demo:
           traces:
             receivers: [otlp, jaeger, zipkin]
             processors: [k8sattributes, memory_limiter, resource, batch]
-            exporters: [otlp, debug, spanmetrics]
+            exporters: [otlp, debug, otlp/spanmetrics]
           metrics:
             receivers: [otlp, spanmetrics]
             processors: [k8sattributes, memory_limiter, filter/ottl, transform, resource, batch]
