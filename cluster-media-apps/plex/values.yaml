@@ -1,6 +1,6 @@
 plex:
   controller:
-    enabled: false
+    enabled: true
     annotations:
       "sidecar.jaegertracing.io/inject": "true"
   env:
