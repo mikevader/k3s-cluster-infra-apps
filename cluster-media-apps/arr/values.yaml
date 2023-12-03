@@ -4,7 +4,7 @@ global:
 
 radarr:
   controller:
-    enabled: true
+    enabled: false
 
     annotations:
       "sidecar.jaegertracing.io/inject": "true"
@@ -99,7 +99,7 @@ radarr:
 
 sonarr:
   controller:
-    enabled: true
+    enabled: false
     annotations:
       "sidecar.jaegertracing.io/inject": "true"
 
