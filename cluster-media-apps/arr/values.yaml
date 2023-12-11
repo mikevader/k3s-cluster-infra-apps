@@ -6,19 +6,11 @@ radarr:
   controller:
     enabled: true
 
-    annotations:
-      "sidecar.jaegertracing.io/inject": "true"
-
   env:
     TZ: Europe/Zurich
     APP_NAME: Radarr
     APP_PORT: "7878"
     RADARR__AUTHENTICATION_METHOD: "External"
-    JAEGER_AGENT_HOST:
-      valueFrom:
-        fieldRef:
-          fieldPath: status.hostIP
-    JAEGER_AGENT_PORT: "6831"
 
   ingress:
     main:
@@ -96,23 +88,95 @@ radarr:
             - curl --fail localhost:${APP_PORT}/${APP_NAME/-//}/api/v3/system/status?apiKey=`IFS=\> && while
               read -d \< E C; do if [[ $E = "ApiKey" ]]; then echo $C; fi; done < /config/config.xml`
 
+radarr-4k:
+  controller:
+    enabled: true
+
+  env:
+    TZ: Europe/Zurich
+    APP_NAME: Radarr4k
+    APP_PORT: "7878"
+    RADARR__AUTHENTICATION_METHOD: "External"
+
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.priority: "10"
+        traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+
+      hosts:
+        - host: 'radarr4k.framsburg.ch'
+          paths:
+            - path: '/'
+              pathType: Prefix
+      tls:
+        - hosts: ['radarr4k.framsburg.ch']
+          secretName: 'radarr4k-framsburg-ch-tls'
+
+  persistence:
+    config:
+      enabled: true
+      type: pvc
+      size: 10Gi
+      accessMode: ReadWriteOnce
+
+    downloads:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: torrent-transmission-downloads
+      mountPath: /downloads
+
+    movies-uhd:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: plex-movies-uhd
+      mountPath: /mnt/media/movies-uhd
+
+  podSecurityContext:
+    runAsUser: 666
+    runAsGroup: 666
+    fsGroup: 666
+    fsGroupChangePolicy: Always
+
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - plex
+          topologyKey: kubernetes.io/hostname
+
+  probes:
+    liveness:
+      spec:
+        exec:
+          command:
+            - /usr/bin/env
+            - bash
+            - -c
+            - curl --fail localhost:${APP_PORT}/${APP_NAME/-//}/api/v3/system/status?apiKey=`IFS=\> && while
+              read -d \< E C; do if [[ $E = "ApiKey" ]]; then echo $C; fi; done < /config/config.xml`
+
 
 sonarr:
   controller:
     enabled: true
-    annotations:
-      "sidecar.jaegertracing.io/inject": "true"
 
   env:
     TZ: Europe/Zurich
     APP_NAME: Sonarr
     APP_PORT: "8989"
     SONARR__AUTHENTICATION_METHOD: "None" # v4: External
-    JAEGER_AGENT_HOST:
-      valueFrom:
-        fieldRef:
-          fieldPath: status.hostIP
-    JAEGER_AGENT_PORT: "6831"
 
   ingress:
     main:
@@ -185,6 +249,85 @@ sonarr:
       hostPath: /mnt/media2/tvshows
       hostPathType: Directory
       mountPath: /mnt/media/tv2
+
+  podSecurityContext:
+    runAsUser: 666
+    runAsGroup: 666
+    fsGroup: 666
+    fsGroupChangePolicy: Always
+
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - plex
+          topologyKey: kubernetes.io/hostname
+
+  probes:
+    liveness:
+      spec:
+        exec:
+          command:
+            - /usr/bin/env
+            - bash
+            - -c
+            - curl --fail localhost:${APP_PORT}/${APP_NAME/-//}/api/v3/system/status?apiKey=`IFS=\> && while
+              read -d \< E C; do if [[ $E = "ApiKey" ]]; then echo $C; fi; done < /config/config.xml`
+
+sonarr:
+  controller:
+    enabled: true
+
+  env:
+    TZ: Europe/Zurich
+    APP_NAME: Sonarr4k
+    APP_PORT: "8989"
+    SONARR__AUTHENTICATION_METHOD: "None" # v4: External
+
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.priority: "10"
+        traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+
+      hosts:
+        - host: 'sonarr4k.framsburg.ch'
+          paths:
+            - path: '/'
+              pathType: Prefix
+      tls:
+        - hosts: ['sonarr4k.framsburg.ch']
+          secretName: 'sonarr4k-framsburg-ch-tls'
+
+  persistence:
+    config:
+      enabled: true
+      type: pvc
+      size: 10Gi
+      accessMode: ReadWriteOnce
+
+    downloads:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: torrent-transmission-downloads
+      mountPath: /downloads
+
+    tv-uhd:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: plex-tv-uhd
+      mountPath: /mnt/media/tv-uhd
 
   podSecurityContext:
     runAsUser: 666

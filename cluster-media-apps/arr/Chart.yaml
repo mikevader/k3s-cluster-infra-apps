@@ -7,9 +7,17 @@ dependencies:
   - name: radarr
     version: 16.3.10
     repository: https://mikevader.github.io/charts
+  - name: radarr
+    version: 16.3.10
+    repository: https://mikevader.github.io/charts
+    alias: radarr-4k
   - name: sonarr
     version: 16.3.8
     repository: https://mikevader.github.io/charts
+  - name: sonarr
+    version: 16.3.8
+    repository: https://mikevader.github.io/charts
+    alias: sonarr-4k
   - name: prowlarr
     version: 5.0.3
     repository: https://mikevader.github.io/charts
