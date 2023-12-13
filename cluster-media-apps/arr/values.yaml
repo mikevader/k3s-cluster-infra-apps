@@ -482,7 +482,7 @@ overseerr:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
-        traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+        # traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
 
       hosts:
         - host: 'overseerr.framsburg.ch'
