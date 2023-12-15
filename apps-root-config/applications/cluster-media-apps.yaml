@@ -31,10 +31,12 @@ applications:
   filebrowser:
     disableNamespaceCreation: true
     destinationNamespace: plex
+  ffmpeg:
+    disableNamespaceCreation: true
+    destinationNamespace: plex
   tautulli:
     disableNamespaceCreation: true
     destinationNamespace: plex
   torrent:
     disableNamespaceCreation: true
     destinationNamespace: plex
-
