@@ -22,9 +22,14 @@ spec:
           command: [ "/bin/bash", "-c", "--" ]
           args: [ "while true; do sleep 30; done;" ]
           volumeMounts:
-            - name: tv
-              mountPath: /mnt/media/tv
+            - name: tv-uhd
+              mountPath: /mnt/media/tv-uhd
+            - name: movies-uhd
+              mountPath: /mnt/media/movies-uhd
       volumes:
-        - name: tv
+        - name: tv-uhd
           persistentVolumeClaim:
-            claimName: plex-tv
+            claimName: plex-tv-uhd
+        - name: movies-uhd
+          persistentVolumeClaim:
+            claimName: plex-movies-uhd
