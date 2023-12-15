@@ -24,12 +24,17 @@ spec:
           volumeMounts:
             - name: tv-uhd
               mountPath: /mnt/media/tv-uhd
+            - name: tv-qrst
+              mountPath: /mnt/media/tv-qrst
             - name: movies-uhd
               mountPath: /mnt/media/movies-uhd
       volumes:
         - name: tv-uhd
           persistentVolumeClaim:
             claimName: plex-tv-uhd
+        - name: tv-qrst
+          persistentVolumeClaim:
+            claimName: plex-tv-qrst
         - name: movies-uhd
           persistentVolumeClaim:
             claimName: plex-movies-uhd
