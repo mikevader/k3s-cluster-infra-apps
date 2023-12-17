@@ -4,5 +4,5 @@ description: Bootstrap Chart for Argo CD
 version: 1.1.0
 dependencies:
   - name: kube-prometheus-stack
-    version: 55.3.0
+    version: 55.5.0
     repository: https://prometheus-community.github.io/helm-charts
