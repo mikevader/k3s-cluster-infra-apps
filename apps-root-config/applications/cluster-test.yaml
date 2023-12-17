@@ -38,3 +38,4 @@ applications:
   foundryvtt: {}
   open-telemetry: {}
   recipes: {}
+  home-assistant: {}

@@ -1,0 +1,8 @@
+apiVersion: v2
+name: home-assistant
+description: Home Assistant server
+version: 1.0.0
+dependencies:
+  - name: home-assistant
+    version: 18.3.0
+    repository: https://mikevader.github.io/charts
