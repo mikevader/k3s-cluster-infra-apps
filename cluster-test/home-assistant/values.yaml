@@ -23,6 +23,10 @@ home-assistant:
       tls:
         - hosts: ['{{ .Values.global.domainName }}']
           secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
+  persistence:
+    config:
+      enabled: true
+
   resources:
     requests:
       cpu: 200m
