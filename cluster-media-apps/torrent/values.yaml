@@ -18,7 +18,7 @@ transmission:
       enabled: true
       type: LoadBalancer
       externalIPs:
-        - 192.168.42.152
+        - 192.168.99.152
       ports:
         utptcp:
           enabled: true
@@ -26,6 +26,7 @@ transmission:
           name: utptcp
           protocol: TCP
           targetPort: 51413
+          nodePort: 30402
 
   ingress:
     main:
