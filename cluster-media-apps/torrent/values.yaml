@@ -6,6 +6,7 @@ transmission:
     TZ: Europe/Zurich
     PUID: 666
     PGID: 666
+    PEERPORT: 30402
     TRANSMISSION_WEB_HOME: ""
     TRANSMISSION_RPC_USERNAME: 
     TRANSMISSION_RPC_PASSWORD: 
@@ -14,12 +15,12 @@ transmission:
     RPC_URL: https://transmission.framsburg.ch/transmission/rpc
 
   service:
-    annotations:
-      metallb.universe.tf/address-pool: metallb-external-ip-range
+    # annotations:
+    #   metallb.universe.tf/address-pool: metallb-external-ip-range
     utptcp:
       enabled: true
-      type: LoadBalancer
-      loadBalancerIP: 192.168.99.152
+      type: NodePort
+      # loadBalancerIP: 192.168.99.152
       ports:
         utptcp:
           enabled: true
@@ -72,8 +73,6 @@ transmission:
 flood:
   controller:
     enabled: true
-    annotations:
-      "sidecar.jaegertracing.io/inject": "true"
 
   env:
     TZ: Europe/Zurich
@@ -82,10 +81,6 @@ flood:
     FLOOD_OPTION_trurl: 'http://torrent-transmission:9091/transmission/rpc'
     FLOOD_OPTION_truser: 'admin'
     FLOOD_OPTION_trpass: 'adminadmin'
-    JAEGER_AGENT_HOST:
-      valueFrom:
-        fieldRef:
-          fieldPath: status.hostIP
 
   ingress:
     main:
