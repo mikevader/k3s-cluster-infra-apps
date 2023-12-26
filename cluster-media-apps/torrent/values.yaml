@@ -14,11 +14,12 @@ transmission:
     RPC_URL: https://transmission.framsburg.ch/transmission/rpc
 
   service:
+    annotations:
+      metallb.universe.tf/address-pool: metallb-external-ip-range
     utptcp:
       enabled: true
       type: LoadBalancer
-      externalIPs:
-        - 192.168.99.152
+      loadBalancerIP: 192.168.99.152
       ports:
         utptcp:
           enabled: true
