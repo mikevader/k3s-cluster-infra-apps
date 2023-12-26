@@ -1,8 +1,6 @@
 transmission:
   controller:
     enabled: true
-    annotations:
-      "sidecar.jaegertracing.io/inject": "true"
 
   env:
     TZ: Europe/Zurich
@@ -14,10 +12,6 @@ transmission:
     TRANSMISSION_RPC_AUTHENTICATION_REQUIRED: "true"
     # WHITELIST: "transmission.framsburg.ch, 192.168.42.150, 192.168.42.*, 10.43.*.*, 10.42.*.*"
     RPC_URL: https://transmission.framsburg.ch/transmission/rpc
-    JAEGER_AGENT_HOST:
-      valueFrom:
-        fieldRef:
-          fieldPath: status.hostIP
 
   service:
     utptcp:
@@ -25,11 +19,13 @@ transmission:
       type: LoadBalancer
       externalIPs:
         - 192.168.42.152
-    utpudp:
-      enabled: true
-      type: LoadBalancer
-      externalIPs:
-        - 192.168.42.152
+      ports:
+        utptcp:
+          enabled: true
+          port: 51413
+          name: utptcp
+          protocol: TCP
+          targetPort: 51413
 
   ingress:
     main:
