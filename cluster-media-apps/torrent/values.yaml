@@ -24,8 +24,13 @@ transmission:
         utptcp:
           enabled: true
           port: 51413
-          name: utptcp
           protocol: TCP
+          targetPort: 51413
+          nodePort: 30402
+        utpudp:
+          enabled: true
+          port: 51413
+          protocol: UDP
           targetPort: 51413
           nodePort: 30402
 
