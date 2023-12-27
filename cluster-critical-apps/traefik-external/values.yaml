@@ -4,6 +4,7 @@ traefik:
   #   name: traefik
   #   tag: 2.5.6
   deployment:
+    enabled: false
     annotations:
       # reloader.stakater.com/match: "true"
   globalArguments:
@@ -22,10 +23,10 @@ traefik:
       format: json
   metrics:
     prometheus: {}
-  tracing:
-    jaeger:
-      collector:
-        endpoint: http://simplest-collector.tracing.svc:14268/api/traces?format=jaeger.thrift
+#  tracing:
+#    jaeger:
+#      collector:
+#        endpoint: http://simplest-collector.tracing.svc:14268/api/traces?format=jaeger.thrift
   service:
     annotations:
       metallb.universe.tf/address-pool: metallb-external-ip-range

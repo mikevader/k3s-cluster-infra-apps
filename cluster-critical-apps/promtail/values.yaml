@@ -1,4 +1,7 @@
 promtail:
+  daemonset:
+    enabled: true
+
   # serviceMonitor:
   #   enabled: true
   config:
