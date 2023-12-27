@@ -30,6 +30,6 @@ applications:
   kubernetes-dashboard: {}
   renovate: {}
   sloth: {}
-  tracing: {}
+  # tracing: {}
   vault: {}
   vault-operator: {}

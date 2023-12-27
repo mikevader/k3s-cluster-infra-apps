@@ -3,7 +3,7 @@ global:
 
 filebrowser:
   controller:
-    enabled: true
+    enabled: false
     annotations:
       "sidecar.jaegertracing.io/inject": "true"
   env:

@@ -4,7 +4,7 @@ global:
 
 radarr:
   controller:
-    enabled: true
+    enabled: false
 
   env:
     TZ: Europe/Zurich
@@ -90,7 +90,7 @@ radarr:
 
 radarr-4k:
   controller:
-    enabled: true
+    enabled: false
 
   env:
     TZ: Europe/Zurich
@@ -170,7 +170,7 @@ radarr-4k:
 
 sonarr:
   controller:
-    enabled: true
+    enabled: false
 
   env:
     TZ: Europe/Zurich
@@ -280,7 +280,7 @@ sonarr:
 
 sonarr-4k:
   controller:
-    enabled: true
+    enabled: false
 
   env:
     TZ: Europe/Zurich
@@ -359,7 +359,7 @@ sonarr-4k:
 
 prowlarr:
   controller:
-    enabled: true
+    enabled: false
     annotations:
       "sidecar.jaegertracing.io/inject": "true"
 

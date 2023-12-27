@@ -32,10 +32,10 @@ applications:
   #   destinationNamespace: test-kustomize-test
   # test-raw-test:
   #   path: cluster-test/test-raw
-  databases: {}
-  dmw-test: {}
+  # databases: {}
+  # dmw-test: {}
   # firefly: {}
-  foundryvtt: {}
-  open-telemetry: {}
-  recipes: {}
-  home-assistant: {}
+  # foundryvtt: {}
+  # open-telemetry: {}
+  # recipes: {}
+  # home-assistant: {}
