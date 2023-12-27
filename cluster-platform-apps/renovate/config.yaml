@@ -8,7 +8,7 @@ data:
     {
       "allowPostUpgradeCommandTemplating": true,
       "allowedPostUpgradeCommands": ["^.*$", "^sed -i", "^cd "],
-      "autodiscover": "true",
+      "autodiscover": true,
       "autodiscoverFilter": ["mikevader/*"],
       "requireConfig": "required",
       "hostRules": [

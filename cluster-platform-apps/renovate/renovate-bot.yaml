@@ -19,7 +19,7 @@ spec:
                 - name: RENOVATE_PLATFORM
                   value: 'github'
                 - name: RENOVATE_AUTODISCOVER
-                  value: 'false'
+                  value: 'true'
                 - name: RENOVATE_BASE_DIR
                   value: '/tmp/renovate/'
                 - name: RENOVATE_CONFIG_FILE
