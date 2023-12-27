@@ -1,6 +1,6 @@
 plex:
   controller:
-    enabled: false
+    enabled: true
   env:
     # cat /config/Library/Application\ Support/Plex\ Media\ Server/Preferences.xml | tr " " "\n" | \
     # sed -n '/<Preferences/,$p' | tail -n +2 | sed 's,/>,,g' | \
@@ -195,8 +195,8 @@ plex:
           secretName: plex-framsburg-ch-tls-external
   resources:
     requests:
-      cpu: 200m
-      memory: 128Mi
+      cpu: 500m
+      memory: 256Mi
     limits:
-      cpu: 12
+      cpu: 4
       memory: 16384Mi
