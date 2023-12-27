@@ -26,10 +26,10 @@ namespaceResourceBlacklist:
 applications:
   cert-manager: {}
   error-pages: {}
-  loki:
-    source:
-      helm:
-        skipCrds: true
+#  loki:
+#    source:
+#      helm:
+#        skipCrds: true
   longhorn-system: {}
   metallb-system: {}
   minio: {}
