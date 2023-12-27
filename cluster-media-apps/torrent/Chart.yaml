@@ -4,7 +4,7 @@ description: Torrent clients
 version: 1.0.0
 dependencies:
   - name: transmission
-    version: 8.4.5
+    version: 8.4.8
     repository: https://mikevader.github.io/charts
   - name: flood
     version: 6.4.7
