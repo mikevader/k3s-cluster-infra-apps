@@ -32,14 +32,18 @@ loki:
   #     kubernetes.io/arch: amd64
 
   singleBinary:
-    replicas: 1
+    replicas: 0
     persistence:
       enabled: true
       size: 100Gi
     nodeSelector:
       kubernetes.io/arch: amd64
-  
+
+  lokiCanary:
+    enabled: false
+
   gateway:
+    enabled: false
     nodeSelector:
       kubernetes.io/arch: amd64
   
