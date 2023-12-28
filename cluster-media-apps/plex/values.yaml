@@ -55,7 +55,7 @@ plex:
       retain: true
       mountPath: /mnt/media/tv-mnop
     tv-qrst:
-      enabled: false
+      enabled: true
       readonly: true
       type: pvc
       size: 256Gi
