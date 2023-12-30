@@ -170,6 +170,33 @@ sudo apt-get install qemu-guest-agent
 ```
 
 
+### Disk passthrough
+
+The disks for longhorn, especially the slower ones like HDD, should be attached to the VM directly.
+Unfortunately there is no way to do this in the Web UI at the moment but proxmox provides quite a 
+[good guide][proxmox-passthrough] for it.
+
+Go through the following steps
+
+1. Find right disk
+
+```bash
+find /dev/disk/by-id/ -type l|xargs -I{} ls -l {}|grep -v -E '[0-9]$' |sort -k11|cut -d' ' -f9,10,11,12
+```
+
+2. Add drive as new virtual drive
+
+```bash
+qm set 592 -scsi2 /dev/disk/by-id/ata-...
+```
+Replace *592* with the correct VM id and -scsi*2* with the next scsi id.
+
+3. Remove drive
+
+```bash
+qm unlink 592 --idlist scsi2
+```
+
 ## Tips & Trick
 
 ### Resize disk
@@ -183,6 +210,7 @@ sudo lvresize -l +100%FREE --resizefs /dev/mapper/ubuntu--vg-ubuntu--lv
 ## References
 
 [tt-proxmox]: https://docs.technotim.live/posts/first-11-things-proxmox/
+[proxmox-passthrough]: https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)
 
 
 
