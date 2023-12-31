@@ -45,7 +45,6 @@ filebrowser:
       type: pvc
       retain: true
       size: 1Gi
-      existingClaim: filebrowser-config
       accessMode: ReadWriteOnce
 
     audiobooks:
@@ -80,14 +79,14 @@ filebrowser:
       existingClaim: plex-tv-abcd
       mountPath: /mnt/media/tv-abcd
 
-#    tv-efgh:
-#      enabled: true
-#      type: pvc
-#      retain: true
-#      storageClass: "-"
-#      existingClaim: plex-tv-efgh
-#      mountPath: /mnt/media/tv-efgh
-#
+    tv-efgh:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: plex-tv-efgh
+      mountPath: /mnt/media/tv-efgh
+
 #    tv-mnop:
 #      enabled: true
 #      type: pvc
@@ -103,15 +102,15 @@ filebrowser:
 #      storageClass: "-"
 #      existingClaim: plex-tv-qrst
 #      mountPath: /mnt/media/tv-qrst
-#
-#    downloads:
-#      enabled: true
-#      type: pvc
-#      retain: true
-#      storageClass: "-"
-#      existingClaim: torrent-transmission-downloads
-#      mountPath: /mnt/media/downloads
-#
+
+    downloads:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: torrent-transmission-downloads
+      mountPath: /mnt/media/downloads
+
 #    movies2:
 #      enabled: true
 #      readonly: true
