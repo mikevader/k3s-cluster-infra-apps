@@ -3,7 +3,7 @@ global:
 
 filebrowser:
   controller:
-    enabled: false
+    enabled: true
     annotations:
       "sidecar.jaegertracing.io/inject": "true"
   env:
@@ -41,7 +41,7 @@ filebrowser:
 
   persistence:
     config:
-      enabled: false
+      enabled: true
       type: pvc
       size: 1Gi
       accessMode: ReadWriteOnce
