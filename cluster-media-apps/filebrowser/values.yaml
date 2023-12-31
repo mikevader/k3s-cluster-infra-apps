@@ -43,7 +43,9 @@ filebrowser:
     config:
       enabled: false
       type: pvc
+      retain: true
       size: 1Gi
+      existingClaim: filebrowser-config
       accessMode: ReadWriteOnce
 
     audiobooks:
