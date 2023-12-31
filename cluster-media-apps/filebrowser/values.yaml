@@ -3,7 +3,7 @@ global:
 
 filebrowser:
   controller:
-    enabled: false
+    enabled: true
     annotations:
       "sidecar.jaegertracing.io/inject": "true"
   env:
@@ -62,13 +62,13 @@ filebrowser:
       existingClaim: plex-movies
       mountPath: /mnt/media/movies
 
-    # tv:
-    #   enabled: true
-    #   type: pvc
-    #   retain: true
-    #   storageClass: "-"
-    #   existingClaim: plex-tv
-    #   mountPath: /mnt/media/tv
+#    # tv:
+#    #   enabled: true
+#    #   type: pvc
+#    #   retain: true
+#    #   storageClass: "-"
+#    #   existingClaim: plex-tv
+#    #   mountPath: /mnt/media/tv
 
     tv-abcd:
       enabled: true
@@ -78,56 +78,56 @@ filebrowser:
       existingClaim: plex-tv-abcd
       mountPath: /mnt/media/tv-abcd
 
-    tv-efgh:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: plex-tv-efgh
-      mountPath: /mnt/media/tv-efgh
-
-    tv-mnop:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: plex-tv-mnop
-      mountPath: /mnt/media/tv-mnop
-
-    tv-qrst:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: plex-tv-qrst
-      mountPath: /mnt/media/tv-qrst
-
-    downloads:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: torrent-transmission-downloads
-      mountPath: /mnt/media/downloads
-
-    movies2:
-      enabled: true
-      readonly: true
-      type: hostPath
-      hostPath: /mnt/media2/movies
-      hostPathType: Directory
-      mountPath: /mnt/media/movies2
-    tv2:
-      enabled: true
-      readonly: true
-      type: hostPath
-      hostPath: /mnt/media2/tvshows
-      hostPathType: Directory
-      mountPath: /mnt/media/tv2
+#    tv-efgh:
+#      enabled: true
+#      type: pvc
+#      retain: true
+#      storageClass: "-"
+#      existingClaim: plex-tv-efgh
+#      mountPath: /mnt/media/tv-efgh
+#
+#    tv-mnop:
+#      enabled: true
+#      type: pvc
+#      retain: true
+#      storageClass: "-"
+#      existingClaim: plex-tv-mnop
+#      mountPath: /mnt/media/tv-mnop
+#
+#    tv-qrst:
+#      enabled: true
+#      type: pvc
+#      retain: true
+#      storageClass: "-"
+#      existingClaim: plex-tv-qrst
+#      mountPath: /mnt/media/tv-qrst
+#
+#    downloads:
+#      enabled: true
+#      type: pvc
+#      retain: true
+#      storageClass: "-"
+#      existingClaim: torrent-transmission-downloads
+#      mountPath: /mnt/media/downloads
+#
+#    movies2:
+#      enabled: true
+#      readonly: true
+#      type: hostPath
+#      hostPath: /mnt/media2/movies
+#      hostPathType: Directory
+#      mountPath: /mnt/media/movies2
+#    tv2:
+#      enabled: true
+#      readonly: true
+#      type: hostPath
+#      hostPath: /mnt/media2/tvshows
+#      hostPathType: Directory
+#      mountPath: /mnt/media/tv2
 
   affinity:
     podAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
+      preferredDuringSchedulingIgnoredDuringExecution:
         - labelSelector:
             matchExpressions:
               - key: app.kubernetes.io/name
