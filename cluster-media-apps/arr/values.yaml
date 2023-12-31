@@ -4,7 +4,7 @@ global:
 
 radarr:
   controller:
-    enabled: false
+    enabled: true
 
   env:
     TZ: Europe/Zurich
@@ -32,7 +32,7 @@ radarr:
 
   persistence:
     config:
-      enabled: false
+      enabled: true
       type: pvc
       size: 10Gi
       accessMode: ReadWriteOnce
