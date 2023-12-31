@@ -58,7 +58,7 @@ transmission:
 
   persistence:
     config:
-      enabled: true
+      enabled: false
       type: pvc
       size: 1Gi
       accessMode: ReadWriteOnce

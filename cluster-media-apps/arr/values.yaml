@@ -32,7 +32,7 @@ radarr:
 
   persistence:
     config:
-      enabled: true
+      enabled: false
       type: pvc
       size: 10Gi
       accessMode: ReadWriteOnce
@@ -118,7 +118,7 @@ radarr-4k:
 
   persistence:
     config:
-      enabled: true
+      enabled: false
       type: pvc
       size: 10Gi
       accessMode: ReadWriteOnce
@@ -308,7 +308,7 @@ sonarr-4k:
 
   persistence:
     config:
-      enabled: true
+      enabled: false
       type: pvc
       size: 10Gi
       accessMode: ReadWriteOnce
