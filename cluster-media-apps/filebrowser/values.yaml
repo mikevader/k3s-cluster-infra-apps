@@ -125,16 +125,16 @@ filebrowser:
 #      hostPathType: Directory
 #      mountPath: /mnt/media/tv2
 
-  affinity:
-    podAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                  - plex
-          topologyKey: kubernetes.io/hostname
+#  affinity:
+#    podAffinity:
+#      requiredDuringSchedulingIgnoredDuringExecution:
+#        - labelSelector:
+#            matchExpressions:
+#              - key: app.kubernetes.io/name
+#                operator: In
+#                values:
+#                  - plex
+#          topologyKey: kubernetes.io/hostname
 
   ingress:
     main:
