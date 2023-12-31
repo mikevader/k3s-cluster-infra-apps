@@ -4,7 +4,7 @@ global:
 
 tautulli:
   controller:
-    enabled: false
+    enabled: true
   env:
     TZ: Europe/Zurich
 
@@ -33,7 +33,7 @@ tautulli:
 
   persistence:
     config:
-      enabled: false
+      enabled: true
       type: pvc
       size: 5Gi
       accessMode: ReadWriteOnce
