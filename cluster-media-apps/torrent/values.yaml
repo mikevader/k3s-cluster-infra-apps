@@ -1,6 +1,6 @@
 transmission:
   controller:
-    enabled: false
+    enabled: true
 
   env:
     TZ: Europe/Zurich
@@ -72,7 +72,7 @@ transmission:
 
 flood:
   controller:
-    enabled: false
+    enabled: true
 
   env:
     TZ: Europe/Zurich
