@@ -359,9 +359,7 @@ sonarr-4k:
 
 prowlarr:
   controller:
-    enabled: false
-    annotations:
-      "sidecar.jaegertracing.io/inject": "true"
+    enabled: true
 
   initContainers:
     prowlarr:
@@ -377,11 +375,6 @@ prowlarr:
     APP_PORT: "9696"
     PGID: "666"
     PUID: "666"
-    JAEGER_AGENT_HOST:
-      valueFrom:
-        fieldRef:
-          fieldPath: status.hostIP
-    JAEGER_AGENT_PORT: "6831"
 
   ingress:
     main:
