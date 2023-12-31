@@ -33,7 +33,7 @@ tautulli:
 
   persistence:
     config:
-      enabled: true
+      enabled: false
       type: pvc
       size: 5Gi
       accessMode: ReadWriteOnce

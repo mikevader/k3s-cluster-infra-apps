@@ -39,7 +39,7 @@ plex:
       retain: true
       mountPath: /mnt/media/tv-abcd
     tv-efgh:
-      enabled: true
+      enabled: false
       readonly: true
       type: pvc
       size: 256Gi
@@ -47,7 +47,7 @@ plex:
       retain: true
       mountPath: /mnt/media/tv-efgh
     tv-mnop:
-      enabled: true
+      enabled: false
       readonly: true
       type: pvc
       size: 256Gi
@@ -55,7 +55,7 @@ plex:
       retain: true
       mountPath: /mnt/media/tv-mnop
     tv-qrst:
-      enabled: true
+      enabled: false
       readonly: true
       type: pvc
       size: 256Gi
@@ -63,7 +63,7 @@ plex:
       retain: true
       mountPath: /mnt/media/tv-qrst
     tv-uhd:
-      enabled: true
+      enabled: false
       readonly: true
       type: pvc
       size: 300Gi
@@ -88,7 +88,7 @@ plex:
       retain: true
       mountPath: /mnt/media/movies
     movies-uhd:
-      enabled: true
+      enabled: false
       readonly: true
       type: pvc
       size: 300Gi
