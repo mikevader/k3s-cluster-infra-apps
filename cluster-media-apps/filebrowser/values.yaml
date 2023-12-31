@@ -41,7 +41,7 @@ filebrowser:
 
   persistence:
     config:
-      enabled: false
+      enabled: true
       type: pvc
       retain: true
       size: 1Gi
