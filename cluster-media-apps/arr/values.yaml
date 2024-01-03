@@ -490,6 +490,7 @@ overseerr:
 
   persistence:
     config:
+      enabled: true
       type: pvc
       size: 1Gi
       retain: true
