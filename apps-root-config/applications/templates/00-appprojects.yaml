@@ -7,6 +7,7 @@ spec:
   sourceRepos:
     - '{{ .Values.repository }}'
     - 'https://mikevader.github.io/charts'
+    - 'https://charts.truecharts.org/'
 {{- if eq (len .Values.applications ) 0 }}
   destinations: []
 {{- else }}
