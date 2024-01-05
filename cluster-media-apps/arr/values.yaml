@@ -4,7 +4,7 @@ global:
 
 radarr:
   controller:
-    enabled: false
+    enabled: true
 
   env:
     TZ: Europe/Zurich
@@ -53,7 +53,7 @@ radarr:
       existingClaim: plex-movies
       mountPath: /mnt/media/movies
     movies2:
-      enabled: true
+      enabled: false
       readonly: true
       type: hostPath
       hostPath: /mnt/media2/movies
