@@ -170,7 +170,7 @@ radarr-4k:
 
 sonarr:
   controller:
-    enabled: false
+    enabled: true
 
   env:
     TZ: Europe/Zurich
@@ -243,10 +243,10 @@ sonarr:
       existingClaim: plex-tv-qrst
       mountPath: /mnt/media/tv-qrst
     tv2:
-      enabled: true
+      enabled: false
       readonly: true
       type: hostPath
-      hostPath: /mnt/media2/tvshows
+      hostPath: /mnt/media/tvshows
       hostPathType: Directory
       mountPath: /mnt/media/tv2
 
