@@ -97,10 +97,10 @@ plex:
       retain: true
       mountPath: /mnt/media/movies-uhd
     movies2:
-      enabled: false
+      enabled: true
       readonly: true
       type: hostPath
-      hostPath: /mnt/media2/movies
+      hostPath: /mnt/media/movies
       hostPathType: Directory
       mountPath: /mnt/media/movies2
     audiobooks:
@@ -146,7 +146,7 @@ plex:
               - key: kubernetes.io/hostname
                 operator: In
                 values:
-                  - k3sworker05
+                  - k3sworker06
 #    nodeAffinity:
 #      preferredDuringSchedulingIgnoredDuringExecution:
 #        - weight: 50

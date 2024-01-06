@@ -81,21 +81,21 @@ filebrowser:
       existingClaim: plex-tv-efgh
       mountPath: /mnt/media/tv-efgh
 
-#    tv-mnop:
-#      enabled: true
-#      type: pvc
-#      retain: true
-#      storageClass: "-"
-#      existingClaim: plex-tv-mnop
-#      mountPath: /mnt/media/tv-mnop
-#
-#    tv-qrst:
-#      enabled: true
-#      type: pvc
-#      retain: true
-#      storageClass: "-"
-#      existingClaim: plex-tv-qrst
-#      mountPath: /mnt/media/tv-qrst
+    tv-mnop:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: plex-tv-mnop
+      mountPath: /mnt/media/tv-mnop
+
+    tv-qrst:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: plex-tv-qrst
+      mountPath: /mnt/media/tv-qrst
 
     downloads:
       enabled: true

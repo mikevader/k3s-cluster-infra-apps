@@ -53,10 +53,10 @@ radarr:
       existingClaim: plex-movies
       mountPath: /mnt/media/movies
     movies2:
-      enabled: false
+      enabled: true
       readonly: true
       type: hostPath
-      hostPath: /mnt/media2/movies
+      hostPath: /mnt/media/movies
       hostPathType: Directory
       mountPath: /mnt/media/movies2
 
