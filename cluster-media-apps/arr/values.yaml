@@ -34,6 +34,7 @@ radarr:
     config:
       enabled: true
       type: pvc
+      retain: true
       size: 10Gi
       accessMode: ReadWriteOnce
 
@@ -120,6 +121,7 @@ radarr-4k:
     config:
       enabled: false
       type: pvc
+      retain: true
       size: 10Gi
       accessMode: ReadWriteOnce
 
@@ -200,6 +202,7 @@ sonarr:
     config:
       enabled: true
       type: pvc
+      retain: true
       size: 10Gi
       accessMode: ReadWriteOnce
 
@@ -243,7 +246,7 @@ sonarr:
       existingClaim: plex-tv-qrst
       mountPath: /mnt/media/tv-qrst
     tv2:
-      enabled: false
+      enabled: true
       readonly: true
       type: hostPath
       hostPath: /mnt/media/tvshows
@@ -310,6 +313,7 @@ sonarr-4k:
     config:
       enabled: false
       type: pvc
+      retain: true
       size: 10Gi
       accessMode: ReadWriteOnce
 
