@@ -76,7 +76,8 @@
         "^bodnapa/azoth-empire-(bot|web-app|graphql-api)",
         "ghcr.io/sct/overseerr",
         "phasecorex/red-discordbot",
-        "ghcr.io/goauthentik/.*"
+        "ghcr.io/goauthentik/.*",
+        "renovate/renovate"
       ],
       "addLabels": ["action/automerge"],
       "automerge": true,
