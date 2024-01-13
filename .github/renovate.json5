@@ -1,40 +1,19 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
-    ":gitSignOff",
-    "mergeConfidence:all-badges"
+    "mikevader/renovate-config"
   ],
-  "timezone": "Europe/Zurich",
-  "dependencyDashboardTitle": "Renovate Dashboard",
-  "assigneesFromCodeOwners": true,
-  "reviewersFromCodeOwners": true,
-  "suppressNotifications": ["prIgnoreNotification"],
-  "rebaseWhen": "conflicted",
   "ignorePaths": [".archived/**", ".disabled/**"],
-  "labels": ["renovate"],
+
+
+
   "packageRules": [
-    // Setup datasources
-    {
-      "matchDatasources": ["helm"],
-      "commitMessageTopic": "Helm chart {{depName}}",
-      "separateMinorPatch": true
-    },
     {
       "matchDatasources": ["docker"],
-      "commitMessageTopic": "Docker image {{depName}}",
-      "commitMessageExtra": "to {{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
-      "matchUpdateTypes": ["major", "minor", "patch"],
-      "enabled": true
-    },
-    {
-      "matchDatasources": ["docker"],
-      "automergeType": "true",
-      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["major", "minor", "patch" ],
       "addLabels": [
         "container"
-      ],
-      "matchUpdateTypes": ["major", "minor", "patch" ]
+      ]
     },
     // Add labels according to package and update types
     {
