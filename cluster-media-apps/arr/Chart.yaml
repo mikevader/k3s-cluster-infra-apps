@@ -5,10 +5,10 @@ description: "*arr clients"
 version: 1.0.0
 dependencies:
   - name: radarr
-    version: 16.3.12
+    version: 16.3.14
     repository: https://mikevader.github.io/charts
   - name: radarr
-    version: 16.3.12
+    version: 16.3.14
     repository: https://mikevader.github.io/charts
     alias: radarr-4k
   - name: sonarr
