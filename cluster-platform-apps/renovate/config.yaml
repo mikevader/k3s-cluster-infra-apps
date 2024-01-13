@@ -18,5 +18,8 @@ data:
           "username": "mikevader",
           "password": "{{ secrets.GITHUB_TOKEN}}"
         }
-      ]
+      ],
+      "onboardingCommitMessage": "",
+      "onboardingConfig": {"$schema": "https://docs.renovatebot.com/renovate-schema.json", "extends": ["mikevader/renovate-config"]},
+      "onboardingConfigFileName": ".github/renovate.json5"
     }
