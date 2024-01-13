@@ -5,6 +5,12 @@
   ],
   "ignorePaths": [".archived/**", ".disabled/**"],
 
+  "kubernetes": {
+    "fileMatch": [
+      "cluster-platform-apps/renovate/.+\\.yaml$"
+    ]
+  },
+
 
 
   "packageRules": [
