@@ -12,10 +12,10 @@ dependencies:
     repository: https://mikevader.github.io/charts
     alias: radarr-4k
   - name: sonarr
-    version: 16.3.12
+    version: 16.3.13
     repository: https://mikevader.github.io/charts
   - name: sonarr
-    version: 16.3.12
+    version: 16.3.13
     repository: https://mikevader.github.io/charts
     alias: sonarr-4k
   - name: prowlarr
