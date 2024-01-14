@@ -1,3 +1,4 @@
+---
 promtail:
   daemonset:
     enabled: false
@@ -5,7 +6,7 @@ promtail:
   # serviceMonitor:
   #   enabled: true
   config:
-    #serverPort: 3100
+    # serverPort: 3100
     clients:
       - url: http://loki-gateway.loki.svc/loki/api/v1/push
         tenant_id: "1"
@@ -18,10 +19,10 @@ promtail:
     snippets:
       pipelineStages:
         - cri: {}
-#        - logfmt:
-#            mapping:
-#              level:
-#              severity:
+        # - logfmt:
+        #      mapping:
+        #        level:
+        #        severity:
         - json:
             expressions:
               level:
@@ -108,7 +109,7 @@ promtail:
         type: LoadBalancer
         externalTrafficPolicy: Local
         loadBalancerIP: 192.168.42.151
-  
+
   extraVolumeMounts:
     - name: geoipdb
       mountPath: /mnt/geoipdb
@@ -131,6 +132,7 @@ promtail:
     - key: CriticalAddonsOnly
       operator: Exists
       effect: NoSchedule
+
   # readinessProbe:
   #   successThreshold: 1
   #   timeoutSeconds: 1
