@@ -48,13 +48,13 @@ spec:
                       name: renovate-secret
                       key: github-token-base64
 
-                - name: RENOVATE_SECRETS
-                  value: "{\"GITHUB_TOKEN\":\"$(GITHUB_TOKEN_BASE64)\"}"
                 - name: DOCKER_HUB_PASSWORD
                   valueFrom:
                     secretKeyRef:
                       name: renovate-secret
                       key: dockerhub-password
+                - name: RENOVATE_SECRETS
+                  value: "{\"GITHUB_TOKEN\":\"$(GITHUB_TOKEN_BASE64)\", \"DOCKERHUB_PASSWORD\":\"$(DOCKER_HUB_PASSWORD)\"}"
 
               volumeMounts:
                 - name: config-volume
