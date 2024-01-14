@@ -60,6 +60,7 @@ transmission:
     config:
       enabled: true
       type: pvc
+      retain: true
       size: 1Gi
       accessMode: ReadWriteOnce
 
@@ -107,6 +108,7 @@ flood:
     data:
       enabled: true
       type: pvc
+      retain: true
       size: 1Gi
       accessMode: ReadWriteOnce
       mountPath: /data

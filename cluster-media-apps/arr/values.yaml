@@ -402,6 +402,7 @@ prowlarr:
     config:
       enabled: true
       type: pvc
+      retain: true
       size: 10Gi
       accessMode: ReadWriteOnce
 
