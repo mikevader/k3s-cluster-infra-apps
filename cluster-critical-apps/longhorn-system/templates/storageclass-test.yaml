@@ -1,0 +1,11 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: longhorn-test
+provisioner: driver.longhorn.io
+parameters:
+  numberOfReplicas: "3"
+  diskSelector: "ssd"
+  nodeSelector: "k3sworker05"
+  dataLocality: "strict-local"
