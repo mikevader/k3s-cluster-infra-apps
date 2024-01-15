@@ -8,4 +8,4 @@ parameters:
   numberOfReplicas: "3"
   diskSelector: "ssd"
   nodeSelector: "k3sworker05"
-  dataLocality: "strict-local"
+  dataLocality: "best-effort"
