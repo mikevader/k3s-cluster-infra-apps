@@ -4,5 +4,5 @@ description: Home Assistant server
 version: 1.0.0
 dependencies:
   - name: home-assistant
-    version: 19.1.0
+    version: 19.1.1
     repository: https://mikevader.github.io/charts
