@@ -72,10 +72,10 @@ plex:
       retain: true
       mountPath: /mnt/media/tv-uhd
     tv2:
-      enabled: false
+      enabled: true
       readonly: true
       type: hostPath
-      hostPath: /mnt/media2/tvshows
+      hostPath: /mnt/media/tvshows
       hostPathType: Directory
       mountPath: /mnt/media/tv2
     movies:
