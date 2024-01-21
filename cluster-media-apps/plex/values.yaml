@@ -63,7 +63,7 @@ plex:
       retain: true
       mountPath: /mnt/media/tv-qrst
     tv-uhd:
-      enabled: false
+      enabled: true
       readonly: true
       type: pvc
       size: 300Gi

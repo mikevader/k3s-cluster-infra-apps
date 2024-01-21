@@ -283,7 +283,7 @@ sonarr:
 
 sonarr-4k:
   controller:
-    enabled: false
+    enabled: true
 
   env:
     TZ: Europe/Zurich
@@ -311,7 +311,7 @@ sonarr-4k:
 
   persistence:
     config:
-      enabled: false
+      enabled: true
       type: pvc
       retain: true
       size: 10Gi
