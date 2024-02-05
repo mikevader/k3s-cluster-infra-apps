@@ -7,5 +7,5 @@ dependencies:
     version: 8.4.11
     repository: https://mikevader.github.io/charts
   - name: flood
-    version: 6.4.10
+    version: 6.4.11
     repository: https://mikevader.github.io/charts
