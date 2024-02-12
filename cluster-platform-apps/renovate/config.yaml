@@ -14,7 +14,7 @@ data:
       "hostRules": [
         {
           "hostType": "docker",
-          "matchHost": "https://ghcr.io/mikevader",
+          "matchHost": "https://ghcr.io",
           "username": "mikevader",
           "password": "{{ secrets.GITHUB_TOKEN}}"
         },
