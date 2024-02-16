@@ -13,7 +13,7 @@ spec:
           nodeSelector:
             kubernetes.io/arch: amd64
           containers:
-            - image: renovate/renovate:37.181.11
+            - image: renovate/renovate:37.192.2-full
               name: renovate-bot
               env: # For illustration purposes, please use secrets.
                 - name: RENOVATE_PLATFORM
