@@ -1,6 +1,7 @@
 argo-cd:
 
   global:
+    domain: argocd.framsburg.ch
     logging:
       level: warn
 
@@ -8,6 +9,8 @@ argo-cd:
     #   repository: ghcr.io/argoproj/argocd
     #   tag: 2.4.0-dd4dbe2a
   configs:
+    params:
+      server.insecure: true
     repositories:
       stable-helm-repo:
         name: stable
@@ -21,6 +24,23 @@ argo-cd:
         name: rancher-latest
         type: helm
         url: https://releases.rancher.com/server-charts/latest
+
+    cm: # config
+      kustomize.buildOptions: "--enable-helm"
+      url: https://argocd.framsburg.ch
+      oidc.config: |
+        name: Authentik
+        issuer: "https://authentik.framsburg.ch/application/o/argocd/"
+        clientID: "c579d3195f85aeccaf1ecce35ef5501e023c2a6a"
+        clientSecret: $argocd-oidc-secret:oidc.authentik.clientSecret
+        requestedScopes: ["openid", "profile", "email"]
+        logoutURL: "https://authentik.framsburg.ch/if/session-end/argocd/"
+
+    rbac: # rbacConfig
+      policy.default: role:readonly
+      policy.csv: |
+        g, fb-admins, role:admin
+
 
     # secret:
     #   githubSecret: $argocd-github-secret:webhook.github.secret
@@ -61,9 +81,8 @@ argo-cd:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      hosts:
-        - argocd.framsburg.ch
-      tls:
+      hostname: argocd.framsburg.ch
+      extraTls:
         - hosts:
           - argocd.framsburg.ch
           secretName: argocd-framsburg-ch-tls
