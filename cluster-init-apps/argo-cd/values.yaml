@@ -86,20 +86,6 @@ argo-cd:
         - hosts:
           - argocd.framsburg.ch
           secretName: argocd-framsburg-ch-tls
-    config:
-      kustomize.buildOptions: "--enable-helm"
-      url: https://argocd.framsburg.ch
-      oidc.config: | 
-          name: Authentik
-          issuer: "https://authentik.framsburg.ch/application/o/argocd/"
-          clientID: "c579d3195f85aeccaf1ecce35ef5501e023c2a6a"
-          clientSecret: $argocd-oidc-secret:oidc.authentik.clientSecret
-          requestedScopes: ["openid", "profile", "email"]
-          logoutURL: "https://authentik.framsburg.ch/if/session-end/argocd/"
-    rbacConfig:
-      policy.default: role:readonly
-      policy.csv: |
-          g, fb-admins, role:admin
 
   repoServer:
     replicas: 2
