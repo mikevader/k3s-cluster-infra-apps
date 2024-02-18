@@ -1,0 +1,52 @@
+---
+# Example of PostgreSQL cluster
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: firefly
+spec:
+  instances: 3
+
+  # Example of rolling update strategy:
+  # - unsupervised: automated update of the primary once all
+  #                 replicas have been upgraded (default)
+  # - supervised: requires manual supervision to perform
+  #               the switchover of the primary
+  primaryUpdateStrategy: unsupervised
+
+  # Require 1Gi of space
+  storage:
+    size: 20Gi
+
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://cnpg-backups/
+      endpointURL: https://minio.framsburg.net
+      s3Credentials:
+        accessKeyId:
+          name: cnpg-minio-access
+          key: AWS_ACCESS_KEY_ID
+        secretAccessKey:
+          name: cnpg-minio-access
+          key: AWS_SECRET_ACCESS_KEY
+      tags:
+        backupRetentionPolicy: "expire"
+      historyTags:
+        backupRetentionPolicy: "keep"
+    retentionPolicy: "32d"
+
+  affinity:
+    enablePodAntiAffinity: true
+
+  monitoring:
+    enablePodMonitor: true
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: backup-firefly
+spec:
+  schedule: "0 0 12 * * *"
+  backupOwnerReference: self
+  cluster:
+    name: firefly

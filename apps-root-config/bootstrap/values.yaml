@@ -8,4 +8,5 @@ bootstrap:
  - name: cluster-utility-apps
  - name: cluster-media-apps
  - name: cluster-rpg-apps
+ - name: cluster-apps-apps
  - name: cluster-test

@@ -1,0 +1,28 @@
+---
+repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
+# argocdNamespace: "argocd"
+# server: "https://kubernetes.default.svc"
+subFolder: cluster-apps
+namespace:
+  annotations: {}
+  labels:
+    client: cluster-infra
+
+enableDefaultNetworkPolicy: false
+enableDefaultLimitRange: false
+allowAllNamespaces: true
+
+roleBindings:
+#  - groupName: "team1"
+#    clusterRoleName: "admin"
+
+clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+
+namespaceResourceBlacklist:
+#  - group: 'apps'
+#    kind: 'DaemonSet'
+
+applications:
+  firefly: {}

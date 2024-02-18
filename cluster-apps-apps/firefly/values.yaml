@@ -1,0 +1,73 @@
+ ---
+global:
+  domainName: firefly.framsburg.ch
+
+firefly-iii:
+  config:
+    env:
+      APP_URL: 'https://{{ .Values.global.domainName }}'
+      TZ: Europe/Zurich
+      DB_CONNECTION: pgsql
+      DEFAULT_LANGUAGE: "en_US"
+      DEFAULT_LOCALE: "equal"
+      TRUSTED_PROXIES: "**"
+    envValueFrom:
+      DB_USERNAME:
+        secretKeyRef:
+          name: firefly-app
+          key: username
+      DB_PASSWORD:
+        secretKeyRef:
+          name: firefly-app
+          key: password
+      DB_HOST:
+        secretKeyRef:
+          name: firefly-app
+          key: host
+      DB_PORT:
+        secretKeyRef:
+          name: firefly-app
+          key: port
+      DB_DATABASE:
+        secretKeyRef:
+          name: firefly-app
+          key: dbname
+      DB_URL:
+        secretKeyRef:
+          name: firefly-app
+          key: uri
+
+  image:
+    tag: version-6.1.9
+  persistence:
+    enabled: true
+    storage: 10Gi
+    retain: true
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    className: traefik
+    hosts:
+      - host: '{{ .Values.global.domainName }}'
+        paths:
+          - path: ""
+            pathType: ImplementationSpecific
+            service:
+              name: firefly
+    tls:
+      - hosts: ['{{ .Values.global.domainName }}']
+        secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
+  resources:
+    requests:
+      cpu: 200m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+
+#importer:
+#  image:
+#    tag: version-1.4.4
