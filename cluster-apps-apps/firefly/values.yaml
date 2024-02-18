@@ -5,7 +5,7 @@ global:
 firefly-iii:
   config:
     env:
-      APP_URL: 'https://{{ .Values.global.domainName }}'
+      APP_URL: 'https://firefly.framsburg.ch'
       TZ: Europe/Zurich
       DB_CONNECTION: pgsql
       DEFAULT_LANGUAGE: "en_US"
@@ -48,17 +48,11 @@ firefly-iii:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    className: traefik
-    hosts:
-      - host: '{{ .Values.global.domainName }}'
-        paths:
-          - path: ""
-            pathType: ImplementationSpecific
-            service:
-              name: firefly
+    className: 'traefik'
+    hosts: ['firefly.framsburg.ch']
     tls:
-      - hosts: ['{{ .Values.global.domainName }}']
-        secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
+      - hosts: ['firefly.framsburg.ch']
+        secretName: 'firefly-framsburg-ch-tls'
   resources:
     requests:
       cpu: 200m
