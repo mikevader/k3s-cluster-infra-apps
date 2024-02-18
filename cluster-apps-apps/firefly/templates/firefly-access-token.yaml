@@ -1,0 +1,17 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: firefly-access-token
+spec:
+  refreshInterval: 1m
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: firefly-access-token
+  data:
+    - secretKey: accessToken
+      remoteRef:
+        key: secret/data/framsburg/firefly
+        property: accessToken
