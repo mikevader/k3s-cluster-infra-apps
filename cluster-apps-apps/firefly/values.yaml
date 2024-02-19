@@ -37,6 +37,11 @@ firefly-iii:
           name: firefly-app
           key: uri
 
+  cronjob:
+    enabled: true
+    auth:
+      existingSecret: firefly-access-token
+
   image:
     tag: version-6.1.9
   persistence:

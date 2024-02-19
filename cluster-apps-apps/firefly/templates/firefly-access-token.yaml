@@ -15,3 +15,7 @@ spec:
       remoteRef:
         key: secret/data/framsburg/firefly
         property: accessToken
+    - secretKey: token
+      remoteRef:
+        key: secret/data/framsburg/firefly
+        property: accessToken
