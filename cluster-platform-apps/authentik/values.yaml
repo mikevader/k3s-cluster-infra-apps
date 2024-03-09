@@ -1,20 +1,18 @@
-global:
-  domainName: authentik.framsburg.ch
-
 authentik:
-  annotations:
-    "sidecar.jaegertracing.io/inject": "true"
+  global:
+    deploymentAnnotations:
+      "sidecar.jaegertracing.io/inject": "true"
 
-  affinity:
-    nodeAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 50
-          preference:
-            matchExpressions:
-              - key: performance
-                operator: In
-                values:
-                  - medium
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 50
+            preference:
+              matchExpressions:
+                - key: performance
+                  operator: In
+                  values:
+                    - medium
 
   authentik:
     secret_key: dontjudgemethisisjustfortesting    # TODO
@@ -23,20 +21,21 @@ authentik:
     redis:
       host: '{{ .Release.Name }}-redis'
 
-  ingress:
-    enabled: true
-    ingressClassName: traefik
-    annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    hosts:
-      - host: 'authentik.framsburg.ch'
-        paths:
-          - path: /
-            pathType: Prefix
-    tls:
-      - secretName: 'authentik-framsburg-ch-tls'
-        hosts: ['authentik.framsburg.ch']
+  server:
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      hosts:
+        - host: 'authentik.framsburg.ch'
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: 'authentik-framsburg-ch-tls'
+          hosts: ['authentik.framsburg.ch']
 
 postgresql:
 #  image:
