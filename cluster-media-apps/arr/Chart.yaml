@@ -19,7 +19,7 @@ dependencies:
     repository: https://mikevader.github.io/charts
     alias: sonarr-4k
   - name: prowlarr
-    version: 5.0.10
+    version: 5.0.11
     repository: https://mikevader.github.io/charts
 #  - name: tdarr
 #    version: 4.7.5
