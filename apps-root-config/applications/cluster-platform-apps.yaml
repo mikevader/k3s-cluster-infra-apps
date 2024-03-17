@@ -25,7 +25,8 @@ namespaceResourceBlacklist:
 
 applications:
   authentik: {}
-  cnpg-system: {}
+  cnpg-system:
+    helmServerSideApply: true
   external-secrets: {}
   kubernetes-dashboard: {}
   renovate: {}
