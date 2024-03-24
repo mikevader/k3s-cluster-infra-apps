@@ -41,6 +41,7 @@ firefly-iii:
     enabled: true
     auth:
       existingSecret: firefly-access-token
+      secretKey: cmdLineToken
 
   image:
     tag: version-6.1.9

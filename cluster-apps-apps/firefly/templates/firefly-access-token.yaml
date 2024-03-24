@@ -19,3 +19,7 @@ spec:
       remoteRef:
         key: secret/data/framsburg/firefly
         property: accessToken
+    - secretKey: cmdLineToken
+      remoteRef:
+        key: secret/data/framsburg/firefly
+        property: cmdLineToken
