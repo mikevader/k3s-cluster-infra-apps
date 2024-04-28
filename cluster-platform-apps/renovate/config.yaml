@@ -21,7 +21,7 @@ data:
         {
           "hostType": "docker",
           "username": "baloisemichaelmuehlebach",
-          "password": "{{ secrets.DOCKERHUB_PASSWORD }}"
+          "password": "{{ secrets.DOCKER_HUB_PASSWORD }}"
         }
       ],
       "onboardingCommitMessage": "",
