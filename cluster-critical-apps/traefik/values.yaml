@@ -84,34 +84,39 @@ traefik:
         enabled: true
     cups:
       port: 631
-      expose: true
+      expose:
+        default: true
       exposedPort: 631
       protocol: TCP
     # dns-udp:
     #   port: 53
-    #   expose: true
+    #   expose:
+    #     default: true
     #   exposedPort: 53
     #   protocol: UDP
     # dns-tcp:
     #   port: 53
-    #   expose: true
+    #   expose:
+    #     default: true
     #   exposedPort: 53
     #   protocol: TCP
     # netbios:
     #   port: 139
-    #   expose: true
+    #   expose:
+    #     default: true
     #   exposedPort: 139
     #   protocol: TCP
     smb:
       port: 4445
     #   hostPort: 445
-      expose: true
+      expose:
+        default: true
       exposedPort: 4445
       protocol: TCP
     metrics:
       port: 9100
-      #expose: true
-      #exposedPort: 9100
+      # expose: true
+      # exposedPort: 9100
   ingressRoute:
     dashboard:
       enabled: false
