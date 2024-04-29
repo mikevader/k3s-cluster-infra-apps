@@ -1,7 +1,7 @@
 traefik:
   fullnameOverride: traefik
   deployment:
-    annotations:
+    annotations: {}
       # reloader.stakater.com/match: "true"
     # initContainers:
     #   - name: volume-permissions
@@ -118,7 +118,6 @@ traefik:
   ingressClass:
     enabled: true
     isDefaultClass: true
-    fallbackApiVersion: v1
   providers:
     kubernetesIngress:
       publishedService:
