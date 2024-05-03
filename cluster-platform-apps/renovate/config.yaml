@@ -14,7 +14,7 @@ data:
       "hostRules": [
         {
           "hostType": "docker",
-          "matchHost": "https://ghcr.io",
+          "matchHost": "ghcr.io",
           "username": "mikevader",
           "password": "{{ secrets.GITHUB_TOKEN}}"
         },
@@ -25,6 +25,6 @@ data:
         }
       ],
       "onboardingCommitMessage": "",
-      "onboardingConfig": {"$schema": "https://docs.renovatebot.com/renovate-schema.json", "extends": ["local>mikevader/renovate-config"]},
+      "onboardingConfig": {"$schema": "https://docs.renovatebot.com/renovate-schema.json", "extends": ["mikevader/renovate-config"]},
       "onboardingConfigFileName": ".github/renovate.json5"
     }
