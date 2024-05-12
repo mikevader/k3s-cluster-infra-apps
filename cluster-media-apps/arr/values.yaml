@@ -368,7 +368,7 @@ prowlarr:
   initContainers:
     prowlarr:
       name: config-prowlarr
-      image: docker.io/ubuntu:groovy
+      image: docker.io/ubuntu:noble
       securityContext:
         runAsUser: 666
         runAsGroup: 666
