@@ -14,6 +14,9 @@ transmission:
     # WHITELIST: "transmission.framsburg.ch, 192.168.42.150, 192.168.42.*, 10.43.*.*, 10.42.*.*"
     RPC_URL: https://transmission.framsburg.ch/transmission/rpc
 
+  image:
+    pullPolicy: Always
+
   service:
     # annotations:
     #   metallb.universe.tf/address-pool: metallb-external-ip-range
