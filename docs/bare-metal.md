@@ -52,7 +52,6 @@ in the [MinIO Documentation][4].
 
 So your Opnsense Config looks something like this:
 
-|------------------------|----------------------------------|
 | Field                  | Value                            |
 |------------------------|----------------------------------|
 | Name                   | Upload Minio Certificate         |
