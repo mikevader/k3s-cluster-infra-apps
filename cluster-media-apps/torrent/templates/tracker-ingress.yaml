@@ -7,7 +7,7 @@ spec:
     - trackerudp
   routes:
     - services:
-        - name: udp-service
+        - name: utpudp
           port: 30402
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -20,5 +20,5 @@ spec:
   routes:
     - match: HostSNI(`*`)
       services:
-        - name: udp-service
+        - name: utptcp
           port: 30402
