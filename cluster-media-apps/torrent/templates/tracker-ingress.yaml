@@ -7,7 +7,6 @@ spec:
   entryPoints:
     - trackerudp
   routes:
-    - match: HostSNI(`*`)
-      services:
+    - services:
         - name: udp-service
           port: 30402
