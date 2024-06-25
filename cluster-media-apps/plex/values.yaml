@@ -58,7 +58,7 @@ plex:
       enabled: true
       readonly: true
       type: pvc
-      size: 300i
+      size: 300Gi
       accessMode: ReadWriteMany
       retain: true
       mountPath: /mnt/media/tv-qrst
