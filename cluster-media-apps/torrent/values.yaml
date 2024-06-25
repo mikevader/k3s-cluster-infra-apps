@@ -52,9 +52,9 @@ transmission:
         - hosts: ['transmission.framsburg.ch']
           secretName: 'transmission-framsburg-ch-tls'
 
-  securityContext:
-    fsGroup: 666
-    fsGroupChangePolicy: Always
+#  securityContext:
+#    fsGroup: 666
+#    fsGroupChangePolicy: Always
 
   persistence:
     config:
@@ -70,6 +70,18 @@ transmission:
       size: 300Gi
       storageClass: longhorn-nfs-transient-v1
       accessMode: ReadWriteMany
+
+  probes:
+    liveness:
+      spec:
+        initialDelaySeconds: 1
+    readiness:
+      spec:
+        initialDelaySeconds: 1
+    startupProbe:
+      spec:
+        initialDelaySeconds: 1
+
 
 flood:
   controller:
