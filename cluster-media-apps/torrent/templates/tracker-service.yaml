@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: udp-service
+  namespace: default
+spec:
+  selector:
+    app.kubernetes.io/instance: torrent
+    app.kubernetes.io/name: transmission
+  ports:
+    - protocol: UDP
+      port: 30402
+      targetPort: 30402

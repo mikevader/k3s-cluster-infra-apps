@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: udp-ingressroute
+  namespace: default
+spec:
+  entryPoints:
+    - trackerudp
+  routes:
+    - match: HostSNI(`*`)
+      services:
+        - name: udp-service
+          port: 30402

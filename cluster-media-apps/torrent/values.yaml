@@ -17,26 +17,26 @@ transmission:
   image:
     pullPolicy: Always
 
-  service:
-    # annotations:
-    #   metallb.universe.tf/address-pool: metallb-external-ip-range
-    utptcp:
-      enabled: true
-      type: NodePort
-      # loadBalancerIP: 192.168.99.152
-      ports:
-        utptcp:
-          enabled: true
-          port: 51413
-          protocol: TCP
-          targetPort: 51413
-          nodePort: 30402
-        utpudp:
-          enabled: true
-          port: 51413
-          protocol: UDP
-          targetPort: 51413
-          nodePort: 30402
+#  service:
+#    # annotations:
+#    #   metallb.universe.tf/address-pool: metallb-external-ip-range
+#    utptcp:
+#      enabled: true
+#      type: NodePort
+#      # loadBalancerIP: 192.168.99.152
+#      ports:
+#        utptcp:
+#          enabled: true
+#          port: 51413
+#          protocol: TCP
+#          targetPort: 51413
+#          nodePort: 30402
+#        utpudp:
+#          enabled: true
+#          port: 51413
+#          protocol: UDP
+#          targetPort: 51413
+#          nodePort: 30402
 
   ingress:
     main:
