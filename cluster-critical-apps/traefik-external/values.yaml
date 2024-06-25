@@ -43,6 +43,16 @@ traefik:
       port: 9100
       #expose: true
       #exposedPort: 9100
+    trackerudp:
+      port: 30402
+      expose:
+        default: true
+      protocol: UDP
+    trackertcp:
+      port: 30402
+      expose:
+        default: true
+      protocol: TCP
   ingressRoute:
     dashboard:
       enabled: false
