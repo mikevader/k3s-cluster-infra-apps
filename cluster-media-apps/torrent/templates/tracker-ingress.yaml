@@ -10,3 +10,16 @@ spec:
     - services:
         - name: udp-service
           port: 30402
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: tcp-ingressroute
+  namespace: default
+spec:
+  entryPoints:
+    - trackertcp
+  routes:
+    - services:
+        - name: udp-service
+          port: 30402
