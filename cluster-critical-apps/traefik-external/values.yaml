@@ -53,6 +53,16 @@ traefik:
       expose:
         default: true
       protocol: TCP
+    trackerudph:
+      port: 51413
+      expose:
+        default: true
+      protocol: UDP
+    trackertcph:
+      port: 51413
+      expose:
+        default: true
+      protocol: TCP
   ingressRoute:
     dashboard:
       enabled: false
