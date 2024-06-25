@@ -53,12 +53,12 @@ traefik:
       expose:
         default: true
       protocol: TCP
-    trackerudph:
+    trackerhiddenudp:
       port: 51413
       expose:
         default: true
       protocol: UDP
-    trackertcph:
+    trackerhiddentcp:
       port: 51413
       expose:
         default: true
