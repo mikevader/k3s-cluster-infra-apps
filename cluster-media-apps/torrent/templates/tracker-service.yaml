@@ -7,9 +7,11 @@ spec:
     app.kubernetes.io/instance: torrent
     app.kubernetes.io/name: transmission
   ports:
-    - protocol: UDP
+    - name: trackerudp
+      protocol: UDP
       port: 30402
       targetPort: 30402
-    - protocol: TCP
+    - name: trackertcp
+      protocol: TCP
       port: 30402
       targetPort: 30402
