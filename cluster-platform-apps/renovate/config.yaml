@@ -20,7 +20,7 @@ data:
         {
           hostType: "docker",
           username: "baloisemichaelmuehlebach",
-          password: process.env.DOCKERHUB_COM_PASSWORD
+          password: process.env.DOCKER_HUB_PASSWORD
         }
       ],
       onboardingCommitMessage: "",
