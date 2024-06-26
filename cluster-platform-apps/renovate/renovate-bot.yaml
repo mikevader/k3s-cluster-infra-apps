@@ -23,7 +23,7 @@ spec:
                 - name: RENOVATE_BASE_DIR
                   value: '/tmp/renovate/'
                 - name: RENOVATE_CONFIG_FILE
-                  value: '/opt/renovate/config.json'
+                  value: '/opt/renovate/config.js'
                 - name: LOG_LEVEL
                   value: info
 

@@ -4,26 +4,26 @@ kind: ConfigMap
 metadata:
   name: renovate-config
 data:
-  config.json: |-
-    {
-      "allowPostUpgradeCommandTemplating": true,
-      "allowedPostUpgradeCommands": ["^.*$", "^sed -i", "^cd "],
-      "autodiscover": true,
-      "autodiscoverFilter": ["mikevader/*"],
-      "requireConfig": "required",
-      "hostRules": [
+  config.js: |-
+    module.exports = {
+      allowPostUpgradeCommandTemplating: true,
+      allowedPostUpgradeCommands: ["^.*$", "^sed -i", "^cd "],
+      autodiscover: true,
+      autodiscoverFilter: ["mikevader/*"],
+      requireConfig: "required",
+      hostRules: [
         {
-          "hostType": "docker",
-          "matchHost": "ghcr.io",
-          "token": "{{ secrets.GITHUB_TOKEN}}"
+          hostType: "docker",
+          matchHost: "ghcr.io",
+          token: process.env.GITHUB_COM_TOKEN
         },
         {
-          "hostType": "docker",
-          "username": "baloisemichaelmuehlebach",
-          "password": "{{ secrets.DOCKERHUB_PASSWORD }}"
+          hostType: "docker",
+          username: "baloisemichaelmuehlebach",
+          password: process.env.DOCKERHUB_COM_PASSWORD
         }
       ],
-      "onboardingCommitMessage": "",
-      "onboardingConfig": {"$schema": "https://docs.renovatebot.com/renovate-schema.json", "extends": ["mikevader/renovate-config"]},
-      "onboardingConfigFileName": ".github/renovate.json5"
+      onboardingCommitMessage: "",
+      onboardingConfig: {"$schema": "https://docs.renovatebot.com/renovate-schema.json", "extends": ["mikevader/renovate-config"]},
+      onboardingConfigFileName: ".github/renovate.json5"
     }
