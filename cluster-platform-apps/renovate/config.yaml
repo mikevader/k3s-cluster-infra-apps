@@ -16,7 +16,7 @@ data:
           hostType: "docker",
           matchHost: "ghcr.io",
           username: "mikevader",
-          passsword: process.env.GITHUB_COM_TOKEN
+          password: process.env.GITHUB_COM_TOKEN
         },
         {
           hostType: "docker",
