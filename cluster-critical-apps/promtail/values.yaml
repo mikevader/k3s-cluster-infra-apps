@@ -80,7 +80,7 @@ promtail:
 
   initContainer:
     - name: geo-ip
-      image: ghcr.io/maxmind/geoipupdate:v6.1
+      image: ghcr.io/maxmind/geoipupdate:v7.0
       volumeMounts:
         - name: geoipdb
           mountPath: /etc/geoip
