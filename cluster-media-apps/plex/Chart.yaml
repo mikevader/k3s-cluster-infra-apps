@@ -4,5 +4,5 @@ description: Plex Chart
 version: 1.0.0
 dependencies:
   - name: plex
-    version: 6.6.29
+    version: 6.6.30
     repository: https://mikevader.github.io/charts
