@@ -32,6 +32,11 @@ dmw:
         secretKeyRef:
           name: dmw
           key: SENDGRID_API_KEY
+    - name: SECRET_KEY_BASE
+      valueFrom:
+        secretKeyRef:
+          name: dmw
+          key: SECRET_KEY_BASE
     - name: DATABASE_USERNAME
       valueFrom:
         secretKeyRef:
