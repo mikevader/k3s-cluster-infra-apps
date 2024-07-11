@@ -10,8 +10,6 @@ traefik:
   globalArguments:
     - "--global.checknewversion"
     # - "--serverstransport.insecureskipverify=true"
-    - "--providers.kubernetescrd.allowCrossNamespace=true"
-    - "--providers.kubernetesingress.ingressclass=traefik-external"
     - "--metrics.prometheus=true"
     - "--metrics.prometheus.entryPoint=metrics"
     - "--entrypoints.websecure.http.middlewares=error-pages-error-pages@kubernetescrd"
@@ -31,6 +29,7 @@ traefik:
   service:
     annotations:
       metallb.universe.tf/address-pool: metallb-external-ip-range
+      metallb.universe.tf/allow-shared-ip: shared-external
     spec:
       externalTrafficPolicy: Local
   ports:
@@ -72,6 +71,9 @@ traefik:
     isDefaultClass: false
     fallbackApiVersion: v1
   providers:
+    kubernetesCRD:
+      allowCrossNamespace: true
+      ingressClass: traefik-external
     kubernetesIngress:
       ingressClass: traefik-external
       publishedService:
