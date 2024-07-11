@@ -91,7 +91,8 @@
       // "registryUrls": ["https://k8s-at-home.com/charts", "https://mikevader.github.io/charts"],
       "matchPackagePatterns": [
         "argo-cd",
-        "plex"
+        "plex",
+        "dmw"
       ],
       "addLabels": ["action/automerge"],
       "automerge": true
