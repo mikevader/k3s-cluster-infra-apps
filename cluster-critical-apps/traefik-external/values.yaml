@@ -10,6 +10,7 @@ traefik:
   globalArguments:
     - "--global.checknewversion"
     # - "--serverstransport.insecureskipverify=true"
+    - "--providers.kubernetescrd.allowCrossNamespace=true"
     - "--providers.kubernetesingress.ingressclass=traefik-external"
     - "--metrics.prometheus=true"
     - "--metrics.prometheus.entryPoint=metrics"
@@ -81,10 +82,10 @@ traefik:
   resources:
     requests:
       cpu: "100m"
-      memory: "50Mi"
+      memory: "150Mi"
     limits:
       cpu: "300m"
-      memory: "150Mi"
+      memory: "300Mi"
   autoscaling:
     enabled: false
     minReplicas: 2
@@ -102,3 +103,10 @@ traefik:
           target:
             type: Utilization
             averageUtilization: 80
+    behavior:
+      scaleDown:
+        stabilizationWindowSeconds: 300
+        policies:
+          - type: Pods
+            value: 1
+            periodSeconds: 60
