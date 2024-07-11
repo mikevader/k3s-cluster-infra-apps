@@ -12,6 +12,7 @@ traefik:
     #       name: data
   globalArguments:
     - "--global.checknewversion"
+    - "--api.dashboard=true"
     - "--serverstransport.insecureskipverify=true"
     - "--metrics.prometheus=true"
     - "--metrics.prometheus.entryPoint=metrics"
