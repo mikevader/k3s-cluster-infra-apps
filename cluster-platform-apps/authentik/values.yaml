@@ -17,7 +17,9 @@ authentik:
   authentik:
     secret_key: dontjudgemethisisjustfortesting    # TODO
     postgresql:
-      password: "IKnowThisIsNotASecurePasswordJust4Testing"    # TODO
+      host: '{{ .Release.Name }}-postgresql16'
+      user: file:///postgres-creds/username
+      password: file:///postgres-creds/password
     redis:
       host: '{{ .Release.Name }}-redis'
 
@@ -33,6 +35,24 @@ authentik:
       tls:
         - secretName: 'authentik-framsburg-ch-tls'
           hosts: ['authentik.framsburg.ch']
+    volumes:
+      - name: postgres-creds
+        secret:
+          secretName: authentik-postgres-credentials
+    volumeMounts:
+      - name: postgres-creds
+        mountPath: /postgres-creds
+        readOnly: true
+
+  worker:
+    volumes:
+      - name: postgres-creds
+        secret:
+          secretName: authentik-postgres-credentials
+    volumeMounts:
+      - name: postgres-creds
+        mountPath: /postgres-creds
+        readOnly: true
 
 postgresql:
 #  image:
