@@ -67,6 +67,8 @@ spec:
                 - name: renovate-cache
                   mountPath: /tmp/renovate/cache
           restartPolicy: Never
+          securityContext:
+            fsGroup: 1000
           volumes:
             - name: config-volume
               configMap:
