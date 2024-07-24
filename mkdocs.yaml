@@ -29,6 +29,8 @@ markdown_extensions:
   - abbr
   - admonition
 
+plugins:
+  - drawio_file
 
 nav:
   - Home: index.md

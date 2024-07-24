@@ -112,5 +112,9 @@ spec:
 ```
 
 
+## Usenet instead of Torrent
+
+https://trash-guides.info/Downloaders/SABnzbd/Basic-Setup/
+https://blog.harveydelaney.com/switching-from-torrents-to-usenet-the-why-and-how/
 
 [^1]: https://matt.coneybeare.me/how-to-map-plex-media-server-to-your-home-domain/
