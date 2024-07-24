@@ -1,0 +1,49 @@
+<mxfile modified="2024-07-08T17:17:37.269Z" host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15" etag="qiNY-2No1U_X5nKe745l" version="24.6.4" type="github">
+  <diagram id="l2aKFoh6-Bn0gOPZ2l0T" name="Page-1">
+    <mxGraphModel dx="545" dy="355" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="mpq5AgpwV83IM184FDqD-40" value="Arista rack equipment layout" style="text;html=1;resizable=1;points=[];autosize=0;align=left;verticalAlign=top;spacingTop=-4;fontSize=20;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="mpq5AgpwV83IM184FDqD-41" value="Location:" style="text;html=1;resizable=1;points=[];autosize=0;align=left;verticalAlign=middle;spacingTop=-4;fontSize=14;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="40" y="80" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="mpq5AgpwV83IM184FDqD-42" value="Investor:" style="text;html=1;resizable=1;points=[];autosize=0;align=left;verticalAlign=middle;spacingTop=-4;fontSize=14;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="40" y="110" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gb_ZZQ52jhFnI39OlU0H-9" value="" style="strokeColor=#666666;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;outlineConnect=0;shadow=0;dashed=0;shape=mxgraph.rackGeneral.rackCabinet3;fillColor2=#f4f4f4;container=1;collapsible=0;childLayout=rack;allowGaps=1;marginLeft=33;marginRight=9;marginTop=21;marginBottom=22;textColor=#666666;numDisp=ascend;" vertex="1" parent="1">
+          <mxGeometry x="470" y="360" width="204" height="219" as="geometry" />
+        </mxCell>
+        <mxCell id="gb_ZZQ52jhFnI39OlU0H-15" value="Power" style="strokeColor=#666666;html=1;labelPosition=right;align=left;spacingLeft=15;shadow=0;dashed=0;outlineConnect=0;shape=mxgraph.rackGeneral.plate;fillColor=#e8e8e8;" vertex="1" parent="gb_ZZQ52jhFnI39OlU0H-9">
+          <mxGeometry x="33" y="21" width="162" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="gb_ZZQ52jhFnI39OlU0H-10" value="Patch Panel" style="strokeColor=#666666;html=1;labelPosition=right;align=left;spacingLeft=15;shadow=0;dashed=0;outlineConnect=0;shape=mxgraph.rack.general.cat5e_rack_mount_patch_panel_24_ports;" vertex="1" parent="gb_ZZQ52jhFnI39OlU0H-9">
+          <mxGeometry x="33" y="36" width="162" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="gb_ZZQ52jhFnI39OlU0H-14" value="Ubiquiti&amp;nbsp;" style="html=1;verticalLabelPosition=middle;verticalAlign=middle;outlineConnect=0;shadow=0;dashed=0;shape=mxgraph.rack.hpe_aruba.switches.j9776a_2530_24g_switch;spacingLeft=15;align=left;labelPosition=right;" vertex="1" parent="gb_ZZQ52jhFnI39OlU0H-9">
+          <mxGeometry x="33" y="51" width="162" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="gb_ZZQ52jhFnI39OlU0H-20" value="Lenovo 1" style="strokeColor=#666666;html=1;labelPosition=right;align=left;spacingLeft=15;shadow=0;dashed=0;outlineConnect=0;shape=mxgraph.rack.general.1u_rack_server;" vertex="1" parent="gb_ZZQ52jhFnI39OlU0H-9">
+          <mxGeometry x="33" y="66" width="162" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="gb_ZZQ52jhFnI39OlU0H-19" value="Lenovo 2" style="strokeColor=#666666;html=1;labelPosition=right;align=left;spacingLeft=15;shadow=0;dashed=0;outlineConnect=0;shape=mxgraph.rack.general.1u_rack_server;" vertex="1" parent="gb_ZZQ52jhFnI39OlU0H-9">
+          <mxGeometry x="33" y="81" width="162" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="gb_ZZQ52jhFnI39OlU0H-18" value="Raspberry 1" style="strokeColor=#666666;html=1;labelPosition=right;align=left;spacingLeft=15;shadow=0;dashed=0;outlineConnect=0;shape=mxgraph.rack.general.1u_rack_server;" vertex="1" parent="gb_ZZQ52jhFnI39OlU0H-9">
+          <mxGeometry x="33" y="96" width="162" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="gb_ZZQ52jhFnI39OlU0H-17" value="Raspberry 2" style="strokeColor=#666666;html=1;labelPosition=right;align=left;spacingLeft=15;shadow=0;dashed=0;outlineConnect=0;shape=mxgraph.rack.general.1u_rack_server;" vertex="1" parent="gb_ZZQ52jhFnI39OlU0H-9">
+          <mxGeometry x="33" y="111" width="162" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="gb_ZZQ52jhFnI39OlU0H-16" value="Storage Server" style="strokeColor=#666666;html=1;labelPosition=right;align=left;spacingLeft=15;shadow=0;dashed=0;outlineConnect=0;shape=mxgraph.rack.dell.poweredge_r940;" vertex="1" parent="gb_ZZQ52jhFnI39OlU0H-9">
+          <mxGeometry x="33" y="126" width="162" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="gb_ZZQ52jhFnI39OlU0H-11" value="UPC" style="shape=mxgraph.rack.apc.apc_smart_ups_1000-3000_va_2u;html=1;labelPosition=right;align=left;spacingLeft=15;dashed=0;shadow=0;fillColor=#ffffff;" vertex="1" parent="gb_ZZQ52jhFnI39OlU0H-9">
+          <mxGeometry x="33" y="171" width="162" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
