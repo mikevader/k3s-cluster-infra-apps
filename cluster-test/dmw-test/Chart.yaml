@@ -5,4 +5,4 @@ version: 1.0.0
 dependencies:
   - name: dmw
     repository: https://mikevader.github.io/dm-workshop
-    version: 1.7.5
+    version: 1.7.6
