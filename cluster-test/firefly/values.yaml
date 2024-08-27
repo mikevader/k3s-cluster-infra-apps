@@ -1,3 +1,4 @@
+---
 firefly:
   firefly-db:
     enabled: false
@@ -19,7 +20,7 @@ firefly:
         DEFAULT_LOCALE: "equal"
         TZ: "Europe/Zurich"
         TRUSTED_PROXIES: "**"
-    
+
       envValueFrom:
         DB_USERNAME:
           secretKeyRef:
