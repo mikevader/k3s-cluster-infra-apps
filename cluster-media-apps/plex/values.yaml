@@ -50,7 +50,7 @@ plex:
       enabled: true
       readonly: true
       type: pvc
-      size: 256Gi
+      size: 300Gi
       accessMode: ReadWriteMany
       retain: true
       mountPath: /mnt/media/tv-mnop
