@@ -1,6 +1,6 @@
 transmission:
   controller:
-    enabled: false
+    enabled: true
 
   env:
     TZ: Europe/Zurich
@@ -65,7 +65,7 @@ transmission:
       accessMode: ReadWriteOnce
 
     downloads:
-      enabled: false
+      enabled: true
       type: pvc
       size: 300Gi
       storageClass: longhorn-nfs-transient-v1
