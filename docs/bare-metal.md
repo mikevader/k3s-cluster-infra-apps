@@ -4,6 +4,20 @@ https://www.blinkstick.com/products/blinkstick-nano
 
 The initial setup is done with Ansible.
 
+## Bootstrap new Raspberry Pi
+
+* Download newest Raspberry Pi Imager
+* Image Ubuntu Server
+* (Req: MAC is configure in DHCP)
+* Boot Up
+* (Optional) If host was already configured: `sudo ssh-keygen -R <oldhost>` and `sudo ssh-keygen -R <ip>`
+* Configure new host in ansible `hosts.yaml`
+* Add system to the hosts file
+* Ensure the default user exists in `group_vars/<distribution-name>.yaml`
+  Otherwise add a file with the variable `ansible_user_first_run`
+* Run ansible with `ansible-playbook add-user-ssh.yaml --limit <newhost>`
+
+
 ## PoE HAT
 
 The fan of the PoE HAT tends to occelate between min and max speed. Accoding to
@@ -249,6 +263,22 @@ ethtool -K <ADAPTER> gso off gro off tso off
 ```
 
 This should be added as startup command to `/etc/network/if-up.d/`
+
+
+## Hardware Buy List
+
+* https://www.mk1manufacturing.com/cart.php?m=view
+* https://racknex.com/shop/lenovo/
+* https://www.uctronics.com/raspberry-pi.html
+* https://store.45homelab.com/configure/hl15
+* https://www.serverschmiede.com/konfigurator_bulk/en/truenas
+* https://www.serverschmiede.com/konfigurator_bulk/en/supermicro-cse-116ts-h12ssw-ntr-19-1u-10x-25-sff-nvme-sas-sata-amd-epyc-gen2-gen3-ddr4-ecc-raid-2x-psu
+* https://serverando.de/Server/
+* https://www.servethehome.com/introducing-project-tinyminimicro-home-lab-revolution/
+* https://www.pchc.ch/en/Divers/spare-parts/Lenovo-CARDPOP-BLD-Tiny8-BTB-LAN-card----5C50W00908.html
+* https://www.ebay.com/itm/276424564157
+* 
+* 
 
 
 [1]: https://min.io/docs/minio/linux/integrations/generate-lets-encrypt-certificate-using-certbot-for-minio.html
