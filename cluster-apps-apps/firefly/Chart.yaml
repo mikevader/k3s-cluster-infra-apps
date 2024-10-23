@@ -4,7 +4,7 @@ description: firefly
 version: 1.0.0
 dependencies:
   - name: firefly-iii
-    version: 1.8.1
+    version: 1.8.2
     repository: https://firefly-iii.github.io/kubernetes
   - name: importer
     version: 1.3.1
