@@ -13,6 +13,51 @@ an [article by Jeff Geerling][3] this can be adjusted.
 
 https://github.com/dzomaya/NUTandRpi
 
+## Install Longhorn Disks
+
+https://www.ekervhen.xyz/posts/2021-02/troubleshooting-longhorn-and-dns-networking/
+
+
+### New disk
+
+find out device `lsblk -f`
+on new devices `wipefs -a /dev/{{ var_disk }}`
+
+```bash
+$ sudo fdisk -l
+$ sudo fdisk /dev/sdb
+
+Command: g
+Created a new GPT disklabel (GUID: xxxxx)
+
+Command: n
+Partition number: 1 (default)
+First sector: (default)
+Last sector: (default)
+Command: w
+
+$ sudo fdisk -l
+```
+
+Create Filesystem
+
+```bash
+$ sudo mkfs -t ext4 /dev/sdb1
+```
+
+Create mountpoint and fstab entry
+
+```bash
+$ sudo mkdir /var/lib/longhorn
+$ sudo lsblk -o name,uuid
+NAME UUID
+sde1 9999-9999...
+
+$ echo "UUID=0ec0cac5-6825-467b-acf7-da5505517b66 /var/lib/longhorn2 ext4 defaults 0 2" >> /etc/fstab
+$ sudo mount /var/lib/longhorn2
+```
+
+
 
 ## Setup Minio
 
