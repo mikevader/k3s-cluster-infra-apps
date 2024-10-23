@@ -1,6 +1,6 @@
 transmission:
   controller:
-    enabled: true
+    enabled: false
 
   env:
     TZ: Europe/Zurich
