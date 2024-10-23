@@ -250,6 +250,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#bootstrap-new-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bootstrap new Raspberry Pi
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#poe-hat" class="md-nav__link">
     <span class="md-ellipsis">
       PoE HAT
@@ -373,6 +382,15 @@
   <a href="#lenovo-nic-e1000" class="md-nav__link">
     <span class="md-ellipsis">
       Lenovo nic e1000
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-buy-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Buy List
     </span>
   </a>
   
@@ -1104,6 +1122,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#bootstrap-new-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bootstrap new Raspberry Pi
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#poe-hat" class="md-nav__link">
     <span class="md-ellipsis">
       PoE HAT
@@ -1232,6 +1259,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#hardware-buy-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Buy List
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1253,6 +1289,19 @@
 <h1 id="harware-setup-of-raspberry-pis">Harware Setup of Raspberry PIs</h1>
 <p>https://www.blinkstick.com/products/blinkstick-nano</p>
 <p>The initial setup is done with Ansible.</p>
+<h2 id="bootstrap-new-raspberry-pi">Bootstrap new Raspberry Pi</h2>
+<ul>
+<li>Download newest Raspberry Pi Imager</li>
+<li>Image Ubuntu Server</li>
+<li>(Req: MAC is configure in DHCP)</li>
+<li>Boot Up</li>
+<li>(Optional) If host was already configured: <code>sudo ssh-keygen -R &lt;oldhost&gt;</code> and <code>sudo ssh-keygen -R &lt;ip&gt;</code></li>
+<li>Configure new host in ansible <code>hosts.yaml</code></li>
+<li>Add system to the hosts file</li>
+<li>Ensure the default user exists in <code>group_vars/&lt;distribution-name&gt;.yaml</code>
+  Otherwise add a file with the variable <code>ansible_user_first_run</code></li>
+<li>Run ansible with <code>ansible-playbook add-user-ssh.yaml --limit &lt;newhost&gt;</code></li>
+</ul>
 <h2 id="poe-hat">PoE HAT</h2>
 <p>The fan of the PoE HAT tends to occelate between min and max speed. Accoding to
 an <a href="https://www.jeffgeerling.com/blog/2021/taking-control-pi-poe-hats-overly-aggressive-fan">article by Jeff Geerling</a> this can be adjusted.</p>
@@ -1457,6 +1506,21 @@ command might help:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ethtool<span class="w"> </span>-K<span class="w"> </span>&lt;ADAPTER&gt;<span class="w"> </span>gso<span class="w"> </span>off<span class="w"> </span>gro<span class="w"> </span>off<span class="w"> </span>tso<span class="w"> </span>off<span class="w"> </span>
 </code></pre></div>
 <p>This should be added as startup command to <code>/etc/network/if-up.d/</code></p>
+<h2 id="hardware-buy-list">Hardware Buy List</h2>
+<ul>
+<li>https://www.mk1manufacturing.com/cart.php?m=view</li>
+<li>https://racknex.com/shop/lenovo/</li>
+<li>https://www.uctronics.com/raspberry-pi.html</li>
+<li>https://store.45homelab.com/configure/hl15</li>
+<li>https://www.serverschmiede.com/konfigurator_bulk/en/truenas</li>
+<li>https://www.serverschmiede.com/konfigurator_bulk/en/supermicro-cse-116ts-h12ssw-ntr-19-1u-10x-25-sff-nvme-sas-sata-amd-epyc-gen2-gen3-ddr4-ecc-raid-2x-psu</li>
+<li>https://serverando.de/Server/</li>
+<li>https://www.servethehome.com/introducing-project-tinyminimicro-home-lab-revolution/</li>
+<li>https://www.pchc.ch/en/Divers/spare-parts/Lenovo-CARDPOP-BLD-Tiny8-BTB-LAN-card----5C50W00908.html</li>
+<li>https://www.ebay.com/itm/276424564157</li>
+<li></li>
+<li></li>
+</ul>
 
 
 
