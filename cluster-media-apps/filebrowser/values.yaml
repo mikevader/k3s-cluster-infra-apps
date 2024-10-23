@@ -98,7 +98,7 @@ filebrowser:
       mountPath: /mnt/media/tv-qrst
 
     downloads:
-      enabled: true
+      enabled: false
       type: pvc
       retain: true
       storageClass: "-"
