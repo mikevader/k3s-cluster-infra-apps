@@ -39,7 +39,7 @@ radarr:
       accessMode: ReadWriteOnce
 
     downloads:
-      enabled: false
+      enabled: true
       type: pvc
       retain: true
       storageClass: "-"
@@ -126,7 +126,7 @@ radarr-4k:
       accessMode: ReadWriteOnce
 
     downloads:
-      enabled: false
+      enabled: true
       type: pvc
       retain: true
       storageClass: "-"
@@ -207,7 +207,7 @@ sonarr:
       accessMode: ReadWriteOnce
 
     downloads:
-      enabled: false
+      enabled: true
       type: pvc
       retain: true
       storageClass: "-"
@@ -318,7 +318,7 @@ sonarr-4k:
       accessMode: ReadWriteOnce
 
     downloads:
-      enabled: false
+      enabled: true
       type: pvc
       retain: true
       storageClass: "-"
@@ -379,6 +379,7 @@ prowlarr:
     APP_PORT: "9696"
     PGID: "666"
     PUID: "666"
+    PROWLARR__AUTHENTICATION_METHOD: "External"
 
   ingress:
     main:
