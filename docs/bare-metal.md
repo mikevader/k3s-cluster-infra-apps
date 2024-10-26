@@ -275,6 +275,9 @@ This should be added as startup command to `/etc/network/if-up.d/`
 * https://www.serverschmiede.com/konfigurator_bulk/en/supermicro-cse-116ts-h12ssw-ntr-19-1u-10x-25-sff-nvme-sas-sata-amd-epyc-gen2-gen3-ddr4-ecc-raid-2x-psu
 * https://serverando.de/Server/
 * https://www.servethehome.com/introducing-project-tinyminimicro-home-lab-revolution/
+* https://www.ebay.de/itm/404433125454?itmmeta=01J2635VSAH35D01S3P83AEHSX&hash=item5e2a17c04e:g:eN8AAOSwNFxktdsz&var=674539469591
+* https://www.ebay.de/itm/305247609020?itmmeta=01J262NDCBCZ5V7WGW29NDQGZC&hash=item47122ce0bc:g:fFcAAOSw95plqVp0&itmprp=enc%3AAQAJAAAA4P%2BHsi8ZJxxkeeuXEbknuuEvnrzmVSyLnf8JsUZ6M3ubQM06d5Ztt8bkEqeBHOEQIseuaFiwu%2BYeZWs2ohLL9pgM8QdmI7XsxgytIKQ5lFwdND6qDTMi5ODfbropBH5gVAVKfJ6hmSx1MuvFA2O1cmz8DAxXaETqWV33zz1phg3vNu9c7P2qmopNvlD28mJB0UlnxGhm8I3NHdEp8FUPw4FB0Kit63lUxxvDAiRGQ5IR3LQCBl7xmJHFnhIkaDfDnBCC2rsIXj903lnHDSGRuvXc4R4DF%2FXQQa5PekGctP7R%7Ctkp%3ABFBMotbVwpFk
+* https://www.ebay.de/itm/404433125454?chn=ps&_ul=DE&var=674539291378&norover=1&mkevt=1&mkrid=707-166974-037691-2&mkcid=2&mkscid=101&itemid=674539502517_404433125454&targetid=2279743046334&device=c&mktype=pla&googleloc=1002964&poi=&campaignid=20743725838&mkgroupid=156953869822&rlsatarget=pla-2279743046334&abcId=9330607&merchantid=5361935233&geoid=1002964&gad_source=1&gbraid=0AAAAAD_G4xa4G7JEe2Z80T4KhK0Ii0ERO&gclid=Cj0KCQjw-ai0BhDPARIsAB6hmP6Go03PZEXz5yMqYFizH6-J0wiekFwj-PhXREKvgglAMvHLL7MFWVsaAk52EALw_wcB
 * https://www.pchc.ch/en/Divers/spare-parts/Lenovo-CARDPOP-BLD-Tiny8-BTB-LAN-card----5C50W00908.html
 * https://www.ebay.com/itm/276424564157
 * 
