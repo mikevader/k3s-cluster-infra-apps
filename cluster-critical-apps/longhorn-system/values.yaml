@@ -3,7 +3,7 @@ longhorn:
     defaultClassReplicaCount: 3
   defaultSettings:
     concurrentAutomaticEngineUpgradePerNodeLimit: 1
-    replicaAutoBalance: best-effort
+    replicaAutoBalance: disabled # best-effort
     defaultReplicaCount: 3
     createDefaultDiskLabeledNodes: true
     backupTarget: 's3://k3sbackups@us-east-1/longhorn'
