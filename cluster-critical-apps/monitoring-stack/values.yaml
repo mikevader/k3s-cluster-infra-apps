@@ -347,6 +347,13 @@ kube-prometheus-stack:
   prometheus:
     prometheusSpec:
       externalUrl: https://prometheus.framsburg.ch
+      ruleSelector:
+        matchLabels: null
+      serviceMonitorSelector:
+        matchLabels: null
+      podMonitorSelector:
+        matchLabels: null
+
       ruleSelectorNilUsesHelmValues: false
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
