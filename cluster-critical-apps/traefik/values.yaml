@@ -22,7 +22,7 @@ traefik:
     enabled: false
     accessMode: ReadWriteMany
 
-  certResolvers:
+  certificatesResolvers:
     letsencrypt:
       # caserver: https://acme-staging-v02.api.letsencrypt.org/directory
       email: mmuehlebach+acme@gmail.com
