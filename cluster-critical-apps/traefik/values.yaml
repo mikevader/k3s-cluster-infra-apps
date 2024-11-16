@@ -24,16 +24,17 @@ traefik:
 
   certificatesResolvers:
     letsencrypt:
-      # caserver: https://acme-staging-v02.api.letsencrypt.org/directory
-      email: mmuehlebach+acme@gmail.com
-      dnsChallenge:
-        provider: digitalocean
-        delayBeforeCheck: 0
-        disablepropagationcheck: true
-        resolvers:
-          - "1.1.1.1:53"
-          - "8.8.8.8:53"
-      storage: /data/acme.json
+      acme:
+        # caserver: https://acme-staging-v02.api.letsencrypt.org/directory
+        email: mmuehlebach+acme@gmail.com
+        dnsChallenge:
+          provider: digitalocean
+          delayBeforeCheck: 0
+          disablepropagationcheck: true
+          resolvers:
+            - "1.1.1.1:53"
+            - "8.8.8.8:53"
+        storage: /data/acme.json
 
   env:
     - name: DO_AUTH_TOKEN
