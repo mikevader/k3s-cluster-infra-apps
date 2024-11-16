@@ -5,6 +5,7 @@ metadata:
   namespace: kube-system
 spec:
   schedule: "0 0 * * 0"
+  suspend: true
   jobTemplate:
     spec:
       template:
