@@ -70,7 +70,7 @@ traefik:
   ingressClass:
     enabled: true
     isDefaultClass: false
-    fallbackApiVersion: v1
+    name: "traefik-external"
   providers:
     kubernetesCRD:
       allowCrossNamespace: true
