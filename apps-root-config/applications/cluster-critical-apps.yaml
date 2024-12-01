@@ -38,6 +38,7 @@ applications:
     source:
       helm:
         skipCrds: true
+  nginx: {}
   opnsense: {}
   promtail: {}
   traefik: {}
