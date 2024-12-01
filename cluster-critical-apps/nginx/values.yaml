@@ -5,8 +5,9 @@ nginx:
         metallb.universe.tf/address-pool: metallb-external-ip-range
         metallb.universe.tf/allow-shared-ip: shared-external
 
+    metrics:
+      serviceMonitor:
+        enable:
+
     serviceMonitor:
       create: true
-
-  serviceInsight:
-    create: true
