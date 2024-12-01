@@ -41,4 +41,4 @@ applications:
   opnsense: {}
   promtail: {}
   traefik: {}
-  traefik-external: {}
+#  traefik-external: {}
