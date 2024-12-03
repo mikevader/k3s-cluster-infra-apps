@@ -20,3 +20,5 @@ spec:
   interfaces:
     - ens18.99
     - eth0.99
+    - ens18.99@ens18
+    - eth0.99@eth0
