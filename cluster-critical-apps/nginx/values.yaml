@@ -2,7 +2,7 @@ nginx:
   controller:
     service:
       annotations:
-        metallb.universe.tf/address-pool: metallb-external-ip-range
+        metallb.universe.tf/address-pool: external
         metallb.universe.tf/allow-shared-ip: shared-external
 
     metrics:
