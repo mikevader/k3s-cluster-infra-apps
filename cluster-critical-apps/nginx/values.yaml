@@ -7,7 +7,7 @@ nginx:
 
     metrics:
       serviceMonitor:
-        enable:
+        enable: true
 
     serviceMonitor:
       create: true
