@@ -6,6 +6,7 @@ nginx:
         metallb.universe.tf/allow-shared-ip: shared-external
 
     metrics:
+      enabled: true
       serviceMonitor:
         enable: true
 
