@@ -180,9 +180,9 @@ plex:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
-      ingressClassName: traefik-external
+        # traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        # traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
+      ingressClassName: nginx
       hosts:
         - host: plex.framsburg.ch
           paths:
