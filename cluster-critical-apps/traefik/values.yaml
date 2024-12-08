@@ -120,7 +120,10 @@ traefik:
       # exposedPort: 9100
   ingressRoute:
     dashboard:
-      enabled: false
+      enabled: true
+      entryPoints: ["websecure"]
+      tls:
+        secretName: traefik-framsburg-ch-tls
   ingressClass:
     enabled: true
     isDefaultClass: true
