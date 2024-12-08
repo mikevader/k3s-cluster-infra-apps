@@ -2,7 +2,7 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: externalOnInternal
+  name: external-on-internal
   namespace: metallb-system
 spec:
   addresses:
@@ -16,7 +16,7 @@ metadata:
   namespace: metallb-system
 spec:
   ipAddressPools:
-    - externalOnInternal
+    - external-on-internal
   interfaces:
     - ens18
     - eth0
