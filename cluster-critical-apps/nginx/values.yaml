@@ -18,5 +18,5 @@ nginx:
     51413: hidden/transmission-utptcp:51413
 
   udp:
-    30402: plex/torrent-transmission-utpudp:30402
+    # 30402: plex/torrent-transmission-utpudp:30402
     # 51413: hidden/transmission-utpudp:51413
