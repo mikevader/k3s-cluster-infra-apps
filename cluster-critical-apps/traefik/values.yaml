@@ -13,10 +13,10 @@ traefik:
   globalArguments:
     - "--global.checknewversion"
     - "--api.dashboard=true"
-    - "--serverstransport.insecureskipverify=true"
+    # - "--serverstransport.insecureskipverify=true"
     - "--metrics.prometheus=true"
     - "--metrics.prometheus.entryPoint=metrics"
-    - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd"
+    - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd,,error-pages-error-pages@kubernetescrd"
 
   persistence:
     enabled: false
@@ -129,6 +129,7 @@ traefik:
     isDefaultClass: true
   providers:
     kubernetesCRD:
+      allowCrossNamespace: true
       ingressClass: traefik
     kubernetesIngress:
       ingressClass: traefik
