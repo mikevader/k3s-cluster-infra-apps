@@ -11,13 +11,11 @@ spec:
     - host: argocd-callback.framsburg.ch
       http:
         paths:
-          - path: /api/webhook
+          - path: /
             pathType: Prefix
             backend:
               service:
                 name: argo-cd-argocd-server
-                port:
-                  number: 8080
   tls:
     - hosts:
       - argocd-callback.framsburg.ch
