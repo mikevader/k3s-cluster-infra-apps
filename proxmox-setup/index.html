@@ -307,6 +307,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#iommu-pci-passthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      IOMMU (PCI Passthrough)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#vlan-aware" class="md-nav__link">
     <span class="md-ellipsis">
       VLAN Aware
@@ -1138,6 +1147,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#iommu-pci-passthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      IOMMU (PCI Passthrough)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#vlan-aware" class="md-nav__link">
     <span class="md-ellipsis">
       VLAN Aware
@@ -1279,43 +1297,36 @@ can be used. Idealy those steps would be automated but ...</p>
 </code></pre></div>
 <h3 id="storage">Storage</h3>
 <p>BE CAREFUL. This is meant for the storage/longhorn disks as it will wipe it</p>
-<p>``` bash caption="select the correct disk device"
-fdisk /dev/sda
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Then P for partition, then D for delete and W for write.
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>### IOMMU  (PCI Passthrough)
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>See [Proxmox PCI Passthrough](https://pve.proxmox.com/wiki/Pci_passthrough)
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>First make sure IOMMU is enabled in the BIOS.
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>`nano /etc/kernel/cmdline`
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>Add `intel_iommu=on iommu=pt` to the end of this line without line breaks. (for
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>AMD processors add `amd_iommu=on ...`)
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>```shell
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on iommu=pt
-</code></pre></div></p>
+<div class="highlight"><span class="filename">select the correct disk device</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>fdisk<span class="w"> </span>/dev/sda
+</code></pre></div>
+<p>Then P for partition, then D for delete and W for write.</p>
+<h3 id="iommu-pci-passthrough">IOMMU  (PCI Passthrough)</h3>
+<p>See <a href="https://pve.proxmox.com/wiki/Pci_passthrough">Proxmox PCI Passthrough</a></p>
+<p>First make sure IOMMU is enabled in the BIOS.</p>
+<p><code>nano /etc/kernel/cmdline</code></p>
+<p>Add <code>intel_iommu=on iommu=pt</code> to the end of this line without line breaks. (for
+AMD processors add <code>amd_iommu=on ...</code>)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">root</span><span class="o">=</span><span class="nv">ZFS</span><span class="o">=</span>rpool/ROOT/pve-1<span class="w"> </span><span class="nv">boot</span><span class="o">=</span>zfs<span class="w"> </span><span class="nv">intel_iommu</span><span class="o">=</span>on<span class="w"> </span><span class="nv">iommu</span><span class="o">=</span>pt
+</code></pre></div>
 <p>Edit <code>/etc/modules</code> and add</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>vfio
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>vfio_iommu_type1
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>vfio_pci
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>vfio_virqfd
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>vfio
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>vfio_iommu_type1
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>vfio_pci
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>vfio_virqfd
 </code></pre></div>
 <p>run</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>update-initramfs<span class="w"> </span>-u<span class="w"> </span>-k<span class="w"> </span>all
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># or proxmox-boot-tool refresh</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>reboot
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>update-initramfs<span class="w"> </span>-u<span class="w"> </span>-k<span class="w"> </span>all
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># or proxmox-boot-tool refresh</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>reboot
 </code></pre></div>
 <h3 id="vlan-aware">VLAN Aware</h3>
 <p>Setup the network interface to handle VLANs.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>nano<span class="w"> </span>/etc/network/interfaces
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>nano<span class="w"> </span>/etc/network/interfaces
 </code></pre></div>
 <p>Add the following lines to the main network interface</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>bridge-vlan-aware<span class="w"> </span>yes
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>bridge-vids<span class="w"> </span><span class="m">2</span>-4094
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>bridge-vlan-aware<span class="w"> </span>yes
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>bridge-vids<span class="w"> </span><span class="m">2</span>-4094
 </code></pre></div>
 <h3 id="isos">ISOs</h3>
 <p>Define images:</p>
@@ -1372,8 +1383,8 @@ part of the longhorn storage and has an interface to the internet.</p>
 </ul>
 <p>Don't forget to define the generated mac address in DHCP</p>
 <h3 id="install-qemu-agent">Install Qemu Agent</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ssh<span class="w"> </span>devops@k3sworker&lt;xy&gt;
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>qemu-guest-agent
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ssh<span class="w"> </span>devops@k3sworker&lt;xy&gt;
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>qemu-guest-agent
 </code></pre></div>
 <h3 id="disk-passthrough">Disk passthrough</h3>
 <p>The disks for longhorn, especially the slower ones like HDD, should be attached to the VM directly.
@@ -1383,22 +1394,22 @@ Unfortunately there is no way to do this in the Web UI at the moment but proxmox
 <ol>
 <li>Find right disk</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>find<span class="w"> </span>/dev/disk/by-id/<span class="w"> </span>-type<span class="w"> </span>l<span class="p">|</span>xargs<span class="w"> </span>-I<span class="o">{}</span><span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span><span class="o">{}</span><span class="p">|</span>grep<span class="w"> </span>-v<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;[0-9]$&#39;</span><span class="w"> </span><span class="p">|</span>sort<span class="w"> </span>-k11<span class="p">|</span>cut<span class="w"> </span>-d<span class="s1">&#39; &#39;</span><span class="w"> </span>-f9,10,11,12
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>find<span class="w"> </span>/dev/disk/by-id/<span class="w"> </span>-type<span class="w"> </span>l<span class="p">|</span>xargs<span class="w"> </span>-I<span class="o">{}</span><span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span><span class="o">{}</span><span class="p">|</span>grep<span class="w"> </span>-v<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;[0-9]$&#39;</span><span class="w"> </span><span class="p">|</span>sort<span class="w"> </span>-k11<span class="p">|</span>cut<span class="w"> </span>-d<span class="s1">&#39; &#39;</span><span class="w"> </span>-f9,10,11,12
 </code></pre></div>
 <ol>
 <li>Add drive as new virtual drive</li>
 </ol>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>qm<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">592</span><span class="w"> </span>-scsi2<span class="w"> </span>/dev/disk/by-id/ata-...
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>qm<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">592</span><span class="w"> </span>-scsi2<span class="w"> </span>/dev/disk/by-id/ata-...
 </code></pre></div>
 Replace <em>592</em> with the correct VM id and -scsi<em>2</em> with the next scsi id.</p>
 <ol>
 <li>Remove drive</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>qm<span class="w"> </span>unlink<span class="w"> </span><span class="m">592</span><span class="w"> </span>--idlist<span class="w"> </span>scsi2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>qm<span class="w"> </span>unlink<span class="w"> </span><span class="m">592</span><span class="w"> </span>--idlist<span class="w"> </span>scsi2
 </code></pre></div>
 <h2 id="tips-trick">Tips &amp; Trick</h2>
 <h3 id="resize-disk">Resize disk</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>lvresize<span class="w"> </span>-l<span class="w"> </span>+100%FREE<span class="w"> </span>--resizefs<span class="w"> </span>/dev/mapper/ubuntu--vg-ubuntu--lv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>lvresize<span class="w"> </span>-l<span class="w"> </span>+100%FREE<span class="w"> </span>--resizefs<span class="w"> </span>/dev/mapper/ubuntu--vg-ubuntu--lv
 </code></pre></div>
 <p>6510C08A-590C-477C-A72E-D3E25B972D5E</p>
 <h2 id="references">References</h2>
