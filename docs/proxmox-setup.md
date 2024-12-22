@@ -99,15 +99,16 @@ reboot
 
 Setup the network interface to handle VLANs.
 
-```bash
-nano /etc/network/interfaces
-```
+Add the following lines to the main network interface so all vlans are served
+over one interface and supports vlan ids from 2 to 4096.
 
-Add the following lines to the main network interface
-
-```shell
-bridge-vlan-aware yes
-bridge-vids 2-4094
+``` bash title="/etc/network/interfaces" hl_lines="5 6"
+iface vmbr0 inet static
+    address 192.168.xx.xx/24
+    gateway 192.168.xx.xx
+    ...
+    bridge-vlan-aware yes
+    bridge-vids 2-4094
 ```
 
 
@@ -116,6 +117,7 @@ bridge-vids 2-4094
 Define images:
 
 * https://releases.ubuntu.com/22.10/ubuntu-22.10-live-server-amd64.iso
+* https://releases.ubuntu.com/noble/ubuntu-24.04.1-live-server-amd64.iso
 
 
 ## Setup worker node
