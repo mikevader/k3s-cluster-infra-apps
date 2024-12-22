@@ -56,7 +56,7 @@ reboot
 
 BE CAREFUL. This is meant for the storage/longhorn disks as it will wipe it
 
-``` bash caption="select the correct disk device"
+``` bash title="select the correct disk device"
 fdisk /dev/sda
 ```
 
