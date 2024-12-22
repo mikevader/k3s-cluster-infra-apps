@@ -44,7 +44,7 @@ Edit `/etc/apt/sources.list.d/pve-enterprise.list`
 
 Run
 
-```bash
+``` bash
 apt-get update
 
 apt full-upgrade
@@ -56,7 +56,7 @@ reboot
 
 BE CAREFUL. This is meant for the storage/longhorn disks as it will wipe it
 
-```bash caption="select the correct disk device"
+``` bash caption="select the correct disk device"
 fdisk /dev/sda
 ```
 
