@@ -11,7 +11,7 @@ spec:
     - host: argocd-callback.framsburg.ch
       http:
         paths:
-          - path: /
+          - path: /api/webhook
             pathType: Prefix
             backend:
               service:

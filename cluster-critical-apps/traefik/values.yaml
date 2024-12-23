@@ -121,7 +121,7 @@ traefik:
       # exposedPort: 9100
   ingressRoute:
     dashboard:
-      enabled: true
+      enabled: false
       entryPoints: ["websecure"]
       tls:
         secretName: traefik-framsburg-ch-tls
