@@ -16,7 +16,7 @@ traefik:
     - "--serverstransport.insecureskipverify=true"
     - "--metrics.prometheus=true"
     - "--metrics.prometheus.entryPoint=metrics"
-    - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd,error-pages-error-pages@kubernetescrd"
+   # - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd,error-pages-error-pages@kubernetescrd"
    # - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd"
 
   persistence:
@@ -149,7 +149,7 @@ traefik:
   autoscaling:
     enabled: true
     minReplicas: 1
-    maxReplicas: 5
+    maxReplicas: 4
     metrics:
       - type: Resource
         resource:
