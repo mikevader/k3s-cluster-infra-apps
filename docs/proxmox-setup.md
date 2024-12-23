@@ -122,55 +122,53 @@ Define images:
 
 ## Setup worker node
 
+First select `Create VM` 
+
 Depending on the usage the parameters may vary. But following is a node which is
-part of the longhorn storage and has an interface to the internet.
+part of the longhorn storage and has an interface to the internet. The list
+defines mostly non default values. If nothing else specified take the defaults.
 
 * General:
-  * Node: pve1-x
-  * Name: k3sworker
-  * Start at boot: true
+    * Node: pve1-x
+    * Name: k3sworker
+    * Start at boot: true
 * OS:
-  * ISO Image: ubuntu server installer
+    * Storage: local
+    * ISO Image: ubuntu server installer
 * System:
-  * Qemu Agent: true
+    * Qemu Agent: true
 * Disks:
-  * disk 1:
-    * Storage: virtual
-    * Size: 64 GB
-    * Backup: yes
-    * Skip replication: no
-    * Discard: yes
-    * SSD emulation: yes
-  * disk 2:
-    * Storage: virtual
-    * Size: >512 GB
-    * Backup: no
-    * Skip replication: yes
-    * Discard: yes
-    * SSD emulation: yes
+    * disk 1:
+        * Storage: local
+        * Size: 128 GB
+        * Backup: yes
+        * Skip replication: no
+        * Discard: yes
+        * SSD emulation: yes
+    * disk 2: (for longhorn but passthrough is preferred)
+        * Storage: virtual
+        * Size: >512 GB
+        * Backup: no
+        * Skip replication: yes
+        * Discard: yes
+        * SSD emulation: yes
 * CPU:
-  * Sockets: 1
-  * Cores: 2-12
+    * Sockets: 1
+    * Cores: 2-12
 * Memory:
-  * min 32 GB
-  * max 64 GB
+    * min 16 GB (16384 MiB)  
+    * opt 32 GB (32768 MiB)
+    * max 64 GB (65536 MiB) (You can't use all memory, keep 2GB)
 * Network:
-  * net0
-    * Bridge: vmbr0
-  * net1
-    * Bridge: vmbr0
-    * vlan tag: 99
+    * net0
+        * Bridge: vmbr0
+    * net1
+        * Bridge: vmbr0
+        * vlan tag: 99
 
 Don't forget to define the generated mac address in DHCP
 
-
-### Install Qemu Agent
-
-```bash
-ssh devops@k3sworker<xy>
-sudo apt-get install qemu-guest-agent
-```
-
+You might have to adjust the boot order for CD to be first.
 
 ### Disk passthrough
 
@@ -184,6 +182,12 @@ Go through the following steps
 
 ```bash
 find /dev/disk/by-id/ -type l|xargs -I{} ls -l {}|grep -v -E '[0-9]$' |sort -k11|cut -d' ' -f9,10,11,12
+```
+
+or
+
+``` bash
+lsblk |awk 'NR==1{print $0" DEVICE-ID(S)"}NR>1{dev=$1;printf $0" ";system("find /dev/disk/by-id -lname \"*"dev"\" -printf \" %p\"");print "";}'|grep -v -E 'part|lvm'
 ```
 
 2. Add drive as new virtual drive
@@ -207,7 +211,13 @@ qm unlink 592 --idlist scsi2
 sudo lvresize -l +100%FREE --resizefs /dev/mapper/ubuntu--vg-ubuntu--lv
 ```
 
-6510C08A-590C-477C-A72E-D3E25B972D5E
+### Install Qemu Agent
+
+```bash
+ssh devops@k3sworker<xy>
+sudo apt-get install qemu-guest-agent
+```
+
 
 ## References
 
