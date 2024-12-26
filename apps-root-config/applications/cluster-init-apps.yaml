@@ -48,3 +48,5 @@ applications:
   etcd:
     disableNamespaceCreation: true
     destinationNamespace: argocd-system
+  cluster-resources:
+    disableNamespaceCreation: true
