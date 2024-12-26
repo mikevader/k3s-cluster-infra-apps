@@ -203,6 +203,53 @@ Replace *592* with the correct VM id and -scsi*2* with the next scsi id.
 qm unlink 592 --idlist scsi2
 ```
 
+
+### GPU Passthrough
+
+**As prerequisite** you should make sure the onboard graphics is still enabled and is the primary display.
+
+I follow the suggestions from [proxmox passthrough guide][proxmox-pci-passthrough]:
+
+First you want to blacklist GPU drivers to prevent the host from loading the GPU (we want to use in the VM :D )
+
+``` bash
+echo "blacklist amdgpu" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist radeon" >> /etc/modprobe.d/blacklist.conf
+
+echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf 
+echo "blacklist nvidia*" >> /etc/modprobe.d/blacklist.conf
+
+echo "blacklist i915" >> /etc/modprobe.d/blacklist.conf
+```
+
+After setting this you have to update the `ramfs` and reboot the system.
+
+``` bash
+update-initramfs -u -k all
+```
+
+Find Vendor and Devide ID to use for the VM Device (vfio)
+
+``` shell
+echo "options vfio-pci ids=10de:1ff0 disable_vga=1" > /etc/modprobe.d/vfio.conf
+```
+
+Reboot and add raw device (select map all functions)
+
+
+``` shell
+hostpci0: 0000:01:00,pcie=1
+```
+
+### Nvidia drivers on k3s node
+
+https://www.declarativesystems.com/2023/11/04/kubernetes-nvidia.html
+
+https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+
+
+
+
 ## Tips & Trick
 
 ### Resize disk
@@ -223,6 +270,8 @@ sudo apt-get install qemu-guest-agent
 
 [tt-proxmox]: https://docs.technotim.live/posts/first-11-things-proxmox/
 [proxmox-passthrough]: https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)
+[proxmox-pci-passthrough]: https://pve.proxmox.com/wiki/PCI_Passthrough
+[gpu-passthrough-guide]: https://pve.proxmox.com/pve-docs/pve-admin-guide.html#_gpu_passthrough_notes
 
 
 
