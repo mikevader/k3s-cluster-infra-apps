@@ -357,6 +357,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gpu-passthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPU Passthrough
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nvidia-drivers-on-k3s-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nvidia drivers on k3s node
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1197,6 +1215,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gpu-passthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPU Passthrough
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nvidia-drivers-on-k3s-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nvidia drivers on k3s node
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1429,13 +1465,37 @@ Replace <em>592</em> with the correct VM id and -scsi<em>2</em> with the next sc
 </ol>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>qm<span class="w"> </span>unlink<span class="w"> </span><span class="m">592</span><span class="w"> </span>--idlist<span class="w"> </span>scsi2
 </code></pre></div>
+<h3 id="gpu-passthrough">GPU Passthrough</h3>
+<p><strong>As prerequisite</strong> you should make sure the onboard graphics is still enabled and is the primary display.</p>
+<p>I follow the suggestions from <a href="https://pve.proxmox.com/wiki/PCI_Passthrough">proxmox passthrough guide</a>:</p>
+<p>First you want to blacklist GPU drivers to prevent the host from loading the GPU (we want to use in the VM :D )</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;blacklist amdgpu&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/modprobe.d/blacklist.conf
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;blacklist radeon&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/modprobe.d/blacklist.conf
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;blacklist nouveau&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/modprobe.d/blacklist.conf<span class="w"> </span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;blacklist nvidia*&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/modprobe.d/blacklist.conf
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;blacklist i915&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/modprobe.d/blacklist.conf
+</code></pre></div>
+<p>After setting this you have to update the <code>ramfs</code> and reboot the system.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>update-initramfs<span class="w"> </span>-u<span class="w"> </span>-k<span class="w"> </span>all
+</code></pre></div>
+<p>Find Vendor and Devide ID to use for the VM Device (vfio)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;options vfio-pci ids=10de:1ff0 disable_vga=1&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/modprobe.d/vfio.conf
+</code></pre></div>
+<p>Reboot and add raw device (select map all functions)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>hostpci0:<span class="w"> </span><span class="m">0000</span>:01:00,pcie<span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+<h3 id="nvidia-drivers-on-k3s-node">Nvidia drivers on k3s node</h3>
+<p>https://www.declarativesystems.com/2023/11/04/kubernetes-nvidia.html</p>
+<p>https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html</p>
 <h2 id="tips-trick">Tips &amp; Trick</h2>
 <h3 id="resize-disk">Resize disk</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>lvresize<span class="w"> </span>-l<span class="w"> </span>+100%FREE<span class="w"> </span>--resizefs<span class="w"> </span>/dev/mapper/ubuntu--vg-ubuntu--lv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>lvresize<span class="w"> </span>-l<span class="w"> </span>+100%FREE<span class="w"> </span>--resizefs<span class="w"> </span>/dev/mapper/ubuntu--vg-ubuntu--lv
 </code></pre></div>
 <h3 id="install-qemu-agent">Install Qemu Agent</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ssh<span class="w"> </span>devops@k3sworker&lt;xy&gt;
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>qemu-guest-agent
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ssh<span class="w"> </span>devops@k3sworker&lt;xy&gt;
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>qemu-guest-agent
 </code></pre></div>
 <h2 id="references">References</h2>
 <ul>
