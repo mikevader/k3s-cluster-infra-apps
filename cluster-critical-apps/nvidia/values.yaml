@@ -2,3 +2,5 @@ nvidia:
   runtimeClassName: nvidia
   nfd:
     enabled: true
+  gfd:
+    enabled: true
