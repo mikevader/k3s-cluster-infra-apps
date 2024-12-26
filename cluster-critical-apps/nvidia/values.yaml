@@ -1,2 +1,4 @@
 nvidia:
   runtimeClassName: nvidia
+  nfd:
+    enabled: true
