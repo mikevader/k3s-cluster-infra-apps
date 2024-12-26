@@ -39,6 +39,7 @@ applications:
       helm:
         skipCrds: true
   nginx: {}
+  nvidia: {}
   opnsense: {}
   promtail: {}
   traefik: {}
