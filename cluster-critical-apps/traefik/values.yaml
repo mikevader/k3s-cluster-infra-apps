@@ -12,11 +12,11 @@ traefik:
     #       name: data
   globalArguments:
     - "--global.checknewversion"
-   # - "--api.dashboard=true"
-   # - "--serverstransport.insecureskipverify=true"
-   # - "--metrics.prometheus=true"
-   # - "--metrics.prometheus.entryPoint=metrics"
-   # - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd,error-pages-error-pages@kubernetescrd"
+    - "--api.dashboard=true"
+    - "--serverstransport.insecureskipverify=true"
+    - "--metrics.prometheus=true"
+    - "--metrics.prometheus.entryPoint=metrics"
+    - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd,error-pages-error-pages@kubernetescrd"
    # - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd"
 
   persistence:
