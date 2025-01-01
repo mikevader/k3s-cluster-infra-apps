@@ -105,8 +105,8 @@ radarr-4k:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.priority: "10"
-        traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+        # traefik.ingress.kubernetes.io/router.priority: "10"
+        # traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
 
       hosts:
         - host: 'radarr4k.framsburg.ch'
@@ -297,8 +297,8 @@ sonarr-4k:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.priority: "10"
-        traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+        # traefik.ingress.kubernetes.io/router.priority: "10"
+        # traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
 
       hosts:
         - host: 'sonarr4k.framsburg.ch'
@@ -387,8 +387,8 @@ prowlarr:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        #traefik.ingress.kubernetes.io/router.priority: "10"
-        #traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+        # traefik.ingress.kubernetes.io/router.priority: "10"
+        # traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
 
       hosts:
         - host: 'prowlarr.framsburg.ch'
