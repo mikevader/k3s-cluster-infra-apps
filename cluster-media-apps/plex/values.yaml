@@ -79,7 +79,7 @@ plex:
       hostPathType: Directory
       mountPath: /mnt/media/tv2
     movies:
-      enabled: false
+      enabled: true
       readonly: true
       type: pvc
       size: 200Gi
