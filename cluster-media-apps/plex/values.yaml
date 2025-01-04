@@ -1,6 +1,6 @@
 plex:
   controller:
-    enabled: true
+    enabled: false
   env:
     # cat /config/Library/Application\ Support/Plex\ Media\ Server/Preferences.xml | tr " " "\n" | \
     # sed -n '/<Preferences/,$p' | tail -n +2 | sed 's,/>,,g' | \
