@@ -388,6 +388,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#new-network-card-on-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      New network card on Proxmox
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hardware-buy-list" class="md-nav__link">
     <span class="md-ellipsis">
       Hardware Buy List
@@ -1260,6 +1269,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#new-network-card-on-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      New network card on Proxmox
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hardware-buy-list" class="md-nav__link">
     <span class="md-ellipsis">
       Hardware Buy List
@@ -1506,6 +1524,51 @@ command might help:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ethtool<span class="w"> </span>-K<span class="w"> </span>&lt;ADAPTER&gt;<span class="w"> </span>gso<span class="w"> </span>off<span class="w"> </span>gro<span class="w"> </span>off<span class="w"> </span>tso<span class="w"> </span>off<span class="w"> </span>
 </code></pre></div>
 <p>This should be added as startup command to <code>/etc/network/if-up.d/</code></p>
+<h2 id="new-network-card-on-proxmox">New network card on Proxmox</h2>
+<p>Assuming to add a new network card and replacing an old one</p>
+<ol>
+<li>Check that no kernel module is missing with <code>dmesg | grep -i ethernet</code> (should return no message)</li>
+<li>Show all interfaces <code>ip link show</code> and note the name of the new</li>
+<li>Add new interface to <code>/etc/network/interfaces</code></li>
+</ol>
+<div class="highlight"><span class="filename">old version</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>auto lo
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>iface lo inet loopback
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>iface eno1 inet manual
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>        gso-offload off
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>        tso-offload off
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>auto vmbr0
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>iface vmbr0 inet static
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>        address 192.168.42.110/24
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>        gateway 192.168.42.1
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>        bridge-ports eno1
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>        bridge-stp off
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>        bridge-fd 0
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>        bridge-vlan-aware yes
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>        bridge-vids 2-4094
+</code></pre></div>
+<div class="highlight"><span class="filename">new version</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>auto lo
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>iface lo inet loopback
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>auto enp2s0f1 inet dhcp
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>iface enp2s0f1 inet manual
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>iface enp3s0 inet manual
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>auto vmbr0
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>iface vmbr0 inet static
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>        address 192.168.42.111/24
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>        gateway 192.168.42.1
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>        bridge-ports enp3s0
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>        bridge-stp off
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>        bridge-fd 0
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>        bridge-vlan-aware yes
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>        bridge-vids 2-4094
+</code></pre></div>
+<ol>
+<li>Restart networking with <code>systemctl restart networking.service</code></li>
+</ol>
 <h2 id="hardware-buy-list">Hardware Buy List</h2>
 <ul>
 <li>https://www.mk1manufacturing.com/cart.php?m=view</li>
