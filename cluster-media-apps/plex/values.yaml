@@ -146,7 +146,7 @@ plex:
               - key: kubernetes.io/hostname
                 operator: In
                 values:
-                  - k3sworker06
+                  - k3sworker07
 #    nodeAffinity:
 #      preferredDuringSchedulingIgnoredDuringExecution:
 #        - weight: 50
