@@ -265,6 +265,57 @@ ethtool -K <ADAPTER> gso off gro off tso off
 This should be added as startup command to `/etc/network/if-up.d/`
 
 
+## New network card on Proxmox
+
+Assuming to add a new network card and replacing an old one
+
+1. Check that no kernel module is missing with `dmesg | grep -i ethernet` (should return no message)
+2. Show all interfaces `ip link show` and note the name of the new
+3. Add new interface to `/etc/network/interfaces`
+
+``` title="old version"
+auto lo
+iface lo inet loopback
+
+iface eno1 inet manual
+        gso-offload off
+        tso-offload off
+
+auto vmbr0
+iface vmbr0 inet static
+        address 192.168.42.110/24
+        gateway 192.168.42.1
+        bridge-ports eno1
+        bridge-stp off
+        bridge-fd 0
+        bridge-vlan-aware yes
+        bridge-vids 2-4094
+```
+
+``` title="new version"
+auto lo
+iface lo inet loopback
+
+auto enp2s0f1 inet dhcp
+iface enp2s0f1 inet manual
+
+iface enp3s0 inet manual
+
+auto vmbr0
+iface vmbr0 inet static
+        address 192.168.42.111/24
+        gateway 192.168.42.1
+        bridge-ports enp3s0
+        bridge-stp off
+        bridge-fd 0
+        bridge-vlan-aware yes
+        bridge-vids 2-4094
+```
+
+4. Restart networking with `systemctl restart networking.service`
+
+
+
 ## Hardware Buy List
 
 * https://www.mk1manufacturing.com/cart.php?m=view

@@ -243,6 +243,8 @@ hostpci0: 0000:01:00,pcie=1
 
 ### Nvidia drivers on k3s node
 
+https://ubuntu.com/server/docs/nvidia-drivers-installation
+
 https://www.declarativesystems.com/2023/11/04/kubernetes-nvidia.html
 
 https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
