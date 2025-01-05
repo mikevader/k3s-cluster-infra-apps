@@ -1,7 +1,7 @@
 plex:
   controller:
     enabled: true
-  # runtimeClassName: nvidia
+  runtimeClassName: nvidia
   env:
     # cat /config/Library/Application\ Support/Plex\ Media\ Server/Preferences.xml | tr " " "\n" | \
     # sed -n '/<Preferences/,$p' | tail -n +2 | sed 's,/>,,g' | \
@@ -11,6 +11,8 @@ plex:
     PLEX_UID: 666
     PLEX_GID: 666
     PLEX_CLAIM: "claim-z6APwzcuTys17_L4tSSc"
+    NVIDIA_VISIBLE_DEVICES: all
+    NVIDIA_DRIVER_CAPABILITIES: all
 
   persistence:
     config:
