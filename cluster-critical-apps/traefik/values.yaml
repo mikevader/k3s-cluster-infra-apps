@@ -78,34 +78,45 @@ traefik:
   #   runAsGroup: 0
   #   runAsUser: 0
   # hostNetwork: true
+
+  .DOTrustedIPs: &DOTrustedIPs
+    - "192.168.42.150/32"    # MetalLB IP range
+    - "192.168.42.151/32"    # MetalLB IP range
+    - "192.168.42.152/32"    # MetalLB IP range
+    - "192.168.42.153/32"    # MetalLB IP range
+    - "192.168.42.154/32"    # MetalLB IP range
+    - "192.168.42.155/32"    # MetalLB IP range
+    - "192.168.42.156/32"    # MetalLB IP range
+    - "192.168.42.157/32"    # MetalLB IP range
+    - "192.168.42.158/32"    # MetalLB IP range
+    - "192.168.42.159/32"    # MetalLB IP range
+    - "192.168.42.160/32"    # MetalLB IP range
+    - "192.168.42.161/32"    # MetalLB IP range
+    - "192.168.42.162/32"    # MetalLB IP range
+    - "192.168.42.163/32"    # MetalLB IP range
+    - "192.168.42.164/32"    # MetalLB IP range
+    - "192.168.42.165/32"    # MetalLB IP range
+    - "192.168.42.166/32"    # MetalLB IP range
+    - "192.168.42.167/32"    # MetalLB IP range
+    - "192.168.42.168/32"    # MetalLB IP range
+    - "192.168.42.169/32"    # MetalLB IP range
+    - "192.168.42.0/24"    # MetalLB IP range
+
   ports:
     web:
       redirectTo:
         port: websecure
-    websecure:
       forwardedHeaders:
-        trustedIPs:
-          - "192.168.42.150/32"    # MetalLB IP range
-          - "192.168.42.151/32"    # MetalLB IP range
-          - "192.168.42.152/32"    # MetalLB IP range
-          - "192.168.42.153/32"    # MetalLB IP range
-          - "192.168.42.154/32"    # MetalLB IP range
-          - "192.168.42.155/32"    # MetalLB IP range
-          - "192.168.42.156/32"    # MetalLB IP range
-          - "192.168.42.157/32"    # MetalLB IP range
-          - "192.168.42.158/32"    # MetalLB IP range
-          - "192.168.42.159/32"    # MetalLB IP range
-          - "192.168.42.160/32"    # MetalLB IP range
-          - "192.168.42.161/32"    # MetalLB IP range
-          - "192.168.42.162/32"    # MetalLB IP range
-          - "192.168.42.163/32"    # MetalLB IP range
-          - "192.168.42.164/32"    # MetalLB IP range
-          - "192.168.42.165/32"    # MetalLB IP range
-          - "192.168.42.166/32"    # MetalLB IP range
-          - "192.168.42.167/32"    # MetalLB IP range
-          - "192.168.42.168/32"    # MetalLB IP range
-          - "192.168.42.169/32"    # MetalLB IP range
-          - "192.168.42.0/24"    # MetalLB IP range
+        trustedIPs: *DOTrustedIPs
+      proxyProtocol:
+        trustedIPs: *DOTrustedIPs
+    websecure:
+      http3:
+        enabled: true
+      forwardedHeaders:
+        trustedIPs: *DOTrustedIPs
+      proxyProtocol:
+        trustedIPs: *DOTrustedIPs
       tls:
         enabled: true
     cups:
