@@ -40,9 +40,10 @@ transmission:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
-        traefik.passHostHeader: "true"
+        # traefik.passHostHeader: "true"
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.priority: "10"
+        # traefik.ingress.kubernetes.io/router.priority: "10"
+      ingressClassName: traefik
       hosts:
         - host: 'transmission.framsburg.ch'
           paths:
@@ -101,7 +102,8 @@ flood:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.priority: "10"
+        # traefik.ingress.kubernetes.io/router.priority: "10"
+      ingressClassName: traefik
       hosts:
         - host: 'flood.framsburg.ch'
           paths:
