@@ -407,16 +407,16 @@ prowlarr:
       size: 10Gi
       accessMode: ReadWriteOnce
 
-  affinity:
-    podAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                  - plex
-          topologyKey: kubernetes.io/hostname
+#  affinity:
+#    podAffinity:
+#      requiredDuringSchedulingIgnoredDuringExecution:
+#        - labelSelector:
+#            matchExpressions:
+#              - key: app.kubernetes.io/name
+#                operator: In
+#                values:
+#                  - plex
+#          topologyKey: kubernetes.io/hostname
 
   probes:
     liveness:
