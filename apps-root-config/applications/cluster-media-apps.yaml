@@ -34,6 +34,9 @@ applications:
   ffmpeg:
     disableNamespaceCreation: true
     destinationNamespace: plex
+  sabnzbd:
+    disableNamespaceCreation: true
+    destinationNamespace: plex
   tautulli:
     disableNamespaceCreation: true
     destinationNamespace: plex
