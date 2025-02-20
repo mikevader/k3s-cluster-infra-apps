@@ -1,0 +1,37 @@
+sabnzbd:
+  env:
+    HOST_WHITELIST_ENTRIES: sabnzbd.framsburg.ch
+    PUID: '666'
+    PGID: '666'
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
+      hosts:
+        - host: 'sabnzbd.framsburg.ch'
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts: ['sabnzbd.framsburg.ch']
+          secretName: 'sabnzbd-framsburg-ch-tls'
+
+  securityContext:
+    fsGroup: 666
+    fsGroupChangePolicy: Always
+
+  persistence:
+    config:
+      enabled: true
+      type: pvc
+      size: 2Gi
+      retain: true
+    downloads:
+      enabled: true
+      type: pvc
+      size: 50Gi
+      storageClass: longhorn-nfs-transient-v1
+      accessMode: ReadWriteMany
+      mountPath: /downloads2
