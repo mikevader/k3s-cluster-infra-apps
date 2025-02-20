@@ -45,6 +45,13 @@ radarr:
       storageClass: "-"
       existingClaim: torrent-transmission-downloads
       mountPath: /downloads
+    sabnzbddownloads:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: sabnzbd-downloads
+      mountPath: /downloads2
 
     movies:
       enabled: true
@@ -213,7 +220,13 @@ sonarr:
       storageClass: "-"
       existingClaim: torrent-transmission-downloads
       mountPath: /downloads
-
+    sabnzbddownloads:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: sabnzbd-downloads
+      mountPath: /downloads2
     tv-abcd:
       enabled: true
       type: pvc
