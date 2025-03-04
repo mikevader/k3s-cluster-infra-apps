@@ -11,6 +11,6 @@ dependencies:
     repository: https://groundhog2k.github.io/helm-charts
 
   - name: postgres
-    version: 1.4.5
+    version: 1.4.6
     repository: https://groundhog2k.github.io/helm-charts
     alias: postgresql16
