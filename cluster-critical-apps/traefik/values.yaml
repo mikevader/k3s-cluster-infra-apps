@@ -104,8 +104,10 @@ traefik:
 
   ports:
     web:
-      redirectTo:
-        port: websecure
+      redirections:
+        entrypoint:
+          to: websecure
+          scheme: https
       forwardedHeaders:
         trustedIPs: *DOTrustedIPs
       proxyProtocol:
