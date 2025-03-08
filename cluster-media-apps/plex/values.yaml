@@ -19,7 +19,7 @@ plex:
       enabled: true
       nameOverride: "-"
       type: pvc
-      size: 5Gi
+      size: 20Gi
       accessMode: ReadWriteOnce
       retain: true
     transcode:
