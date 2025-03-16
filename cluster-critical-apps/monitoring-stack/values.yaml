@@ -1,4 +1,9 @@
 kube-prometheus-stack:
+
+  crd:
+    upgradeJob:
+      enabled: true
+
   kubeApiServer:
     enabled: true
   kubeControllerManager:
