@@ -1,101 +1,163 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "mikevader/renovate-config"
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'mikevader/renovate-config',
   ],
-  "ignorePaths": [".archived/**", ".disabled/**"],
-
-  "kubernetes": {
-    "fileMatch": [
-      "cluster-platform-apps/renovate/.+\\.yaml$"
-    ]
+  ignorePaths: [
+    '.archived/**',
+    '.disabled/**',
+  ],
+  kubernetes: {
+    fileMatch: [
+      'cluster-platform-apps/renovate/.+\\.yaml$',
+    ],
   },
-
-
-
-  "packageRules": [
+  packageRules: [
     {
-      "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["major", "minor", "patch" ],
-      "addLabels": [
-        "container"
-      ]
-    },
-    // Add labels according to package and update types
-    {
-      "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["major"],
-      "labels": ["renovate/image-release", "dependency/major"]
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["minor"],
-      "labels": ["renovate/image-release", "dependency/minor"]
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["patch"],
-      "labels": ["renovate/image-release", "dependency/patch"]
-    },
-    {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["major"],
-      "labels": ["renovate/helm-chart", "dependency/major"]
-    },
-    {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["minor"],
-      "labels": ["renovate/helm-chart", "dependency/minor"]
-    },
-    {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["patch"],
-      "labels": ["renovate/helm-chart", "dependency/patch"]
-    },
-    // Docker containers that are safe to auto merge
-    {
-      "matchDatasources": ["docker"],
-      "matchPackagePatterns": [
-        "^ghcr.io/mikevader/.*",
-        "renovate/renovate",
-        "oxsecurity/megalinter"
+      matchDatasources: [
+        'docker',
       ],
-      "addLabels": ["action/automerge"],
-      "automerge": true,
-      "versioning": "loose"
-    },
-    // Docker containers that do not follow semver compliant tagging
-    {
-      "matchDatasources": ["docker"],
-      "matchPackagePatterns": [
-        "bitnami/external-dns",
-        "^ghcr.io/k8s-at-home/qbittorrent"
+      matchUpdateTypes: [
+        'major',
+        'minor',
+        'patch',
       ],
-      "versioning": "loose"
+      addLabels: [
+        'container',
+      ],
     },
     {
-      "matchPackagePatterns": [
-        "vault"
+      matchDatasources: [
+        'docker',
       ],
-      "matchFiles": ["cr-raft.yaml"],
-      "matchDatasources": ["docker"],
-      "commitMessageTopic": "Docker image {{depName}}",
-      "commitMessageExtra": "to {{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
-      "matchUpdateTypes": ["major", "minor", "patch"],
-      "enabled": true
+      matchUpdateTypes: [
+        'major',
+      ],
+      labels: [
+        'renovate/image-release',
+        'dependency/major',
+      ],
     },
-    // Helm charts that are safe to auto merge
     {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["patch"],
-      // "registryUrls": ["https://k8s-at-home.com/charts", "https://mikevader.github.io/charts"],
-      "matchPackagePatterns": [
-        "argo-cd",
-        "plex",
-        "dmw"
+      matchDatasources: [
+        'docker',
       ],
-      "addLabels": ["action/automerge"],
-      "automerge": true
-    }
-  ]
+      matchUpdateTypes: [
+        'minor',
+      ],
+      labels: [
+        'renovate/image-release',
+        'dependency/minor',
+      ],
+    },
+    {
+      matchDatasources: [
+        'docker',
+      ],
+      matchUpdateTypes: [
+        'patch',
+      ],
+      labels: [
+        'renovate/image-release',
+        'dependency/patch',
+      ],
+    },
+    {
+      matchDatasources: [
+        'helm',
+      ],
+      matchUpdateTypes: [
+        'major',
+      ],
+      labels: [
+        'renovate/helm-chart',
+        'dependency/major',
+      ],
+    },
+    {
+      matchDatasources: [
+        'helm',
+      ],
+      matchUpdateTypes: [
+        'minor',
+      ],
+      labels: [
+        'renovate/helm-chart',
+        'dependency/minor',
+      ],
+    },
+    {
+      matchDatasources: [
+        'helm',
+      ],
+      matchUpdateTypes: [
+        'patch',
+      ],
+      labels: [
+        'renovate/helm-chart',
+        'dependency/patch',
+      ],
+    },
+    {
+      matchDatasources: [
+        'docker',
+      ],
+      addLabels: [
+        'action/automerge',
+      ],
+      automerge: true,
+      versioning: 'loose',
+      matchPackageNames: [
+        '/^ghcr.io/mikevader/.*/',
+        '/renovate/renovate/',
+        '/oxsecurity/megalinter/',
+      ],
+    },
+    {
+      matchDatasources: [
+        'docker',
+      ],
+      versioning: 'loose',
+      matchPackageNames: [
+        '/bitnami/external-dns/',
+        '/^ghcr.io/k8s-at-home/qbittorrent/',
+      ],
+    },
+    {
+      matchFileNames: [
+        'cr-raft.yaml',
+      ],
+      matchDatasources: [
+        'docker',
+      ],
+      commitMessageTopic: 'Docker image {{depName}}',
+      commitMessageExtra: 'to {{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}',
+      matchUpdateTypes: [
+        'major',
+        'minor',
+        'patch',
+      ],
+      enabled: true,
+      matchPackageNames: [
+        '/vault/',
+      ],
+    },
+    {
+      matchDatasources: [
+        'helm',
+      ],
+      matchUpdateTypes: [
+        'patch',
+      ],
+      addLabels: [
+        'action/automerge',
+      ],
+      automerge: true,
+      matchPackageNames: [
+        '/argo-cd/',
+        '/plex/',
+        '/dmw/',
+      ],
+    },
+  ],
 }
