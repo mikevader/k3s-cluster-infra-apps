@@ -214,7 +214,7 @@ kube-prometheus-stack:
       global:
         resolve_timeout: 5m
         slack_api_url_file: '/etc/alertmanager/secrets/slack-api-url/slack_api_url'
-        opsgenie_api_key_file: '/etc/alertmanager/secrets/opsgenie-apikey/opsgenie-apikey'
+        opsgenie_api_key_file: '/etc/alertmanager/secrets/opsgenie/opsgenie-apikey'
       templates: ['/etc/alertmanager/config/**/*.tmpl']
       route:
         group_by: ['job']
@@ -348,7 +348,7 @@ kube-prometheus-stack:
     alertmanagerSpec:
       secrets:
         - slack-api-url
-        - opsgenie-apikey
+        - opsgenie
       externalUrl: https://alertmanager.framsburg.ch
 
   prometheus:
