@@ -33,8 +33,7 @@ argo-cd:
         issuer: "https://authentik.framsburg.ch/application/o/argocd/"
         clientID: "c579d3195f85aeccaf1ecce35ef5501e023c2a6a"
         clientSecret: $argocd-oidc-secret:oidc.authentik.clientSecret
-        requestedScopes: ["openid", "profile", "email"]
-        logoutURL: "https://authentik.framsburg.ch/if/session-end/argocd/"
+        requestedScopes: ["openid", "profile", "email", "groups"]
 
     rbac: # rbacConfig
       policy.default: role:readonly
