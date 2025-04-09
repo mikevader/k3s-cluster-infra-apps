@@ -38,6 +38,12 @@ argo-cd:
     rbac: # rbacConfig
       policy.default: role:readonly
       policy.csv: |
+        p, role:org-admin, applications, *, */*, allow
+        p, role:org-admin, clusters, get, *, allow
+        p, role:org-admin, repositories, get, *, allow
+        p, role:org-admin, repositories, create, *, allow
+        p, role:org-admin, repositories, update, *, allow
+        p, role:org-admin, repositories, delete, *, allow
         g, fb-admins, role:admin
 
 
