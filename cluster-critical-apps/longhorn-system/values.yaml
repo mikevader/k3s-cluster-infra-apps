@@ -1,10 +1,10 @@
 longhorn:
   persistence:
-    defaultClassReplicaCount: 3
+    defaultClassReplicaCount: 2
   defaultSettings:
     concurrentAutomaticEngineUpgradePerNodeLimit: 1
     replicaAutoBalance: disabled # best-effort
-    defaultReplicaCount: 3
+    defaultReplicaCount: 2
     createDefaultDiskLabeledNodes: true
     backupTarget: 's3://k3sbackups@us-east-1/longhorn'
     backupTargetCredentialSecret: minio-secret
