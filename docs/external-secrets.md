@@ -37,7 +37,7 @@ connection to the vault and has the vault coordinates as well as access keys.
 To make it an easy setup, this is part of the external secrets application.
 
 ``` yaml title="templates/secret-store.yaml"
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: ClusterSecretStore
 metadata:
   name: vault-backend
@@ -76,7 +76,7 @@ stored all the authentik OIDC clients in the vault. The external secret
 manifest resides in the templates folder of the monitoring stack.
 
 ``` yaml title="templates/grafana-oidc-secret.yaml" linenums="1"
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: grafana-oidc-secret
