@@ -26,6 +26,7 @@ namespaceResourceBlacklist:
 applications:
   cert-manager: {}
   error-pages: {}
+  democratic-csi: {}
 #  loki:
 #    source:
 #      helm:

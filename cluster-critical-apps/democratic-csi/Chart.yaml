@@ -1,0 +1,9 @@
+---
+apiVersion: v2
+name: democratic-csi
+version: 1.0.0
+description: CSI Driver for TrueNAS
+dependencies:
+  - name: democratic-csi
+    version: 0.15.0
+    repository: https://democratic-csi.github.io/charts/
