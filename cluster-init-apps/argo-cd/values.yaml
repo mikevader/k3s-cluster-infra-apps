@@ -35,7 +35,7 @@ argo-cd:
         clientID: "c579d3195f85aeccaf1ecce35ef5501e023c2a6a"
         clientSecret: $argocd-oidc-secret:oidc.authentik.clientSecret
         requestedScopes: ["openid", "profile", "email", "groups"]
-        https://authentik.framsburg.ch/application/o/argocd/end-session/
+        logoutURL: https://authentik.framsburg.ch/application/o/argocd/end-session/
 
       exec.enabled: true
 
