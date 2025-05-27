@@ -43,5 +43,6 @@ applications:
   nvidia: {}
   opnsense: {}
   promtail: {}
+  snapshot-controller: {}
   traefik: {}
 #  traefik-external: {}
