@@ -6,7 +6,3 @@ dependencies:
   - name: argo-cd
     version: 7.9.1
     repository: https://argoproj.github.io/argo-helm
-  # - name: argocd-applicationset
-  #   version: 1.11.0
-  #   repository: https://argoproj.github.io/argo-helm
-  #   alias: applicationset
