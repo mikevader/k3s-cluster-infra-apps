@@ -29,6 +29,7 @@ democratic-csi:
       driver: freenas-api-nfs
       instance_id:
       httpConnection:
+        apiVersion: 2
         protocol: http
         host: 192.168.42.210
         port: 80
