@@ -1,5 +1,8 @@
 ---
 democratic-csi:
+  controller:
+    image:
+      tag: next
   csiDriver:
     name: "nfs"
   storageClasses:
