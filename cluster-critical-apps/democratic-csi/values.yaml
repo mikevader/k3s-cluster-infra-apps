@@ -40,8 +40,8 @@ democratic-csi:
         apiKey: 1-CzF9laWI1ubuqRk7aAzyvNuLlW8QBri4XBibVLWOMJDULmmr7Pbr9yvf6HPENmRN
         allowInsecure: true
       zfs:
-        datasetParentName: storage/k8s/nfs/v
-        detachedSnapshotsDatasetParentName: storage/k8s/nfs/s
+        datasetParentName: bigone/k8s/nfs/v
+        detachedSnapshotsDatasetParentName: bigone/k8s/nfs/s
         datasetEnableQuotas: true
         datasetEnableReservation: false
         datasetPermissionsMode: "0777"
