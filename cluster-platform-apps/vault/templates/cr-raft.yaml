@@ -4,7 +4,7 @@ metadata:
   name: "vault"
 spec:
   size: 3
-  image: hashicorp/vault:1.15
+  image: hashicorp/vault:1.19
   # bankVaultsImage: ghcr.io/banzaicloud/bank-vaults:latest
 
   affinity:
@@ -176,7 +176,7 @@ spec:
     vault:
       limits:
         memory: "512Mi"
-        cpu: "500m"
+        cpu: "1"
       requests:
         memory: "256Mi"
         cpu: "100m"
