@@ -97,13 +97,13 @@ filebrowser:
       existingClaim: plex-tv-qrst
       mountPath: /mnt/media/tv-qrst
 
-    tv-all:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: plex-tv-all
-      mountPath: /mnt/media/tv-all
+#    tv-all:
+#      enabled: true
+#      type: pvc
+#      retain: true
+#      storageClass: "-"
+#      existingClaim: plex-tv-all
+#      mountPath: /mnt/media/tv-all
 
     downloads:
       enabled: true
