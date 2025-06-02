@@ -29,30 +29,6 @@ democratic-csi:
       parameters:
         detachedSnapshots: "true"
   driver:
+    existingConfigSecret: driver-config-file-secret
     config:
       driver: freenas-api-nfs
-      instance_id:
-      httpConnection:
-        apiVersion: 2
-        protocol: http
-        host: 192.168.42.210
-        port: 80
-        apiKey: 1-CzF9laWI1ubuqRk7aAzyvNuLlW8QBri4XBibVLWOMJDULmmr7Pbr9yvf6HPENmRN
-        allowInsecure: true
-      zfs:
-        datasetParentName: bigone/k8s/nfs/v
-        detachedSnapshotsDatasetParentName: bigone/k8s/nfs/s
-        datasetEnableQuotas: true
-        datasetEnableReservation: false
-        datasetPermissionsMode: "0777"
-        datasetPermissionsUser: 0
-        datasetPermissionsGroup: 0
-      nfs:
-        shareHost: 192.168.42.210
-        shareAlldirs: false
-        shareAllowedHosts: [ ]
-        shareAllowedNetworks: [ ]
-        shareMaprootUser: root
-        shareMaprootGroup: root
-        shareMapallUser: ""
-        shareMapallGroup: ""
