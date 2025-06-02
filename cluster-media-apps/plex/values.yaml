@@ -81,15 +81,15 @@ plex:
       hostPath: /mnt/media/tvshows
       hostPathType: Directory
       mountPath: /mnt/media/tv2
-#    tv-all:
-#      enabled: true
-#      readonly: true
-#      type: pvc
-#      size: 2Ti
-#      storageClass: truenas-nfs
-#      accessMode: ReadWriteMany
-#      retain: true
-#      mountPath: /mnt/media/tv-all
+    tv-all:
+      enabled: true
+      readonly: true
+      type: pvc
+      size: 2Ti
+      storageClass: truenas-nfs
+      accessMode: ReadWriteMany
+      retain: true
+      mountPath: /mnt/media/tv-all
     movies:
       enabled: true
       readonly: true
