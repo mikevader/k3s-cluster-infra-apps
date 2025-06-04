@@ -121,14 +121,14 @@ filebrowser:
       hostPathType: Directory
       mountPath: /mnt/media/tv2
 
+    movies2:
+      enabled: true
+      readonly: true
+      type: hostPath
+      hostPath: /mnt/media/movies
+      hostPathType: Directory
+      mountPath: /mnt/media/movies2
 
-#    movies2:
-#      enabled: true
-#      readonly: true
-#      type: hostPath
-#      hostPath: /mnt/media2/movies
-#      hostPathType: Directory
-#      mountPath: /mnt/media/movies2
 
 #  affinity:
 #    podAffinity:
