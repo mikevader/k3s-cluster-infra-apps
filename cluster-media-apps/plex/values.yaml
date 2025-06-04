@@ -85,7 +85,7 @@ plex:
       enabled: true
       readonly: true
       type: pvc
-      size: 2Ti
+      size: 4Ti
       storageClass: truenas-nfs
       accessMode: ReadWriteMany
       retain: true
