@@ -60,13 +60,13 @@ radarr:
       storageClass: "-"
       existingClaim: plex-movies
       mountPath: /mnt/media/movies
-    movies2:
-      enabled: true
-      readonly: true
-      type: hostPath
-      hostPath: /mnt/media/movies
-      hostPathType: Directory
-      mountPath: /mnt/media/movies2
+#    movies2:
+#      enabled: true
+#      readonly: true
+#      type: hostPath
+#      hostPath: /mnt/media/movies
+#      hostPathType: Directory
+#      mountPath: /mnt/media/movies2
     movies-all:
       enabled: true
       type: pvc
@@ -274,13 +274,13 @@ sonarr:
       existingClaim: plex-tv-all
       mountPath: /mnt/media/tv-all
 
-    tv2:
-      enabled: true
-      readonly: true
-      type: hostPath
-      hostPath: /mnt/media/tvshows
-      hostPathType: Directory
-      mountPath: /mnt/media/tv2
+#    tv2:
+#      enabled: true
+#      readonly: true
+#      type: hostPath
+#      hostPath: /mnt/media/tvshows
+#      hostPathType: Directory
+#      mountPath: /mnt/media/tv2
 
   podSecurityContext:
     runAsUser: 666
