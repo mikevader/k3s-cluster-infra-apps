@@ -137,6 +137,36 @@ filebrowser:
       mountPath: /mnt/media/movies-all
 
 
+    tv-uhd:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: plex-tv-uhd
+      mountPath: /mnt/media/tv-uhd
+    tv-uhd-all:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: plex-tv-uhd-all
+      mountPath: /mnt/media/tv-uhd-all
+
+    movies-uhd:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: plex-movies-uhd
+      mountPath: /mnt/media/movies-uhd
+    movies-uhd-all:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: plex-movies-uhd-all
+      mountPath: /mnt/media/movies-uhd-all
+
 #  affinity:
 #    podAffinity:
 #      requiredDuringSchedulingIgnoredDuringExecution:

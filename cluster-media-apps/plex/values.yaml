@@ -90,6 +90,15 @@ plex:
       accessMode: ReadWriteMany
       retain: true
       mountPath: /mnt/media/tv-all
+    tv-uhd-all:
+      enabled: true
+      readonly: true
+      type: pvc
+      size: 2Ti
+      storageClass: truenas-nfs
+      accessMode: ReadWriteMany
+      retain: true
+      mountPath: /mnt/media/tv-uhd-all
     movies:
       enabled: true
       readonly: true
@@ -108,13 +117,13 @@ plex:
       accessMode: ReadWriteMany
       retain: true
       mountPath: /mnt/media/movies-uhd
-    movies2:
-      enabled: true
-      readonly: true
-      type: hostPath
-      hostPath: /mnt/media/movies
-      hostPathType: Directory
-      mountPath: /mnt/media/movies2
+#    movies2:
+#      enabled: true
+#      readonly: true
+#      type: hostPath
+#      hostPath: /mnt/media/movies
+#      hostPathType: Directory
+#      mountPath: /mnt/media/movies2
     movies-all:
       enabled: true
       readonly: true
@@ -124,6 +133,15 @@ plex:
       accessMode: ReadWriteMany
       retain: true
       mountPath: /mnt/media/movies-all
+    movies-uhd-all:
+      enabled: true
+      readonly: true
+      type: pvc
+      size: 2Ti
+      storageClass: truenas-nfs
+      accessMode: ReadWriteMany
+      retain: true
+      mountPath: /mnt/media/movies-uhd-all
 
 
     audiobooks:
