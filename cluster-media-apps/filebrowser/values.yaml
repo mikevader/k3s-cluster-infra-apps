@@ -128,6 +128,13 @@ filebrowser:
       hostPath: /mnt/media/movies
       hostPathType: Directory
       mountPath: /mnt/media/movies2
+    movies-all:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: plex-movies-all
+      mountPath: /mnt/media/movies-all
 
 
 #  affinity:
