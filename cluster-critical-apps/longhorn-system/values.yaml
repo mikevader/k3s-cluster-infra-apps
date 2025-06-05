@@ -1,14 +1,21 @@
 longhorn:
   persistence:
     defaultClassReplicaCount: 2
+    backupTargetName: default
   defaultSettings:
     concurrentAutomaticEngineUpgradePerNodeLimit: 1
     replicaAutoBalance: disabled # best-effort
     defaultReplicaCount: 2
     createDefaultDiskLabeledNodes: true
+    defaultLonghornStaticStorageClass: longhorn
+  defaultBackupStore:
     backupTarget: 's3://k3sbackups@us-east-1/longhorn'
     backupTargetCredentialSecret: minio-secret
-    defaultLonghornStaticStorageClass: longhorn
+
+  metrics:
+    serviceMonitor:
+      enabled: true
+
   ingress:
     enabled: true
     ingressClassName: traefik
@@ -18,11 +25,3 @@ longhorn:
     host: longhorn.framsburg.ch
     tls: true
     tlsSecret: longhorn-framsburg-ch-tls
-
-  resources:
-    limits:
-      cpu: 100m
-      memory: 128Mi
-    requests:
-      cpu: 100m
-      memory: 128Mi
