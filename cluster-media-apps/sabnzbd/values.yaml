@@ -31,7 +31,7 @@ sabnzbd:
     downloads:
       enabled: true
       type: pvc
-      size: 50Gi
+      size: 100Gi
       storageClass: longhorn-nfs-transient-v1
       accessMode: ReadWriteMany
       mountPath: /downloads2
