@@ -19,7 +19,7 @@ radarr:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         # traefik.ingress.kubernetes.io/router.priority: "10"
-        traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+        # traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
 
       hosts:
         - host: '{{ .Values.global.domainName }}'
@@ -53,13 +53,13 @@ radarr:
       existingClaim: sabnzbd-downloads
       mountPath: /downloads2
 
-    movies:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: plex-movies
-      mountPath: /mnt/media/movies
+#    movies:
+#      enabled: true
+#      type: pvc
+#      retain: true
+#      storageClass: "-"
+#      existingClaim: plex-movies
+#      mountPath: /mnt/media/movies
 #    movies2:
 #      enabled: true
 #      readonly: true
@@ -147,13 +147,13 @@ radarr-4k:
       existingClaim: torrent-transmission-downloads
       mountPath: /downloads
 
-    movies-uhd:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: plex-movies-uhd
-      mountPath: /mnt/media/movies-uhd
+#    movies-uhd:
+#      enabled: true
+#      type: pvc
+#      retain: true
+#      storageClass: "-"
+#      existingClaim: plex-movies-uhd
+#      mountPath: /mnt/media/movies-uhd
     movies-uhd-all:
       enabled: true
       type: pvc
@@ -241,37 +241,37 @@ sonarr:
       storageClass: "-"
       existingClaim: sabnzbd-downloads
       mountPath: /downloads2
-    tv-abcd:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: plex-tv-abcd
-      mountPath: /mnt/media/tv-abcd
-
-    tv-efgh:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: plex-tv-efgh
-      mountPath: /mnt/media/tv-efgh
-
-    tv-mnop:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: plex-tv-mnop
-      mountPath: /mnt/media/tv-mnop
-
-    tv-qrst:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: plex-tv-qrst
-      mountPath: /mnt/media/tv-qrst
+#    tv-abcd:
+#      enabled: true
+#      type: pvc
+#      retain: true
+#      storageClass: "-"
+#      existingClaim: plex-tv-abcd
+#      mountPath: /mnt/media/tv-abcd
+#
+#    tv-efgh:
+#      enabled: true
+#      type: pvc
+#      retain: true
+#      storageClass: "-"
+#      existingClaim: plex-tv-efgh
+#      mountPath: /mnt/media/tv-efgh
+#
+#    tv-mnop:
+#      enabled: true
+#      type: pvc
+#      retain: true
+#      storageClass: "-"
+#      existingClaim: plex-tv-mnop
+#      mountPath: /mnt/media/tv-mnop
+#
+#    tv-qrst:
+#      enabled: true
+#      type: pvc
+#      retain: true
+#      storageClass: "-"
+#      existingClaim: plex-tv-qrst
+#      mountPath: /mnt/media/tv-qrst
 
     tv-all:
       enabled: true
@@ -361,13 +361,13 @@ sonarr-4k:
       existingClaim: torrent-transmission-downloads
       mountPath: /downloads
 
-    tv-uhd:
-      enabled: true
-      type: pvc
-      retain: true
-      storageClass: "-"
-      existingClaim: plex-tv-uhd
-      mountPath: /mnt/media/tv-uhd
+#    tv-uhd:
+#      enabled: true
+#      type: pvc
+#      retain: true
+#      storageClass: "-"
+#      existingClaim: plex-tv-uhd
+#      mountPath: /mnt/media/tv-uhd
     tv-uhd-all:
       enabled: true
       type: pvc
