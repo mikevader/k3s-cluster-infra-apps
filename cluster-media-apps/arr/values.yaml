@@ -1,7 +1,3 @@
-global:
-  domainName: "radarr.framsburg.ch"
-  # fullnameOverride: "radarr"
-
 radarr:
   controller:
     enabled: true
@@ -53,20 +49,6 @@ radarr:
       existingClaim: sabnzbd-downloads
       mountPath: /downloads2
 
-#    movies:
-#      enabled: true
-#      type: pvc
-#      retain: true
-#      storageClass: "-"
-#      existingClaim: plex-movies
-#      mountPath: /mnt/media/movies
-#    movies2:
-#      enabled: true
-#      readonly: true
-#      type: hostPath
-#      hostPath: /mnt/media/movies
-#      hostPathType: Directory
-#      mountPath: /mnt/media/movies2
     movies-all:
       enabled: true
       type: pvc
@@ -80,17 +62,6 @@ radarr:
     runAsGroup: 666
     fsGroup: 666
     fsGroupChangePolicy: Always
-
-  affinity:
-    podAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                  - plex
-          topologyKey: kubernetes.io/hostname
 
   probes:
     liveness:
@@ -146,14 +117,14 @@ radarr-4k:
       storageClass: "-"
       existingClaim: torrent-transmission-downloads
       mountPath: /downloads
+    sabnzbddownloads:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: sabnzbd-downloads
+      mountPath: /downloads2
 
-#    movies-uhd:
-#      enabled: true
-#      type: pvc
-#      retain: true
-#      storageClass: "-"
-#      existingClaim: plex-movies-uhd
-#      mountPath: /mnt/media/movies-uhd
     movies-uhd-all:
       enabled: true
       type: pvc
@@ -167,17 +138,6 @@ radarr-4k:
     runAsGroup: 666
     fsGroup: 666
     fsGroupChangePolicy: Always
-
-  affinity:
-    podAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                  - plex
-          topologyKey: kubernetes.io/hostname
 
   probes:
     liveness:
@@ -241,37 +201,6 @@ sonarr:
       storageClass: "-"
       existingClaim: sabnzbd-downloads
       mountPath: /downloads2
-#    tv-abcd:
-#      enabled: true
-#      type: pvc
-#      retain: true
-#      storageClass: "-"
-#      existingClaim: plex-tv-abcd
-#      mountPath: /mnt/media/tv-abcd
-#
-#    tv-efgh:
-#      enabled: true
-#      type: pvc
-#      retain: true
-#      storageClass: "-"
-#      existingClaim: plex-tv-efgh
-#      mountPath: /mnt/media/tv-efgh
-#
-#    tv-mnop:
-#      enabled: true
-#      type: pvc
-#      retain: true
-#      storageClass: "-"
-#      existingClaim: plex-tv-mnop
-#      mountPath: /mnt/media/tv-mnop
-#
-#    tv-qrst:
-#      enabled: true
-#      type: pvc
-#      retain: true
-#      storageClass: "-"
-#      existingClaim: plex-tv-qrst
-#      mountPath: /mnt/media/tv-qrst
 
     tv-all:
       enabled: true
@@ -281,30 +210,11 @@ sonarr:
       existingClaim: plex-tv-all
       mountPath: /mnt/media/tv-all
 
-#    tv2:
-#      enabled: true
-#      readonly: true
-#      type: hostPath
-#      hostPath: /mnt/media/tvshows
-#      hostPathType: Directory
-#      mountPath: /mnt/media/tv2
-
   podSecurityContext:
     runAsUser: 666
     runAsGroup: 666
     fsGroup: 666
     fsGroupChangePolicy: Always
-
-  affinity:
-    podAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                  - plex
-          topologyKey: kubernetes.io/hostname
 
   probes:
     liveness:
@@ -360,14 +270,14 @@ sonarr-4k:
       storageClass: "-"
       existingClaim: torrent-transmission-downloads
       mountPath: /downloads
+    sabnzbddownloads:
+      enabled: true
+      type: pvc
+      retain: true
+      storageClass: "-"
+      existingClaim: sabnzbd-downloads
+      mountPath: /downloads2
 
-#    tv-uhd:
-#      enabled: true
-#      type: pvc
-#      retain: true
-#      storageClass: "-"
-#      existingClaim: plex-tv-uhd
-#      mountPath: /mnt/media/tv-uhd
     tv-uhd-all:
       enabled: true
       type: pvc
@@ -381,17 +291,6 @@ sonarr-4k:
     runAsGroup: 666
     fsGroup: 666
     fsGroupChangePolicy: Always
-
-  affinity:
-    podAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                  - plex
-          topologyKey: kubernetes.io/hostname
 
   probes:
     liveness:
@@ -449,17 +348,6 @@ prowlarr:
       retain: true
       size: 10Gi
       accessMode: ReadWriteOnce
-
-#  affinity:
-#    podAffinity:
-#      requiredDuringSchedulingIgnoredDuringExecution:
-#        - labelSelector:
-#            matchExpressions:
-#              - key: app.kubernetes.io/name
-#                operator: In
-#                values:
-#                  - plex
-#          topologyKey: kubernetes.io/hostname
 
   probes:
     liveness:
@@ -544,38 +432,3 @@ overseerr:
       size: 1Gi
       retain: true
       accessMode: ReadWriteOnce
-
-#whisparr:
-#  operator:
-#    verify:
-#      failOnError: false
-#  ingress:
-#    main:
-#      enabled: true
-#      annotations:
-#        cert-manager.io/cluster-issuer: letsencrypt-prod
-#        traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
-#
-#      hosts:
-#        - host: 'whisparr.framsburg.ch'
-#          paths:
-#            - path: '/'
-#              pathType: Prefix
-#      tls:
-#        - hosts: [ 'whisparr.framsburg.ch' ]
-#          secretName: 'whisparr-framsburg-ch-tls'
-#
-#  persistence:
-#    config:
-#      type: pvc
-#      size: 1Gi
-#      retain: true
-#      accessMode: ReadWriteOnce
-#
-#    downloads:
-#      enabled: true
-#      type: pvc
-#      retain: true
-#      storageClass: "-"
-#      existingClaim: torrent-transmission-downloads
-#      mountPath: /downloads
