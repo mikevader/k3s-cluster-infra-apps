@@ -413,7 +413,7 @@ kube-prometheus-stack:
             accessModes: ["ReadWriteOnce"]
             resources:
               requests:
-                storage: 100Gi
+                storage: 150Gi
 
     additionalPodMonitors:
       - name: traefik
