@@ -18,10 +18,6 @@ sabnzbd:
         - hosts: ['sabnzbd.framsburg.ch']
           secretName: 'sabnzbd-framsburg-ch-tls'
 
-  securityContext:
-    fsGroup: 666
-    fsGroupChangePolicy: Always
-
   persistence:
     config:
       enabled: true
