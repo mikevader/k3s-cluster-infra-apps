@@ -5,7 +5,7 @@ metadata:
   name: longhorn-test
 provisioner: driver.longhorn.io
 parameters:
-  numberOfReplicas: "2"
+  numberOfReplicas: "3"
   diskSelector: "ssd"
   nodeSelector: "k3sworker05"
   dataLocality: "best-effort"
