@@ -8,8 +8,8 @@
     '.disabled/**',
   ],
   kubernetes: {
-    fileMatch: [
-      'cluster-platform-apps/renovate/.+\\.yaml$',
+    managerFilePatterns: [
+      '/cluster-platform-apps/renovate/.+\\.yaml$/',
     ],
   },
   packageRules: [
