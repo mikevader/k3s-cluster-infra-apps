@@ -9,8 +9,8 @@ longhorn:
     createDefaultDiskLabeledNodes: true
     defaultLonghornStaticStorageClass: longhorn
   defaultBackupStore:
-    backupTarget: 's3://k3sbackups@us-east-1/longhorn'
-    backupTargetCredentialSecret: minio-secret
+    backupTarget: 's3://longhorn@us-east-1/backups'
+    backupTargetCredentialSecret: minio2-secret
 
   metrics:
     serviceMonitor:
