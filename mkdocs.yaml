@@ -38,6 +38,7 @@ nav:
   - Bare-Metal: bare-metal.md
   - Proxmox: proxmox-setup.md
   - Custom Images: custom-images.md
+  - TrueNAS: truenas.md
   - Cluster:
     - Ansible: ansible.md
     - ArgoCD: argocd.md

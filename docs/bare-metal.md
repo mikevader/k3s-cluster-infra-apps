@@ -181,9 +181,9 @@ $ cat > /tmp/etcd-backups-policy.json <<EOF
 }
 EOF
 
-$ mc admin policy add myminio etcd-backups-policy /tmp/etcd-backups-policy.json
+$ mc admin policy create myminio etcd-backups-policy /tmp/etcd-backups-policy.json
 
-$ mc admin policy set myminio etcd-backups-policy user=k3s
+$ mc admin policy attach myminio etcd-backups-policy --user k3s
 ```
 
 

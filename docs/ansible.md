@@ -6,7 +6,7 @@
 Create credentials file in devops home, named `.vault-credentials` with permission 0600.
 This file contains the passphrase for the ansible vault.
 
-### Download roles from the ansible galixy
+### Download roles from the ansible galaxy
 
 `ansible-galaxy install -r roles/requirements.yml`
 
@@ -21,11 +21,15 @@ To provision new (or existing systems) with the correct users and keys do the fo
 
 ## Deploy the site
 
-`ansible-playbook site.yml`
+```bash
+ansible-playbook site.yml
+```
 
 ## Upgrade all servers to latest versions
 
-`ansible-playbook upgrade.yml`
+``` bash
+ansible-playbook upgrade.yml
+```
 
 
 ## References
@@ -36,7 +40,7 @@ To provision new (or existing systems) with the correct users and keys do the fo
 
 # Raspberry Firmware Update
 
-```
+``` bash 
 $ sudo rpi-eeprom-update
 $ sudo apt-get install rpi-eeprom
 $ sudo rpi-eeprom-update -a
@@ -55,7 +59,7 @@ append `cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1 swapaccount=1`
 # install k3s server
 
 
-```
+``` bash
 $ export K3S_DATASTORE_ENDPOINT='postgres://k3s:12345678@192.168.42.221:5432/k3s?sslmode=disable'
 
 $ curl -sfL https://get.k3s.io | sh -s - server --node-taint CriticalAddonsOnly=true:NoExecute --tls-san 192.168.42.60
@@ -64,18 +68,20 @@ $ curl -sfL https://get.k3s.io | sh -s - server --node-taint CriticalAddonsOnly=
 --tls-san k3s.framsburg.ch
 ```
 
-```
+``` bash
 $ sudo journalctl -u k3s.service
 ```
 
 
 get token `sudo cat /var/lib/rancher/k3s/server/node-token`
 
-# add second server
+# Add second server
 
-export database
-export Token
-```
+* export database aka the datastore endpoint
+* export Token you got from the first server
+* Then start the second server with the same command as above, but with the `server` argument.
+
+``` bash
 $ export K3S_DATASTORE_ENDPOINT='postgres://k3s:12345678@192.168.42.221:5432/k3s?sslmode=disable'
 $ export K3S_TOKEN=K10c72f4e5f9fd862f0a1e91f9d1f91b16b2580621273705ee76528a66ed45f9819::server:5401d36937aa612639acb4d1083c2800
 
@@ -85,10 +91,11 @@ curl -sfL https://get.k3s.io | sh -s - server \
 ```
 
 
-# install agent
+# install agent aka worker node
 
-log into agent node
-```
+First log into agent node
+
+``` bash
 export K3S_URL=https://k3s.framsburg.ch:6443
 export K3S_TOKEN=K10c72f4e5f9fd862f0a1e91f9d1f91b16b2580621273705ee76528a66ed45f9819::server:5401d36937aa612639acb4d1083c2800
 curl -sfL https://get.k3s.io | sh -
@@ -136,8 +143,10 @@ $ sudo mkfs -t ext4 /dev/sdb1
 
 
 # install cert-manager
+
 log into localhost or commander
-```
+
+``` bash
 $ export KUBECONFIG='~/.kube/config-k3s'
 
 
@@ -159,14 +168,14 @@ $ helm install cert-manager jetstack/cert-manager \
   --set installCRDs=true \
   --debug
 
-
 ```
 
 
 # install rancher
 
 log into localhost or commander
-```
+
+``` bash
 $ export KUBECONFIG='~/.kube/config-k3s'
 $ helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
 
@@ -188,12 +197,16 @@ $ kubectl -n cattle-system rollout status deploy/rancher
 
 
 
-uninstall cert-manager:
-- helm uninstall cert-manager -n cert-manager
-- kubectl delete -f https://github.com/jetstack/cert-manager/releases/download/v1.5.4/cert-manager.crds.yaml
-- kubectl delete  job.batch/cert-manager-startupapicheck -n cert-manager
-- kubectl delete rolebinding.rbac.authorization.k8s.io/cert-manager-startupapicheck:create-cert -n cert-manager
-- kubectl delete role.rbac.authorization.k8s.io/cert-manager-startupapicheck:create-cert -n cert-manager
+## uninstall cert-manager
+
+```bash
+$ helm uninstall cert-manager -n cert-manager
+$ kubectl delete -f https://github.com/jetstack/cert-manager/releases/download/v1.5.4/cert-manager.crds.yaml
+$ kubectl delete  job.batch/cert-manager-startupapicheck -n cert-manager
+$ kubectl delete rolebinding.rbac.authorization.k8s.io/cert-manager-startupapicheck:create-cert -n cert-manager
+$ kubectl delete role.rbac.authorization.k8s.io/cert-manager-startupapicheck:create-cert -n cert-manager
+
+```
 
 
 # argo cd
@@ -214,6 +227,7 @@ Clone and build argo-cd according to [^argocdarm]
 
 
 # Plex
+
 Plex image after [k8s-at-home/plex](https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex)
 has an initial issue with recognising itself as plex media server.
 The reason is the claim token (https://raw.githubusercontent.com/uglymagoo/plex-claim-server/master/plex-claim-server.sh)

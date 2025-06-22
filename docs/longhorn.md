@@ -6,13 +6,13 @@
 Use the minio cli `mc` which has an alias called `myminio`
 
 ```bash title="Create minio bucket"
-$ mc mb myminio/k3sbackups
-$ mc mb myminio/k3sbackups/longhorn
+$ mc mb myminio/longhorn
+$ mc mb myminio/longhorn/backups
 ```
 
 ```bash title="Create user with policy"
 $ mc admin user add myminio longhorn mypass
-$ cat > /tmp/k3s-backups-policy.json <<EOF
+$ cat > ./longhorn-backups-policy.json <<EOF
 {
   "Version": "2012-10-17",
       "Statement": [
@@ -26,7 +26,7 @@ $ cat > /tmp/k3s-backups-policy.json <<EOF
       ],
       "Effect": "Allow",
       "Resource": [
-        "arn:aws:s3:::k3sbackups"
+        "arn:aws:s3:::longhorn"
       ],
       "Sid": ""
     },
@@ -40,7 +40,7 @@ $ cat > /tmp/k3s-backups-policy.json <<EOF
       ],
       "Effect": "Allow",
       "Resource": [
-        "arn:aws:s3:::k3sbackups/*"
+        "arn:aws:s3:::longhorn/*"
       ],
       "Sid": ""
     }
@@ -48,9 +48,9 @@ $ cat > /tmp/k3s-backups-policy.json <<EOF
 }
 EOF
 
-$ mc admin policy add myminio k3s-backups-policy /tmp/k3s-backups-policy.json
+$ mc admin policy create myminio longhorn-backups-policy ./longhorn-backups-policy.json
 
-$ mc admin policy set myminio k3s-backups-policy user=longhorn
+$ mc admin policy attach myminio longhorn-backups-policy --user longhorn
 ```
 
 ## Define backup target in longhorn
@@ -58,7 +58,7 @@ $ mc admin policy set myminio k3s-backups-policy user=longhorn
 ```yaml title="longhorn values.yaml"
 longhorn:
   defaultSettings:
-    backupTarget: 's3://k3sbackups@us-east-1/longhorn'
+    backupTarget: 's3://longhorn@us-east-1/backups'
     backupTargetCredentialSecret: minio-secret
 ...
 ```
@@ -101,5 +101,3 @@ spec:
           persistentVolumeClaim:
             claimName: data-target-pvc # change to data target PVC
 ```
-
-

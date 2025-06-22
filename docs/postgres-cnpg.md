@@ -21,7 +21,7 @@ To force restart/reload of secrets and configmaps in already created cluster,
 the two either require the label `cnpg.io/reload` or must be reloaded manually.
 
 ```yaml title="example with external secret"
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: cnpg-minio-access
@@ -46,6 +46,3 @@ kubectl cnpg reload
 
 
 ## Monitoring
-
-
-

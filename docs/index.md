@@ -25,8 +25,10 @@ I use the following hardware setup for this:
 * 3 Raspberry PI 4s with 8GB Ram and Corsair GTX USB Stick as Disk
 * 4 Raspberry PI 4s with 8GB Ram, Corsair GTX USB Stick as Boot Disk and an
   external USB/NVME Drive (which has to be powered separatly)
-* Lenovo Thinkcentre M720q with 64GB Ram with Proxmox and large HDD
-* Lenovo Thinkcentre M75q with 64GB Ram with Proxmox and large HDD
+* Lenovo Thinkcentre M720q with 64GB Ram with Proxmox and large SSD
+* Lenovo Thinkcentre M75q with 64GB Ram with Proxmox and large SSD
+* Minisforum MS-01 with 64 GB Ram with Proxmox and three large SSDs
+* For Backups and large Volumes: HL15 with TrueNAS and 6 large HDDs
 
 The first are used for the control plane, the other fours are used as worker
 nodes. Some of them are powered with PoE hats. The faster external drives are

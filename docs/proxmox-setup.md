@@ -250,6 +250,7 @@ https://www.declarativesystems.com/2023/11/04/kubernetes-nvidia.html
 https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
 
 
+https://radicalgeek.co.uk/pi-cluster/adding-a-gpu-node-to-a-k3s-cluster/
 
 
 ## Tips & Trick
