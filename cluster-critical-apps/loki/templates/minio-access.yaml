@@ -1,0 +1,21 @@
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: minio-access
+spec:
+  refreshInterval: 1m
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: minio-access
+  data:
+    - secretKey: grafana-loki-s3-accessKeyId
+      remoteRef:
+        key: secret/data/framsburg/loki/minio-access
+        property: AWS_ACCESS_KEY
+    - secretKey: grafana-loki-s3-secretAccessKey
+      remoteRef:
+        key: secret/data/framsburg/loki/minio-access
+        property: AWS_SECRET_KEY

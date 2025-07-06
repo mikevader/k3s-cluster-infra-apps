@@ -1,53 +1,58 @@
 loki:
-  # fullnameOverride: loki
-  # persistence:
-  #   enabled: true
-  #   size: 20Gi
+
+
   loki:
-    commonConfig:
-      replication_factor: 1
+#    commonConfig:
+#      replication_factor: 1
+
+
+    schemaConfig:
+      configs:
+        - from: "2025-07-07"
+          store: tsdb
+          object_store: s3
+          schema: v13
+          index:
+            prefix: loki_index_
+            period: 24h
+
     storage:
-      type: 'filesystem'
+      type: 's3'
+      bucketName:
+        chunks: 'loki-chunks'
+        ruler: 'loki-ruler'
+        admin: 'loki-admin'
+      s3:
+        endpoint: 'https://minio2.framsburg.net'
+        accessKeyId: ${GRAFANA-LOKI-S3-ACCESKEYID}
+        secretAccessKey: ${GRAFANA-LOKI-S3-SECRETACCESSKEY}
 
-    compactor:
-      retention_enabled: true
-      compaction_interval: 10m
-      retention_delete_delay: 2h
+  deploymentMode: SimpleScalable
 
-    limits_config:
-      retention_period: 72h
+  backend:
+    replicas: 2
+    extraArgs:
+      - '-config.expand-env=true'
+    extraEnv:
+      - name: GRAFANA-LOKI-S3-ACCESKEYID
+        valueFrom:
+          secretKeyRef:
+            name: minio-access
+            key: grafana-loki-s3-accessKeyId
+      - name: GRAFANA-LOKI-S3-SECRETACCESSKEY
+        valueFrom:
+          secretKeyRef:
+            name: minio-access
+            key: grafana-loki-s3-secretAccessKey
+  read:
+    replicas: 2
+  write:
+    replicas: 3 # To ensure data durability with replication
 
-    # retention_period: 744h
-    # retention_stream:
-    # - selector: '{namespace="dev"}'
-    #   priority: 1
-    #   period: 24h
-    # per_tenant_override_config: /etc/overrides.yaml
-
-  # tableManager:
-  #   enabled: false
-  #   retention_deletes_enabled: true
-  #   retention_period: 72h
-  #   nodeSelector:
-  #     kubernetes.io/arch: amd64
-
-  singleBinary:
-    replicas: 0
-    persistence:
-      enabled: true
-      size: 100Gi
-    nodeSelector:
-      kubernetes.io/arch: amd64
-
-  lokiCanary:
+  # Enable minio for storage
+  minio:
     enabled: false
 
   gateway:
-    enabled: false
-    nodeSelector:
-      kubernetes.io/arch: amd64
-  
-  monitoring:
-    rules:
-      enabled: true
-      alerting: false
+    service:
+      type: LoadBalancer
