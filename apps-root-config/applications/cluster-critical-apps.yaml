@@ -27,7 +27,8 @@ applications:
   cert-manager: {}
   error-pages: {}
   democratic-csi: {}
-#  loki:
+  loki:
+    helmServerSideApply: true
 #    source:
 #      helm:
 #        skipCrds: true
