@@ -23,9 +23,12 @@ loki:
         ruler: 'loki-ruler'
         admin: 'loki-admin'
       s3:
-        endpoint: 'minio2.framsburg.net'
+        s3: 'https://minio2.framsburg.net'
+        endpoint: 'https://minio2.framsburg.net'
+        region: null
         accessKeyId: "${GRAFANA_LOKI_S3_ACCESKEYID}"
         secretAccessKey: "${GRAFANA_LOKI_S3_SECRETACCESSKEY}"
+        s3ForcePathStyle: true
 
   deploymentMode: SimpleScalable
 
