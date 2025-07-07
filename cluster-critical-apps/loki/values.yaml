@@ -24,8 +24,8 @@ loki:
         admin: 'loki-admin'
       s3:
         endpoint: 'https://minio2.framsburg.net'
-        accessKeyId: ${GRAFANA-LOKI-S3-ACCESKEYID}
-        secretAccessKey: ${GRAFANA-LOKI-S3-SECRETACCESSKEY}
+        accessKeyId: "${GRAFANA-LOKI-S3-ACCESKEYID}"
+        secretAccessKey: "${GRAFANA-LOKI-S3-SECRETACCESSKEY}"
 
   deploymentMode: SimpleScalable
 
