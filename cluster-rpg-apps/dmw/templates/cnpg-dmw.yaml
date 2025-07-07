@@ -21,7 +21,7 @@ spec:
   backup:
     barmanObjectStore:
       destinationPath: s3://cnpg/backups
-      endpointURL: https://minio2.framsburg.net
+      endpointURL: https://minio2.framsburg.net:9000
       s3Credentials:
         accessKeyId:
           name: cnpg-minio-access
