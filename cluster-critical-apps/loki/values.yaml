@@ -47,10 +47,38 @@ loki:
           secretKeyRef:
             name: minio-access
             key: grafana-loki-s3-secretAccessKey
+
   read:
     replicas: 2
+    extraArgs:
+      - '-config.expand-env=true'
+    extraEnv:
+      - name: GRAFANA_LOKI_S3_ACCESKEYID
+        valueFrom:
+          secretKeyRef:
+            name: minio-access
+            key: grafana-loki-s3-accessKeyId
+      - name: GRAFANA_LOKI_S3_SECRETACCESSKEY
+        valueFrom:
+          secretKeyRef:
+            name: minio-access
+            key: grafana-loki-s3-secretAccessKey
+
   write:
     replicas: 3 # To ensure data durability with replication
+    extraArgs:
+      - '-config.expand-env=true'
+    extraEnv:
+      - name: GRAFANA_LOKI_S3_ACCESKEYID
+        valueFrom:
+          secretKeyRef:
+            name: minio-access
+            key: grafana-loki-s3-accessKeyId
+      - name: GRAFANA_LOKI_S3_SECRETACCESSKEY
+        valueFrom:
+          secretKeyRef:
+            name: minio-access
+            key: grafana-loki-s3-secretAccessKey
 
   # Enable minio for storage
   minio:
