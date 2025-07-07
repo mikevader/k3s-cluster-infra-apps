@@ -4,6 +4,7 @@ democratic-csi:
     driver:
       image:
         tag: next
+      logLevel: warn
   csiDriver:
     name: "nfs"
   storageClasses:
@@ -32,3 +33,7 @@ democratic-csi:
     existingConfigSecret: driver-config-file-secret
     config:
       driver: freenas-api-nfs
+
+  node:
+    driver:
+      logLevel: warn
