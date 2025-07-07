@@ -1,7 +1,7 @@
 ---
 promtail:
   daemonset:
-    enabled: false
+    enabled: true
 
   # serviceMonitor:
   #   enabled: true
