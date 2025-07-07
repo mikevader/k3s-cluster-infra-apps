@@ -23,7 +23,7 @@ loki:
         ruler: 'loki-ruler'
         admin: 'loki-admin'
       s3:
-        endpoint: 'https://minio2.framsburg.net'
+        endpoint: 'minio2.framsburg.net'
         accessKeyId: "${GRAFANA_LOKI_S3_ACCESKEYID}"
         secretAccessKey: "${GRAFANA_LOKI_S3_SECRETACCESSKEY}"
 
