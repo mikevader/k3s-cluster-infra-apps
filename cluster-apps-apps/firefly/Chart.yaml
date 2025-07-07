@@ -7,5 +7,5 @@ dependencies:
     version: 1.9.10
     repository: https://firefly-iii.github.io/kubernetes
   - name: importer
-    version: 1.4.1
+    version: 1.4.9
     repository: https://firefly-iii.github.io/kubernetes
