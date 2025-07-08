@@ -6,6 +6,7 @@ metadata:
   name: dmw
 spec:
   instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.8
 
   # Example of rolling update strategy:
   # - unsupervised: automated update of the primary once all
