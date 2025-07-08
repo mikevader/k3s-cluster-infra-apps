@@ -6,6 +6,11 @@ metadata:
   name: firefly
 spec:
   instances: 3
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    kind: ClusterImageCatalog
+    name: postgresql
+    major: 16
 
   # Example of rolling update strategy:
   # - unsupervised: automated update of the primary once all
