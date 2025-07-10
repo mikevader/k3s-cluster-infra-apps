@@ -51,3 +51,24 @@ spec:
   backupOwnerReference: self
   cluster:
     name: dmw
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: dmw-backup-store
+spec:
+  retentionPolicy: "32d"
+  configuration:
+    destinationPath: s3://cnpg/backups
+    endpointURL: https://minio2.framsburg.net:9000
+    s3Credentials:
+      accessKeyId:
+        name: cnpg-minio-access
+        key: AWS_ACCESS_KEY_ID
+      secretAccessKey:
+        name: cnpg-minio-access
+        key: AWS_SECRET_ACCESS_KEY
+    tags:
+      backupRetentionPolicy: "expire"
+    historyTags:
+      backupRetentionPolicy: "keep"
