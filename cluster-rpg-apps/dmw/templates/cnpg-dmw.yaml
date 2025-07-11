@@ -40,6 +40,9 @@ spec:
   backupOwnerReference: self
   cluster:
     name: dmw
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
 ---
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
