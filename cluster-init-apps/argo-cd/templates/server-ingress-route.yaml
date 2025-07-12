@@ -26,4 +26,4 @@ spec:
   tls:
     secretName: argocd-framsburg-ch-tls
     domains:
-      main: argocd.framsburg.ch
+      - main: argocd.framsburg.ch
