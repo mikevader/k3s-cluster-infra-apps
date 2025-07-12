@@ -107,7 +107,7 @@ argo-cd:
       serviceMonitor:
         enabled: true
       rules:
-        enabled: true
+        enabled: false
 
   dex:
     enabled: true
