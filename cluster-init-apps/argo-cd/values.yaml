@@ -6,9 +6,6 @@ argo-cd:
     logging:
       level: warn
 
-    # image:
-    #   repository: ghcr.io/argoproj/argocd
-    #   tag: 2.4.0-dd4dbe2a
   configs:
     params:
       server.insecure: true
@@ -89,11 +86,14 @@ argo-cd:
       enabled: false
   
   controller:
-    enableStatefulSet: true
     replicas: 1
-    args:
-      repoServerTimeoutSeconds: '120'
-      selfHealTimeout: '15'
+    dynamicClusterDistribution: false
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+      rules:
+        enabled: true
 
   dex:
     enabled: false
@@ -133,6 +133,3 @@ argo-cd:
   applicationSet:
     enabled: true
     replicaCount: 2
-    # image:
-    #   repository: docker.io/baloisemichaelmuehlebach/argocd-applicationset
-    #   tag: v0.4.1
