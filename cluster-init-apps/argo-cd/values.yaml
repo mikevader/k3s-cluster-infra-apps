@@ -26,13 +26,27 @@ argo-cd:
     cm: # config
       kustomize.buildOptions: "--enable-helm"
       url: https://argocd.framsburg.ch
-      oidc.config: |
-        name: Authentik
-        issuer: "https://authentik.framsburg.ch/application/o/argocd/"
-        clientID: "c579d3195f85aeccaf1ecce35ef5501e023c2a6a"
-        clientSecret: $argocd-oidc-secret:oidc.authentik.clientSecret
-        requestedScopes: ["openid", "profile", "email", "groups"]
-        logoutURL: https://authentik.framsburg.ch/application/o/argocd/end-session/
+#      oidc.config: |
+#        name: Authentik
+#        issuer: "https://authentik.framsburg.ch/application/o/argocd/"
+#        clientID: "c579d3195f85aeccaf1ecce35ef5501e023c2a6a"
+#        clientSecret: $argocd-oidc-secret:oidc.authentik.clientSecret
+#        requestedScopes: ["openid", "profile", "email", "groups"]
+#        logoutURL: https://authentik.framsburg.ch/application/o/argocd/end-session/
+      dex.config: |
+        connectors:
+        - config:
+            issuer: https://authentik.framsburg.ch/application/o/argocd/
+            clientID: c579d3195f85aeccaf1ecce35ef5501e023c2a6a
+            clientSecret: $argocd-secret:oidc.authentik.clientSecret
+            insecureEnableGroups: true
+            scopes:
+              - openid
+              - profile
+              - email
+          name: authentik
+          type: oidc
+          id: authentik
 
       exec.enabled: true
 
@@ -96,7 +110,7 @@ argo-cd:
         enabled: true
 
   dex:
-    enabled: false
+    enabled: true
 
   server:
     # autoscaling:
