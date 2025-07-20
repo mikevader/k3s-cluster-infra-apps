@@ -7,6 +7,11 @@ cert-manager:
   dns01RecursiveNameserversOnly: true
   dns01RecursiveNameservers: "8.8.8.8:53"
 
+  ingressShim:
+    defaultIssuerName: letsencrypt-prod
+    defaultIssuerKind: ClusterIssuer
+    defaultIssuerGroup: cert-manager.io
+
   prometheus:
     enabled: true
     servicemonitor:
