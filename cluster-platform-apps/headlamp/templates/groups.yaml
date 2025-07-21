@@ -17,6 +17,9 @@ kind: ClusterRoleBinding
 metadata:
   name: admin-binding
 subjects:
+  - kind: User
+    name: michael@anduin.ch
+    apiGroup: rbac.authorization.k8s.io
   - kind: Group
     apiGroup: rbac.authorization.k8s.io
     name: fb-admins
