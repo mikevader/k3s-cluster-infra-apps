@@ -1,0 +1,22 @@
+headlamp:
+  config:
+    oidc:
+      secret:
+        create: false
+      externalSecret:
+        enabled: true
+        name: oidc-secret
+
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: headlamp.framsburg.ch
+        paths:
+          - path: /
+            type: ImplementationSpecific
+    tls:
+      - secretName: headlamp-framsburg-ch-tls
+        hosts:
+          - headlamp.framsburg.ch

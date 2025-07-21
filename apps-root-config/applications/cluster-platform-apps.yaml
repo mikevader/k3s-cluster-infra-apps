@@ -28,6 +28,7 @@ applications:
   cnpg-system:
     helmServerSideApply: true
   external-secrets: {}
+  headlamp: {}
   kubernetes-dashboard: {}
   renovate: {}
   sloth: {}
