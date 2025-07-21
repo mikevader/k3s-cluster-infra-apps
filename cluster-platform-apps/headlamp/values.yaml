@@ -1,4 +1,7 @@
 headlamp:
+  image:
+    tag: v0.33.0
+
   config:
     oidc:
       secret:
