@@ -1,3 +1,4 @@
+---
 radarr:
   controller:
     enabled: true
@@ -310,7 +311,7 @@ prowlarr:
   initContainers:
     prowlarr:
       name: config-prowlarr
-      image: docker.io/ubuntu:groovy
+      image: docker.io/ubuntu:noble
       securityContext:
         runAsUser: 666
         runAsGroup: 666
@@ -360,7 +361,7 @@ prowlarr:
             - curl --fail localhost:${APP_PORT}/${APP_NAME/-//}/api/v1/system/status?apiKey=`IFS=\> && while
               read -d \< E C; do if [[ $E = "ApiKey" ]]; then echo $C; fi; done < /config/config.xml`
 
-#tdarr:
+# tdarr:
 #  controller:
 #    enabled: true
 #
@@ -422,7 +423,7 @@ overseerr:
             - path: '/'
               pathType: Prefix
       tls:
-        - hosts: [ 'overseerr.framsburg.ch' ]
+        - hosts: ['overseerr.framsburg.ch']
           secretName: 'overseerr-framsburg-ch-tls'
 
   persistence:
