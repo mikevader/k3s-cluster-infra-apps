@@ -45,7 +45,7 @@ firefly-iii:
 
   image:
     repository: fireflyiii/core
-    tag: version-6.2.19
+    tag: version-6.2.21
   persistence:
     enabled: true
     storage: 10Gi
@@ -65,7 +65,7 @@ firefly-iii:
       cpu: 200m
       memory: 128Mi
     limits:
-      cpu: 500m
+      cpu: '1'
       memory: 256Mi
 
 
@@ -79,7 +79,7 @@ importer:
       TZ: Europe/Zurich
   image:
     repository: fireflyiii/data-importer
-    tag: version-1.7.0
+    tag: version-1.7.8
   ingress:
     enabled: true
     annotations:
