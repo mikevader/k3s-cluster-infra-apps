@@ -3,6 +3,8 @@ global:
   domainName: firefly.framsburg.ch
 
 firefly-iii:
+  deploymentStrategyType: Recreate
+
   config:
     env:
       APP_URL: 'https://firefly.framsburg.ch'
