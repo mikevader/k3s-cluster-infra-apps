@@ -27,7 +27,8 @@ applications:
   authentik: {}
   cnpg-system:
     helmServerSideApply: true
-  external-secrets: {}
+  external-secrets:
+    helmServerSideApply: true
   headlamp: {}
   kubernetes-dashboard: {}
   renovate: {}
