@@ -9,8 +9,8 @@ dependencies:
   - name: importer
     version: 1.5.0
     repository: https://firefly-iii.github.io/kubernetes
-    alias: importerPrivate
+    alias: importer-private
   - name: importer
     version: 1.5.0
     repository: https://firefly-iii.github.io/kubernetes
-    alias: importerHaushalt
+    alias: importer-haushalt

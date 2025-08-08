@@ -71,7 +71,7 @@ firefly-iii:
       memory: 256Mi
 
 
-importerPrivate:
+importer-private:
   fireflyiii:
     vanityUrl: 'https://firefly.framsburg.ch'
     auth:
@@ -93,7 +93,7 @@ importerPrivate:
       - hosts: ['ffimporter-private.framsburg.ch']
         secretName: 'ffimporter-private-framsburg-ch-tls'
 
-importerHaushalt:
+importer-haushalt:
   fireflyiii:
     vanityUrl: 'https://firefly.framsburg.ch'
     auth:
