@@ -93,7 +93,7 @@ importerPrivate:
       - hosts: ['ffimporter-private.framsburg.ch']
         secretName: 'ffimporter-private-framsburg-ch-tls'
 
-importer:
+importerHaushalt:
   fireflyiii:
     vanityUrl: 'https://firefly.framsburg.ch'
     auth:
