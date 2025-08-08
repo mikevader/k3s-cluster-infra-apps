@@ -71,11 +71,11 @@ firefly-iii:
       memory: 256Mi
 
 
-importer:
+importerPrivate:
   fireflyiii:
     vanityUrl: 'https://firefly.framsburg.ch'
     auth:
-      existingSecret: firefly-access-token
+      existingSecret: firefly-access-token-private
   config:
     env:
       TZ: Europe/Zurich
@@ -88,7 +88,29 @@ importer:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
     className: 'traefik'
-    hosts: ['ffimporter.framsburg.ch']
+    hosts: ['ffimporter-private.framsburg.ch']
     tls:
-      - hosts: ['ffimporter.framsburg.ch']
-        secretName: 'ffimporter-framsburg-ch-tls'
+      - hosts: ['ffimporter-private.framsburg.ch']
+        secretName: 'ffimporter-private-framsburg-ch-tls'
+
+importer:
+  fireflyiii:
+    vanityUrl: 'https://firefly.framsburg.ch'
+    auth:
+      existingSecret: firefly-access-token-haushalt
+  config:
+    env:
+      TZ: Europe/Zurich
+  image:
+    repository: fireflyiii/data-importer
+    tag: version-1.7.8
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    className: 'traefik'
+    hosts: ['ffimporter-haushalt.framsburg.ch']
+    tls:
+      - hosts: ['ffimporter-haushalt.framsburg.ch']
+        secretName: 'ffimporter-haushalt-framsburg-ch-tls'

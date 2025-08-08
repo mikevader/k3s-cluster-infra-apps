@@ -2,23 +2,40 @@
 apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
-  name: firefly-access-token
+  name: firefly-access-token-private
 spec:
   refreshInterval: 1m
   secretStoreRef:
     name: vault-backend
     kind: ClusterSecretStore
   target:
-    name: firefly-access-token
+    name: firefly-access-token-private
   data:
     - secretKey: accessToken
       remoteRef:
         key: secret/data/framsburg/firefly
-        property: accessToken
-    - secretKey: token
+        property: accessTokenPrivate
+    - secretKey: cmdLineToken
       remoteRef:
         key: secret/data/framsburg/firefly
-        property: accessToken
+        property: cmdLineToken
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: firefly-access-token-haushalt
+spec:
+  refreshInterval: 1m
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: firefly-access-token-haushalt
+  data:
+    - secretKey: accessToken
+      remoteRef:
+        key: secret/data/framsburg/firefly
+        property: accessTokenHaushalt
     - secretKey: cmdLineToken
       remoteRef:
         key: secret/data/framsburg/firefly
