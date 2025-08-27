@@ -6,7 +6,7 @@ metadata:
 subjects:
   - kind: Group
     apiGroup: rbac.authorization.k8s.io
-    name: fb-users
+    name: oidc:fb-users
 roleRef:
   kind: ClusterRole
   name: view
@@ -17,15 +17,9 @@ kind: ClusterRoleBinding
 metadata:
   name: admin-binding
 subjects:
-  - kind: User
-    name: akadmin
-    apiGroup: rbac.authorization.k8s.io
-  - kind: User
-    name: michael@anduin.ch
-    apiGroup: rbac.authorization.k8s.io
   - kind: Group
     apiGroup: rbac.authorization.k8s.io
-    name: fb-admins
+    name: oidc:fb-admins
 roleRef:
   kind: ClusterRole
   name: cluster-admin
