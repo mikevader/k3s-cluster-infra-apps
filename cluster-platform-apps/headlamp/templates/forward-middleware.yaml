@@ -1,0 +1,10 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: forward-headers
+  namespace: headlamp
+spec:
+  headers:
+    customRequestHeaders:
+      X-Forwarded-Proto: "https"
