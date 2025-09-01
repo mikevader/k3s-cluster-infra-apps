@@ -22,10 +22,16 @@ subjects:
     name: oidc:fb-admins
   - kind: User
     apiGroup: rbac.authorization.k8s.io
-    name: akadmin
+    name: oidc:akadmin
   - kind: User
     apiGroup: rbac.authorization.k8s.io
     name: oidc:michael@anduin.ch
+  - kind: Group
+    apiGroup: rbac.authorization.k8s.io
+    name: fb-admins
+  - kind: User
+    apiGroup: rbac.authorization.k8s.io
+    name: akadmin
   - kind: User
     apiGroup: rbac.authorization.k8s.io
     name: michael@anduin.ch
