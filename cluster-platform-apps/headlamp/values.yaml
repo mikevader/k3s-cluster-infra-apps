@@ -12,6 +12,9 @@ headlamp:
     - name: HEADLAMP_CONFIG_OIDC_USE_ACCESS_TOKEN
       value: "true"
 
+  clusterRoleBinding:
+    create: false
+
   ingress:
     enabled: true
     annotations:
