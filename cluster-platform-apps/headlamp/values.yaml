@@ -8,10 +8,6 @@ headlamp:
         enabled: true
         name: oidc-secret
 
-  env:
-    - name: HEADLAMP_CONFIG_OIDC_USE_ACCESS_TOKEN
-      value: "true"
-
   ingress:
     enabled: true
     annotations:
