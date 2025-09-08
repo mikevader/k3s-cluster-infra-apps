@@ -6,7 +6,6 @@ metadata:
   namespace: argocd-system
   annotations:
     kubernetes.io/ingress.class: "traefik"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   entryPoints:
     - websecure
@@ -27,4 +26,5 @@ spec:
           port: 80
           scheme: h2c
   tls:
+    certResolver: letsencrypt
     secretName: argocd-framsburg-ch-tls
