@@ -4,27 +4,22 @@ kind: IngressRoute
 metadata:
   name: argocd-server
   namespace: argocd-system
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
 spec:
   entryPoints:
     - websecure
   routes:
     - kind: Rule
       match: Host(`argocd.framsburg.ch`) && PathPrefix(`/`)
-      priority: 10
+      # priority: 10
       services:
-        - kind: Service
-          name: argo-cd-argocd-server
+        - name: argo-cd-argocd-server
           port: 80
     - kind: Rule
       match: Host(`argocd.framsburg.ch`) && Header(`Content-Type`, `application/grpc`)
-      priority: 11
+      # priority: 11
       services:
-        - kind: Service
-          name: argo-cd-argocd-server
+        - name: argo-cd-argocd-server
           port: 80
           scheme: h2c
   tls:
-    certResolver: letsencrypt
     secretName: argocd-framsburg-ch-tls
