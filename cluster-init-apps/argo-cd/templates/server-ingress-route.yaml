@@ -12,7 +12,7 @@ spec:
   routes:
     - kind: Rule
       match: Host(`argocd.framsburg.ch`) && PathPrefix(`/`)
-      priority: 10
+#      priority: 10
       services:
         - name: argo-cd-argocd-server
           port: 80
