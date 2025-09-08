@@ -12,7 +12,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`argocd.framsburg.ch`)
+      match: Host(`argocd.framsburg.ch`) && PathPrefix(`/`)
       priority: 10
       services:
         - kind: Service
