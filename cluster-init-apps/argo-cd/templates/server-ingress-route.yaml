@@ -28,5 +28,3 @@ spec:
           scheme: h2c
   tls:
     secretName: argocd-framsburg-ch-tls
-    domains:
-      - main: argocd.framsburg.ch
