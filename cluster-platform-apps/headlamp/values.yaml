@@ -1,5 +1,8 @@
 headlamp:
 
+  clusterRoleBinding:
+    create: false
+
   config:
     oidc:
       secret:
