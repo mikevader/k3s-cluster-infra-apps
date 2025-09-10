@@ -20,7 +20,7 @@ headlamp:
       - host: headlamp.framsburg.ch
         paths:
           - path: /
-            type: ImplementationSpecific
+            type: Prefix
     tls:
       - secretName: headlamp-framsburg-ch-tls
         hosts:
