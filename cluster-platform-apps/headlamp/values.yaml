@@ -4,7 +4,6 @@ headlamp:
     create: false
 
   config:
-    baseURL: https://headlamp.framsburg.ch
     oidc:
       secret:
         create: false
@@ -22,7 +21,7 @@ headlamp:
       - host: headlamp.framsburg.ch
         paths:
           - path: /
-            type: Prefix
+            type: ImplementationSpecific
     tls:
       - secretName: headlamp-framsburg-ch-tls
         hosts:
