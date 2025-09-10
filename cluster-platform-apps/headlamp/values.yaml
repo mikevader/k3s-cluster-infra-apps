@@ -4,6 +4,7 @@ headlamp:
     create: false
 
   config:
+    baseURL: https://headlamp.framsburg.ch
     oidc:
       secret:
         create: false
