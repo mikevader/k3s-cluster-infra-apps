@@ -16,6 +16,7 @@ headlamp:
     annotations:
       kubernetes.io/tls-acme: "true"
       traefik.ingress.kubernetes.io/router.middlewares: headlamp-forward-headers@kubernetescrd
+    ingressClassName: traefik
     hosts:
       - host: headlamp.framsburg.ch
         paths:
