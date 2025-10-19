@@ -18,6 +18,10 @@ headlamp:
     env:
       - name: NPM_CONFIG_CACHE
         value: /tmp/npm
+    securityContext:
+      readOnlyRootFilesystem: false
+      runAsNonRoot: false
+      runAsUser: 0
     configContent: |
       plugins:
         - name: headlamp_cert-manager
