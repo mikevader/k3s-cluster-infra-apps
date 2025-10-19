@@ -7,16 +7,16 @@ headlamp:
       externalSecret:
         enabled: true
         name: oidc-secret
-  watchPlugins: true
+    watchPlugins: true
 
   pluginsManager:
     enabled: true
     configContent: |
       plugins:
-        - name: cert-manager
+        - name: headlamp_cert-manager
           source: https://artifacthub.io/packages/headlamp/headlamp-plugins/headlamp_cert-manager
           version: 0.1.0
-        - name: flux
+        - name: headlamp_flux
           source: https://artifacthub.io/packages/headlamp/headlamp-plugins/headlamp_flux
           version: 0.4.0
 
