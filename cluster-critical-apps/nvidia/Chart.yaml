@@ -4,6 +4,6 @@ name: nvidia
 version: 1.0.0
 dependencies:
   - name: nvidia-device-plugin
-    version: 0.17.3
+    version: 0.17.4
     repository: https://nvidia.github.io/k8s-device-plugin
     alias: nvidia
