@@ -1,5 +1,9 @@
 headlamp:
 
+  env:
+    - name: NPM_CONFIG_CACHE
+      value: /tmp/npm
+
   config:
     oidc:
       secret:
@@ -11,6 +15,9 @@ headlamp:
 
   pluginsManager:
     enabled: true
+    env:
+      - name: NPM_CONFIG_CACHE
+        value: /tmp/npm
     configContent: |
       plugins:
         - name: headlamp_cert-manager
