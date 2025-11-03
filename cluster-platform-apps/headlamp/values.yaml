@@ -11,6 +11,7 @@ headlamp:
       externalSecret:
         enabled: true
         name: oidc-secret
+      usePKCE: true
     watchPlugins: true
 
   pluginsManager:
