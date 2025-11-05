@@ -7,7 +7,7 @@ dependencies:
     repository: https://charts.goauthentik.io
 
   - name: redis
-    version: 2.1.6
+    version: 2.1.7
     repository: https://groundhog2k.github.io/helm-charts
 
   - name: postgres
