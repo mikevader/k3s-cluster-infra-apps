@@ -16,6 +16,7 @@ nginx:
   tcp:
     30402: plex/torrent-transmission-utptcp:30402
     51413: hidden/transmission-utptcp:51413
+    32400: plex/plex:32400
 
   udp:
     # 30402: plex/torrent-transmission-utpudp:30402
