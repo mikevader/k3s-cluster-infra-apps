@@ -131,7 +131,6 @@ traefik:
       port: 32400
       expose:
         default: true
-      exposedPort: 32400
       protocol: TCP
     # dns-udp:
     #   port: 53
