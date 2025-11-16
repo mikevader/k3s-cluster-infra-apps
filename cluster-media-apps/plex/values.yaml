@@ -217,12 +217,24 @@ plex:
         - hosts: [plex.framsburg.ch]
           secretName: plex-framsburg-ch-tls
 
+    plexport:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: plex
+      ingressClassName: traefik
+      hosts:
+        - host: plex.framsburg.ch
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: plex
+
     external:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
-        # traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        # traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
       ingressClassName: nginx
       hosts:
         - host: plex.framsburg.ch
