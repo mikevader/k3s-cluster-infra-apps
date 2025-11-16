@@ -123,14 +123,11 @@ traefik:
         enabled: true
     cups:
       port: 631
-      expose:
-        default: true
       exposedPort: 631
       protocol: TCP
     plex:
       port: 32400
-      expose:
-        default: true
+      exposedPort: 32400
       protocol: TCP
     # dns-udp:
     #   port: 53
@@ -153,8 +150,6 @@ traefik:
     smb:
       port: 4445
     #   hostPort: 445
-      expose:
-        default: true
       exposedPort: 4445
       protocol: TCP
     metrics:
