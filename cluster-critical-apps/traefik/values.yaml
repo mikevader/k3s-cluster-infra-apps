@@ -127,6 +127,12 @@ traefik:
         default: true
       exposedPort: 631
       protocol: TCP
+    plex:
+      port: 32400
+      expose:
+        default: true
+      exposedPort: 32400
+      protocol: TCP
     # dns-udp:
     #   port: 53
     #   expose:
