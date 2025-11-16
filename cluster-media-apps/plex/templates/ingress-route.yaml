@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - plex
   routes:
-    - match: HostSNI(`plex.framsburg.ch`)
+    - match: HostSNI(`*`)
       services:
         - name: plex
           port: 32400
