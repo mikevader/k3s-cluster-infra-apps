@@ -26,5 +26,6 @@ data:
       ],
       onboardingCommitMessage: "",
       onboardingConfig: {"$schema": "https://docs.renovatebot.com/renovate-schema.json", "extends": ["mikevader/renovate-config"]},
-      onboardingConfigFileName: ".github/renovate.json5"
+      onboardingConfigFileName: ".github/renovate.json5",
+      configMigration: true
     }
