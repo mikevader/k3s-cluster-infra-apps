@@ -30,6 +30,7 @@ applications:
   external-secrets:
     helmServerSideApply: true
   headlamp: {}
+  reloader: {}
   renovate: {}
   sloth: {}
   # tracing: {}
