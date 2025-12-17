@@ -160,7 +160,7 @@ sonarr:
     TZ: Europe/Zurich
     APP_NAME: Sonarr
     APP_PORT: "8989"
-    SONARR__AUTHENTICATION_METHOD: "None" # v4: External
+    SONARR__AUTHENTICATION_METHOD: "External"
 
   ingress:
     main:
@@ -236,7 +236,7 @@ sonarr-4k:
     TZ: Europe/Zurich
     APP_NAME: Sonarr4k
     APP_PORT: "8989"
-    SONARR__AUTHENTICATION_METHOD: "None" # v4: External
+    SONARR__AUTHENTICATION_METHOD: "External"
 
   ingress:
     main:
