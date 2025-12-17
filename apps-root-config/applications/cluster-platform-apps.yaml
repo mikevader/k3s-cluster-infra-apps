@@ -30,7 +30,6 @@ applications:
   external-secrets:
     helmServerSideApply: true
   headlamp: {}
-  kubernetes-dashboard: {}
   renovate: {}
   sloth: {}
   # tracing: {}
