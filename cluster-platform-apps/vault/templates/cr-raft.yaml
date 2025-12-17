@@ -1,10 +1,11 @@
+---
 apiVersion: "vault.banzaicloud.com/v1alpha1"
 kind: "Vault"
 metadata:
   name: "vault"
 spec:
   size: 3
-  image: hashicorp/vault:1.19
+  image: hashicorp/vault:1.21
   # bankVaultsImage: ghcr.io/banzaicloud/bank-vaults:latest
 
   affinity:
