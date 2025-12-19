@@ -74,6 +74,7 @@ kube-prometheus-stack:
           kind: "ClusterIssuer"
 
   grafana:
+    useStatefulSet: true
     env:
       GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
       GF_AUTH_GENERIC_OAUTH_NAME: "authentik"
@@ -110,7 +111,7 @@ kube-prometheus-stack:
             - grafana.framsburg.ch
 
     persistence:
-      type: pvc
+      type: sts
       enabled: true
       accessModes:
         - ReadWriteOnce
