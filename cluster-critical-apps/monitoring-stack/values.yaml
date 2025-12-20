@@ -177,6 +177,14 @@ kube-prometheus-stack:
               path: /var/lib/grafana/dashboards/default
     plugins:
       - grafana-piechart-panel
+      - volkovlabs-echarts-panel
+      - volkovlabs-form-panel
+      - volkovlabs-variable-panel
+      - debug
+      - grafana-github-datasource
+      - grafana-pathfinder-app
+      - grafana-polystat-panel
+      - grafana-oncall-app
     dashboards:
       default:
         k8s-cluster-summary:
