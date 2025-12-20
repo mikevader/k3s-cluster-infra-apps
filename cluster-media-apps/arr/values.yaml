@@ -322,7 +322,7 @@ prowlarr:
     APP_PORT: "9696"
     PGID: "666"
     PUID: "666"
-    PROWLARR__AUTHENTICATION_METHOD: "External"
+    PROWLARR__AUTHENTICATION_METHOD: "external"
 
   ingress:
     main:
