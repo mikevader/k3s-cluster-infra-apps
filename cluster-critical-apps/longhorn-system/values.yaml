@@ -1,4 +1,6 @@
 longhorn:
+  preUpgradeChecker:
+    upgradeVersionCheck: false
   persistence:
     defaultClassReplicaCount: 2
     backupTargetName: default
