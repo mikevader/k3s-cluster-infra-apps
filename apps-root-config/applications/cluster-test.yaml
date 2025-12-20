@@ -23,7 +23,7 @@ namespaceResourceBlacklist:
 #  - group: 'apps'
 #    kind: 'DaemonSet'
 
-applications:
+applications: {}
   # bouncer: {}
   # test-helm-test:
   #   path: cluster-test/test-helm
