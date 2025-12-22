@@ -29,6 +29,7 @@ applications:
   democratic-csi: {}
   loki:
     helmServerSideApply: true
+    serverSideDiff: true
 #    source:
 #      helm:
 #        skipCrds: true
