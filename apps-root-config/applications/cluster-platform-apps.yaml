@@ -27,6 +27,7 @@ applications:
   authentik: {}
   cnpg-system:
     helmServerSideApply: true
+    serverSideDiff: true
   external-secrets:
     helmServerSideApply: true
   headlamp: {}
