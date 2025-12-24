@@ -6,21 +6,29 @@ The initial setup is done with Ansible.
 
 ## Bootstrap new Raspberry Pi
 
+* Prerequisite: MAC is configure in DHCP
 * Download newest Raspberry Pi Imager
 * Image Ubuntu Server
-* (Req: MAC is configure in DHCP)
+  * OS -> Other general purpose OS -> Ubuntu -> Ubuntu Server 24.04 LTS (64-bit)
+  * Customisation:
+    * Set username/password to `ubuntu`/`ubuntu`
+    * Enable SSH with password auth
 * Boot Up
 * (Optional) If host was already configured: `sudo ssh-keygen -R <oldhost>` and `sudo ssh-keygen -R <ip>`
 * Configure new host in ansible `hosts.yaml`
-* Add system to the hosts file
-* Ensure the default user exists in `group_vars/<distribution-name>.yaml`
-  Otherwise add a file with the variable `ansible_user_first_run`
+* Add system to the `hosts.yaml` file
 * Run ansible with `ansible-playbook add-user-ssh.yaml --limit <newhost>`
+* To add host to cluster run `ansible-playbook playbooks/06_k3s_secure.yaml`
 
+### Run initial upgrade manually
+
+* Login first time with `ssh <newhost>` and change password
+* Run `sudo apt update && sudo apt full-upgrade -y && sudo reboot`
+* Run `sudo rpi-eeprom-update -a && sudo reboot` to update firmware
 
 ## PoE HAT
 
-The fan of the PoE HAT tends to occelate between min and max speed. Accoding to
+The fan of the PoE HAT tends to occelate between min and max speed. According to
 an [article by Jeff Geerling][3] this can be adjusted.
 
 ## PSU
@@ -37,7 +45,7 @@ https://www.ekervhen.xyz/posts/2021-02/troubleshooting-longhorn-and-dns-networki
 find out device `lsblk -f`
 on new devices `wipefs -a /dev/{{ var_disk }}`
 
-```bash
+```bash title="Create partition table"
 $ sudo fdisk -l
 $ sudo fdisk /dev/sdb
 
@@ -55,13 +63,13 @@ $ sudo fdisk -l
 
 Create Filesystem
 
-```bash
+```bash title="Create filesystem"
 $ sudo mkfs -t ext4 /dev/sdb1
 ```
 
 Create mountpoint and fstab entry
 
-```bash
+```bash title="Mount disk"
 $ sudo mkdir /var/lib/longhorn
 $ sudo lsblk -o name,uuid
 NAME UUID
@@ -250,6 +258,12 @@ otherwise they will block a shutdown or might loose data.
 ```bash
 ansible-playbook playbooks/07_k3s_update.yml --limit k3smaster1
 ```
+
+### Replace existing host
+
+* First remove node from cluster
+* Make sure node is removed from etcd member list as well
+  * _No node can join if the cluster is unhealthy because of missing nodes!_
 
 
 ## Lenovo nic e1000

@@ -18,6 +18,8 @@ theme:
   name: material
   icon:
     repo: fontawesome/brands/github
+  features:
+    - content.footnotes.tooltips
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -29,6 +31,7 @@ markdown_extensions:
   - pymdownx.blocks.caption
   - abbr
   - admonition
+  - footnotes
 
 plugins:
   - drawio_file
