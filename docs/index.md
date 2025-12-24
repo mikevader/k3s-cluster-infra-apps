@@ -34,6 +34,10 @@ The first are used for the control plane, the other fours are used as worker
 nodes. Some of them are powered with PoE hats. The faster external drives are
 used for longhorn.
 
+### Hardware NG
+
+![Hardware Setup](homelab.drawio)
+
 ## GitOps
 
 Inspired from
