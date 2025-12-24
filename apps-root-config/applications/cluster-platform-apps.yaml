@@ -35,5 +35,7 @@ applications:
   renovate: {}
   sloth: {}
   # tracing: {}
-  vault: {}
-  vault-operator: {}
+  vault:
+    serverSideDiff: true
+  vault-operator:
+    serverSideDiff: true
