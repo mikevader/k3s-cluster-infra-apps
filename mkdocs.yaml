@@ -1,73 +1,169 @@
 
 # Project information
-site_name: Raspberry Pi GitOps Stack
+site_name: K3s Homelab GitOps Stack
 site_url: https://mikevader.github.io/k3s-cluster-infra-apps/
 site_author: Michael M&uuml;hlebach
 site_description: >-
-  Documentation on how I setup and configure my k8s-at-home cluster
-  over gitops
+  DevOps documentation for k3s homelab cluster: troubleshooting guides,
+  architecture explanations, and setup procedures for a production-ready
+  GitOps-managed Kubernetes cluster
 
 # Repository
 repo_name: mikevader/k3s-cluster-infra-apps
 repo_url: https://github.com/mikevader/k3s-cluster-infra-apps
 
 # Copyright
-copyright: Copyright &copy; 2020 - 2023 Michael M&uuml;hlebach
+copyright: Copyright &copy; 2020 - 2025 Michael M&uuml;hlebach
 
 theme:
   name: material
   icon:
     repo: fontawesome/brands/github
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
   features:
+    - content.code.copy
+    - content.code.annotate
     - content.footnotes.tooltips
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - toc.follow
 
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - pymdownx.details
   - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.blocks.caption
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - abbr
   - admonition
+  - attr_list
+  - def_list
   - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
 
 plugins:
-  - drawio_file
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+#  - drawio_file
 
 nav:
   - Home: index.md
-  - Bare-Metal: bare-metal.md
-  - Proxmox: proxmox-setup.md
-  - Custom Images: custom-images.md
-  - TrueNAS: truenas.md
-  - Cluster:
-    - Ansible: ansible.md
-    - ArgoCD: argocd.md
-  - Critial Systems:
-    - MetalLB: metallb.md
-    - Cert Manager: cert-manager.md
-    - Traefik: traefik.md
-    - Longhorn: longhorn.md
-    - Monitoring: monitoring.md
-  - Platform:
-    - Authentik: authentik.md
-    - Hashicorp Vault: vault.md
-    - Secrets-CSI: secrets-csi.md
-    - External-Secrets: external-secrets.md
-    - Postgres with CNPG: postgres-cnpg.md
-    - Postgres with Zalando: postgres-zalanod.md
-  - Apps:
-    - Uptime Kuma: uptime-kuma.md
-    - Plex: plex.md
-    - AdGuard: adguard.md
-    - Airprint: airprint.md
-    - Security Cam: securitycam.md
-    - Rails Demo: rails-app.md
-  - Extras:
-    - Network: network.md
-    - VPN: vpn.md
+  - Getting Started:
+    - Overview: getting-started/overview.md
+    - Quick Start: getting-started/quickstart.md
+    - Architecture: getting-started/architecture.md
+  - Troubleshooting & Operations:
+    - Common Issues: troubleshooting/common-issues.md
+    - Disaster Recovery: troubleshooting/disaster-recovery.md
+    - Certificate Issues: troubleshooting/certificates.md
+    - Storage Problems: troubleshooting/storage.md
+    - Network Debugging: troubleshooting/network.md
+    - Application Debugging: troubleshooting/applications.md
+    - Maintenance Tasks: troubleshooting/maintenance.md
+  - Infrastructure Setup:
+    - Hardware:
+      - Raspberry Pi Setup: hardware/raspberry-pi.md
+      - Proxmox Servers: hardware/proxmox.md
+      - TrueNAS Storage: hardware/truenas.md
+      - Network Configuration: hardware/network.md
+    - OS & Provisioning:
+      - Bare Metal Setup: setup/bare-metal.md
+      - Ansible Automation: setup/ansible.md
+      - Custom Images: setup/custom-images.md
+  - Cluster Core:
+    - GitOps & CD:
+      - ArgoCD: cluster-core/argocd.md
+      - GitOps Workflow: cluster-core/gitops-workflow.md
+    - Networking:
+      - Traefik Ingress: cluster-core/traefik.md
+      - MetalLB Load Balancer: cluster-core/metallb.md
+      - DNS & Service Discovery: cluster-core/dns.md
+    - Security:
+      - Cert-Manager: cluster-core/cert-manager.md
+      - Authentik SSO: cluster-core/authentik.md
+      - HashiCorp Vault: cluster-core/vault.md
+      - Secrets Management: cluster-core/secrets-management.md
+    - Storage:
+      - Longhorn: cluster-core/longhorn.md
+      - Storage Classes: cluster-core/storage-classes.md
+    - Observability:
+      - Monitoring Stack: cluster-core/monitoring.md
+      - Logging: cluster-core/logging.md
+      - Alerting: cluster-core/alerting.md
+  - Platform Services:
+    - Database:
+      - PostgreSQL (CNPG): platform/postgres-cnpg.md
+      - PostgreSQL (Zalando): platform/postgres-zalando.md
+      - Database Operations: platform/database-ops.md
+    - Secrets:
+      - Secrets Store CSI: platform/secrets-csi.md
+      - External Secrets: platform/external-secrets.md
+      - Vault Integration: platform/vault-integration.md
+  - Applications:
+    - Media:
+      - Plex: apps/plex.md
+    - Network Services:
+      - AdGuard Home: apps/adguard.md
+      - Airprint: apps/airprint.md
+      - VPN: apps/vpn.md
+    - Monitoring:
+      - Uptime Kuma: apps/uptime-kuma.md
+    - Other:
+      - Security Camera: apps/securitycam.md
+      - Rails Demo: apps/rails-app.md
+  - How-To Guides:
+    - Deploy New Application: howto/deploy-app.md
+    - Setup OIDC for App: howto/setup-oidc.md
+    - Configure Ingress: howto/configure-ingress.md
+    - Setup Backup: howto/setup-backup.md
+    - Add Storage Volume: howto/add-storage.md
+    - Expose Service: howto/expose-service.md
+    - Debug Pod Issues: howto/debug-pods.md
+  - Reference:
+    - Useful Commands: reference/commands.md
+    - Configuration Templates: reference/templates.md
+    - External Resources: reference/resources.md
 
 
 extra:
@@ -77,4 +173,4 @@ extra:
     - icon: fontawesome/brands/twitter 
       link: https://twitter.com/muhlebam
     - icon: fontawesome/brands/linkedin
-      link: www.linkedin.com/in/michaelmuehlebach
+      link: https://www.linkedin.com/in/michaelmuehlebach
