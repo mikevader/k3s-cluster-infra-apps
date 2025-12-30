@@ -54,7 +54,7 @@ authentik:
         mountPath: /postgres-creds
         readOnly: true
 
-postgresql16:
+postgresql18:
   settings:
     existingSecret: database-secret
     superuser:
