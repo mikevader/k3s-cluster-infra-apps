@@ -54,13 +54,6 @@ authentik:
         mountPath: /postgres-creds
         readOnly: true
 
-redis:
-  useDeploymentWhenNonHA: false
-  revisionHistoryLimit: 0
-  storage:
-    className: longhorn
-    requestedSize: 10Gi
-
 postgresql16:
   settings:
     existingSecret: database-secret
