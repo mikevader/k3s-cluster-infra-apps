@@ -17,7 +17,7 @@ authentik:
   authentik:
     secret_key: dontjudgemethisisjustfortesting    # TODO
     postgresql:
-      host: '{{ .Release.Name }}-postgresql16'
+      host: '{{ .Release.Name }}-postgresql18'
       user: file:///postgres-creds/username
       password: file:///postgres-creds/password
     redis:
