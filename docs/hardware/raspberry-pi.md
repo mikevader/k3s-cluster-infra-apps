@@ -1,4 +1,3 @@
-````markdown
 # Raspberry Pi Setup
 
 This guide covers the hardware setup and initial configuration of Raspberry Pi nodes for the k3s cluster.
@@ -397,6 +396,3 @@ sudo journalctl --vacuum-time=30d
 - [Ubuntu on Raspberry Pi](https://ubuntu.com/raspberry-pi)
 - [Jeff Geerling's Pi Cluster](https://www.jeffgeerling.com/blog/2021/raspberry-pi-cluster-episode-1-introduction-clusters)
 - [k3s on Raspberry Pi](https://rancher.com/docs/k3s/latest/en/installation/installation-requirements/)
-
---8<-- "includes/abbreviations.md"
-````
