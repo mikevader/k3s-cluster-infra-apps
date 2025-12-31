@@ -113,27 +113,22 @@ graph TB
 
 ### VLAN Segmentation
 
-```
-┌─────────────────────────────────────────┐
-│         OPNsense Router/Firewall        │
-└─────────────────┬───────────────────────┘
-                  │
-        ┌─────────┴──────────┐
-        │                    │
-    ┌───▼────┐          ┌────▼───┐
-    │ Public │          │Private │
-    │  VLAN  │          │  VLAN  │
-    └───┬────┘          └────┬───┘
-        │                    │
-        └─────────┬──────────┘
-                  │
-            ┌─────▼──────┐
-            │  MetalLB   │
-            └─────┬──────┘
-                  │
-            ┌─────▼──────┐
-            │  Traefik   │
-            └────────────┘
+```mermaid
+graph TB
+    Router[OPNsense Router/Firewall]
+    PublicVLAN[Public VLAN<br/>Internet-facing services]
+    PrivateVLAN[Private VLAN<br/>Internal services]
+    MetalLB[MetalLB LoadBalancer]
+    Traefik[Traefik Ingress]
+    
+    Router --> PublicVLAN
+    Router --> PrivateVLAN
+    PublicVLAN --> MetalLB
+    PrivateVLAN --> MetalLB
+    MetalLB --> Traefik
+    
+    style PublicVLAN fill:#ffcccc
+    style PrivateVLAN fill:#ccffcc
 ```
 
 **Public VLAN**: Internet-facing services (limited)
