@@ -289,7 +289,7 @@ If replacing a node:
 4. Run bootstrap playbook for new node:
    ```bash
    ansible-playbook add-user-ssh.yaml --limit <newhost>
-   ansible-playbook playbooks/06_k3s_secure.yaml # (1) !
+   ansible-playbook playbooks/06_k3s_secure.yaml # (1)!
    ```
 
 </div>
