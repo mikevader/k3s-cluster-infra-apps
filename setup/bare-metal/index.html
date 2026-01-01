@@ -1511,6 +1511,34 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rolling-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rolling Updates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rolling Updates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-k3s-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update K3S Version
+      
+    </span>
+  </a>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#replace-existing-host" class="md-nav__link">
     <span class="md-ellipsis">
@@ -1613,17 +1641,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        References
-      
-    </span>
-  </a>
   
 </li>
       
@@ -3990,6 +4007,34 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rolling-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rolling Updates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rolling Updates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-k3s-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update K3S Version
+      
+    </span>
+  </a>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#replace-existing-host" class="md-nav__link">
     <span class="md-ellipsis">
@@ -4092,17 +4137,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        References
-      
-    </span>
-  </a>
   
 </li>
       
@@ -4245,12 +4279,12 @@ settings.</p>
 <h3 id="poe-hat">PoE HAT<a class="headerlink" href="#poe-hat" title="Permanent link">&para;</a></h3>
 <p>See <a href="../../hardware/raspberry-pi/#poe-hat-fan-control">Raspberry Pi guide</a> for fan control configuration.</p>
 <h3 id="power-supply-ups">Power Supply / UPS<a class="headerlink" href="#power-supply-ups" title="Permanent link">&para;</a></h3>
-<p>For UPS integration: https://github.com/dzomaya/NUTandRpi</p>
+<p>For UPS integration: <a href="https://github.com/dzomaya/NUTandRpi">https://github.com/dzomaya/NUTandRpi</a></p>
 <h3 id="status-indicators">Status Indicators<a class="headerlink" href="#status-indicators" title="Permanent link">&para;</a></h3>
-<p>BlinkStick Nano for visual status: https://www.blinkstick.com/products/blinkstick-nano</p>
+<p>BlinkStick Nano for visual status: <a href="https://www.blinkstick.com/products/blinkstick-nano">https://www.blinkstick.com/products/blinkstick-nano</a></p>
 <h2 id="longhorn-storage-disks">Longhorn Storage Disks<a class="headerlink" href="#longhorn-storage-disks" title="Permanent link">&para;</a></h2>
 <p>For detailed Longhorn disk setup on Raspberry Pi workers, see the <a href="../../hardware/raspberry-pi/#external-nvme-drive-setup">Raspberry Pi guide</a>.</p>
-<p><strong>Troubleshooting:</strong> https://www.ekervhen.xyz/posts/2021-02/troubleshooting-longhorn-and-dns-networking/</p>
+<p><strong>Troubleshooting:</strong> <a href="https://www.ekervhen.xyz/posts/2021-02/troubleshooting-longhorn-and-dns-networking/">https://www.ekervhen.xyz/posts/2021-02/troubleshooting-longhorn-and-dns-networking/</a></p>
 <h2 id="minio-setup">MinIO Setup<a class="headerlink" href="#minio-setup" title="Permanent link">&para;</a></h2>
 <p>MinIO is used as an S3-compatible storage backend for backups (etcd snapshots, Longhorn volumes).</p>
 <div class="admonition warning">
@@ -4263,7 +4297,7 @@ or custom certificates.</p>
 <h3 id="tls-certificates">TLS Certificates<a class="headerlink" href="#tls-certificates" title="Permanent link">&para;</a></h3>
 <h4 id="option-1-certbot-lets-encrypt">Option 1: Certbot (Let's Encrypt)<a class="headerlink" href="#option-1-certbot-lets-encrypt" title="Permanent link">&para;</a></h4>
 <p>You can use an HTTP or DNS challenge. DNS challenge is described on <a href="https://www.digitalocean.com/community/tutorials/how-to-acquire-a-let-s-encrypt-certificate-using-dns-validation-with-acme-dns-certbot-on-ubuntu-18-04">DigitalOcean</a>.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>certbot<span class="w"> </span>certonly<span class="w"> </span><span class="se">\</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>certbot<span class="w"> </span>certonly<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>--config-dir<span class="w"> </span>config<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--work-dir<span class="w"> </span>workdir<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>--logs-dir<span class="w"> </span>logs<span class="w"> </span><span class="se">\</span>
@@ -4394,47 +4428,39 @@ See <a href="https://min.io/docs/minio/linux/integrations/generate-lets-encrypt-
 </span></code></pre></div>
 <h3 id="ansible-variables">Ansible Variables<a class="headerlink" href="#ansible-variables" title="Permanent link">&para;</a></h3>
 <p>Edit vault file with <code>ansible-vault edit group_vars/all.yaml</code> and add the access and secret key for the new bucket:</p>
-<p>```yaml title=group_vars/all.yaml
-backup_s3_access_key: k3s
-backup_s3_secret_key: k3sk3sk3s
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>In `hosts.yaml` or group vars:
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>```yaml title=hosts.yaml
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>backup_schedule_cron: &#39;0 */6 * * *&#39;  # Every 6 hours
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>backup_s3_bucket: k3s
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>backup_s3_endpoint: minio.framsburg.ch:9000
-</span></code></pre></div></p>
+<div class="language-yaml highlight"><span class="filename">group_vars/all.yaml</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">backup_s3_access_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k3s</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">backup_s3_secret_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k3sk3sk3s</span>
+</span></code></pre></div>
+<p>In <code>hosts.yaml</code> or group vars:</p>
+<div class="language-yaml highlight"><span class="filename">hosts.yaml</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">backup_schedule_cron</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0</span><span class="nv"> </span><span class="s">*/6</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*&#39;</span><span class="w">  </span><span class="c1"># Every 6 hours</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">backup_s3_bucket</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k3s</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nt">backup_s3_endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minio.framsburg.ch:9000</span>
+</span></code></pre></div>
 <p>In case the MinIO server uses a self-signed or custom CA certificate, add the CA cert to the k3s server nodes by adding
 <code>backup_s3_endpoint_ca</code>: to the variables above:</p>
-<p>```yaml title=hosts.yaml
-backup_s3_endpoint_ca: |
-  -----BEGIN CERTIFICATE-----
-  MIIDgTCCAmmgAwIBAgIJAJ85e+K5ngFRMA0GCSqGSIb3DQEBCwUAMGsxCzAJBgNV
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>## Rolling Updates
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>The initial Ansible playbook is optimized for cluster initialization (setup/restore), which requires this order:
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>1. First control plane node (initializes or restores etcd)
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>2. Other control plane nodes (sync to first)
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>3. All worker nodes
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>This is efficient for setup but would cause outages on a live cluster. For production updates, you need a sequential
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>rolling update that properly drains nodes.
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>### Update K3S Version
-</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
-</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>Update the version in `hosts.yaml` or manifest file.
-</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
-</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>Use playbook `07_k3s_update.yml` and update control plane nodes **one at a time**:
-</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
-</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>```bash
-</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a># Update each server individually
-</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>ansible-playbook playbooks/07_k3s_update.yml --limit k3s-server01
-</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a># Wait for cluster to stabilize
-</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>ansible-playbook playbooks/07_k3s_update.yml --limit k3s-server02
-</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a># Wait for cluster to stabilize
-</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>ansible-playbook playbooks/07_k3s_update.yml --limit k3s-server03
-</span></code></pre></div></p>
+<div class="language-yaml highlight"><span class="filename">hosts.yaml</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">backup_s3_endpoint_ca</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="no">-----BEGIN CERTIFICATE-----</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="no">MIIDgTCCAmmgAwIBAgIJAJ85e+K5ngFRMA0GCSqGSIb3DQEBCwUAMGsxCzAJBgNV...</span>
+</span></code></pre></div>
+<h2 id="rolling-updates">Rolling Updates<a class="headerlink" href="#rolling-updates" title="Permanent link">&para;</a></h2>
+<p>The initial Ansible playbook is optimized for cluster initialization (setup/restore), which requires this order:</p>
+<ol>
+<li>First control plane node (initializes or restores etcd)</li>
+<li>Other control plane nodes (sync to first)</li>
+<li>All worker nodes</li>
+</ol>
+<p>This is efficient for setup but would cause outages on a live cluster. For production updates, you need a sequential
+rolling update that properly drains nodes.</p>
+<h3 id="update-k3s-version">Update K3S Version<a class="headerlink" href="#update-k3s-version" title="Permanent link">&para;</a></h3>
+<p>Update the version in <code>hosts.yaml</code> or manifest file.</p>
+<p>Use playbook <code>07_k3s_update.yml</code> and update control plane nodes <strong>one at a time</strong>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Update each server individually</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>ansible-playbook<span class="w"> </span>playbooks/07_k3s_update.yml<span class="w"> </span>--limit<span class="w"> </span>k3s-server01
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1"># Wait for cluster to stabilize</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>ansible-playbook<span class="w"> </span>playbooks/07_k3s_update.yml<span class="w"> </span>--limit<span class="w"> </span>k3s-server02
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># Wait for cluster to stabilize</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>ansible-playbook<span class="w"> </span>playbooks/07_k3s_update.yml<span class="w"> </span>--limit<span class="w"> </span>k3s-server03
+</span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Important</p>
 <p>Wait for Longhorn and other storage systems to recover between reboots. They need time to stabilize or may block
@@ -4445,13 +4471,13 @@ shutdowns and risk data loss.</p>
 <ol>
 <li>Remove node from cluster: <code>kubectl delete node &lt;nodename&gt;</code></li>
 <li><strong>Verify node is removed from etcd member list</strong> 
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>etcdctl<span class="w"> </span>member<span class="w"> </span>list
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>etcdctl<span class="w"> </span>member<span class="w"> </span>list
 </span></code></pre></div>
    <em>No new node can join if the cluster is unhealthy due to missing members!</em></li>
 <li>Add new host to Ansible inventory</li>
 <li>Run bootstrap playbook for new node:
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ansible-playbook<span class="w"> </span>add-user-ssh.yaml<span class="w"> </span>--limit<span class="w"> </span>&lt;newhost&gt;
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>ansible-playbook<span class="w"> </span>playbooks/06_k3s_secure.yaml<span class="w"> </span><span class="c1"># (1) !</span>
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>ansible-playbook<span class="w"> </span>add-user-ssh.yaml<span class="w"> </span>--limit<span class="w"> </span>&lt;newhost&gt;
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>ansible-playbook<span class="w"> </span>playbooks/06_k3s_secure.yaml<span class="w"> </span><span class="c1"># (1) !</span>
 </span></code></pre></div></li>
 <li>Careful: If you use limit here without any other master node, you will initialize a new cluster instead of joining!</li>
 </ol>
@@ -4459,8 +4485,8 @@ shutdowns and risk data loss.</p>
 <h3 id="lenovo-tiny-servers-e1000-nic-issues">Lenovo Tiny Servers — E1000 NIC Issues<a class="headerlink" href="#lenovo-tiny-servers-e1000-nic-issues" title="Permanent link">&para;</a></h3>
 <p>Some tiny servers (like Lenovo ThinkCentre) may have network card issues with hardware offloading. If the network
 adapter hangs:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Disable offloading features</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ethtool<span class="w"> </span>-K<span class="w"> </span>&lt;ADAPTER&gt;<span class="w"> </span>gso<span class="w"> </span>off<span class="w"> </span>gro<span class="w"> </span>off<span class="w"> </span>tso<span class="w"> </span>off
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Disable offloading features</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>ethtool<span class="w"> </span>-K<span class="w"> </span>&lt;ADAPTER&gt;<span class="w"> </span>gso<span class="w"> </span>off<span class="w"> </span>gro<span class="w"> </span>off<span class="w"> </span>tso<span class="w"> </span>off
 </span></code></pre></div>
 <p>Add this as a startup command in <code>/etc/network/if-up.d/</code> to persist across reboots.</p>
 <h3 id="proxmox-adding-new-network-card">Proxmox — Adding New Network Card<a class="headerlink" href="#proxmox-adding-new-network-card" title="Permanent link">&para;</a></h3>
@@ -4468,58 +4494,58 @@ adapter hangs:</p>
 <ol>
 <li>
 <p><strong>Check for missing kernel modules:</strong>
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>ethernet
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="c1"># Should return no error messages</span>
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>ethernet
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="c1"># Should return no error messages</span>
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>List all interfaces:</strong>
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ip<span class="w"> </span>link<span class="w"> </span>show
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1"># Note the name of the new interface (e.g., enp3s0)</span>
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ip<span class="w"> </span>link<span class="w"> </span>show
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1"># Note the name of the new interface (e.g., enp3s0)</span>
 </span></code></pre></div></p>
 </li>
 <li>
-<p><strong>Update <code>/etc/network/interfaces</code>:</strong></p>
+<p><strong>Update <code>/etc/network/interfaces</code>:</strong>
+   <strong>Before:</strong>
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>auto lo
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>iface lo inet loopback
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>iface eno1 inet manual
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>        gso-offload off
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>        tso-offload off
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>auto vmbr0
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>iface vmbr0 inet static
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>        address 192.168.42.110/24
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>        gateway 192.168.42.1
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>        bridge-ports eno1
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>        bridge-stp off
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>        bridge-fd 0
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>        bridge-vlan-aware yes
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>        bridge-vids 2-4094
+</span></code></pre></div>
+   <strong>After:</strong>
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>auto lo
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>iface lo inet loopback
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>iface enp3s0 inet manual
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>auto vmbr0
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>iface vmbr0 inet static
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>        address 192.168.42.111/24
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>        gateway 192.168.42.1
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>        bridge-ports enp3s0
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>        bridge-stp off
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>        bridge-fd 0
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>        bridge-vlan-aware yes
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>        bridge-vids 2-4094
+</span></code></pre></div></p>
 </li>
-</ol>
-<p><strong>Before:</strong>
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>auto lo
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>iface lo inet loopback
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>iface eno1 inet manual
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>        gso-offload off
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>        tso-offload off
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>auto vmbr0
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>iface vmbr0 inet static
-</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>        address 192.168.42.110/24
-</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>        gateway 192.168.42.1
-</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>        bridge-ports eno1
-</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>        bridge-stp off
-</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>        bridge-fd 0
-</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>        bridge-vlan-aware yes
-</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>        bridge-vids 2-4094
+<li>
+<p><strong>Restart networking:</strong>
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>networking.service
 </span></code></pre></div></p>
-<p><strong>After:</strong>
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>auto lo
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>iface lo inet loopback
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>iface enp3s0 inet manual
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>auto vmbr0
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>iface vmbr0 inet static
-</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>        address 192.168.42.111/24
-</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>        gateway 192.168.42.1
-</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>        bridge-ports enp3s0
-</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>        bridge-stp off
-</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>        bridge-fd 0
-</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>        bridge-vlan-aware yes
-</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>        bridge-vids 2-4094
-</span></code></pre></div></p>
-<ol>
-<li><strong>Restart networking:</strong>
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>networking.service
-</span></code></pre></div></li>
+</li>
 </ol>
 <h2 id="hardware-vendors-resources">Hardware Vendors &amp; Resources<a class="headerlink" href="#hardware-vendors-resources" title="Permanent link">&para;</a></h2>
 <p>Useful vendors for homelab hardware:</p>
@@ -4540,12 +4566,13 @@ adapter hangs:</p>
 <li><a href="https://www.serverschmiede.com/">ServerSchmiede</a> — TrueNAS and Supermicro configurators</li>
 <li><a href="https://serverando.de/Server/">Serverando</a> — Various servers</li>
 </ul>
-<p>Or search for "Lenovo ThinkCentre Tiny", "HP EliteDesk Mini", or "Dell OptiPlex Micro" for compact, power-efficient servers like:
-- https://www.ebay.de/itm/404433125454?itmmeta=01J2635VSAH35D01S3P83AEHSX&amp;hash=item5e2a17c04e:g:eN8AAOSwNFxktdsz&amp;var=674539469591
-- https://www.ebay.de/itm/305247609020?itmmeta=01J262NDCBCZ5V7WGW29NDQGZC&amp;hash=item47122ce0bc:g:fFcAAOSw95plqVp0&amp;itmprp=enc%3AAQAJAAAA4P%2BHsi8ZJxxkeeuXEbknuuEvnrzmVSyLnf8JsUZ6M3ubQM06d5Ztt8bkEqeBHOEQIseuaFiwu%2BYeZWs2ohLL9pgM8QdmI7XsxgytIKQ5lFwdND6qDTMi5ODfbropBH5gVAVKfJ6hmSx1MuvFA2O1cmz8DAxXaETqWV33zz1phg3vNu9c7P2qmopNvlD28mJB0UlnxGhm8I3NHdEp8FUPw4FB0Kit63lUxxvDAiRGQ5IR3LQCBl7xmJHFnhIkaDfDnBCC2rsIXj903lnHDSGRuvXc4R4DF%2FXQQa5PekGctP7R%7Ctkp%3ABFBMotbVwpFk
-- https://www.ebay.de/itm/404433125454?chn=ps&amp;_ul=DE&amp;var=674539291378&amp;norover=1&amp;mkevt=1&amp;mkrid=707-166974-037691-2&amp;mkcid=2&amp;mkscid=101&amp;itemid=674539502517_404433125454&amp;targetid=2279743046334&amp;device=c&amp;mktype=pla&amp;googleloc=1002964&amp;poi=&amp;campaignid=20743725838&amp;mkgroupid=156953869822&amp;rlsatarget=pla-2279743046334&amp;abcId=9330607&amp;merchantid=5361935233&amp;geoid=1002964&amp;gad_source=1&amp;gbraid=0AAAAAD_G4xa4G7JEe2Z80T4KhK0Ii0ERO&amp;gclid=Cj0KCQjw-ai0BhDPARIsAB6hmP6Go03PZEXz5yMqYFizH6-J0wiekFwj-PhXREKvgglAMvHLL7MFWVsaAk52EALw_wcB</p>
+<p>Or search for "Lenovo ThinkCentre Tiny", "HP EliteDesk Mini", or "Dell OptiPlex Micro" for compact, power-efficient servers like:</p>
+<ul>
+<li><a href="https://www.ebay.de/itm/404433125454?itmmeta=01J2635VSAH35D01S3P83AEHSX&amp;hash=item5e2a17c04e:g:eN8AAOSwNFxktdsz&amp;var=674539469591">https://www.ebay.de/itm/404433125454?itmmeta=01J2635VSAH35D01S3P83AEHSX&amp;hash=item5e2a17c04e:g:eN8AAOSwNFxktdsz&amp;var=674539469591</a></li>
+<li><a href="https://www.ebay.de/itm/305247609020?itmmeta=01J262NDCBCZ5V7WGW29NDQGZC&amp;hash=item47122ce0bc:g:fFcAAOSw95plqVp0&amp;itmprp=enc%3AAQAJAAAA4P%2BHsi8ZJxxkeeuXEbknuuEvnrzmVSyLnf8JsUZ6M3ubQM06d5Ztt8bkEqeBHOEQIseuaFiwu%2BYeZWs2ohLL9pgM8QdmI7XsxgytIKQ5lFwdND6qDTMi5ODfbropBH5gVAVKfJ6hmSx1MuvFA2O1cmz8DAxXaETqWV33zz1phg3vNu9c7P2qmopNvlD28mJB0UlnxGhm8I3NHdEp8FUPw4FB0Kit63lUxxvDAiRGQ5IR3LQCBl7xmJHFnhIkaDfDnBCC2rsIXj903lnHDSGRuvXc4R4DF%2FXQQa5PekGctP7R%7Ctkp%3ABFBMotbVwpFk">https://www.ebay.de/itm/305247609020?itmmeta=01J262NDCBCZ5V7WGW29NDQGZC&amp;hash=item47122ce0bc:g:fFcAAOSw95plqVp0&amp;itmprp=enc%3AAQAJAAAA4P%2BHsi8ZJxxkeeuXEbknuuEvnrzmVSyLnf8JsUZ6M3ubQM06d5Ztt8bkEqeBHOEQIseuaFiwu%2BYeZWs2ohLL9pgM8QdmI7XsxgytIKQ5lFwdND6qDTMi5ODfbropBH5gVAVKfJ6hmSx1MuvFA2O1cmz8DAxXaETqWV33zz1phg3vNu9c7P2qmopNvlD28mJB0UlnxGhm8I3NHdEp8FUPw4FB0Kit63lUxxvDAiRGQ5IR3LQCBl7xmJHFnhIkaDfDnBCC2rsIXj903lnHDSGRuvXc4R4DF%2FXQQa5PekGctP7R%7Ctkp%3ABFBMotbVwpFk</a></li>
+<li><a href="https://www.ebay.de/itm/404433125454?chn=ps&amp;_ul=DE&amp;var=674539291378&amp;norover=1&amp;mkevt=1&amp;mkrid=707-166974-037691-2&amp;mkcid=2&amp;mkscid=101&amp;itemid=674539502517_404433125454&amp;targetid=2279743046334&amp;device=c&amp;mktype=pla&amp;googleloc=1002964&amp;poi=&amp;campaignid=20743725838&amp;mkgroupid=156953869822&amp;rlsatarget=pla-2279743046334&amp;abcId=9330607&amp;merchantid=5361935233&amp;geoid=1002964&amp;gad_source=1&amp;gbraid=0AAAAAD_G4xa4G7JEe2Z80T4KhK0Ii0ERO&amp;gclid=Cj0KCQjw-ai0BhDPARIsAB6hmP6Go03PZEXz5yMqYFizH6-J0wiekFwj-PhXREKvgglAMvHLL7MFWVsaAk52EALw_wcB">https://www.ebay.de/itm/404433125454?chn=ps&amp;_ul=DE&amp;var=674539291378&amp;norover=1&amp;mkevt=1&amp;mkrid=707-166974-037691-2&amp;mkcid=2&amp;mkscid=101&amp;itemid=674539502517_404433125454&amp;targetid=2279743046334&amp;device=c&amp;mktype=pla&amp;googleloc=1002964&amp;poi=&amp;campaignid=20743725838&amp;mkgroupid=156953869822&amp;rlsatarget=pla-2279743046334&amp;abcId=9330607&amp;merchantid=5361935233&amp;geoid=1002964&amp;gad_source=1&amp;gbraid=0AAAAAD_G4xa4G7JEe2Z80T4KhK0Ii0ERO&amp;gclid=Cj0KCQjw-ai0BhDPARIsAB6hmP6Go03PZEXz5yMqYFizH6-J0wiekFwj-PhXREKvgglAMvHLL7MFWVsaAk52EALw_wcB</a></li>
+</ul>
 <hr />
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
 <li>[CSI]: Container Storage Interface</li>
 <li>
