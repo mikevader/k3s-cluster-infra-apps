@@ -1,4 +1,4 @@
-
+---
 # Project information
 site_name: K3s Homelab GitOps Stack
 site_url: https://mikevader.github.io/k3s-cluster-infra-apps/
@@ -172,7 +172,7 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/mikevader
-    - icon: fontawesome/brands/twitter 
+    - icon: fontawesome/brands/twitter
       link: https://twitter.com/muhlebam
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/michaelmuehlebach
