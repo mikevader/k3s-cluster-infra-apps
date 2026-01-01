@@ -289,7 +289,9 @@ If replacing a node:
    ansible-playbook add-user-ssh.yaml --limit <newhost>
    ansible-playbook playbooks/06_k3s_secure.yaml # (1) !
    ```
-   1. Careful: If you use limit here without any other master node, you will initialize a new cluster instead of joining!
+
+1.  Careful: If you use limit here without any other master node, you will initialize a new cluster instead of joining!
+ 
 
 
 ## Hardware-Specific Configuration
