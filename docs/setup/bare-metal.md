@@ -1,123 +1,107 @@
-# Harware Setup of Raspberry PIs
+# Bare Metal Server Setup
 
-https://www.blinkstick.com/products/blinkstick-nano
+This guide covers the setup and configuration of bare metal servers for the k3s
+cluster, including MinIO storage, backup configuration, and server-specific
+settings.
 
-The initial setup is done with Ansible.
+!!! info "Raspberry Pi Hardware Setup"
+    For detailed Raspberry Pi hardware setup and configuration, see the [Raspberry Pi Hardware Guide](../hardware/raspberry-pi.md).
 
-## Bootstrap new Raspberry Pi
+## Quick Start: Bootstrap New Node
 
-* Prerequisite: MAC is configure in DHCP
-* Download newest Raspberry Pi Imager
-* Image Ubuntu Server
-  * OS -> Other general purpose OS -> Ubuntu -> Ubuntu Server 24.04 LTS (64-bit)
-  * Customisation:
-    * Set username/password to `ubuntu`/`ubuntu`
-    * Enable SSH with password auth
-* Boot Up
-* (Optional) If host was already configured: `sudo ssh-keygen -R <oldhost>` and `sudo ssh-keygen -R <ip>`
-* Configure new host in ansible `hosts.yaml`
-* Add system to the `hosts.yaml` file
-* Run ansible with `ansible-playbook add-user-ssh.yaml --limit <newhost>`
-* To add host to cluster run `ansible-playbook playbooks/06_k3s_secure.yaml`
+The initial setup is done with Ansible. For detailed hardware-specific instructions, refer to:
 
-### Run initial upgrade manually
+- [Raspberry Pi Setup](../hardware/raspberry-pi.md) — Complete Pi hardware guide
+- [Proxmox VMs](../hardware/proxmox.md) — VM configuration (if available)
 
-* Login first time with `ssh <newhost>` and change password
-* Run `sudo apt update && sudo apt full-upgrade -y && sudo reboot`
-* Run `sudo rpi-eeprom-update -a && sudo reboot` to update firmware
+### Prepare Boot Device (Raspberry PI)
 
-## PoE HAT
+- Download newest Raspberry Pi Imager
+- Image Ubuntu Server
+    - OS -> Other general purpose OS -> Ubuntu -> Ubuntu Server 24.04 LTS (64-bit)
+    - Customisation:
+        - Set username/password to `ubuntu`/`ubuntu`
+        - Enable SSH with password auth
 
-The fan of the PoE HAT tends to occelate between min and max speed. According to
-an [article by Jeff Geerling][3] this can be adjusted.
+### First-Time Setup Notes
 
-## PSU
-
-https://github.com/dzomaya/NUTandRpi
-
-## Install Longhorn Disks
-
-https://www.ekervhen.xyz/posts/2021-02/troubleshooting-longhorn-and-dns-networking/
+- Initial login: `ubuntu`/`ubuntu` (change password on first login)
+- Update OS: `sudo apt update && sudo apt full-upgrade -y && sudo reboot`
+- Update firmware (Raspberry Pi): `sudo rpi-eeprom-update -a && sudo reboot`
 
 
-### New disk
+### Bootstrap Process
 
-find out device `lsblk -f`
-on new devices `wipefs -a /dev/{{ var_disk }}`
+- Prerequisite: MAC address configured in DHCP server
+- Remove old host keys if re-imaging: `ssh-keygen -R <oldhost> && ssh-keygen -R <ip>`
+- Configure new host in ansible `hosts.yaml`
+- Run ansible with `ansible-playbook add-user-ssh.yaml --limit <newhost>`
+- To join cluster run `ansible-playbook playbooks/06_k3s_secure.yaml`
 
-```bash title="Create partition table"
-$ sudo fdisk -l
-$ sudo fdisk /dev/sdb
 
-Command: g
-Created a new GPT disklabel (GUID: xxxxx)
+## Hardware Notes
 
-Command: n
-Partition number: 1 (default)
-First sector: (default)
-Last sector: (default)
-Command: w
+### PoE HAT
 
-$ sudo fdisk -l
-```
+See [Raspberry Pi guide](../hardware/raspberry-pi.md#poe-hat-fan-control) for fan control configuration.
 
-Create Filesystem
+### Power Supply / UPS
 
-```bash title="Create filesystem"
-$ sudo mkfs -t ext4 /dev/sdb1
-```
+For UPS integration: https://github.com/dzomaya/NUTandRpi
 
-Create mountpoint and fstab entry
+### Status Indicators
 
-```bash title="Mount disk"
-$ sudo mkdir /var/lib/longhorn
-$ sudo lsblk -o name,uuid
-NAME UUID
-sde1 9999-9999...
+BlinkStick Nano for visual status: https://www.blinkstick.com/products/blinkstick-nano
 
-$ echo "UUID=0ec0cac5-6825-467b-acf7-da5505517b66 /var/lib/longhorn2 ext4 defaults 0 2" >> /etc/fstab
-$ sudo mount /var/lib/longhorn2
-```
+## Longhorn Storage Disks
+
+For detailed Longhorn disk setup on Raspberry Pi workers, see the [Raspberry Pi guide](../hardware/raspberry-pi.md#external-nvme-drive-setup).
+
+**Troubleshooting:** https://www.ekervhen.xyz/posts/2021-02/troubleshooting-longhorn-and-dns-networking/
 
 
 
-## Setup Minio
+## MinIO Setup
 
+MinIO is used as an S3-compatible storage backend for backups (etcd snapshots, Longhorn volumes).
 
-TLS:
-https://docs.ansible.com/ansible/latest/collections/community/crypto/acme_certificate_module.html
+!!! warning "TLS/Certificate Requirements"
+    MinIO should be set up with a proper domain and valid certificate. Many systems do not support insecure connections
+    or custom certificates.
 
-Install Minio with installer.
+### Installation
 
-It is recommended to setup MinIO with a correct Domain and Certificate because,
-several systems either do not support insecure connections, custom certificates
-or disabling verification. The [MinIO Documentation][1] has a good guide how to
-use `certbot` to install this. 
+Install MinIO using the official installer. See [MinIO Documentation](https://min.io/docs/minio/linux/operations/install-deploy-manage/deploy-minio-single-node-single-drive.html).
 
-### Certs over certbot
+### TLS Certificates
 
-You can use HTTP or DNS challenge. The latter is dicribed on [digitalocean][2]
+#### Option 1: Certbot (Let's Encrypt)
+
+You can use an HTTP or DNS challenge. DNS challenge is described on [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-acquire-a-let-s-encrypt-certificate-using-dns-validation-with-acme-dns-certbot-on-ubuntu-18-04).
+
 ```bash
-$ certbot certonly --config-dir config --work-dir workdir --logs-dir logs  --manual  --preferred-challenges dns --debug-challenges -d minio.framsburg.net
+certbot certonly \
+  --config-dir config \
+  --work-dir workdir \
+  --logs-dir logs \
+  --manual \
+  --preferred-challenges dns \
+  --debug-challenges \
+  -d minio.example.com
 ```
 
-During the execution, certbot requires you to add a specific DNS entry to your
-Domain. This looks similar to:
+During execution, certbot requires you to add a specific DNS TXT record to your domain:
 
-![DNS Record on Digitalocean](dns-record.png)
+![DNS Record Example](../dns-record.png)
 
-### Certs over ACME Client (Opnsense)
+#### Option 2: OPNsense ACME Client
 
-Opnsense has a service plugin for the ACME protocol to create certificates. The
-tricky part is how to get the certificates from Opnsense to Minio. The plugin
-allows to create automations to do for example a SFTP copy of the certs to the
-minio server.
+OPNsense has an ACME service plugin for automatic certificate generation.
 
-The only small pitfall is that Minio users for the public cert not the pure cert
-file put the full chain, which is a combination of the cert + ca as described
-in the [MinIO Documentation][4].
+**Key Detail:** MinIO uses the full chain (`cert + ca`) for the public certificate, not just the cert file.
+See [MinIO TLS Documentation][4].
 
-So your Opnsense Config looks something like this:
+**OPNsense ACME Automation Config:**
 
 | Field                  | Value                            |
 |------------------------|----------------------------------|
@@ -125,35 +109,45 @@ So your Opnsense Config looks something like this:
 | Run Command            | Upload certificate via SFTP      |
 | SFTP Host              | minio.server                     |
 | SFTP Port              | 22                               |
-| Removte Path           | /path-to-minio-home/.minio/certs |
+| Remote Path            | `/home/minio-user/.minio/certs`  |
 | Naming "key.pem"       | private.key                      |
 | Naming "fullchain.pem" | public.crt                       |
 
+### Prometheus Monitoring
 
-## Setup Minio Monitoring
+MinIO requires environment variables for Prometheus integration:
 
-Minio requires two env variables to connect to prometheus metrics:
-
-```bash
-export MINIO_PROMETHEUS_URL=https://prometheus.framsburg.ch
-export MINIO_PROMETHEUS_JOB_ID=minio-job
+```shell
+$ export MINIO_PROMETHEUS_URL=https://prometheus.example.com
+$ export MINIO_PROMETHEUS_JOB_ID=minio-job
+$ export MINIO_PROMETHEUS_AUTH_TYPE=public  # If not using JWT auth
 ```
 
-Additionally you might need to set `MINIO_PROMETHEUS_AUTH_TYPE` to `public` as
-authentication over jwt is the default.
+Add these to the MinIO service configuration or environment file.
 
 
-## Setup Minio Bucket for Backup
+### MinIO Bucket for K3S Backups
 
-```bash title="Create minio bucket"
+Create a bucket and user for etcd snapshot backups:
+
+
+**Create bucket structure**
+
+```bash
 $ mc mb myminio/k3s
 $ mc mb myminio/k3s/etcd-snapshot
 ```
 
-```bash title="Create user with policy"
-$ mc admin user add myminio k3s k3sk3sk3s
+**Create user**
 
-$ cat > /tmp/etcd-backups-policy.json <<EOF
+```bash
+$ mc admin user add myminio k3s k3sk3sk3s
+```
+
+**Create policy**
+
+```bash
+cat > /tmp/etcd-backups-policy.json <<EOF
 {
   "Version": "2012-10-17",
       "Statement": [
@@ -188,19 +182,28 @@ $ cat > /tmp/etcd-backups-policy.json <<EOF
   ]
 }
 EOF
+```
 
+**Apply policy**
+
+```bash
 $ mc admin policy create myminio etcd-backups-policy /tmp/etcd-backups-policy.json
-
 $ mc admin policy attach myminio etcd-backups-policy --user k3s
 ```
 
 
-## Define K3S backup target
+## K3S Etcd Backup Configuration
 
-```Ansible title="k3s-server.services"
+Configure k3s to automatically back up etcd snapshots to MinIO.
+
+### Ansible Configuration
+
+Add to `k3s-server.service` template:
+
+```ini
 [Service]
 ExecStart={{ k3s_binary_path }}/k3s server \
-...
+    # ... other flags ...
 {% if backup_s3_enabled %}
     --etcd-s3 \
     --etcd-snapshot-schedule-cron='{{ backup_schedule_cron }}' \
@@ -213,143 +216,189 @@ ExecStart={{ k3s_binary_path }}/k3s server \
 {% endif %}
 ```
 
-Define in ansible vault `ansible-vault edit group_vars/all.yaml` the four coordinates:
-```properties title="vault"
+### Ansible Variables
+
+Edit vault file with `ansible-vault edit group_vars/all.yaml` and add the access and secret key for the new bucket:
+
+```yaml title=group_vars/all.yaml
 backup_s3_access_key: k3s
 backup_s3_secret_key: k3sk3sk3s
 ```
 
-```properties title="hosts"
-backup_schedule_cron: '0 */6 * * *'
+In `hosts.yaml` or group vars:
+
+```yaml title=hosts.yaml
+backup_schedule_cron: '0 */6 * * *'  # Every 6 hours
 backup_s3_bucket: k3s
-backup_s3_folder: etcd-snapshot
+backup_s3_endpoint: minio.framsburg.ch:9000
+```
+
+In case the MinIO server uses a self-signed or custom CA certificate, add the CA cert to the k3s server nodes by adding
+`backup_s3_endpoint_ca`: to the variables above:
+
+```yaml title=hosts.yaml
 backup_s3_endpoint_ca: |
-          -----BEGIN CERTIFICATE-----
-          MIIDgTCCAmmgAwIBAgIJAJ85e+K5ngFRMA0GCSqGSIb3DQEBCwUAMGsxCzAJBgNV
+  -----BEGIN CERTIFICATE-----
+  MIIDgTCCAmmgAwIBAgIJAJ85e+K5ngFRMA0GCSqGSIb3DQEBCwUAMGsxCzAJBgNV
 ```
 
 
+## Rolling Updates
 
-## (Optional) Rolling Update
+The initial Ansible playbook is optimized for cluster initialization (setup/restore), which requires this order:
 
-The initial ansible script is not very suitable for rolling updates as it
-assumes it is about to initialize a cluster which requires the order
-
-1. First master node which initializes (or restores) the etcd state
-2. All other master nodes which sync up to the first
+1. First control plane node (initializes or restores etcd)
+2. Other control plane nodes (sync to first)
 3. All worker nodes
 
-That is very efficient for setup and restore but would mean some outages if
-applied on a live cluster. Therefore we need a playbook which goes through
-every node sequentially (we have no special requirement on performance) and
-cares about draining nodes correctly.
+This is efficient for setup but would cause outages on a live cluster. For production updates, you need a sequential
+rolling update that properly drains nodes.
 
-Ideally we can reuse roles from the cluster setup playbook.
+### Update K3S Version
 
+Update the version in `hosts.yaml` or manifest file.
 
-## Update K3S Version
-
-Update version in hosts or manifest
-
-Use playbook `07_k3s_update` and start with the master nodes individually.
-Be aware that Longhorn and other systems need time to recover from the reboots
-otherwise they will block a shutdown or might loose data.
+Use playbook `07_k3s_update.yml` and update control plane nodes **one at a time**:
 
 ```bash
-ansible-playbook playbooks/07_k3s_update.yml --limit k3smaster1
+# Update each server individually
+ansible-playbook playbooks/07_k3s_update.yml --limit k3s-server01
+# Wait for cluster to stabilize
+ansible-playbook playbooks/07_k3s_update.yml --limit k3s-server02
+# Wait for cluster to stabilize
+ansible-playbook playbooks/07_k3s_update.yml --limit k3s-server03
 ```
 
-### Replace existing host
+!!! warning "Important"
+    Wait for Longhorn and other storage systems to recover between reboots. They need time to stabilize or may block
+    shutdowns and risk data loss.
 
-* First remove node from cluster
-* Make sure node is removed from etcd member list as well
-  * _No node can join if the cluster is unhealthy because of missing nodes!_
+### Replace Existing Host
+
+If replacing a node:
+
+1. Remove node from cluster: `kubectl delete node <nodename>`
+2. **Verify node is removed from etcd member list** 
+   ```bash
+   etcdctl member list
+   ```
+   _No new node can join if the cluster is unhealthy due to missing members!_
+3. Add new host to Ansible inventory
+4. Run bootstrap playbook for new node:
+   ```bash
+   ansible-playbook add-user-ssh.yaml --limit <newhost>
+   ansible-playbook playbooks/06_k3s_secure.yaml # (1) !
+   ```
+   1. Careful: If you use limit here without any other master node, you will initialize a new cluster instead of joining!
 
 
-## Lenovo nic e1000
+## Hardware-Specific Configuration
 
-Some tiny servers might have an issue with their network card specifically with
-the offloading. In case the network adapter hangs itself up the following
-command might help:
+### Lenovo Tiny Servers — E1000 NIC Issues
 
-```shell
-ethtool -K <ADAPTER> gso off gro off tso off 
+Some tiny servers (like Lenovo ThinkCentre) may have network card issues with hardware offloading. If the network
+adapter hangs:
+
+```bash
+# Disable offloading features
+ethtool -K <ADAPTER> gso off gro off tso off
 ```
 
-This should be added as startup command to `/etc/network/if-up.d/`
+Add this as a startup command in `/etc/network/if-up.d/` to persist across reboots.
+
+### Proxmox — Adding New Network Card
+
+When adding a new network card to replace an old one:
+
+1. **Check for missing kernel modules:**
+   ```bash
+   dmesg | grep -i ethernet
+   # Should return no error messages
+   ```
+
+2. **List all interfaces:**
+   ```bash
+   ip link show
+   # Note the name of the new interface (e.g., enp3s0)
+   ```
+
+3. **Update `/etc/network/interfaces`:**
+
+   **Before:**
+   ```
+   auto lo
+   iface lo inet loopback
+
+   iface eno1 inet manual
+           gso-offload off
+           tso-offload off
+
+   auto vmbr0
+   iface vmbr0 inet static
+           address 192.168.42.110/24
+           gateway 192.168.42.1
+           bridge-ports eno1
+           bridge-stp off
+           bridge-fd 0
+           bridge-vlan-aware yes
+           bridge-vids 2-4094
+   ```
+
+   **After:**
+   ```
+   auto lo
+   iface lo inet loopback
+
+   iface enp3s0 inet manual
+
+   auto vmbr0
+   iface vmbr0 inet static
+           address 192.168.42.111/24
+           gateway 192.168.42.1
+           bridge-ports enp3s0
+           bridge-stp off
+           bridge-fd 0
+           bridge-vlan-aware yes
+           bridge-vids 2-4094
+   ```
+
+4. **Restart networking:**
+   ```bash
+   systemctl restart networking.service
+   ```
 
 
-## New network card on Proxmox
 
-Assuming to add a new network card and replacing an old one
+## Hardware Vendors & Resources
 
-1. Check that no kernel module is missing with `dmesg | grep -i ethernet` (should return no message)
-2. Show all interfaces `ip link show` and note the name of the new
-3. Add new interface to `/etc/network/interfaces`
+Useful vendors for homelab hardware:
 
-``` title="old version"
-auto lo
-iface lo inet loopback
+### Rack Hardware
+- [MK1 Manufacturing](https://www.mk1manufacturing.com/cart.php?m=view) — Custom rack solutions
+- [RackNex](https://racknex.com/shop/lenovo/) - Lenovo servers
+- [Uctronics](https://www.uctronics.com/raspberry-pi.html) - Raspberry Pi accessories
 
-iface eno1 inet manual
-        gso-offload off
-        tso-offload off
+### Servers & Components
+- [45Homelab](https://store.45homelab.com/configure/hl15) - HL15 storage server
+- [ServeTheHome](https://www.servethehome.com/introducing-project-tinyminimicro-home-lab-revolution/) — Project TinyMiniMicro
+- [PCHc.ch](https://www.pchc.ch/en/Divers/spare-parts/Lenovo-CARDPOP-BLD-Tiny8-BTB-LAN-card----5C50W00908.html) - Lenovo Tiny LAN cards
 
-auto vmbr0
-iface vmbr0 inet static
-        address 192.168.42.110/24
-        gateway 192.168.42.1
-        bridge-ports eno1
-        bridge-stp off
-        bridge-fd 0
-        bridge-vlan-aware yes
-        bridge-vids 2-4094
-```
+### Used Hardware (eBay Examples)
+- [ServerSchmiede](https://www.serverschmiede.com/) — TrueNAS and Supermicro configurators
+- [Serverando](https://serverando.de/Server/) — Various servers
 
-``` title="new version"
-auto lo
-iface lo inet loopback
+Or search for "Lenovo ThinkCentre Tiny", "HP EliteDesk Mini", or "Dell OptiPlex Micro" for compact, power-efficient servers like:
+- https://www.ebay.de/itm/404433125454?itmmeta=01J2635VSAH35D01S3P83AEHSX&hash=item5e2a17c04e:g:eN8AAOSwNFxktdsz&var=674539469591
+- https://www.ebay.de/itm/305247609020?itmmeta=01J262NDCBCZ5V7WGW29NDQGZC&hash=item47122ce0bc:g:fFcAAOSw95plqVp0&itmprp=enc%3AAQAJAAAA4P%2BHsi8ZJxxkeeuXEbknuuEvnrzmVSyLnf8JsUZ6M3ubQM06d5Ztt8bkEqeBHOEQIseuaFiwu%2BYeZWs2ohLL9pgM8QdmI7XsxgytIKQ5lFwdND6qDTMi5ODfbropBH5gVAVKfJ6hmSx1MuvFA2O1cmz8DAxXaETqWV33zz1phg3vNu9c7P2qmopNvlD28mJB0UlnxGhm8I3NHdEp8FUPw4FB0Kit63lUxxvDAiRGQ5IR3LQCBl7xmJHFnhIkaDfDnBCC2rsIXj903lnHDSGRuvXc4R4DF%2FXQQa5PekGctP7R%7Ctkp%3ABFBMotbVwpFk
+- https://www.ebay.de/itm/404433125454?chn=ps&_ul=DE&var=674539291378&norover=1&mkevt=1&mkrid=707-166974-037691-2&mkcid=2&mkscid=101&itemid=674539502517_404433125454&targetid=2279743046334&device=c&mktype=pla&googleloc=1002964&poi=&campaignid=20743725838&mkgroupid=156953869822&rlsatarget=pla-2279743046334&abcId=9330607&merchantid=5361935233&geoid=1002964&gad_source=1&gbraid=0AAAAAD_G4xa4G7JEe2Z80T4KhK0Ii0ERO&gclid=Cj0KCQjw-ai0BhDPARIsAB6hmP6Go03PZEXz5yMqYFizH6-J0wiekFwj-PhXREKvgglAMvHLL7MFWVsaAk52EALw_wcB
 
-auto enp2s0f1 inet dhcp
-iface enp2s0f1 inet manual
+---
 
-iface enp3s0 inet manual
-
-auto vmbr0
-iface vmbr0 inet static
-        address 192.168.42.111/24
-        gateway 192.168.42.1
-        bridge-ports enp3s0
-        bridge-stp off
-        bridge-fd 0
-        bridge-vlan-aware yes
-        bridge-vids 2-4094
-```
-
-4. Restart networking with `systemctl restart networking.service`
-
-
-
-## Hardware Buy List
-
-* https://www.mk1manufacturing.com/cart.php?m=view
-* https://racknex.com/shop/lenovo/
-* https://www.uctronics.com/raspberry-pi.html
-* https://store.45homelab.com/configure/hl15
-* https://www.serverschmiede.com/konfigurator_bulk/en/truenas
-* https://www.serverschmiede.com/konfigurator_bulk/en/supermicro-cse-116ts-h12ssw-ntr-19-1u-10x-25-sff-nvme-sas-sata-amd-epyc-gen2-gen3-ddr4-ecc-raid-2x-psu
-* https://serverando.de/Server/
-* https://www.servethehome.com/introducing-project-tinyminimicro-home-lab-revolution/
-* https://www.ebay.de/itm/404433125454?itmmeta=01J2635VSAH35D01S3P83AEHSX&hash=item5e2a17c04e:g:eN8AAOSwNFxktdsz&var=674539469591
-* https://www.ebay.de/itm/305247609020?itmmeta=01J262NDCBCZ5V7WGW29NDQGZC&hash=item47122ce0bc:g:fFcAAOSw95plqVp0&itmprp=enc%3AAQAJAAAA4P%2BHsi8ZJxxkeeuXEbknuuEvnrzmVSyLnf8JsUZ6M3ubQM06d5Ztt8bkEqeBHOEQIseuaFiwu%2BYeZWs2ohLL9pgM8QdmI7XsxgytIKQ5lFwdND6qDTMi5ODfbropBH5gVAVKfJ6hmSx1MuvFA2O1cmz8DAxXaETqWV33zz1phg3vNu9c7P2qmopNvlD28mJB0UlnxGhm8I3NHdEp8FUPw4FB0Kit63lUxxvDAiRGQ5IR3LQCBl7xmJHFnhIkaDfDnBCC2rsIXj903lnHDSGRuvXc4R4DF%2FXQQa5PekGctP7R%7Ctkp%3ABFBMotbVwpFk
-* https://www.ebay.de/itm/404433125454?chn=ps&_ul=DE&var=674539291378&norover=1&mkevt=1&mkrid=707-166974-037691-2&mkcid=2&mkscid=101&itemid=674539502517_404433125454&targetid=2279743046334&device=c&mktype=pla&googleloc=1002964&poi=&campaignid=20743725838&mkgroupid=156953869822&rlsatarget=pla-2279743046334&abcId=9330607&merchantid=5361935233&geoid=1002964&gad_source=1&gbraid=0AAAAAD_G4xa4G7JEe2Z80T4KhK0Ii0ERO&gclid=Cj0KCQjw-ai0BhDPARIsAB6hmP6Go03PZEXz5yMqYFizH6-J0wiekFwj-PhXREKvgglAMvHLL7MFWVsaAk52EALw_wcB
-* https://www.pchc.ch/en/Divers/spare-parts/Lenovo-CARDPOP-BLD-Tiny8-BTB-LAN-card----5C50W00908.html
-* https://www.ebay.com/itm/276424564157
-* 
-* 
-
+## References
 
 [1]: https://min.io/docs/minio/linux/integrations/generate-lets-encrypt-certificate-using-certbot-for-minio.html
 [2]: https://www.digitalocean.com/community/tutorials/how-to-acquire-a-let-s-encrypt-certificate-using-dns-validation-with-acme-dns-certbot-on-ubuntu-18-04
 [3]: https://www.jeffgeerling.com/blog/2021/taking-control-pi-poe-hats-overly-aggressive-fan
 [4]: https://min.io/docs/minio/linux/integrations/generate-lets-encrypt-certificate-using-certbot-for-minio.html#step-4-set-up-ssl-on-minio-server-with-the-certificates
+
+--8<-- "includes/abbreviations.md"
