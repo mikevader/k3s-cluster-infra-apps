@@ -318,5 +318,3 @@ kubectl get pv,pvc -A
 # Clean up Released PVs
 kubectl get pv | grep Released | awk '{print $1}' | xargs kubectl delete pv
 ```
-
---8<-- "includes/abbreviations.md"

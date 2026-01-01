@@ -190,5 +190,3 @@ If you run into issues:
 1. Check [Troubleshooting & Operations](../troubleshooting/common-issues.md)
 2. Search this documentation
 3. Check the GitHub repository issues
-
---8<-- "includes/abbreviations.md"

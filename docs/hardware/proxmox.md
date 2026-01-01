@@ -275,7 +275,3 @@ sudo apt-get install qemu-guest-agent
 [proxmox-passthrough]: https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)
 [proxmox-pci-passthrough]: https://pve.proxmox.com/wiki/PCI_Passthrough
 [gpu-passthrough-guide]: https://pve.proxmox.com/pve-docs/pve-admin-guide.html#_gpu_passthrough_notes
-
-
-
---8<-- "includes/abbreviations.md"

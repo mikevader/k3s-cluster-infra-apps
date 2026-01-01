@@ -278,5 +278,3 @@ kubectl logs -n traefik -l app.kubernetes.io/name=traefik --tail=200
 kubectl get svc -A | grep LoadBalancer
 kubectl logs -n metallb-system -l component=speaker --tail=100
 ```
-
---8<-- "includes/abbreviations.md"

@@ -234,5 +234,3 @@ kubectl get certificate -A
 # ArgoCD
 kubectl get applications -n argocd-system
 ```
-
---8<-- "includes/abbreviations.md"

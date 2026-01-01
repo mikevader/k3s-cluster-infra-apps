@@ -403,5 +403,3 @@ Or search for "Lenovo ThinkCentre Tiny", "HP EliteDesk Mini", or "Dell OptiPlex 
 [2]: https://www.digitalocean.com/community/tutorials/how-to-acquire-a-let-s-encrypt-certificate-using-dns-validation-with-acme-dns-certbot-on-ubuntu-18-04
 [3]: https://www.jeffgeerling.com/blog/2021/taking-control-pi-poe-hats-overly-aggressive-fan
 [4]: https://min.io/docs/minio/linux/integrations/generate-lets-encrypt-certificate-using-certbot-for-minio.html#step-4-set-up-ssl-on-minio-server-with-the-certificates
-
---8<-- "includes/abbreviations.md"

@@ -149,5 +149,3 @@ Already familiar? Jump to what you need:
 - [Deploy New App](../howto/deploy-app.md)
 - [Configure Ingress](../howto/configure-ingress.md)
 - [Setup Backup](../howto/setup-backup.md)
-
---8<-- "includes/abbreviations.md"

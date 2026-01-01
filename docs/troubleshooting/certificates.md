@@ -268,5 +268,3 @@ kubectl get certificate -A -o json | jq -r '.items[] | "\(.metadata.namespace)/\
 # Check cert-manager logs
 kubectl logs -n cert-manager -l app=cert-manager --follow
 ```
-
---8<-- "includes/abbreviations.md"

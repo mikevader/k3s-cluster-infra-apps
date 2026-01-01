@@ -403,5 +403,3 @@ k3s-cluster-infra-apps/
 - [ ] Automated disaster recovery testing
 - [ ] GPU support for AI workloads
 - [ ] Service mesh (Linkerd) for advanced traffic management
-
---8<-- "includes/abbreviations.md"

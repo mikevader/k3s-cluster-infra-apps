@@ -171,5 +171,3 @@ This setup is inspired by the excellent work of:
 ---
 
 *Last updated: December 2025*
-
---8<-- "includes/abbreviations.md"

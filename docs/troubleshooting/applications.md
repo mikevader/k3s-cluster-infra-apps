@@ -349,5 +349,3 @@ kubectl get events -n <namespace> --sort-by='.lastTimestamp'
 # Debug container
 kubectl debug <pod> -n <namespace> -it --image=nicolaka/netshoot
 ```
-
---8<-- "includes/abbreviations.md"

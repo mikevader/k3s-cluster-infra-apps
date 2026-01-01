@@ -296,5 +296,3 @@ After recovering from a disaster:
 - ✅ Use GitOps (so configuration is always in Git)
 - ✅ High availability for critical components
 - ✅ Regular maintenance and updates
-
---8<-- "includes/abbreviations.md"

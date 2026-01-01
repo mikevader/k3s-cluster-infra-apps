@@ -616,5 +616,3 @@ mkdocs serve
 **Need help with anything?** Just ask! The structure is flexible and can be adjusted based on your feedback.
 
 **Happy troubleshooting!** 🚀
-
---8<-- "includes/abbreviations.md"

@@ -295,5 +295,3 @@ kubectl drain <node> --ignore-daemonsets --delete-emptydir-data
 # Uncordon node
 kubectl uncordon <node>
 ```
-
---8<-- "includes/abbreviations.md"
