@@ -12,25 +12,31 @@
         <meta name="author" content="Michael M&uuml;hlebach">
       
       
+        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/getting-started/architecture/">
       
+      
+        <link rel="prev" href="../quickstart/">
+      
+      
+        <link rel="next" href="../../troubleshooting/common-issues/">
       
       
         
       
       
-      <link rel="icon" href="/k3s-cluster-infra-apps/assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>K3s Homelab GitOps Stack</title>
+        <title>Architecture - K3s Homelab GitOps Stack</title>
       
     
     
-      <link rel="stylesheet" href="/k3s-cluster-infra-apps/assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="/k3s-cluster-infra-apps/assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -49,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("/k3s-cluster-infra-apps/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -73,6 +79,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#architecture" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -85,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/k3s-cluster-infra-apps/." title="K3s Homelab GitOps Stack" class="md-header__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
+    <a href="../.." title="K3s Homelab GitOps Stack" class="md-header__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -105,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Architecture
             
           </span>
         </div>
@@ -212,7 +223,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/k3s-cluster-infra-apps/." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -229,11 +240,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="/k3s-cluster-infra-apps/getting-started/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
           
   
   
@@ -253,7 +266,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/k3s-cluster-infra-apps/troubleshooting/common-issues/" class="md-tabs__link">
+        <a href="../../troubleshooting/common-issues/" class="md-tabs__link">
           
   
   
@@ -280,7 +293,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/k3s-cluster-infra-apps/hardware/raspberry-pi/" class="md-tabs__link">
+        <a href="../../hardware/raspberry-pi/" class="md-tabs__link">
           
   
   
@@ -310,7 +323,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/k3s-cluster-infra-apps/cluster-core/argocd/" class="md-tabs__link">
+        <a href="../../cluster-core/argocd/" class="md-tabs__link">
           
   
   
@@ -340,7 +353,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/k3s-cluster-infra-apps/platform/postgres-cnpg/" class="md-tabs__link">
+        <a href="../../platform/postgres-cnpg/" class="md-tabs__link">
           
   
   
@@ -370,7 +383,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/k3s-cluster-infra-apps/apps/plex/" class="md-tabs__link">
+        <a href="../../apps/plex/" class="md-tabs__link">
           
   
   
@@ -393,7 +406,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/k3s-cluster-infra-apps/howto/deploy-app.md" class="md-tabs__link">
+        <a href="../../howto/deploy-app.md" class="md-tabs__link">
           
   
   
@@ -413,7 +426,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/k3s-cluster-infra-apps/reference/commands.md" class="md-tabs__link">
+        <a href="../../reference/commands.md" class="md-tabs__link">
           
   
   
@@ -453,7 +466,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/k3s-cluster-infra-apps/." title="K3s Homelab GitOps Stack" class="md-nav__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
+    <a href="../.." title="K3s Homelab GitOps Stack" class="md-nav__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -483,7 +496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -507,28 +520,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -546,7 +562,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -564,7 +580,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/getting-started/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   
@@ -592,7 +608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/getting-started/quickstart/" class="md-nav__link">
+      <a href="../quickstart/" class="md-nav__link">
         
   
   
@@ -617,10 +633,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/getting-started/architecture/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -636,6 +679,593 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High-Level Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Principles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Design Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-everything-as-code-gitops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Everything as Code (GitOps)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-security-by-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Security by Default
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-high-availability-for-critical-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. High Availability for Critical Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-observable-and-debuggable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Observable and Debuggable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Network Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vlan-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VLAN Segmentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metallb-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MetalLB Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traefik-ingress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traefik Ingress
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#longhorn-primary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn (Primary)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#truenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TrueNAS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authentication-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secrets Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitops-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitOps Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitOps Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment Layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring &amp; Observability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring &amp; Observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metrics-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metrics Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disaster-recovery-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disaster Recovery Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Disaster Recovery Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backup-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup Targets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technology-choices-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technology Choices Explained
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technology Choices Explained">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-k3s-over-k8s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why k3s Over k8s?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-traefik-over-nginx-ingress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Traefik Over NGINX Ingress?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-longhorn-over-rookceph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Longhorn Over Rook/Ceph?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-argocd-over-flux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why ArgoCD Over Flux?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-cloudnativepg-over-zalando" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why CloudNativePG Over Zalando?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-plane-3-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control Plane (3 nodes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worker-nodes-7-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worker Nodes (7 nodes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scaling Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#horizontal-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Horizontal Scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#current-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Characteristics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Characteristics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-usage-cluster-overhead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Usage (Cluster Overhead)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attack-surface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attack Surface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secrets Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Improvements
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -709,7 +1339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/troubleshooting/common-issues/" class="md-nav__link">
+      <a href="../../troubleshooting/common-issues/" class="md-nav__link">
         
   
   
@@ -737,7 +1367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/troubleshooting/disaster-recovery/" class="md-nav__link">
+      <a href="../../troubleshooting/disaster-recovery/" class="md-nav__link">
         
   
   
@@ -765,7 +1395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/troubleshooting/certificates/" class="md-nav__link">
+      <a href="../../troubleshooting/certificates/" class="md-nav__link">
         
   
   
@@ -793,7 +1423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/troubleshooting/storage/" class="md-nav__link">
+      <a href="../../troubleshooting/storage/" class="md-nav__link">
         
   
   
@@ -821,7 +1451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/troubleshooting/network/" class="md-nav__link">
+      <a href="../../troubleshooting/network/" class="md-nav__link">
         
   
   
@@ -849,7 +1479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/troubleshooting/applications/" class="md-nav__link">
+      <a href="../../troubleshooting/applications/" class="md-nav__link">
         
   
   
@@ -877,7 +1507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/troubleshooting/maintenance/" class="md-nav__link">
+      <a href="../../troubleshooting/maintenance/" class="md-nav__link">
         
   
   
@@ -1020,7 +1650,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/hardware/raspberry-pi/" class="md-nav__link">
+      <a href="../../hardware/raspberry-pi/" class="md-nav__link">
         
   
   
@@ -1048,7 +1678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/hardware/proxmox/" class="md-nav__link">
+      <a href="../../hardware/proxmox/" class="md-nav__link">
         
   
   
@@ -1076,7 +1706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/hardware/truenas/" class="md-nav__link">
+      <a href="../../hardware/truenas/" class="md-nav__link">
         
   
   
@@ -1104,7 +1734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/hardware/network/" class="md-nav__link">
+      <a href="../../hardware/network/" class="md-nav__link">
         
   
   
@@ -1194,7 +1824,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/setup/bare-metal/" class="md-nav__link">
+      <a href="../../setup/bare-metal/" class="md-nav__link">
         
   
   
@@ -1222,7 +1852,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/setup/ansible/" class="md-nav__link">
+      <a href="../../setup/ansible/" class="md-nav__link">
         
   
   
@@ -1250,7 +1880,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/setup/custom-images/" class="md-nav__link">
+      <a href="../../setup/custom-images/" class="md-nav__link">
         
   
   
@@ -1401,7 +2031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/cluster-core/argocd/" class="md-nav__link">
+      <a href="../../cluster-core/argocd/" class="md-nav__link">
         
   
   
@@ -1429,7 +2059,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/cluster-core/gitops-workflow.md" class="md-nav__link">
+      <a href="../../cluster-core/gitops-workflow.md" class="md-nav__link">
         
   
   
@@ -1519,7 +2149,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/cluster-core/traefik/" class="md-nav__link">
+      <a href="../../cluster-core/traefik/" class="md-nav__link">
         
   
   
@@ -1547,7 +2177,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/cluster-core/metallb/" class="md-nav__link">
+      <a href="../../cluster-core/metallb/" class="md-nav__link">
         
   
   
@@ -1575,7 +2205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/cluster-core/dns.md" class="md-nav__link">
+      <a href="../../cluster-core/dns.md" class="md-nav__link">
         
   
   
@@ -1665,7 +2295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/cluster-core/cert-manager/" class="md-nav__link">
+      <a href="../../cluster-core/cert-manager/" class="md-nav__link">
         
   
   
@@ -1693,7 +2323,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/cluster-core/authentik/" class="md-nav__link">
+      <a href="../../cluster-core/authentik/" class="md-nav__link">
         
   
   
@@ -1721,7 +2351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/cluster-core/vault/" class="md-nav__link">
+      <a href="../../cluster-core/vault/" class="md-nav__link">
         
   
   
@@ -1749,7 +2379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/cluster-core/secrets-management.md" class="md-nav__link">
+      <a href="../../cluster-core/secrets-management.md" class="md-nav__link">
         
   
   
@@ -1839,7 +2469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/cluster-core/longhorn/" class="md-nav__link">
+      <a href="../../cluster-core/longhorn/" class="md-nav__link">
         
   
   
@@ -1867,7 +2497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/cluster-core/storage-classes.md" class="md-nav__link">
+      <a href="../../cluster-core/storage-classes.md" class="md-nav__link">
         
   
   
@@ -1957,7 +2587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/cluster-core/monitoring/" class="md-nav__link">
+      <a href="../../cluster-core/monitoring/" class="md-nav__link">
         
   
   
@@ -1985,7 +2615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/cluster-core/logging.md" class="md-nav__link">
+      <a href="../../cluster-core/logging.md" class="md-nav__link">
         
   
   
@@ -2013,7 +2643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/cluster-core/alerting.md" class="md-nav__link">
+      <a href="../../cluster-core/alerting.md" class="md-nav__link">
         
   
   
@@ -2164,7 +2794,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/platform/postgres-cnpg/" class="md-nav__link">
+      <a href="../../platform/postgres-cnpg/" class="md-nav__link">
         
   
   
@@ -2192,7 +2822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/platform/postgres-zalando/" class="md-nav__link">
+      <a href="../../platform/postgres-zalando/" class="md-nav__link">
         
   
   
@@ -2220,7 +2850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/platform/database-ops.md" class="md-nav__link">
+      <a href="../../platform/database-ops.md" class="md-nav__link">
         
   
   
@@ -2310,7 +2940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/platform/secrets-csi/" class="md-nav__link">
+      <a href="../../platform/secrets-csi/" class="md-nav__link">
         
   
   
@@ -2338,7 +2968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/platform/external-secrets/" class="md-nav__link">
+      <a href="../../platform/external-secrets/" class="md-nav__link">
         
   
   
@@ -2366,7 +2996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/platform/vault-integration.md" class="md-nav__link">
+      <a href="../../platform/vault-integration.md" class="md-nav__link">
         
   
   
@@ -2517,7 +3147,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/apps/plex/" class="md-nav__link">
+      <a href="../../apps/plex/" class="md-nav__link">
         
   
   
@@ -2607,7 +3237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/apps/adguard/" class="md-nav__link">
+      <a href="../../apps/adguard/" class="md-nav__link">
         
   
   
@@ -2635,7 +3265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/apps/airprint.md" class="md-nav__link">
+      <a href="../../apps/airprint.md" class="md-nav__link">
         
   
   
@@ -2663,7 +3293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/apps/vpn/" class="md-nav__link">
+      <a href="../../apps/vpn/" class="md-nav__link">
         
   
   
@@ -2753,7 +3383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/apps/uptime-kuma/" class="md-nav__link">
+      <a href="../../apps/uptime-kuma/" class="md-nav__link">
         
   
   
@@ -2843,7 +3473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/apps/securitycam/" class="md-nav__link">
+      <a href="../../apps/securitycam/" class="md-nav__link">
         
   
   
@@ -2871,7 +3501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/apps/rails-app/" class="md-nav__link">
+      <a href="../../apps/rails-app/" class="md-nav__link">
         
   
   
@@ -2968,7 +3598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/howto/deploy-app.md" class="md-nav__link">
+      <a href="../../howto/deploy-app.md" class="md-nav__link">
         
   
   
@@ -2996,7 +3626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/howto/setup-oidc.md" class="md-nav__link">
+      <a href="../../howto/setup-oidc.md" class="md-nav__link">
         
   
   
@@ -3024,7 +3654,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/howto/configure-ingress.md" class="md-nav__link">
+      <a href="../../howto/configure-ingress.md" class="md-nav__link">
         
   
   
@@ -3052,7 +3682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/howto/setup-backup.md" class="md-nav__link">
+      <a href="../../howto/setup-backup.md" class="md-nav__link">
         
   
   
@@ -3080,7 +3710,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/howto/add-storage.md" class="md-nav__link">
+      <a href="../../howto/add-storage.md" class="md-nav__link">
         
   
   
@@ -3108,7 +3738,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/howto/expose-service.md" class="md-nav__link">
+      <a href="../../howto/expose-service.md" class="md-nav__link">
         
   
   
@@ -3136,7 +3766,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/howto/debug-pods.md" class="md-nav__link">
+      <a href="../../howto/debug-pods.md" class="md-nav__link">
         
   
   
@@ -3225,7 +3855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/reference/commands.md" class="md-nav__link">
+      <a href="../../reference/commands.md" class="md-nav__link">
         
   
   
@@ -3253,7 +3883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/reference/templates.md" class="md-nav__link">
+      <a href="../../reference/templates.md" class="md-nav__link">
         
   
   
@@ -3281,7 +3911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/k3s-cluster-infra-apps/reference/resources.md" class="md-nav__link">
+      <a href="../../reference/resources.md" class="md-nav__link">
         
   
   
@@ -3326,6 +3956,583 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High-Level Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Principles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Design Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-everything-as-code-gitops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Everything as Code (GitOps)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-security-by-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Security by Default
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-high-availability-for-critical-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. High Availability for Critical Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-observable-and-debuggable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Observable and Debuggable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Network Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vlan-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VLAN Segmentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metallb-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MetalLB Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traefik-ingress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traefik Ingress
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#longhorn-primary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn (Primary)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#truenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TrueNAS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authentication-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secrets Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitops-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitOps Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitOps Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment Layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring &amp; Observability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring &amp; Observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metrics-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metrics Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disaster-recovery-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disaster Recovery Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Disaster Recovery Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backup-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup Targets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technology-choices-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technology Choices Explained
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technology Choices Explained">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-k3s-over-k8s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why k3s Over k8s?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-traefik-over-nginx-ingress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Traefik Over NGINX Ingress?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-longhorn-over-rookceph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Longhorn Over Rook/Ceph?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-argocd-over-flux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why ArgoCD Over Flux?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-cloudnativepg-over-zalando" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why CloudNativePG Over Zalando?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-plane-3-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control Plane (3 nodes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worker-nodes-7-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worker Nodes (7 nodes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scaling Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#horizontal-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Horizontal Scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#current-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Characteristics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Characteristics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-usage-cluster-overhead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Usage (Cluster Overhead)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attack-surface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attack Surface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secrets Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Improvements
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -3343,11 +4550,443 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../overview/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
+<p>This document describes the overall architecture of the k3s homelab cluster, explaining the key design decisions and how components interact.</p>
+<h2 id="high-level-architecture">High-Level Architecture<a class="headerlink" href="#high-level-architecture" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>graph TB
+    subgraph "External"
+        Internet[Internet/Users]
+        DNS[CloudFlare DNS]
+    end
+
+    subgraph "Edge"
+        Router[OPNsense/Firewall]
+        MetalLB[MetalLB LoadBalancer]
+    end
+
+    subgraph "Ingress"
+        Traefik[Traefik Ingress]
+        CertManager[cert-manager]
+    end
+
+    subgraph "Security"
+        Authentik[Authentik SSO]
+        Vault[HashiCorp Vault]
+    end
+
+    subgraph "GitOps"
+        ArgoCD[ArgoCD]
+        GitHub[GitHub Repo]
+    end
+
+    subgraph "Control Plane"
+        K3s["k3s Servers (3x)&lt;br/&gt;HA Control Plane"]
+    end
+
+    subgraph "Workers"
+        RaspberryPi["Raspberry Pi Workers (4x)"]
+        ProxmoxVMs["Proxmox VMs"]
+    end
+
+    subgraph "Storage"
+        Longhorn[Longhorn]
+        TrueNAS[TrueNAS Backups]
+    end
+
+    subgraph "Platform"
+        Monitoring[Prometheus/Grafana]
+        PostgreSQL[CloudNativePG]
+    end
+
+    subgraph "Apps"
+        Applications[Applications]
+    end
+
+    Internet --&gt; DNS
+    DNS --&gt; Router
+    Router --&gt; MetalLB
+    MetalLB --&gt; Traefik
+    Traefik --&gt; Authentik
+    Traefik --&gt; Applications
+    CertManager --&gt; Traefik
+    Vault --&gt; Applications
+    GitHub --&gt; ArgoCD
+    ArgoCD --&gt; Platform
+    ArgoCD --&gt; Applications
+    Applications --&gt; Longhorn
+    Applications --&gt; PostgreSQL
+    Longhorn --&gt; TrueNAS</code></pre>
+<h2 id="design-principles">Design Principles<a class="headerlink" href="#design-principles" title="Permanent link">&para;</a></h2>
+<h3 id="1-everything-as-code-gitops">1. Everything as Code (GitOps)<a class="headerlink" href="#1-everything-as-code-gitops" title="Permanent link">&para;</a></h3>
+<p><strong>Why</strong>: Reproducibility, version control, and disaster recovery</p>
+<ul>
+<li>All cluster configuration is stored in Git</li>
+<li>ArgoCD continuously reconciles Git state with cluster state</li>
+<li>No manual <code>kubectl apply</code> commands in production</li>
+<li>Changes are reviewed via pull requests</li>
+</ul>
+<h3 id="2-security-by-default">2. Security by Default<a class="headerlink" href="#2-security-by-default" title="Permanent link">&para;</a></h3>
+<p><strong>Why</strong>: Protect services and data, practice production-ready security</p>
+<ul>
+<li>All external services require HTTPS with valid certificates</li>
+<li>SSO/OIDC authentication via Authentik for supported apps</li>
+<li>Secrets stored in HashiCorp Vault, never in Git</li>
+<li>Network segmentation (public/private VLANs)</li>
+<li>Regular security updates via Ansible automation</li>
+</ul>
+<h3 id="3-high-availability-for-critical-components">3. High Availability for Critical Components<a class="headerlink" href="#3-high-availability-for-critical-components" title="Permanent link">&para;</a></h3>
+<p><strong>Why</strong>: Minimize downtime, practice HA patterns</p>
+<ul>
+<li>3-node control plane for k3s (etcd quorum)</li>
+<li>Longhorn replicates storage across nodes</li>
+<li>Multiple worker nodes for workload distribution</li>
+<li>TrueNAS for reliable backup storage</li>
+</ul>
+<h3 id="4-observable-and-debuggable">4. Observable and Debuggable<a class="headerlink" href="#4-observable-and-debuggable" title="Permanent link">&para;</a></h3>
+<p><strong>Why</strong>: Quickly identify and resolve issues</p>
+<ul>
+<li>Prometheus metrics from all components</li>
+<li>Grafana dashboards for visualization</li>
+<li>Loki for centralized logging</li>
+<li>Alerting for critical issues</li>
+</ul>
+<h2 id="network-architecture">Network Architecture<a class="headerlink" href="#network-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="vlan-segmentation">VLAN Segmentation<a class="headerlink" href="#vlan-segmentation" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>graph TB
+    Router[OPNsense Router/Firewall]
+    PublicVLAN[Public VLAN&lt;br/&gt;Internet-facing services]
+    PrivateVLAN[Private VLAN&lt;br/&gt;Internal services]
+    MetalLB[MetalLB LoadBalancer]
+    Traefik[Traefik Ingress]
+
+    Router --&gt; PublicVLAN
+    Router --&gt; PrivateVLAN
+    PublicVLAN --&gt; MetalLB
+    PrivateVLAN --&gt; MetalLB
+    MetalLB --&gt; Traefik
+
+    style PublicVLAN fill:#ffcccc
+    style PrivateVLAN fill:#ccffcc</code></pre>
+<p><strong>Public VLAN</strong>: Internet-facing services (limited)
+<strong>Private VLAN</strong>: Internal services, more relaxed policies</p>
+<h3 id="metallb-configuration">MetalLB Configuration<a class="headerlink" href="#metallb-configuration" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Mode</strong>: Layer 2 (ARP)</li>
+<li><strong>IP Pools</strong>: Separate ranges for public/private</li>
+<li><strong>Benefits</strong>: Native LoadBalancer support on bare metal</li>
+</ul>
+<h3 id="traefik-ingress">Traefik Ingress<a class="headerlink" href="#traefik-ingress" title="Permanent link">&para;</a></h3>
+<p>Two separate Traefik instances:</p>
+<ol>
+<li><strong>Traefik Public</strong>: Handles external traffic</li>
+<li>HTTPS with automatic certificate management</li>
+<li>Rate limiting</li>
+<li>
+<p>Auth middleware (Authentik forward auth)</p>
+</li>
+<li>
+<p><strong>Traefik Private</strong>: Handles internal traffic</p>
+</li>
+<li>Access to admin dashboards</li>
+<li>Internal APIs</li>
+<li>Less restrictive policies</li>
+</ol>
+<p><strong>Why Two?</strong>: Separation of concerns, different security policies, easier debugging</p>
+<h2 id="storage-architecture">Storage Architecture<a class="headerlink" href="#storage-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="longhorn-primary">Longhorn (Primary)<a class="headerlink" href="#longhorn-primary" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Type</strong>: Distributed block storage</li>
+<li><strong>Replication</strong>: 3 replicas for important data</li>
+<li><strong>Backend</strong>: NVMe drives on worker nodes</li>
+<li><strong>Backup</strong>: Automated backups to MinIO/TrueNAS</li>
+<li><strong>Use Cases</strong>: Databases, application state, persistent volumes</li>
+</ul>
+<h3 id="truenas">TrueNAS<a class="headerlink" href="#truenas" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Type</strong>: External NAS with ZFS</li>
+<li><strong>Use Cases</strong>: </li>
+<li>Backup target for Longhorn</li>
+<li>NFS shares for large media files</li>
+<li>Long-term archival storage</li>
+</ul>
+<h2 id="security-architecture">Security Architecture<a class="headerlink" href="#security-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="authentication-flow">Authentication Flow<a class="headerlink" href="#authentication-flow" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant User
+    participant Traefik
+    participant Authentik
+    participant App
+    participant Vault
+
+    User-&gt;&gt;Traefik: Access App
+    Traefik-&gt;&gt;Authentik: Forward Auth Request
+    alt Not Authenticated
+        Authentik-&gt;&gt;User: Redirect to Login
+        User-&gt;&gt;Authentik: Login
+        Authentik-&gt;&gt;User: Set Session Cookie
+    end
+    Authentik-&gt;&gt;Traefik: Auth OK + Headers
+    Traefik-&gt;&gt;App: Forward Request + User Info
+    App-&gt;&gt;Vault: Fetch Secrets (if needed)
+    Vault-&gt;&gt;App: Return Secrets
+    App-&gt;&gt;User: Response</code></pre>
+<h3 id="secrets-management">Secrets Management<a class="headerlink" href="#secrets-management" title="Permanent link">&para;</a></h3>
+<p><strong>Three-Layer Approach</strong>:</p>
+<ol>
+<li><strong>Vault</strong>: Central secrets storage</li>
+<li><strong>External Secrets Operator</strong>: Syncs secrets from Vault to k8s Secrets</li>
+<li><strong>Secrets Store CSI</strong>: Mounts secrets as files (for apps that need file-based secrets)</li>
+</ol>
+<p><strong>Why Not Just k8s Secrets?</strong>: 
+- Vault provides audit logging
+- Secret rotation
+- Fine-grained access control
+- External secret source (survives cluster rebuild)</p>
+<h2 id="gitops-workflow">GitOps Workflow<a class="headerlink" href="#gitops-workflow" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>graph LR
+    Dev[Developer] --&gt;|Git Push| GitHub[GitHub Repo]
+    GitHub --&gt;|Webhook| ArgoCD[ArgoCD]
+    ArgoCD --&gt;|Sync| K8s[Kubernetes Cluster]
+    ArgoCD --&gt;|Monitor| GitHub
+    K8s --&gt;|Status| ArgoCD</code></pre>
+<h3 id="repository-structure">Repository Structure<a class="headerlink" href="#repository-structure" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>k3s-cluster-infra-apps/
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── apps-root-config/          # ArgoCD ApplicationSets
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   └── applications/          # App of Apps pattern
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── cluster-init-apps/         # Bootstrap (MetalLB, cert-manager)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── cluster-critical-apps/     # Core infra (Traefik, Longhorn, etc)
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── cluster-platform-apps/     # Platform services
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── cluster-*-apps/            # Application groups
+</span></code></pre></div>
+<h3 id="deployment-layers">Deployment Layers<a class="headerlink" href="#deployment-layers" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Layer 0 (Manual)</strong>: k3s cluster + ArgoCD installation</li>
+<li><strong>Layer 1 (ArgoCD)</strong>: cluster-init-apps (MetalLB, cert-manager)</li>
+<li><strong>Layer 2 (ArgoCD)</strong>: cluster-critical-apps (Traefik, Longhorn, Vault)</li>
+<li><strong>Layer 3 (ArgoCD)</strong>: cluster-platform-apps (Monitoring, databases)</li>
+<li><strong>Layer 4 (ArgoCD)</strong>: Applications</li>
+</ol>
+<h2 id="monitoring-observability">Monitoring &amp; Observability<a class="headerlink" href="#monitoring-observability" title="Permanent link">&para;</a></h2>
+<h3 id="metrics-stack">Metrics Stack<a class="headerlink" href="#metrics-stack" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Prometheus</strong>: Scrapes metrics from all components</li>
+<li><strong>Grafana</strong>: Visualizes metrics with dashboards</li>
+<li><strong>AlertManager</strong>: Routes alerts (future: to Slack/PagerDuty)</li>
+</ul>
+<h3 id="logging-stack">Logging Stack<a class="headerlink" href="#logging-stack" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Loki</strong>: Log aggregation</li>
+<li><strong>Promtail</strong>: Log shipping agent on each node</li>
+<li><strong>Grafana</strong>: Log viewing and querying</li>
+</ul>
+<h2 id="disaster-recovery-strategy">Disaster Recovery Strategy<a class="headerlink" href="#disaster-recovery-strategy" title="Permanent link">&para;</a></h2>
+<h3 id="backup-targets">Backup Targets<a class="headerlink" href="#backup-targets" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Longhorn Volumes</strong>: Automated backups to MinIO/TrueNAS</li>
+<li><strong>Vault Data</strong>: Encrypted backup to external storage</li>
+<li><strong>ArgoCD Configuration</strong>: In Git (inherently backed up)</li>
+<li><strong>PostgreSQL Databases</strong>: CNPG automated backups</li>
+</ol>
+<h3 id="recovery-scenarios">Recovery Scenarios<a class="headerlink" href="#recovery-scenarios" title="Permanent link">&para;</a></h3>
+<p><strong>Scenario 1: Single Node Failure</strong>
+- Workloads automatically reschedule to healthy nodes
+- Storage remains available (Longhorn replication)
+- <strong>RTO</strong>: Minutes to hours (automatic)</p>
+<p><strong>Scenario 2: Complete Cluster Loss</strong>
+- Rebuild cluster with Ansible
+- Deploy ArgoCD (manual)
+- ArgoCD syncs all apps from Git
+- Restore Longhorn volumes from backup
+- Restore Vault from backup
+- <strong>RTO</strong>: 4-8 hours</p>
+<h2 id="technology-choices-explained">Technology Choices Explained<a class="headerlink" href="#technology-choices-explained" title="Permanent link">&para;</a></h2>
+<h3 id="why-k3s-over-k8s">Why k3s Over k8s?<a class="headerlink" href="#why-k3s-over-k8s" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Lightweight (runs well on Raspberry Pi)</li>
+<li>Single binary, easy to install</li>
+<li>Built-in components (though we replace some)</li>
+<li>Perfect for edge/homelab</li>
+</ul>
+<h3 id="why-traefik-over-nginx-ingress">Why Traefik Over NGINX Ingress?<a class="headerlink" href="#why-traefik-over-nginx-ingress" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Native Kubernetes CRDs (IngressRoute)</li>
+<li>Automatic service discovery</li>
+<li>Better middleware support</li>
+<li>Modern architecture</li>
+</ul>
+<h3 id="why-longhorn-over-rookceph">Why Longhorn Over Rook/Ceph?<a class="headerlink" href="#why-longhorn-over-rookceph" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Simpler to operate</li>
+<li>Lower resource overhead</li>
+<li>Great UI</li>
+<li>Sufficient for homelab scale</li>
+</ul>
+<h3 id="why-argocd-over-flux">Why ArgoCD Over Flux?<a class="headerlink" href="#why-argocd-over-flux" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Mature UI for visualization</li>
+<li>Easier to debug sync issues</li>
+<li>ApplicationSet pattern powerful</li>
+<li>Better RBAC for multi-user (future)</li>
+</ul>
+<h3 id="why-cloudnativepg-over-zalando">Why CloudNativePG Over Zalando?<a class="headerlink" href="#why-cloudnativepg-over-zalando" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Active development</li>
+<li>Better backup integration</li>
+<li>Simpler operator</li>
+<li>EDB backing (PostgreSQL core team)</li>
+</ul>
+<h2 id="hardware-configuration">Hardware Configuration<a class="headerlink" href="#hardware-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="control-plane-3-nodes">Control Plane (3 nodes)<a class="headerlink" href="#control-plane-3-nodes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Hardware</strong>: Raspberry Pi 4 (8GB RAM)</li>
+<li><strong>Role</strong>: k3s control plane + etcd</li>
+<li><strong>Storage</strong>: USB boot only</li>
+<li><strong>HA</strong>: 3-node quorum</li>
+</ul>
+<h3 id="worker-nodes-7-nodes">Worker Nodes (7 nodes)<a class="headerlink" href="#worker-nodes-7-nodes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>4x Raspberry Pi 4</strong> (8GB RAM) with external NVMe</li>
+<li><strong>3x Proxmox VMs</strong> (varies, 64GB RAM hosts)</li>
+<li><strong>Role</strong>: Application workloads + Longhorn storage</li>
+</ul>
+<h3 id="external-storage">External Storage<a class="headerlink" href="#external-storage" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>TrueNAS HL15</strong>: 6x HDDs (~40TB)</li>
+<li><strong>Use</strong>: Longhorn backups, large file storage</li>
+</ul>
+<h2 id="scaling-considerations">Scaling Considerations<a class="headerlink" href="#scaling-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="horizontal-scaling">Horizontal Scaling<a class="headerlink" href="#horizontal-scaling" title="Permanent link">&para;</a></h3>
+<p><strong>Worker Nodes</strong>: 
+- Easy to add new nodes via Ansible
+- Longhorn automatically uses new storage
+- Workloads distribute automatically</p>
+<p><strong>Applications</strong>: 
+- Increase replica count in Helm values
+- ArgoCD syncs changes
+- HPA (Horizontal Pod Autoscaler) for automatic scaling</p>
+<h3 id="current-capacity">Current Capacity<a class="headerlink" href="#current-capacity" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Control Plane</strong>: 3 nodes (adequate for homelab scale)</li>
+<li><strong>Worker Nodes</strong>: 7 nodes (can add more)</li>
+<li><strong>Storage</strong>: ~2TB usable (Longhorn), 40TB (TrueNAS)</li>
+<li><strong>Can Support</strong>: 100+ application pods comfortably</li>
+</ul>
+<h2 id="performance-characteristics">Performance Characteristics<a class="headerlink" href="#performance-characteristics" title="Permanent link">&para;</a></h2>
+<h3 id="resource-usage-cluster-overhead">Resource Usage (Cluster Overhead)<a class="headerlink" href="#resource-usage-cluster-overhead" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Control Plane</strong>: ~2GB RAM per node</li>
+<li><strong>Longhorn</strong>: ~200MB per node + storage overhead</li>
+<li><strong>Monitoring Stack</strong>: ~2GB RAM</li>
+<li><strong>ArgoCD</strong>: ~500MB RAM</li>
+<li><strong>Total Overhead</strong>: ~6-8GB RAM</li>
+</ul>
+<h3 id="network-performance">Network Performance<a class="headerlink" href="#network-performance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Internal</strong>: ~1Gbps (Raspberry Pi limitation)</li>
+<li><strong>External</strong>: Limited by internet connection</li>
+<li><strong>Storage</strong>: NVMe provides low latency (&lt;10ms)</li>
+</ul>
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="attack-surface">Attack Surface<a class="headerlink" href="#attack-surface" title="Permanent link">&para;</a></h3>
+<p><strong>External</strong>:
+- Only necessary services exposed via Traefik public
+- All HTTPS with valid certificates
+- Rate limiting on public ingress</p>
+<p><strong>Internal</strong>:
+- Private VLAN for admin dashboards
+- Authentik SSO for authentication
+- RBAC for service accounts</p>
+<h3 id="secrets-handling">Secrets Handling<a class="headerlink" href="#secrets-handling" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Never committed to Git (gitignored)</li>
+<li>Stored in Vault with encryption at rest</li>
+<li>Accessed via External Secrets or CSI driver</li>
+<li>Rotated periodically (manual for now)</li>
+</ul>
+<h2 id="future-improvements">Future Improvements<a class="headerlink" href="#future-improvements" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Automated certificate rotation for Vault</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Network policies for pod-to-pod security</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Multi-cluster federation (dev/prod split)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Automated disaster recovery testing</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> GPU support for AI workloads</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Service mesh (Linkerd) for advanced traffic management</p>
+</li>
+<li>
+<p>[CSI]: Container Storage Interface</p>
+</li>
+<li>
+<p>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></p>
+</li>
+<li>
+<p>[CSI]: Container Storage Interface</p>
+</li>
+<li>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -3432,10 +5071,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/k3s-cluster-infra-apps/", "features": ["content.code.copy", "content.code.annotate", "content.footnotes.tooltips", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "toc.follow"], "search": "/k3s-cluster-infra-apps/assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.footnotes.tooltips", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/k3s-cluster-infra-apps/assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

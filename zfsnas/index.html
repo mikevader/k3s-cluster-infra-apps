@@ -12,7 +12,7 @@
         <meta name="author" content="Michael M&uuml;hlebach">
       
       
-        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/framsburg-services/">
+        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/zfsnas/">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>Custom Services - K3s Homelab GitOps Stack</title>
+        <title>HL15 - K3s Homelab GitOps Stack</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#custom-services" class="md-skip">
+        <a href="#hl15" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Custom Services
+              HL15
             
           </span>
         </div>
@@ -3343,10 +3343,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#time-machine" class="md-nav__link">
+  <a href="#houston-ui" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Time Machine
+        Houston UI
       
     </span>
   </a>
@@ -3354,13 +3354,118 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#youtube-downloader" class="md-nav__link">
+  <a href="#boot-from-usb-with-vga" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Youtube Downloader
+        Boot from USB with VGA?!?!?!?!?
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ipmi-to-the-rescue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPMI to the rescue
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dns-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DNS Name
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certificates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#truenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TrueNAS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k8s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        K8S
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perf-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Perf Test
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Perf Test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-large-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Large files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-small-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage small files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3392,15 +3497,303 @@
   
 
 
-<h1 id="custom-services">Custom Services<a class="headerlink" href="#custom-services" title="Permanent link">&para;</a></h1>
-<h2 id="time-machine">Time Machine<a class="headerlink" href="#time-machine" title="Permanent link">&para;</a></h2>
-<p>https://github.com/mbentley/docker-timemachine/tree/master</p>
-<h2 id="youtube-downloader">Youtube Downloader<a class="headerlink" href="#youtube-downloader" title="Permanent link">&para;</a></h2>
-<p>https://github.com/yt-dlp/yt-dlp</p>
+<h1 id="hl15">HL15<a class="headerlink" href="#hl15" title="Permanent link">&para;</a></h1>
+<p>Yes, finally, the big package is here of my HL15.</p>
+<h2 id="houston-ui">Houston UI<a class="headerlink" href="#houston-ui" title="Permanent link">&para;</a></h2>
+<p>After some trials and errors I decided to not use the Houston UI for the HL15. The reason is simple:
+I tried several times to create a new pool with the Houston UI, but it always failed. And after I saw that a lot of the
+other features, adding additional applications, are quite manual, I decided to not use it.</p>
+<h2 id="boot-from-usb-with-vga">Boot from USB with VGA?!?!?!?!?<a class="headerlink" href="#boot-from-usb-with-vga" title="Permanent link">&para;</a></h2>
+<p>Yes the XL11HSP board has only a VGA port and no HDMI. I think I recycled my last VGA capable anything in 2010.
+So I can either buy an adapter or an inexpensive video card.</p>
+<p>... or use the IPMI interface of the board.
+‡</p>
+<h2 id="ipmi-to-the-rescue">IPMI to the rescue<a class="headerlink" href="#ipmi-to-the-rescue" title="Permanent link">&para;</a></h2>
+<p>One of the hard parts was to find the PWD and USERNAME for the IPMI interface. Username is <code>ADMIN</code> and yes its case-sensitive.
+The password is on a sticker on the side of the chassis. But there are a lot of other places where you can find it<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.
+Or find something in the manual<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.</p>
+<h2 id="dns-name">DNS Name<a class="headerlink" href="#dns-name" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Define the DHCP reservation for the TrueNAS server</li>
+<li>Add the DNS entry for the TrueNAS server and minio</li>
+<li>Add the ACME Certificate for TrueNAS and minio</li>
+</ul>
+<h2 id="certificates">Certificates<a class="headerlink" href="#certificates" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Create new API Key in TrueNAS to upload ACME Certificates</li>
+<li>Store the API Key in a safe place (e.g. Vault)</li>
+</ul>
+<h2 id="truenas">TrueNAS<a class="headerlink" href="#truenas" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Update TrueNAS to the latest version</li>
+<li>Add Pool 6 disks raidz2</li>
+<li>Enable Services</li>
+<li>NFS</li>
+<li>iSCSI</li>
+<li>SMB<ul>
+<li>Enable Apple SMB2/3 Protocol</li>
+</ul>
+</li>
+<li>SSH</li>
+<li>Add Dataset</li>
+<li>'TimeMachine' for Time Machine backups</li>
+<li>'K8S' for Kubernetes<ul>
+<li>'NFS' for NFS share</li>
+</ul>
+</li>
+<li>'Minio' for Minio</li>
+</ol>
+<h2 id="k8s">K8S<a class="headerlink" href="#k8s" title="Permanent link">&para;</a></h2>
+<p>Add the csi driver config to the secret.
+Add an NFS share to the TrueNAS server for the K8S cluster.</p>
+<h2 id="perf-test">Perf Test<a class="headerlink" href="#perf-test" title="Permanent link">&para;</a></h2>
+<h3 id="network">Network<a class="headerlink" href="#network" title="Permanent link">&para;</a></h3>
+<p>first looking for iperf3 --&gt; super high even from within container</p>
+<h3 id="storage-large-files">Storage Large files<a class="headerlink" href="#storage-large-files" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>fio --name=plex_video_sim \
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    --directory=/mnt/bigone/test \  
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    --size=100g \
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    --filesize=2g \
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    --nrfiles=50 \
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    --rw=write \
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    --bs=1m \
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    --ioengine=posixaio \
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    --direct=1 \
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    --sync=1 \
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    --time_based \
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    --runtime=60s
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>plex_video_sim: (g=0): rw=write, bs=(R) 1024KiB-1024KiB, (W) 1024KiB-1024KiB, (T) 1024KiB-1024KiB, ioengine=posixaio, iodepth=1
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>fio-3.33
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Starting 1 process
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>plex_video_sim: Laying out IO files (50 files / total 102400MiB)
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Jobs: 1 (f=50): [W(1)][100.0%][w=35.0MiB/s][w=35 IOPS][eta 00m:00s]
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>plex_video_sim: (groupid=0, jobs=1): err= 0: pid=53362: Tue Jun  3 15:17:19 2025
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  write: IOPS=39, BW=39.9MiB/s (41.9MB/s)(2397MiB/60040msec); 0 zone resets
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    slat (usec): min=21, max=174, avg=61.51, stdev=11.25
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    clat (msec): min=7, max=252, avg=24.98, stdev=23.16
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>     lat (msec): min=7, max=252, avg=25.04, stdev=23.16
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    clat percentiles (msec):
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>     |  1.00th=[    9],  5.00th=[   10], 10.00th=[   10], 20.00th=[   11],
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>     | 30.00th=[   11], 40.00th=[   12], 50.00th=[   13], 60.00th=[   16],
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>     | 70.00th=[   31], 80.00th=[   45], 90.00th=[   56], 95.00th=[   63],
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>     | 99.00th=[  117], 99.50th=[  144], 99.90th=[  230], 99.95th=[  236],
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>     | 99.99th=[  253]
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>   bw (  KiB/s): min=10240, max=77824, per=100.00%, avg=40891.73, stdev=10702.60, samples=120
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>   iops        : min=   10, max=   76, avg=39.93, stdev=10.45, samples=120
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>  lat (msec)   : 10=15.10%, 20=48.98%, 50=20.73%, 100=13.98%, 250=1.17%
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>  lat (msec)   : 500=0.04%
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>  cpu          : usr=0.31%, sys=0.08%, ctx=2400, majf=3, minf=24
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, &gt;=64=0.0%
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>     issued rwts: total=0,2397,0,0 short=0,0,0,0 dropped=0,0,0,0
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>     latency   : target=0, window=0, percentile=100.00%, depth=1
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>Run status group 0 (all jobs):
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>  WRITE: bw=39.9MiB/s (41.9MB/s), 39.9MiB/s-39.9MiB/s (41.9MB/s-41.9MB/s), io=2397MiB (2513MB), run=60040-60040msec
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bandwidth (BW)</strong></td>
+<td>39.9 MiB/s (≈41.9 MB/s)</td>
+<td>Raw sustained write speed</td>
+</tr>
+<tr>
+<td><strong>IOPS</strong></td>
+<td>\~40</td>
+<td>Expected for large 1 MB-block sync writes</td>
+</tr>
+<tr>
+<td><strong>Average latency</strong></td>
+<td>\~25 ms</td>
+<td>Time per write — fairly high for a 1 MB write</td>
+</tr>
+<tr>
+<td><strong>99.9th percentile latency</strong></td>
+<td>230+ ms</td>
+<td>High tail latency (bad for apps expecting consistent performance)</td>
+</tr>
+<tr>
+<td><strong>CPU usage</strong></td>
+<td>Very low</td>
+<td>Not CPU-bound</td>
+</tr>
+</tbody>
+</table>
+<p>do it again without sync:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>plex_video_sim: (g=0): rw=write, bs=(R) 1024KiB-1024KiB, (W) 1024KiB-1024KiB, (T) 1024KiB-1024KiB, ioengine=posixaio, iodepth=1
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>fio-3.33
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Starting 1 process
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>plex_video_sim: Laying out IO files (50 files / total 102400MiB)
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Jobs: 1 (f=50): [W(1)][100.0%][w=587MiB/s][w=586 IOPS][eta 00m:00s]
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>plex_video_sim: (groupid=0, jobs=1): err= 0: pid=55577: Tue Jun  3 15:52:25 2025
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  write: IOPS=591, BW=591MiB/s (620MB/s)(34.7GiB/60002msec); 0 zone resets
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    slat (usec): min=12, max=7722, avg=71.24, stdev=52.76
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    clat (nsec): min=1366, max=40612k, avg=1614990.31, stdev=1045881.15
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>     lat (usec): min=178, max=40699, avg=1686.23, stdev=1052.83
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    clat percentiles (usec):
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>     |  1.00th=[  192],  5.00th=[  239], 10.00th=[  498], 20.00th=[ 1237],
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>     | 30.00th=[ 1369], 40.00th=[ 1450], 50.00th=[ 1549], 60.00th=[ 1663],
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>     | 70.00th=[ 1827], 80.00th=[ 2057], 90.00th=[ 2376], 95.00th=[ 2671],
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>     | 99.00th=[ 4080], 99.50th=[ 6456], 99.90th=[13173], 99.95th=[14353],
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>     | 99.99th=[34341]
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>   bw (  KiB/s): min=250401, max=3360768, per=100.00%, avg=605677.13, stdev=319260.06, samples=119
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>   iops        : min=  244, max= 3282, avg=591.45, stdev=311.75, samples=119
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>  lat (usec)   : 2=0.01%, 250=5.73%, 500=4.33%, 750=3.84%, 1000=1.45%
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>  lat (msec)   : 2=62.60%, 4=21.01%, 10=0.80%, 20=0.21%, 50=0.03%
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>  cpu          : usr=4.70%, sys=0.79%, ctx=38587, majf=1, minf=28
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, &gt;=64=0.0%
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>     issued rwts: total=0,35488,0,0 short=0,0,0,0 dropped=0,0,0,0
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>     latency   : target=0, window=0, percentile=100.00%, depth=1
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>Run status group 0 (all jobs):
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>  WRITE: bw=591MiB/s (620MB/s), 591MiB/s-591MiB/s (620MB/s-620MB/s), io=34.7GiB (37.2GB), run=60002-60002msec
+</span></code></pre></div>
+<p>with slog:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>plex_video_sim: (g=0): rw=write, bs=(R) 1024KiB-1024KiB, (W) 1024KiB-1024KiB, (T) 1024KiB-1024KiB, ioengine=posixaio, iodepth=1
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>fio-3.33
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Starting 1 process
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>plex_video_sim: Laying out IO files (50 files / total 102400MiB)
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Jobs: 1 (f=50): [W(1)][100.0%][w=453MiB/s][w=453 IOPS][eta 00m:00s]
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>plex_video_sim: (groupid=0, jobs=1): err= 0: pid=58033: Tue Jun  3 16:13:08 2025
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>write: IOPS=459, BW=460MiB/s (482MB/s)(27.0GiB/60003msec); 0 zone resets
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>slat (usec): min=15, max=1862, avg=59.12, stdev=35.96
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>clat (usec): min=1041, max=73633, avg=2109.98, stdev=1213.42
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>lat (usec): min=1509, max=73730, avg=2169.11, stdev=1214.60
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>clat percentiles (usec):
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>|  1.00th=[ 1598],  5.00th=[ 1696], 10.00th=[ 1778], 20.00th=[ 1876],
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>| 30.00th=[ 1926], 40.00th=[ 1975], 50.00th=[ 2008], 60.00th=[ 2040],
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>| 70.00th=[ 2073], 80.00th=[ 2114], 90.00th=[ 2245], 95.00th=[ 2442],
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>| 99.00th=[ 7504], 99.50th=[ 7898], 99.90th=[13304], 99.95th=[21627],
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>| 99.99th=[69731]
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>bw (  KiB/s): min=387072, max=522240, per=100.00%, avg=471227.66, stdev=20051.34, samples=119
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>iops        : min=  378, max=  510, avg=460.18, stdev=19.57, samples=119
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>lat (msec)   : 2=48.09%, 4=50.63%, 10=1.13%, 20=0.08%, 50=0.05%
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>lat (msec)   : 100=0.02%
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>cpu          : usr=3.10%, sys=0.65%, ctx=28811, majf=0, minf=24
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, &gt;=64=0.0%
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>issued rwts: total=0,27599,0,0 short=0,0,0,0 dropped=0,0,0,0
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>latency   : target=0, window=0, percentile=100.00%, depth=1
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>Run status group 0 (all jobs):
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>WRITE: bw=460MiB/s (482MB/s), 460MiB/s-460MiB/s (482MB/s-482MB/s), io=27.0GiB (28.9GB), run=60003-60003msec
+</span></code></pre></div>
+<h3 id="storage-small-files">Storage small files<a class="headerlink" href="#storage-small-files" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>fio --name=plex_meta_sim \
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    --directory=/mnt/bigone/test \
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    --size=1g \ 
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    --filesize=16k-512k \
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    --nrfiles=1000 \ 
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    --rw=write \
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    --bs=8k \
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    --ioengine=posixaio \
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    --direct=1 \
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    --sync=1 \
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    --time_based \
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    --runtime=60s
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>plex_meta_sim: (g=0): rw=write, bs=(R) 8192B-8192B, (W) 8192B-8192B, (T) 8192B-8192B, ioengine=posixaio, iodepth=1
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>fio-3.33
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Starting 1 process
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>plex_meta_sim: Laying out IO files (1000 files / total 258MiB)
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Jobs: 1 (f=936): [W(1)][100.0%][w=648KiB/s][w=81 IOPS][eta 00m:00s]  
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>plex_meta_sim: (groupid=0, jobs=1): err= 0: pid=54783: Tue Jun  3 15:39:56 2025
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>  write: IOPS=102, BW=819KiB/s (839kB/s)(48.0MiB/60003msec); 0 zone resets
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    slat (usec): min=3, max=231, avg= 9.29, stdev= 3.17
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    clat (msec): min=3, max=189, avg= 9.73, stdev= 8.30
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>     lat (msec): min=3, max=189, avg= 9.74, stdev= 8.30
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    clat percentiles (msec):
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>     |  1.00th=[    5],  5.00th=[    5], 10.00th=[    5], 20.00th=[    9],
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>     | 30.00th=[    9], 40.00th=[    9], 50.00th=[    9], 60.00th=[    9],
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>     | 70.00th=[   10], 80.00th=[   12], 90.00th=[   12], 95.00th=[   17],
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>     | 99.00th=[   34], 99.50th=[   50], 99.90th=[  144], 99.95th=[  157],
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>     | 99.99th=[  190]
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>   bw (  KiB/s): min=  288, max= 1344, per=100.00%, avg=820.84, stdev=166.17, samples=119
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>   iops        : min=   36, max=  168, avg=102.61, stdev=20.77, samples=119
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>  lat (msec)   : 4=0.02%, 10=72.21%, 20=25.35%, 50=1.94%, 100=0.23%
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>  lat (msec)   : 250=0.26%
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>  cpu          : usr=0.20%, sys=0.31%, ctx=6147, majf=0, minf=33
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, &gt;=64=0.0%
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>     issued rwts: total=0,6142,0,0 short=0,0,0,0 dropped=0,0,0,0
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>     latency   : target=0, window=0, percentile=100.00%, depth=1
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>Run status group 0 (all jobs):
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>  WRITE: bw=819KiB/s (839kB/s), 819KiB/s-819KiB/s (839kB/s-839kB/s), io=48.0MiB (50.3MB), run=60003-60003msec
+</span></code></pre></div>
+<p>do it again with</p>
+<p><code>zfs set sync=disabled bigone/test</code></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>
+</span></code></pre></div>
+<p>with slog:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>plex_meta_sim: (g=0): rw=write, bs=(R) 8192B-8192B, (W) 8192B-8192B, (T) 8192B-8192B, ioengine=posixaio, iodepth=1
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>fio-3.33
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Starting 1 process
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>plex_meta_sim: Laying out IO files (1000 files / total 258MiB)
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>Jobs: 1 (f=809): [W(1)][100.0%][w=6760KiB/s][w=845 IOPS][eta 00m:00s]
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>plex_meta_sim: (groupid=0, jobs=1): err= 0: pid=58442: Tue Jun  3 16:16:21 2025
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>  write: IOPS=781, BW=6252KiB/s (6402kB/s)(366MiB/60001msec); 0 zone resets
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    slat (usec): min=2, max=7450, avg= 8.89, stdev=35.10
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    clat (usec): min=863, max=12230, avg=1261.01, stdev=207.62
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>     lat (usec): min=866, max=12393, avg=1269.90, stdev=212.02
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    clat percentiles (usec):
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>     |  1.00th=[  963],  5.00th=[ 1074], 10.00th=[ 1123], 20.00th=[ 1188],
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>     | 30.00th=[ 1221], 40.00th=[ 1254], 50.00th=[ 1270], 60.00th=[ 1287],
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>     | 70.00th=[ 1303], 80.00th=[ 1336], 90.00th=[ 1352], 95.00th=[ 1369],
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>     | 99.00th=[ 1418], 99.50th=[ 1450], 99.90th=[ 2835], 99.95th=[ 5932],
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>     | 99.99th=[11076]
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>   bw (  KiB/s): min= 5984, max= 6928, per=99.97%, avg=6250.89, stdev=175.37, samples=119
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>   iops        : min=  748, max=  866, avg=781.36, stdev=21.92, samples=119
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>  lat (usec)   : 1000=2.08%
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>  lat (msec)   : 2=97.73%, 4=0.13%, 10=0.05%, 20=0.01%
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>  cpu          : usr=1.57%, sys=1.55%, ctx=46989, majf=0, minf=36
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, &gt;=64=0.0%
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>     issued rwts: total=0,46888,0,0 short=0,0,0,0 dropped=0,0,0,0
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>     latency   : target=0, window=0, percentile=100.00%, depth=1
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>Run status group 0 (all jobs):
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>  WRITE: bw=6252KiB/s (6402kB/s), 6252KiB/s-6252KiB/s (6402kB/s-6402kB/s), io=366MiB (384MB), run=60001-60001msec
+</span></code></pre></div>
+<p>Resources: go back to <a href="https://knowledgebase.45drives.com/kb/kb450470-rocky-linux-houston-ui-installation/">Houston UI</a></p>
+<p>rsync -avh --progress /mnt/media_drive/movies/ /mnt/plex_storage/movies/</p>
+<p>rsync --dry-run -ravh --progress 
+rsync   -ravh --progress /proc/1/root/media7/ /proc/1/root/media-all/</p>
+<p>Debugging:
+* kubectl -n hidden debug whisparr-5b5d685499-pvgjp -it --image=busybox --share-processes --target=whisparr
+* ln -s /proc/$$/root/bin /proc/1/.cdebug
+* export PATH=$PATH:/ .cdebug
+* chroot /proc/1/root/</p>
 <ul>
 <li>[CSI]: Container Storage Interface</li>
 <li>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></li>
 </ul>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>https://www.supermicro.com/support/BMC_Unique_Password_Guide.pdf&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>https://www.supermicro.com/manuals/motherboard/C620/MNL-1949.pdf&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 

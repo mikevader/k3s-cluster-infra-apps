@@ -12,27 +12,31 @@
         <meta name="author" content="Michael M&uuml;hlebach">
       
       
-        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/framsburg-services/">
+        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/disaster-recovery/">
       
       
+        <link rel="prev" href="../common-issues/">
+      
+      
+        <link rel="next" href="../certificates/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Custom Services - K3s Homelab GitOps Stack</title>
+        <title>Disaster Recovery - K3s Homelab GitOps Stack</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#custom-services" class="md-skip">
+        <a href="#disaster-recovery" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="K3s Homelab GitOps Stack" class="md-header__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
+    <a href="../.." title="K3s Homelab GitOps Stack" class="md-header__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Custom Services
+              Disaster Recovery
             
           </span>
         </div>
@@ -219,7 +223,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -240,7 +244,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../getting-started/overview/" class="md-tabs__link">
+        <a href="../../getting-started/overview/" class="md-tabs__link">
           
   
   
@@ -256,11 +260,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../troubleshooting/common-issues/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../common-issues/" class="md-tabs__link">
           
   
   
@@ -287,7 +293,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../hardware/raspberry-pi/" class="md-tabs__link">
+        <a href="../../hardware/raspberry-pi/" class="md-tabs__link">
           
   
   
@@ -317,7 +323,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../cluster-core/argocd/" class="md-tabs__link">
+        <a href="../../cluster-core/argocd/" class="md-tabs__link">
           
   
   
@@ -347,7 +353,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../platform/postgres-cnpg/" class="md-tabs__link">
+        <a href="../../platform/postgres-cnpg/" class="md-tabs__link">
           
   
   
@@ -377,7 +383,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../apps/plex/" class="md-tabs__link">
+        <a href="../../apps/plex/" class="md-tabs__link">
           
   
   
@@ -400,7 +406,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../howto/deploy-app.md" class="md-tabs__link">
+        <a href="../../howto/deploy-app.md" class="md-tabs__link">
           
   
   
@@ -420,7 +426,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../reference/commands.md" class="md-tabs__link">
+        <a href="../../reference/commands.md" class="md-tabs__link">
           
   
   
@@ -460,7 +466,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="K3s Homelab GitOps Stack" class="md-nav__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
+    <a href="../.." title="K3s Homelab GitOps Stack" class="md-nav__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -490,7 +496,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -571,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/overview/" class="md-nav__link">
+      <a href="../../getting-started/overview/" class="md-nav__link">
         
   
   
@@ -599,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/quickstart/" class="md-nav__link">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
         
   
   
@@ -627,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/architecture/" class="md-nav__link">
+      <a href="../../getting-started/architecture/" class="md-nav__link">
         
   
   
@@ -659,28 +665,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -698,7 +707,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -716,7 +725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/common-issues/" class="md-nav__link">
+      <a href="../common-issues/" class="md-nav__link">
         
   
   
@@ -741,10 +750,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../troubleshooting/disaster-recovery/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disaster Recovery
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -760,6 +796,220 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-recovery-decision-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recovery Decision Tree
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recovery-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery Scenarios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recovery Scenarios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-1-single-worker-node-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 1: Single Worker Node Failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-2-complete-cluster-loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 2: Complete Cluster Loss
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 2: Complete Cluster Loss">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-rebuild-cluster-2-4-hours" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Rebuild Cluster (2-4 hours)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-bootstrap-argocd-30-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Bootstrap ArgoCD (30 minutes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-restore-data-1-4-hours" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: Restore Data (1-4 hours)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-3-vault-sealedlost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 3: Vault Sealed/Lost
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-4-storage-loss-longhorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 4: Storage Loss (Longhorn)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-5-certificate-manager-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 5: Certificate Manager Down
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-6-network-failure-traefikmetallb-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 6: Network Failure (Traefik/MetalLB Down)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup Verification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Backup Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-backups-regularly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Backups Regularly
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#emergency-contacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergency Contacts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-recovery-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Recovery Tasks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prevention
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -772,7 +1022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/certificates/" class="md-nav__link">
+      <a href="../certificates/" class="md-nav__link">
         
   
   
@@ -800,7 +1050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/storage/" class="md-nav__link">
+      <a href="../storage/" class="md-nav__link">
         
   
   
@@ -828,7 +1078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/network/" class="md-nav__link">
+      <a href="../network/" class="md-nav__link">
         
   
   
@@ -856,7 +1106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/applications/" class="md-nav__link">
+      <a href="../applications/" class="md-nav__link">
         
   
   
@@ -884,7 +1134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/maintenance/" class="md-nav__link">
+      <a href="../maintenance/" class="md-nav__link">
         
   
   
@@ -1027,7 +1277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/raspberry-pi/" class="md-nav__link">
+      <a href="../../hardware/raspberry-pi/" class="md-nav__link">
         
   
   
@@ -1055,7 +1305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/proxmox/" class="md-nav__link">
+      <a href="../../hardware/proxmox/" class="md-nav__link">
         
   
   
@@ -1083,7 +1333,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/truenas/" class="md-nav__link">
+      <a href="../../hardware/truenas/" class="md-nav__link">
         
   
   
@@ -1111,7 +1361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/network/" class="md-nav__link">
+      <a href="../../hardware/network/" class="md-nav__link">
         
   
   
@@ -1201,7 +1451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/bare-metal/" class="md-nav__link">
+      <a href="../../setup/bare-metal/" class="md-nav__link">
         
   
   
@@ -1229,7 +1479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/ansible/" class="md-nav__link">
+      <a href="../../setup/ansible/" class="md-nav__link">
         
   
   
@@ -1257,7 +1507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/custom-images/" class="md-nav__link">
+      <a href="../../setup/custom-images/" class="md-nav__link">
         
   
   
@@ -1408,7 +1658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/argocd/" class="md-nav__link">
+      <a href="../../cluster-core/argocd/" class="md-nav__link">
         
   
   
@@ -1436,7 +1686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/gitops-workflow.md" class="md-nav__link">
+      <a href="../../cluster-core/gitops-workflow.md" class="md-nav__link">
         
   
   
@@ -1526,7 +1776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/traefik/" class="md-nav__link">
+      <a href="../../cluster-core/traefik/" class="md-nav__link">
         
   
   
@@ -1554,7 +1804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/metallb/" class="md-nav__link">
+      <a href="../../cluster-core/metallb/" class="md-nav__link">
         
   
   
@@ -1582,7 +1832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/dns.md" class="md-nav__link">
+      <a href="../../cluster-core/dns.md" class="md-nav__link">
         
   
   
@@ -1672,7 +1922,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/cert-manager/" class="md-nav__link">
+      <a href="../../cluster-core/cert-manager/" class="md-nav__link">
         
   
   
@@ -1700,7 +1950,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/authentik/" class="md-nav__link">
+      <a href="../../cluster-core/authentik/" class="md-nav__link">
         
   
   
@@ -1728,7 +1978,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/vault/" class="md-nav__link">
+      <a href="../../cluster-core/vault/" class="md-nav__link">
         
   
   
@@ -1756,7 +2006,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/secrets-management.md" class="md-nav__link">
+      <a href="../../cluster-core/secrets-management.md" class="md-nav__link">
         
   
   
@@ -1846,7 +2096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/longhorn/" class="md-nav__link">
+      <a href="../../cluster-core/longhorn/" class="md-nav__link">
         
   
   
@@ -1874,7 +2124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/storage-classes.md" class="md-nav__link">
+      <a href="../../cluster-core/storage-classes.md" class="md-nav__link">
         
   
   
@@ -1964,7 +2214,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/monitoring/" class="md-nav__link">
+      <a href="../../cluster-core/monitoring/" class="md-nav__link">
         
   
   
@@ -1992,7 +2242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/logging.md" class="md-nav__link">
+      <a href="../../cluster-core/logging.md" class="md-nav__link">
         
   
   
@@ -2020,7 +2270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/alerting.md" class="md-nav__link">
+      <a href="../../cluster-core/alerting.md" class="md-nav__link">
         
   
   
@@ -2171,7 +2421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/postgres-cnpg/" class="md-nav__link">
+      <a href="../../platform/postgres-cnpg/" class="md-nav__link">
         
   
   
@@ -2199,7 +2449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/postgres-zalando/" class="md-nav__link">
+      <a href="../../platform/postgres-zalando/" class="md-nav__link">
         
   
   
@@ -2227,7 +2477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/database-ops.md" class="md-nav__link">
+      <a href="../../platform/database-ops.md" class="md-nav__link">
         
   
   
@@ -2317,7 +2567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/secrets-csi/" class="md-nav__link">
+      <a href="../../platform/secrets-csi/" class="md-nav__link">
         
   
   
@@ -2345,7 +2595,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/external-secrets/" class="md-nav__link">
+      <a href="../../platform/external-secrets/" class="md-nav__link">
         
   
   
@@ -2373,7 +2623,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/vault-integration.md" class="md-nav__link">
+      <a href="../../platform/vault-integration.md" class="md-nav__link">
         
   
   
@@ -2524,7 +2774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/plex/" class="md-nav__link">
+      <a href="../../apps/plex/" class="md-nav__link">
         
   
   
@@ -2614,7 +2864,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/adguard/" class="md-nav__link">
+      <a href="../../apps/adguard/" class="md-nav__link">
         
   
   
@@ -2642,7 +2892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/airprint.md" class="md-nav__link">
+      <a href="../../apps/airprint.md" class="md-nav__link">
         
   
   
@@ -2670,7 +2920,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/vpn/" class="md-nav__link">
+      <a href="../../apps/vpn/" class="md-nav__link">
         
   
   
@@ -2760,7 +3010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/uptime-kuma/" class="md-nav__link">
+      <a href="../../apps/uptime-kuma/" class="md-nav__link">
         
   
   
@@ -2850,7 +3100,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/securitycam/" class="md-nav__link">
+      <a href="../../apps/securitycam/" class="md-nav__link">
         
   
   
@@ -2878,7 +3128,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/rails-app/" class="md-nav__link">
+      <a href="../../apps/rails-app/" class="md-nav__link">
         
   
   
@@ -2975,7 +3225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/deploy-app.md" class="md-nav__link">
+      <a href="../../howto/deploy-app.md" class="md-nav__link">
         
   
   
@@ -3003,7 +3253,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/setup-oidc.md" class="md-nav__link">
+      <a href="../../howto/setup-oidc.md" class="md-nav__link">
         
   
   
@@ -3031,7 +3281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/configure-ingress.md" class="md-nav__link">
+      <a href="../../howto/configure-ingress.md" class="md-nav__link">
         
   
   
@@ -3059,7 +3309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/setup-backup.md" class="md-nav__link">
+      <a href="../../howto/setup-backup.md" class="md-nav__link">
         
   
   
@@ -3087,7 +3337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/add-storage.md" class="md-nav__link">
+      <a href="../../howto/add-storage.md" class="md-nav__link">
         
   
   
@@ -3115,7 +3365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/expose-service.md" class="md-nav__link">
+      <a href="../../howto/expose-service.md" class="md-nav__link">
         
   
   
@@ -3143,7 +3393,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/debug-pods.md" class="md-nav__link">
+      <a href="../../howto/debug-pods.md" class="md-nav__link">
         
   
   
@@ -3232,7 +3482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/commands.md" class="md-nav__link">
+      <a href="../../reference/commands.md" class="md-nav__link">
         
   
   
@@ -3260,7 +3510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/templates.md" class="md-nav__link">
+      <a href="../../reference/templates.md" class="md-nav__link">
         
   
   
@@ -3288,7 +3538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/resources.md" class="md-nav__link">
+      <a href="../../reference/resources.md" class="md-nav__link">
         
   
   
@@ -3343,10 +3593,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#time-machine" class="md-nav__link">
+  <a href="#quick-recovery-decision-tree" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Time Machine
+        Quick Recovery Decision Tree
       
     </span>
   </a>
@@ -3354,10 +3604,182 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#youtube-downloader" class="md-nav__link">
+  <a href="#recovery-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Youtube Downloader
+        Recovery Scenarios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recovery Scenarios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-1-single-worker-node-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 1: Single Worker Node Failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-2-complete-cluster-loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 2: Complete Cluster Loss
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 2: Complete Cluster Loss">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-rebuild-cluster-2-4-hours" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Rebuild Cluster (2-4 hours)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-bootstrap-argocd-30-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Bootstrap ArgoCD (30 minutes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-restore-data-1-4-hours" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: Restore Data (1-4 hours)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-3-vault-sealedlost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 3: Vault Sealed/Lost
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-4-storage-loss-longhorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 4: Storage Loss (Longhorn)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-5-certificate-manager-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 5: Certificate Manager Down
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-6-network-failure-traefikmetallb-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 6: Network Failure (Traefik/MetalLB Down)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup Verification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Backup Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-backups-regularly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Backups Regularly
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#emergency-contacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergency Contacts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-recovery-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Recovery Tasks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prevention
       
     </span>
   </a>
@@ -3382,6 +3804,46 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../common-issues/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Troubleshooting & Operations
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -3392,13 +3854,312 @@
   
 
 
-<h1 id="custom-services">Custom Services<a class="headerlink" href="#custom-services" title="Permanent link">&para;</a></h1>
-<h2 id="time-machine">Time Machine<a class="headerlink" href="#time-machine" title="Permanent link">&para;</a></h2>
-<p>https://github.com/mbentley/docker-timemachine/tree/master</p>
-<h2 id="youtube-downloader">Youtube Downloader<a class="headerlink" href="#youtube-downloader" title="Permanent link">&para;</a></h2>
-<p>https://github.com/yt-dlp/yt-dlp</p>
+<h1 id="disaster-recovery">Disaster Recovery<a class="headerlink" href="#disaster-recovery" title="Permanent link">&para;</a></h1>
+<p>This guide covers how to recover from various disaster scenarios, from single component failures to complete cluster loss.</p>
+<div class="admonition danger">
+<p class="admonition-title">Before Disaster Strikes - Critical Preparation</p>
+<p>Ensure you have:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Break-glass kubeconfig saved externally (from <code>/etc/rancher/k3s/k3s.yaml</code>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Vault unseal keys stored securely outside the cluster</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Git repository backed up (GitHub provides this)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Longhorn backups enabled to TrueNAS</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> PostgreSQL backups configured</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Ansible inventory and vault passwords backed up</li>
+</ul>
+</div>
+<h2 id="quick-recovery-decision-tree">Quick Recovery Decision Tree<a class="headerlink" href="#quick-recovery-decision-tree" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>graph TD
+    A[Problem Detected] --&gt; B{What Failed?}
+    B --&gt;|Single Worker| C[15-60 min: Automatic rescheduling]
+    B --&gt;|Control Plane Node| D[30-60 min: Replace node]
+    B --&gt;|Storage/Longhorn| E[1-4 hrs: Restore from backup]
+    B --&gt;|Vault Sealed| F[15 min: Unseal with keys]
+    B --&gt;|Complete Cluster| G[4-8 hrs: Full rebuild]
+    B --&gt;|Network/Traefik| H[15-30 min: Restart components]</code></pre>
+<h2 id="recovery-scenarios">Recovery Scenarios<a class="headerlink" href="#recovery-scenarios" title="Permanent link">&para;</a></h2>
+<h3 id="scenario-1-single-worker-node-failure">Scenario 1: Single Worker Node Failure<a class="headerlink" href="#scenario-1-single-worker-node-failure" title="Permanent link">&para;</a></h3>
+<p><strong>Impact</strong>: Minimal - workloads reschedule automatically</p>
+<p><strong>Recovery Steps</strong>:</p>
+<ol>
+<li>
+<p><strong>Verify node is down</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Node shows NotReady or missing</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Check pod redistribution</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>wide<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;failed-node&gt;
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Should see pods rescheduling to other nodes</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Fix or replace node</strong>:</p>
+</li>
+<li>If hardware failure: Replace hardware</li>
+<li>If software issue: SSH to node and investigate</li>
+<li>
+<p>If unrecoverable: Remove node and add new one</p>
+</li>
+<li>
+<p><strong>Remove dead node</strong> (if needed):
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>drain<span class="w"> </span>&lt;node-name&gt;<span class="w"> </span>--ignore-daemonsets<span class="w"> </span>--delete-emptydir-data
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>node<span class="w"> </span>&lt;node-name&gt;
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Add replacement node</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>ansible-directory
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ansible-playbook<span class="w"> </span>add-user-ssh.yaml<span class="w"> </span>--limit<span class="w"> </span>&lt;new-node&gt;
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>ansible-playbook<span class="w"> </span>playbooks/06_k3s_secure.yaml<span class="w"> </span>--limit<span class="w"> </span>&lt;new-node&gt;
+</span></code></pre></div></p>
+</li>
+</ol>
+<p><strong>Recovery Time</strong>: 15-60 minutes</p>
+<h3 id="scenario-2-complete-cluster-loss">Scenario 2: Complete Cluster Loss<a class="headerlink" href="#scenario-2-complete-cluster-loss" title="Permanent link">&para;</a></h3>
+<p><strong>Impact</strong>: Catastrophic - everything down</p>
+<div class="admonition warning">
+<p class="admonition-title">This is why we use GitOps</p>
+<p>With GitOps, rebuilding is straightforward because all configuration is in Git.</p>
+</div>
+<h4 id="phase-1-rebuild-cluster-2-4-hours">Phase 1: Rebuild Cluster (2-4 hours)<a class="headerlink" href="#phase-1-rebuild-cluster-2-4-hours" title="Permanent link">&para;</a></h4>
+<ol>
+<li>
+<p><strong>Rebuild nodes with Ansible</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>ansible-directory
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ansible-playbook<span class="w"> </span>site.yml
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>ansible-playbook<span class="w"> </span>playbooks/06_k3s_secure.yaml
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Verify cluster is up</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># All nodes should be Ready</span>
+</span></code></pre></div></p>
+</li>
+</ol>
+<h4 id="phase-2-bootstrap-argocd-30-minutes">Phase 2: Bootstrap ArgoCD (30 minutes)<a class="headerlink" href="#phase-2-bootstrap-argocd-30-minutes" title="Permanent link">&para;</a></h4>
+<ol>
+<li>
+<p><strong>Install ArgoCD manually</strong> (the only manual step):
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>argocd-system
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>argo<span class="w"> </span>https://argoproj.github.io/argo-helm
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>helm<span class="w"> </span>install<span class="w"> </span>argocd<span class="w"> </span>argo/argo-cd<span class="w"> </span>-n<span class="w"> </span>argocd-system
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Deploy root ApplicationSet</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>apps-root-config/bootstrap/
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Watch ArgoCD sync everything</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>applications<span class="w"> </span>-n<span class="w"> </span>argocd-system<span class="w"> </span>--watch
+</span></code></pre></div></p>
+</li>
+</ol>
+<h4 id="phase-3-restore-data-1-4-hours">Phase 3: Restore Data (1-4 hours)<a class="headerlink" href="#phase-3-restore-data-1-4-hours" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>Restore Vault</strong>:</li>
+<li>Restore Longhorn volume from backup</li>
+<li>Unseal Vault with saved keys</li>
+<li>
+<p>Or manually re-enter secrets</p>
+</li>
+<li>
+<p><strong>Restore Longhorn volumes</strong>:</p>
+</li>
+<li>Longhorn UI → Backup tab</li>
+<li>Restore each critical volume</li>
+<li>
+<p>Update PVCs to use restored volumes</p>
+</li>
+<li>
+<p><strong>Restore PostgreSQL databases</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># CNPG will restore from backup automatically if configured</span>
+</span></code></pre></div></p>
+</li>
+</ol>
+<p><strong>Total Recovery Time</strong>: 4-8 hours</p>
+<h3 id="scenario-3-vault-sealedlost">Scenario 3: Vault Sealed/Lost<a class="headerlink" href="#scenario-3-vault-sealedlost" title="Permanent link">&para;</a></h3>
+<p><strong>Impact</strong>: Severe - secrets unavailable, pods using secrets fail</p>
+<p><strong>Recovery Steps</strong>:</p>
+<ol>
+<li>
+<p><strong>Check Vault status</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>vault-0<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>--<span class="w"> </span>vault<span class="w"> </span>status
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># If sealed: true, needs unsealing</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Unseal Vault</strong> (you need unseal keys):
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>vault-0<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>--<span class="w"> </span>vault<span class="w"> </span>operator<span class="w"> </span>unseal<span class="w"> </span>&lt;key1&gt;
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>vault-0<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>--<span class="w"> </span>vault<span class="w"> </span>operator<span class="w"> </span>unseal<span class="w"> </span>&lt;key2&gt;
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>vault-0<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>--<span class="w"> </span>vault<span class="w"> </span>operator<span class="w"> </span>unseal<span class="w"> </span>&lt;key3&gt;
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Need threshold number of keys (typically 3 of 5)</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>If Vault data lost completely</strong>:</p>
+</li>
+<li><strong>With backup</strong>: Restore Vault data from backup</li>
+<li>
+<p><strong>Without backup</strong>: Re-initialize Vault and re-enter all secrets (painful)</p>
+</li>
+<li>
+<p><strong>Restart pods using secrets</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># External Secrets will re-sync</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span></code></pre></div></p>
+</li>
+</ol>
+<p><strong>Recovery Time</strong>: 15 minutes (unseal), 2-8 hours (complete rebuild)</p>
+<h3 id="scenario-4-storage-loss-longhorn">Scenario 4: Storage Loss (Longhorn)<a class="headerlink" href="#scenario-4-storage-loss-longhorn" title="Permanent link">&para;</a></h3>
+<p><strong>Impact</strong>: Severe - all persistent data lost if no backups</p>
+<p><strong>Recovery Steps</strong>:</p>
+<ol>
+<li>
+<p><strong>Check Longhorn status</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>longhorn-system
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>If volumes corrupted/lost</strong>:</p>
+</li>
+<li><strong>With Backups</strong>: Restore from backup</li>
+<li>
+<p><strong>Without Backups</strong>: Data is lost - rebuild from scratch</p>
+</li>
+<li>
+<p><strong>Restore from Longhorn backup</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Via Longhorn UI:</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="c1"># 1. Go to Backup tab</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1"># 2. Find backup for lost volume</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># 3. Click &quot;Restore&quot;</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="c1"># 4. Create new volume from backup</span>
+</span></code></pre></div></p>
+</li>
+</ol>
+<p><strong>Recovery Time</strong>: 1-4 hours (depending on data size)</p>
+<h3 id="scenario-5-certificate-manager-down">Scenario 5: Certificate Manager Down<a class="headerlink" href="#scenario-5-certificate-manager-down" title="Permanent link">&para;</a></h3>
+<p><strong>Impact</strong>: Moderate - existing certificates work, but renewals fail</p>
+<p><strong>Recovery Steps</strong>:</p>
+<ol>
+<li>
+<p><strong>Check cert-manager pods</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>cert-manager
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Restart cert-manager</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment<span class="w"> </span>cert-manager<span class="w"> </span>-n<span class="w"> </span>cert-manager
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Force certificate renewal</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>certificaterequest<span class="w"> </span>-A<span class="w"> </span>--all
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1"># cert-manager will recreate them</span>
+</span></code></pre></div></p>
+</li>
+</ol>
+<p><strong>Recovery Time</strong>: 15 minutes</p>
+<h3 id="scenario-6-network-failure-traefikmetallb-down">Scenario 6: Network Failure (Traefik/MetalLB Down)<a class="headerlink" href="#scenario-6-network-failure-traefikmetallb-down" title="Permanent link">&para;</a></h3>
+<p><strong>Impact</strong>: Severe - can't access any services externally</p>
+<p><strong>Recovery Steps</strong>:</p>
+<ol>
+<li>
+<p><strong>Check MetalLB</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>metallb-system
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </span>metallb-system<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>metallb
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Check Traefik</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>traefik
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </span>traefik<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/name<span class="o">=</span>traefik
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Restart components</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment<span class="w"> </span>controller<span class="w"> </span>-n<span class="w"> </span>metallb-system
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>daemonset<span class="w"> </span>speaker<span class="w"> </span>-n<span class="w"> </span>metallb-system
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment<span class="w"> </span>traefik<span class="w"> </span>-n<span class="w"> </span>traefik
+</span></code></pre></div></p>
+</li>
+</ol>
+<p><strong>Recovery Time</strong>: 15-30 minutes</p>
+<h2 id="backup-verification">Backup Verification<a class="headerlink" href="#backup-verification" title="Permanent link">&para;</a></h2>
+<h3 id="test-backups-regularly">Test Backups Regularly<a class="headerlink" href="#test-backups-regularly" title="Permanent link">&para;</a></h3>
+<p><strong>Monthly Task</strong>:</p>
+<ol>
+<li><strong>Verify Longhorn backups</strong>:</li>
+<li>Longhorn UI → Backup tab</li>
+<li>Check last backup timestamp</li>
+<li>
+<p>Try restoring a test volume</p>
+</li>
+<li>
+<p><strong>Verify PostgreSQL backups</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>backup<span class="w"> </span>-A
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Test disaster recovery procedure</strong> (in test cluster):</p>
+</li>
+<li>Destroy test cluster</li>
+<li>Rebuild from scratch</li>
+<li>Restore data</li>
+<li>Document any issues</li>
+</ol>
+<h2 id="emergency-contacts">Emergency Contacts<a class="headerlink" href="#emergency-contacts" title="Permanent link">&para;</a></h2>
+<p><strong>External Dependencies</strong>:</p>
 <ul>
-<li>[CSI]: Container Storage Interface</li>
+<li><strong>Domain/DNS</strong>: CloudFlare (has separate login)</li>
+<li><strong>Git Repository</strong>: GitHub (has separate login)</li>
+<li><strong>Backup Storage</strong>: TrueNAS (admin credentials)</li>
+</ul>
+<p><strong>Critical Credentials</strong> (store in password manager):</p>
+<ul>
+<li>Break-glass kubeconfig</li>
+<li>Vault unseal keys</li>
+<li>Vault root token</li>
+<li>TrueNAS admin password</li>
+<li>Ansible vault password</li>
+<li>GitHub SSH keys</li>
+<li>CloudFlare API token</li>
+</ul>
+<h2 id="post-recovery-tasks">Post-Recovery Tasks<a class="headerlink" href="#post-recovery-tasks" title="Permanent link">&para;</a></h2>
+<p>After recovering from a disaster:</p>
+<ol>
+<li><strong>Update documentation</strong>: What worked? What didn't?</li>
+<li><strong>Review root cause</strong>: Why did the failure occur?</li>
+<li><strong>Improve automation</strong>: Can this be prevented or recovered faster?</li>
+<li><strong>Test recovery process</strong>: Ensure it works next time</li>
+<li><strong>Update backup strategy</strong>: Were backups sufficient?</li>
+</ol>
+<h2 id="prevention">Prevention<a class="headerlink" href="#prevention" title="Permanent link">&para;</a></h2>
+<p><strong>Best Practices</strong>:</p>
+<ul>
+<li>✅ Regular backups (automated)</li>
+<li>✅ Test restore procedures</li>
+<li>✅ Monitor backup success/failures</li>
+<li>✅ Keep credentials secure but accessible</li>
+<li>✅ Document everything (like this!)</li>
+<li>✅ Use GitOps (so configuration is always in Git)</li>
+<li>✅ High availability for critical components</li>
+<li>
+<p>✅ Regular maintenance and updates</p>
+</li>
+<li>
+<p>[CSI]: Container Storage Interface</p>
+</li>
+<li>
+<p>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></p>
+</li>
+<li>
+<p>[CSI]: Container Storage Interface</p>
+</li>
 <li>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></li>
 </ul>
 
@@ -3498,10 +4259,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "content.footnotes.tooltips", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.footnotes.tooltips", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

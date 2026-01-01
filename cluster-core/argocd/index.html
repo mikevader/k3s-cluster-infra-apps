@@ -12,27 +12,31 @@
         <meta name="author" content="Michael M&uuml;hlebach">
       
       
-        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/framsburg-services/">
+        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/cluster-core/argocd/">
       
       
+        <link rel="prev" href="../../setup/custom-images/">
+      
+      
+        <link rel="next" href="../traefik/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Custom Services - K3s Homelab GitOps Stack</title>
+        <title>ArgoCD - K3s Homelab GitOps Stack</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#custom-services" class="md-skip">
+        <a href="#argo-cd" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="K3s Homelab GitOps Stack" class="md-header__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
+    <a href="../.." title="K3s Homelab GitOps Stack" class="md-header__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Custom Services
+              ArgoCD
             
           </span>
         </div>
@@ -219,7 +223,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -240,7 +244,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../getting-started/overview/" class="md-tabs__link">
+        <a href="../../getting-started/overview/" class="md-tabs__link">
           
   
   
@@ -260,7 +264,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../troubleshooting/common-issues/" class="md-tabs__link">
+        <a href="../../troubleshooting/common-issues/" class="md-tabs__link">
           
   
   
@@ -287,7 +291,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../hardware/raspberry-pi/" class="md-tabs__link">
+        <a href="../../hardware/raspberry-pi/" class="md-tabs__link">
           
   
   
@@ -306,6 +310,8 @@
   
   
   
+    
+  
   
     
     
@@ -313,11 +319,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../cluster-core/argocd/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -347,7 +355,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../platform/postgres-cnpg/" class="md-tabs__link">
+        <a href="../../platform/postgres-cnpg/" class="md-tabs__link">
           
   
   
@@ -377,7 +385,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../apps/plex/" class="md-tabs__link">
+        <a href="../../apps/plex/" class="md-tabs__link">
           
   
   
@@ -400,7 +408,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../howto/deploy-app.md" class="md-tabs__link">
+        <a href="../../howto/deploy-app.md" class="md-tabs__link">
           
   
   
@@ -420,7 +428,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../reference/commands.md" class="md-tabs__link">
+        <a href="../../reference/commands.md" class="md-tabs__link">
           
   
   
@@ -460,7 +468,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="K3s Homelab GitOps Stack" class="md-nav__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
+    <a href="../.." title="K3s Homelab GitOps Stack" class="md-nav__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -490,7 +498,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -571,7 +579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/overview/" class="md-nav__link">
+      <a href="../../getting-started/overview/" class="md-nav__link">
         
   
   
@@ -599,7 +607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/quickstart/" class="md-nav__link">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
         
   
   
@@ -627,7 +635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/architecture/" class="md-nav__link">
+      <a href="../../getting-started/architecture/" class="md-nav__link">
         
   
   
@@ -716,7 +724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/common-issues/" class="md-nav__link">
+      <a href="../../troubleshooting/common-issues/" class="md-nav__link">
         
   
   
@@ -744,7 +752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/disaster-recovery/" class="md-nav__link">
+      <a href="../../troubleshooting/disaster-recovery/" class="md-nav__link">
         
   
   
@@ -772,7 +780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/certificates/" class="md-nav__link">
+      <a href="../../troubleshooting/certificates/" class="md-nav__link">
         
   
   
@@ -800,7 +808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/storage/" class="md-nav__link">
+      <a href="../../troubleshooting/storage/" class="md-nav__link">
         
   
   
@@ -828,7 +836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/network/" class="md-nav__link">
+      <a href="../../troubleshooting/network/" class="md-nav__link">
         
   
   
@@ -856,7 +864,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/applications/" class="md-nav__link">
+      <a href="../../troubleshooting/applications/" class="md-nav__link">
         
   
   
@@ -884,7 +892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/maintenance/" class="md-nav__link">
+      <a href="../../troubleshooting/maintenance/" class="md-nav__link">
         
   
   
@@ -1027,7 +1035,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/raspberry-pi/" class="md-nav__link">
+      <a href="../../hardware/raspberry-pi/" class="md-nav__link">
         
   
   
@@ -1055,7 +1063,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/proxmox/" class="md-nav__link">
+      <a href="../../hardware/proxmox/" class="md-nav__link">
         
   
   
@@ -1083,7 +1091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/truenas/" class="md-nav__link">
+      <a href="../../hardware/truenas/" class="md-nav__link">
         
   
   
@@ -1111,7 +1119,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/network/" class="md-nav__link">
+      <a href="../../hardware/network/" class="md-nav__link">
         
   
   
@@ -1201,7 +1209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/bare-metal/" class="md-nav__link">
+      <a href="../../setup/bare-metal/" class="md-nav__link">
         
   
   
@@ -1229,7 +1237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/ansible/" class="md-nav__link">
+      <a href="../../setup/ansible/" class="md-nav__link">
         
   
   
@@ -1257,7 +1265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/custom-images/" class="md-nav__link">
+      <a href="../../setup/custom-images/" class="md-nav__link">
         
   
   
@@ -1297,28 +1305,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -1336,7 +1347,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1351,28 +1362,31 @@
                 
   
   
+    
   
   
+  
     
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
         
           
+          
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_1" >
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
         
           
-          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="">
             
   
   
@@ -1390,7 +1404,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1405,10 +1419,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../cluster-core/argocd/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ArgoCD
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1424,6 +1465,210 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#applicationset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ApplicationSet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ApplicationSet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ignore-diffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ignore Diffs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-two-oidc-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part Two: OIDC integration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part Two: OIDC integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oidc-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OIDC Login
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rename-applicationset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rename Applicationset
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rename Applicationset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variant-a-delete-over-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variant A: Delete over CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variant-b-delete-over-gitops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variant B: Delete over GitOps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#switch-from-applicationset-to-app-of-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Switch from Applicationset to App of Apps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Switch from Applicationset to App of Apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disable-cascading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable cascading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-applicationset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove applicationset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-new-app-of-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add new app of apps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-app-to-app-of-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add app to app of apps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-webhook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Webhook
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitHub Webhook">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-secret-in-vault" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Secret in Vault
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1436,7 +1681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/gitops-workflow.md" class="md-nav__link">
+      <a href="../gitops-workflow.md" class="md-nav__link">
         
   
   
@@ -1478,10 +1723,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1490,7 +1738,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_2" >
         
           
-          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="">
             
   
   
@@ -1526,7 +1774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/traefik/" class="md-nav__link">
+      <a href="../traefik/" class="md-nav__link">
         
   
   
@@ -1554,7 +1802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/metallb/" class="md-nav__link">
+      <a href="../metallb/" class="md-nav__link">
         
   
   
@@ -1582,7 +1830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/dns.md" class="md-nav__link">
+      <a href="../dns.md" class="md-nav__link">
         
   
   
@@ -1624,10 +1872,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1636,7 +1887,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
         
           
-          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="">
             
   
   
@@ -1672,7 +1923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/cert-manager/" class="md-nav__link">
+      <a href="../cert-manager/" class="md-nav__link">
         
   
   
@@ -1700,7 +1951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/authentik/" class="md-nav__link">
+      <a href="../authentik/" class="md-nav__link">
         
   
   
@@ -1728,7 +1979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/vault/" class="md-nav__link">
+      <a href="../vault/" class="md-nav__link">
         
   
   
@@ -1756,7 +2007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/secrets-management.md" class="md-nav__link">
+      <a href="../secrets-management.md" class="md-nav__link">
         
   
   
@@ -1798,10 +2049,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1810,7 +2064,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_4" >
         
           
-          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="">
             
   
   
@@ -1846,7 +2100,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/longhorn/" class="md-nav__link">
+      <a href="../longhorn/" class="md-nav__link">
         
   
   
@@ -1874,7 +2128,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/storage-classes.md" class="md-nav__link">
+      <a href="../storage-classes.md" class="md-nav__link">
         
   
   
@@ -1916,10 +2170,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1928,7 +2185,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_5" >
         
           
-          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="">
             
   
   
@@ -1964,7 +2221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/monitoring/" class="md-nav__link">
+      <a href="../monitoring/" class="md-nav__link">
         
   
   
@@ -1992,7 +2249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/logging.md" class="md-nav__link">
+      <a href="../logging.md" class="md-nav__link">
         
   
   
@@ -2020,7 +2277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/alerting.md" class="md-nav__link">
+      <a href="../alerting.md" class="md-nav__link">
         
   
   
@@ -2171,7 +2428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/postgres-cnpg/" class="md-nav__link">
+      <a href="../../platform/postgres-cnpg/" class="md-nav__link">
         
   
   
@@ -2199,7 +2456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/postgres-zalando/" class="md-nav__link">
+      <a href="../../platform/postgres-zalando/" class="md-nav__link">
         
   
   
@@ -2227,7 +2484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/database-ops.md" class="md-nav__link">
+      <a href="../../platform/database-ops.md" class="md-nav__link">
         
   
   
@@ -2317,7 +2574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/secrets-csi/" class="md-nav__link">
+      <a href="../../platform/secrets-csi/" class="md-nav__link">
         
   
   
@@ -2345,7 +2602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/external-secrets/" class="md-nav__link">
+      <a href="../../platform/external-secrets/" class="md-nav__link">
         
   
   
@@ -2373,7 +2630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/vault-integration.md" class="md-nav__link">
+      <a href="../../platform/vault-integration.md" class="md-nav__link">
         
   
   
@@ -2524,7 +2781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/plex/" class="md-nav__link">
+      <a href="../../apps/plex/" class="md-nav__link">
         
   
   
@@ -2614,7 +2871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/adguard/" class="md-nav__link">
+      <a href="../../apps/adguard/" class="md-nav__link">
         
   
   
@@ -2642,7 +2899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/airprint.md" class="md-nav__link">
+      <a href="../../apps/airprint.md" class="md-nav__link">
         
   
   
@@ -2670,7 +2927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/vpn/" class="md-nav__link">
+      <a href="../../apps/vpn/" class="md-nav__link">
         
   
   
@@ -2760,7 +3017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/uptime-kuma/" class="md-nav__link">
+      <a href="../../apps/uptime-kuma/" class="md-nav__link">
         
   
   
@@ -2850,7 +3107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/securitycam/" class="md-nav__link">
+      <a href="../../apps/securitycam/" class="md-nav__link">
         
   
   
@@ -2878,7 +3135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/rails-app/" class="md-nav__link">
+      <a href="../../apps/rails-app/" class="md-nav__link">
         
   
   
@@ -2975,7 +3232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/deploy-app.md" class="md-nav__link">
+      <a href="../../howto/deploy-app.md" class="md-nav__link">
         
   
   
@@ -3003,7 +3260,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/setup-oidc.md" class="md-nav__link">
+      <a href="../../howto/setup-oidc.md" class="md-nav__link">
         
   
   
@@ -3031,7 +3288,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/configure-ingress.md" class="md-nav__link">
+      <a href="../../howto/configure-ingress.md" class="md-nav__link">
         
   
   
@@ -3059,7 +3316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/setup-backup.md" class="md-nav__link">
+      <a href="../../howto/setup-backup.md" class="md-nav__link">
         
   
   
@@ -3087,7 +3344,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/add-storage.md" class="md-nav__link">
+      <a href="../../howto/add-storage.md" class="md-nav__link">
         
   
   
@@ -3115,7 +3372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/expose-service.md" class="md-nav__link">
+      <a href="../../howto/expose-service.md" class="md-nav__link">
         
   
   
@@ -3143,7 +3400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/debug-pods.md" class="md-nav__link">
+      <a href="../../howto/debug-pods.md" class="md-nav__link">
         
   
   
@@ -3232,7 +3489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/commands.md" class="md-nav__link">
+      <a href="../../reference/commands.md" class="md-nav__link">
         
   
   
@@ -3260,7 +3517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/templates.md" class="md-nav__link">
+      <a href="../../reference/templates.md" class="md-nav__link">
         
   
   
@@ -3288,7 +3545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/resources.md" class="md-nav__link">
+      <a href="../../reference/resources.md" class="md-nav__link">
         
   
   
@@ -3343,24 +3600,186 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#time-machine" class="md-nav__link">
+  <a href="#applicationset" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Time Machine
+        ApplicationSet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ApplicationSet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ignore-diffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ignore Diffs
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#youtube-downloader" class="md-nav__link">
+  <a href="#part-two-oidc-integration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Youtube Downloader
+        Part Two: OIDC integration
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Part Two: OIDC integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oidc-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OIDC Login
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rename-applicationset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rename Applicationset
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rename Applicationset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variant-a-delete-over-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variant A: Delete over CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variant-b-delete-over-gitops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variant B: Delete over GitOps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#switch-from-applicationset-to-app-of-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Switch from Applicationset to App of Apps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Switch from Applicationset to App of Apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disable-cascading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable cascading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-applicationset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove applicationset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-new-app-of-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add new app of apps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-app-to-app-of-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add app to app of apps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-webhook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Webhook
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitHub Webhook">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-secret-in-vault" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Secret in Vault
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3382,6 +3801,72 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Cluster Core
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    GitOps & CD
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -3392,11 +3877,175 @@
   
 
 
-<h1 id="custom-services">Custom Services<a class="headerlink" href="#custom-services" title="Permanent link">&para;</a></h1>
-<h2 id="time-machine">Time Machine<a class="headerlink" href="#time-machine" title="Permanent link">&para;</a></h2>
-<p>https://github.com/mbentley/docker-timemachine/tree/master</p>
-<h2 id="youtube-downloader">Youtube Downloader<a class="headerlink" href="#youtube-downloader" title="Permanent link">&para;</a></h2>
-<p>https://github.com/yt-dlp/yt-dlp</p>
+<h1 id="argo-cd">Argo CD<a class="headerlink" href="#argo-cd" title="Permanent link">&para;</a></h1>
+<h2 id="applicationset">ApplicationSet<a class="headerlink" href="#applicationset" title="Permanent link">&para;</a></h2>
+<h3 id="ignore-diffs">Ignore Diffs<a class="headerlink" href="#ignore-diffs" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><span class="filename">diff in applicationset</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argoproj.io/v1alpha1</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ApplicationSet</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-init</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd-system</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">generators</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">      </span><span class="nt">ignoreDifferences</span><span class="p">:</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">          </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">          </span><span class="nt">jsonPointers</span><span class="p">:</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/oidc.config</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">          </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">          </span><span class="nt">jsonPointers</span><span class="p">:</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/oidc.authentik.clientSecret</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span></code></pre></div>
+<h2 id="part-two-oidc-integration">Part Two: OIDC integration<a class="headerlink" href="#part-two-oidc-integration" title="Permanent link">&para;</a></h2>
+<p>This part should follow after [Vault] and [Authentik] are up and running.</p>
+<h3 id="oidc-login">OIDC Login<a class="headerlink" href="#oidc-login" title="Permanent link">&para;</a></h3>
+<p>First you have to create a provider and application in authentik to get a client id and secret.
+Afterwards the oidc credentials can be saved in the Vault and mapped over a <code>SecretProviderClass</code>. (Do not forget to
+mount the vault volumes for the secret to work [./secrets-csi.md#volumes-in-a-chart])</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nn">---</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secrets-store.csi.x-k8s.io/v1</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SecretProviderClass</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vault-argocd</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vault</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">parameters</span><span class="p">:</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">vaultAddress</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://vault.vault:8200&quot;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nt">roleName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;argocd-app&quot;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="nt">objects</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">      </span><span class="no">- objectName: &quot;oidc-id&quot;</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="no">secretPath: &quot;kv-v2/data/framsburg/argocd/oidc&quot;</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">        </span><span class="no">secretKey: &quot;client-id&quot;</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">      </span><span class="no">- objectName: &quot;oidc-secret&quot;</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span><span class="no">secretPath: &quot;kv-v2/data/framsburg/argocd/oidc&quot;</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">        </span><span class="no">secretKey: &quot;client-secret&quot;</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="nt">secretObjects</span><span class="p">:</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">data</span><span class="p">:</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oidc.authentik.clientId</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">          </span><span class="nt">objectName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oidc-id</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oidc.authentik.clientSecret</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">          </span><span class="nt">objectName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oidc-secret</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">      </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oidc</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Opaque</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">        </span><span class="nt">app.kubernetes.io/part-of</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd</span><span class="w"> </span><span class="c1"># (1)!</span>
+</span></code></pre></div>
+<ol>
+<li>Without this label the secret reference in the argocd ConfigMap will not work and complain about that the secret key can not be found.</li>
+</ol>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">argo-cd</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">server</span><span class="p">:</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">config</span><span class="p p-Indicator">:</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://argocd.framsburg.ch</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="nt">oidc.config</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"> </span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">          </span><span class="no">name: Authentik</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">          </span><span class="no">issuer: &quot;https://authentik.framsburg.ch/application/o/argocd/&quot;</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">          </span><span class="no">clientID: &quot;c579d3195f85aeccaf1ecce35ef5501e023c2a6a&quot;</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">          </span><span class="no">clientSecret: &quot;$oidc:oidc.authentik.clientSecret&quot;</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">          </span><span class="no">requestedScopes: [&quot;openid&quot;, &quot;profile&quot;, &quot;email&quot;]</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">          </span><span class="no">logoutURL: &quot;https://authentik.framsburg.ch/if/session-end/argocd/&quot;</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="nt">rbacConfig</span><span class="p">:</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">      </span><span class="nt">policy.default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">role:readonly</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">      </span><span class="nt">policy.csv</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">          </span><span class="no">g, &#39;authentik Admins&#39;, role:admin</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;secrets-store-inline&#39;</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">        </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;/mnt/secrets-store&#39;</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">        </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secrets-store-inline</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">        </span><span class="nt">csi</span><span class="p">:</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">          </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;secrets-store.csi.k8s.io&#39;</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">          </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">          </span><span class="nt">volumeAttributes</span><span class="p">:</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">            </span><span class="nt">secretProviderClass</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;vault-argocd&#39;</span>
+</span></code></pre></div>
+<h2 id="rename-applicationset">Rename Applicationset<a class="headerlink" href="#rename-applicationset" title="Permanent link">&para;</a></h2>
+<p><strong>Important</strong>: Remove Applicationset without cascade delete with the following
+two options.</p>
+<h3 id="variant-a-delete-over-cli">Variant A: Delete over CLI<a class="headerlink" href="#variant-a-delete-over-cli" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span>kubectl<span class="w"> </span>delete<span class="w"> </span>ApplicationSet<span class="w"> </span><span class="o">(</span>NAME<span class="o">)</span><span class="w"> </span>--cascade<span class="o">=</span><span class="nb">false</span>
+</span></code></pre></div>
+<h3 id="variant-b-delete-over-gitops">Variant B: Delete over GitOps<a class="headerlink" href="#variant-b-delete-over-gitops" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argoproj.io/v1alpha1</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ApplicationSet</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-apps</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd-system</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="nt">goTemplate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="nt">syncPolicy</span><span class="p">:</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="nt">preserveResourcesOnDeletion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></code></pre></div>
+<p>--&gt; Warning should occur of applicationsets are part of two applications (it's
+actually wrong, but apparently applicationsets are identified only by name)</p>
+<p>Remove old application set -</p>
+<p>Go through the following steps</p>
+<ol>
+<li>Add app for new applicationset</li>
+<li>Add preserve resources in old and new applicationset</li>
+<li>Remove old applicationset</li>
+<li>Add app to new applicationset one by one</li>
+</ol>
+<h2 id="switch-from-applicationset-to-app-of-apps">Switch from Applicationset to App of Apps<a class="headerlink" href="#switch-from-applicationset-to-app-of-apps" title="Permanent link">&para;</a></h2>
+<p>To switch from applicationsets to an App of Apps setup we want to delete the
+superstructure of applicationsets and applications without removing the
+underlying resources like Pods or VolumeClaims. We do this in multiple steps</p>
+<h3 id="disable-cascading">Disable cascading<a class="headerlink" href="#disable-cascading" title="Permanent link">&para;</a></h3>
+<p>Configure all application sets to preserve their resources. Otherwise the remove
+of the application set will trigger a deletion cascade to applications and pods,
+etc.</p>
+<p>You can do this by defining the following option on the applicationset spec (not
+the template!!):</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argoproj.io/v1alpha1</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ApplicationSet</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-apps</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd-system</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nt">syncPolicy</span><span class="p">:</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nt">preserveResourcesOnDeletion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></code></pre></div>
+<h3 id="remove-applicationset">Remove applicationset<a class="headerlink" href="#remove-applicationset" title="Permanent link">&para;</a></h3>
+<p>Next step is to delete the applicationset. Make sure to remove them from the
+initial bootstrap setup otherwise they will be recreated again. This means
+remove the applicationset from <code>cluster-init/root</code>.</p>
+<p>After the sync the applicationset should be removed as well as the applications.
+If this is not the case you can manually remove them with the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>kubectl<span class="w"> </span>delete<span class="w"> </span>ApplicationSet<span class="w"> </span>&lt;NAME&gt;<span class="w"> </span>-n<span class="w"> </span>argocd-system<span class="w"> </span>--cascade<span class="o">=</span><span class="nb">false</span>
+</span></code></pre></div>
+<h3 id="add-new-app-of-apps">Add new app of apps<a class="headerlink" href="#add-new-app-of-apps" title="Permanent link">&para;</a></h3>
+<p>This can be done anytime even before you start, if your new app of apps does not
+share the name with an existing application.</p>
+<p>This is quite straight forward. Add new app of apps to the bootstrap start under
+<code>apps-root-config/bootstrap/values.yaml</code>.</p>
+<h3 id="add-app-to-app-of-apps">Add app to app of apps<a class="headerlink" href="#add-app-to-app-of-apps" title="Permanent link">&para;</a></h3>
+<p>First make sure the application you want to add is in the right folder. Don't
+move aka remove it from the old folder as the old application still exists and 
+would sync your change aka remove the app!</p>
+<p>Add your app to the new app of apps for example under
+<code>apps-root-config/applications/cluster-utility-apps.yaml</code></p>
+<p><strong>This assumes the application name has not changed!</strong>. You can now remove the
+app files from the old folder.</p>
+<h2 id="github-webhook">GitHub Webhook<a class="headerlink" href="#github-webhook" title="Permanent link">&para;</a></h2>
+<p>This documentation describes how to setup a git webhook which notifies Argo CD
+on any source changes immedietly. Otherwise Argo CD will pull changes on a three
+minutes intervall. This follows the <a href="https://argo-cd.readthedocs.io/en/stable/operator-manual/webhook/">Argo CD documentation</a></p>
+<h3 id="create-secret-in-vault">Create Secret in Vault<a class="headerlink" href="#create-secret-in-vault" title="Permanent link">&para;</a></h3>
+<p>First create an arbitrary secret in the vault for GitHub to use and Argo CD to
+verify. This is important: As the callback URL must be publicly accessible
+(because GitHub is public) it opens an attack vector for a DDoS attack. As it
+not be changed frequently, go for something long ... 50 chars?</p>
+<p>Add it under <code>framsburg/argocd/github</code> and under key <code>webhook-secret</code>.</p>
+<p>Create the following external secret which provides this vault secret under the
+correct secret name. Remeber the k8s secret must be named <code>webhook.github.secret</code></p>
 <ul>
 <li>[CSI]: Container Storage Interface</li>
 <li>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></li>
@@ -3498,10 +4147,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "content.footnotes.tooltips", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.footnotes.tooltips", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

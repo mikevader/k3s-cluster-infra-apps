@@ -12,27 +12,31 @@
         <meta name="author" content="Michael M&uuml;hlebach">
       
       
-        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/framsburg-services/">
+        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/platform/secrets-csi/">
       
       
+        <link rel="prev" href="../postgres-zalando/">
+      
+      
+        <link rel="next" href="../external-secrets/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Custom Services - K3s Homelab GitOps Stack</title>
+        <title>Secrets Store CSI - K3s Homelab GitOps Stack</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#custom-services" class="md-skip">
+        <a href="#secrets-with-csi" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="K3s Homelab GitOps Stack" class="md-header__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
+    <a href="../.." title="K3s Homelab GitOps Stack" class="md-header__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Custom Services
+              Secrets Store CSI
             
           </span>
         </div>
@@ -219,7 +223,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -240,7 +244,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../getting-started/overview/" class="md-tabs__link">
+        <a href="../../getting-started/overview/" class="md-tabs__link">
           
   
   
@@ -260,7 +264,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../troubleshooting/common-issues/" class="md-tabs__link">
+        <a href="../../troubleshooting/common-issues/" class="md-tabs__link">
           
   
   
@@ -287,7 +291,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../hardware/raspberry-pi/" class="md-tabs__link">
+        <a href="../../hardware/raspberry-pi/" class="md-tabs__link">
           
   
   
@@ -317,7 +321,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../cluster-core/argocd/" class="md-tabs__link">
+        <a href="../../cluster-core/argocd/" class="md-tabs__link">
           
   
   
@@ -336,6 +340,8 @@
   
   
   
+    
+  
   
     
     
@@ -343,11 +349,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../platform/postgres-cnpg/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../postgres-cnpg/" class="md-tabs__link">
           
   
   
@@ -377,7 +385,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../apps/plex/" class="md-tabs__link">
+        <a href="../../apps/plex/" class="md-tabs__link">
           
   
   
@@ -400,7 +408,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../howto/deploy-app.md" class="md-tabs__link">
+        <a href="../../howto/deploy-app.md" class="md-tabs__link">
           
   
   
@@ -420,7 +428,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../reference/commands.md" class="md-tabs__link">
+        <a href="../../reference/commands.md" class="md-tabs__link">
           
   
   
@@ -460,7 +468,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="K3s Homelab GitOps Stack" class="md-nav__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
+    <a href="../.." title="K3s Homelab GitOps Stack" class="md-nav__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -490,7 +498,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -571,7 +579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/overview/" class="md-nav__link">
+      <a href="../../getting-started/overview/" class="md-nav__link">
         
   
   
@@ -599,7 +607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/quickstart/" class="md-nav__link">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
         
   
   
@@ -627,7 +635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/architecture/" class="md-nav__link">
+      <a href="../../getting-started/architecture/" class="md-nav__link">
         
   
   
@@ -716,7 +724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/common-issues/" class="md-nav__link">
+      <a href="../../troubleshooting/common-issues/" class="md-nav__link">
         
   
   
@@ -744,7 +752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/disaster-recovery/" class="md-nav__link">
+      <a href="../../troubleshooting/disaster-recovery/" class="md-nav__link">
         
   
   
@@ -772,7 +780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/certificates/" class="md-nav__link">
+      <a href="../../troubleshooting/certificates/" class="md-nav__link">
         
   
   
@@ -800,7 +808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/storage/" class="md-nav__link">
+      <a href="../../troubleshooting/storage/" class="md-nav__link">
         
   
   
@@ -828,7 +836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/network/" class="md-nav__link">
+      <a href="../../troubleshooting/network/" class="md-nav__link">
         
   
   
@@ -856,7 +864,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/applications/" class="md-nav__link">
+      <a href="../../troubleshooting/applications/" class="md-nav__link">
         
   
   
@@ -884,7 +892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/maintenance/" class="md-nav__link">
+      <a href="../../troubleshooting/maintenance/" class="md-nav__link">
         
   
   
@@ -1027,7 +1035,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/raspberry-pi/" class="md-nav__link">
+      <a href="../../hardware/raspberry-pi/" class="md-nav__link">
         
   
   
@@ -1055,7 +1063,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/proxmox/" class="md-nav__link">
+      <a href="../../hardware/proxmox/" class="md-nav__link">
         
   
   
@@ -1083,7 +1091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/truenas/" class="md-nav__link">
+      <a href="../../hardware/truenas/" class="md-nav__link">
         
   
   
@@ -1111,7 +1119,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/network/" class="md-nav__link">
+      <a href="../../hardware/network/" class="md-nav__link">
         
   
   
@@ -1201,7 +1209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/bare-metal/" class="md-nav__link">
+      <a href="../../setup/bare-metal/" class="md-nav__link">
         
   
   
@@ -1229,7 +1237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/ansible/" class="md-nav__link">
+      <a href="../../setup/ansible/" class="md-nav__link">
         
   
   
@@ -1257,7 +1265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/custom-images/" class="md-nav__link">
+      <a href="../../setup/custom-images/" class="md-nav__link">
         
   
   
@@ -1408,7 +1416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/argocd/" class="md-nav__link">
+      <a href="../../cluster-core/argocd/" class="md-nav__link">
         
   
   
@@ -1436,7 +1444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/gitops-workflow.md" class="md-nav__link">
+      <a href="../../cluster-core/gitops-workflow.md" class="md-nav__link">
         
   
   
@@ -1526,7 +1534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/traefik/" class="md-nav__link">
+      <a href="../../cluster-core/traefik/" class="md-nav__link">
         
   
   
@@ -1554,7 +1562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/metallb/" class="md-nav__link">
+      <a href="../../cluster-core/metallb/" class="md-nav__link">
         
   
   
@@ -1582,7 +1590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/dns.md" class="md-nav__link">
+      <a href="../../cluster-core/dns.md" class="md-nav__link">
         
   
   
@@ -1672,7 +1680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/cert-manager/" class="md-nav__link">
+      <a href="../../cluster-core/cert-manager/" class="md-nav__link">
         
   
   
@@ -1700,7 +1708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/authentik/" class="md-nav__link">
+      <a href="../../cluster-core/authentik/" class="md-nav__link">
         
   
   
@@ -1728,7 +1736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/vault/" class="md-nav__link">
+      <a href="../../cluster-core/vault/" class="md-nav__link">
         
   
   
@@ -1756,7 +1764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/secrets-management.md" class="md-nav__link">
+      <a href="../../cluster-core/secrets-management.md" class="md-nav__link">
         
   
   
@@ -1846,7 +1854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/longhorn/" class="md-nav__link">
+      <a href="../../cluster-core/longhorn/" class="md-nav__link">
         
   
   
@@ -1874,7 +1882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/storage-classes.md" class="md-nav__link">
+      <a href="../../cluster-core/storage-classes.md" class="md-nav__link">
         
   
   
@@ -1964,7 +1972,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/monitoring/" class="md-nav__link">
+      <a href="../../cluster-core/monitoring/" class="md-nav__link">
         
   
   
@@ -1992,7 +2000,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/logging.md" class="md-nav__link">
+      <a href="../../cluster-core/logging.md" class="md-nav__link">
         
   
   
@@ -2020,7 +2028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/alerting.md" class="md-nav__link">
+      <a href="../../cluster-core/alerting.md" class="md-nav__link">
         
   
   
@@ -2060,28 +2068,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -2099,7 +2110,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2123,10 +2134,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -2135,7 +2149,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_1" >
         
           
-          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="">
             
   
   
@@ -2171,7 +2185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/postgres-cnpg/" class="md-nav__link">
+      <a href="../postgres-cnpg/" class="md-nav__link">
         
   
   
@@ -2199,7 +2213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/postgres-zalando/" class="md-nav__link">
+      <a href="../postgres-zalando/" class="md-nav__link">
         
   
   
@@ -2227,7 +2241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/database-ops.md" class="md-nav__link">
+      <a href="../database-ops.md" class="md-nav__link">
         
   
   
@@ -2260,28 +2274,31 @@
                 
   
   
+    
   
   
+  
     
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
         
           
+          
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_2" >
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="">
             
   
   
@@ -2299,7 +2316,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2314,10 +2331,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../platform/secrets-csi/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets Store CSI
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2333,6 +2377,65 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vault-secret-injection-with-csi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vault Secret Injection with CSI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vault Secret Injection with CSI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secret-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secret Class
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volumes-in-a-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volumes in a Chart
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2345,7 +2448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/external-secrets/" class="md-nav__link">
+      <a href="../external-secrets/" class="md-nav__link">
         
   
   
@@ -2373,7 +2476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/vault-integration.md" class="md-nav__link">
+      <a href="../vault-integration.md" class="md-nav__link">
         
   
   
@@ -2524,7 +2627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/plex/" class="md-nav__link">
+      <a href="../../apps/plex/" class="md-nav__link">
         
   
   
@@ -2614,7 +2717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/adguard/" class="md-nav__link">
+      <a href="../../apps/adguard/" class="md-nav__link">
         
   
   
@@ -2642,7 +2745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/airprint.md" class="md-nav__link">
+      <a href="../../apps/airprint.md" class="md-nav__link">
         
   
   
@@ -2670,7 +2773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/vpn/" class="md-nav__link">
+      <a href="../../apps/vpn/" class="md-nav__link">
         
   
   
@@ -2760,7 +2863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/uptime-kuma/" class="md-nav__link">
+      <a href="../../apps/uptime-kuma/" class="md-nav__link">
         
   
   
@@ -2850,7 +2953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/securitycam/" class="md-nav__link">
+      <a href="../../apps/securitycam/" class="md-nav__link">
         
   
   
@@ -2878,7 +2981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/rails-app/" class="md-nav__link">
+      <a href="../../apps/rails-app/" class="md-nav__link">
         
   
   
@@ -2975,7 +3078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/deploy-app.md" class="md-nav__link">
+      <a href="../../howto/deploy-app.md" class="md-nav__link">
         
   
   
@@ -3003,7 +3106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/setup-oidc.md" class="md-nav__link">
+      <a href="../../howto/setup-oidc.md" class="md-nav__link">
         
   
   
@@ -3031,7 +3134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/configure-ingress.md" class="md-nav__link">
+      <a href="../../howto/configure-ingress.md" class="md-nav__link">
         
   
   
@@ -3059,7 +3162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/setup-backup.md" class="md-nav__link">
+      <a href="../../howto/setup-backup.md" class="md-nav__link">
         
   
   
@@ -3087,7 +3190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/add-storage.md" class="md-nav__link">
+      <a href="../../howto/add-storage.md" class="md-nav__link">
         
   
   
@@ -3115,7 +3218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/expose-service.md" class="md-nav__link">
+      <a href="../../howto/expose-service.md" class="md-nav__link">
         
   
   
@@ -3143,7 +3246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/debug-pods.md" class="md-nav__link">
+      <a href="../../howto/debug-pods.md" class="md-nav__link">
         
   
   
@@ -3232,7 +3335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/commands.md" class="md-nav__link">
+      <a href="../../reference/commands.md" class="md-nav__link">
         
   
   
@@ -3260,7 +3363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/templates.md" class="md-nav__link">
+      <a href="../../reference/templates.md" class="md-nav__link">
         
   
   
@@ -3288,7 +3391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/resources.md" class="md-nav__link">
+      <a href="../../reference/resources.md" class="md-nav__link">
         
   
   
@@ -3343,24 +3446,41 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#time-machine" class="md-nav__link">
+  <a href="#vault-secret-injection-with-csi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Time Machine
+        Vault Secret Injection with CSI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vault Secret Injection with CSI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secret-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secret Class
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#youtube-downloader" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#volumes-in-a-chart" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Youtube Downloader
+        Volumes in a Chart
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3382,6 +3502,72 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../postgres-cnpg/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Platform Services
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Secrets
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -3392,11 +3578,101 @@
   
 
 
-<h1 id="custom-services">Custom Services<a class="headerlink" href="#custom-services" title="Permanent link">&para;</a></h1>
-<h2 id="time-machine">Time Machine<a class="headerlink" href="#time-machine" title="Permanent link">&para;</a></h2>
-<p>https://github.com/mbentley/docker-timemachine/tree/master</p>
-<h2 id="youtube-downloader">Youtube Downloader<a class="headerlink" href="#youtube-downloader" title="Permanent link">&para;</a></h2>
-<p>https://github.com/yt-dlp/yt-dlp</p>
+<h1 id="secrets-with-csi">Secrets with CSI<a class="headerlink" href="#secrets-with-csi" title="Permanent link">&para;</a></h1>
+<h2 id="vault-secret-injection-with-csi">Vault Secret Injection with CSI<a class="headerlink" href="#vault-secret-injection-with-csi" title="Permanent link">&para;</a></h2>
+<p>One way to use credentials from the vault inside pods is with CSI.</p>
+<ul>
+<li>Vault post-start command to enable kubernetes auth-method</li>
+<li>Use Vault with CSI</li>
+<li>Install CSI Driver CRD with Chart</li>
+<li>Define a generic SecretProviderClass template as it is needed for each secret (quite a lot of boilerplate)</li>
+</ul>
+<p>In case you need the vault command you can easily log into the shell with:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>vault-0<span class="w"> </span>--<span class="w"> </span>/bin/sh
+</span></code></pre></div>
+<p>Create the secrets with:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>vault<span class="w"> </span>kv<span class="w"> </span>put<span class="w"> </span>kv-v2/k8s/framsburg/dex<span class="w"> </span>client-id<span class="o">=</span><span class="s2">&quot;someID&quot;</span><span class="w"> </span>client-secret<span class="o">=</span><span class="s2">&quot;someSecret&quot;</span>
+</span></code></pre></div>
+<p>Enable and activate kubernetes auth method
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>vault<span class="w"> </span>auth<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>kubernetes
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>auth/kubernetes/config<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nv">issuer</span><span class="o">=</span><span class="s2">&quot;https://kubernetes.default.svc.cluster.local&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nv">token_reviewer_jwt</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>cat<span class="w"> </span>/var/run/secrets/kubernetes.io/serviceaccount/token<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nv">kubernetes_host</span><span class="o">=</span><span class="s2">&quot;https://</span><span class="nv">$KUBERNETES_PORT_443_TCP_ADDR</span><span class="s2">:443&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nv">kubernetes_ca_cert</span><span class="o">=</span>@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+</span></code></pre></div></p>
+<p>Create a policy:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span>vault<span class="w"> </span>policy<span class="w"> </span>write<span class="w"> </span>dex-app<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="s">policy dex-app:</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="s">path &quot;kv-v2/data/k8s/framsburg/dex&quot; {</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="s">  capabilities = [&quot;read&quot;]</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="s">}</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="s">EOF</span>
+</span></code></pre></div></p>
+<p>Write a role to map a service account with a policy</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>auth/kubernetes/role/dex-app<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nv">bound_service_account_names</span><span class="o">=</span>dex<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nv">bound_service_account_namespaces</span><span class="o">=</span>dex<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nv">policies</span><span class="o">=</span>dex-app<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nv">ttl</span><span class="o">=</span>20m
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>Success!<span class="w"> </span>Data<span class="w"> </span>written<span class="w"> </span>to:<span class="w"> </span>auth/kubernetes/role/dex-app
+</span></code></pre></div>
+<h3 id="secret-class">Secret Class<a class="headerlink" href="#secret-class" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nn">---</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secrets-store.csi.x-k8s.io/v1</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SecretProviderClass</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vault-dex</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vault</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nt">parameters</span><span class="p">:</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="nt">vaultAddress</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://vault.vault:8200&quot;</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nt">roleName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;dex-app&quot;</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="nt">objects</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">      </span><span class="no">- objectName: &quot;oidc-id&quot;</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">        </span><span class="no">secretPath: &quot;kv-v2/data/k8s/framsburg/dex&quot;</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">        </span><span class="no">secretKey: &quot;client-id&quot;</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">      </span><span class="no">- objectName: &quot;oidc-secret&quot;</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">        </span><span class="no">secretPath: &quot;kv-v2/data/k8s/framsburg/dex&quot;</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">        </span><span class="no">secretKey: &quot;client-secret&quot;</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">  </span><span class="nt">secretObjects</span><span class="p">:</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">data</span><span class="p">:</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">          </span><span class="nt">objectName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oidc-id</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">          </span><span class="nt">objectName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oidc-secret</span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">      </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oidc</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Opaque</span>
+</span></code></pre></div>
+<h3 id="volumes-in-a-chart">Volumes in a Chart<a class="headerlink" href="#volumes-in-a-chart" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nn">...</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">env</span><span class="p">:</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GITHUB_CLIENT_ID</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">      </span><span class="nt">valueFrom</span><span class="p">:</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oidc</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GITHUB_CLIENT_SECRET</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">      </span><span class="nt">valueFrom</span><span class="p">:</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">        </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oidc</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">  </span><span class="nt">envFrom</span><span class="p">:</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">secretRef</span><span class="p">:</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oidc</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="nn">...</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">  </span><span class="nt">volumeMounts</span><span class="p">:</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;secrets-store-inline&#39;</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">      </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;/mnt/secrets-store&#39;</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">      </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secrets-store-inline</span>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">      </span><span class="nt">csi</span><span class="p">:</span>
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w">        </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secrets-store.csi.k8s.io</span>
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w">        </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="w">        </span><span class="nt">volumeAttributes</span><span class="p">:</span>
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="w">          </span><span class="nt">secretProviderClass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vault-dex</span>
+</span></code></pre></div>
 <ul>
 <li>[CSI]: Container Storage Interface</li>
 <li>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></li>
@@ -3498,10 +3774,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "content.footnotes.tooltips", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.footnotes.tooltips", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

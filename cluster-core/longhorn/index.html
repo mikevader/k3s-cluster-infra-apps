@@ -12,27 +12,31 @@
         <meta name="author" content="Michael M&uuml;hlebach">
       
       
-        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/framsburg-services/">
+        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/cluster-core/longhorn/">
       
       
+        <link rel="prev" href="../vault/">
+      
+      
+        <link rel="next" href="../monitoring/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Custom Services - K3s Homelab GitOps Stack</title>
+        <title>Longhorn - K3s Homelab GitOps Stack</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#custom-services" class="md-skip">
+        <a href="#longhorn" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="K3s Homelab GitOps Stack" class="md-header__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
+    <a href="../.." title="K3s Homelab GitOps Stack" class="md-header__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Custom Services
+              Longhorn
             
           </span>
         </div>
@@ -219,7 +223,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -240,7 +244,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../getting-started/overview/" class="md-tabs__link">
+        <a href="../../getting-started/overview/" class="md-tabs__link">
           
   
   
@@ -260,7 +264,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../troubleshooting/common-issues/" class="md-tabs__link">
+        <a href="../../troubleshooting/common-issues/" class="md-tabs__link">
           
   
   
@@ -287,7 +291,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../hardware/raspberry-pi/" class="md-tabs__link">
+        <a href="../../hardware/raspberry-pi/" class="md-tabs__link">
           
   
   
@@ -306,6 +310,8 @@
   
   
   
+    
+  
   
     
     
@@ -313,11 +319,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../cluster-core/argocd/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../argocd/" class="md-tabs__link">
           
   
   
@@ -347,7 +355,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../platform/postgres-cnpg/" class="md-tabs__link">
+        <a href="../../platform/postgres-cnpg/" class="md-tabs__link">
           
   
   
@@ -377,7 +385,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../apps/plex/" class="md-tabs__link">
+        <a href="../../apps/plex/" class="md-tabs__link">
           
   
   
@@ -400,7 +408,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../howto/deploy-app.md" class="md-tabs__link">
+        <a href="../../howto/deploy-app.md" class="md-tabs__link">
           
   
   
@@ -420,7 +428,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../reference/commands.md" class="md-tabs__link">
+        <a href="../../reference/commands.md" class="md-tabs__link">
           
   
   
@@ -460,7 +468,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="K3s Homelab GitOps Stack" class="md-nav__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
+    <a href="../.." title="K3s Homelab GitOps Stack" class="md-nav__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -490,7 +498,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -571,7 +579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/overview/" class="md-nav__link">
+      <a href="../../getting-started/overview/" class="md-nav__link">
         
   
   
@@ -599,7 +607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/quickstart/" class="md-nav__link">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
         
   
   
@@ -627,7 +635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/architecture/" class="md-nav__link">
+      <a href="../../getting-started/architecture/" class="md-nav__link">
         
   
   
@@ -716,7 +724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/common-issues/" class="md-nav__link">
+      <a href="../../troubleshooting/common-issues/" class="md-nav__link">
         
   
   
@@ -744,7 +752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/disaster-recovery/" class="md-nav__link">
+      <a href="../../troubleshooting/disaster-recovery/" class="md-nav__link">
         
   
   
@@ -772,7 +780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/certificates/" class="md-nav__link">
+      <a href="../../troubleshooting/certificates/" class="md-nav__link">
         
   
   
@@ -800,7 +808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/storage/" class="md-nav__link">
+      <a href="../../troubleshooting/storage/" class="md-nav__link">
         
   
   
@@ -828,7 +836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/network/" class="md-nav__link">
+      <a href="../../troubleshooting/network/" class="md-nav__link">
         
   
   
@@ -856,7 +864,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/applications/" class="md-nav__link">
+      <a href="../../troubleshooting/applications/" class="md-nav__link">
         
   
   
@@ -884,7 +892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/maintenance/" class="md-nav__link">
+      <a href="../../troubleshooting/maintenance/" class="md-nav__link">
         
   
   
@@ -1027,7 +1035,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/raspberry-pi/" class="md-nav__link">
+      <a href="../../hardware/raspberry-pi/" class="md-nav__link">
         
   
   
@@ -1055,7 +1063,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/proxmox/" class="md-nav__link">
+      <a href="../../hardware/proxmox/" class="md-nav__link">
         
   
   
@@ -1083,7 +1091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/truenas/" class="md-nav__link">
+      <a href="../../hardware/truenas/" class="md-nav__link">
         
   
   
@@ -1111,7 +1119,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/network/" class="md-nav__link">
+      <a href="../../hardware/network/" class="md-nav__link">
         
   
   
@@ -1201,7 +1209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/bare-metal/" class="md-nav__link">
+      <a href="../../setup/bare-metal/" class="md-nav__link">
         
   
   
@@ -1229,7 +1237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/ansible/" class="md-nav__link">
+      <a href="../../setup/ansible/" class="md-nav__link">
         
   
   
@@ -1257,7 +1265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/custom-images/" class="md-nav__link">
+      <a href="../../setup/custom-images/" class="md-nav__link">
         
   
   
@@ -1297,28 +1305,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -1336,7 +1347,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1360,10 +1371,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1372,7 +1386,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_1" >
         
           
-          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="">
             
   
   
@@ -1408,7 +1422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/argocd/" class="md-nav__link">
+      <a href="../argocd/" class="md-nav__link">
         
   
   
@@ -1436,7 +1450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/gitops-workflow.md" class="md-nav__link">
+      <a href="../gitops-workflow.md" class="md-nav__link">
         
   
   
@@ -1478,10 +1492,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1490,7 +1507,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_2" >
         
           
-          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="">
             
   
   
@@ -1526,7 +1543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/traefik/" class="md-nav__link">
+      <a href="../traefik/" class="md-nav__link">
         
   
   
@@ -1554,7 +1571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/metallb/" class="md-nav__link">
+      <a href="../metallb/" class="md-nav__link">
         
   
   
@@ -1582,7 +1599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/dns.md" class="md-nav__link">
+      <a href="../dns.md" class="md-nav__link">
         
   
   
@@ -1624,10 +1641,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1636,7 +1656,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
         
           
-          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="">
             
   
   
@@ -1672,7 +1692,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/cert-manager/" class="md-nav__link">
+      <a href="../cert-manager/" class="md-nav__link">
         
   
   
@@ -1700,7 +1720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/authentik/" class="md-nav__link">
+      <a href="../authentik/" class="md-nav__link">
         
   
   
@@ -1728,7 +1748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/vault/" class="md-nav__link">
+      <a href="../vault/" class="md-nav__link">
         
   
   
@@ -1756,7 +1776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/secrets-management.md" class="md-nav__link">
+      <a href="../secrets-management.md" class="md-nav__link">
         
   
   
@@ -1789,28 +1809,31 @@
                 
   
   
+    
   
   
+  
     
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
         
           
+          
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_4" >
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="">
             
   
   
@@ -1828,7 +1851,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1843,10 +1866,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../cluster-core/longhorn/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Longhorn
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1862,6 +1912,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup-minio-for-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup Minio for Backup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-backup-target-in-longhorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Define backup target in longhorn
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy-from-one-volume-to-another" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Copy from one Volume to another
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1874,7 +1977,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/storage-classes.md" class="md-nav__link">
+      <a href="../storage-classes.md" class="md-nav__link">
         
   
   
@@ -1916,10 +2019,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1928,7 +2034,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_5" >
         
           
-          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="">
             
   
   
@@ -1964,7 +2070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/monitoring/" class="md-nav__link">
+      <a href="../monitoring/" class="md-nav__link">
         
   
   
@@ -1992,7 +2098,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/logging.md" class="md-nav__link">
+      <a href="../logging.md" class="md-nav__link">
         
   
   
@@ -2020,7 +2126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/alerting.md" class="md-nav__link">
+      <a href="../alerting.md" class="md-nav__link">
         
   
   
@@ -2171,7 +2277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/postgres-cnpg/" class="md-nav__link">
+      <a href="../../platform/postgres-cnpg/" class="md-nav__link">
         
   
   
@@ -2199,7 +2305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/postgres-zalando/" class="md-nav__link">
+      <a href="../../platform/postgres-zalando/" class="md-nav__link">
         
   
   
@@ -2227,7 +2333,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/database-ops.md" class="md-nav__link">
+      <a href="../../platform/database-ops.md" class="md-nav__link">
         
   
   
@@ -2317,7 +2423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/secrets-csi/" class="md-nav__link">
+      <a href="../../platform/secrets-csi/" class="md-nav__link">
         
   
   
@@ -2345,7 +2451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/external-secrets/" class="md-nav__link">
+      <a href="../../platform/external-secrets/" class="md-nav__link">
         
   
   
@@ -2373,7 +2479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/vault-integration.md" class="md-nav__link">
+      <a href="../../platform/vault-integration.md" class="md-nav__link">
         
   
   
@@ -2524,7 +2630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/plex/" class="md-nav__link">
+      <a href="../../apps/plex/" class="md-nav__link">
         
   
   
@@ -2614,7 +2720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/adguard/" class="md-nav__link">
+      <a href="../../apps/adguard/" class="md-nav__link">
         
   
   
@@ -2642,7 +2748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/airprint.md" class="md-nav__link">
+      <a href="../../apps/airprint.md" class="md-nav__link">
         
   
   
@@ -2670,7 +2776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/vpn/" class="md-nav__link">
+      <a href="../../apps/vpn/" class="md-nav__link">
         
   
   
@@ -2760,7 +2866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/uptime-kuma/" class="md-nav__link">
+      <a href="../../apps/uptime-kuma/" class="md-nav__link">
         
   
   
@@ -2850,7 +2956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/securitycam/" class="md-nav__link">
+      <a href="../../apps/securitycam/" class="md-nav__link">
         
   
   
@@ -2878,7 +2984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/rails-app/" class="md-nav__link">
+      <a href="../../apps/rails-app/" class="md-nav__link">
         
   
   
@@ -2975,7 +3081,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/deploy-app.md" class="md-nav__link">
+      <a href="../../howto/deploy-app.md" class="md-nav__link">
         
   
   
@@ -3003,7 +3109,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/setup-oidc.md" class="md-nav__link">
+      <a href="../../howto/setup-oidc.md" class="md-nav__link">
         
   
   
@@ -3031,7 +3137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/configure-ingress.md" class="md-nav__link">
+      <a href="../../howto/configure-ingress.md" class="md-nav__link">
         
   
   
@@ -3059,7 +3165,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/setup-backup.md" class="md-nav__link">
+      <a href="../../howto/setup-backup.md" class="md-nav__link">
         
   
   
@@ -3087,7 +3193,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/add-storage.md" class="md-nav__link">
+      <a href="../../howto/add-storage.md" class="md-nav__link">
         
   
   
@@ -3115,7 +3221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/expose-service.md" class="md-nav__link">
+      <a href="../../howto/expose-service.md" class="md-nav__link">
         
   
   
@@ -3143,7 +3249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/debug-pods.md" class="md-nav__link">
+      <a href="../../howto/debug-pods.md" class="md-nav__link">
         
   
   
@@ -3232,7 +3338,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/commands.md" class="md-nav__link">
+      <a href="../../reference/commands.md" class="md-nav__link">
         
   
   
@@ -3260,7 +3366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/templates.md" class="md-nav__link">
+      <a href="../../reference/templates.md" class="md-nav__link">
         
   
   
@@ -3288,7 +3394,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/resources.md" class="md-nav__link">
+      <a href="../../reference/resources.md" class="md-nav__link">
         
   
   
@@ -3343,10 +3449,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#time-machine" class="md-nav__link">
+  <a href="#setup-minio-for-backup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Time Machine
+        Setup Minio for Backup
       
     </span>
   </a>
@@ -3354,10 +3460,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#youtube-downloader" class="md-nav__link">
+  <a href="#define-backup-target-in-longhorn" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Youtube Downloader
+        Define backup target in longhorn
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy-from-one-volume-to-another" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Copy from one Volume to another
       
     </span>
   </a>
@@ -3382,6 +3499,72 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../argocd/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Cluster Core
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Storage
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -3392,11 +3575,96 @@
   
 
 
-<h1 id="custom-services">Custom Services<a class="headerlink" href="#custom-services" title="Permanent link">&para;</a></h1>
-<h2 id="time-machine">Time Machine<a class="headerlink" href="#time-machine" title="Permanent link">&para;</a></h2>
-<p>https://github.com/mbentley/docker-timemachine/tree/master</p>
-<h2 id="youtube-downloader">Youtube Downloader<a class="headerlink" href="#youtube-downloader" title="Permanent link">&para;</a></h2>
-<p>https://github.com/yt-dlp/yt-dlp</p>
+<h1 id="longhorn">Longhorn<a class="headerlink" href="#longhorn" title="Permanent link">&para;</a></h1>
+<h2 id="setup-minio-for-backup">Setup Minio for Backup<a class="headerlink" href="#setup-minio-for-backup" title="Permanent link">&para;</a></h2>
+<p>Use the minio cli <code>mc</code> which has an alias called <code>myminio</code></p>
+<div class="language-bash highlight"><span class="filename">Create minio bucket</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>mc<span class="w"> </span>mb<span class="w"> </span>myminio/longhorn
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>$<span class="w"> </span>mc<span class="w"> </span>mb<span class="w"> </span>myminio/longhorn/backups
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">Create user with policy</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>mc<span class="w"> </span>admin<span class="w"> </span>user<span class="w"> </span>add<span class="w"> </span>myminio<span class="w"> </span>longhorn<span class="w"> </span>mypass
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>./longhorn-backups-policy.json<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="s">{</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="s">  &quot;Version&quot;: &quot;2012-10-17&quot;,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="s">      &quot;Statement&quot;: [</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="s">    {</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="s">      &quot;Action&quot;: [</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="s">        &quot;s3:PutBucketPolicy&quot;,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="s">        &quot;s3:GetBucketPolicy&quot;,</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="s">        &quot;s3:DeleteBucketPolicy&quot;,</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="s">        &quot;s3:ListAllMyBuckets&quot;,</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="s">        &quot;s3:ListBucket&quot;</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="s">      ],</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="s">      &quot;Effect&quot;: &quot;Allow&quot;,</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="s">      &quot;Resource&quot;: [</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="s">        &quot;arn:aws:s3:::longhorn&quot;</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="s">      ],</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="s">      &quot;Sid&quot;: &quot;&quot;</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s">    },</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s">    {</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s">      &quot;Action&quot;: [</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s">        &quot;s3:AbortMultipartUpload&quot;,</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s">        &quot;s3:DeleteObject&quot;,</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="s">        &quot;s3:GetObject&quot;,</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="s">        &quot;s3:ListMultipartUploadParts&quot;,</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="s">        &quot;s3:PutObject&quot;</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="s">      ],</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="s">      &quot;Effect&quot;: &quot;Allow&quot;,</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="s">      &quot;Resource&quot;: [</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="s">        &quot;arn:aws:s3:::longhorn/*&quot;</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="s">      ],</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="s">      &quot;Sid&quot;: &quot;&quot;</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="s">    }</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="s">  ]</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="s">}</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="s">EOF</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>$<span class="w"> </span>mc<span class="w"> </span>admin<span class="w"> </span>policy<span class="w"> </span>create<span class="w"> </span>myminio<span class="w"> </span>longhorn-backups-policy<span class="w"> </span>./longhorn-backups-policy.json
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>$<span class="w"> </span>mc<span class="w"> </span>admin<span class="w"> </span>policy<span class="w"> </span>attach<span class="w"> </span>myminio<span class="w"> </span>longhorn-backups-policy<span class="w"> </span>--user<span class="w"> </span>longhorn
+</span></code></pre></div>
+<h2 id="define-backup-target-in-longhorn">Define backup target in longhorn<a class="headerlink" href="#define-backup-target-in-longhorn" title="Permanent link">&para;</a></h2>
+<div class="language-yaml highlight"><span class="filename">longhorn values.yaml</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">longhorn</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">defaultSettings</span><span class="p">:</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">backupTarget</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;s3://longhorn@us-east-1/backups&#39;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">backupTargetCredentialSecret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minio-secret</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nn">...</span>
+</span></code></pre></div>
+<h2 id="copy-from-one-volume-to-another">Copy from one Volume to another<a class="headerlink" href="#copy-from-one-volume-to-another" title="Permanent link">&para;</a></h2>
+<div class="language-yaml highlight"><span class="filename">copy-job.yaml</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">batch/v1</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Job</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w">  </span><span class="c1"># namespace where the PVC&#39;s exist</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">volume-migration</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">completions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="nt">parallelism</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="nt">backoffLimit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">volume-migration</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">volume-migration</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Never</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">volume-migration</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu:xenial</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">          </span><span class="nt">tty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">          </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;/bin/sh&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">          </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;-c&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;cp</span><span class="nv"> </span><span class="s">-r</span><span class="nv"> </span><span class="s">-v</span><span class="nv"> </span><span class="s">/mnt/old</span><span class="nv"> </span><span class="s">/mnt/new&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">          </span><span class="nt">volumeMounts</span><span class="p">:</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">old-vol</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">              </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/mnt/old</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">new-vol</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">              </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/mnt/new</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">      </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">old-vol</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">          </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">            </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data-source-pvc</span><span class="w"> </span><span class="c1"># change to data source PVC</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">new-vol</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">          </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">            </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data-target-pvc</span><span class="w"> </span><span class="c1"># change to data target PVC</span>
+</span></code></pre></div>
 <ul>
 <li>[CSI]: Container Storage Interface</li>
 <li>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></li>
@@ -3498,10 +3766,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "content.footnotes.tooltips", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.footnotes.tooltips", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

@@ -12,27 +12,31 @@
         <meta name="author" content="Michael M&uuml;hlebach">
       
       
-        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/framsburg-services/">
+        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/certificates/">
       
       
+        <link rel="prev" href="../disaster-recovery/">
+      
+      
+        <link rel="next" href="../storage/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Custom Services - K3s Homelab GitOps Stack</title>
+        <title>Certificate Issues - K3s Homelab GitOps Stack</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#custom-services" class="md-skip">
+        <a href="#certificate-issues" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="K3s Homelab GitOps Stack" class="md-header__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
+    <a href="../.." title="K3s Homelab GitOps Stack" class="md-header__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Custom Services
+              Certificate Issues
             
           </span>
         </div>
@@ -219,7 +223,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -240,7 +244,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../getting-started/overview/" class="md-tabs__link">
+        <a href="../../getting-started/overview/" class="md-tabs__link">
           
   
   
@@ -256,11 +260,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../troubleshooting/common-issues/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../common-issues/" class="md-tabs__link">
           
   
   
@@ -287,7 +293,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../hardware/raspberry-pi/" class="md-tabs__link">
+        <a href="../../hardware/raspberry-pi/" class="md-tabs__link">
           
   
   
@@ -317,7 +323,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../cluster-core/argocd/" class="md-tabs__link">
+        <a href="../../cluster-core/argocd/" class="md-tabs__link">
           
   
   
@@ -347,7 +353,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../platform/postgres-cnpg/" class="md-tabs__link">
+        <a href="../../platform/postgres-cnpg/" class="md-tabs__link">
           
   
   
@@ -377,7 +383,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../apps/plex/" class="md-tabs__link">
+        <a href="../../apps/plex/" class="md-tabs__link">
           
   
   
@@ -400,7 +406,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../howto/deploy-app.md" class="md-tabs__link">
+        <a href="../../howto/deploy-app.md" class="md-tabs__link">
           
   
   
@@ -420,7 +426,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../reference/commands.md" class="md-tabs__link">
+        <a href="../../reference/commands.md" class="md-tabs__link">
           
   
   
@@ -460,7 +466,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="K3s Homelab GitOps Stack" class="md-nav__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
+    <a href="../.." title="K3s Homelab GitOps Stack" class="md-nav__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -490,7 +496,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -571,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/overview/" class="md-nav__link">
+      <a href="../../getting-started/overview/" class="md-nav__link">
         
   
   
@@ -599,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/quickstart/" class="md-nav__link">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
         
   
   
@@ -627,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/architecture/" class="md-nav__link">
+      <a href="../../getting-started/architecture/" class="md-nav__link">
         
   
   
@@ -659,28 +665,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -698,7 +707,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -716,7 +725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/common-issues/" class="md-nav__link">
+      <a href="../common-issues/" class="md-nav__link">
         
   
   
@@ -744,7 +753,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/disaster-recovery/" class="md-nav__link">
+      <a href="../disaster-recovery/" class="md-nav__link">
         
   
   
@@ -769,10 +778,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../troubleshooting/certificates/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Certificate Issues
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -788,6 +824,343 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Diagnostics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certificate-not-being-issued" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificate Not Being Issued
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Certificate Not Being Issued">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symptoms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptoms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-causes-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Causes &amp; Fixes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Causes &amp; Fixes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-dns-validation-failing-acme-dns-01-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. DNS Validation Failing (ACME DNS-01 Challenge)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-lets-encrypt-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Let's Encrypt Rate Limiting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-wrong-issuer-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Wrong Issuer Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certificate-renewal-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificate Renewal Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Certificate Renewal Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic-renewal-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic Renewal Not Working
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certificate-expired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificate Expired
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Certificate Expired">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symptoms_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptoms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wrong-certificate-being-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wrong Certificate Being Used
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wrong Certificate Being Used">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symptoms_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptoms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Causes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-signed-certificate-appearing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-Signed Certificate Appearing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Self-Signed Certificate Appearing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symptoms_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptoms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Causes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wildcard-certificates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wildcard Certificates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-cert-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging cert-manager
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging cert-manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-cert-manager-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check cert-manager Health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-cert-manager-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common cert-manager Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -800,7 +1173,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/storage/" class="md-nav__link">
+      <a href="../storage/" class="md-nav__link">
         
   
   
@@ -828,7 +1201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/network/" class="md-nav__link">
+      <a href="../network/" class="md-nav__link">
         
   
   
@@ -856,7 +1229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/applications/" class="md-nav__link">
+      <a href="../applications/" class="md-nav__link">
         
   
   
@@ -884,7 +1257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/maintenance/" class="md-nav__link">
+      <a href="../maintenance/" class="md-nav__link">
         
   
   
@@ -1027,7 +1400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/raspberry-pi/" class="md-nav__link">
+      <a href="../../hardware/raspberry-pi/" class="md-nav__link">
         
   
   
@@ -1055,7 +1428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/proxmox/" class="md-nav__link">
+      <a href="../../hardware/proxmox/" class="md-nav__link">
         
   
   
@@ -1083,7 +1456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/truenas/" class="md-nav__link">
+      <a href="../../hardware/truenas/" class="md-nav__link">
         
   
   
@@ -1111,7 +1484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/network/" class="md-nav__link">
+      <a href="../../hardware/network/" class="md-nav__link">
         
   
   
@@ -1201,7 +1574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/bare-metal/" class="md-nav__link">
+      <a href="../../setup/bare-metal/" class="md-nav__link">
         
   
   
@@ -1229,7 +1602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/ansible/" class="md-nav__link">
+      <a href="../../setup/ansible/" class="md-nav__link">
         
   
   
@@ -1257,7 +1630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/custom-images/" class="md-nav__link">
+      <a href="../../setup/custom-images/" class="md-nav__link">
         
   
   
@@ -1408,7 +1781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/argocd/" class="md-nav__link">
+      <a href="../../cluster-core/argocd/" class="md-nav__link">
         
   
   
@@ -1436,7 +1809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/gitops-workflow.md" class="md-nav__link">
+      <a href="../../cluster-core/gitops-workflow.md" class="md-nav__link">
         
   
   
@@ -1526,7 +1899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/traefik/" class="md-nav__link">
+      <a href="../../cluster-core/traefik/" class="md-nav__link">
         
   
   
@@ -1554,7 +1927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/metallb/" class="md-nav__link">
+      <a href="../../cluster-core/metallb/" class="md-nav__link">
         
   
   
@@ -1582,7 +1955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/dns.md" class="md-nav__link">
+      <a href="../../cluster-core/dns.md" class="md-nav__link">
         
   
   
@@ -1672,7 +2045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/cert-manager/" class="md-nav__link">
+      <a href="../../cluster-core/cert-manager/" class="md-nav__link">
         
   
   
@@ -1700,7 +2073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/authentik/" class="md-nav__link">
+      <a href="../../cluster-core/authentik/" class="md-nav__link">
         
   
   
@@ -1728,7 +2101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/vault/" class="md-nav__link">
+      <a href="../../cluster-core/vault/" class="md-nav__link">
         
   
   
@@ -1756,7 +2129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/secrets-management.md" class="md-nav__link">
+      <a href="../../cluster-core/secrets-management.md" class="md-nav__link">
         
   
   
@@ -1846,7 +2219,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/longhorn/" class="md-nav__link">
+      <a href="../../cluster-core/longhorn/" class="md-nav__link">
         
   
   
@@ -1874,7 +2247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/storage-classes.md" class="md-nav__link">
+      <a href="../../cluster-core/storage-classes.md" class="md-nav__link">
         
   
   
@@ -1964,7 +2337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/monitoring/" class="md-nav__link">
+      <a href="../../cluster-core/monitoring/" class="md-nav__link">
         
   
   
@@ -1992,7 +2365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/logging.md" class="md-nav__link">
+      <a href="../../cluster-core/logging.md" class="md-nav__link">
         
   
   
@@ -2020,7 +2393,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/alerting.md" class="md-nav__link">
+      <a href="../../cluster-core/alerting.md" class="md-nav__link">
         
   
   
@@ -2171,7 +2544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/postgres-cnpg/" class="md-nav__link">
+      <a href="../../platform/postgres-cnpg/" class="md-nav__link">
         
   
   
@@ -2199,7 +2572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/postgres-zalando/" class="md-nav__link">
+      <a href="../../platform/postgres-zalando/" class="md-nav__link">
         
   
   
@@ -2227,7 +2600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/database-ops.md" class="md-nav__link">
+      <a href="../../platform/database-ops.md" class="md-nav__link">
         
   
   
@@ -2317,7 +2690,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/secrets-csi/" class="md-nav__link">
+      <a href="../../platform/secrets-csi/" class="md-nav__link">
         
   
   
@@ -2345,7 +2718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/external-secrets/" class="md-nav__link">
+      <a href="../../platform/external-secrets/" class="md-nav__link">
         
   
   
@@ -2373,7 +2746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/vault-integration.md" class="md-nav__link">
+      <a href="../../platform/vault-integration.md" class="md-nav__link">
         
   
   
@@ -2524,7 +2897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/plex/" class="md-nav__link">
+      <a href="../../apps/plex/" class="md-nav__link">
         
   
   
@@ -2614,7 +2987,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/adguard/" class="md-nav__link">
+      <a href="../../apps/adguard/" class="md-nav__link">
         
   
   
@@ -2642,7 +3015,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/airprint.md" class="md-nav__link">
+      <a href="../../apps/airprint.md" class="md-nav__link">
         
   
   
@@ -2670,7 +3043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/vpn/" class="md-nav__link">
+      <a href="../../apps/vpn/" class="md-nav__link">
         
   
   
@@ -2760,7 +3133,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/uptime-kuma/" class="md-nav__link">
+      <a href="../../apps/uptime-kuma/" class="md-nav__link">
         
   
   
@@ -2850,7 +3223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/securitycam/" class="md-nav__link">
+      <a href="../../apps/securitycam/" class="md-nav__link">
         
   
   
@@ -2878,7 +3251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/rails-app/" class="md-nav__link">
+      <a href="../../apps/rails-app/" class="md-nav__link">
         
   
   
@@ -2975,7 +3348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/deploy-app.md" class="md-nav__link">
+      <a href="../../howto/deploy-app.md" class="md-nav__link">
         
   
   
@@ -3003,7 +3376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/setup-oidc.md" class="md-nav__link">
+      <a href="../../howto/setup-oidc.md" class="md-nav__link">
         
   
   
@@ -3031,7 +3404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/configure-ingress.md" class="md-nav__link">
+      <a href="../../howto/configure-ingress.md" class="md-nav__link">
         
   
   
@@ -3059,7 +3432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/setup-backup.md" class="md-nav__link">
+      <a href="../../howto/setup-backup.md" class="md-nav__link">
         
   
   
@@ -3087,7 +3460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/add-storage.md" class="md-nav__link">
+      <a href="../../howto/add-storage.md" class="md-nav__link">
         
   
   
@@ -3115,7 +3488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/expose-service.md" class="md-nav__link">
+      <a href="../../howto/expose-service.md" class="md-nav__link">
         
   
   
@@ -3143,7 +3516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/debug-pods.md" class="md-nav__link">
+      <a href="../../howto/debug-pods.md" class="md-nav__link">
         
   
   
@@ -3232,7 +3605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/commands.md" class="md-nav__link">
+      <a href="../../reference/commands.md" class="md-nav__link">
         
   
   
@@ -3260,7 +3633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/templates.md" class="md-nav__link">
+      <a href="../../reference/templates.md" class="md-nav__link">
         
   
   
@@ -3288,7 +3661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/resources.md" class="md-nav__link">
+      <a href="../../reference/resources.md" class="md-nav__link">
         
   
   
@@ -3343,10 +3716,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#time-machine" class="md-nav__link">
+  <a href="#quick-diagnostics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Time Machine
+        Quick Diagnostics
       
     </span>
   </a>
@@ -3354,10 +3727,305 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#youtube-downloader" class="md-nav__link">
+  <a href="#certificate-not-being-issued" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Youtube Downloader
+        Certificate Not Being Issued
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Certificate Not Being Issued">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symptoms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptoms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-causes-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Causes &amp; Fixes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Causes &amp; Fixes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-dns-validation-failing-acme-dns-01-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. DNS Validation Failing (ACME DNS-01 Challenge)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-lets-encrypt-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Let's Encrypt Rate Limiting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-wrong-issuer-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Wrong Issuer Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certificate-renewal-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificate Renewal Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Certificate Renewal Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic-renewal-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic Renewal Not Working
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certificate-expired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificate Expired
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Certificate Expired">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symptoms_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptoms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wrong-certificate-being-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wrong Certificate Being Used
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wrong Certificate Being Used">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symptoms_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptoms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Causes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-signed-certificate-appearing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-Signed Certificate Appearing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Self-Signed Certificate Appearing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symptoms_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptoms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Causes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wildcard-certificates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wildcard Certificates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-cert-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging cert-manager
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging cert-manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-cert-manager-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check cert-manager Health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-cert-manager-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common cert-manager Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference
       
     </span>
   </a>
@@ -3382,6 +4050,46 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../common-issues/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Troubleshooting & Operations
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -3392,13 +4100,235 @@
   
 
 
-<h1 id="custom-services">Custom Services<a class="headerlink" href="#custom-services" title="Permanent link">&para;</a></h1>
-<h2 id="time-machine">Time Machine<a class="headerlink" href="#time-machine" title="Permanent link">&para;</a></h2>
-<p>https://github.com/mbentley/docker-timemachine/tree/master</p>
-<h2 id="youtube-downloader">Youtube Downloader<a class="headerlink" href="#youtube-downloader" title="Permanent link">&para;</a></h2>
-<p>https://github.com/yt-dlp/yt-dlp</p>
+<h1 id="certificate-issues">Certificate Issues<a class="headerlink" href="#certificate-issues" title="Permanent link">&para;</a></h1>
+<p>Common certificate-related problems and their solutions.</p>
+<h2 id="quick-diagnostics">Quick Diagnostics<a class="headerlink" href="#quick-diagnostics" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Check all certificates</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>certificate<span class="w"> </span>-A
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Check specific certificate</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>certificate<span class="w"> </span>&lt;cert-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Check certificate requests</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>kubectl<span class="w"> </span>get<span class="w"> </span>certificaterequest<span class="w"> </span>-A
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Check cert-manager logs</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </span>cert-manager<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>cert-manager<span class="w"> </span>--tail<span class="o">=</span><span class="m">100</span>
+</span></code></pre></div>
+<h2 id="certificate-not-being-issued">Certificate Not Being Issued<a class="headerlink" href="#certificate-not-being-issued" title="Permanent link">&para;</a></h2>
+<h3 id="symptoms">Symptoms<a class="headerlink" href="#symptoms" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Certificate shows <code>Ready: False</code></li>
+<li>HTTPS access fails with invalid certificate</li>
+<li>IngressRoute shows certificate pending</li>
+</ul>
+<h3 id="common-causes-fixes">Common Causes &amp; Fixes<a class="headerlink" href="#common-causes-fixes" title="Permanent link">&para;</a></h3>
+<h4 id="1-dns-validation-failing-acme-dns-01-challenge">1. DNS Validation Failing (ACME DNS-01 Challenge)<a class="headerlink" href="#1-dns-validation-failing-acme-dns-01-challenge" title="Permanent link">&para;</a></h4>
+<p><strong>Problem</strong>: Let's Encrypt can't validate domain ownership via DNS</p>
+<p><strong>Diagnosis</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>challenge<span class="w"> </span>-A
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Look for error messages about DNS</span>
+</span></code></pre></div></p>
+<p><strong>Fix</strong>:
+- Verify DNS provider credentials are correct (in Secret)
+- Check CloudFlare API token has correct permissions
+- Verify domain is configured in DNS provider
+- Wait for DNS propagation (can take minutes)</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Verify DNS record exists</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>dig<span class="w"> </span>_acme-challenge.&lt;your-domain&gt;<span class="w"> </span>TXT
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Delete and retry</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>certificate<span class="w"> </span>&lt;cert-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># ArgoCD will recreate it</span>
+</span></code></pre></div>
+<h4 id="2-lets-encrypt-rate-limiting">2. Let's Encrypt Rate Limiting<a class="headerlink" href="#2-lets-encrypt-rate-limiting" title="Permanent link">&para;</a></h4>
+<p><strong>Problem</strong>: Too many certificate requests in short time</p>
+<p><strong>Error Message</strong>: <code>"rate limit exceeded"</code></p>
+<p><strong>Fix</strong>:
+- Use Let's Encrypt staging issuer for testing
+- Wait 1 hour before retrying
+- Consolidate certificates (use wildcard certs)</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Use staging issuer for testing</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager.io/v1</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Certificate</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test-cert</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">issuerRef</span><span class="p">:</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">letsencrypt-staging</span><span class="w">  </span><span class="c1"># Change to letsencrypt-prod later</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterIssuer</span>
+</span></code></pre></div>
+<h4 id="3-wrong-issuer-configuration">3. Wrong Issuer Configuration<a class="headerlink" href="#3-wrong-issuer-configuration" title="Permanent link">&para;</a></h4>
+<p><strong>Problem</strong>: Certificate references non-existent ClusterIssuer</p>
+<p><strong>Fix</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>clusterissuer
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>clusterissuer<span class="w"> </span>letsencrypt-prod
+</span></code></pre></div></p>
+<h2 id="certificate-renewal-issues">Certificate Renewal Issues<a class="headerlink" href="#certificate-renewal-issues" title="Permanent link">&para;</a></h2>
+<h3 id="automatic-renewal-not-working">Automatic Renewal Not Working<a class="headerlink" href="#automatic-renewal-not-working" title="Permanent link">&para;</a></h3>
+<p>cert-manager should auto-renew certificates 30 days before expiration.</p>
+<p><strong>Check</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># View certificate expiration</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>certificate<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.items[] | &quot;\(.metadata.namespace)/\(.metadata.name): \(.status.notAfter)&quot;&#39;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Check renewal status</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>certificate<span class="w"> </span>&lt;cert-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span></code></pre></div></p>
+<p><strong>Fix</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Force renewal by deleting secret</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>secret<span class="w"> </span>&lt;cert-secret&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Or delete certificate (ArgoCD will recreate)</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>certificate<span class="w"> </span>&lt;cert-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span></code></pre></div></p>
+<h2 id="certificate-expired">Certificate Expired<a class="headerlink" href="#certificate-expired" title="Permanent link">&para;</a></h2>
+<h3 id="symptoms_1">Symptoms<a class="headerlink" href="#symptoms_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Browser shows "Certificate Expired" error</li>
+<li>Services reject HTTPS connections</li>
+</ul>
+<h3 id="fix">Fix<a class="headerlink" href="#fix" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Delete certificate and secret</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>certificate<span class="w"> </span>&lt;cert-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>secret<span class="w"> </span>&lt;cert-secret&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># cert-manager will reissue</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1"># Watch progress</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>kubectl<span class="w"> </span>get<span class="w"> </span>certificate<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>--watch
+</span></code></pre></div>
+<h2 id="wrong-certificate-being-used">Wrong Certificate Being Used<a class="headerlink" href="#wrong-certificate-being-used" title="Permanent link">&para;</a></h2>
+<h3 id="symptoms_2">Symptoms<a class="headerlink" href="#symptoms_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>HTTPS works but shows wrong domain</li>
+<li>Certificate doesn't match expected domain</li>
+</ul>
+<h3 id="causes">Causes<a class="headerlink" href="#causes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Traefik using wrong certificate</li>
+<li>Multiple IngressRoutes for same host</li>
+<li>Missing TLS configuration</li>
+</ul>
+<h3 id="fix_1">Fix<a class="headerlink" href="#fix_1" title="Permanent link">&para;</a></h3>
+<p>Check IngressRoute TLS config:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>ingressroute<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span>yaml
+</span></code></pre></div></p>
+<p>Should have:
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">tls</span><span class="p">:</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;correct-cert-secret&gt;</span>
+</span></code></pre></div></p>
+<p>Example correct IngressRoute:
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.containo.us/v1alpha1</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IngressRoute</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span><span class="nt">entryPoints</span><span class="p">:</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">websecure</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">  </span><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Host(`myapp.example.com`)</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">      </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rule</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">      </span><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">          </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">  </span><span class="nt">tls</span><span class="p">:</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">    </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp-tls</span><span class="w">  </span><span class="c1"># Must match Certificate secret name</span>
+</span></code></pre></div></p>
+<h2 id="self-signed-certificate-appearing">Self-Signed Certificate Appearing<a class="headerlink" href="#self-signed-certificate-appearing" title="Permanent link">&para;</a></h2>
+<h3 id="symptoms_3">Symptoms<a class="headerlink" href="#symptoms_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Browser shows self-signed certificate warning</li>
+<li>Certificate issuer is "Traefik Default Cert"</li>
+</ul>
+<h3 id="causes_1">Causes<a class="headerlink" href="#causes_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>cert-manager hasn't issued certificate yet</li>
+<li>Certificate not referenced in IngressRoute</li>
+<li>Traefik using default certificate</li>
+</ul>
+<h3 id="fix_2">Fix<a class="headerlink" href="#fix_2" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Verify certificate exists and is ready</strong>:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>certificate<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1"># Should show Ready: True</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Verify IngressRoute references certificate</strong>:
+   <div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">tls</span><span class="p">:</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;cert-name&gt;-tls</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Wait for cert issuance</strong> (can take 1-5 minutes)</p>
+</li>
+</ol>
+<h2 id="wildcard-certificates">Wildcard Certificates<a class="headerlink" href="#wildcard-certificates" title="Permanent link">&para;</a></h2>
+<p>For multiple subdomains:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager.io/v1</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Certificate</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wildcard-cert</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wildcard-tls</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">  </span><span class="nt">issuerRef</span><span class="p">:</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">letsencrypt-prod</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterIssuer</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">  </span><span class="nt">dnsNames</span><span class="p">:</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;*.example.com&quot;</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example.com</span><span class="w">  </span><span class="c1"># Also include root domain</span>
+</span></code></pre></div>
+<p><strong>Note</strong>: Wildcard certs REQUIRE DNS-01 challenge (can't use HTTP-01)</p>
+<h2 id="debugging-cert-manager">Debugging cert-manager<a class="headerlink" href="#debugging-cert-manager" title="Permanent link">&para;</a></h2>
+<h3 id="check-cert-manager-health">Check cert-manager Health<a class="headerlink" href="#check-cert-manager-health" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Check pods</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>cert-manager
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># Check logs</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </span>cert-manager<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>cert-manager<span class="w"> </span>--tail<span class="o">=</span><span class="m">200</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1"># Check webhook</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>kubectl<span class="w"> </span>get<span class="w"> </span>validatingwebhookconfigurations<span class="w"> </span>cert-manager-webhook
+</span></code></pre></div>
+<h3 id="common-cert-manager-issues">Common cert-manager Issues<a class="headerlink" href="#common-cert-manager-issues" title="Permanent link">&para;</a></h3>
+<p><strong>Webhook Not Working</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Check webhook pod</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>cert-manager<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>webhook
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># Restart webhook</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment<span class="w"> </span>cert-manager-webhook<span class="w"> </span>-n<span class="w"> </span>cert-manager
+</span></code></pre></div></p>
+<h2 id="quick-reference">Quick Reference<a class="headerlink" href="#quick-reference" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># List all certificates</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>certificate<span class="w"> </span>-A
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1"># Check certificate details</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>certificate<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1"># Check certificate requests</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>kubectl<span class="w"> </span>get<span class="w"> </span>certificaterequest<span class="w"> </span>-A
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="c1"># Check challenges (for ACME)</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>kubectl<span class="w"> </span>get<span class="w"> </span>challenge<span class="w"> </span>-A
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="c1"># Force certificate renewal</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>secret<span class="w"> </span>&lt;cert-secret&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="c1"># View certificate expiration</span>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>kubectl<span class="w"> </span>get<span class="w"> </span>certificate<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.items[] | &quot;\(.metadata.namespace)/\(.metadata.name): \(.status.notAfter)&quot;&#39;</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="c1"># Check cert-manager logs</span>
+</span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </span>cert-manager<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>cert-manager<span class="w"> </span>--follow
+</span></code></pre></div>
 <ul>
 <li>[CSI]: Container Storage Interface</li>
+<li>
+<p>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></p>
+</li>
+<li>
+<p>[CSI]: Container Storage Interface</p>
+</li>
 <li>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></li>
 </ul>
 
@@ -3498,10 +4428,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "content.footnotes.tooltips", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.footnotes.tooltips", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

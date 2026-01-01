@@ -12,27 +12,31 @@
         <meta name="author" content="Michael M&uuml;hlebach">
       
       
-        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/framsburg-services/">
+        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/getting-started/quickstart/">
       
       
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../architecture/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Custom Services - K3s Homelab GitOps Stack</title>
+        <title>Quick Start - K3s Homelab GitOps Stack</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#custom-services" class="md-skip">
+        <a href="#quick-start" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="K3s Homelab GitOps Stack" class="md-header__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
+    <a href="../.." title="K3s Homelab GitOps Stack" class="md-header__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Custom Services
+              Quick Start
             
           </span>
         </div>
@@ -219,7 +223,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -236,11 +240,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../getting-started/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
           
   
   
@@ -260,7 +266,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../troubleshooting/common-issues/" class="md-tabs__link">
+        <a href="../../troubleshooting/common-issues/" class="md-tabs__link">
           
   
   
@@ -287,7 +293,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../hardware/raspberry-pi/" class="md-tabs__link">
+        <a href="../../hardware/raspberry-pi/" class="md-tabs__link">
           
   
   
@@ -317,7 +323,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../cluster-core/argocd/" class="md-tabs__link">
+        <a href="../../cluster-core/argocd/" class="md-tabs__link">
           
   
   
@@ -347,7 +353,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../platform/postgres-cnpg/" class="md-tabs__link">
+        <a href="../../platform/postgres-cnpg/" class="md-tabs__link">
           
   
   
@@ -377,7 +383,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../apps/plex/" class="md-tabs__link">
+        <a href="../../apps/plex/" class="md-tabs__link">
           
   
   
@@ -400,7 +406,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../howto/deploy-app.md" class="md-tabs__link">
+        <a href="../../howto/deploy-app.md" class="md-tabs__link">
           
   
   
@@ -420,7 +426,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../reference/commands.md" class="md-tabs__link">
+        <a href="../../reference/commands.md" class="md-tabs__link">
           
   
   
@@ -460,7 +466,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="K3s Homelab GitOps Stack" class="md-nav__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
+    <a href="../.." title="K3s Homelab GitOps Stack" class="md-nav__button md-logo" aria-label="K3s Homelab GitOps Stack" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -490,7 +496,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -514,28 +520,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -553,7 +562,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -571,7 +580,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   
@@ -596,10 +605,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../getting-started/quickstart/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -615,6 +651,236 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High-Level Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="High-Level Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-hardware-setup-30-60-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Hardware Setup (30-60 minutes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-os-provisioning-15-minutes-per-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. OS Provisioning (15 minutes per node)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ansible-provisioning-20-30-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Ansible Provisioning (20-30 minutes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-bootstrap-core-services-1-2-hours" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Bootstrap Core Services (1-2 hours)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-setup-security-secrets-1-2-hours" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Setup Security &amp; Secrets (1-2 hours)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-deploy-platform-services-30-60-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Deploy Platform Services (30-60 minutes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-deploy-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Deploy Applications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-first-time-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common First-Time Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common First-Time Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pods-stuck-in-pending" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pods Stuck in Pending
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#certificate-not-issued" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificate Not Issued
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cant-access-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Can't Access Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-estimates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Estimates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitops-repository-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitOps Repository Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Help
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -627,7 +893,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/architecture/" class="md-nav__link">
+      <a href="../architecture/" class="md-nav__link">
         
   
   
@@ -716,7 +982,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/common-issues/" class="md-nav__link">
+      <a href="../../troubleshooting/common-issues/" class="md-nav__link">
         
   
   
@@ -744,7 +1010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/disaster-recovery/" class="md-nav__link">
+      <a href="../../troubleshooting/disaster-recovery/" class="md-nav__link">
         
   
   
@@ -772,7 +1038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/certificates/" class="md-nav__link">
+      <a href="../../troubleshooting/certificates/" class="md-nav__link">
         
   
   
@@ -800,7 +1066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/storage/" class="md-nav__link">
+      <a href="../../troubleshooting/storage/" class="md-nav__link">
         
   
   
@@ -828,7 +1094,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/network/" class="md-nav__link">
+      <a href="../../troubleshooting/network/" class="md-nav__link">
         
   
   
@@ -856,7 +1122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/applications/" class="md-nav__link">
+      <a href="../../troubleshooting/applications/" class="md-nav__link">
         
   
   
@@ -884,7 +1150,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/maintenance/" class="md-nav__link">
+      <a href="../../troubleshooting/maintenance/" class="md-nav__link">
         
   
   
@@ -1027,7 +1293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/raspberry-pi/" class="md-nav__link">
+      <a href="../../hardware/raspberry-pi/" class="md-nav__link">
         
   
   
@@ -1055,7 +1321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/proxmox/" class="md-nav__link">
+      <a href="../../hardware/proxmox/" class="md-nav__link">
         
   
   
@@ -1083,7 +1349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/truenas/" class="md-nav__link">
+      <a href="../../hardware/truenas/" class="md-nav__link">
         
   
   
@@ -1111,7 +1377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/network/" class="md-nav__link">
+      <a href="../../hardware/network/" class="md-nav__link">
         
   
   
@@ -1201,7 +1467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/bare-metal/" class="md-nav__link">
+      <a href="../../setup/bare-metal/" class="md-nav__link">
         
   
   
@@ -1229,7 +1495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/ansible/" class="md-nav__link">
+      <a href="../../setup/ansible/" class="md-nav__link">
         
   
   
@@ -1257,7 +1523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/custom-images/" class="md-nav__link">
+      <a href="../../setup/custom-images/" class="md-nav__link">
         
   
   
@@ -1408,7 +1674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/argocd/" class="md-nav__link">
+      <a href="../../cluster-core/argocd/" class="md-nav__link">
         
   
   
@@ -1436,7 +1702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/gitops-workflow.md" class="md-nav__link">
+      <a href="../../cluster-core/gitops-workflow.md" class="md-nav__link">
         
   
   
@@ -1526,7 +1792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/traefik/" class="md-nav__link">
+      <a href="../../cluster-core/traefik/" class="md-nav__link">
         
   
   
@@ -1554,7 +1820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/metallb/" class="md-nav__link">
+      <a href="../../cluster-core/metallb/" class="md-nav__link">
         
   
   
@@ -1582,7 +1848,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/dns.md" class="md-nav__link">
+      <a href="../../cluster-core/dns.md" class="md-nav__link">
         
   
   
@@ -1672,7 +1938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/cert-manager/" class="md-nav__link">
+      <a href="../../cluster-core/cert-manager/" class="md-nav__link">
         
   
   
@@ -1700,7 +1966,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/authentik/" class="md-nav__link">
+      <a href="../../cluster-core/authentik/" class="md-nav__link">
         
   
   
@@ -1728,7 +1994,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/vault/" class="md-nav__link">
+      <a href="../../cluster-core/vault/" class="md-nav__link">
         
   
   
@@ -1756,7 +2022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/secrets-management.md" class="md-nav__link">
+      <a href="../../cluster-core/secrets-management.md" class="md-nav__link">
         
   
   
@@ -1846,7 +2112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/longhorn/" class="md-nav__link">
+      <a href="../../cluster-core/longhorn/" class="md-nav__link">
         
   
   
@@ -1874,7 +2140,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/storage-classes.md" class="md-nav__link">
+      <a href="../../cluster-core/storage-classes.md" class="md-nav__link">
         
   
   
@@ -1964,7 +2230,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/monitoring/" class="md-nav__link">
+      <a href="../../cluster-core/monitoring/" class="md-nav__link">
         
   
   
@@ -1992,7 +2258,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/logging.md" class="md-nav__link">
+      <a href="../../cluster-core/logging.md" class="md-nav__link">
         
   
   
@@ -2020,7 +2286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster-core/alerting.md" class="md-nav__link">
+      <a href="../../cluster-core/alerting.md" class="md-nav__link">
         
   
   
@@ -2171,7 +2437,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/postgres-cnpg/" class="md-nav__link">
+      <a href="../../platform/postgres-cnpg/" class="md-nav__link">
         
   
   
@@ -2199,7 +2465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/postgres-zalando/" class="md-nav__link">
+      <a href="../../platform/postgres-zalando/" class="md-nav__link">
         
   
   
@@ -2227,7 +2493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/database-ops.md" class="md-nav__link">
+      <a href="../../platform/database-ops.md" class="md-nav__link">
         
   
   
@@ -2317,7 +2583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/secrets-csi/" class="md-nav__link">
+      <a href="../../platform/secrets-csi/" class="md-nav__link">
         
   
   
@@ -2345,7 +2611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/external-secrets/" class="md-nav__link">
+      <a href="../../platform/external-secrets/" class="md-nav__link">
         
   
   
@@ -2373,7 +2639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform/vault-integration.md" class="md-nav__link">
+      <a href="../../platform/vault-integration.md" class="md-nav__link">
         
   
   
@@ -2524,7 +2790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/plex/" class="md-nav__link">
+      <a href="../../apps/plex/" class="md-nav__link">
         
   
   
@@ -2614,7 +2880,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/adguard/" class="md-nav__link">
+      <a href="../../apps/adguard/" class="md-nav__link">
         
   
   
@@ -2642,7 +2908,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/airprint.md" class="md-nav__link">
+      <a href="../../apps/airprint.md" class="md-nav__link">
         
   
   
@@ -2670,7 +2936,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/vpn/" class="md-nav__link">
+      <a href="../../apps/vpn/" class="md-nav__link">
         
   
   
@@ -2760,7 +3026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/uptime-kuma/" class="md-nav__link">
+      <a href="../../apps/uptime-kuma/" class="md-nav__link">
         
   
   
@@ -2850,7 +3116,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/securitycam/" class="md-nav__link">
+      <a href="../../apps/securitycam/" class="md-nav__link">
         
   
   
@@ -2878,7 +3144,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../apps/rails-app/" class="md-nav__link">
+      <a href="../../apps/rails-app/" class="md-nav__link">
         
   
   
@@ -2975,7 +3241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/deploy-app.md" class="md-nav__link">
+      <a href="../../howto/deploy-app.md" class="md-nav__link">
         
   
   
@@ -3003,7 +3269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/setup-oidc.md" class="md-nav__link">
+      <a href="../../howto/setup-oidc.md" class="md-nav__link">
         
   
   
@@ -3031,7 +3297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/configure-ingress.md" class="md-nav__link">
+      <a href="../../howto/configure-ingress.md" class="md-nav__link">
         
   
   
@@ -3059,7 +3325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/setup-backup.md" class="md-nav__link">
+      <a href="../../howto/setup-backup.md" class="md-nav__link">
         
   
   
@@ -3087,7 +3353,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/add-storage.md" class="md-nav__link">
+      <a href="../../howto/add-storage.md" class="md-nav__link">
         
   
   
@@ -3115,7 +3381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/expose-service.md" class="md-nav__link">
+      <a href="../../howto/expose-service.md" class="md-nav__link">
         
   
   
@@ -3143,7 +3409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../howto/debug-pods.md" class="md-nav__link">
+      <a href="../../howto/debug-pods.md" class="md-nav__link">
         
   
   
@@ -3232,7 +3498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/commands.md" class="md-nav__link">
+      <a href="../../reference/commands.md" class="md-nav__link">
         
   
   
@@ -3260,7 +3526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/templates.md" class="md-nav__link">
+      <a href="../../reference/templates.md" class="md-nav__link">
         
   
   
@@ -3288,7 +3554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/resources.md" class="md-nav__link">
+      <a href="../../reference/resources.md" class="md-nav__link">
         
   
   
@@ -3343,10 +3609,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#time-machine" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Time Machine
+        Prerequisites
       
     </span>
   </a>
@@ -3354,10 +3620,198 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#youtube-downloader" class="md-nav__link">
+  <a href="#high-level-steps" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Youtube Downloader
+        High-Level Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="High-Level Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-hardware-setup-30-60-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Hardware Setup (30-60 minutes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-os-provisioning-15-minutes-per-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. OS Provisioning (15 minutes per node)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ansible-provisioning-20-30-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Ansible Provisioning (20-30 minutes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-bootstrap-core-services-1-2-hours" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Bootstrap Core Services (1-2 hours)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-setup-security-secrets-1-2-hours" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Setup Security &amp; Secrets (1-2 hours)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-deploy-platform-services-30-60-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Deploy Platform Services (30-60 minutes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-deploy-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Deploy Applications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-first-time-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common First-Time Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common First-Time Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pods-stuck-in-pending" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pods Stuck in Pending
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#certificate-not-issued" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificate Not Issued
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cant-access-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Can't Access Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-estimates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Estimates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitops-repository-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitOps Repository Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Help
       
     </span>
   </a>
@@ -3382,6 +3836,46 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../overview/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -3392,15 +3886,171 @@
   
 
 
-<h1 id="custom-services">Custom Services<a class="headerlink" href="#custom-services" title="Permanent link">&para;</a></h1>
-<h2 id="time-machine">Time Machine<a class="headerlink" href="#time-machine" title="Permanent link">&para;</a></h2>
-<p>https://github.com/mbentley/docker-timemachine/tree/master</p>
-<h2 id="youtube-downloader">Youtube Downloader<a class="headerlink" href="#youtube-downloader" title="Permanent link">&para;</a></h2>
-<p>https://github.com/yt-dlp/yt-dlp</p>
+<h1 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h1>
+<p>This guide will help you get started quickly with understanding or building your own k3s homelab cluster.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>Before you begin, ensure you have:</p>
 <ul>
-<li>[CSI]: Container Storage Interface</li>
-<li>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></li>
+<li><strong>Hardware</strong>: Multiple nodes (Raspberry Pis or x86 servers)</li>
+<li><strong>Network</strong>: Static IPs configured for all nodes</li>
+<li><strong>Storage</strong>: External storage for Longhorn (NVMe/SSD recommended)</li>
+<li><strong>Domain</strong>: A domain name with DNS control (e.g., CloudFlare)</li>
+<li><strong>Tools</strong>: </li>
+<li><code>kubectl</code> installed on your workstation</li>
+<li><code>helm</code> CLI</li>
+<li><code>ansible</code> for provisioning</li>
+<li>SSH access to all nodes</li>
 </ul>
+<h2 id="high-level-steps">High-Level Steps<a class="headerlink" href="#high-level-steps" title="Permanent link">&para;</a></h2>
+<h3 id="1-hardware-setup-30-60-minutes">1. Hardware Setup (30-60 minutes)<a class="headerlink" href="#1-hardware-setup-30-60-minutes" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Assemble your hardware (Raspberry Pis or servers)</li>
+<li>Configure network (static IPs, VLANs if needed)</li>
+<li>Attach external storage for Longhorn</li>
+<li>Document your hardware inventory</li>
+</ol>
+<p>📖 <strong>Detailed Guide</strong>: <a href="../../hardware/raspberry-pi/">Raspberry Pi Setup</a></p>
+<h3 id="2-os-provisioning-15-minutes-per-node">2. OS Provisioning (15 minutes per node)<a class="headerlink" href="#2-os-provisioning-15-minutes-per-node" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Flash Ubuntu Server to SD cards/USBs</li>
+<li>Configure initial user and SSH</li>
+<li>Run initial system updates</li>
+<li>Configure firmware (for Raspberry Pis)</li>
+</ol>
+<p>📖 <strong>Detailed Guide</strong>: <a href="../../setup/bare-metal/">Bare Metal Setup</a></p>
+<h3 id="3-ansible-provisioning-20-30-minutes">3. Ansible Provisioning (20-30 minutes)<a class="headerlink" href="#3-ansible-provisioning-20-30-minutes" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Configure Ansible inventory</li>
+<li>Run user and SSH key provisioning playbook</li>
+<li>Run k3s installation playbook</li>
+<li>Verify cluster is up</li>
+</ol>
+<p>📖 <strong>Detailed Guide</strong>: <a href="../../setup/ansible/">Ansible Automation</a></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Quick commands</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ansible-playbook<span class="w"> </span>add-user-ssh.yaml
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>ansible-playbook<span class="w"> </span>playbooks/06_k3s_secure.yaml
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span></code></pre></div>
+<h3 id="4-bootstrap-core-services-1-2-hours">4. Bootstrap Core Services (1-2 hours)<a class="headerlink" href="#4-bootstrap-core-services-1-2-hours" title="Permanent link">&para;</a></h3>
+<p>Install critical infrastructure in order:</p>
+<ol>
+<li><strong>MetalLB</strong> - Load balancer for bare metal</li>
+<li><strong>Traefik</strong> - Ingress controller</li>
+<li><strong>cert-manager</strong> - Certificate management</li>
+<li><strong>Longhorn</strong> - Distributed storage</li>
+<li><strong>ArgoCD</strong> - GitOps continuous delivery</li>
+</ol>
+<p>📖 <strong>Detailed Guides</strong>: 
+- <a href="../../cluster-core/metallb/">MetalLB</a>
+- <a href="../../cluster-core/traefik/">Traefik</a>
+- <a href="../../cluster-core/cert-manager/">cert-manager</a>
+- <a href="../../cluster-core/longhorn/">Longhorn</a>
+- <a href="../../cluster-core/argocd/">ArgoCD</a></p>
+<h3 id="5-setup-security-secrets-1-2-hours">5. Setup Security &amp; Secrets (1-2 hours)<a class="headerlink" href="#5-setup-security-secrets-1-2-hours" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>HashiCorp Vault</strong> - Secrets storage</li>
+<li><strong>Authentik</strong> - SSO/OIDC provider</li>
+<li><strong>External Secrets Operator</strong> - Sync secrets from Vault</li>
+<li><strong>Secrets Store CSI</strong> - Mount secrets as files</li>
+</ol>
+<p>📖 <strong>Detailed Guides</strong>: 
+- <a href="../../cluster-core/vault/">Vault</a>
+- <a href="../../cluster-core/authentik/">Authentik</a></p>
+<h3 id="6-deploy-platform-services-30-60-minutes">6. Deploy Platform Services (30-60 minutes)<a class="headerlink" href="#6-deploy-platform-services-30-60-minutes" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Monitoring Stack</strong> - Prometheus + Grafana + Loki</li>
+<li><strong>PostgreSQL</strong> - CloudNativePG operator</li>
+<li><strong>Backup configuration</strong> - Longhorn backups to MinIO/TrueNAS</li>
+</ol>
+<p>📖 <strong>Detailed Guides</strong>: 
+- <a href="../../cluster-core/monitoring/">Monitoring</a>
+- <a href="../../platform/postgres-cnpg/">PostgreSQL</a></p>
+<h3 id="7-deploy-applications">7. Deploy Applications<a class="headerlink" href="#7-deploy-applications" title="Permanent link">&para;</a></h3>
+<p>Now you can deploy your applications using ArgoCD!</p>
+<h2 id="verification-checklist">Verification Checklist<a class="headerlink" href="#verification-checklist" title="Permanent link">&para;</a></h2>
+<p>After setup, verify everything is working:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All nodes are in <code>Ready</code> state: <code>kubectl get nodes</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> MetalLB has assigned external IPs: <code>kubectl get svc -A | grep LoadBalancer</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Traefik dashboard is accessible</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> cert-manager has issued certificates: <code>kubectl get certificate -A</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Longhorn dashboard shows all volumes healthy</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ArgoCD is syncing applications</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Vault is initialized and unsealed</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Authentik is accessible and configured</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Prometheus/Grafana showing metrics</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Test application is deployed and accessible via HTTPS</li>
+</ul>
+<h2 id="common-first-time-issues">Common First-Time Issues<a class="headerlink" href="#common-first-time-issues" title="Permanent link">&para;</a></h2>
+<h3 id="pods-stuck-in-pending">Pods Stuck in Pending<a class="headerlink" href="#pods-stuck-in-pending" title="Permanent link">&para;</a></h3>
+<p><strong>Cause</strong>: Usually storage or resource constraints</p>
+<p><strong>Fix</strong>: 
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>&lt;pod-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Check events for specific error</span>
+</span></code></pre></div></p>
+<p>📖 See: <a href="../../troubleshooting/storage/">Storage Problems</a></p>
+<h3 id="certificate-not-issued">Certificate Not Issued<a class="headerlink" href="#certificate-not-issued" title="Permanent link">&para;</a></h3>
+<p><strong>Cause</strong>: DNS propagation or Let's Encrypt rate limits</p>
+<p><strong>Fix</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>certificate<span class="w"> </span>&lt;cert-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>certificaterequest<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span></code></pre></div></p>
+<p>📖 See: <a href="../../troubleshooting/certificates/">Certificate Issues</a></p>
+<h3 id="cant-access-services">Can't Access Services<a class="headerlink" href="#cant-access-services" title="Permanent link">&para;</a></h3>
+<p><strong>Cause</strong>: MetalLB not configured, Traefik not routing, or firewall</p>
+<p><strong>Fix</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>traefik
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>ingressroute<span class="w"> </span>-A
+</span></code></pre></div></p>
+<p>📖 See: <a href="../../troubleshooting/network/">Network Debugging</a></p>
+<h2 id="time-estimates">Time Estimates<a class="headerlink" href="#time-estimates" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Minimal working cluster</strong>: 4-6 hours</li>
+<li><strong>Production-ready with monitoring</strong>: 8-12 hours</li>
+<li><strong>Full setup with all applications</strong>: 2-3 days</li>
+</ul>
+<p>These are estimates for first-time setup. With experience and automation, you can rebuild in a few hours.</p>
+<h2 id="gitops-repository-structure">GitOps Repository Structure<a class="headerlink" href="#gitops-repository-structure" title="Permanent link">&para;</a></h2>
+<p>The repository is organized as follows:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>k3s-cluster-infra-apps/
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>├── cluster-init-apps/       # Bootstrap apps (MetalLB, cert-manager)
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>├── cluster-critical-apps/   # Core infrastructure (Traefik, Longhorn)
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>├── cluster-platform-apps/   # Platform services (databases, monitoring)
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>├── cluster-apps-apps/       # User applications
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>├── apps-root-config/        # ArgoCD ApplicationSets
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>└── docs/                    # This documentation
+</span></code></pre></div>
+<p>Each app follows this structure:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>app-name/
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>├── Chart.yaml              # Helm chart definition
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>├── values.yaml             # Configuration values
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>└── templates/              # Kubernetes manifests
+</span></code></pre></div></p>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Understand the Architecture</strong>: <a href="../architecture/">Architecture Overview</a></li>
+<li><strong>Start Building</strong>: <a href="../../hardware/raspberry-pi/">Hardware Setup</a></li>
+<li><strong>Learn GitOps Workflow</strong>: <a href="../../cluster-core/argocd/">ArgoCD</a></li>
+</ol>
+<h2 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h2>
+<p>If you run into issues:</p>
+<ol>
+<li>Check <a href="../../troubleshooting/common-issues/">Troubleshooting &amp; Operations</a></li>
+<li>Search this documentation</li>
+<li>
+<p>Check the GitHub repository issues</p>
+</li>
+<li>
+<p>[CSI]: Container Storage Interface</p>
+</li>
+<li>
+<p>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></p>
+</li>
+<li>
+<p>[CSI]: Container Storage Interface</p>
+</li>
+<li>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></li>
+</ol>
 
 
 
@@ -3498,10 +4148,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "content.footnotes.tooltips", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.footnotes.tooltips", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
