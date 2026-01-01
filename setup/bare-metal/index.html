@@ -4468,6 +4468,7 @@ shutdowns and risk data loss.</p>
 </div>
 <h3 id="replace-existing-host">Replace Existing Host<a class="headerlink" href="#replace-existing-host" title="Permanent link">&para;</a></h3>
 <p>If replacing a node:</p>
+<div class="annotate">
 <ol>
 <li>Remove node from cluster: <code>kubectl delete node &lt;nodename&gt;</code></li>
 <li><strong>Verify node is removed from etcd member list</strong> 
@@ -4475,15 +4476,14 @@ shutdowns and risk data loss.</p>
 </span></code></pre></div>
    <em>No new node can join if the cluster is unhealthy due to missing members!</em></li>
 <li>Add new host to Ansible inventory</li>
-<li>
-<p>Run bootstrap playbook for new node:
+<li>Run bootstrap playbook for new node:
    <div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>ansible-playbook<span class="w"> </span>add-user-ssh.yaml<span class="w"> </span>--limit<span class="w"> </span>&lt;newhost&gt;
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>ansible-playbook<span class="w"> </span>playbooks/06_k3s_secure.yaml<span class="w"> </span><span class="c1"># (1) !</span>
-</span></code></pre></div></p>
-</li>
-<li>
-<p>Careful: If you use limit here without any other master node, you will initialize a new cluster instead of joining!</p>
-</li>
+</span></code></pre></div></li>
+</ol>
+</div>
+<ol>
+<li>Careful: If you use limit here without any other master node, you will initialize a new cluster instead of joining!</li>
 </ol>
 <h2 id="hardware-specific-configuration">Hardware-Specific Configuration<a class="headerlink" href="#hardware-specific-configuration" title="Permanent link">&para;</a></h2>
 <h3 id="lenovo-tiny-servers-e1000-nic-issues">Lenovo Tiny Servers — E1000 NIC Issues<a class="headerlink" href="#lenovo-tiny-servers-e1000-nic-issues" title="Permanent link">&para;</a></h3>
