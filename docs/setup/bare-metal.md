@@ -277,6 +277,8 @@ ansible-playbook playbooks/07_k3s_update.yml --limit k3s-server03
 
 If replacing a node:
 
+<div class="annotate" markdown>
+
 1. Remove node from cluster: `kubectl delete node <nodename>`
 2. **Verify node is removed from etcd member list** 
    ```bash
@@ -289,6 +291,8 @@ If replacing a node:
    ansible-playbook add-user-ssh.yaml --limit <newhost>
    ansible-playbook playbooks/06_k3s_secure.yaml # (1) !
    ```
+
+</div>
 
 1.  Careful: If you use limit here without any other master node, you will initialize a new cluster instead of joining!
  
