@@ -229,20 +229,21 @@ graph LR
 
 ```
 k3s-cluster-infra-apps/
-├── apps-root-config/          # ArgoCD ApplicationSets
-│   └── applications/          # App of Apps pattern
-├── cluster-init-apps/         # Bootstrap (MetalLB, cert-manager)
-├── cluster-critical-apps/     # Core infra (Traefik, Longhorn, etc)
-├── cluster-platform-apps/     # Platform services
+├── apps-root-config/          # ArgoCD Applications
+│   ├── applications/          # Apps in app-of-apps pattern
+│   └── bootstrap/             # App of Apps
+├── cluster-init-apps/         # Bootstrap (ArgoCD, App of Apps root)
+├── cluster-critical-apps/     # Core infra (MetalLB, Traefik, Longhorn, Monitoring, etc)
+├── cluster-platform-apps/     # Platform services _used by apps_ (Secrets, DBs, SSO)
 └── cluster-*-apps/            # Application groups
 ```
 
 ### Deployment Layers
 
 1. **Layer 0 (Manual)**: k3s cluster + ArgoCD installation
-2. **Layer 1 (ArgoCD)**: cluster-init-apps (MetalLB, cert-manager)
-3. **Layer 2 (ArgoCD)**: cluster-critical-apps (Traefik, Longhorn, Vault)
-4. **Layer 3 (ArgoCD)**: cluster-platform-apps (Monitoring, databases)
+2. **Layer 1 (ArgoCD)**: cluster-init-apps (ArgoCD)
+3. **Layer 2 (ArgoCD)**: cluster-critical-apps (MetalLB, Traefik, Longhorn)
+4. **Layer 3 (ArgoCD)**: cluster-platform-apps (Authentik, databases, Vault)
 5. **Layer 4 (ArgoCD)**: Applications
 
 ## Monitoring & Observability

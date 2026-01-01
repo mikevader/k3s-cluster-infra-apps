@@ -89,6 +89,9 @@ plugins:
   - tags
   - social
 
+watch:
+  - includes
+
 nav:
   - Home: index.md
   - Getting Started:
