@@ -47,17 +47,17 @@ See [Raspberry Pi guide](../hardware/raspberry-pi.md#poe-hat-fan-control) for fa
 
 ### Power Supply / UPS
 
-For UPS integration: https://github.com/dzomaya/NUTandRpi
+For UPS integration: <https://github.com/dzomaya/NUTandRpi>
 
 ### Status Indicators
 
-BlinkStick Nano for visual status: https://www.blinkstick.com/products/blinkstick-nano
+BlinkStick Nano for visual status: <https://www.blinkstick.com/products/blinkstick-nano>
 
 ## Longhorn Storage Disks
 
 For detailed Longhorn disk setup on Raspberry Pi workers, see the [Raspberry Pi guide](../hardware/raspberry-pi.md#external-nvme-drive-setup).
 
-**Troubleshooting:** https://www.ekervhen.xyz/posts/2021-02/troubleshooting-longhorn-and-dns-networking/
+**Troubleshooting:** <https://www.ekervhen.xyz/posts/2021-02/troubleshooting-longhorn-and-dns-networking/>
 
 
 
@@ -80,7 +80,7 @@ Install MinIO using the official installer. See [MinIO Documentation](https://mi
 You can use an HTTP or DNS challenge. DNS challenge is described on [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-acquire-a-let-s-encrypt-certificate-using-dns-validation-with-acme-dns-certbot-on-ubuntu-18-04).
 
 ```bash
-certbot certonly \
+$ certbot certonly \
   --config-dir config \
   --work-dir workdir \
   --logs-dir logs \
@@ -220,14 +220,14 @@ ExecStart={{ k3s_binary_path }}/k3s server \
 
 Edit vault file with `ansible-vault edit group_vars/all.yaml` and add the access and secret key for the new bucket:
 
-```yaml title=group_vars/all.yaml
+```yaml title="group_vars/all.yaml"
 backup_s3_access_key: k3s
 backup_s3_secret_key: k3sk3sk3s
 ```
 
 In `hosts.yaml` or group vars:
 
-```yaml title=hosts.yaml
+```yaml title="hosts.yaml"
 backup_schedule_cron: '0 */6 * * *'  # Every 6 hours
 backup_s3_bucket: k3s
 backup_s3_endpoint: minio.framsburg.ch:9000
@@ -236,10 +236,10 @@ backup_s3_endpoint: minio.framsburg.ch:9000
 In case the MinIO server uses a self-signed or custom CA certificate, add the CA cert to the k3s server nodes by adding
 `backup_s3_endpoint_ca`: to the variables above:
 
-```yaml title=hosts.yaml
+```yaml title="hosts.yaml"
 backup_s3_endpoint_ca: |
   -----BEGIN CERTIFICATE-----
-  MIIDgTCCAmmgAwIBAgIJAJ85e+K5ngFRMA0GCSqGSIb3DQEBCwUAMGsxCzAJBgNV
+  MIIDgTCCAmmgAwIBAgIJAJ85e+K5ngFRMA0GCSqGSIb3DQEBCwUAMGsxCzAJBgNV...
 ```
 
 
@@ -306,6 +306,7 @@ ethtool -K <ADAPTER> gso off gro off tso off
 
 Add this as a startup command in `/etc/network/if-up.d/` to persist across reboots.
 
+
 ### Proxmox — Adding New Network Card
 
 When adding a new network card to replace an old one:
@@ -323,7 +324,6 @@ When adding a new network card to replace an old one:
    ```
 
 3. **Update `/etc/network/interfaces`:**
-
    **Before:**
    ```
    auto lo
@@ -343,7 +343,6 @@ When adding a new network card to replace an old one:
            bridge-vlan-aware yes
            bridge-vids 2-4094
    ```
-
    **After:**
    ```
    auto lo
@@ -368,7 +367,6 @@ When adding a new network card to replace an old one:
    ```
 
 
-
 ## Hardware Vendors & Resources
 
 Useful vendors for homelab hardware:
@@ -388,13 +386,12 @@ Useful vendors for homelab hardware:
 - [Serverando](https://serverando.de/Server/) — Various servers
 
 Or search for "Lenovo ThinkCentre Tiny", "HP EliteDesk Mini", or "Dell OptiPlex Micro" for compact, power-efficient servers like:
-- https://www.ebay.de/itm/404433125454?itmmeta=01J2635VSAH35D01S3P83AEHSX&hash=item5e2a17c04e:g:eN8AAOSwNFxktdsz&var=674539469591
-- https://www.ebay.de/itm/305247609020?itmmeta=01J262NDCBCZ5V7WGW29NDQGZC&hash=item47122ce0bc:g:fFcAAOSw95plqVp0&itmprp=enc%3AAQAJAAAA4P%2BHsi8ZJxxkeeuXEbknuuEvnrzmVSyLnf8JsUZ6M3ubQM06d5Ztt8bkEqeBHOEQIseuaFiwu%2BYeZWs2ohLL9pgM8QdmI7XsxgytIKQ5lFwdND6qDTMi5ODfbropBH5gVAVKfJ6hmSx1MuvFA2O1cmz8DAxXaETqWV33zz1phg3vNu9c7P2qmopNvlD28mJB0UlnxGhm8I3NHdEp8FUPw4FB0Kit63lUxxvDAiRGQ5IR3LQCBl7xmJHFnhIkaDfDnBCC2rsIXj903lnHDSGRuvXc4R4DF%2FXQQa5PekGctP7R%7Ctkp%3ABFBMotbVwpFk
-- https://www.ebay.de/itm/404433125454?chn=ps&_ul=DE&var=674539291378&norover=1&mkevt=1&mkrid=707-166974-037691-2&mkcid=2&mkscid=101&itemid=674539502517_404433125454&targetid=2279743046334&device=c&mktype=pla&googleloc=1002964&poi=&campaignid=20743725838&mkgroupid=156953869822&rlsatarget=pla-2279743046334&abcId=9330607&merchantid=5361935233&geoid=1002964&gad_source=1&gbraid=0AAAAAD_G4xa4G7JEe2Z80T4KhK0Ii0ERO&gclid=Cj0KCQjw-ai0BhDPARIsAB6hmP6Go03PZEXz5yMqYFizH6-J0wiekFwj-PhXREKvgglAMvHLL7MFWVsaAk52EALw_wcB
+
+- <https://www.ebay.de/itm/404433125454?itmmeta=01J2635VSAH35D01S3P83AEHSX&hash=item5e2a17c04e:g:eN8AAOSwNFxktdsz&var=674539469591>
+- <https://www.ebay.de/itm/305247609020?itmmeta=01J262NDCBCZ5V7WGW29NDQGZC&hash=item47122ce0bc:g:fFcAAOSw95plqVp0&itmprp=enc%3AAQAJAAAA4P%2BHsi8ZJxxkeeuXEbknuuEvnrzmVSyLnf8JsUZ6M3ubQM06d5Ztt8bkEqeBHOEQIseuaFiwu%2BYeZWs2ohLL9pgM8QdmI7XsxgytIKQ5lFwdND6qDTMi5ODfbropBH5gVAVKfJ6hmSx1MuvFA2O1cmz8DAxXaETqWV33zz1phg3vNu9c7P2qmopNvlD28mJB0UlnxGhm8I3NHdEp8FUPw4FB0Kit63lUxxvDAiRGQ5IR3LQCBl7xmJHFnhIkaDfDnBCC2rsIXj903lnHDSGRuvXc4R4DF%2FXQQa5PekGctP7R%7Ctkp%3ABFBMotbVwpFk>
+- <https://www.ebay.de/itm/404433125454?chn=ps&_ul=DE&var=674539291378&norover=1&mkevt=1&mkrid=707-166974-037691-2&mkcid=2&mkscid=101&itemid=674539502517_404433125454&targetid=2279743046334&device=c&mktype=pla&googleloc=1002964&poi=&campaignid=20743725838&mkgroupid=156953869822&rlsatarget=pla-2279743046334&abcId=9330607&merchantid=5361935233&geoid=1002964&gad_source=1&gbraid=0AAAAAD_G4xa4G7JEe2Z80T4KhK0Ii0ERO&gclid=Cj0KCQjw-ai0BhDPARIsAB6hmP6Go03PZEXz5yMqYFizH6-J0wiekFwj-PhXREKvgglAMvHLL7MFWVsaAk52EALw_wcB>
 
 ---
-
-## References
 
 [1]: https://min.io/docs/minio/linux/integrations/generate-lets-encrypt-certificate-using-certbot-for-minio.html
 [2]: https://www.digitalocean.com/community/tutorials/how-to-acquire-a-let-s-encrypt-certificate-using-dns-validation-with-acme-dns-certbot-on-ubuntu-18-04
