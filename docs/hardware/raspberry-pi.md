@@ -150,24 +150,8 @@ w     # Write changes
 sudo mkfs.ext4 /dev/sda1
 ```
 
-#### 5. Mount Drive
-
-```bash
-# Create mount point
-sudo mkdir -p /var/lib/longhorn
-
-# Get UUID
-sudo lsblk -o name,uuid
-
-# Add to fstab
-echo "UUID=<your-uuid> /var/lib/longhorn ext4 defaults 0 2" | sudo tee -a /etc/fstab
-
-# Mount
-sudo mount /var/lib/longhorn
-
-# Verify
-df -h | grep longhorn
-```
+!!! info "Next: Software Configuration"
+    After hardware setup, see [Node Provisioning Guide](../setup/node-provisioning.md#storage-configuration) for mounting, fstab configuration, and Longhorn setup.
 
 ### Power Supply Configuration
 
@@ -175,60 +159,18 @@ For nodes using UPS:
 
 Reference: https://github.com/dzomaya/NUTandRpi
 
-## Ansible Provisioning
+## Next Steps: Software Provisioning
 
-Once the hardware is set up, use Ansible to configure the software:
+Once the hardware is configured, proceed to software provisioning:
 
-### 1. Add Node to Ansible Inventory
+**→ [Node Provisioning Guide](../setup/node-provisioning.md)** - Complete workflow to add the node to your k3s cluster using Ansible.
 
-Edit `hosts.yaml`:
-
-```yaml
-all:
-  children:
-    k3s_servers:
-      hosts:
-        k3s-server01:
-          ansible_host: 192.168.1.10
-        k3s-server02:
-          ansible_host: 192.168.1.11
-        k3s-server03:
-          ansible_host: 192.168.1.12
-    
-    k3s_workers:
-      hosts:
-        k3s-worker01:
-          ansible_host: 192.168.1.20
-        k3s-worker02:
-          ansible_host: 192.168.1.21
-```
-
-### 2. Run User and SSH Key Setup
-
-```bash
-ansible-playbook add-user-ssh.yaml --limit k3s-worker01
-```
-
-This will:
-- Create your user account
-- Add SSH keys
-- Configure sudo access
-
-### 3. Join Node to Cluster
-
-```bash
-# For control plane nodes
-ansible-playbook playbooks/06_k3s_secure.yaml --limit k3s-server03 --tags server
-
-# For worker nodes
-ansible-playbook playbooks/06_k3s_secure.yaml --limit k3s-worker01
-```
-
-### 4. Verify Node Joined
-
-```bash
-kubectl get nodes
-```
+The provisioning guide covers:
+- Adding node to Ansible inventory
+- User and SSH key configuration
+- Joining the node to the cluster
+- Storage configuration for Longhorn
+- Verification steps
 
 ## Troubleshooting
 
@@ -263,16 +205,21 @@ sudo mount -t ext4 /dev/sda1 /var/lib/longhorn
 ### Longhorn Can't Use Drive
 
 ```bash
+# Check if drive is mounted
+df -h | grep longhorn
+
 # Check permissions
 ls -la /var/lib/longhorn
 
-# Fix if needed
+# Fix permissions if needed
 sudo chown -R root:root /var/lib/longhorn
 sudo chmod 755 /var/lib/longhorn
 
 # Verify Longhorn can access
 kubectl get node -o jsonpath='{.items[*].metadata.annotations.longhorn\.io/default-disks-config}' | jq
 ```
+
+See [Node Provisioning Guide - Storage Configuration](../setup/node-provisioning.md#storage-configuration) for complete setup steps.
 
 ### High Temperature
 

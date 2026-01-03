@@ -113,8 +113,8 @@ nav:
       - TrueNAS Storage: hardware/truenas.md
       - Network Configuration: hardware/network.md
     - OS & Provisioning:
-      - Bare Metal Setup: setup/bare-metal.md
-      - Ansible Automation: setup/ansible.md
+      - Node Provisioning (Ansible): setup/node-provisioning.md
+      - Manual Installation: setup/manual-installation.md
       - Custom Images: setup/custom-images.md
   - Cluster Core:
     - GitOps & CD:
