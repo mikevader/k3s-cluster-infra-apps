@@ -1,17 +1,4 @@
 ---
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: argocd-framsburg-ch-tls
-  namespace: argocd-system
-spec:
-  secretName: argocd-framsburg-ch-tls
-  dnsNames:
-    - "argocd.framsburg.ch"
-  issuerRef:
-    name: letsencrypt-prod
-    kind: ClusterIssuer
----
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
