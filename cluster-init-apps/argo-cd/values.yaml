@@ -128,7 +128,7 @@ argo-cd:
     extraArgs:
       - --insecure
     ingress:
-      enabled: false
+      enabled: true
       ingressClassName: traefik
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
