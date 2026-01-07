@@ -23,5 +23,6 @@ spec:
         - name: argo-cd-argocd-server
           port: 80
           scheme: h2c
+  tls: {}
 #  tls:
 #    secretName: argocd-framsburg-ch-tls
