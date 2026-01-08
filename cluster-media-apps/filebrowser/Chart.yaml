@@ -4,5 +4,5 @@ description: Filebrowser Chart
 version: 1.0.0
 dependencies:
   - name: filebrowser
-    version: 2.0.1
+    version: 2.0.2
     repository: https://mikevader.github.io/charts
