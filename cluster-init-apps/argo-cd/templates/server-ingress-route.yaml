@@ -11,19 +11,17 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`argocd.framsburg.ch`)
+      match: Host(`argocd.framsburg.ch`) && PathPrefix(`/`)
       priority: 10
       services:
-        - kind: Service
-          name: argo-cd-argocd-server
+        - name: argo-cd-argocd-server
           port: 80
-    - kind: Rule
-      match: Host(`argocd.framsburg.ch`) && Header(`Content-Type`, `application/grpc`)
-      priority: 11
-      services:
-        - kind: Service
-          name: argo-cd-argocd-server
-          port: 80
-          scheme: h2c
+  #    - kind: Rule
+  #      match: Host(`argocd.framsburg.ch`) && Header(`Content-Type`, `application/grpc`)
+  #      priority: 11
+  #      services:
+  #        - name: argo-cd-argocd-server
+  #          port: 80
+  #          scheme: h2c
   tls:
     secretName: argocd-framsburg-ch-tls
