@@ -4,5 +4,5 @@ description: Bootstrap Chart for Argo CD
 version: 0.1.0
 dependencies:
   - name: argo-cd
-    version: 9.3.3
+    version: 9.3.4
     repository: https://argoproj.github.io/argo-helm
