@@ -3465,6 +3465,8 @@
 
 
 <h1 id="metallb">MetalLB<a class="headerlink" href="#metallb" title="Permanent link">&para;</a></h1>
+<p><code>kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)" --dry-run -o yaml | kubectl apply -f -</code></p>
+<p>use ansible vault for secretkey.</p>
 <ul>
 <li>[CSI]: Container Storage Interface</li>
 <li>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></li>
