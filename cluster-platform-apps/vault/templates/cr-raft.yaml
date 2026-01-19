@@ -27,6 +27,7 @@ spec:
     # the operator will add NGINX, Traefik and HAProxy Ingress compatible annotations
     # to support TLS backends
     annotations:
+      kubernetes.io/ingress.class: "traefik"
       cert-manager.io/cluster-issuer: letsencrypt-prod
     # Override the default Ingress specification here
     # This follows the same format as the standard Kubernetes Ingress
