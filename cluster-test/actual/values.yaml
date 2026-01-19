@@ -1,4 +1,17 @@
 actual:
+
+  login:
+    method: "openid"
+    openid:
+      enforce: true
+      providerName: "Authentik"
+      discoveryUrl: "https://authentik.framsburg.ch/application/o/actual/.well-known/openid-configuration"
+      tokenExpiration: 3600
+      existingSecret:
+        name: "actualbudget-openid-secret"
+        clientIdKey: "clientId"
+        clientSecretKey: "clientSecret"
+
   ingress:
     enabled: true
     annotations:
