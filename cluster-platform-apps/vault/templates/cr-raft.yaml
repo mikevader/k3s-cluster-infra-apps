@@ -5,7 +5,7 @@ metadata:
   name: "vault"
 spec:
   size: 3
-  image: hashicorp/vault:1.21.2
+  image: hashicorp/vault:1.20.4
   # bankVaultsImage: ghcr.io/banzaicloud/bank-vaults:latest
 
   affinity:
