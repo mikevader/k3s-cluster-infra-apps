@@ -5,7 +5,7 @@ actual:
     openid:
       enforce: true
       providerName: "Authentik"
-      discoveryUrl: "https://authentik.framsburg.ch/application/o/actual/.well-known/openid-configuration"
+      discoveryUrl: "https://authentik.framsburg.ch/application/o/actual/"
       tokenExpiration: 3600
       existingSecret:
         name: "actualbudget-openid-secret"
