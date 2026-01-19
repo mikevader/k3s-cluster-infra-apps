@@ -1,5 +1,8 @@
 actual:
 
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
+
   login:
     method: "openid"
     openid:
