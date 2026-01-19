@@ -6,7 +6,7 @@ actual:
   login:
     method: "openid"
     openid:
-      enforce: false
+      enforce: true
       providerName: "Authentik"
       discoveryUrl: "https://authentik.framsburg.ch/application/o/actual/"
       tokenExpiration: 3600
