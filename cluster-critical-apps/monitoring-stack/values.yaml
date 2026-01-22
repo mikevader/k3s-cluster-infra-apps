@@ -217,6 +217,9 @@ kube-prometheus-stack:
       date_formats:
         use_browser_locale: true
         default_timezone: 'Europe/Zurich'
+      feature_toggles:
+        provisioning: true
+        kubernetesDashboards: true
 
   alertmanager:
     config:
