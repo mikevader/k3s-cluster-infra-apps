@@ -14,6 +14,48 @@ authentik:
                   values:
                     - medium
 
+    env:
+      - name: AUTHENTIK_EMAIL__HOST
+        valueFrom:
+          secretkeyRef:
+            name: authentik-mail
+            key: host
+      - name: AUTHENTIK_EMAIL__PORT
+        valueFrom:
+          secretkeyRef:
+            name: authentik-mail
+            key: port
+      - name: AUTHENTIK_EMAIL__USERNAME
+        valueFrom:
+          secretkeyRef:
+            name: authentik-mail
+            key: username
+      - name: AUTHENTIK_EMAIL__PASSWORD
+        valueFrom:
+          secretkeyRef:
+            name: authentik-mail
+            key: password
+      - name: AUTHENTIK_EMAIL__USE_TLS
+        valueFrom:
+          secretkeyRef:
+            name: authentik-mail
+            key: use_tls
+      - name: AUTHENTIK_EMAIL__USE_SSL
+        valueFrom:
+          secretkeyRef:
+            name: authentik-mail
+            key: use_ssl
+      - name: AUTHENTIK_EMAIL__TIMEOUT
+        valueFrom:
+          secretkeyRef:
+            name: authentik-mail
+            key: timeout
+      - name: AUTHENTIK_EMAIL__FROM
+        valueFrom:
+          secretkeyRef:
+            name: authentik-mail
+            key: from
+
   authentik:
     secret_key: dontjudgemethisisjustfortesting    # TODO
     postgresql:
