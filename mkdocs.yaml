@@ -142,6 +142,7 @@ nav:
       - Secrets Store CSI: platform/secrets-csi.md
       - External Secrets: platform/external-secrets.md
       - Vault Integration: platform/vault-integration.md
+    - Mails: platform/mail-service.md
   - Applications:
     - Media:
       - Plex: apps/plex.md
