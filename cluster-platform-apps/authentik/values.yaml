@@ -17,42 +17,42 @@ authentik:
     env:
       - name: AUTHENTIK_EMAIL__HOST
         valueFrom:
-          secretkeyRef:
+          secretKeyRef:
             name: authentik-mail
             key: host
       - name: AUTHENTIK_EMAIL__PORT
         valueFrom:
-          secretkeyRef:
+          secretKeyRef:
             name: authentik-mail
             key: port
       - name: AUTHENTIK_EMAIL__USERNAME
         valueFrom:
-          secretkeyRef:
+          secretKeyRef:
             name: authentik-mail
             key: username
       - name: AUTHENTIK_EMAIL__PASSWORD
         valueFrom:
-          secretkeyRef:
+          secretKeyRef:
             name: authentik-mail
             key: password
       - name: AUTHENTIK_EMAIL__USE_TLS
         valueFrom:
-          secretkeyRef:
+          secretKeyRef:
             name: authentik-mail
             key: use_tls
       - name: AUTHENTIK_EMAIL__USE_SSL
         valueFrom:
-          secretkeyRef:
+          secretKeyRef:
             name: authentik-mail
             key: use_ssl
       - name: AUTHENTIK_EMAIL__TIMEOUT
         valueFrom:
-          secretkeyRef:
+          secretKeyRef:
             name: authentik-mail
             key: timeout
       - name: AUTHENTIK_EMAIL__FROM
         valueFrom:
-          secretkeyRef:
+          secretKeyRef:
             name: authentik-mail
             key: from
 
