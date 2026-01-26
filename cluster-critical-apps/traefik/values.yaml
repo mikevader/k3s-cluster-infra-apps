@@ -10,15 +10,8 @@ traefik:
     #     volumeMounts:
     #     - mountPath: /data
     #       name: data
-  globalArguments:
-    - "--global.checknewversion"
-    - "--api.dashboard=true"
+  additionalArguments:
     - "--serverstransport.insecureskipverify=true"
-    - "--metrics.prometheus=true"
-    - "--metrics.prometheus.entryPoint=metrics"
-    # - "--entrypoints.websecure.http.middlewares=error-pages-error-pages@kubernetescrd"
-    # - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd,error-pages-error-pages@kubernetescrd"
-    - "--entrypoints.websecure.http.middlewares=traefik-https-redirectscheme@kubernetescrd"
 
   persistence:
     enabled: false
@@ -112,6 +105,7 @@ traefik:
       proxyProtocol:
         trustedIPs: *DOTrustedIPs
     websecure:
+      asDefault: true
       http3:
         enabled: true
       forwardedHeaders:
@@ -120,6 +114,11 @@ traefik:
         trustedIPs: *DOTrustedIPs
       tls:
         enabled: true
+      # middlewares:
+        # - "error-pages-error-pages@kubernetescrd"
+        # - "traefik-https-redirectscheme@kubernetescrd,error-pages-error-pages@kubernetescrd"
+        # - traefik-https-redirectscheme@kubernetescrd
+
     cups:
       port: 631
       expose:
