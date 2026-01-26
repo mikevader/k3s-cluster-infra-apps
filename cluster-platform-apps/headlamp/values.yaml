@@ -36,6 +36,7 @@ headlamp:
     enabled: true
     annotations:
       kubernetes.io/tls-acme: "true"
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
       traefik.ingress.kubernetes.io/router.middlewares: headlamp-forward-headers@kubernetescrd
     ingressClassName: traefik
     hosts:
