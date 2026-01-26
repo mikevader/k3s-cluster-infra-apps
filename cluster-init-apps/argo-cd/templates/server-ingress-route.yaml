@@ -1,27 +1,27 @@
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  name: argocd-server
-  namespace: argocd-system
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - kind: Rule
-      match: Host(`argocd.framsburg.ch`) && PathPrefix(`/`)
-      priority: 10
-      services:
-        - name: argo-cd-argocd-server
-          port: 80
-  #    - kind: Rule
-  #      match: Host(`argocd.framsburg.ch`) && Header(`Content-Type`, `application/grpc`)
-  #      priority: 11
-  #      services:
-  #        - name: argo-cd-argocd-server
-  #          port: 80
-  #          scheme: h2c
-  tls:
-    secretName: argocd-framsburg-ch-tls
+{{/*---*/}}
+{{/*apiVersion: traefik.io/v1alpha1*/}}
+{{/*kind: IngressRoute*/}}
+{{/*metadata:*/}}
+{{/*  name: argocd-server*/}}
+{{/*  namespace: argocd-system*/}}
+{{/*  annotations:*/}}
+{{/*    kubernetes.io/ingress.class: "traefik"*/}}
+{{/*spec:*/}}
+{{/*  entryPoints:*/}}
+{{/*    - websecure*/}}
+{{/*  routes:*/}}
+{{/*    - kind: Rule*/}}
+{{/*      match: Host(`argocd.framsburg.ch`) && PathPrefix(`/`)*/}}
+{{/*      priority: 10*/}}
+{{/*      services:*/}}
+{{/*        - name: argo-cd-argocd-server*/}}
+{{/*          port: 80*/}}
+{{/*  #    - kind: Rule*/}}
+{{/*  #      match: Host(`argocd.framsburg.ch`) && Header(`Content-Type`, `application/grpc`)*/}}
+{{/*  #      priority: 11*/}}
+{{/*  #      services:*/}}
+{{/*  #        - name: argo-cd-argocd-server*/}}
+{{/*  #          port: 80*/}}
+{{/*  #          scheme: h2c*/}}
+{{/*  tls:*/}}
+{{/*    secretName: argocd-framsburg-ch-tls*/}}
