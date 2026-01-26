@@ -178,9 +178,10 @@ traefik:
       ingressClass: traefik
       publishedService:
         enabled: true
-  rollingUpdate:
-    maxUnavailable: 1
-    maxSurge: 1
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
   resources:
     requests:
       cpu: "100m"
