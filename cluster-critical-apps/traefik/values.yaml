@@ -1,5 +1,4 @@
 traefik:
-  fullnameOverride: traefik
   deployment:
     annotations: {}
       # reloader.stakater.com/match: "true"
@@ -74,11 +73,12 @@ traefik:
 
   ports:
     web:
-      redirections:
-        entrypoint:
-          to: websecure
-          scheme: https
-          permanent: true
+      http:
+        redirections:
+          entrypoint:
+            to: websecure
+            scheme: https
+            permanent: true
       forwardedHeaders:
         trustedIPs: &DOTrustedIPs
           - "192.168.42.150/32"    # MetalLB IP range
@@ -112,12 +112,13 @@ traefik:
         trustedIPs: *DOTrustedIPs
       proxyProtocol:
         trustedIPs: *DOTrustedIPs
-      tls:
-        enabled: true
-      # middlewares:
-        # - "error-pages-error-pages@kubernetescrd"
-        # - "traefik-https-redirectscheme@kubernetescrd,error-pages-error-pages@kubernetescrd"
-        # - traefik-https-redirectscheme@kubernetescrd
+      http:
+        tls:
+          enabled: true
+        # middlewares:
+          # - "error-pages-error-pages@kubernetescrd"
+          # - "traefik-https-redirectscheme@kubernetescrd,error-pages-error-pages@kubernetescrd"
+          # - traefik-https-redirectscheme@kubernetescrd
 
     cups:
       port: 631
