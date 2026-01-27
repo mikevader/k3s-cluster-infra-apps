@@ -1,6 +1,6 @@
 kube-prometheus-stack:
 
-  crd:
+  crds:
     upgradeJob:
       enabled: true
 
