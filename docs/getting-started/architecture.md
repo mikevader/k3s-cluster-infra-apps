@@ -245,6 +245,35 @@ k3s-cluster-infra-apps/
 4. **Layer 3 (ArgoCD)**: cluster-platform-apps (Monitoring, databases)
 5. **Layer 4 (ArgoCD)**: Applications
 
+### Application Dependencies
+
+```mermaid
+graph TD
+    subgraph "Layer 1: cluster-init-apps"
+        CertManager[cert-manager]
+    end
+
+    subgraph "Layer 2: cluster-critical-apps"
+        Vault[vault]
+        Authentik[authentik]
+        Traefik[traefik]
+    end
+
+    subgraph "Layer 3: cluster-platform-apps"
+        MonitoringStack[monitoring-stack]
+    end
+
+    CertManager --> MonitoringStack
+    CertManager --> Vault
+    CertManager --> Authentik
+    CertManager --> Traefik
+    MonitoringStack -.->|Certificate CRD| CertManager
+    Vault -.->|OIDC| Authentik
+    Authentik -.->|PostgreSQL Secret| Vault
+    Traefik -.->|DigitalOcean Token| Vault
+
+```
+
 ## Monitoring & Observability
 
 ### Metrics Stack
