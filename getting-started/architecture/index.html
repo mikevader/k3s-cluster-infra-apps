@@ -929,6 +929,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#application-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4227,6 +4238,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#application-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4844,6 +4866,41 @@
 <li><strong>Layer 3 (ArgoCD)</strong>: cluster-platform-apps (Monitoring, databases)</li>
 <li><strong>Layer 4 (ArgoCD)</strong>: Applications</li>
 </ol>
+<h3 id="application-dependencies">Application Dependencies<a class="headerlink" href="#application-dependencies" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>graph TD
+    subgraph "Layer 1: cluster-init-apps"
+        CertManager[cert-manager]
+    end
+
+    subgraph "Layer 2: cluster-critical-apps"
+        Traefik[traefik]
+        Longhorn[longhorn]
+        MonitoringStack[monitoring-stack]
+        Loki[loki]
+        Promtail[promtail]
+    end
+
+    subgraph "Layer 3: cluster-platform-apps"
+        Vault[vault]
+        Authentik[authentik]
+    end
+
+    CertManager --&gt; MonitoringStack
+    CertManager --&gt; Vault
+    CertManager --&gt; Authentik
+    CertManager --&gt; Traefik
+    MonitoringStack -.-&gt;|Certificate CRD| CertManager
+    Vault -.-&gt;|OIDC| Authentik
+    Authentik -.-&gt;|PostgreSQL Secret| Vault
+    Traefik -.-&gt;|DigitalOcean Token| Vault
+    Longhorn -.-&gt;|OIDC| Authentik
+    MonitoringStack -.-&gt;|OIDC Secret| Vault
+    Promtail -.-&gt;|GeoIP License Key| Vault
+    Vault -.-&gt;|PVCs| Longhorn
+    MonitoringStack -.-&gt;|PVCs| Longhorn
+    Loki -.-&gt;|PVCs| Longhorn
+    Authentik -.-&gt;|PVCs| Longhorn
+</code></pre>
 <h2 id="monitoring-observability">Monitoring &amp; Observability<a class="headerlink" href="#monitoring-observability" title="Permanent link">&para;</a></h2>
 <h3 id="metrics-stack">Metrics Stack<a class="headerlink" href="#metrics-stack" title="Permanent link">&para;</a></h3>
 <ul>

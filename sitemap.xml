@@ -2,178 +2,178 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/FINAL_SUMMARY/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/IMPROVEMENTS_SUMMARY/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/README_RESTRUCTURE/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/REORGANIZATION/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/STATUS/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/framsburg-services/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/zfsnas/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/apps/adguard/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/apps/plex/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/apps/rails-app/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/apps/securitycam/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/apps/uptime-kuma/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/apps/vpn/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/cluster-core/argocd/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/cluster-core/authentik/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/cluster-core/cert-manager/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/cluster-core/longhorn/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/cluster-core/metallb/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/cluster-core/monitoring/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/cluster-core/traefik/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/cluster-core/vault/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/getting-started/architecture/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/getting-started/overview/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/getting-started/quickstart/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/hardware/network/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/hardware/proxmox/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/hardware/raspberry-pi/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/hardware/truenas/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/platform/external-secrets/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/platform/mail-service/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/platform/postgres-cnpg/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/platform/postgres-zalando/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/platform/secrets-csi/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/setup/ansible/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/setup/bare-metal/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/setup/custom-images/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/applications/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/certificates/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/common-issues/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/disaster-recovery/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/maintenance/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/network/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
     <url>
          <loc>https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/storage/</loc>
-         <lastmod>2026-01-25</lastmod>
+         <lastmod>2026-02-09</lastmod>
     </url>
 </urlset>
