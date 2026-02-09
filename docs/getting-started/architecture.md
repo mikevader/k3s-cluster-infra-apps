@@ -254,13 +254,16 @@ graph TD
     end
 
     subgraph "Layer 2: cluster-critical-apps"
-        Vault[vault]
-        Authentik[authentik]
         Traefik[traefik]
+        Longhorn[longhorn]
+        MonitoringStack[monitoring-stack]
+        Loki[loki]
+        Promtail[promtail]
     end
 
     subgraph "Layer 3: cluster-platform-apps"
-        MonitoringStack[monitoring-stack]
+        Vault[vault]
+        Authentik[authentik]
     end
 
     CertManager --> MonitoringStack
@@ -271,6 +274,13 @@ graph TD
     Vault -.->|OIDC| Authentik
     Authentik -.->|PostgreSQL Secret| Vault
     Traefik -.->|DigitalOcean Token| Vault
+    Longhorn -.->|OIDC| Authentik
+    MonitoringStack -.->|OIDC Secret| Vault
+    Promtail -.->|GeoIP License Key| Vault
+    Vault -.->|PVCs| Longhorn
+    MonitoringStack -.->|PVCs| Longhorn
+    Loki -.->|PVCs| Longhorn
+    Authentik -.->|PVCs| Longhorn
 
 ```
 
