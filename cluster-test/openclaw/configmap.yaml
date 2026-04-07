@@ -80,6 +80,7 @@ data:
               "alias": "kimi"
             }
           },
+          "timeoutSeconds": 600,
           "maxConcurrent": 4,
           "subagents": {
             "maxConcurrent": 8
