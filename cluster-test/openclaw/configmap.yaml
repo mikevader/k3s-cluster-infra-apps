@@ -13,15 +13,56 @@ data:
         "bind": "loopback",
         "port": 18789,
         "auth": {
-          "mode": "token"
+          "mode": "token",
+          "token": "${OPENCLAW_GATEWAY_TOKEN}"
         },
         "controlUi": {
           "enabled": true
         }
       },
+      "models": {
+        "mode": "merge",
+        "providers": {
+          "nvidia-nim": {
+            "baseUrl": "https://integrate.api.nvidia.com/v1",
+            "apiKey": "${MOONSHOT_API_KEY}",
+            "api": "openai-completions",
+            "models": [
+              {
+                "id": "moonshotai/kimi-k2.5",
+                "name": "Kimi K2.5 (NVIDIA)",
+                "reasoning": false,
+                "input": [
+                  "text"
+                ],
+                "cost": {
+                  "input": 0,
+                  "output": 0,
+                  "cacheRead": 0,
+                  "cacheWrite": 0
+                },
+                "contextWindow": 200000,
+                "maxTokens": 8192
+              }
+            ]
+          }
+        }
+      },  
       "agents": {
         "defaults": {
-          "workspace": "~/.openclaw/workspace"
+          "workspace": "~/.openclaw/workspace",
+          "model": {
+            "primary": "kimi"
+          },
+          "models": {
+            "nvidia-nim/moonshotai/kimi-k2.5": {
+              "alias": "kimi"
+            }
+          },
+          "maxConcurrent": 4,
+          "subagents": {
+            "maxConcurrent": 8
+          }
         },
         "list": [
           {
