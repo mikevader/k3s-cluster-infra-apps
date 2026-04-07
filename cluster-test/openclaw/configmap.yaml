@@ -20,10 +20,10 @@ data:
             "750493348363632650": {
               "channels": {
                 "general": {
-                  "allow": true,
+                  "enabled": true,
                   "requireMention": true},
                 "assistant": {
-                  "allow": true}
+                  "enabled": true}
               }
             }
           }
