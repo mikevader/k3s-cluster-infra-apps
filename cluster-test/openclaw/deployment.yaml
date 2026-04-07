@@ -84,6 +84,12 @@ spec:
                   name: openclaw-secrets
                   key: OPENAI_API_KEY
                   optional: true
+            - name: MOONSHOT_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openclaw-secrets
+                  key: MOONSHOT_API_KEY
+                  optional: true
             - name: GEMINI_API_KEY
               valueFrom:
                 secretKeyRef:
