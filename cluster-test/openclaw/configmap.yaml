@@ -8,6 +8,27 @@ metadata:
 data:
   openclaw.json: |
     {
+      "channels": {
+        "discord": {
+          "enabled": true,
+          "token": "${DISCORD_BOT_TOKEN}",
+          "mediaMaxMb": 100,
+          "allowBots": true,
+          "dmPolicy": "pairing",
+          "allowFrom": ["726909356209340417", "750493348363632650"],
+          "guilds": {
+            "750493348363632650": {
+              "channels": {
+                "general": {
+                  "allow": true,
+                  "requireMention": true},
+                "assistant": {
+                  "allow": true}
+              }
+            }
+          }
+        }
+      },
       "gateway": {
         "mode": "local",
         "bind": "loopback",

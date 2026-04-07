@@ -112,6 +112,12 @@ spec:
                   name: openclaw-secrets
                   key: OPENROUTER_API_KEY
                   optional: true
+            - name: DISCORD_BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: openclaw-secrets
+                  key: DISCORD_BOT_TOKEN
+                  optional: true
           resources:
             requests:
               memory: 512Mi
