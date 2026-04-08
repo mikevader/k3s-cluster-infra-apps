@@ -83,7 +83,8 @@ data:
       "agents": {
         "defaults": {
           "sandbox":{
-            "mode": "off"
+            "mode": "off",
+            "workspaceAccess": "rw"
           },
           "workspace": "/Users/node/.openclaw/workspace",
           "model": {
