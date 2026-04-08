@@ -82,6 +82,9 @@ data:
       },  
       "agents": {
         "defaults": {
+          "sandbox":{
+            "mode": "off"
+          },
           "workspace": "~/.openclaw/workspace",
           "model": {
             "primary": "kimi"
