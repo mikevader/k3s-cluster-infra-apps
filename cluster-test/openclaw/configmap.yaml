@@ -8,6 +8,9 @@ metadata:
 data:
   openclaw.json: |
     {
+      "tools": {
+         "profile": "full"
+      },
       "channels": {
         "discord": {
           "enabled": true,
