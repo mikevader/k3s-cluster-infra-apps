@@ -85,7 +85,7 @@ data:
           "sandbox":{
             "mode": "off"
           },
-          "workspace": "~/.openclaw/workspace",
+          "workspace": "/Users/node/.openclaw/workspace",
           "model": {
             "primary": "kimi"
           },
