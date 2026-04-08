@@ -9,7 +9,15 @@ data:
   openclaw.json: |
     {
       "tools": {
-         "profile": "full"
+         "profile": "full",
+        "allow": [
+          "group:fs",
+          "group:runtime",
+          "exec"
+        ],
+        "fs": {
+          "workspaceOnly": false
+        }
       },
       "channels": {
         "discord": {
