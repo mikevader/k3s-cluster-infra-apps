@@ -123,8 +123,8 @@ spec:
               memory: 512Mi
               cpu: 250m
             limits:
-              memory: 2Gi
-              cpu: "1"
+              memory: 8Gi
+              cpu: "4"
           livenessProbe:
             exec:
               command:
