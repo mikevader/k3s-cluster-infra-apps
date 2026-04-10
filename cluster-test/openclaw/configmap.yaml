@@ -15,13 +15,11 @@ data:
             "workspaceAccess": "rw"
           },
           "workspace": "/Users/node/.openclaw/workspace",
-          "model": {
-            "primary": "kimi"
-          },
+          "userTimezone": "Europe/Zurich",
+          "model": { "primary": "nvidia/moonshotai/kimi-k2.5" },
           "models": {
-            "nvidia-nim/moonshotai/kimi-k2.5": {
-              "alias": "kimi"
-            }
+            "nvidia/moonshotai/kimi-k2.5": { "alias": "Kimi K2.5" },
+            "nvidia/moonshotai/kimi-k2-thinking": { "alias": "Kimi K2 Thinking" }
           },
           "timeoutSeconds": 600,
           "maxConcurrent": 4,
@@ -31,9 +29,11 @@ data:
         },
         "list": [
           {
-            "id": "default",
-            "name": "OpenClaw Assistant",
-            "workspace": "~/.openclaw/workspace"
+            "id": "main",
+            "default": true,
+            "thinkingDefault": "high",
+            "reasoningDefault": "on",
+            "fastModeDefault": false
           }
         ]
       },
@@ -58,6 +58,16 @@ data:
           }
         }
       },
+      "cron": {
+        "enabled": true,
+        "store": "~/.openclaw/cron/cron.json",
+        "maxConcurrentRuns": 2,
+        "sessionRetention": "24h",
+        "runLog": {
+          "maxBytes": "2mb",
+          "keepLines": 2000
+        }
+      },
       "gateway": {
         "mode": "local",
         "bind": "loopback",
@@ -73,26 +83,28 @@ data:
       "models": {
         "mode": "merge",
         "providers": {
-          "nvidia-nim": {
+          "nvidia": {
             "baseUrl": "https://integrate.api.nvidia.com/v1",
-            "apiKey": "${MOONSHOT_API_KEY}",
+            "apiKey": "${NVIDIA_API_KEY}",
             "api": "openai-completions",
             "models": [
               {
-                "id": "moonshotai/kimi-k2.5",
+                "id": "kimi-k2.5",
                 "name": "Kimi K2.5 (NVIDIA)",
                 "reasoning": false,
-                "input": [
-                  "text"
-                ],
-                "cost": {
-                  "input": 0,
-                  "output": 0,
-                  "cacheRead": 0,
-                  "cacheWrite": 0
-                },
-                "contextWindow": 200000,
-                "maxTokens": 32000
+                "input": [ "text", "image" ],
+                "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+                "contextWindow": 262144,
+                "maxTokens": 262144
+              },
+              {
+                "id": "kimi-k2-thinking",
+                "name": "Kimi K2 Thinking (NVIDIA)",
+                "reasoning": true,
+                "input": [ "text" ],
+                "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+                "contextWindow": 262144,
+                "maxTokens": 262144
               }
             ]
           }
@@ -108,10 +120,5 @@ data:
         "fs": {
           "workspaceOnly": false
         }
-      },      
-      "cron": { "enabled": false }
+      }      
     }
-  AGENTS.md: |
-    # OpenClaw Assistant
-
-    You are a helpful AI assistant running in Kubernetes.
