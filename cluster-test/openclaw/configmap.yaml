@@ -8,16 +8,34 @@ metadata:
 data:
   openclaw.json: |
     {
-      "tools": {
-         "profile": "full",
-        "allow": [
-          "group:fs",
-          "group:runtime",
-          "exec"
-        ],
-        "fs": {
-          "workspaceOnly": false
-        }
+      "agents": {
+        "defaults": {
+          "sandbox":{
+            "mode": "off",
+            "workspaceAccess": "rw"
+          },
+          "workspace": "/Users/node/.openclaw/workspace",
+          "model": {
+            "primary": "kimi"
+          },
+          "models": {
+            "nvidia-nim/moonshotai/kimi-k2.5": {
+              "alias": "kimi"
+            }
+          },
+          "timeoutSeconds": 600,
+          "maxConcurrent": 4,
+          "subagents": {
+            "maxConcurrent": 8
+          }
+        },
+        "list": [
+          {
+            "id": "default",
+            "name": "OpenClaw Assistant",
+            "workspace": "~/.openclaw/workspace"
+          }
+        ]
       },
       "channels": {
         "discord": {
@@ -80,35 +98,17 @@ data:
           }
         }
       },  
-      "agents": {
-        "defaults": {
-          "sandbox":{
-            "mode": "off",
-            "workspaceAccess": "rw"
-          },
-          "workspace": "/Users/node/.openclaw/workspace",
-          "model": {
-            "primary": "kimi"
-          },
-          "models": {
-            "nvidia-nim/moonshotai/kimi-k2.5": {
-              "alias": "kimi"
-            }
-          },
-          "timeoutSeconds": 600,
-          "maxConcurrent": 4,
-          "subagents": {
-            "maxConcurrent": 8
-          }
-        },
-        "list": [
-          {
-            "id": "default",
-            "name": "OpenClaw Assistant",
-            "workspace": "~/.openclaw/workspace"
-          }
-        ]
-      },
+      "tools": {
+        "profile": "full",
+        "allow": [
+          "group:fs",
+          "group:runtime",
+          "exec"
+        ],
+        "fs": {
+          "workspaceOnly": false
+        }
+      },      
       "cron": { "enabled": false }
     }
   AGENTS.md: |
