@@ -101,6 +101,12 @@ spec:
                   name: openclaw-secrets
                   key: MOONSHOT_API_KEY
                   optional: true
+            - name: NVIDIA_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openclaw-secrets
+                  key: NVIDIA_API_KEY
+                  optional: true
             - name: GEMINI_API_KEY
               valueFrom:
                 secretKeyRef:
