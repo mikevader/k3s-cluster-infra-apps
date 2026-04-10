@@ -33,31 +33,31 @@ spec:
         fsGroup: 1000
         seccompProfile:
           type: RuntimeDefault
-#      initContainers:
-#        - name: init-config
-#          image: busybox:1.37
-#          imagePullPolicy: IfNotPresent
-#          command:
-#            - sh
-#            - -c
-#            - |
-#              cp /config/openclaw.json /home/node/.openclaw/openclaw.json
-#              mkdir -p /home/node/.openclaw/workspace
-#          securityContext:
-#            runAsUser: 1000
-#            runAsGroup: 1000
-#          resources:
-#            requests:
-#              memory: 32Mi
-#              cpu: 50m
-#            limits:
-#              memory: 64Mi
-#              cpu: 100m
-#          volumeMounts:
-#            - name: openclaw-home
-#              mountPath: /home/node/.openclaw
-#            - name: config
-#              mountPath: /config
+      initContainers:
+        - name: init-config
+          image: busybox:1.37
+          imagePullPolicy: IfNotPresent
+          command:
+            - sh
+            - -c
+            - |
+              cp /config/openclaw.json /home/node/.openclaw/openclaw.json
+              mkdir -p /home/node/.openclaw/workspace
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+          resources:
+            requests:
+              memory: 32Mi
+              cpu: 50m
+            limits:
+              memory: 64Mi
+              cpu: 100m
+          volumeMounts:
+            - name: openclaw-home
+              mountPath: /home/node/.openclaw
+            - name: config
+              mountPath: /config
       containers:
         - name: gateway
           image: ghcr.io/openclaw/openclaw:2026.4.9-slim
@@ -153,6 +153,8 @@ spec:
           volumeMounts:
             - name: openclaw-home
               mountPath: /home/node/.openclaw
+            - name: config
+              mountPath: /config
             - name: tmp-volume
               mountPath: /tmp
           securityContext:

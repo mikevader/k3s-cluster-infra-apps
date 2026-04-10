@@ -10,16 +10,22 @@ data:
     {
       "agents": {
         "defaults": {
-          "sandbox":{
+          "sandbox": {
             "mode": "off",
             "workspaceAccess": "rw"
           },
-          "workspace": "/Users/node/.openclaw/workspace",
+          "workspace": "/home/node/.openclaw/workspace",
           "userTimezone": "Europe/Zurich",
-          "model": { "primary": "nvidia/moonshotai/kimi-k2.5" },
+          "model": {
+            "primary": "nvidia/moonshotai/kimi-k2.5"
+          },
           "models": {
-            "nvidia/moonshotai/kimi-k2.5": { "alias": "Kimi K2.5" },
-            "nvidia/moonshotai/kimi-k2-thinking": { "alias": "Kimi K2 Thinking" }
+            "nvidia/moonshotai/kimi-k2.5": {
+              "alias": "Kimi K2.5"
+            },
+            "nvidia/moonshotai/kimi-k2-thinking": {
+              "alias": "Kimi K2 Thinking"
+            }
           },
           "timeoutSeconds": 600,
           "maxConcurrent": 4,
@@ -44,15 +50,20 @@ data:
           "mediaMaxMb": 100,
           "allowBots": true,
           "dmPolicy": "pairing",
-          "allowFrom": ["726909356209340417", "750493348363632650"],
+          "allowFrom": [
+            "726909356209340417",
+            "750493348363632650"
+          ],
           "guilds": {
             "750493348363632650": {
               "channels": {
                 "general": {
                   "enabled": true,
-                  "requireMention": true},
+                  "requireMention": true
+                },
                 "assistant": {
-                  "enabled": true}
+                  "enabled": true
+                }
               }
             }
           }
@@ -74,10 +85,18 @@ data:
         "port": 18789,
         "auth": {
           "mode": "token",
-          "token": "${OPENCLAW_GATEWAY_TOKEN}"
+          "token": {
+            "source": "env",
+            "provider": "default",
+            "id": "OPENCLAW_GATEWAY_TOKEN"
+          }
         },
         "controlUi": {
           "enabled": true
+        },
+        "tailscale": {
+          "mode": "off",
+          "resetOnExit": false
         }
       },
       "models": {
@@ -89,27 +108,42 @@ data:
             "api": "openai-completions",
             "models": [
               {
-                "id": "kimi-k2.5",
+                "id": "moonshotai/kimi-k2.5",
                 "name": "Kimi K2.5 (NVIDIA)",
                 "reasoning": false,
-                "input": [ "text", "image" ],
-                "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+                "input": [
+                  "text",
+                  "image"
+                ],
+                "cost": {
+                  "input": 0,
+                  "output": 0,
+                  "cacheRead": 0,
+                  "cacheWrite": 0
+                },
                 "contextWindow": 262144,
                 "maxTokens": 262144
               },
               {
-                "id": "kimi-k2-thinking",
+                "id": "moonshotai/kimi-k2-thinking",
                 "name": "Kimi K2 Thinking (NVIDIA)",
                 "reasoning": true,
-                "input": [ "text" ],
-                "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+                "input": [
+                  "text"
+                ],
+                "cost": {
+                  "input": 0,
+                  "output": 0,
+                  "cacheRead": 0,
+                  "cacheWrite": 0
+                },
                 "contextWindow": 262144,
                 "maxTokens": 262144
               }
             ]
           }
         }
-      },  
+      },
       "tools": {
         "profile": "full",
         "allow": [
@@ -119,6 +153,49 @@ data:
         ],
         "fs": {
           "workspaceOnly": false
+        },
+        "web": {
+          "search": {
+            "provider": "gemini",
+            "enabled": true
+          }
         }
-      }      
+      },
+      "plugins": {
+        "entries": {
+          "nvidia": {
+            "enabled": true
+          },
+          "google": {
+            "enabled": true,
+            "config": {
+              "webSearch": {
+                "apiKey": "${GEMINI_API_KEY}"
+              }
+            }
+          }
+        }
+      },
+      "session": {
+        "dmScope": "per-channel-peer"
+      },
+      "hooks": {
+        "internal": {
+          "enabled": true,
+          "entries": {
+            "boot-md": {
+              "enabled": true
+            },
+            "bootstrap-extra-files": {
+              "enabled": true
+            },
+            "command-logger": {
+              "enabled": true
+            },
+            "session-memory": {
+              "enabled": true
+            }
+          }
+        }
+      }
     }
