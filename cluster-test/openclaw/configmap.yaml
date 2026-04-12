@@ -17,7 +17,8 @@ data:
           "workspace": "/home/node/.openclaw/workspace",
           "userTimezone": "Europe/Zurich",
           "model": {
-            "primary": "nvidia/moonshotai/kimi-k2.5"
+            "primary": "anthropic/claude-sonnet-4-6",
+            "fallbacks": [ "nvidia/moonshotai/kimi-k2.5" ]
           },
           "models": {
             "nvidia/moonshotai/kimi-k2.5": {
