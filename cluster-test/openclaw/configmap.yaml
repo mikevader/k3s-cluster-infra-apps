@@ -22,14 +22,6 @@ data:
           "imageGenerationModel": {
             "primary": "google/gemini-3.1-flash-image-preview"
           },
-          "models": {
-            "nvidia/moonshotai/kimi-k2.5": {
-              "alias": "Kimi K2.5"
-            },
-            "nvidia/moonshotai/kimi-k2-thinking": {
-              "alias": "Kimi K2 Thinking"
-            }
-          },
           "timeoutSeconds": 600,
           "maxConcurrent": 4,
           "subagents": {
