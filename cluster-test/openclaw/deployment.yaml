@@ -153,6 +153,8 @@ spec:
           volumeMounts:
             - name: openclaw-home
               mountPath: /home/node/.openclaw
+            - name: claude-home
+              mountPath: /home/node/.claude
             - name: config
               mountPath: /config
             - name: tmp-volume
@@ -170,6 +172,9 @@ spec:
         - name: openclaw-home
           persistentVolumeClaim:
             claimName: openclaw-home-pvc
+        - name: claude-home
+          persistentVolumeClaim:
+            claimName: claude-home-pvc
         - name: config
           configMap:
             name: openclaw-config
