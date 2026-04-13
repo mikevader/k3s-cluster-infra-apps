@@ -43,7 +43,6 @@ spec:
             - |
               cp /config/openclaw.json /home/node/.openclaw/openclaw.json
               mkdir -p /home/node/.openclaw/workspace
-              curl -fsSL https://claude.ai/install.sh | bash
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
