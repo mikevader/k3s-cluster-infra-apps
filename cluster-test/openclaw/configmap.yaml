@@ -17,8 +17,7 @@ data:
           "workspace": "/home/node/.openclaw/workspace",
           "userTimezone": "Europe/Zurich",
           "model": {
-            "primary": "google/gemini-3.1-pro-preview",
-            "fallbacks": [ "nvidia/moonshotai/kimi-k2.5" ]
+            "primary": "google/gemini-3.1-pro-preview"
           },
           "imageGenerationModel": {
             "primary": "google/gemini-3.1-flash-image-preview"
