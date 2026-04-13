@@ -21,7 +21,7 @@ data:
             "fallbacks": [ "nvidia/moonshotai/kimi-k2.5" ]
           },
           "imageGenerationModel": {
-            "primary": "google/gemini-3.1-flash-image-preview",
+            "primary": "google/gemini-3.1-flash-image-preview"
           },
           "models": {
             "nvidia/moonshotai/kimi-k2.5": {
