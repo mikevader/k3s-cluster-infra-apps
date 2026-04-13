@@ -43,6 +43,7 @@ spec:
             - |
               cp /config/openclaw.json /home/node/.openclaw/openclaw.json
               mkdir -p /home/node/.openclaw/workspace
+              curl -fsSL https://claude.ai/install.sh | bash
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
@@ -56,6 +57,10 @@ spec:
           volumeMounts:
             - name: openclaw-home
               mountPath: /home/node/.openclaw
+            - name: claude-home
+              mountPath: /home/node/.claude
+            - name: local-home
+              mountPath: /home/node/.local
             - name: config
               mountPath: /config
       containers:
