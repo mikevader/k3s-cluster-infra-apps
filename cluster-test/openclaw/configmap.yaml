@@ -17,8 +17,11 @@ data:
           "workspace": "/home/node/.openclaw/workspace",
           "userTimezone": "Europe/Zurich",
           "model": {
-            "primary": "anthropic/claude-sonnet-4-6",
+            "primary": "google/gemini-3.1-pro-preview",
             "fallbacks": [ "nvidia/moonshotai/kimi-k2.5" ]
+          },
+          "imageGenerationModel": {
+            "primary": "google/gemini-3.1-flash-image-preview",
           },
           "models": {
             "nvidia/moonshotai/kimi-k2.5": {
