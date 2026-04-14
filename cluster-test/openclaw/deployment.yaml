@@ -60,34 +60,34 @@ spec:
               mountPath: /home/node/.claude
             - name: config
               mountPath: /config
-        - name: init-claude
-          image: ghcr.io/mikevader/openclaw:v2026.4.12
-          imagePullPolicy: IfNotPresent
-          command:
-            - sh
-            - -c
-            - |
-              cp -r /home/node/.local/* /local
-          securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
-          resources:
-            requests:
-              memory: 32Mi
-              cpu: 50m
-            limits:
-              memory: 64Mi
-              cpu: 100m
-          volumeMounts:
-            - name: claude-home
-              mountPath: /home/node/.claude
-            - name: local-home
-              mountPath: /local
-            - name: config
-              mountPath: /config
+#        - name: init-claude
+#          image: ghcr.io/mikevader/openclaw@sha256:83bcd99a3709ef1438d90e25be1dcf19252d5cdc68ef82af448150078486b962
+#          imagePullPolicy: IfNotPresent
+#          command:
+#            - sh
+#            - -c
+#            - |
+#              cp -r /home/node/.local/* /local
+#          securityContext:
+#            runAsUser: 1000
+#            runAsGroup: 1000
+#          resources:
+#            requests:
+#              memory: 32Mi
+#              cpu: 50m
+#            limits:
+#              memory: 64Mi
+#              cpu: 100m
+#          volumeMounts:
+#            - name: claude-home
+#              mountPath: /home/node/.claude
+#            - name: local-home
+#              mountPath: /local
+#            - name: config
+#              mountPath: /config
       containers:
         - name: gateway
-          image: ghcr.io/openclaw/openclaw:2026.4.12
+          image: ghcr.io/mikevader/openclaw@sha256:83bcd99a3709ef1438d90e25be1dcf19252d5cdc68ef82af448150078486b962
           imagePullPolicy: IfNotPresent
           command:
             - node
