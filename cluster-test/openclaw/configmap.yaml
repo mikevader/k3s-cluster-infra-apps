@@ -17,7 +17,13 @@ data:
           "workspace": "/home/node/.openclaw/workspace",
           "userTimezone": "Europe/Zurich",
           "model": {
-            "primary": "google/gemini-3.1-pro-preview"
+            "primary": "claude-cli/claude-sonnet-4-6",
+            "fallbacks": [ "google/gemini-3.1-pro-preview" ]
+          },
+          "cliBackends": {
+            "claude-cli": {
+              "command": "/usr/local/bin/claude"
+            }
           },
           "imageGenerationModel": {
             "primary": "google/gemini-3.1-flash-image-preview"
