@@ -85,6 +85,26 @@ spec:
 #              mountPath: /local
 #            - name: config
 #              mountPath: /config
+        - name: git-pull
+          image: alpine/git:latest
+          command:
+            - sh
+            - -c
+            - |
+              git config --global --add safe.directory /home/node/.openclaw
+              git config --global credential.helper '!f() { echo "username=x-token"; echo "password=${GITHUB_TOKEN}"; }; f'
+              git -C /home/node/.openclaw pull --ff-only origin master \
+                && echo "[git-pull] Pull erfolgreich" \
+                || echo "[git-pull] Nichts zu pullen oder Konflikt — überspringe"
+          env:
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: openclaw-git-token
+                  key: GITHUB_TOKEN
+          volumeMounts:
+            - name: openclaw-home
+              mountPath: /home/node/.openclaw
       containers:
         - name: gateway
           image: ghcr.io/mikevader/openclaw:v2026.4.12@sha256:8d6394fee5ff191c4f1111b55f7230c7145d92ef4ac716913b4c2383d5e37eef
@@ -151,6 +171,12 @@ spec:
                 secretKeyRef:
                   name: openclaw-secrets
                   key: DISCORD_BOT_TOKEN
+                  optional: true
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: openclaw-git-token
+                  key: GITHUB_TOKEN
                   optional: true
           resources:
             requests:
