@@ -107,7 +107,7 @@ spec:
               mountPath: /home/node/.openclaw
       containers:
         - name: gateway
-          image: ghcr.io/mikevader/openclaw:v2026.4.12@sha256:8d6394fee5ff191c4f1111b55f7230c7145d92ef4ac716913b4c2383d5e37eef
+          image: ghcr.io/mikevader/openclaw:v2026.4.12@sha256:d6b1329ef33b773a294133ec10c5d9e9d74c3ab3f325c6c327bd4cf6140b1cb9
           imagePullPolicy: IfNotPresent
           command:
             - node
