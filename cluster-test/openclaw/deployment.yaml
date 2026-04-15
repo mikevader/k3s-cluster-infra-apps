@@ -41,6 +41,7 @@ spec:
             - sh
             - -c
             - |
+              cp /config/.gitconfig /home/node/.gitconfig
               cp /config/openclaw.json /home/node/.openclaw/openclaw.json
               mkdir -p /home/node/.openclaw/workspace
           securityContext:

@@ -6,6 +6,10 @@ metadata:
   labels:
     app: openclaw
 data:
+  .gitconfig: |
+    [safe]
+        directory = /home/node/.openclaw
+
   openclaw.json: |
     {
       "agents": {
