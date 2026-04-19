@@ -88,6 +88,7 @@ spec:
 #              mountPath: /local
 #            - name: config
 #              mountPath: /config
+      containers:
         - name: git-sync
           image: registry.k8s.io/git-sync/git-sync:v4.2.4
           env:
@@ -111,7 +112,6 @@ spec:
           volumeMounts:
             - name: vault
               mountPath: /vault
-      containers:
         - name: gateway
           image: ghcr.io/mikevader/openclaw:v2026.4.12@sha256:d6b1329ef33b773a294133ec10c5d9e9d74c3ab3f325c6c327bd4cf6140b1cb9
           imagePullPolicy: IfNotPresent
