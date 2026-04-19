@@ -43,6 +43,8 @@ spec:
             - |
               cp /config/.gitconfig /home/node/.gitconfig
               cp /config/openclaw.json /home/node/.openclaw/openclaw.json
+              cp /config/vault-commit /home/node/.local/bin/vault-commit
+              chmod +x /home/node/.local/bin/vault-commit
               mkdir -p /home/node/.openclaw/workspace
           securityContext:
             runAsUser: 1000
@@ -86,26 +88,27 @@ spec:
 #              mountPath: /local
 #            - name: config
 #              mountPath: /config
-        - name: git-pull
-          image: alpine/git:latest
-          command:
-            - sh
-            - -c
-            - |
-              git config --global --add safe.directory /home/node/.openclaw
-              git config --global credential.helper '!f() { echo "username=x-token"; echo "password=${GITHUB_TOKEN}"; }; f'
-              git -C /home/node/.openclaw pull --ff-only origin master \
-                && echo "[git-pull] Pull erfolgreich" \
-                || echo "[git-pull] Nichts zu pullen oder Konflikt — überspringe"
+        - name: git-sync
+          image: registry.k8s.io/git-sync/git-sync:v4.2.4
           env:
-            - name: GITHUB_TOKEN
+            - name: GITSYNC_REPO
+              value: https://github.com/mikevader/obsidian-vault.git
+            - name: GITSYNC_REF
+              value: master
+            - name: GITSYNC_PERIOD
+              value: 30s
+            - name: GITSYNC_ROOT
+              value: /vault
+            - name: GITSYNC_LINK
+              value: current
+            - name: GITSYNC_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: openclaw-git-token
                   key: GITHUB_TOKEN
           volumeMounts:
-            - name: openclaw-home
-              mountPath: /home/node/.openclaw
+            - name: vault
+              mountPath: /vault
       containers:
         - name: gateway
           image: ghcr.io/mikevader/openclaw:v2026.4.12@sha256:d6b1329ef33b773a294133ec10c5d9e9d74c3ab3f325c6c327bd4cf6140b1cb9
@@ -215,6 +218,12 @@ spec:
               mountPath: /config
             - name: tmp-volume
               mountPath: /tmp
+            - name: vault
+              mountPath: /home/node/.openclaw/workspace/vault
+              subPath: vault
+            - name: openclaw-config
+              mountPath: /app/config
+              readOnly: true
           securityContext:
             runAsNonRoot: true
             runAsUser: 1000
@@ -238,4 +247,6 @@ spec:
           configMap:
             name: openclaw-config
         - name: tmp-volume
+          emptyDir: {}
+        - name: vault
           emptyDir: {}

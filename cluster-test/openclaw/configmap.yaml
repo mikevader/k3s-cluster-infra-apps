@@ -10,6 +10,19 @@ data:
     [safe]
         directory = /home/node/.openclaw
 
+  vault-commit: |
+    #!/usr/bin/env bash
+    # /usr/local/bin/vault-commit
+    set -euo pipefail
+    cd /home/openclaw/.openclaw/workspace/vault
+    git config user.email "openclaw@deinuser.local"
+    git config user.name "OpenClaw"
+    git add -A
+    git diff --cached --quiet && exit 0
+    git commit -m "${1:-vault update}"
+    git pull --rebase --autostash
+    git push
+
   openclaw.json: |
     {
       "agents": {
