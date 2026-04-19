@@ -64,6 +64,8 @@ spec:
               mountPath: /home/node/.openclaw
             - name: claude-home
               mountPath: /home/node/.claude
+            - name: local-home
+              mountPath: /home/node/.local
             - name: config
               mountPath: /config
 #        - name: init-claude
