@@ -221,9 +221,6 @@ spec:
             - name: vault
               mountPath: /home/node/.openclaw/workspace/vault
               subPath: vault
-            - name: openclaw-config
-              mountPath: /app/config
-              readOnly: true
           securityContext:
             runAsNonRoot: true
             runAsUser: 1000
