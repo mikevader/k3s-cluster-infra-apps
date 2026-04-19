@@ -222,7 +222,6 @@ spec:
               mountPath: /tmp
             - name: vault
               mountPath: /home/node/.openclaw/workspace/vault
-              subPath: vault
           securityContext:
             runAsNonRoot: true
             runAsUser: 1000
