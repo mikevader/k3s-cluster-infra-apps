@@ -101,6 +101,8 @@ spec:
               value: /vault
             - name: GITSYNC_LINK
               value: current
+            - name: GITSYNC_USERNAME
+              value: mikevader
             - name: GITSYNC_PASSWORD
               valueFrom:
                 secretKeyRef:
