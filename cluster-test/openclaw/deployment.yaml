@@ -41,11 +41,12 @@ spec:
             - sh
             - -c
             - |
+              mkdir -p /home/node/.local/bin
+              mkdir -p /home/node/.openclaw/workspace
               cp /config/.gitconfig /home/node/.gitconfig
               cp /config/openclaw.json /home/node/.openclaw/openclaw.json
               cp /config/vault-commit /home/node/.local/bin/vault-commit
               chmod +x /home/node/.local/bin/vault-commit
-              mkdir -p /home/node/.openclaw/workspace
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
