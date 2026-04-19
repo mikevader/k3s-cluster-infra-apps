@@ -110,6 +110,9 @@ spec:
                 secretKeyRef:
                   name: openclaw-git-token
                   key: GITHUB_TOKEN
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
           volumeMounts:
             - name: vault
               mountPath: /vault
