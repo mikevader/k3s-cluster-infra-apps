@@ -121,7 +121,7 @@ spec:
             - name: vault
               mountPath: /vault
         - name: gateway
-          image: ghcr.io/mikevader/openclaw:v2026.4.12@sha256:d6b1329ef33b773a294133ec10c5d9e9d74c3ab3f325c6c327bd4cf6140b1cb9
+          image: ghcr.io/mikevader/openclaw:v2026.4.15@sha256:67c5dc7af13a37e2694350db036ed9aebebe049798db7e594a53ca58aaf6d339
           imagePullPolicy: IfNotPresent
           command:
             - node
