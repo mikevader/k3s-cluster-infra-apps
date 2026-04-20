@@ -194,6 +194,9 @@ spec:
                   name: openclaw-git-token
                   key: GITHUB_TOKEN
                   optional: true
+          envFrom:
+            - secretRef:
+                name: openclaw-gog
           resources:
             requests:
               memory: 512Mi
@@ -226,6 +229,8 @@ spec:
               mountPath: /home/node/.claude
             - name: local-home
               mountPath: /home/node/.local
+            - name: home
+              mountPath: /tmphome
             - name: config
               mountPath: /config
             - name: tmp-volume
@@ -251,6 +256,9 @@ spec:
         - name: local-home
           persistentVolumeClaim:
             claimName: local-home-pvc
+        - name: home
+          persistentVolumeClaim:
+            claimName: home-pvc
         - name: config
           configMap:
             name: openclaw-config
