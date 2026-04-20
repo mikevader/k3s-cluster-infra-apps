@@ -131,6 +131,9 @@ spec:
             - name: gateway
               containerPort: 18789
               protocol: TCP
+            - name: google-auth
+              containerPort: 41803
+              protocol: TCP
           env:
             - name: HOME
               value: /home/node
