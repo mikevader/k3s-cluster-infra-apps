@@ -223,14 +223,8 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 5
           volumeMounts:
-            - name: openclaw-home
-              mountPath: /home/node/.openclaw
-            - name: claude-home
-              mountPath: /home/node/.claude
-            - name: local-home
-              mountPath: /home/node/.local
             - name: home
-              mountPath: /tmphome
+              mountPath: /home/node
             - name: config
               mountPath: /config
             - name: tmp-volume
