@@ -71,12 +71,10 @@ spec:
             - sh
             - -c
             - |
-              echo "Cloning vault..."
-              sleep 600
-#            - |
-#              if [ ! -d /vault/.git ]; then
-#                git clone https://github.com/mikevader/obsidian-vault.git /vault
-#              fi
+              if [ ! -d /vault/.git ]; then
+                echo "Cloning vault..."
+                git clone https://github.com/mikevader/obsidian-vault.git /vault/vault
+              fi
           env:
             - name: GIT_CONFIG_GLOBAL
               value: /etc/git-creds/gitconfig
