@@ -10,6 +10,15 @@ data:
     [safe]
         directory = /home/node/.openclaw
 
+  gitconfig: |
+    [credential]
+        helper = store --file=/etc/git-creds/credentials
+    [user]
+        name = OpenClaw
+        email = openclaw@deinuser.local
+    [pull]
+        rebase = true
+
   vault-commit: |
     #!/usr/bin/env bash
     # /usr/local/bin/vault-commit

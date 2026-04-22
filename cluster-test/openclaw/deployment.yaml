@@ -65,6 +65,24 @@ spec:
               mountPath: /home/node/.local
             - name: config
               mountPath: /config
+        - name: vault-clone
+          image: alpine/git:latest
+          command:
+            - sh
+            - -c
+            - |
+              if [ ! -d /vault/.git ]; then
+                git clone https://github.com:mikevader/obsidian-vault.git /vault
+              fi
+          env:
+            - name: GIT_CONFIG_GLOBAL
+              value:
+                /etc/git-creds/gitconfig
+          volumeMounts:
+            - { name: vault, mountPath: /vault }
+            - { name: git-creds, mountPath: /etc/git-creds, readOnly: true }
+
+
 #        - name: init-claude
 #          image: ghcr.io/mikevader/openclaw@sha256:83bcd99a3709ef1438d90e25be1dcf19252d5cdc68ef82af448150078486b962
 #          imagePullPolicy: IfNotPresent
@@ -91,32 +109,32 @@ spec:
 #            - name: config
 #              mountPath: /config
       containers:
-        - name: git-sync
-          image: registry.k8s.io/git-sync/git-sync:v4.2.4
-          env:
-            - name: GITSYNC_REPO
-              value: https://github.com/mikevader/obsidian-vault.git
-            - name: GITSYNC_REF
-              value: master
-            - name: GITSYNC_PERIOD
-              value: 30s
-            - name: GITSYNC_ROOT
-              value: /vault
-            - name: GITSYNC_LINK
-              value: current
-            - name: GITSYNC_USERNAME
-              value: mikevader
-            - name: GITSYNC_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: openclaw-git-token
-                  key: GITHUB_TOKEN
-          securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
-          volumeMounts:
-            - name: vault
-              mountPath: /vault
+#        - name: git-sync
+#          image: registry.k8s.io/git-sync/git-sync:v4.2.4
+#          env:
+#            - name: GITSYNC_REPO
+#              value: https://github.com/mikevader/obsidian-vault.git
+#            - name: GITSYNC_REF
+#              value: master
+#            - name: GITSYNC_PERIOD
+#              value: 30s
+#            - name: GITSYNC_ROOT
+#              value: /vault
+#            - name: GITSYNC_LINK
+#              value: current
+#            - name: GITSYNC_USERNAME
+#              value: mikevader
+#            - name: GITSYNC_PASSWORD
+#              valueFrom:
+#                secretKeyRef:
+#                  name: openclaw-git-token
+#                  key: GITHUB_TOKEN
+#          securityContext:
+#            runAsUser: 1000
+#            runAsGroup: 1000
+#          volumeMounts:
+#            - name: vault
+#              mountPath: /vault
         - name: gateway
           image: ghcr.io/mikevader/openclaw:v2026.4.21
           imagePullPolicy: Always
@@ -255,4 +273,18 @@ spec:
         - name: tmp-volume
           emptyDir: {}
         - name: vault
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: vault-pvc
+        - name: git-creds
+          projected:
+            sources:
+              - secret:
+                  name: vault-git-creds
+                  items:
+                    - key: credentials
+                      path: credentials
+              - configMap:
+                  name: openclaw-config
+                  items:
+                    - key: gitconfig
+                      path: gitconfig
