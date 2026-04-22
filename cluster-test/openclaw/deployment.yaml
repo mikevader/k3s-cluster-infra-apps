@@ -190,13 +190,6 @@ spec:
                 secretKeyRef:
                   name: openclaw-secrets
                   key: DISCORD_BOT_TOKEN
-                  optional: true
-            - name: GITHUB_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: openclaw-git-token
-                  key: GITHUB_TOKEN
-                  optional: true
           envFrom:
             - secretRef:
                 name: openclaw-gog
@@ -233,7 +226,7 @@ spec:
             - name: tmp-volume
               mountPath: /tmp
             - name: vault
-              mountPath: /home/node/.openclaw/workspace/vault
+              mountPath: /home/node/.local/obsidian-vault
           securityContext:
             runAsNonRoot: true
             runAsUser: 1000
