@@ -112,6 +112,22 @@ spec:
 #            - name: config
 #              mountPath: /config
       containers:
+        - name: vault-puller
+          image: alpine/git:latest
+          command:
+            - sh
+            - -c
+            - |
+              while true; do
+                cd /vault/vault && git pull --rebase --autostash || true
+                sleep 60
+              done
+          env:
+            - name: GIT_CONFIG_GLOBAL
+              value: /etc/git-creds/gitconfig
+          volumeMounts:
+            - { name: vault, mountPath: /vault }
+            - { name: git-creds, mountPath: /etc/git-creds, readOnly: true }
 #        - name: git-sync
 #          image: registry.k8s.io/git-sync/git-sync:v4.2.4
 #          env:
@@ -160,6 +176,8 @@ spec:
               value: /home/node/.openclaw
             - name: NODE_ENV
               value: production
+            - name: GIT_CONFIG_GLOBAL
+              value: /etc/git-creds/gitconfig
             - name: OPENCLAW_GATEWAY_TOKEN
               valueFrom:
                 secretKeyRef:
@@ -249,6 +267,9 @@ spec:
             - name: vault
               mountPath: /home/node/.local/obsidian-vault
               subPath: vault
+            - name: git-creds
+              mountPath: /etc/git-creds
+              readOnly: true
           securityContext:
             runAsNonRoot: true
             runAsUser: 1000
