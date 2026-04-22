@@ -72,7 +72,7 @@ spec:
             - -c
             - |
               if [ ! -d /vault/.git ]; then
-                git clone https://github.com:mikevader/obsidian-vault.git /vault
+                git clone https://github.com/mikevader/obsidian-vault.git /vault
               fi
           env:
             - name: GIT_CONFIG_GLOBAL
