@@ -71,9 +71,11 @@ spec:
             - sh
             - -c
             - |
-              if [ ! -d /vault/.git ]; then
-                git clone https://github.com/mikevader/obsidian-vault.git /vault
-              fi
+              echo "Cloning vault..."
+#            - |
+#              if [ ! -d /vault/.git ]; then
+#                git clone https://github.com/mikevader/obsidian-vault.git /vault
+#              fi
           env:
             - name: GIT_CONFIG_GLOBAL
               value: /etc/git-creds/gitconfig
