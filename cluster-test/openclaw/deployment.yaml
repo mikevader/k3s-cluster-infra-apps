@@ -44,8 +44,6 @@ spec:
             - -c
             - |
               mkdir -p /home/node/.local/bin
-              mkdir -p /home/node/.openclaw/workspace
-              cp /config/openclaw.json /home/node/.openclaw/openclaw.json
               cp /config/vault-commit /home/node/.local/bin/vault-commit
               chmod +x /home/node/.local/bin/vault-commit
           securityContext:
