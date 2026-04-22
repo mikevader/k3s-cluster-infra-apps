@@ -118,8 +118,8 @@ spec:
             - name: vault
               mountPath: /vault
         - name: gateway
-          image: ghcr.io/mikevader/openclaw:v2026.4.15@sha256:67c5dc7af13a37e2694350db036ed9aebebe049798db7e594a53ca58aaf6d339
-          imagePullPolicy: IfNotPresent
+          image: ghcr.io/mikevader/openclaw:v2026.4.21
+          imagePullPolicy: Always
           command:
             - node
             - /app/dist/index.js
@@ -144,6 +144,11 @@ spec:
                 secretKeyRef:
                   name: openclaw-secrets
                   key: OPENCLAW_GATEWAY_TOKEN
+            - name: AGENT_GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: openclaw-git-token
+                  key: GITHUB_TOKEN
 #            - name: ANTHROPIC_API_KEY
 #              valueFrom:
 #                secretKeyRef:
