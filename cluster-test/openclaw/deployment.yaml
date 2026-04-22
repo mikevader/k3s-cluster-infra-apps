@@ -72,6 +72,7 @@ spec:
             - -c
             - |
               echo "Cloning vault..."
+              sleep 600
 #            - |
 #              if [ ! -d /vault/.git ]; then
 #                git clone https://github.com/mikevader/obsidian-vault.git /vault
