@@ -78,6 +78,9 @@ spec:
             - name: GIT_CONFIG_GLOBAL
               value:
                 /etc/git-creds/gitconfig
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
           volumeMounts:
             - { name: vault, mountPath: /vault }
             - { name: git-creds, mountPath: /etc/git-creds, readOnly: true }
