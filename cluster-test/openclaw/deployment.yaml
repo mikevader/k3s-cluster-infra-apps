@@ -71,7 +71,7 @@ spec:
             - sh
             - -c
             - |
-              if [ ! -d /vault/.git ]; then
+              if [ ! -d /vault/vault/.git ]; then
                 echo "Cloning vault..."
                 git clone https://github.com/mikevader/obsidian-vault.git /vault/vault
               fi
