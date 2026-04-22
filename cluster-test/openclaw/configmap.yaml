@@ -23,7 +23,7 @@ data:
     #!/usr/bin/env bash
     # /usr/local/bin/vault-commit
     set -euo pipefail
-    cd /home/openclaw/.local/obsidian-vault
+    cd /home/node/.local/obsidian-vault
 
     # 1. Eigene Änderungen sichern
     git add -A
