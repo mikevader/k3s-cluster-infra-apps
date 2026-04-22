@@ -76,8 +76,7 @@ spec:
               fi
           env:
             - name: GIT_CONFIG_GLOBAL
-              value:
-                /etc/git-creds/gitconfig
+              value: /etc/git-creds/gitconfig
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
