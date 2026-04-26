@@ -202,6 +202,11 @@ spec:
                 secretKeyRef:
                   name: openclaw-git-token
                   key: GITHUB_TOKEN
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: openclaw-git-token
+                  key: GITHUB_TOKEN
 #            - name: ANTHROPIC_API_KEY
 #              valueFrom:
 #                secretKeyRef:
