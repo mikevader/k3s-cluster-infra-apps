@@ -311,7 +311,7 @@ prowlarr:
   initContainers:
     prowlarr:
       name: config-prowlarr
-      image: docker.io/ubuntu:noble
+      image: docker.io/ubuntu:resolute
       securityContext:
         runAsUser: 666
         runAsGroup: 666
