@@ -29,6 +29,7 @@ hajimari:
     namespaceSelector:
       matchNames:
         - media
+        - plex
     name: You
     title: Hajimari
     lightTheme: gazette
