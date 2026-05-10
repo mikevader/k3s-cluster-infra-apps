@@ -12,6 +12,9 @@ homepage:
     ingressClassName: traefik
     hosts:
       - host: homepage.framsburg.ch
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
     tls:
       - hosts: ['homepage.framsburg.ch']
         secretName: 'homepage-framsburg-ch-tls'
