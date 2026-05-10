@@ -1,0 +1,23 @@
+homarr:
+  image:
+    repository: ghcr.io/homarr-labs/homarr
+    pullPolicy: IfNotPresent
+
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/tls-acme: "true"
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    hosts:
+      - host: homarr.framsburg.ch
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls:
+      - hosts: ['homarr.framsburg.ch']
+        secretName: homarr-framsburg-ch-tls
+
+  persistence:
+    homarrDatabase:
+      enabled: true
+      storageClassName: longhorn

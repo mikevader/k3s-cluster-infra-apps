@@ -1,0 +1,10 @@
+---
+apiVersion: v2
+name: homarr
+description: "Homarr: A modern dashboard for your server"
+version: 1.0.0
+dependencies:
+  - name: homarr
+    repository: https://homarr-labs.github.io/homarr-charts
+    version: 8.19.0
+
