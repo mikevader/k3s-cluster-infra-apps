@@ -215,7 +215,7 @@ plex:
         gethomepage.dev/widget.headers.X-Auth-Key: ""
         gethomepage.dev/pod-selector: ""
         hajimari.io/enable: "true"
-        hajimari.io/icon: plex
+        hajimari.io/icon: mdi:plex
         hajimari.io/appName: Plex
         hajimari.io/group: Media
         forecastle.stakater.com/expose: "true"

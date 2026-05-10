@@ -24,7 +24,7 @@ hajimari:
       size: 1Gi
 
   hajimari:
-    instanceName: Framsburg
+    instanceName: null
     defaultEnable: true
     namespaceSelector:
       matchNames:
@@ -40,14 +40,14 @@ hajimari:
         primaryColor: '#eaebea'
         accentColor: '#d8323c'
     showGreeting: true
-    showAppGroups: false
+    showAppGroups: true
     showAppUrls: true
-    showAppInfo: false
+    showAppInfo: true
     showAppStatus: true
     defaultAppIcon: mdi:application
     showBookmarkGroups: true
-    showGlobalBookmarks: false
-    alwaysTargetBlank: false
+    showGlobalBookmarks: true
+    alwaysTargetBlank: true
     defaultSearchProvider: Google
     searchProviders:
       - name: Google
