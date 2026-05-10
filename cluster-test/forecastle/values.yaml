@@ -1,0 +1,21 @@
+forecastle:
+  forecastle:
+    createCustomResource: true
+    image:
+      repository: stakater/forecastle
+      pullPolicy: IfNotPresent
+
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/tls-acme: "true"
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      hosts:
+        - host: forecastle.framsburg.ch
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+      tls:
+        - hosts: ['forecastle.framsburg.ch']
+          secretName: forecastle-framsburg-ch-tls
+
