@@ -214,6 +214,14 @@ plex:
         gethomepage.dev/widget.url: "https://plex.framsburg.ch"
         gethomepage.dev/widget.headers.X-Auth-Key: ""
         gethomepage.dev/pod-selector: ""
+        hajimari.io/enable: "true"
+        hajimari.io/icon: plex
+        hajimari.io/appName: Plex
+        hajimari.io/group: Media
+        forecastle.stakater.com/expose: "true"
+        forecastle.stakater.com/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/plex.png
+        forecastle.stakater.com/appName: Plex
+        forecastle.stakater.com/group: Media
       ingressClassName: traefik
       hosts:
         - host: plex.framsburg.ch
