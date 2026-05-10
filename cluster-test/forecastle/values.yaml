@@ -1,6 +1,11 @@
 forecastle:
   forecastle:
     createCustomResource: true
+
+    config:
+      namespaceSelector:
+        any: true
+
     image:
       repository: stakater/forecastle
       pullPolicy: IfNotPresent
