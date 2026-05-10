@@ -38,9 +38,6 @@ applications:
   minio: {}
   monitoring-stack:
     helmServerSideApply: true
-    source:
-      helm:
-        skipCrds: false
   nginx: {}
   nvidia: {}
   opnsense: {}
