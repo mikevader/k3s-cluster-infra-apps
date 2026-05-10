@@ -26,6 +26,7 @@ namespaceResourceBlacklist:
 applications:
   actual: {}
   forecastle: {}
+  hajimari: {}
   homepage: {}
   openclaw: {}
   # bouncer: {}
