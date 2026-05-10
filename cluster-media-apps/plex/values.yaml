@@ -214,7 +214,7 @@ plex:
         gethomepage.dev/widget.url: "https://plex.framsburg.ch"
         gethomepage.dev/widget.headers.X-Auth-Key: ""
         gethomepage.dev/pod-selector: ""
-        hajimari.io/enable: "true"
+        hajimari.io/enable: true
         hajimari.io/icon: plex
         hajimari.io/appName: Plex
         hajimari.io/group: Media

@@ -27,6 +27,7 @@ applications:
   actual: {}
   forecastle: {}
   hajimari: {}
+  homarr: {}
   homepage: {}
   openclaw: {}
   # bouncer: {}
