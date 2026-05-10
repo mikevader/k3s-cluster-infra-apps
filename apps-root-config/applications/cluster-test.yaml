@@ -26,7 +26,7 @@ namespaceResourceBlacklist:
 applications:
   actual: {}
   openclaw: {}
-  # homepage: {}
+  homepage: {}
   # bouncer: {}
   # test-helm-test:
   #   path: cluster-test/test-helm
