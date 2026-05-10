@@ -1,0 +1,8 @@
+apiVersion: v2
+name: homepage
+description: Homepage.dev
+version: 1.0.0
+dependencies:
+  - name: homepage
+    version: 4.12.0
+    repository: oci://ghcr.io/m0nsterrr/helm-charts
