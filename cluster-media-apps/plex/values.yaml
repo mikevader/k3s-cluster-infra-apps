@@ -205,6 +205,15 @@ plex:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: "Plex is a media server that organizes your media and allows you to stream it to various devices."
+        gethomepage.dev/group: "Media"
+        gethomepage.dev/icon: plex.png
+        gethomepage.dev/name: Plex
+        gethomepage.dev/widget.type: "plex"
+        gethomepage.dev/widget.url: "https://plex.framsburg.ch"
+        gethomepage.dev/widget.headers.X-Auth-Key: ""
+        gethomepage.dev/pod-selector: ""
       ingressClassName: traefik
       hosts:
         - host: plex.framsburg.ch
