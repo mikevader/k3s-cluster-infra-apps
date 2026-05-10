@@ -3,11 +3,15 @@ homarr:
     repository: ghcr.io/homarr-labs/homarr
     pullPolicy: IfNotPresent
 
+  service:
+    enabled: true
+
   ingress:
     enabled: true
     annotations:
       kubernetes.io/tls-acme: "true"
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    ingressClassName: traefik
     hosts:
       - host: homarr.framsburg.ch
         paths:
