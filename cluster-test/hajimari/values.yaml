@@ -27,7 +27,8 @@ hajimari:
     instanceName: Framsburg
     defaultEnable: true
     namespaceSelector:
-      any: true
+      matchNames:
+        - media
     name: You
     title: Hajimari
     lightTheme: gazette
