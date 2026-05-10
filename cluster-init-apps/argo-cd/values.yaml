@@ -125,6 +125,8 @@ argo-cd:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/widget.type: "argocd"
       hostname: argocd.framsburg.ch
       extraTls:
         - hosts:
