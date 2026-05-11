@@ -222,6 +222,8 @@ kube-prometheus-stack:
       feature_toggles:
         provisioning: true
         kubernetesDashboards: true
+      unified_storage:
+        enableMigration: true
 
   alertmanager:
     config:
