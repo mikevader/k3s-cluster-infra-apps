@@ -222,7 +222,9 @@ kube-prometheus-stack:
       feature_toggles:
         provisioning: true
         kubernetesDashboards: true
-      unified_storage:
+      "unified_storage.folders.folder.grafana.app":
+        enableMigration: true
+      "unified_storage.dashboards.dashboard.grafana.app":
         enableMigration: true
 
   alertmanager:
