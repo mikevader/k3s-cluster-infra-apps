@@ -1,3 +1,0 @@
-name: test-helm-test
-namespace: test-helm-test
-serverSideApply: true
