@@ -19,7 +19,7 @@ forecastle:
         - host: forecastle.framsburg.ch
           paths:
             - path: /
-              pathType: ImplementationSpecific
+              pathType: Prefix
       tls:
         - hosts: ['forecastle.framsburg.ch']
           secretName: forecastle-framsburg-ch-tls

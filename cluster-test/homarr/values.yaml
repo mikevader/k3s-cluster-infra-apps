@@ -16,7 +16,7 @@ homarr:
       - host: homarr.framsburg.ch
         paths:
           - path: /
-            pathType: ImplementationSpecific
+            pathType: Prefix
     tls:
       - hosts: ['homarr.framsburg.ch']
         secretName: homarr-framsburg-ch-tls

@@ -12,7 +12,7 @@ hajimari:
         - host: hajimari.framsburg.ch
           paths:
             - path: /
-              pathType: ImplementationSpecific
+              pathType: Prefix
       tls:
         - hosts: ['hajimari.framsburg.ch']
           secretName: hajimari-framsburg-ch-tls
