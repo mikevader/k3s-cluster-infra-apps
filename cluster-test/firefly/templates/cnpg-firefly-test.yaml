@@ -5,6 +5,7 @@ metadata:
   name: firefly-test2
 spec:
   instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:17
 
   # Example of rolling update strategy:
   # - unsupervised: automated update of the primary once all
