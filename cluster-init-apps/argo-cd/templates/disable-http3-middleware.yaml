@@ -1,0 +1,11 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: argocd-disable-http3
+  namespace: argocd-system
+spec:
+  headers:
+    customResponseHeaders:
+      Alt-Svc: ""
+
