@@ -1,5 +1,8 @@
 actual:
 
+  strategy:
+    type: Recreate
+
   podAnnotations:
     reloader.stakater.com/auto: "true"
 
