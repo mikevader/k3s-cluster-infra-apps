@@ -64,9 +64,12 @@ argo-cd:
           if: metadata.annotations.splunkhost
       # sample resource level links
       resource.links: |
-        - url: https://mycompany.splunk.com?search={{.metadata.namespace}}
+        - url: https://grafana.framsburg.ch/a/grafana-lokiexplore-app/explore/namespace/{{.resource.metadata.namespace}}/logs?var-filters=namespace%7C%3D%7C{{.resource.metadata.namespace}}
           title: Splunk
-          if: kind == "Pod" || kind == "Deployment"
+          if: kind == "Deployment"
+        - url: https://grafana.framsburg.ch/a/grafana-lokiexplore-app/explore/namespace/{{.resource.metadata.namespace}}/logs?var-filters=namespace%7C%3D%7C{{.resource.metadata.namespace}}&var-filters=pod%7C%3D%7C{{.resource.metadata.name}}
+          title: Splunk
+          if: kind == "Pod"
 
     rbac: # rbacConfig
       policy.default: role:readonly
@@ -120,18 +123,7 @@ argo-cd:
     extraArgs:
       - --insecure
     ingress:
-      enabled: true
-      ingressClassName: traefik
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/widget.type: "argocd"
-      hostname: argocd.framsburg.ch
-      extraTls:
-        - hosts:
-          - argocd.framsburg.ch
-          secretName: argocd-framsburg-ch-tls
+      enabled: false
     metrics:
       enabled: true
       serviceMonitor:
