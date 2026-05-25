@@ -30,6 +30,9 @@ loki:
         secretAccessKey: "${GRAFANA_LOKI_S3_SECRETACCESSKEY}"
         s3ForcePathStyle: true
 
+  lokiCanary:
+    automountServiceAccountToken: false
+
   deploymentMode: SimpleScalable
 
   backend:
