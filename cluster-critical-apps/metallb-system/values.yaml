@@ -4,3 +4,7 @@ metallb:
 
   speaker:
     logLevel: warn
+
+  prometheus:
+    serviceMonitor:
+      enabled: true
