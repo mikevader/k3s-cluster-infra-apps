@@ -3,6 +3,10 @@ actual:
   podAnnotations:
     reloader.stakater.com/auto: "true"
 
+  image:
+    # repository: actualbudget/actual-server
+    tag: 26.5.2
+
   login:
     method: "openid"
     openid:
