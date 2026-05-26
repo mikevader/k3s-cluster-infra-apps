@@ -190,6 +190,8 @@ spec:
               value: /home/node/.openclaw
             - name: NODE_ENV
               value: production
+            - name: BUN_JSC_useJIT
+              value: "0"
             - name: GIT_CONFIG_GLOBAL
               value: /etc/git-creds/gitconfig
             - name: OPENCLAW_GATEWAY_TOKEN
