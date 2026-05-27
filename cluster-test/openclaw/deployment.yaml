@@ -169,7 +169,7 @@ spec:
 #            - name: vault
 #              mountPath: /vault
         - name: gateway
-          image: ghcr.io/mikevader/openclaw:v2026.5.7
+          image: ghcr.io/mikevader/openclaw:v2026.5.26
           imagePullPolicy: Always
           command:
             - node
