@@ -1,0 +1,120 @@
+---
+# Job to migrate Plex watched status to Jellyfin
+# Uses https://github.com/wilmardo/migrate-plex-to-jellyfin
+#
+# Prerequisites:
+#   1. Jellyfin must be set up (initial wizard completed, libraries added)
+#   2. Store credentials in Vault at: secret/data/framsburg/jellyfin/migration
+#      Required keys: plex-token, jellyfin-token, jellyfin-user
+#
+# To re-run: delete the job and let ArgoCD re-sync
+#   kubectl -n jellyfin delete job jellyfin-plex-migration
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: jellyfin-plex-migration
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+spec:
+  backoffLimit: 3
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: jellyfin-plex-migration
+    spec:
+      restartPolicy: OnFailure
+      securityContext:
+        runAsUser: 666
+        runAsGroup: 666
+      containers:
+        - name: migrate
+          image: python:3.12-slim
+          env:
+            - name: PLEX_URL
+              value: "http://plex:32400"
+            - name: PLEX_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: jellyfin-plex-migration
+                  key: plex-token
+            - name: JELLYFIN_URL
+              value: "http://jellyfin-jellyfin:8096"
+            - name: JELLYFIN_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: jellyfin-plex-migration
+                  key: jellyfin-token
+            - name: JELLYFIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: jellyfin-plex-migration
+                  key: jellyfin-user
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -e
+
+              echo "=== Plex to Jellyfin Migration ==="
+              echo "Using: https://github.com/wilmardo/migrate-plex-to-jellyfin"
+              echo ""
+
+              # Install dependencies
+              apt-get update -qq && apt-get install -y -qq git curl > /dev/null 2>&1
+              pip install --quiet --no-cache-dir plexapi click requests loguru
+
+              # Clone the migration tool
+              cd /tmp
+              git clone --depth 1 https://github.com/wilmardo/migrate-plex-to-jellyfin.git
+              cd migrate-plex-to-jellyfin
+
+              # Wait for Jellyfin to be available
+              echo "Waiting for Jellyfin API to be ready..."
+              for i in $(seq 1 60); do
+                if curl -sf "${JELLYFIN_URL}/health" > /dev/null 2>&1; then
+                  echo "Jellyfin is ready."
+                  break
+                fi
+                if [ "$i" -eq 60 ]; then
+                  echo "ERROR: Jellyfin did not become ready within 5 minutes."
+                  exit 1
+                fi
+                echo "  Waiting... attempt $i/60"
+                sleep 5
+              done
+
+              # Wait for Plex to be available
+              echo "Checking Plex API..."
+              if ! curl -sf "${PLEX_URL}/identity" -H "X-Plex-Token: ${PLEX_TOKEN}" > /dev/null 2>&1; then
+                echo "WARNING: Plex API not reachable. Verify PLEX_URL and PLEX_TOKEN."
+                exit 1
+              fi
+              echo "Plex is reachable."
+
+              # Run the migration
+              echo ""
+              echo "Starting migration of watched status..."
+              python3 migrate.py \
+                --plex-url "${PLEX_URL}" \
+                --plex-token "${PLEX_TOKEN}" \
+                --jellyfin-url "${JELLYFIN_URL}" \
+                --jellyfin-token "${JELLYFIN_TOKEN}" \
+                --jellyfin-user "${JELLYFIN_USER}" \
+                --skip \
+                --insecure \
+                --debug \
+                --translate "/mnt/media:/mnt/media"
+
+              echo ""
+              echo "=== Migration complete ==="
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+
+
