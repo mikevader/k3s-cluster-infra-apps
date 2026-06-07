@@ -25,6 +25,8 @@ metadata:
     {{- end }}
   name: {{ $key }}
   namespace: {{ default "argocd-system" $.Values.argocdNamespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: {{ default $key $destinationNamespace }}
