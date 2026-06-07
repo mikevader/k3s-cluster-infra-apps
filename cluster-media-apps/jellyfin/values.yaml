@@ -120,10 +120,9 @@ jellyfin:
     requests:
       cpu: 500m
       memory: 512Mi
-      nvidia.com/gpu: 0
     limits:
       cpu: 4
       memory: 8192Mi
-      nvidia.com/gpu: 1
+      # nvidia.com/gpu: 1
 
 
