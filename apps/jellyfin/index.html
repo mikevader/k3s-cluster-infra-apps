@@ -12,13 +12,9 @@
         <meta name="author" content="Michael M&uuml;hlebach">
       
       
-        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/setup/custom-images/">
+        <link rel="canonical" href="https://mikevader.github.io/k3s-cluster-infra-apps/apps/jellyfin/">
       
       
-        <link rel="prev" href="../ansible/">
-      
-      
-        <link rel="next" href="../../cluster-core/argocd/">
       
       
         
@@ -29,7 +25,7 @@
     
     
       
-        <title>Custom Images - K3s Homelab GitOps Stack</title>
+        <title>Jellyfin - K3s Homelab GitOps Stack</title>
       
     
     
@@ -80,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#custom-docker-images" class="md-skip">
+        <a href="#jellyfin" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Custom Images
+              Jellyfin
             
           </span>
         </div>
@@ -280,8 +276,6 @@
   
   
   
-    
-  
   
     
     
@@ -289,12 +283,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../../hardware/raspberry-pi/" class="md-tabs__link">
           
   
@@ -385,7 +377,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../apps/plex/" class="md-tabs__link">
+        <a href="../plex/" class="md-tabs__link">
           
   
   
@@ -924,31 +916,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -966,7 +955,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -990,13 +979,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -1005,7 +991,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1" >
         
           
-          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
             
   
   
@@ -1158,31 +1144,28 @@
                 
   
   
-    
   
   
-  
     
     
     
     
       
       
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
         
           
-          
         
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
             
   
   
@@ -1200,7 +1183,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1218,7 +1201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bare-metal/" class="md-nav__link">
+      <a href="../../setup/bare-metal/" class="md-nav__link">
         
   
   
@@ -1246,7 +1229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ansible/" class="md-nav__link">
+      <a href="../../setup/ansible/" class="md-nav__link">
         
   
   
@@ -1271,37 +1254,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Custom Images
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../setup/custom-images/" class="md-nav__link">
         
   
   
@@ -1317,48 +1273,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Testing
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        References
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2638,7 +2552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../apps/plex/" class="md-nav__link">
+      <a href="../plex/" class="md-nav__link">
         
   
   
@@ -2728,7 +2642,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../apps/adguard/" class="md-nav__link">
+      <a href="../adguard/" class="md-nav__link">
         
   
   
@@ -2756,7 +2670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../apps/airprint.md" class="md-nav__link">
+      <a href="../airprint.md" class="md-nav__link">
         
   
   
@@ -2784,7 +2698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../apps/vpn/" class="md-nav__link">
+      <a href="../vpn/" class="md-nav__link">
         
   
   
@@ -2874,7 +2788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../apps/uptime-kuma/" class="md-nav__link">
+      <a href="../uptime-kuma/" class="md-nav__link">
         
   
   
@@ -2964,7 +2878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../apps/securitycam/" class="md-nav__link">
+      <a href="../securitycam/" class="md-nav__link">
         
   
   
@@ -2992,7 +2906,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../apps/rails-app/" class="md-nav__link">
+      <a href="../rails-app/" class="md-nav__link">
         
   
   
@@ -3457,10 +3371,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Testing
+        Overview
       
     </span>
   </a>
@@ -3468,10 +3382,226 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
+  <a href="#architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        References
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volumes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-own-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration (own volume)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-volumes-read-only-shared-with-plex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Media Volumes (read-only, shared with Plex)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plex-metadata-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plex Metadata Migration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plex Metadata Migration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-migrated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is migrated
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the migration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-the-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring the migration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-managed-plex-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For managed Plex users
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-transcoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware Transcoding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-with-plex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison with Plex
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pod-not-starting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod not starting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-job-failing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration job failing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpu-not-detected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GPU not detected
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network
       
     </span>
   </a>
@@ -3496,72 +3626,6 @@
   
 
 
-  <nav class="md-path" aria-label="Navigation" >
-    <ol class="md-path__list">
-      
-        
-  
-  
-    <li class="md-path__item">
-      <a href="../.." class="md-path__link">
-        
-  <span class="md-ellipsis">
-    Home
-  </span>
-
-      </a>
-    </li>
-  
-
-      
-      
-        
-  
-  
-    
-    
-      
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../../hardware/raspberry-pi/" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    Infrastructure Setup
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../bare-metal/" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    OS & Provisioning
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-    </ol>
-  </nav>
-
               
               <article class="md-content__inner md-typeset">
                 
@@ -3572,20 +3636,270 @@
   
 
 
-<h1 id="custom-docker-images">Custom Docker Images<a class="headerlink" href="#custom-docker-images" title="Permanent link">&para;</a></h1>
-<p>https://github.com/norwoodj/helm-docs/blob/master/README.md
-https://pre-commit.com/#install
-https://github.com/norwoodj/helm-docs
-https://keepachangelog.com/en/1.0.0/</p>
-<p>k8s best practices for images: https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-how-and-why-to-build-small-container-images</p>
-<p>For the task of creating my own images I got inspired by the setup from
-<a href="https://github.com/k8s-at-home/container-images">k8s-at-home</a> and of it's contributers like <a href="https://github.com/onedr0p/containers">onedr0p</a></p>
-<h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
-<p>Use <a href="https://github.com/aelsabbahy/goss">GOSS</a>.</p>
-<p>Use <code>dgoss</code> locally which is just a docker wrapper for goss.</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<h1 id="jellyfin">Jellyfin<a class="headerlink" href="#jellyfin" title="Permanent link">&para;</a></h1>
+<p>Jellyfin is a free and open-source media server, deployed as a potential replacement for Plex.
+Both services run in parallel sharing the same media volumes (read-only).</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>URL</strong></td>
+<td><code>https://jellyfin.framsburg.ch</code></td>
+</tr>
+<tr>
+<td><strong>Port</strong></td>
+<td>8096</td>
+</tr>
+<tr>
+<td><strong>Image</strong></td>
+<td><code>jellyfin/jellyfin:10.11.10</code></td>
+</tr>
+<tr>
+<td><strong>Namespace</strong></td>
+<td><code>plex</code> (shared with Plex for PVC access)</td>
+</tr>
+<tr>
+<td><strong>Chart</strong></td>
+<td><code>jellyfin/jellyfin</code> (3.2.0) — <a href="https://github.com/jellyfin/jellyfin-helm">official</a></td>
+</tr>
+<tr>
+<td><strong>GPU</strong></td>
+<td>NVIDIA (hardware transcoding)</td>
+</tr>
+<tr>
+<td><strong>Node Affinity</strong></td>
+<td><code>k3sworker07</code> (same as Plex)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────────────┐
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│              k3sworker07 (namespace: plex)           │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│                                                     │
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│  ┌──────────┐          ┌──────────────┐             │
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  │   Plex   │          │   Jellyfin   │             │
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  │  :32400  │          │    :8096     │             │
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│  └────┬─────┘          └──────┬───────┘             │
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│       │                       │                     │
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│       │  ┌────────────────────┘                     │
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│       │  │                                          │
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│       ▼  ▼  (read-only, same PVCs)                  │
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│  ┌─────────────────────────────────────┐            │
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│  │        Shared Media Volumes         │            │
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│  │  plex-tv-all / plex-tv-uhd-all      │            │
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│  │  plex-movies-all / plex-movies-uhd  │            │
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│  │  plex-audiobooks (truenas-nfs/RWX)  │            │
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│  └─────────────────────────────────────┘            │
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>└─────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<h2 id="volumes">Volumes<a class="headerlink" href="#volumes" title="Permanent link">&para;</a></h2>
+<h3 id="configuration-own-volume">Configuration (own volume)<a class="headerlink" href="#configuration-own-volume" title="Permanent link">&para;</a></h3>
 <ul>
-<li>[CSI]: Container Storage Interface</li>
+<li><strong>PVC</strong>: <code>jellyfin-config</code> — 20Gi, ReadWriteOnce</li>
+<li><strong>Mount</strong>: <code>/config</code></li>
+<li>Jellyfin stores its database, metadata cache, and settings here.</li>
+</ul>
+<h3 id="cache">Cache<a class="headerlink" href="#cache" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Type</strong>: emptyDir</li>
+<li><strong>Mount</strong>: <code>/cache</code></li>
+<li>Transcoding cache — ephemeral, recreated on pod restart.</li>
+</ul>
+<h3 id="media-volumes-read-only-shared-with-plex">Media Volumes (read-only, shared with Plex)<a class="headerlink" href="#media-volumes-read-only-shared-with-plex" title="Permanent link">&para;</a></h3>
+<p>Jellyfin runs in the <code>plex</code> namespace and directly references the existing Plex PVCs:</p>
+<table>
+<thead>
+<tr>
+<th>PVC Name</th>
+<th>Mount Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plex-tv-all</code></td>
+<td><code>/mnt/media/tv-all</code></td>
+</tr>
+<tr>
+<td><code>plex-tv-uhd-all</code></td>
+<td><code>/mnt/media/tv-uhd-all</code></td>
+</tr>
+<tr>
+<td><code>plex-movies-all</code></td>
+<td><code>/mnt/media/movies-all</code></td>
+</tr>
+<tr>
+<td><code>plex-movies-uhd-all</code></td>
+<td><code>/mnt/media/movies-uhd-all</code></td>
+</tr>
+<tr>
+<td><code>plex-audiobooks</code></td>
+<td><code>/mnt/media/audiobooks</code></td>
+</tr>
+</tbody>
+</table>
+<p>All media volumes are mounted <strong>read-only</strong> to prevent accidental modification.</p>
+<h2 id="plex-metadata-migration">Plex Metadata Migration<a class="headerlink" href="#plex-metadata-migration" title="Permanent link">&para;</a></h2>
+<p>Watch history is migrated using <a href="https://github.com/wilmardo/migrate-plex-to-jellyfin">wilmardo/migrate-plex-to-jellyfin</a>,
+which uses the Plex and Jellyfin APIs to transfer watched status based on file name matching.</p>
+<p>The migration is implemented as an <strong>ArgoCD PostSync Job</strong> that runs automatically after the initial sync.</p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Complete the Jellyfin initial setup wizard at <code>https://jellyfin.framsburg.ch</code></li>
+<li>Add all media libraries (same paths as Plex — see volumes table above)</li>
+<li>Generate a Jellyfin API key: <strong>Dashboard → API Keys → +</strong></li>
+<li>Get your Plex token: <a href="https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/">support.plex.tv/articles/204059436</a></li>
+<li>Store credentials in Vault (ExternalSecret pulls from <code>secret/data/framsburg/jellyfin/migration</code>):
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>vault<span class="w"> </span>kv<span class="w"> </span>put<span class="w"> </span>secret/framsburg/jellyfin/migration<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>plex-token<span class="o">=</span>&lt;YOUR_PLEX_TOKEN&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>jellyfin-token<span class="o">=</span>&lt;YOUR_JELLYFIN_API_KEY&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>jellyfin-user<span class="o">=</span>&lt;YOUR_JELLYFIN_USERNAME&gt;
+</span></code></pre></div></li>
+</ol>
+<h3 id="what-is-migrated">What is migrated<a class="headerlink" href="#what-is-migrated" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Movie watch status (matched by file name)</li>
+<li>TV episode watch status (matched by file name)</li>
+<li>Uses <code>--skip</code> flag to gracefully handle unmatched items</li>
+<li>Uses <code>--translate "/mnt/media:/mnt/media"</code> for path mapping (same paths in both)</li>
+</ul>
+<h3 id="running-the-migration">Running the migration<a class="headerlink" href="#running-the-migration" title="Permanent link">&para;</a></h3>
+<p>The Job runs automatically as an ArgoCD PostSync hook on the first sync.
+To trigger it again, delete the job and let ArgoCD re-sync:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>plex<span class="w"> </span>delete<span class="w"> </span>job<span class="w"> </span>jellyfin-plex-migration
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># ArgoCD will recreate it on next sync</span>
+</span></code></pre></div>
+<p>Or run the tool directly via a one-off pod:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>plex<span class="w"> </span>run<span class="w"> </span>plex-migrate<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>--image<span class="o">=</span>python:3.12-slim<span class="w"> </span>--<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="s1">  pip install plexapi click requests loguru &amp;&amp;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="s1">  cd /tmp &amp;&amp; git clone --depth 1 https://github.com/wilmardo/migrate-plex-to-jellyfin.git &amp;&amp;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="s1">  cd migrate-plex-to-jellyfin &amp;&amp;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="s1">  python3 migrate.py \</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="s1">    --plex-url http://plex:32400 \</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="s1">    --plex-token &lt;PLEX_TOKEN&gt; \</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="s1">    --jellyfin-url http://jellyfin-jellyfin:8096 \</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="s1">    --jellyfin-token &lt;JELLYFIN_TOKEN&gt; \</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="s1">    --jellyfin-user &lt;USER&gt; \</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="s1">    --skip --insecure --debug \</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="s1">    --translate &quot;/mnt/media:/mnt/media&quot;</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="s1">&#39;</span>
+</span></code></pre></div></p>
+<h3 id="monitoring-the-migration">Monitoring the migration<a class="headerlink" href="#monitoring-the-migration" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>plex<span class="w"> </span>logs<span class="w"> </span>job/jellyfin-plex-migration<span class="w"> </span>-f
+</span></code></pre></div>
+<h3 id="for-managed-plex-users">For managed Plex users<a class="headerlink" href="#for-managed-plex-users" title="Permanent link">&para;</a></h3>
+<p>If migrating a specific managed user's watch state, add <code>--plex-managed-user &lt;name&gt;</code>.</p>
+<h2 id="hardware-transcoding">Hardware Transcoding<a class="headerlink" href="#hardware-transcoding" title="Permanent link">&para;</a></h2>
+<p>Jellyfin is configured with NVIDIA GPU access for hardware-accelerated transcoding:
+- <code>runtimeClassName: nvidia</code>
+- <code>NVIDIA_VISIBLE_DEVICES: all</code>
+- <code>NVIDIA_DRIVER_CAPABILITIES: all</code>
+- GPU limit: 1 × <code>nvidia.com/gpu</code></p>
+<p>After first login, enable hardware transcoding in:
+<strong>Dashboard → Playback → Transcoding → Hardware acceleration: NVIDIA NVENC</strong></p>
+<h2 id="initial-setup">Initial Setup<a class="headerlink" href="#initial-setup" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Push changes to <code>k3s-cluster-infra-apps</code> — ArgoCD will automatically sync and deploy Jellyfin into the <code>plex</code> namespace.</p>
+</li>
+<li>
+<p>Access <code>https://jellyfin.framsburg.ch</code> and complete the setup wizard.</p>
+</li>
+<li>
+<p>Add media libraries pointing to:</p>
+</li>
+<li><code>/mnt/media/tv-all</code> — TV Shows</li>
+<li><code>/mnt/media/tv-uhd-all</code> — TV Shows (4K)</li>
+<li><code>/mnt/media/movies-all</code> — Movies</li>
+<li><code>/mnt/media/movies-uhd-all</code> — Movies (4K)</li>
+<li>
+<p><code>/mnt/media/audiobooks</code> — Audiobooks</p>
+</li>
+<li>
+<p>Enable hardware transcoding (see section above).</p>
+</li>
+<li>
+<p>Store migration credentials in Vault (see migration section) — the ExternalSecret
+   will automatically sync them into the cluster.</p>
+</li>
+<li>
+<p>The PostSync migration Job will run automatically on the next ArgoCD sync.</p>
+</li>
+</ol>
+<h2 id="comparison-with-plex">Comparison with Plex<a class="headerlink" href="#comparison-with-plex" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Plex</th>
+<th>Jellyfin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>License</td>
+<td>Proprietary (freemium)</td>
+<td>FOSS (GPL-2.0)</td>
+</tr>
+<tr>
+<td>Transcoding</td>
+<td>NVIDIA GPU</td>
+<td>NVIDIA GPU</td>
+</tr>
+<tr>
+<td>Remote Access</td>
+<td>Built-in relay</td>
+<td>Direct / reverse proxy</td>
+</tr>
+<tr>
+<td>Mobile Apps</td>
+<td>Paid unlock</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>Live TV/DVR</td>
+<td>Plex Pass</td>
+<td>Free (with tuner)</td>
+</tr>
+<tr>
+<td>Plugins</td>
+<td>Limited</td>
+<td>Extensive</td>
+</tr>
+<tr>
+<td>Auth</td>
+<td>Plex account</td>
+<td>Local or LDAP/SSO</td>
+</tr>
+</tbody>
+</table>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="pod-not-starting">Pod not starting<a class="headerlink" href="#pod-not-starting" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>plex<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/name<span class="o">=</span>jellyfin
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>plex<span class="w"> </span>logs<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/name<span class="o">=</span>jellyfin
+</span></code></pre></div>
+<h3 id="migration-job-failing">Migration job failing<a class="headerlink" href="#migration-job-failing" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>plex<span class="w"> </span>logs<span class="w"> </span>job/jellyfin-plex-migration
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>plex<span class="w"> </span>describe<span class="w"> </span>job<span class="w"> </span>jellyfin-plex-migration
+</span></code></pre></div>
+<h3 id="gpu-not-detected">GPU not detected<a class="headerlink" href="#gpu-not-detected" title="Permanent link">&para;</a></h3>
+<p>Verify the NVIDIA device plugin is running and the node has GPU resources:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>node<span class="w"> </span>k3sworker07<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A5<span class="w"> </span>nvidia
+</span></code></pre></div></p>
+<h2 id="network">Network<a class="headerlink" href="#network" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Internal: <code>http://jellyfin.plex.svc.cluster.local:8096</code></li>
+<li>
+<p>External: <code>https://jellyfin.framsburg.ch</code> (via Traefik ingress with Authentik SSO)</p>
+</li>
+<li>
+<p>[CSI]: Container Storage Interface</p>
+</li>
 <li>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></li>
 </ul>
 
