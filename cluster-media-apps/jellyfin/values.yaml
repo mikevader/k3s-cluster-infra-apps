@@ -18,10 +18,10 @@ jellyfin:
     env:
       - name: TZ
         value: "Europe/Zurich"
-      - name: NVIDIA_VISIBLE_DEVICES
-        value: "all"
-      - name: NVIDIA_DRIVER_CAPABILITIES
-        value: "all"
+      # - name: NVIDIA_VISIBLE_DEVICES
+      #   value: "all"
+      # - name: NVIDIA_DRIVER_CAPABILITIES
+      #   value: "all"
 
   persistence:
     config:
