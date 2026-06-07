@@ -4,7 +4,7 @@ jellyfin:
     tag: ""  # Uses Chart appVersion (10.11.10)
     pullPolicy: IfNotPresent
 
-  runtimeClassName: nvidia
+  # runtimeClassName: nvidia
 
   podSecurityContext:
     runAsUser: 666
@@ -120,6 +120,7 @@ jellyfin:
     requests:
       cpu: 500m
       memory: 512Mi
+      nvidia.com/gpu: 0
     limits:
       cpu: 4
       memory: 8192Mi

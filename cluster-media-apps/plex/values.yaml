@@ -253,6 +253,7 @@ plex:
     requests:
       cpu: 500m
       memory: 256Mi
+      nvidia.com/gpu: 0
     limits:
       cpu: 4
       memory: 16384Mi
