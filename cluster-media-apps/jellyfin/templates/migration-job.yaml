@@ -39,7 +39,7 @@ spec:
                   name: jellyfin-plex-migration
                   key: plex-token
             - name: JELLYFIN_URL
-              value: "http://jellyfin-jellyfin:8096"
+              value: "http://jellyfin:8096"
             - name: JELLYFIN_TOKEN
               valueFrom:
                 secretKeyRef:
