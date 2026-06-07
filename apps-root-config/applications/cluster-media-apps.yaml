@@ -25,6 +25,9 @@ namespaceResourceBlacklist:
 
 applications: 
   plex: {}
+  jellyfin:
+    disableNamespaceCreation: true
+    destinationNamespace: plex
   arr:
     disableNamespaceCreation: true
     destinationNamespace: plex

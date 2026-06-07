@@ -1,0 +1,128 @@
+jellyfin:
+  image:
+    repository: docker.io/jellyfin/jellyfin
+    tag: ""  # Uses Chart appVersion (10.11.10)
+    pullPolicy: IfNotPresent
+
+  runtimeClassName: nvidia
+
+  podSecurityContext:
+    runAsUser: 666
+    runAsGroup: 666
+    fsGroup: 666
+    fsGroupChangePolicy: Always
+
+  securityContext: {}
+
+  jellyfin:
+    env:
+      - name: TZ
+        value: "Europe/Zurich"
+      - name: NVIDIA_VISIBLE_DEVICES
+        value: "all"
+      - name: NVIDIA_DRIVER_CAPABILITIES
+        value: "all"
+
+  persistence:
+    config:
+      enabled: true
+      size: 20Gi
+      accessMode: ReadWriteOnce
+    media:
+      enabled: false
+    cache:
+      enabled: true
+      type: emptyDir
+
+  # Additional volumes for media (read-only, reusing existing Plex PVCs)
+  volumes:
+    - name: tv-all
+      persistentVolumeClaim:
+        claimName: plex-tv-all
+        readOnly: true
+    - name: tv-uhd-all
+      persistentVolumeClaim:
+        claimName: plex-tv-uhd-all
+        readOnly: true
+    - name: movies-all
+      persistentVolumeClaim:
+        claimName: plex-movies-all
+        readOnly: true
+    - name: movies-uhd-all
+      persistentVolumeClaim:
+        claimName: plex-movies-uhd-all
+        readOnly: true
+    - name: audiobooks
+      persistentVolumeClaim:
+        claimName: plex-audiobooks
+        readOnly: true
+
+  volumeMounts:
+    - name: tv-all
+      mountPath: /mnt/media/tv-all
+      readOnly: true
+    - name: tv-uhd-all
+      mountPath: /mnt/media/tv-uhd-all
+      readOnly: true
+    - name: movies-all
+      mountPath: /mnt/media/movies-all
+      readOnly: true
+    - name: movies-uhd-all
+      mountPath: /mnt/media/movies-uhd-all
+      readOnly: true
+    - name: audiobooks
+      mountPath: /mnt/media/audiobooks
+      readOnly: true
+
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                  - k3sworker07
+
+  ingress:
+    enabled: true
+    className: traefik
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/description: "Jellyfin is a free media server for streaming your media library."
+      gethomepage.dev/group: "Media"
+      gethomepage.dev/icon: jellyfin.png
+      gethomepage.dev/name: Jellyfin
+      gethomepage.dev/widget.type: "jellyfin"
+      gethomepage.dev/widget.url: "https://jellyfin.framsburg.ch"
+      gethomepage.dev/pod-selector: ""
+      hajimari.io/enable: "true"
+      hajimari.io/icon: simple-icons:jellyfin
+      hajimari.io/appName: Jellyfin
+      hajimari.io/group: Media
+      forecastle.stakater.com/expose: "true"
+      forecastle.stakater.com/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/jellyfin.png
+      forecastle.stakater.com/appName: Jellyfin
+      forecastle.stakater.com/group: Media
+    hosts:
+      - host: jellyfin.framsburg.ch
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - hosts: [jellyfin.framsburg.ch]
+        secretName: jellyfin-framsburg-ch-tls
+
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 4
+      memory: 8192Mi
+      nvidia.com/gpu: 1
+
+
