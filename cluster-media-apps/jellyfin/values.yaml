@@ -32,7 +32,8 @@ jellyfin:
       enabled: false
     cache:
       enabled: true
-      type: emptyDir
+      size: 20Gi
+      accessMode: ReadWriteOnce
 
   # Additional volumes for media (read-only, reusing existing Plex PVCs)
   volumes:

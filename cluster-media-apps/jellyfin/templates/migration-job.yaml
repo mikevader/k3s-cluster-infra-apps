@@ -103,8 +103,7 @@ spec:
                 --jellyfin-user "${JELLYFIN_USER}" \
                 --skip \
                 --insecure \
-                --debug \
-                --translate "/mnt/media:/mnt/media"
+                --debug
 
               echo ""
               echo "=== Migration complete ==="
