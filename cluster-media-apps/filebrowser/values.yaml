@@ -10,15 +10,13 @@ filebrowser:
   config: |
     {
       "port": 8080,
-      "baseURL": "",
+      "baseURL": "https://{{ .Values.global.domainName }}/",
       "address": "",
       "log": "stdout",
       "database": "/config/database.db",
       "root": "/mnt/media",
-      "auth": {
-        "method": "proxy",
-        "header": "X-authentik-username"
-      }
+      "authMethod": "proxy",
+      "authHeader": "X-authentik-username"
     }
 
   podSecurityContext:
