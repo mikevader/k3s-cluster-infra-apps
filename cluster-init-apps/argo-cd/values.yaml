@@ -51,6 +51,10 @@ argo-cd:
           icon.class: "fa-book"
       # sample application level links
       application.links: |
+        - url: https://grafana.framsburg.ch/a/grafana-lokiexplore-app/explore/namespace/{{.resource.metadata.namespace}}/logs?var-filters=namespace%7C%3D%7C{{.resource.metadata.namespace}}
+          title: Grafana
+          description: System logs of namespace
+          icon.class: "fa-binoculars"
         # pkg.go.dev/text/template is used for evaluating url templates
         - url: https://mycompany.splunk.com?search={{.spec.destination.namespace}}
           title: Splunk
@@ -65,10 +69,10 @@ argo-cd:
       # sample resource level links
       resource.links: |
         - url: https://grafana.framsburg.ch/a/grafana-lokiexplore-app/explore/namespace/{{.resource.metadata.namespace}}/logs?var-filters=namespace%7C%3D%7C{{.resource.metadata.namespace}}
-          title: Splunk
+          title: Grafana
           if: resource.kind == "Deployment"
         - url: https://grafana.framsburg.ch/a/grafana-lokiexplore-app/explore/namespace/{{.resource.metadata.namespace}}/logs?var-filters=namespace%7C%3D%7C{{.resource.metadata.namespace}}&var-filters=pod%7C%3D%7C{{.resource.metadata.name}}
-          title: Splunk
+          title: Grafana
           if: resource.kind == "Pod"
 
     rbac: # rbacConfig
