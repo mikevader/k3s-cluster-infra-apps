@@ -22,8 +22,8 @@ argo-cd:
         name: Authentik
         issuer: https://authentik.framsburg.ch/application/o/argocd/
         clientID: c579d3195f85aeccaf1ecce35ef5501e023c2a6a
-        clientSecret: $argocd-oidc-secret:oidc.authentik.clientSecret
-        requestedScopes: ["openid", "profile", "email", "groups", "offline_access"]
+        clientSecret: $oidc.authentik.clientSecret
+        requestedScopes: ["openid", "profile", "email", "groups"]
         logoutURL: https://authentik.framsburg.ch/application/o/argocd/end-session/
         enableUserInfoGroups: true
         userInfoURL: https://authentik.framsburg.ch/application/o/userinfo/
