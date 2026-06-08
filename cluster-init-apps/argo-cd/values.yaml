@@ -55,17 +55,6 @@ argo-cd:
           title: Grafana
           description: System logs of namespace
           icon.class: "fa-binoculars"
-        # pkg.go.dev/text/template is used for evaluating url templates
-        - url: https://mycompany.splunk.com?search={{.spec.destination.namespace}}
-          title: Splunk
-        # conditionally show link e.g. for specific project
-        # github.com/expr-lang/expr is used for evaluation of conditions
-        - url: https://mycompany.splunk.com?search={{.spec.destination.namespace}}
-          title: Splunk
-          if: spec.project == "default"
-        - url: https://{{.metadata.annotations.splunkhost}}?search={{.spec.destination.namespace}}
-          title: Splunk
-          if: metadata.annotations.splunkhost
       # sample resource level links
       resource.links: |
         - url: https://grafana.framsburg.ch/a/grafana-lokiexplore-app/explore/namespace/{{.resource.metadata.namespace}}/logs?var-filters=namespace%7C%3D%7C{{.resource.metadata.namespace}}
