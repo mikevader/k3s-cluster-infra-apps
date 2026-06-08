@@ -38,16 +38,16 @@ filebrowser:
       volumeMounts:
         - name: audiobooks
           mountPath: /mnt/media/audiobooks
-#        - name: tv-all
-#          mountPath: /mnt/media/tv-all
-#        - name: movies-all
-#          mountPath: /mnt/media/movies-all
-#        - name: tv-uhd-all
-#          mountPath: /mnt/media/tv-uhd-all
-#        - name: movies-uhd-all
-#          mountPath: /mnt/media/movies-uhd-all
-#        - name: downloads
-#          mountPath: /mnt/media/downloads
+        - name: tv-all
+          mountPath: /mnt/media/tv-all
+        - name: movies-all
+          mountPath: /mnt/media/movies-all
+        - name: tv-uhd-all
+          mountPath: /mnt/media/tv-uhd-all
+        - name: movies-uhd-all
+          mountPath: /mnt/media/movies-uhd-all
+        - name: downloads
+          mountPath: /mnt/media/downloads
 
   service:
     main:
