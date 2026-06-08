@@ -8,3 +8,5 @@ metallb:
   prometheus:
     serviceMonitor:
       enabled: true
+    namespace: monitoring-stack
+    serviceAccount: monitoring-stack-kube-prom-prometheus
