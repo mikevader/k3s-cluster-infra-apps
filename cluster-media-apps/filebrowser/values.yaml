@@ -6,6 +6,8 @@ filebrowser:
     enabled: true
   env:
     TZ: Europe/Zurich
+    FB_AUTH_METHOD: proxy
+    FB_AUTH_HEADER: X-authentik-username
 
   config: |
     {
