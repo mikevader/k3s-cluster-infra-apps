@@ -66,10 +66,10 @@ argo-cd:
       resource.links: |
         - url: https://grafana.framsburg.ch/a/grafana-lokiexplore-app/explore/namespace/{{.resource.metadata.namespace}}/logs?var-filters=namespace%7C%3D%7C{{.resource.metadata.namespace}}
           title: Splunk
-          if: kind == "Deployment"
+          if: resource.kind == "Deployment"
         - url: https://grafana.framsburg.ch/a/grafana-lokiexplore-app/explore/namespace/{{.resource.metadata.namespace}}/logs?var-filters=namespace%7C%3D%7C{{.resource.metadata.namespace}}&var-filters=pod%7C%3D%7C{{.resource.metadata.name}}
           title: Splunk
-          if: kind == "Pod"
+          if: resource.kind == "Pod"
 
     rbac: # rbacConfig
       policy.default: role:readonly
