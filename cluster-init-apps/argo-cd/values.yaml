@@ -98,7 +98,7 @@ argo-cd:
         enabled: false
 
   dex:
-    enabled: true
+    enabled: false
     metrics:
       enabled: true
       serviceMonitor:
