@@ -11,6 +11,8 @@ jellyfin:
     runAsGroup: 666
     fsGroup: 666
     fsGroupChangePolicy: Always
+    supplementalGroups:
+      - 666  # GID that owns the Plex media files
 
   securityContext: {}
 
