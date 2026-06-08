@@ -19,6 +19,9 @@ filebrowser:
       "authHeader": "X-authentik-username"
     }
 
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
+
   podSecurityContext:
     runAsUser: 666
     runAsGroup: 666
