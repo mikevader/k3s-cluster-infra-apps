@@ -51,7 +51,7 @@ argo-cd:
           icon.class: "fa-book"
       # sample application level links
       application.links: |
-        - url: https://grafana.framsburg.ch/a/grafana-lokiexplore-app/explore/namespace/{{.resource.metadata.namespace}}/logs?var-filters=namespace%7C%3D%7C{{.resource.metadata.namespace}}
+        - url: https://grafana.framsburg.ch/a/grafana-lokiexplore-app/explore/namespace/{{.metadata.namespace}}/logs?var-filters=namespace%7C%3D%7C{{.metadata.namespace}}
           title: Grafana
           description: System logs of namespace
           icon.class: "fa-binoculars"
