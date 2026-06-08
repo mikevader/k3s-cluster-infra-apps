@@ -33,13 +33,17 @@ applications:
 #    source:
 #      helm:
 #        skipCrds: true
-  longhorn-system: {}
+  longhorn-system:
+    helmServerSideApply: true
+    serverSideDiff: true
   metallb-system: {}
   minio: {}
   monitoring-stack:
     helmServerSideApply: true
   nginx: {}
-  nvidia: {}
+  nvidia:
+    helmServerSideApply: true
+    serverSideDiff: true
   opnsense: {}
   promtail: {}
   snapshot-controller: {}
