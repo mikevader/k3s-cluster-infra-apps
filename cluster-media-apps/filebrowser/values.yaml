@@ -10,7 +10,7 @@ filebrowser:
   config: |
     {
       "port": 8080,
-      "baseURL": "https://{{ .Values.global.domainName }}/",
+      "baseURL": "",
       "address": "",
       "log": "stdout",
       "database": "/config/database.db",
