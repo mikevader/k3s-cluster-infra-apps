@@ -29,6 +29,26 @@ filebrowser:
     supplementalGroups:
       - 666
 
+  initContainers:
+    fix-perms:
+      image: busybox:latest
+      command: ["sh", "-c", "chown -R 666:666 /mnt/media || true"]
+      securityContext:
+        runAsUser: 0
+      volumeMounts:
+        - name: audiobooks
+          mountPath: /mnt/media/audiobooks
+#        - name: tv-all
+#          mountPath: /mnt/media/tv-all
+#        - name: movies-all
+#          mountPath: /mnt/media/movies-all
+#        - name: tv-uhd-all
+#          mountPath: /mnt/media/tv-uhd-all
+#        - name: movies-uhd-all
+#          mountPath: /mnt/media/movies-uhd-all
+#        - name: downloads
+#          mountPath: /mnt/media/downloads
+
   service:
     main:
       ports:
