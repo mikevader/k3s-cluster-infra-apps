@@ -52,6 +52,13 @@ filebrowser:
         - name: downloads
           mountPath: /mnt/media/downloads
 
+    permission:
+      image: filebrowser/filebrowser:v2.63.14
+      command: ["sh", "-c", "filebrowser -c /config/config.json config cat"]
+      volumeMounts:
+        - name: config
+          mountPath: /config
+
   service:
     main:
       ports:
