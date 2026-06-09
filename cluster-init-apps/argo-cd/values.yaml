@@ -106,8 +106,10 @@ argo-cd:
       rules:
         enabled: false
 
-#  dex:
-#    enabled: true
+  dex:
+    env:
+      - name: ARGOCD_DEX_SERVER_DISABLE_TLS
+        value: "false"
 #    certificateSecret:
 #      enabled: true
 #    metrics:
