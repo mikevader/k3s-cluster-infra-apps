@@ -106,14 +106,14 @@ argo-cd:
       rules:
         enabled: false
 
-  dex:
-    enabled: true
-    certificateSecret:
-      enabled: true
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
+#  dex:
+#    enabled: true
+#    certificateSecret:
+#      enabled: true
+#    metrics:
+#      enabled: true
+#      serviceMonitor:
+#        enabled: true
 
   server:
     # autoscaling:
