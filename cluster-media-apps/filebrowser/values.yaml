@@ -54,7 +54,7 @@ filebrowser:
 
     permission:
       image: filebrowser/filebrowser:v2.63.14
-      command: ["sh", "-c", "filebrowser -c /config/config.json config cat"]
+      command: ["sh", "-c", "filebrowser -c /config/settings.json config cat"]
       volumeMounts:
         - name: config
           mountPath: /config
