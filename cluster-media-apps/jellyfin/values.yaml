@@ -98,6 +98,7 @@ jellyfin:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.middlewares: jellyfin-jellyfin-headers@kubernetescrd,jellyfin-jellyfin-buffering@kubernetescrd,authentik-authentik@kubernetescrd
       gethomepage.dev/enabled: "true"
       gethomepage.dev/description: "Jellyfin is a free media server for streaming your media library."
       gethomepage.dev/group: "Media"
