@@ -29,6 +29,9 @@ applications:
   hajimari: {}
   homarr: {}
   homepage: {}
+  httpbin:
+    helmServerSideApply: true
+    serverSideDiff: true
   openclaw: {}
   # bouncer: {}
   # test-helm-test:

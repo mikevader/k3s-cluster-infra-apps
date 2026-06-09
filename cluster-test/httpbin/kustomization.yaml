@@ -1,0 +1,20 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: httpbin
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: httpbin
+      app.kubernetes.io/instance: httpbin
+      app.kubernetes.io/managed-by: kustomize
+    includeSelectors: true
+  - pairs:
+      app.kubernetes.io/version: latest
+    includeSelectors: false
+
+resources:
+  - resources/deployment.yaml
+  - resources/service.yaml
+  - resources/ingress.yaml
