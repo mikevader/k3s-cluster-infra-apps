@@ -58,6 +58,9 @@ filebrowser:
       volumeMounts:
         - name: config
           mountPath: /config
+        - name: filebrowser-config
+          mountPath: /config/settings.json
+          subPath: settings.json
 
   service:
     main:
