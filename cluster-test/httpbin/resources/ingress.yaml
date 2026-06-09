@@ -6,6 +6,7 @@ metadata:
   annotations:
     kubernetes.io/tls-acme: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
 spec:
   rules:
     - host: httpbin.framsburg.ch
