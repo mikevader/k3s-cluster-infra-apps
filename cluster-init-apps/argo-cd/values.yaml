@@ -106,7 +106,10 @@ argo-cd:
       rules:
         enabled: false
 
-#  dex:
+  dex:
+    enabled: true
+    extraArgs:
+      - --disable-tlx
 #    certificateSecret:
 #      enabled: true
 #    metrics:
