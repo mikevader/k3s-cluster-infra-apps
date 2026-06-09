@@ -18,29 +18,29 @@ argo-cd:
     cm: # config
       kustomize.buildOptions: "--enable-helm"
       url: https://argocd.framsburg.ch
-      oidc.config: |
-        name: Authentik
-        issuer: https://authentik.framsburg.ch/application/o/argocd/
-        clientID: c579d3195f85aeccaf1ecce35ef5501e023c2a6a
-        clientSecret: $oidc.authentik.clientSecret
-        requestedScopes: ["openid", "profile", "email", "groups"]
-        logoutURL: https://authentik.framsburg.ch/application/o/argocd/end-session/
-        enableUserInfoGroups: true
-        userInfoURL: https://authentik.framsburg.ch/application/o/userinfo/
-#      dex.config: |
-#        connectors:
-#          - config:
-#              issuer: https://authentik.framsburg.ch/application/o/argocd/
-#              clientID: c579d3195f85aeccaf1ecce35ef5501e023c2a6a
-#              clientSecret: $argocd-secret:oidc.authentik.clientSecret
-#              insecureEnableGroups: true
-#              scopes:
-#                - openid
-#                - profile
-#                - email
-#            name: authentik
-#            type: oidc
-#            id: authentik
+#      oidc.config: |
+#        name: Authentik
+#        issuer: https://authentik.framsburg.ch/application/o/argocd/
+#        clientID: c579d3195f85aeccaf1ecce35ef5501e023c2a6a
+#        clientSecret: $oidc.authentik.clientSecret
+#        requestedScopes: ["openid", "profile", "email", "groups"]
+#        logoutURL: https://authentik.framsburg.ch/application/o/argocd/end-session/
+#        enableUserInfoGroups: true
+#        userInfoURL: https://authentik.framsburg.ch/application/o/userinfo/
+      dex.config: |
+        connectors:
+          - config:
+              issuer: https://authentik.framsburg.ch/application/o/argocd/
+              clientID: c579d3195f85aeccaf1ecce35ef5501e023c2a6a
+              clientSecret: $oidc.authentik.clientSecret
+              insecureEnableGroups: true
+              scopes:
+                - openid
+                - profile
+                - email
+            name: authentik
+            type: oidc
+            id: authentik
 
       exec.enabled: true
 
@@ -100,7 +100,7 @@ argo-cd:
         enabled: false
 
   dex:
-    enabled: false
+    enabled: true
     metrics:
       enabled: true
       serviceMonitor:
@@ -138,7 +138,7 @@ argo-cd:
         enabled: true
 
   applicationSet:
-    enabled: true
+    enabled: false
     replicaCount: 1
     metrics:
       enabled: true
