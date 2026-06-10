@@ -166,6 +166,13 @@ traefik:
       enabled: true
       matchRule: Host(`traefik.framsburg.ch`)
       entryPoints: ["websecure"]
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/name: "Traefik"
+        gethomepage.dev/group: "Infrastructure"
+        gethomepage.dev/widget.url: "http://{{ .Release.Name }}.{{ .Release.Namespace }}:{{ .Values.ports.traefik.port }}"
+      labels:
+        app.kubernetes.io/instance: "{{ .Release.Name }}"
       tls:
         secretName: traefik-framsburg-ch-tls
   ingressClass:
