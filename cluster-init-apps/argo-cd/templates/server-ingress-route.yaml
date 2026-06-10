@@ -28,5 +28,5 @@ spec:
           port: 80
           scheme: h2c
   tls:
-    certResolver: default
+    certResolver: letsencrypt
     secretName: argocd-framsburg-ch-tls
