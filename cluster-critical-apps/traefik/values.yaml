@@ -170,9 +170,9 @@ traefik:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Traefik"
         gethomepage.dev/group: "Infrastructure"
-        gethomepage.dev/widget.url: "http://{{ .Release.Name }}.{{ .Release.Namespace }}:{{ .Values.ports.traefik.port }}"
+        gethomepage.dev/widget.url: "http://traefik.traefik:80"
       labels:
-        app.kubernetes.io/instance: "{{ .Release.Name }}"
+        app.kubernetes.io/instance: "traefik"
       tls:
         secretName: traefik-framsburg-ch-tls
   ingressClass:
