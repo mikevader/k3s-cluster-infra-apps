@@ -17,12 +17,14 @@ spec:
       priority: 10
       services:
         - name: argo-cd-argocd-server
+          namespace: argocd-system
           port: 80
     - kind: Rule
       match: Host(`argocd.framsburg.ch`) && Header(`Content-Type`, `application/grpc`)
       priority: 11
       services:
         - name: argo-cd-argocd-server
+          namespace: argocd-system
           port: 80
           scheme: h2c
   tls:

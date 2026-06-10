@@ -29,7 +29,10 @@ argo-cd:
 #        userInfoURL: https://authentik.framsburg.ch/application/o/userinfo/
       dex.config: |
         connectors:
-          - config:
+          - name: authentik
+            type: oidc
+            id: authentik
+            config:
               issuer: https://authentik.framsburg.ch/application/o/argocd/
               clientID: c579d3195f85aeccaf1ecce35ef5501e023c2a6a
               clientSecret: $oidc.authentik.clientSecret
@@ -38,9 +41,8 @@ argo-cd:
                 - openid
                 - profile
                 - email
-            name: authentik
-            type: oidc
-            id: authentik
+                - groups
+              getUserInfo: true
 
       exec.enabled: true
 
