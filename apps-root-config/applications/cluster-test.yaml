@@ -29,7 +29,7 @@ applications:
   hajimari: {}
   homarr: {}
   homepage: {}
-  homer: {}
+  # homer: {}
   httpbin:
     helmServerSideApply: true
     serverSideDiff: true
