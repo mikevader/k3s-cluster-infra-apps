@@ -53,7 +53,7 @@ filebrowser:
           mountPath: /mnt/media/downloads
 
     permission:
-      image: filebrowser/filebrowser:v2.63.14
+      image: filebrowser/filebrowser:v2.63.15
       command: ["sh", "-c", "filebrowser -c /config/settings.json config set --auth.method=proxy --auth.header=X-authentik-username && filebrowser -c /config/settings.json config cat"]
       volumeMounts:
         - name: config
