@@ -3,6 +3,9 @@ weblate:
 
   existingSecret: weblate-secrets
 
+  allowedHosts:
+    - weblate.framsburg.ch
+
   postgresql:
     enabled: false
     postgresqlHost: weblate-rw
