@@ -4,8 +4,8 @@ weblate:
   existingSecret: weblate-secrets
 
   extraConfig:
-    CSRF_TRUSTED_ORIGINS: "https://weblate.framsburg.ch,https://*.framsburg.ch"
-    WEBLATE_ALLOWED_HOSTS: "weblate.framsburg.ch,*"
+    CSRF_TRUSTED_ORIGINS: "https://weblate.framsburg.ch"
+    WEBLATE_ALLOWED_HOSTS: "weblate.framsburg.ch"
     WEBLATE_REGISTRATION_OPEN: "0"
     WEBLATE_TIME_ZONE: "Europe/Zurich"
     CSRF_COOKIE_SECURE: "True"
