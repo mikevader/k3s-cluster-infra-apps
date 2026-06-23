@@ -1,4 +1,8 @@
 weblate:
+  siteDomain: weblate.framsburg.ch
+
+  existingSecret: weblate-secrets
+
   postgresql:
     enabled: false
     postgresqlHost: weblate-rw
