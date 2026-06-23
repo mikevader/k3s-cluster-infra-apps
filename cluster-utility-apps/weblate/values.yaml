@@ -1,10 +1,11 @@
 weblate:
-  siteDomain: weblate.framsburg.ch
+  # siteDomain: weblate.framsburg.ch
 
   existingSecret: weblate-secrets
 
-  extraConfig:
-    CSRF_TRUSTED_ORIGINS: "*.framsburg.ch"
+  # extraConfig:
+  #   CSRF_TRUSTED_ORIGINS: "*.framsburg.ch"
+  #   WEBLATE_REGISTRATION_OPEN: "0"
 
   postgresql:
     enabled: false
