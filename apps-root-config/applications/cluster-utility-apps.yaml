@@ -26,3 +26,4 @@ namespaceResourceBlacklist:
 applications:
   heimdall: {}
   uptime-kuma: {}
+  weblate: {}
