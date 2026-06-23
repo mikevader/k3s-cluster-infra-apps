@@ -4,7 +4,7 @@ weblate:
     postgresqlHost: weblate-rw
     auth:
       database: app
-      username: app
+      userName: app
       existingSecret: weblate-app
       secretKeys:
         userPasswordKey: password
