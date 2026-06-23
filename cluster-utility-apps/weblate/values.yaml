@@ -4,8 +4,8 @@ weblate:
   existingSecret: weblate-secrets
 
   extraConfig:
-    CSRF_TRUSTED_ORIGINS: "['https://weblate.framsburg.ch']"
-    WEBLATE_ENABLE_HTTPS: "False"
+    CSRF_TRUSTED_ORIGINS: "*.framsburg.ch"
+    WEBLATE_ENABLE_HTTPS: "true"
 
   postgresql:
     enabled: false
