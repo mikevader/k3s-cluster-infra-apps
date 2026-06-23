@@ -1,0 +1,26 @@
+weblate:
+  postgresql:
+    enabled: false
+    postgresqlHost: weblate-rw
+    auth:
+      database: app
+      username: app
+      existingSecret: weblate-app
+      secretKeys:
+        userPasswordKey: password
+
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    ingressClassName: traefik
+    hosts:
+      - host: weblate.framsburg.ch
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: weblate-framsburg-ch-tls
+        hosts:
+          - weblate.framsburg.ch

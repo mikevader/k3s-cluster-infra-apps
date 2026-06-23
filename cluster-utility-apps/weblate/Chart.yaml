@@ -1,0 +1,9 @@
+apiVersion: v2
+name: weblate
+description: A web-based translation tool
+version: 1.0.0
+dependencies:
+  - name: weblate
+    version: 0.5.30
+    repository: https://helm.weblate.org
+    alias: weblate

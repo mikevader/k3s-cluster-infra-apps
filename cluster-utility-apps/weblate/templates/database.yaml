@@ -1,0 +1,87 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: weblate
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:18
+
+  # Example of rolling update strategy:
+  # - unsupervised: automated update of the primary once all
+  #                 replicas have been upgraded (default)
+  # - supervised: requires manual supervision to perform
+  #               the switchover of the primary
+  primaryUpdateStrategy: unsupervised
+
+  # Require 1Gi of space
+  storage:
+    size: 5Gi
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: weblate-backup-store
+
+  affinity:
+    enablePodAntiAffinity: true
+
+  monitoring:
+    enablePodMonitor: true
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: backup-weblate
+spec:
+  schedule: "0 */30 * * * *"
+  backupOwnerReference: self
+  cluster:
+    name: weblate
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: weblate-backup-store
+spec:
+  retentionPolicy: "32d"
+  configuration:
+    destinationPath: s3://cnpg/backups
+    endpointURL: https://minio2.framsburg.net:9000
+    s3Credentials:
+      accessKeyId:
+        name: cnpg-minio-access
+        key: AWS_ACCESS_KEY_ID
+      secretAccessKey:
+        name: cnpg-minio-access
+        key: AWS_SECRET_ACCESS_KEY
+    tags:
+      backupRetentionPolicy: "expire"
+    historyTags:
+      backupRetentionPolicy: "keep"
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: cnpg-minio-access
+spec:
+  refreshInterval: 1m
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: cnpg-minio-access
+    template:
+      metadata:
+        labels:
+          "cnpg.io/reload": "true"
+  data:
+    - secretKey: AWS_ACCESS_KEY_ID
+      remoteRef:
+        key: secret/data/framsburg/cnpg/minio-access
+        property: AWS_ACCESS_KEY_ID
+    - secretKey: AWS_SECRET_ACCESS_KEY
+      remoteRef:
+        key: secret/data/framsburg/cnpg/minio-access
+        property: AWS_SECRET_ACCESS_KEY
