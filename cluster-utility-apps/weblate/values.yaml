@@ -3,14 +3,16 @@ weblate:
 
   existingSecret: weblate-secrets
 
-  extraConfig:
-    CSRF_TRUSTED_ORIGINS: "https://weblate.framsburg.ch"
-    WEBLATE_ALLOWED_HOSTS: "weblate.framsburg.ch"
-    WEBLATE_REGISTRATION_OPEN: "0"
-    WEBLATE_TIME_ZONE: "Europe/Zurich"
+  configOverride: |-
+    CSRF_TRUSTED_ORIGINS = ["https://weblate.framsburg.ch"]
     CSRF_COOKIE_SECURE: "True"
     SESSION_COOKIE_SECURE: "True"
     SECURE_SSL_REDIRECT: "True"
+
+  extraConfig:
+    WEBLATE_ALLOWED_HOSTS: "weblate.framsburg.ch"
+    WEBLATE_REGISTRATION_OPEN: "0"
+    WEBLATE_TIME_ZONE: "Europe/Zurich"
 
   postgresql:
     enabled: false
