@@ -8,6 +8,9 @@ weblate:
     WEBLATE_ALLOWED_HOSTS: "weblate.framsburg.ch,*"
     WEBLATE_REGISTRATION_OPEN: "0"
     WEBLATE_TIME_ZONE: "Europe/Zurich"
+    CSRF_COOKIE_SECURE: "True"
+    SESSION_COOKIE_SECURE: "True"
+    SECURE_SSL_REDIRECT: "True"
 
   postgresql:
     enabled: false
