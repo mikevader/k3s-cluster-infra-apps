@@ -1,0 +1,13 @@
+---
+# metrics-server-config.yaml
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: metrics-server
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    replicas: 2
+    podDisruptionBudget:
+      enabled: true
+      minAvailable: 1
