@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-custom
+  namespace: kube-system
+data:
+  framsburg-ch.override: |
+    forward framsburg.ch 192.168.42.1
+  framsburg-net.override: |
+    forward framsburg.net 192.168.42.1
