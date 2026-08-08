@@ -1,6 +1,5 @@
 loki:
 
-
   loki:
 #    commonConfig:
 #      replication_factor: 1
@@ -32,7 +31,7 @@ loki:
   lokiCanary:
     automountServiceAccountToken: false
 
-  deploymentMode: SimpleScalable
+  deploymentMode: SimpleScalable<->Distributed
 
   backend:
     replicas: 2
