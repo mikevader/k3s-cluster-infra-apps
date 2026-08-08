@@ -85,20 +85,16 @@ loki:
             key: grafana-loki-s3-secretAccessKey
 
   ingester:
-    autoscaling:
-      enabled: true
+    replicas: 3
 
   distributor:
-    autoscaling:
-      enabled: true
+    replicas: 1
 
   querier:
-    autoscaling:
-      enabled: true
+    replicas: 1
 
   queryFrontend:
-    autoscaling:
-      enabled: true
+    replicas: 1
 
   compactor:
     enabled: true
