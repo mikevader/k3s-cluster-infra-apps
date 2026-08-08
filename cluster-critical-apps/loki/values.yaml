@@ -68,6 +68,7 @@ loki:
 
   write:
     replicas: 3 # To ensure data durability with replication
+    size: 20Gi
     persistence:
       size: 20Gi
     extraArgs:
