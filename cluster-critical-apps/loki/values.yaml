@@ -1,3 +1,4 @@
+---
 loki:
 
   loki:
@@ -83,8 +84,33 @@ loki:
             name: minio-access
             key: grafana-loki-s3-secretAccessKey
 
+  ingester:
+    autoscaling:
+      enabled: true
+
+  distributor:
+    autoscaling:
+      enabled: true
+
+  querier:
+    autoscaling:
+      enabled: true
+
+  queryFrontend:
+    autoscaling:
+      enabled: true
+
   compactor:
     enabled: true
+    replicas: 1
+
+  queryScheduler:
+    replicas: 1
+
+  ruler:
+    replicas: 1
+
+  indexGateway:
     replicas: 1
 
   gateway:
