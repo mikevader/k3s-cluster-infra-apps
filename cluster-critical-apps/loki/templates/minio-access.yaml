@@ -10,6 +10,10 @@ spec:
     kind: ClusterSecretStore
   target:
     name: minio-access
+    template:
+      metadata:
+        labels:
+          app.kubernetes.io/part-of: loki
   data:
     - secretKey: grafana-loki-s3-accessKeyId
       remoteRef:
