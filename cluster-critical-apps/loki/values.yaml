@@ -21,7 +21,6 @@ loki:
       bucketNames:
         chunks: 'loki-chunks'
         ruler: 'loki-ruler'
-        admin: 'loki-admin'
       s3:
         s3: 'https://minio2.framsburg.net:9000'
         endpoint: 'https://minio2.framsburg.net:9000'
@@ -69,7 +68,8 @@ loki:
 
   write:
     replicas: 3 # To ensure data durability with replication
-    size: 20Gi
+    persistence:
+      size: 20Gi
     extraArgs:
       - '-config.expand-env=true'
     extraEnv:
@@ -84,9 +84,9 @@ loki:
             name: minio-access
             key: grafana-loki-s3-secretAccessKey
 
-  # Enable minio for storage
-  minio:
-    enabled: false
+  compactor:
+    enabled: true
+    replicas: 1
 
   gateway:
     service:
