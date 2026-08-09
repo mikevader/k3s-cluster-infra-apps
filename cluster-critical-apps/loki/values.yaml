@@ -61,6 +61,8 @@ loki:
           secretKeyRef:
             name: minio-access
             key: grafana-loki-s3-secretAccessKey
+    persistence:
+      enabled: true
 
   read:
     replicas: 2
@@ -109,6 +111,8 @@ loki:
     extraEnv:
       - <<: *extraEnv1
       - <<: *extraEnv2
+    persistence:
+      enabled: true
 
   queryScheduler:
     replicas: 1
