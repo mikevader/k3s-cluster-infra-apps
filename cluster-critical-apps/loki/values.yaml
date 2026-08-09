@@ -5,6 +5,16 @@ loki:
 #    commonConfig:
 #      replication_factor: 1
 
+    compactor:
+      working_directory: /data/retention
+      compaction_interval: 10m
+      retention_enabled: true
+      retention_delete_delay: 2h
+      retention_delete_worker_count: 150
+      delete_request_store: s3
+
+    limits_config:
+      retention_period: 30d
 
     schemaConfig:
       configs:
