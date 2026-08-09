@@ -55,7 +55,7 @@ loki:
   read:
     replicas: 2
     extraArgs:
-      - <<: *extraArgs
+      - *extraArgs
     extraEnv:
       - <<: *extraEnv1
       - <<: *extraEnv2
@@ -64,7 +64,7 @@ loki:
     persistence:
       size: 20Gi
     extraArgs:
-      - <<: *extraArgs
+      - *extraArgs
     extraEnv:
       - <<: *extraEnv1
       - <<: *extraEnv2
@@ -72,7 +72,7 @@ loki:
   ingester:
     replicas: 3
     extraArgs:
-      - <<: *extraArgs
+      - *extraArgs
     extraEnv:
       - <<: *extraEnv1
       - <<: *extraEnv2
@@ -83,7 +83,7 @@ loki:
   querier:
     replicas: 1
     extraArgs:
-      - <<: *extraArgs
+      - *extraArgs
     extraEnv:
       - <<: *extraEnv1
       - <<: *extraEnv2
@@ -95,7 +95,7 @@ loki:
     enabled: true
     replicas: 1
     extraArgs:
-      - <<: *extraArgs
+      - *extraArgs
     extraEnv:
       - <<: *extraEnv1
       - <<: *extraEnv2
@@ -106,7 +106,7 @@ loki:
   ruler:
     replicas: 1
     extraArgs:
-      - <<: *extraArgs
+      - *extraArgs
     extraEnv:
       - <<: *extraEnv1
       - <<: *extraEnv2
@@ -114,7 +114,7 @@ loki:
   indexGateway:
     replicas: 1
     extraArgs:
-      - <<: *extraArgs
+      - *extraArgs
     extraEnv:
       - <<: *extraEnv1
       - <<: *extraEnv2
