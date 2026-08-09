@@ -38,7 +38,7 @@ loki:
     replicas: 2
     extraArgs:
       - '-config.expand-env=true'
-    extraEnv:
+    extraEnv: &extraEnv
       - name: GRAFANA_LOKI_S3_ACCESKEYID
         valueFrom:
           secretKeyRef:
@@ -55,16 +55,7 @@ loki:
     extraArgs:
       - '-config.expand-env=true'
     extraEnv:
-      - name: GRAFANA_LOKI_S3_ACCESKEYID
-        valueFrom:
-          secretKeyRef:
-            name: minio-access
-            key: grafana-loki-s3-accessKeyId
-      - name: GRAFANA_LOKI_S3_SECRETACCESSKEY
-        valueFrom:
-          secretKeyRef:
-            name: minio-access
-            key: grafana-loki-s3-secretAccessKey
+      <<: *extraEnv
 
   write:
     replicas: 3 # To ensure data durability with replication
@@ -73,25 +64,24 @@ loki:
     extraArgs:
       - '-config.expand-env=true'
     extraEnv:
-      - name: GRAFANA_LOKI_S3_ACCESKEYID
-        valueFrom:
-          secretKeyRef:
-            name: minio-access
-            key: grafana-loki-s3-accessKeyId
-      - name: GRAFANA_LOKI_S3_SECRETACCESSKEY
-        valueFrom:
-          secretKeyRef:
-            name: minio-access
-            key: grafana-loki-s3-secretAccessKey
+      <<: *extraEnv
 
   ingester:
     replicas: 3
+    extraArgs:
+      - '-config.expand-env=true'
+    extraEnv:
+      <<: *extraEnv
 
   distributor:
     replicas: 1
 
   querier:
     replicas: 1
+    extraArgs:
+      - '-config.expand-env=true'
+    extraEnv:
+      <<: *extraEnv
 
   queryFrontend:
     replicas: 1
@@ -99,15 +89,27 @@ loki:
   compactor:
     enabled: true
     replicas: 1
+    extraArgs:
+      - '-config.expand-env=true'
+    extraEnv:
+      <<: *extraEnv
 
   queryScheduler:
     replicas: 1
 
   ruler:
     replicas: 1
+    extraArgs:
+      - '-config.expand-env=true'
+    extraEnv:
+      <<: *extraEnv
 
   indexGateway:
     replicas: 1
+    extraArgs:
+      - '-config.expand-env=true'
+    extraEnv:
+      <<: *extraEnv
 
   gateway:
     service:
