@@ -49,13 +49,13 @@ argo-cd:
       statusbadge.enabled: true
 
       project.links: |
-        - url: https://myaudit-system.com?project={{.metadata.name}}
+        - url: https://myaudit-system.com?project={{.resource.metadata.name}}
           title: Audit
           description: system audit logs
           icon.class: "fa-book"
       # sample application level links
       application.links: |
-        - url: https://grafana.framsburg.ch/a/grafana-lokiexplore-app/explore/namespace/{{.metadata.namespace}}/logs?var-filters=namespace%7C%3D%7C{{.metadata.namespace}}
+        - url: https://grafana.framsburg.ch/a/grafana-lokiexplore-app/explore/namespace/{{.resource.metadata.namespace}}/logs?var-filters=namespace%7C%3D%7C{{.resource.metadata.namespace}}
           title: Grafana
           description: System logs of namespace
           icon.class: "fa-binoculars"
@@ -97,6 +97,7 @@ argo-cd:
     enabled: true
     exporter:
       enabled: false
+    hardAntiAffinity: false
   
   controller:
     replicas: 1
