@@ -408,6 +408,9 @@ overseerr:
   operator:
     verify:
       failOnError: false
+  image:
+    repository: ghcr.io/seerr-team/seerr
+    tag: v3.4.1
   ingress:
     main:
       integrations:
