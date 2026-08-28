@@ -1,0 +1,16 @@
+{{- /*
+  Picked up by the Grafana sidecar in monitoring-stack, which watches all
+  namespaces for the grafana_dashboard label and files the dashboard into the
+  folder named by the grafana_folder annotation.
+*/ -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: longhorn-volumes-dashboard
+  labels:
+    grafana_dashboard: "1"
+  annotations:
+    grafana_folder: Storage
+data:
+  longhorn-volumes-dashboard.json: |-
+{{ .Files.Get "files/dashboard-longhorn-volumes.json" | indent 4 }}

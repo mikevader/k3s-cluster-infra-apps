@@ -1,0 +1,7 @@
+{{- /*
+  Recording and alerting rules for persistent volumes / PVCs.
+
+  Rendered verbatim from files/ so that Helm leaves the Prometheus alert
+  templating ({{ $labels.x }}, {{ $value }}) alone.
+*/ -}}
+{{ .Files.Get "files/prometheus-rule-volumes.yaml" }}

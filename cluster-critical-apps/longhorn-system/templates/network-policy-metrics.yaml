@@ -1,0 +1,33 @@
+---
+# Longhorn 1.12 ships a NetworkPolicy (`longhorn-manager`) that only admits
+# traffic from other Longhorn components, which also locks Prometheus out of
+# the manager's metrics port. That policy is created whenever
+# `networkPolicies.restrictInternalTraffic` is true, independently of
+# `networkPolicies.enabled`, so it cannot be turned off without giving up the
+# internal traffic restriction as well.
+#
+# NetworkPolicies are additive, so this one re-opens exactly the metrics port
+# for the Prometheus pods and nothing else. Without it every longhorn_* alert
+# and every panel in the "Longhorn volume health" row silently stays empty -
+# see the LonghornManagerMetricsUnavailable alert.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: longhorn-manager-metrics
+spec:
+  podSelector:
+    matchLabels:
+      app: longhorn-manager
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: monitoring-stack
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: prometheus
+      ports:
+        - protocol: TCP
+          port: 9500

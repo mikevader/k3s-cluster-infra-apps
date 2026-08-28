@@ -1,0 +1,416 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: longhorn-volume-rules
+  labels:
+    app: longhorn
+    role: volume-monitoring
+spec:
+  groups:
+    # ------------------------------------------------------------------------
+    # Recording rules
+    #
+    # The kubelet exposes the per-PVC filesystem stats, but without the
+    # storage class. Joining `kube_persistentvolumeclaim_info` once here keeps
+    # the label set small (namespace / persistentvolumeclaim / storageclass)
+    # and lets every dashboard panel and alert below filter by storage class
+    # without repeating the join.
+    #
+    # Note: these cover *all* storage classes, the alerts further down only
+    # cover Longhorn - non-Longhorn PVCs stay with the kube-prometheus-stack
+    # `KubePersistentVolume*` defaults.
+    # ------------------------------------------------------------------------
+    - name: longhorn-volume.recording
+      interval: 1m
+      rules:
+        - record: pvc:kubelet_volume_stats_capacity_bytes
+          expr: |-
+            max by (namespace, persistentvolumeclaim) (
+              kubelet_volume_stats_capacity_bytes{job="kubelet", metrics_path="/metrics"}
+            )
+            * on (namespace, persistentvolumeclaim) group_left (storageclass)
+              max by (namespace, persistentvolumeclaim, storageclass) (
+                kube_persistentvolumeclaim_info{job="kube-state-metrics"}
+              )
+
+        - record: pvc:kubelet_volume_stats_available_bytes
+          expr: |-
+            max by (namespace, persistentvolumeclaim) (
+              kubelet_volume_stats_available_bytes{job="kubelet", metrics_path="/metrics"}
+            )
+            * on (namespace, persistentvolumeclaim) group_left (storageclass)
+              max by (namespace, persistentvolumeclaim, storageclass) (
+                kube_persistentvolumeclaim_info{job="kube-state-metrics"}
+              )
+
+        - record: pvc:kubelet_volume_stats_used_bytes
+          expr: |-
+            max by (namespace, persistentvolumeclaim) (
+              kubelet_volume_stats_used_bytes{job="kubelet", metrics_path="/metrics"}
+            )
+            * on (namespace, persistentvolumeclaim) group_left (storageclass)
+              max by (namespace, persistentvolumeclaim, storageclass) (
+                kube_persistentvolumeclaim_info{job="kube-state-metrics"}
+              )
+
+        - record: pvc:kubelet_volume_stats_inodes
+          expr: |-
+            max by (namespace, persistentvolumeclaim) (
+              kubelet_volume_stats_inodes{job="kubelet", metrics_path="/metrics"}
+            )
+            * on (namespace, persistentvolumeclaim) group_left (storageclass)
+              max by (namespace, persistentvolumeclaim, storageclass) (
+                kube_persistentvolumeclaim_info{job="kube-state-metrics"}
+              )
+
+        - record: pvc:kubelet_volume_stats_inodes_free
+          expr: |-
+            max by (namespace, persistentvolumeclaim) (
+              kubelet_volume_stats_inodes_free{job="kubelet", metrics_path="/metrics"}
+            )
+            * on (namespace, persistentvolumeclaim) group_left (storageclass)
+              max by (namespace, persistentvolumeclaim, storageclass) (
+                kube_persistentvolumeclaim_info{job="kube-state-metrics"}
+              )
+
+        # Fill ratio 0..1. Derived from `available` rather than `used` so that
+        # filesystem-reserved blocks count as unavailable space, which is what
+        # actually matters when a volume runs out.
+        - record: pvc:kubelet_volume_stats_used:ratio
+          expr: |-
+            1 - (
+              pvc:kubelet_volume_stats_available_bytes
+              /
+              pvc:kubelet_volume_stats_capacity_bytes
+            )
+
+        - record: pvc:kubelet_volume_stats_inodes_used:ratio
+          expr: |-
+            1 - (
+              pvc:kubelet_volume_stats_inodes_free
+              /
+              pvc:kubelet_volume_stats_inodes
+            )
+
+        - record: namespace:kubelet_volume_stats_used:ratio
+          expr: |-
+            sum by (namespace) (pvc:kubelet_volume_stats_used_bytes)
+            /
+            sum by (namespace) (pvc:kubelet_volume_stats_capacity_bytes)
+
+        - record: cluster:kubelet_volume_stats_used:ratio
+          expr: |-
+            sum(pvc:kubelet_volume_stats_used_bytes)
+            /
+            sum(pvc:kubelet_volume_stats_capacity_bytes)
+
+        # Growth rate in bytes/s. Negative while the volume is filling up.
+        # 6h = stable capacity-planning trend, 1h = reacts to a runaway writer.
+        - record: pvc:kubelet_volume_stats_available_bytes:deriv6h
+          expr: |-
+            deriv(pvc:kubelet_volume_stats_available_bytes[6h])
+
+        - record: pvc:kubelet_volume_stats_available_bytes:deriv1h
+          expr: |-
+            deriv(pvc:kubelet_volume_stats_available_bytes[1h])
+
+        # Seconds until the volume is full at the current growth rate.
+        # clamp_min keeps shrinking/idle volumes from producing +Inf,
+        # clamp_max caps the result at 10 years so graphs stay readable.
+        - record: pvc:kubelet_volume_stats_seconds_to_full:predict6h
+          expr: |-
+            clamp_max(
+              pvc:kubelet_volume_stats_available_bytes
+              /
+              clamp_min(0 - pvc:kubelet_volume_stats_available_bytes:deriv6h, 0.001),
+              315360000
+            )
+
+        - record: pvc:kubelet_volume_stats_seconds_to_full:predict1h
+          expr: |-
+            clamp_max(
+              pvc:kubelet_volume_stats_available_bytes
+              /
+              clamp_min(0 - pvc:kubelet_volume_stats_available_bytes:deriv1h, 0.001),
+              315360000
+            )
+
+    # ------------------------------------------------------------------------
+    # PVC capacity alerts (kubelet filesystem stats)
+    #
+    # kube-prometheus-stack already ships KubePersistentVolumeFillingUp
+    # (<15% free + full within 4d => warning, <3% free => critical) and
+    # KubePersistentVolumeInodesFillingUp. These rules fire *earlier* and are
+    # scoped to Longhorn-backed claims, so they act as the lead indicator
+    # while the upstream rules stay as the last line of defence.
+    # ------------------------------------------------------------------------
+    - name: longhorn-volume.alerts
+      rules:
+        - alert: LonghornVolumeUsageHigh
+          # `>= 0.80 < 0.90` filters out everything the critical rule covers,
+          # so a single volume never fires both alerts at once.
+          expr: |-
+            pvc:kubelet_volume_stats_used:ratio{storageclass=~"longhorn.*"} >= 0.80 < 0.90
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            summary: "PVC {{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }} is over 80% full"
+            description: >-
+              The Longhorn volume backing PVC {{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }}
+              ({{ $labels.storageclass }}) is {{ $value | humanizePercentage }} full and has been for 30
+              minutes. Expand the claim or clean up data before it reaches the critical threshold.
+            runbook_url: "https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/storage/"
+            dashboard_url: "https://grafana.framsburg.ch/d/longhorn-volumes/longhorn-persistent-volumes?var-namespace={{ $labels.namespace }}&var-pvc={{ $labels.persistentvolumeclaim }}"
+
+        - alert: LonghornVolumeUsageCritical
+          expr: |-
+            pvc:kubelet_volume_stats_used:ratio{storageclass=~"longhorn.*"} >= 0.90
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            summary: "PVC {{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }} is over 90% full"
+            description: >-
+              The Longhorn volume backing PVC {{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }}
+              ({{ $labels.storageclass }}) is {{ $value | humanizePercentage }} full. Longhorn storage
+              classes allow volume expansion - grow the PVC or free space now, a full volume will put the
+              workload's filesystem into read-only or crash it.
+            runbook_url: "https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/storage/"
+            dashboard_url: "https://grafana.framsburg.ch/d/longhorn-volumes/longhorn-persistent-volumes?var-namespace={{ $labels.namespace }}&var-pvc={{ $labels.persistentvolumeclaim }}"
+
+        - alert: LonghornVolumeFillingUpIn24h
+          # Trend-based: catches slow leaks long before a static threshold does.
+          # The 70% floor keeps small, bursty volumes from alerting on noise.
+          expr: |-
+            pvc:kubelet_volume_stats_seconds_to_full:predict6h{storageclass=~"longhorn.*"} < 24 * 3600
+            and
+            pvc:kubelet_volume_stats_used:ratio{storageclass=~"longhorn.*"} >= 0.70
+          for: 1h
+          labels:
+            severity: warning
+          annotations:
+            summary: "PVC {{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }} runs out of space within a day"
+            description: >-
+              Extrapolating the last 6 hours of growth, PVC
+              {{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }} is full in
+              {{ $value | humanizeDuration }}.
+            runbook_url: "https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/storage/"
+            dashboard_url: "https://grafana.framsburg.ch/d/longhorn-volumes/longhorn-persistent-volumes?var-namespace={{ $labels.namespace }}&var-pvc={{ $labels.persistentvolumeclaim }}"
+
+        - alert: LonghornVolumeFillingUpIn4h
+          # Same idea on the 1h trend, which reacts to a runaway writer
+          # (log loop, failed compaction, backup dumped into the wrong PVC).
+          expr: |-
+            pvc:kubelet_volume_stats_seconds_to_full:predict1h{storageclass=~"longhorn.*"} < 4 * 3600
+            and
+            pvc:kubelet_volume_stats_used:ratio{storageclass=~"longhorn.*"} >= 0.50
+          for: 30m
+          labels:
+            severity: critical
+          annotations:
+            summary: "PVC {{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }} runs out of space within hours"
+            description: >-
+              PVC {{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }} is growing fast enough to be
+              full in {{ $value | humanizeDuration }} (1 hour trend). Find the writer before the volume
+              hits 100%.
+            runbook_url: "https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/storage/"
+            dashboard_url: "https://grafana.framsburg.ch/d/longhorn-volumes/longhorn-persistent-volumes?var-namespace={{ $labels.namespace }}&var-pvc={{ $labels.persistentvolumeclaim }}"
+
+        - alert: LonghornVolumeInodesLow
+          # A volume can be nowhere near full on bytes and still fail writes
+          # once inodes run out - typical for caches with many tiny files.
+          expr: |-
+            pvc:kubelet_volume_stats_inodes_used:ratio{storageclass=~"longhorn.*"} >= 0.90
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: "PVC {{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }} is running out of inodes"
+            description: >-
+              {{ $value | humanizePercentage }} of the inodes on PVC
+              {{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }} are in use. Writes will fail with
+              ENOSPC even though free bytes remain - look for a directory with a very large number of
+              small files.
+            runbook_url: "https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/storage/"
+            dashboard_url: "https://grafana.framsburg.ch/d/longhorn-volumes/longhorn-persistent-volumes?var-namespace={{ $labels.namespace }}&var-pvc={{ $labels.persistentvolumeclaim }}"
+
+        - alert: LonghornPersistentVolumeClaimPending
+          expr: |-
+            kube_persistentvolumeclaim_status_phase{job="kube-state-metrics", phase="Pending"} == 1
+            and on (namespace, persistentvolumeclaim)
+            max by (namespace, persistentvolumeclaim) (
+              kube_persistentvolumeclaim_info{job="kube-state-metrics", storageclass=~"longhorn.*"}
+            )
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: "PVC {{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }} stays Pending"
+            description: >-
+              The claim has been Pending for 15 minutes. Longhorn could not provision it - usually no node
+              has enough schedulable space left for the requested replica count.
+            runbook_url: "https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/storage/"
+            dashboard_url: "https://grafana.framsburg.ch/d/longhorn-volumes/longhorn-persistent-volumes?var-namespace={{ $labels.namespace }}"
+
+        - alert: LonghornVolumeStatsMissing
+          # The kubelet only reports filesystem stats for volumes that are
+          # actually mounted, so a broken mount silently disappears from every
+          # capacity alert above instead of alerting. This closes that gap:
+          # a claim used by a Running pod must have stats.
+          expr: |-
+            (
+              max by (namespace, persistentvolumeclaim) (
+                kube_persistentvolumeclaim_info{job="kube-state-metrics", storageclass=~"longhorn.*"}
+              )
+              and on (namespace, persistentvolumeclaim)
+              max by (namespace, persistentvolumeclaim) (
+                kube_pod_spec_volumes_persistentvolumeclaims_info{job="kube-state-metrics"}
+                * on (namespace, pod) group_left ()
+                  (kube_pod_status_phase{job="kube-state-metrics", phase="Running"} == 1)
+              )
+            )
+            unless on (namespace, persistentvolumeclaim)
+            pvc:kubelet_volume_stats_capacity_bytes
+          for: 1h
+          labels:
+            severity: warning
+          annotations:
+            summary: "No filesystem metrics for in-use PVC {{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }}"
+            description: >-
+              A Running pod mounts this Longhorn claim but the kubelet reports no volume stats for it, so
+              none of the capacity alerts can see it. Check whether the mount is stale or the volume is
+              detached underneath the pod.
+            runbook_url: "https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/storage/"
+            dashboard_url: "https://grafana.framsburg.ch/d/longhorn-volumes/longhorn-persistent-volumes?var-namespace={{ $labels.namespace }}"
+
+    # ------------------------------------------------------------------------
+    # Longhorn-native volume health (longhorn-manager metrics)
+    #
+    # These need the longhorn-backend scrape to work. LonghornManagerMetricsUnavailable
+    # is the canary for the whole group - without it, every rule below fails open.
+    # ------------------------------------------------------------------------
+    - name: longhorn-storage.alerts
+      rules:
+        - alert: LonghornManagerMetricsUnavailable
+          expr: |-
+            absent(up{job="longhorn-backend"} == 1)
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            summary: "No longhorn-manager instance is being scraped"
+            description: >-
+              Prometheus cannot scrape any longhorn-manager on port 9500, so all Longhorn volume health
+              alerts (degraded, faulted, read-only, node/disk capacity) are blind. Check the
+              longhorn-prometheus-servicemonitor targets and the NetworkPolicies in longhorn-system.
+            runbook_url: "https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/storage/"
+            dashboard_url: "https://grafana.framsburg.ch/d/longhorn-volumes/longhorn-persistent-volumes"
+
+        - alert: LonghornVolumeDegraded
+          # 2 = degraded. Transient during node reboots and replica rebuilds,
+          # hence the long `for` - see longhorn_engine_rebuild_progress.
+          expr: |-
+            longhorn_volume_robustness == 2
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Longhorn volume for PVC {{ $labels.pvc_namespace }}/{{ $labels.pvc }} is degraded"
+            description: >-
+              Volume {{ $labels.volume }} has been running with a missing or rebuilding replica for 30
+              minutes. Check longhorn_engine_rebuild_progress - if no rebuild is in progress, no node has
+              room to schedule the replacement replica.
+            runbook_url: "https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/storage/"
+            dashboard_url: "https://grafana.framsburg.ch/d/longhorn-volumes/longhorn-persistent-volumes?var-namespace={{ $labels.pvc_namespace }}&var-pvc={{ $labels.pvc }}"
+
+        - alert: LonghornVolumeFaulted
+          # 3 = faulted: no usable replica left, the volume cannot serve I/O.
+          expr: |-
+            longhorn_volume_robustness == 3
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Longhorn volume for PVC {{ $labels.pvc_namespace }}/{{ $labels.pvc }} is faulted"
+            description: >-
+              Volume {{ $labels.volume }} has no healthy replica left and cannot serve I/O. Data loss is
+              possible - restore from the S3 backup target if the replicas cannot be salvaged.
+            runbook_url: "https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/disaster-recovery/"
+            dashboard_url: "https://grafana.framsburg.ch/d/longhorn-volumes/longhorn-persistent-volumes?var-namespace={{ $labels.pvc_namespace }}&var-pvc={{ $labels.pvc }}"
+
+        - alert: LonghornVolumeReadOnly
+          # Longhorn only emits this series while the filesystem is read-only.
+          expr: |-
+            longhorn_volume_file_system_read_only == 1
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Longhorn volume for PVC {{ $labels.pvc_namespace }}/{{ $labels.pvc }} went read-only"
+            description: >-
+              The filesystem on volume {{ $labels.volume }} was remounted read-only, usually after an I/O
+              error or a full volume. The workload is still running but every write fails.
+            runbook_url: "https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/storage/"
+            dashboard_url: "https://grafana.framsburg.ch/d/longhorn-volumes/longhorn-persistent-volumes?var-namespace={{ $labels.pvc_namespace }}&var-pvc={{ $labels.pvc }}"
+
+        - alert: LonghornNodeStorageFillingUp
+          expr: |-
+            (
+              longhorn_node_storage_usage_bytes / longhorn_node_storage_capacity_bytes
+            ) >= 0.75 < 0.90
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Longhorn storage on node {{ $labels.node }} is over 75% used"
+            description: >-
+              {{ $value | humanizePercentage }} of the Longhorn storage on {{ $labels.node }} is in use.
+              Once nodes fill up, Longhorn can no longer schedule replicas and degraded volumes stay
+              degraded.
+            runbook_url: "https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/storage/"
+            dashboard_url: "https://grafana.framsburg.ch/d/longhorn-volumes/longhorn-persistent-volumes"
+
+        - alert: LonghornNodeStorageCritical
+          expr: |-
+            (
+              longhorn_node_storage_usage_bytes / longhorn_node_storage_capacity_bytes
+            ) >= 0.90
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Longhorn storage on node {{ $labels.node }} is over 90% used"
+            description: >-
+              {{ $value | humanizePercentage }} of the Longhorn storage on {{ $labels.node }} is in use.
+              Replica scheduling on this node has effectively stopped - free space or add a disk.
+            runbook_url: "https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/storage/"
+            dashboard_url: "https://grafana.framsburg.ch/d/longhorn-volumes/longhorn-persistent-volumes"
+
+        - alert: LonghornDiskNotReady
+          expr: |-
+            longhorn_disk_status{condition="ready"} == 0
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Longhorn disk {{ $labels.disk }} on {{ $labels.node }} is not ready"
+            description: >-
+              Longhorn marked the disk as not ready ({{ $labels.condition_reason }}). Every replica on it
+              is unavailable, which degrades the volumes using them.
+            runbook_url: "https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/storage/"
+            dashboard_url: "https://grafana.framsburg.ch/d/longhorn-volumes/longhorn-persistent-volumes"
+
+        - alert: LonghornNodeNotReady
+          expr: |-
+            longhorn_node_status{condition="ready"} == 0
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Longhorn node {{ $labels.node }} is not ready"
+            description: >-
+              Longhorn considers the node unusable ({{ $labels.condition_reason }}). Volumes with replicas
+              on this node are degraded and new replicas cannot be scheduled here.
+            runbook_url: "https://mikevader.github.io/k3s-cluster-infra-apps/troubleshooting/storage/"
+            dashboard_url: "https://grafana.framsburg.ch/d/longhorn-volumes/longhorn-persistent-volumes"
