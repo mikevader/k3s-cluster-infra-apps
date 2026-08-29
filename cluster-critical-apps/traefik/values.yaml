@@ -41,13 +41,12 @@ traefik:
     - name: DO_PROPAGATION_TIMEOUT
       value: "300"
 
-  logs:
-    general:
-      format: json
-      level: ERROR
-    access:
-      enabled: true
-      format: json
+  log:
+    format: json
+    level: ERROR
+  accessLog:
+    enabled: true
+    format: json
   metrics:
     prometheus: {}
 #  tracing:
