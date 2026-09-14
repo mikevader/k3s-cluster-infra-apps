@@ -25,6 +25,11 @@ spec:
             - containerPort: 8080
               name: api
           env:
+            - name: HERMES_DASHBOARD
+              value: "yes"
+            - name: HERMES_DASHBOARD_PORT
+              value: "8080"
+
             # Model backend
             - name: HERMES_MODEL_PROVIDER
               value: "anthropic"            # or: openrouter, openai-compatible
