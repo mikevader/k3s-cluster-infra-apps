@@ -27,6 +27,7 @@ applications:
   actual: {}
   forecastle: {}
   hajimari: {}
+  hermes: {}
   homarr: {}
   homepage: {}
   # homer: {}

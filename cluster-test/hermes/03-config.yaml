@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hermes-config
+  namespace: hermes
+data:
+  config.yaml: |
+    # Persistent Memory
+    memory:
+      enabled: true
+      path: /home/hermes/.hermes/memory
+      # Agent remembers preferences, projects, environment
+      # Gets smarter the longer it runs
+
+    # Automated Skill Creation
+    skills:
+      auto_create: true
+      # When Hermes solves a hard problem, it writes a reusable
+      # SKILL.md so it never forgets how
+      format: "agentskills.io"        # Open standard
+      community_hub: "agentskills.io"  # Browse and install skills
+
+    # Multi-Platform Messaging
+    gateway:
+      platforms:
+        - telegram
+        - discord
+        - slack
+        - whatsapp
+        - signal
+        - cli
+      # Voice memo transcription supported
+      # Cross-platform conversation continuation
+
+    # Scheduled Automations
+    cron:
+      enabled: true
+      jobs:
+        - name: daily-report
+          schedule: "0 9 * * *"
+          task: "Generate daily project status report"
+          deliver_to: telegram
+
+        - name: weekly-audit
+          schedule: "0 10 * * 1"
+          task: "Audit infrastructure and report findings"
+          deliver_to: slack
+
+        - name: morning-briefing
+          schedule: "0 7 * * 1-5"
+          task: "Check email, calendar, news. Brief me."
+          deliver_to: telegram
+
+    # Parallel Sub-Agents
+    subagents:
+      enabled: true
+      max_concurrent: 5
+      # Each gets own conversation and terminal
+      # Zero-context-cost turns via RPC
+
+    # Execution Backends
+    execution:
+      local_terminal: true
+      docker:
+        enabled: true
+        security:
+          read_only_root: true
+          drop_capabilities: all
+          pid_limit: 100
+      ssh:
+        enabled: false                # Enable for remote servers
+      modal:
+        enabled: false                # Enable for cloud/HPC
+
+    # Browser Automation
+    browser:
+      enabled: true
+      # Web search, page extraction, screenshots
+      # Full navigation, click, type automation

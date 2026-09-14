@@ -1,0 +1,85 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hermes-agent
+  namespace: hermes
+  labels:
+    app: hermes-agent
+spec:
+  replicas: 1                         # Single instance (stateful agent)
+  strategy:
+    type: Recreate                    # Don't run two instances
+  selector:
+    matchLabels:
+      app: hermes-agent
+  template:
+    metadata:
+      labels:
+        app: hermes-agent
+    spec:
+      containers:
+        - name: hermes
+          image: ghcr.io/nous-research/hermes-agent:latest
+          ports:
+            - containerPort: 8080
+              name: api
+          env:
+            # Model backend
+            - name: HERMES_MODEL_PROVIDER
+              value: "anthropic"            # or: openrouter, openai-compatible
+#            - name: HERMES_MODEL_ENDPOINT
+#              value: "http://vllm-server.ai:8000/v1"
+            - name: HERMES_MODEL
+              value: "claude-sonnet-5"
+
+            # Messaging platforms
+#            - name: HERMES_TELEGRAM_TOKEN
+#              valueFrom:
+#                secretKeyRef:
+#                  name: hermes-secrets
+#                  key: telegram-token
+            - name: HERMES_DISCORD_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: hermes-secrets
+                  key: discord-token
+#            - name: HERMES_SLACK_TOKEN
+#              valueFrom:
+#                secretKeyRef:
+#                  name: hermes-secrets
+#                  key: slack-token
+
+            # Security
+            - name: HERMES_TELEMETRY
+              value: "disabled"
+            - name: HERMES_EXECUTION_MODE
+              value: "docker"          # Sandboxed execution
+
+          volumeMounts:
+            - name: hermes-data
+              mountPath: /home/hermes/.hermes
+            - name: skills
+              mountPath: /home/hermes/.hermes/skills
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4Gi"
+            limits:
+              cpu: "4"
+              memory: "8Gi"
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+
+      volumes:
+        - name: hermes-data
+          persistentVolumeClaim:
+            claimName: hermes-memory-pvc
+        - name: skills
+          persistentVolumeClaim:
+            claimName: hermes-skills-pvc

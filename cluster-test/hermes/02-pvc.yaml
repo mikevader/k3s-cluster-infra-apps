@@ -1,0 +1,25 @@
+---
+# Persistent storage for agent memory
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: hermes-memory-pvc
+  namespace: hermes
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: hermes-skills-pvc
+  namespace: hermes
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 5Gi
