@@ -69,12 +69,12 @@ spec:
               cpu: "4"
               memory: "8Gi"
           securityContext:
-            runAsNonRoot: true
+#            runAsNonRoot: true
             runAsUser: 1000
-            readOnlyRootFilesystem: true
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop: ["ALL"]
+#            readOnlyRootFilesystem: true
+#            allowPrivilegeEscalation: false
+#            capabilities:
+#              drop: ["ALL"]
 
       volumes:
         - name: hermes-data
