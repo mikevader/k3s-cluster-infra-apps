@@ -75,7 +75,7 @@ spec:
               memory: "8Gi"
           securityContext:
 #            runAsNonRoot: true
-            runAsUser: 1000
+            runAsUser: 10000
 #            readOnlyRootFilesystem: true
 #            allowPrivilegeEscalation: false
 #            capabilities:
