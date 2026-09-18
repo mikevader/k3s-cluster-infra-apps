@@ -73,9 +73,9 @@ spec:
             limits:
               cpu: "4"
               memory: "8Gi"
-#          securityContext:
+          securityContext:
 #            runAsNonRoot: true
-#            runAsUser: 1000
+            runAsUser: 1000
 #            readOnlyRootFilesystem: true
 #            allowPrivilegeEscalation: false
 #            capabilities:
