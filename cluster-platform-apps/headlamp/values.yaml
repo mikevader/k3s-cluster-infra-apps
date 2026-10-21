@@ -5,6 +5,9 @@ headlamp:
       value: /tmp/npm
 
   config:
+    # chart does not pass scopes when using an external secret
+    extraArgs:
+      - -oidc-scopes=$(OIDC_SCOPES)
     oidc:
       secret:
         create: false
@@ -27,10 +30,10 @@ headlamp:
       plugins:
         - name: headlamp_cert-manager
           source: https://artifacthub.io/packages/headlamp/headlamp-plugins/headlamp_cert-manager
-          version: 0.1.0
+          version: 0.1.1
         - name: headlamp_flux
           source: https://artifacthub.io/packages/headlamp/headlamp-plugins/headlamp_flux
-          version: 0.5.0
+          version: 0.7.0
 
   ingress:
     enabled: true
