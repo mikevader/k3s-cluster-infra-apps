@@ -2,8 +2,6 @@
 democratic-csi:
   controller:
     driver:
-      image:
-        tag: next
       logLevel: warn
   csiDriver:
     name: "nfs"
