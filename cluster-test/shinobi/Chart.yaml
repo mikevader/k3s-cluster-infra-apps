@@ -4,5 +4,5 @@ description: shinobi helm package
 version: 1.0.0
 dependencies:
   - name: shinobi
-    version: 1.3.0
+    version: 1.4.0
     repository: https://mikevader.github.io/charts
