@@ -1,6 +1,6 @@
 plex:
   controller:
-    enabled: true
+    enabled: false
   runtimeClassName: nvidia
   env:
     # cat /config/Library/Application\ Support/Plex\ Media\ Server/Preferences.xml | tr " " "\n" | \
@@ -235,7 +235,7 @@ plex:
           secretName: plex-framsburg-ch-tls
 
     external:
-      enabled: true
+      enabled: false
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
       ingressClassName: nginx
