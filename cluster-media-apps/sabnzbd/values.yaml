@@ -1,6 +1,178 @@
 sabnzbd:
   env:
     HOST_WHITELIST_ENTRIES: sabnzbd.framsburg.ch
+
+
+  __version__ = 19
+  __encoding__ = utf-8
+  [misc]
+  config_conversion_version = 4
+  helpful_warnings = 1
+  queue_complete = ""
+  queue_complete_pers = 0
+  bandwidth_perc = 100
+  refresh_rate = 0
+  interface_settings = ""
+  queue_limit = 20
+  config_lock = 0
+  fixed_ports = 1
+  notified_new_skin = 2
+  direct_unpack_tested = 1
+  sorters_converted = 1
+  check_new_rel = 1
+  auto_browser = 0
+  language = en
+  enable_https_verification = 1
+  host = 127.0.0.1
+  port = 8080
+  https_port = ""
+  username = ""
+  password = ""
+  bandwidth_max = ""
+  cache_limit = 1G
+  web_dir = Glitter
+  web_color = Auto
+  https_cert = server.cert
+  https_key = server.key
+  https_chain = ""
+  enable_https = 0
+  inet_exposure = 0
+  api_key = 82eb3306cf614e4b936d10af2fd2ccd5
+  nzb_key = 15310717b71646b5a45c7fb8de508fbf
+  socks5_proxy_url = ""
+  permissions = ""
+  download_dir = /downloads2/incomplete
+  download_free = ""
+  complete_dir = /downloads2/complete
+  complete_free = ""
+  fulldisk_autoresume = 0
+  script_dir = ""
+  nzb_backup_dir = ""
+  admin_dir = admin
+  backup_dir = ""
+  dirscan_dir = ""
+  dirscan_speed = 5
+  password_file = ""
+  log_dir = logs
+  max_art_tries = 3
+  top_only = 0
+  sfv_check = 1
+  script_can_fail = 0
+  enable_recursive = 1
+  flat_unpack = 0
+  par_option = ""
+  pre_check = 0
+  nice = ""
+  win_process_prio = 3
+  ionice = ""
+  fail_hopeless_jobs = 1
+  fast_fail = 1
+  auto_disconnect = 1
+  pre_script = None
+  end_queue_script = None
+  no_dupes = 0
+  no_series_dupes = 0
+  no_smart_dupes = 0
+  dupes_propercheck = 1
+  pause_on_pwrar = 1
+  ignore_samples = 0
+  deobfuscate_final_filenames = 1
+  auto_sort = ""
+  direct_unpack = 1
+  propagation_delay = 0
+  folder_rename = 1
+  replace_spaces = 0
+  replace_underscores = 0
+  replace_dots = 0
+  safe_postproc = 1
+  pause_on_post_processing = 0
+  enable_all_par = 0
+  sanitize_safe = 0
+  cleanup_list = ,
+
+    [pushover]
+    pushbullet_cats = *,
+    pushbullet_apikey = ""
+    pushbullet_device = ""
+    pushbullet_prio_startup = 0
+    pushbullet_prio_download = 0
+    apprise_target_pp_enable = 0
+    apprise_target_complete = ""
+    apprise_target_complete_enable = 1
+    apprise_target_failed = ""
+    apprise_target_failed_enable = 1
+    nscript_prio_complete = 1
+    nscript_prio_failed = 1
+    nscript_prio_disk_full = 1
+    nscript_prio_new_login = 0
+    nscript_prio_warning = 0
+    quota = ""
+    usage_at_start = 0
+    priority = 0
+    notes = ""
+    [categories]
+    dir = ""
+    newzbin = ""
+    priority = -100
+    [[whisparr]]
+    name = whisparr
+    [[whisparr]]
+    name = whisparr
+    order = 5
+    pp = ""
+    script = Default
+    [[whisparr]]
+    name = whisparr
+    order = 5
+    pp = ""
+    script = Default
+    [[whisparr]]
+    name = whisparr
+    order = 5
+    pp = ""
+    script = Default
+    [[whisparr]]
+    name = whisparr
+    order = 5
+    pp = ""
+    script = Default
+    [[whisparr]]
+    name = whisparr
+    order = 5
+    pp = ""
+    script = Default
+    [[whisparr]]
+    name = whisparr
+    order = 5
+    pp = ""
+    script = Default
+    [[whisparr]]
+    name = whisparr
+    order = 5
+    pp = ""
+    script = Default
+    dir = whisparr
+    newzbin = ""
+    priority = -100
+    [[movies]]
+    name = movies
+    order = 1
+    pp = ""
+    script = Default
+    dir = movies
+    newzbin = ""
+    priority = -100
+    [[tv]]
+    name = tv
+    order = 2
+    pp = ""
+    script = Default
+    dir = tv
+    newzbin = ""
+    priority = -100
+
+
+
     PUID: '666'
     PGID: '666'
   ingress:
