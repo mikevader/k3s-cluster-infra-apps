@@ -75,6 +75,12 @@ kube-prometheus-stack:
           name: "issuer"
           kind: "ClusterIssuer"
 
+  kube-state-metrics:
+    # Export Pod Security Admission levels as kube_namespace_labels{label_pod_security_kubernetes_io_*}
+    # (used by the "Pod Security Admission" dashboard)
+    metricLabelsAllowlist:
+      - namespaces=[pod-security.kubernetes.io/enforce,pod-security.kubernetes.io/warn,pod-security.kubernetes.io/audit]
+
   grafana:
     useStatefulSet: true
     env:
