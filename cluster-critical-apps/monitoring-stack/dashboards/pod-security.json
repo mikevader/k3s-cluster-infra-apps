@@ -1,0 +1,1060 @@
+{
+  "uid": "pod-security-admission",
+  "title": "Pod Security Admission",
+  "description": "Pod Security Admission: namespace levels, denials, and workloads that violate warn/audit levels.",
+  "tags": [
+    "kubernetes",
+    "security",
+    "pod-security"
+  ],
+  "editable": true,
+  "graphTooltip": 1,
+  "schemaVersion": 41,
+  "version": 1,
+  "time": {
+    "from": "now-7d",
+    "to": "now"
+  },
+  "refresh": "5m",
+  "timezone": "browser",
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "type": "datasource",
+        "name": "prometheus",
+        "label": "Prometheus",
+        "query": "prometheus",
+        "current": {
+          "text": "Prometheus",
+          "value": "prometheus"
+        },
+        "hide": 0
+      },
+      {
+        "type": "datasource",
+        "name": "loki",
+        "label": "Loki",
+        "query": "loki",
+        "hide": 0
+      },
+      {
+        "type": "query",
+        "name": "namespace",
+        "label": "Namespace",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${prometheus}"
+        },
+        "query": {
+          "query": "label_values(kube_namespace_status_phase, namespace)",
+          "refId": "ns"
+        },
+        "definition": "label_values(kube_namespace_status_phase, namespace)",
+        "multi": true,
+        "includeAll": true,
+        "allValue": ".*",
+        "refresh": 2,
+        "sort": 1,
+        "current": {
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        }
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "row",
+      "id": 1,
+      "title": "Overview (apiserver metrics, cluster-wide)",
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 1
+      },
+      "panels": [],
+      "description": ""
+    },
+    {
+      "type": "stat",
+      "id": 2,
+      "title": "Pods denied (enforce)",
+      "description": "Pod create/update requests rejected by the namespace's enforce level in the selected time range.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${prometheus}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 1,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheus}"
+          },
+          "expr": "sum(increase(pod_security_evaluations_total{job=\"apiserver\",mode=\"enforce\",decision=\"deny\"}[$__range])) or vector(0)",
+          "instant": true,
+          "range": false
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "noValue": "0"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "type": "stat",
+      "id": 3,
+      "title": "Warnings (warn)",
+      "description": "Requests (pods and workload pod templates) that violated the namespace's warn level. These are allowed, but would fail once enforce is raised to that level.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${prometheus}"
+      },
+      "gridPos": {
+        "x": 4,
+        "y": 1,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheus}"
+          },
+          "expr": "sum(increase(pod_security_evaluations_total{job=\"apiserver\",mode=\"warn\",decision=\"deny\"}[$__range])) or vector(0)",
+          "instant": true,
+          "range": false
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1
+              }
+            ]
+          },
+          "noValue": "0"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "type": "stat",
+      "id": 4,
+      "title": "Audit violations",
+      "description": "Requests that violated the namespace's audit level. Details per workload are in the audit-log section below.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${prometheus}"
+      },
+      "gridPos": {
+        "x": 8,
+        "y": 1,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheus}"
+          },
+          "expr": "sum(increase(pod_security_evaluations_total{job=\"apiserver\",mode=\"audit\",decision=\"deny\"}[$__range])) or vector(0)",
+          "instant": true,
+          "range": false
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1
+              }
+            ]
+          },
+          "noValue": "0"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "type": "stat",
+      "id": 5,
+      "title": "PSA errors",
+      "description": "Errors while evaluating Pod Security (e.g. invalid namespace labels). Should always be 0.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${prometheus}"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 1,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheus}"
+          },
+          "expr": "sum(increase(pod_security_errors_total{job=\"apiserver\"}[$__range])) or vector(0)",
+          "instant": true,
+          "range": false
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "noValue": "0"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "type": "stat",
+      "id": 6,
+      "title": "Namespaces without enforce level",
+      "description": "Active namespaces without a pod-security.kubernetes.io/enforce label: they fall back to the cluster default (privileged in k3s). Typically namespaces not created by the app-of-apps chart.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${prometheus}"
+      },
+      "gridPos": {
+        "x": 16,
+        "y": 1,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheus}"
+          },
+          "expr": "count((kube_namespace_status_phase{phase=\"Active\"} == 1) unless on(namespace) kube_namespace_labels{label_pod_security_kubernetes_io_enforce!=\"\"}) or vector(0)",
+          "instant": true,
+          "range": false
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1
+              }
+            ]
+          },
+          "noValue": "0"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "type": "stat",
+      "id": 7,
+      "title": "Workloads missing pods",
+      "description": "Deployments with a ReplicaFailure condition, and DaemonSets/StatefulSets that have fewer pods than desired. An enforce denial is the most common cause right after raising a namespace's level.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${prometheus}"
+      },
+      "gridPos": {
+        "x": 20,
+        "y": 1,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheus}"
+          },
+          "expr": "count((sum by (namespace, deployment) (kube_deployment_spec_replicas) - sum by (namespace, deployment) (kube_deployment_status_replicas) > 0 and on(namespace, deployment) (kube_deployment_status_condition{condition=\"ReplicaFailure\",status=\"true\"} == 1)) or (sum by (namespace, daemonset) (kube_daemonset_status_desired_number_scheduled - kube_daemonset_status_current_number_scheduled) > 0) or (sum by (namespace, statefulset) (kube_statefulset_replicas - kube_statefulset_status_replicas) > 0)) or vector(0)",
+          "instant": true,
+          "range": false
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "noValue": "0"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "type": "timeseries",
+      "id": 8,
+      "title": "Violations over time by mode and level",
+      "description": "Requests violating a Pod Security level, per mode (enforce = rejected, warn/audit = allowed but flagged).",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${prometheus}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 5,
+        "w": 12,
+        "h": 8
+      },
+      "interval": "5m",
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheus}"
+          },
+          "expr": "sum by (mode, policy_level) (increase(pod_security_evaluations_total{job=\"apiserver\",decision=\"deny\"}[$__interval]))",
+          "legendFormat": "{{mode}} \u00b7 {{policy_level}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 0,
+          "custom": {
+            "drawStyle": "bars",
+            "fillOpacity": 70,
+            "stacking": {
+              "mode": "normal",
+              "group": "A"
+            },
+            "lineWidth": 1
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "^enforce.*"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "red"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "id": 9,
+      "title": "Violations by resource and operation",
+      "description": "Which kind of request triggered the violations. Workload resources (deployments, \u2026) are only checked in warn/audit mode.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${prometheus}"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 5,
+        "w": 12,
+        "h": 8
+      },
+      "interval": "5m",
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheus}"
+          },
+          "expr": "sum by (mode, resource, request_operation) (increase(pod_security_evaluations_total{job=\"apiserver\",decision=\"deny\"}[$__interval]))",
+          "legendFormat": "{{mode}} \u00b7 {{resource}} {{request_operation}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 0,
+          "custom": {
+            "drawStyle": "bars",
+            "fillOpacity": 70,
+            "stacking": {
+              "mode": "normal",
+              "group": "A"
+            },
+            "lineWidth": 1
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "type": "row",
+      "id": 10,
+      "title": "Namespaces and workloads (kube-state-metrics)",
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 13,
+        "w": 24,
+        "h": 1
+      },
+      "panels": [],
+      "description": ""
+    },
+    {
+      "type": "table",
+      "id": 11,
+      "title": "Namespace Pod Security levels",
+      "description": "Pod Security Admission labels per namespace. Requires the kube-state-metrics label allowlist for namespaces.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${prometheus}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 14,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheus}"
+          },
+          "format": "table",
+          "instant": true,
+          "range": false,
+          "expr": "max by (namespace, label_pod_security_kubernetes_io_enforce, label_pod_security_kubernetes_io_warn, label_pod_security_kubernetes_io_audit) (kube_namespace_labels{namespace=~\"$namespace\"})"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true
+            },
+            "indexByName": {
+              "namespace": 0,
+              "label_pod_security_kubernetes_io_enforce": 1,
+              "label_pod_security_kubernetes_io_warn": 2,
+              "label_pod_security_kubernetes_io_audit": 3
+            },
+            "renameByName": {
+              "namespace": "Namespace",
+              "label_pod_security_kubernetes_io_enforce": "Enforce",
+              "label_pod_security_kubernetes_io_warn": "Warn",
+              "label_pod_security_kubernetes_io_audit": "Audit"
+            }
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "^(Enforce|Warn|Audit)$"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "privileged": {
+                        "color": "red",
+                        "index": 0,
+                        "text": "privileged"
+                      },
+                      "baseline": {
+                        "color": "orange",
+                        "index": 1,
+                        "text": "baseline"
+                      },
+                      "restricted": {
+                        "color": "green",
+                        "index": 2,
+                        "text": "restricted"
+                      },
+                      "": {
+                        "color": "text",
+                        "index": 3,
+                        "text": "\u2014 not set"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "sortBy": [
+          {
+            "displayName": "Enforce",
+            "desc": false
+          }
+        ]
+      }
+    },
+    {
+      "type": "table",
+      "id": 12,
+      "title": "Workloads that cannot create pods",
+      "description": "Controllers with fewer pods than desired. After raising a namespace's enforce level, check the events of the ReplicaSet/DaemonSet/StatefulSet for 'violates PodSecurity' (also listed in the audit section below).",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${prometheus}"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 14,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheus}"
+          },
+          "format": "table",
+          "instant": true,
+          "range": false,
+          "expr": "label_replace(label_replace((sum by (namespace, deployment) (kube_deployment_spec_replicas{namespace=~\"$namespace\"}) - sum by (namespace, deployment) (kube_deployment_status_replicas{namespace=~\"$namespace\"}) > 0) and on(namespace, deployment) (kube_deployment_status_condition{namespace=~\"$namespace\",condition=\"ReplicaFailure\",status=\"true\"} == 1), \"workload\", \"$1\", \"deployment\", \"(.+)\"), \"kind\", \"Deployment\", \"\", \"\") or label_replace(label_replace(sum by (namespace, daemonset) (kube_daemonset_status_desired_number_scheduled{namespace=~\"$namespace\"} - kube_daemonset_status_current_number_scheduled{namespace=~\"$namespace\"}) > 0, \"workload\", \"$1\", \"daemonset\", \"(.+)\"), \"kind\", \"DaemonSet\", \"\", \"\") or label_replace(label_replace(sum by (namespace, statefulset) (kube_statefulset_replicas{namespace=~\"$namespace\"} - kube_statefulset_status_replicas{namespace=~\"$namespace\"}) > 0, \"workload\", \"$1\", \"statefulset\", \"(.+)\"), \"kind\", \"StatefulSet\", \"\", \"\")"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "deployment": true,
+              "daemonset": true,
+              "statefulset": true
+            },
+            "indexByName": {
+              "namespace": 0,
+              "kind": 1,
+              "workload": 2,
+              "Value": 3
+            },
+            "renameByName": {
+              "namespace": "Namespace",
+              "kind": "Kind",
+              "workload": "Workload",
+              "Value": "Missing pods"
+            }
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Missing pods"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm"
+      }
+    },
+    {
+      "type": "row",
+      "id": 13,
+      "title": "Per workload (kube-apiserver audit log in Loki)",
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 24,
+        "w": 24,
+        "h": 1
+      },
+      "panels": [],
+      "description": ""
+    },
+    {
+      "type": "table",
+      "id": 14,
+      "title": "Workloads violating the warn/audit level (would break when enforced)",
+      "description": "From the apiserver audit annotation pod-security.kubernetes.io/audit-violations. Workloads appear when they are created or updated (rollout, restart, sync), so coverage grows over time. Pods created by a controller have no name in the request and are shown as (generated).",
+      "datasource": {
+        "type": "loki",
+        "uid": "${loki}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 25,
+        "w": 24,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "loki",
+            "uid": "${loki}"
+          },
+          "queryType": "instant",
+          "editorMode": "code",
+          "expr": "sum by (namespace, resource, name, violations) (count_over_time({job=\"k3s-audit\", namespace=~\"$namespace\"} |= \"audit-violations\" | json resource=\"objectRef.resource\", name=\"objectRef.name\", violations=\"annotations[\\\"pod-security.kubernetes.io/audit-violations\\\"]\" | label_format name=`{{ if .name }}{{ .name }}{{ else }}(generated){{ end }}` [$__range]))"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "indexByName": {
+              "namespace": 0,
+              "resource": 1,
+              "name": 2,
+              "violations": 3,
+              "Value #A": 4
+            },
+            "renameByName": {
+              "namespace": "Namespace",
+              "resource": "Resource",
+              "name": "Name",
+              "violations": "Violations",
+              "Value #A": "Requests"
+            }
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Violations"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "auto",
+                  "wrapText": true
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 900
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "md",
+        "sortBy": [
+          {
+            "displayName": "Namespace",
+            "desc": false
+          }
+        ]
+      }
+    },
+    {
+      "type": "table",
+      "id": 15,
+      "title": "Requests denied by enforce",
+      "description": "Requests rejected with 'violates PodSecurity'. For controller-created pods the user is the controller service account (e.g. replicaset-controller).",
+      "datasource": {
+        "type": "loki",
+        "uid": "${loki}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 35,
+        "w": 24,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "loki",
+            "uid": "${loki}"
+          },
+          "queryType": "instant",
+          "editorMode": "code",
+          "expr": "sum by (namespace, resource, user, reason) (count_over_time({job=\"k3s-audit\", namespace=~\"$namespace\"} |= \"violates PodSecurity\" | json resource=\"objectRef.resource\", user=\"user.username\", reason=\"responseStatus.message\" [$__range]))"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "indexByName": {
+              "namespace": 0,
+              "resource": 1,
+              "user": 2,
+              "reason": 3,
+              "Value #A": 4
+            },
+            "renameByName": {
+              "namespace": "Namespace",
+              "resource": "Resource",
+              "user": "User",
+              "reason": "Reason",
+              "Value #A": "Denied"
+            }
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Reason"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "auto",
+                  "wrapText": true
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 900
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "md"
+      }
+    },
+    {
+      "type": "logs",
+      "id": 16,
+      "title": "Pod Security audit events",
+      "datasource": {
+        "type": "loki",
+        "uid": "${loki}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 43,
+        "w": 24,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "loki",
+            "uid": "${loki}"
+          },
+          "queryType": "range",
+          "editorMode": "code",
+          "expr": "{job=\"k3s-audit\", namespace=~\"$namespace\"} | json | line_format `{{ .verb }} {{ .objectRef_resource }} {{ .objectRef_namespace }}/{{ .objectRef_name }} by {{ .user_username }} ({{ .responseStatus_code }}): {{ .annotations_pod_security_kubernetes_io_audit_violations }}{{ .responseStatus_message }}`"
+        }
+      ],
+      "options": {
+        "showTime": true,
+        "wrapLogMessage": true,
+        "sortOrder": "Descending",
+        "enableLogDetails": true
+      }
+    }
+  ]
+}

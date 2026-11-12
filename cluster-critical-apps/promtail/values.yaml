@@ -31,6 +31,28 @@ promtail:
             level:
             severity:
       extraScrapeConfigs: |
+        # kube-apiserver audit log of the k3s servers (see monitoring repo: k3s_audit_log_enabled).
+        # Only Pod Security Admission related events are kept; feeds the "Pod Security Admission" dashboard.
+        - job_name: k3s-audit
+          static_configs:
+            - targets: [localhost]
+              labels:
+                job: k3s-audit
+                __path__: /var/log/kubernetes/audit/audit.log
+          pipeline_stages:
+            - match:
+                selector: '{job="k3s-audit"} !~ "pod-security.kubernetes.io/(audit-violations|exempt)|violates PodSecurity"'
+                action: drop
+                drop_counter_reason: not_pod_security
+            - json:
+                expressions:
+                  namespace: objectRef.namespace
+                  stage_ts: stageTimestamp
+            - labels:
+                namespace:
+            - timestamp:
+                source: stage_ts
+                format: RFC3339Nano
         # Add an additional scrape config for syslog
         - job_name: syslog
           syslog:
@@ -113,10 +135,18 @@ promtail:
   extraVolumeMounts:
     - name: geoipdb
       mountPath: /mnt/geoipdb
+    - name: k3s-audit
+      mountPath: /var/log/kubernetes/audit
+      readOnly: true
 
   extraVolumes:
     - name: geoipdb
       emptydir: {}
+    # Only populated on k3s servers; on agents the directory stays empty
+    - name: k3s-audit
+      hostPath:
+        path: /var/log/kubernetes/audit
+        type: DirectoryOrCreate
 
   # # Mount journal directory into promtail pods
   # extraVolumes:

@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_dashboard: "1"
+  name: dashboard-pod-security
+data:
+  # Loaded via .Files.Get so Grafana's double-brace legend syntax is not interpreted by Helm
+  pod-security.json: |-
+{{ .Files.Get "dashboards/pod-security.json" | indent 4 }}

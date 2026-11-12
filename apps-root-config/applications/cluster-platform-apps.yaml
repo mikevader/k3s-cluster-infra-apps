@@ -1,6 +1,7 @@
+---
 repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
-#argocdNamespace: "argocd"
-#server: "https://kubernetes.default.svc"
+# argocdNamespace: "argocd"
+# server: "https://kubernetes.default.svc"
 subFolder: cluster-platform-apps
 namespace:
   annotations: {}
@@ -16,8 +17,8 @@ roleBindings:
 #    clusterRoleName: "admin"
 
 clusterResourceWhitelist:
-- group: '*'
-  kind: '*'
+  - group: '*'
+    kind: '*'
 
 namespaceResourceBlacklist:
 #  - group: 'apps'
@@ -37,5 +38,9 @@ applications:
   # tracing: {}
   vault:
     serverSideDiff: true
+    # vault server needs IPC_LOCK for mlock (alternative: disable_mlock in vault config)
+    podSecurity:
+      enforce: privileged
+      warn: privileged
   vault-operator:
     serverSideDiff: true

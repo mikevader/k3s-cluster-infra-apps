@@ -4,6 +4,19 @@
 {{- $disableNamespaceCreation = .disableNamespaceCreation -}}
 {{- end }}
 {{- if not $disableNamespaceCreation }}
+{{- /* Pod Security Admission: chart/group defaults, overridable per application */ -}}
+{{- $appPodSecurity := dict -}}
+{{- if $value -}}
+{{- $appPodSecurity = default dict $value.podSecurity -}}
+{{- end -}}
+{{- $podSecurity := mustMergeOverwrite (deepCopy (default dict $.Values.podSecurity)) (deepCopy $appPodSecurity) -}}
+{{- $labels := deepCopy (default dict $.Values.namespace.labels) -}}
+{{- range $mode := list "enforce" "audit" "warn" -}}
+{{- with get $podSecurity $mode -}}
+{{- $_ := set $labels (printf "pod-security.kubernetes.io/%s" $mode) . -}}
+{{- $_ := set $labels (printf "pod-security.kubernetes.io/%s-version" $mode) (default "latest" $podSecurity.version) -}}
+{{- end -}}
+{{- end }}
 ---
 apiVersion: v1
 kind: Namespace
@@ -13,9 +26,9 @@ metadata:
   annotations:
 {{ toYaml $.Values.namespace.annotations | indent 4 }}
 {{- end }}
-{{ if $.Values.namespace.labels }}
+{{ if $labels }}
   labels:
-{{ toYaml $.Values.namespace.labels | indent 4 }}
+{{ toYaml $labels | indent 4 }}
 {{- end }}
 {{ if $.Values.enableDefaultLimitRange }}
 ---
