@@ -1,3 +1,4 @@
+---
 kube-prometheus-stack:
 
   crds:
@@ -149,26 +150,26 @@ kube-prometheus-stack:
           httpHeaderName1: "X-Scope-OrgID"
         secureJsonData:
           httpHeaderValue1: "1"
-        # basicAuth: true
-        # basicAuthUser: my_user
-        # jsonData:
-        #   maxLines: 1000
-        #   derivedFields:
-        #     # Field with internal link pointing to data source in Grafana.
-        #     # Right now, Grafana supports only Jaeger and Zipkin data sources as link targets.
-        #     # datasourceUid value can be anything, but it should be unique across all defined data source uids.
-        #     - datasourceUid: my_jaeger_uid
-        #       matcherRegex: "traceID=(\\w+)"
-        #       name: TraceID
-        #       # url will be interpreted as query for the datasource
-        #       url: '$${__value.raw}'
+          # basicAuth: true
+          # basicAuthUser: my_user
+          # jsonData:
+          #   maxLines: 1000
+          #   derivedFields:
+          #     # Field with internal link pointing to data source in Grafana.
+          #     # Right now, Grafana supports only Jaeger and Zipkin data sources as link targets.
+          #     # datasourceUid value can be anything, but it should be unique across all defined data source uids.
+          #     - datasourceUid: my_jaeger_uid
+          #       matcherRegex: "traceID=(\\w+)"
+          #       name: TraceID
+          #       # url will be interpreted as query for the datasource
+          #       url: '$${__value.raw}'
 
-        #     # Field with external link.
-        #     - matcherRegex: "traceID=(\\w+)"
-        #       name: TraceID
-        #       url: 'http://localhost:16686/trace/$${__value.raw}'
-        # secureJsonData:
-        #   basicAuthPassword: test_password
+          #     # Field with external link.
+          #     - matcherRegex: "traceID=(\\w+)"
+          #       name: TraceID
+          #       url: 'http://localhost:16686/trace/$${__value.raw}'
+          # secureJsonData:
+          #   basicAuthPassword: test_password
 
 
     dashboardProviders:
@@ -261,14 +262,14 @@ kube-prometheus-stack:
       # We use this to mute any warning-level notifications if the same alert is
       # already critical.
       inhibit_rules:
-        - source_matchers: [ severity="critical" ]
-          target_matchers: [ severity="warning" ]
+        - source_matchers: [severity="critical"]
+          target_matchers: [severity="warning"]
           # Apply inhibition if the alertname is the same.
           # CAUTION:
           #   If all label names listed in `equal` are missing
           #   from both the source and target alerts,
           #   the inhibition rule will apply!
-          equal: [ alertname, cluster, service ]
+          equal: [alertname, cluster, service]
       receivers:
         - name: 'null'
         - name: slack
@@ -368,7 +369,7 @@ kube-prometheus-stack:
         - secretName: alertmanager-framsburg-ch-tls
           hosts:
             - alertmanager.framsburg.ch
- 
+
     alertmanagerSpec:
       secrets:
         - slack-api-url
@@ -471,16 +472,3 @@ kube-prometheus-stack:
         - secretName: prometheus-framsburg-ch-tls
           hosts:
             - prometheus.framsburg.ch
-
-    # thanosIngress:
-    #   enabled: true
-    #   annotations:
-    #     kubernetes.io/ingress.class: traefik
-    #     cert-manager.io/cluster-issuer: letsencrypt-prod
-    #     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    #   hosts:
-    #     - thanos.framsburg.ch
-    #   tls:
-    #     - secretName: thanos-framsburg-ch-tls
-    #       hosts:
-    #         - thanos.framsburg.ch

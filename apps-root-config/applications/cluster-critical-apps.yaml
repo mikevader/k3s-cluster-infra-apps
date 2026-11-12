@@ -1,6 +1,7 @@
+---
 repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
-#argocdNamespace: "argocd"
-#server: "https://kubernetes.default.svc"
+# argocdNamespace: "argocd"
+# server: "https://kubernetes.default.svc"
 subFolder: cluster-critical-apps
 namespace:
   annotations: {}
@@ -16,8 +17,8 @@ roleBindings:
 #    clusterRoleName: "admin"
 
 clusterResourceWhitelist:
-- group: '*'
-  kind: '*'
+  - group: '*'
+    kind: '*'
 
 namespaceResourceBlacklist:
 #  - group: 'apps'
@@ -34,9 +35,9 @@ applications:
   loki:
     helmServerSideApply: true
     serverSideDiff: true
-#    source:
-#      helm:
-#        skipCrds: true
+    # source:
+    #   helm:
+    #     skipCrds: true
   longhorn-system:
     helmServerSideApply: true
     serverSideDiff: true
