@@ -26,7 +26,11 @@ namespaceResourceBlacklist:
 applications:
   cert-manager: {}
   error-pages: {}
-  democratic-csi: {}
+  democratic-csi:
+    # CSI node plugin: privileged, host namespaces, hostPath
+    podSecurity: &privileged
+      enforce: privileged
+      warn: privileged
   loki:
     helmServerSideApply: true
     serverSideDiff: true
@@ -36,16 +40,26 @@ applications:
   longhorn-system:
     helmServerSideApply: true
     serverSideDiff: true
-  metallb-system: {}
+    # engine image / CSI plugin / instance manager: privileged, hostPath
+    podSecurity: *privileged
+  metallb-system:
+    # FRR speaker: host network, NET_ADMIN/NET_RAW, hostPort
+    podSecurity: *privileged
   minio: {}
   monitoring-stack:
     helmServerSideApply: true
+    # node-exporter: host namespaces, hostPath, hostPort
+    podSecurity: *privileged
   nginx: {}
   nvidia:
     helmServerSideApply: true
     serverSideDiff: true
+    # device plugin / feature discovery: privileged, hostPath
+    podSecurity: *privileged
   opnsense: {}
-  promtail: {}
+  promtail:
+    # reads node logs via hostPath
+    podSecurity: *privileged
   snapshot-controller: {}
   traefik: {}
 #  traefik-external: {}

@@ -1,0 +1,26 @@
+---
+# Chart defaults, shared by every app-of-apps group (cluster-*.yaml).
+# Argo CD passes the group file via `valueFiles`; Helm always loads this file underneath it.
+
+# Pod Security Admission levels applied as labels to every namespace created by this chart.
+# https://kubernetes.io/docs/concepts/security/pod-security-admission/
+#
+# - enforce: pods violating this level are rejected
+# - audit:   violations are recorded in the API server audit log
+# - warn:    violations are returned as warnings to the client (kubectl, Argo CD)
+#
+# Levels: privileged | baseline | restricted. An empty value leaves the mode unset.
+# Opt out per application in the group file, e.g.:
+#
+#   applications:
+#     longhorn-system:
+#       podSecurity:
+#         enforce: privileged
+#         warn: privileged
+#
+podSecurity:
+  enforce: baseline
+  audit: restricted
+  warn: restricted
+  # Policy version the levels are evaluated against ("latest" or e.g. "v1.35")
+  version: latest

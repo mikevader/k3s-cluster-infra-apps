@@ -37,5 +37,9 @@ applications:
   # tracing: {}
   vault:
     serverSideDiff: true
+    # vault server needs IPC_LOCK for mlock (alternative: disable_mlock in vault config)
+    podSecurity:
+      enforce: privileged
+      warn: privileged
   vault-operator:
     serverSideDiff: true
