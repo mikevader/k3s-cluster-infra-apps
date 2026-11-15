@@ -163,13 +163,17 @@ spec:
 
   serviceRegistrationEnabled: true
 
-  # vaultPodSpec:
-  #   containers:
-  #     - name: vault-2
-  #       livenessProbe:
-  #         initialDelaySeconds: 120
-  #       readinessProbe:
-  #         initialDelaySeconds: 120
+  # Give a (re)joining raft node time to unseal and receive the snapshot from the
+  # leader before the liveness probe kills it. /sys/health returns 501 while the
+  # node is not yet initialized, so the default (3 x 10s, no delay) can kill it
+  # mid-join and leave it in a restart loop.
+  vaultContainerSpec:
+    name: vault
+    livenessProbe:
+      initialDelaySeconds: 60
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 6
 
   resources:
     # A YAML representation of resource ResourceRequirements for vault container
