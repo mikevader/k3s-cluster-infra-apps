@@ -103,7 +103,7 @@
         'docker',
       ],
       addLabels: [
-        'action/automerge',
+        'automerge',
       ],
       automerge: true,
       versioning: 'loose',
@@ -150,7 +150,7 @@
         'patch',
       ],
       addLabels: [
-        'action/automerge',
+        'automerge',
       ],
       automerge: true,
       matchPackageNames: [
