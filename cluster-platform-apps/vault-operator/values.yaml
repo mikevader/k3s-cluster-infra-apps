@@ -17,3 +17,9 @@ vault-operator:
   monitoring:
     serviceMonitor:
       enabled: true
+
+  bankVaults:
+    image:
+      # Overrides the chart's pinned default. Remove once the chart ships >= v1.33.2.
+      # renovate: image=ghcr.io/bank-vaults/bank-vaults
+      tag: v1.33.2
