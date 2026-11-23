@@ -1,3 +1,4 @@
+---
 transmission:
   controller:
     enabled: false
@@ -8,8 +9,8 @@ transmission:
     PGID: 666
     PEERPORT: 30402
     TRANSMISSION_WEB_HOME:
-    TRANSMISSION_RPC_USERNAME: 
-    TRANSMISSION_RPC_PASSWORD: 
+    TRANSMISSION_RPC_USERNAME:
+    TRANSMISSION_RPC_PASSWORD:
     TRANSMISSION_RPC_AUTHENTICATION_REQUIRED: "true"
     # WHITELIST: "transmission.framsburg.ch, 192.168.42.150, 192.168.42.*, 10.43.*.*, 10.42.*.*"
     RPC_URL: https://transmission.framsburg.ch/transmission/rpc

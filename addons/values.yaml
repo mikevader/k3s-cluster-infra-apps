@@ -1,3 +1,4 @@
+---
 spc:
   enabled: false
   provider: vault

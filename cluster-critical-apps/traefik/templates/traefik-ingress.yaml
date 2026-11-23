@@ -22,5 +22,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-      - traefik.framsburg.ch
+        - traefik.framsburg.ch
       secretName: traefik-framsburg-ch-tls

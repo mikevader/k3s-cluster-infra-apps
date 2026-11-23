@@ -1,3 +1,4 @@
+---
 sabnzbd:
   env:
     HOST_WHITELIST_ENTRIES: sabnzbd.framsburg.ch

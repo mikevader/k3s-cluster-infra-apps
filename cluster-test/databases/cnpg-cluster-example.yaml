@@ -1,9 +1,9 @@
 ## Example of PostgreSQL cluster
-#apiVersion: postgresql.cnpg.io/v1
-#kind: Cluster
-#metadata:
+# apiVersion: postgresql.cnpg.io/v1
+# kind: Cluster
+# metadata:
 #  name: cluster-example
-#spec:
+# spec:
 #  instances: 3
 #
 #  # Example of rolling update strategy:
@@ -39,12 +39,12 @@
 #
 #  monitoring:
 #    enablePodMonitor: true
-#---
-#apiVersion: postgresql.cnpg.io/v1
-#kind: ScheduledBackup
-#metadata:
+# ---
+# apiVersion: postgresql.cnpg.io/v1
+# kind: ScheduledBackup
+# metadata:
 #  name: backup-example
-#spec:
+# spec:
 #  schedule: "0 */30 * * * *"
 #  backupOwnerReference: self
 #  cluster:

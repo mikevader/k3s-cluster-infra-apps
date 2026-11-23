@@ -1,3 +1,4 @@
+---
 dmw:
   railsEnvironment: development
   image:
@@ -26,5 +27,3 @@ dmw:
 #  sysctls:
 #    - name: fs.inotify.max_user_instances
 #      value: "256"
-
-

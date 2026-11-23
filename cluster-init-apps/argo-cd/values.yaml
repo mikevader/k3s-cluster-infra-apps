@@ -72,8 +72,7 @@ argo-cd:
         jqPathExpressions:
           - .metadata.finalizers[]? | select(. == "post-delete-finalizer.argocd.argoproj.io" or . == "post-delete-finalizer.argocd.argoproj.io/cleanup")
           - if (.metadata.finalizers | length) == 0 then .metadata.finalizers else empty end
-      
-      
+
 
     rbac: # rbacConfig
       policy.default: role:readonly
@@ -88,7 +87,7 @@ argo-cd:
 
     # secret:
     #   githubSecret: $argocd-github-secret:webhook.github.secret
-  
+
     # secrets:
     #   extra:
     #     webhook.github.secret: $argocd-github-secret:webhook.github.secret
@@ -98,7 +97,7 @@ argo-cd:
     exporter:
       enabled: false
     hardAntiAffinity: false
-  
+
   controller:
     replicas: 1
     dynamicClusterDistribution: false

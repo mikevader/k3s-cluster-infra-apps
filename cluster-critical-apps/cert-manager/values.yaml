@@ -1,3 +1,4 @@
+---
 cert-manager:
   # Default values for cert-manager.
   # This is a YAML-formatted file.

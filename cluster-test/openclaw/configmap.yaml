@@ -31,10 +31,10 @@ data:
       exit 0
     fi
     git commit -m "${1:-vault update}"
-    
+
     # 2. Remote-Stand holen, eigene Commits rebasen
     git pull --rebase --autostash
-    
+
     # 3. Push mit Retry (falls Puller parallel pullt, sehr selten)
     for i in {1..3}; do
       if git push; then
@@ -42,7 +42,7 @@ data:
       fi
       git pull --rebase --autostash
     done
-    
+
     echo "Push failed after 3 attempts"
     exit 1
 

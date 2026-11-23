@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 name: uptime-kuma
 description: Uptime Kuma

@@ -7,4 +7,3 @@ dependencies:
   - name: hajimari
     repository: https://hajimari.io
     version: 2.0.2
-

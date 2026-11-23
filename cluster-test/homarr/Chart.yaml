@@ -7,4 +7,3 @@ dependencies:
   - name: homarr
     repository: https://homarr-labs.github.io/charts
     version: 8.44.0
-

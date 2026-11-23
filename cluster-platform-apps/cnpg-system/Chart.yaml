@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 name: cnpg-system
 version: 0.0.0

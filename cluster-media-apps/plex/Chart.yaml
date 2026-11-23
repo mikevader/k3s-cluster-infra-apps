@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 name: plex
 description: Plex Chart

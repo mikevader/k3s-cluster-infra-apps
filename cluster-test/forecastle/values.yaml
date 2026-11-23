@@ -1,3 +1,4 @@
+---
 forecastle:
   forecastle:
     createCustomResource: true
@@ -23,4 +24,3 @@ forecastle:
       tls:
         - hosts: ['forecastle.framsburg.ch']
           secretName: forecastle-framsburg-ch-tls
-

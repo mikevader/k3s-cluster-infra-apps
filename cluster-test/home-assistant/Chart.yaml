@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 name: home-assistant
 description: Home Assistant server
