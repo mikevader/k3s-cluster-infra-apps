@@ -120,3 +120,23 @@ postgresql18:
   storage:
     className: longhorn
     requestedSize: 10Gi
+
+postgresql19:
+  settings:
+    existingSecret: database-secret
+    superuser:
+      secretKey: superuserUsername
+    superuserPassword:
+      secretKey: superuserPassword
+
+  userDatabase:
+    existingSecret: database-secret
+    name:
+      secretKey: databaseName
+    user:
+      secretKey: databaseUsername
+    password:
+      secretKey: databasePassword
+  storage:
+    className: longhorn
+    requestedSize: 10Gi
