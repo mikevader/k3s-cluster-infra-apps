@@ -199,7 +199,7 @@ spec:
         volumeMode: Filesystem
         resources:
           requests:
-            storage: 1Gi
+            storage: 2Gi
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
