@@ -98,6 +98,10 @@ authentik:
         readOnly: true
 
 postgresql18:
+  image:
+    # Pinned: chart >=1.6.10 defaults to PG 19, which can't open the PG 18
+    # data directory. Remove only after a pg_upgrade / dump-restore migration.
+    tag: "18.7"
   settings:
     existingSecret: database-secret
     superuser:
