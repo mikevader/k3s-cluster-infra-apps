@@ -3682,12 +3682,102 @@ anywhere in resources and the webhook will replace it with the secret.</p>
 <ul>
 <li>https://github.com/hashicorp/vault/issues/13978</li>
 <li>https://developer.hashicorp.com/vault/tutorials/monitoring/monitor-telemetry-grafana-prometheus</li>
-<li>
-<p>https://developer.hashicorp.com/vault/tutorials/monitoring/usage-metrics</p>
-</li>
-<li>
-<p>[CSI]: Container Storage Interface</p>
-</li>
+<li>https://developer.hashicorp.com/vault/tutorials/monitoring/usage-metrics</li>
+</ul>
+<h2 id="operations">Operations<a class="headerlink" href="#operations" title="Permanent link">&para;</a></h2>
+<p>Vault runs as a 3-node raft cluster (<code>vault-0..2</code> in namespace <code>vault</code>), managed by the
+bank-vaults operator (<code>cluster-platform-apps/vault-operator</code>) from the <code>Vault</code> CR in
+<code>cluster-platform-apps/vault/templates/cr-raft.yaml</code>.</p>
+<p>Most commands below need the root token. This helper runs the Vault CLI on a pod
+without printing the token:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>v<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault-2<span class="w"> </span>-c<span class="w"> </span>vault<span class="w"> </span>--<span class="w"> </span>env<span class="w"> </span><span class="nv">VAULT_ADDR</span><span class="o">=</span>http://127.0.0.1:8200<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nv">VAULT_TOKEN</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>vault-unseal-keys<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.data.vault-root}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="k">)</span><span class="s2">"</span><span class="w"> </span>vault<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+</span></code></pre></div>
+<p>If <code>vault-2</code> is the broken node, change the pod in the helper to a healthy one.</p>
+<h3 id="health-check">Health check<a class="headerlink" href="#health-check" title="Permanent link">&para;</a></h3>
+<p>Run this before and after every change:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>get<span class="w"> </span>pods<span class="w">                       </span><span class="c1"># all vault-X pods 3/3</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>list-peers<span class="w">                      </span><span class="c1"># 3 voters, one leader</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>autopilot<span class="w"> </span>state<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">'^Healthy|Failure Tolerance'</span><span class="w">   </span><span class="c1"># true / 1</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">for</span><span class="w"> </span>p<span class="w"> </span><span class="k">in</span><span class="w"> </span>vault-0<span class="w"> </span>vault-1<span class="w"> </span>vault-2<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$p</span><span class="w"> </span>-c<span class="w"> </span>vault<span class="w"> </span>--<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">'VAULT_ADDR=http://127.0.0.1:8200 vault status'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">'Version|Sealed|Applied Index'</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">done</span><span class="w">                                            </span><span class="c1"># same version, unsealed, same index</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>kubectl<span class="w"> </span>get<span class="w"> </span>externalsecret<span class="w"> </span>-A<span class="w">                   </span><span class="c1"># all Ready=True</span>
+</span></code></pre></div>
+<p>Also log in once through OIDC at https://vault.framsburg.ch.</p>
+<p><strong>Do not start an upgrade unless all three nodes are healthy.</strong> A rolling restart takes
+one node down at a time, and with only two healthy nodes that loses quorum.</p>
+<h3 id="upgrading-vault">Upgrading Vault<a class="headerlink" href="#upgrading-vault" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Check the health</strong> (see above). If a node is crash-looping, fix it first (see
+   <a href="#recovering-a-corrupted-raft-node">Recovering a corrupted raft node</a>).</li>
+<li><strong>Take a snapshot</strong> and copy it off the cluster. Store it outside this repo: it
+   contains the (encrypted) contents of the whole Vault.
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>snapshot<span class="w"> </span>save<span class="w"> </span>/tmp/vault.snap
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>cp<span class="w"> </span>-c<span class="w"> </span>vault<span class="w"> </span>vault-2:/tmp/vault.snap<span class="w"> </span>./vault-<span class="k">$(</span>date<span class="w"> </span>+%F<span class="k">)</span>.snap
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault-2<span class="w"> </span>-c<span class="w"> </span>vault<span class="w"> </span>--<span class="w"> </span>rm<span class="w"> </span>/tmp/vault.snap
+</span></code></pre></div></li>
+<li><strong>Read the release notes</strong> for every version you pass, especially the
+   <a href="https://developer.hashicorp.com/vault/docs/updates/important-changes">important changes</a>
+   page, and check the operator's
+   <a href="https://github.com/bank-vaults/vault-operator/blob/main/VERSIONS.md">compatibility table</a>.</li>
+<li><strong>Bump the operator / bank-vaults sidecar first</strong>, if needed, as a separate commit:</li>
+<li>Operator: <code>version</code> in <code>cluster-platform-apps/vault-operator/Chart.yaml</code>.</li>
+<li>Sidecar: <code>bankVaults.image.tag</code> in <code>cluster-platform-apps/vault-operator/values.yaml</code>.</li>
+</ol>
+<p>Wait until the pods have rolled and the health check passes.
+5. <strong>Bump <code>image:</code> in <code>cr-raft.yaml</code></strong>, one hop at a time for big jumps (for example
+   1.20 → 1.21 → 2.x), and push. The operator then restarts the pods one by one,
+   highest ordinal first. Wait until each pod is unsealed on the new version before
+   moving on, and run the full health check after each hop.</p>
+<p><strong>Rollback:</strong> do not set the image tag back to an older version. Vault does not
+support downgrades on raft data. Instead, redeploy the old version and restore the snapshot:
+<code>v operator raft snapshot restore -force &lt;file&gt;</code>.</p>
+<h4 id="notes-from-the-1204-222-upgrade-2026-11">Notes from the 1.20.4 → 2.2.2 upgrade (2026-11)<a class="headerlink" href="#notes-from-the-1204-222-upgrade-2026-11" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The path was: bank-vaults sidecar v1.33.1 → v1.33.2, Vault 1.20.4 → 1.21.4 (the last
+  community 1.21 release) → 2.2.2. No config changes were needed.</li>
+<li>Since 2.x the image runs as the non-root <code>vault</code> user. The raft data is owned by
+  <code>100:1000</code> and the group can write it. The operator sets <code>fsGroup: 1000</code>, so this
+  works. If you ever see <code>permission denied</code> on <code>/vault/file</code>, check those permissions.</li>
+<li><code>disable_mlock: true</code> is set, so the IPC_LOCK changes in 2.0.x do not matter.</li>
+<li>Joining nodes may restart the <code>bank-vaults</code> sidecar once with
+  <code>dial tcp 127.0.0.1:8200: connect: connection refused</code>. This is harmless: the
+  sidecar starts before Vault is listening and succeeds on the retry.</li>
+</ul>
+<h3 id="recovering-a-corrupted-raft-node">Recovering a corrupted raft node<a class="headerlink" href="#recovering-a-corrupted-raft-node" title="Permanent link">&para;</a></h3>
+<p>Symptom: one pod is crash-looping and its <code>vault</code> container logs show a BoltDB panic,
+for example
+<code>panic: freepages: failed to get all reachable pages (page 254: multiple references ...)</code>.</p>
+<p>While the other two nodes are healthy, rebuild the broken node from the leader
+(this example uses <code>vault-1</code>):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>snapshot<span class="w"> </span>save<span class="w"> </span>/tmp/vault.snap<span class="w">          </span><span class="c1"># backup first (see above)</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>list-peers
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>remove-peer<span class="w"> </span>vault-1<span class="w">                    </span><span class="c1"># or the node ID from list-peers</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>delete<span class="w"> </span>pvc<span class="w"> </span>vault-raft-vault-1<span class="w"> </span>--wait<span class="o">=</span><span class="nb">false</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>vault-1
+</span></code></pre></div>
+<p>The StatefulSet creates a fresh PVC. The bank-vaults sidecar then unseals the node
+and rejoins it to the leader, which sends it a snapshot. Run the health check
+afterwards. A single <code>storage.raft: failed to get previous log ... log not found</code>
+warning on the new node is expected while it catches up.</p>
+<h3 id="resizing-raft-volumes">Resizing raft volumes<a class="headerlink" href="#resizing-raft-volumes" title="Permanent link">&para;</a></h3>
+<p>Longhorn supports online expansion, so patch each PVC directly:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>patch<span class="w"> </span>pvc<span class="w"> </span>vault-raft-vault-1<span class="w"> </span>--type<span class="w"> </span>merge<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>-p<span class="w"> </span><span class="s1">'{"spec":{"resources":{"requests":{"storage":"2Gi"}}}}'</span>
+</span></code></pre></div>
+<p>Also update <code>volumeClaimTemplates</code> in <code>cr-raft.yaml</code>, so rebuilt nodes get the same size.
+Kubernetes does not let the operator change the template on the existing
+StatefulSet (<code>spec: Forbidden: updates to statefulset spec ...</code>), and while that error
+persists the operator applies no other changes either. After pushing the change,
+delete only the StatefulSet object. The pods and volumes keep running, and the
+operator recreates the StatefulSet and takes over the existing pods without
+restarting them:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>delete<span class="w"> </span>sts<span class="w"> </span>vault<span class="w"> </span>--cascade<span class="o">=</span>orphan
+</span></code></pre></div>
+<ul>
+<li>[CSI]: Container Storage Interface</li>
 <li>[IOMMU]: Input-Output Memory Management Unit. Used to virualize memory access for devices. See <a href="https://en.wikipedia.org/wiki/Input–output_memory_management_unit">Wikipedia</a></li>
 </ul>
 
