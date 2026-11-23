@@ -6,3 +6,4 @@ gitops.code-workspace
 charts
 Chart.lock
 k3s-cluster-infra-apps.code-workspace
+/pv_backups/
