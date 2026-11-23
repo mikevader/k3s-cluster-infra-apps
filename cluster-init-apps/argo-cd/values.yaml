@@ -97,6 +97,16 @@ argo-cd:
     exporter:
       enabled: false
     hardAntiAffinity: false
+    sentinel:
+      # Cap sentinel CPU: redis 8.6.x sentinel can get stuck in an event-loop
+      # busy-spin (~1 core) after a peer restarts/fails over. Normal usage ~10m.
+      resources:
+        requests:
+          cpu: 10m
+          memory: 16Mi
+        limits:
+          cpu: 200m
+          memory: 64Mi
 
   controller:
     replicas: 1
