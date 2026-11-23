@@ -7,6 +7,15 @@ Ansible playbooks to setup and update all the nodes.
 
 Please have a look into the documentation 
 
+## Linting
+
+CI runs [MegaLinter](https://megalinter.io/) on changed files. To run yamllint
+locally with the same config:
+
+```sh
+brew install yamllint
+yamllint -c .github/linter/yamllint/.yamllint.yaml .
+```
 
 ## Hardware
 
