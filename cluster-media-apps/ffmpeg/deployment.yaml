@@ -19,8 +19,8 @@ spec:
       containers:
         - name: ffmpeg
           image: lscr.io/linuxserver/ffmpeg:latest
-          command: [ "/bin/bash", "-c", "--" ]
-          args: [ "while true; do sleep 30; done;" ]
+          command: ["/bin/bash", "-c", "--"]
+          args: ["while true; do sleep 30; done;"]
           volumeMounts:
             - name: tv-uhd
               mountPath: /mnt/media/tv-uhd

@@ -1,3 +1,4 @@
+---
 metallb:
   controller:
     logLevel: warn

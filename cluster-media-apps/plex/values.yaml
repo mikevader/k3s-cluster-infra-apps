@@ -1,3 +1,4 @@
+---
 plex:
   controller:
     enabled: true

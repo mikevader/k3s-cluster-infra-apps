@@ -1,6 +1,7 @@
+---
 repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
-#argocdNamespace: "argocd"
-#server: "https://kubernetes.default.svc"
+# argocdNamespace: "argocd"
+# server: "https://kubernetes.default.svc"
 subFolder: cluster-init-apps
 namespace:
   annotations: {}
@@ -16,15 +17,15 @@ roleBindings:
 #    clusterRoleName: "admin"
 
 clusterResourceWhitelist:
-- group: '*'
-  kind: '*'
+  - group: '*'
+    kind: '*'
 
 namespaceResourceBlacklist:
 #  - group: 'apps'
 #    kind: 'DaemonSet'
 
 applications:
-  argo-cd: 
+  argo-cd:
     disableNamespaceCreation: true
     destinationNamespace: argocd-system
     disableAutoSync: true

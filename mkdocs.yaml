@@ -92,81 +92,81 @@ plugins:
 nav:
   - Home: index.md
   - Getting Started:
-    - Overview: getting-started/overview.md
-    - Quick Start: getting-started/quickstart.md
-    - Architecture: getting-started/architecture.md
+      - Overview: getting-started/overview.md
+      - Quick Start: getting-started/quickstart.md
+      - Architecture: getting-started/architecture.md
   - Troubleshooting & Operations:
-    - Common Issues: troubleshooting/common-issues.md
-    - Disaster Recovery: troubleshooting/disaster-recovery.md
-    - Certificate Issues: troubleshooting/certificates.md
-    - Storage Problems: troubleshooting/storage.md
-    - Network Debugging: troubleshooting/network.md
-    - Application Debugging: troubleshooting/applications.md
-    - Maintenance Tasks: troubleshooting/maintenance.md
+      - Common Issues: troubleshooting/common-issues.md
+      - Disaster Recovery: troubleshooting/disaster-recovery.md
+      - Certificate Issues: troubleshooting/certificates.md
+      - Storage Problems: troubleshooting/storage.md
+      - Network Debugging: troubleshooting/network.md
+      - Application Debugging: troubleshooting/applications.md
+      - Maintenance Tasks: troubleshooting/maintenance.md
   - Infrastructure Setup:
-    - Hardware:
-      - Raspberry Pi Setup: hardware/raspberry-pi.md
-      - Proxmox Servers: hardware/proxmox.md
-      - TrueNAS Storage: hardware/truenas.md
-      - Network Configuration: hardware/network.md
-    - OS & Provisioning:
-      - Bare Metal Setup: setup/bare-metal.md
-      - Ansible Automation: setup/ansible.md
-      - Custom Images: setup/custom-images.md
+      - Hardware:
+          - Raspberry Pi Setup: hardware/raspberry-pi.md
+          - Proxmox Servers: hardware/proxmox.md
+          - TrueNAS Storage: hardware/truenas.md
+          - Network Configuration: hardware/network.md
+      - OS & Provisioning:
+          - Bare Metal Setup: setup/bare-metal.md
+          - Ansible Automation: setup/ansible.md
+          - Custom Images: setup/custom-images.md
   - Cluster Core:
-    - GitOps & CD:
-      - ArgoCD: cluster-core/argocd.md
-      - GitOps Workflow: cluster-core/gitops-workflow.md
-    - Networking:
-      - Traefik Ingress: cluster-core/traefik.md
-      - MetalLB Load Balancer: cluster-core/metallb.md
-      - DNS & Service Discovery: cluster-core/dns.md
-    - Security:
-      - Cert-Manager: cluster-core/cert-manager.md
-      - Authentik SSO: cluster-core/authentik.md
-      - HashiCorp Vault: cluster-core/vault.md
-      - Secrets Management: cluster-core/secrets-management.md
-    - Storage:
-      - Longhorn: cluster-core/longhorn.md
-      - Storage Classes: cluster-core/storage-classes.md
-    - Observability:
-      - Monitoring Stack: cluster-core/monitoring.md
-      - Logging: cluster-core/logging.md
-      - Alerting: cluster-core/alerting.md
+      - GitOps & CD:
+          - ArgoCD: cluster-core/argocd.md
+          - GitOps Workflow: cluster-core/gitops-workflow.md
+      - Networking:
+          - Traefik Ingress: cluster-core/traefik.md
+          - MetalLB Load Balancer: cluster-core/metallb.md
+          - DNS & Service Discovery: cluster-core/dns.md
+      - Security:
+          - Cert-Manager: cluster-core/cert-manager.md
+          - Authentik SSO: cluster-core/authentik.md
+          - HashiCorp Vault: cluster-core/vault.md
+          - Secrets Management: cluster-core/secrets-management.md
+      - Storage:
+          - Longhorn: cluster-core/longhorn.md
+          - Storage Classes: cluster-core/storage-classes.md
+      - Observability:
+          - Monitoring Stack: cluster-core/monitoring.md
+          - Logging: cluster-core/logging.md
+          - Alerting: cluster-core/alerting.md
   - Platform Services:
-    - Database:
-      - PostgreSQL (CNPG): platform/postgres-cnpg.md
-      - PostgreSQL (Zalando): platform/postgres-zalando.md
-      - Database Operations: platform/database-ops.md
-    - Secrets:
-      - Secrets Store CSI: platform/secrets-csi.md
-      - External Secrets: platform/external-secrets.md
-      - Vault Integration: platform/vault-integration.md
-    - Mails: platform/mail-service.md
+      - Database:
+          - PostgreSQL (CNPG): platform/postgres-cnpg.md
+          - PostgreSQL (Zalando): platform/postgres-zalando.md
+          - Database Operations: platform/database-ops.md
+      - Secrets:
+          - Secrets Store CSI: platform/secrets-csi.md
+          - External Secrets: platform/external-secrets.md
+          - Vault Integration: platform/vault-integration.md
+      - Mails: platform/mail-service.md
   - Applications:
-    - Media:
-      - Plex: apps/plex.md
-    - Network Services:
-      - AdGuard Home: apps/adguard.md
-      - Airprint: apps/airprint.md
-      - VPN: apps/vpn.md
-    - Monitoring:
-      - Uptime Kuma: apps/uptime-kuma.md
-    - Other:
-      - Security Camera: apps/securitycam.md
-      - Rails Demo: apps/rails-app.md
+      - Media:
+          - Plex: apps/plex.md
+      - Network Services:
+          - AdGuard Home: apps/adguard.md
+          - Airprint: apps/airprint.md
+          - VPN: apps/vpn.md
+      - Monitoring:
+          - Uptime Kuma: apps/uptime-kuma.md
+      - Other:
+          - Security Camera: apps/securitycam.md
+          - Rails Demo: apps/rails-app.md
   - How-To Guides:
-    - Deploy New Application: howto/deploy-app.md
-    - Setup OIDC for App: howto/setup-oidc.md
-    - Configure Ingress: howto/configure-ingress.md
-    - Setup Backup: howto/setup-backup.md
-    - Add Storage Volume: howto/add-storage.md
-    - Expose Service: howto/expose-service.md
-    - Debug Pod Issues: howto/debug-pods.md
+      - Deploy New Application: howto/deploy-app.md
+      - Setup OIDC for App: howto/setup-oidc.md
+      - Configure Ingress: howto/configure-ingress.md
+      - Setup Backup: howto/setup-backup.md
+      - Add Storage Volume: howto/add-storage.md
+      - Expose Service: howto/expose-service.md
+      - Debug Pod Issues: howto/debug-pods.md
   - Reference:
-    - Useful Commands: reference/commands.md
-    - Configuration Templates: reference/templates.md
-    - External Resources: reference/resources.md
+      - Useful Commands: reference/commands.md
+      - Configuration Templates: reference/templates.md
+      - External Resources: reference/resources.md
 
 
 extra:

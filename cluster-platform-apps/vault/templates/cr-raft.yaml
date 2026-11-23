@@ -16,7 +16,7 @@ spec:
             topologyKey: kubernetes.io/hostname
             labelSelector:
               matchLabels:
-                app.kubernetes.io/name: {{ .Release.Name | quote }}
+                app.kubernetes.io/name: "{{ .Release.Name }}"
 
   # Specify the ServiceAccount where the Vault Pod and the Bank-Vaults configurer/unsealer is running
   serviceAccount: vault
@@ -211,6 +211,6 @@ roleRef:
   kind: ClusterRole
   name: system:service-account-issuer-discovery
 subjects:
-- apiGroup: rbac.authorization.k8s.io
-  kind: Group
-  name: system:unauthenticated
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:unauthenticated

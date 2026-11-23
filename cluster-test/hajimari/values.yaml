@@ -1,3 +1,4 @@
+---
 hajimari:
   env:
     TZ: "Europe/Zurich"

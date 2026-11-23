@@ -13,7 +13,7 @@ data:
     traefik: true
     gateway: true
   settings.yaml: ""
-  #settings.yaml: |
+  # settings.yaml: |
   #  providers:
   #    longhorn:
   #      url: https://longhorn.my.network

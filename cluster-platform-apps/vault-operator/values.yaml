@@ -1,6 +1,7 @@
+---
 vault-operator:
   crdAnnotations:
-      "helm.sh/hook": crd-install
+    "helm.sh/hook": crd-install
 
   livenessProbe:
     initialDelaySeconds: 120

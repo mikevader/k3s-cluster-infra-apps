@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 name: monitoring-stack
 description: Bootstrap Chart for Argo CD

@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 name: opnsense
 version: 1.0.0

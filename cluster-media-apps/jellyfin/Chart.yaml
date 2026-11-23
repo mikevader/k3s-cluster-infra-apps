@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 name: jellyfin
 description: Jellyfin Media Server
@@ -6,4 +7,3 @@ dependencies:
   - name: jellyfin
     version: 3.7.0
     repository: https://jellyfin.github.io/jellyfin-helm
-
