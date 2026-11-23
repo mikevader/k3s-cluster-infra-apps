@@ -4,6 +4,6 @@ description: Jellyfin Media Server
 version: 1.0.0
 dependencies:
   - name: jellyfin
-    version: 3.6.0
+    version: 3.7.0
     repository: https://jellyfin.github.io/jellyfin-helm
 
