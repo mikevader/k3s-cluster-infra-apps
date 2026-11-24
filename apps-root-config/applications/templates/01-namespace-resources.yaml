@@ -23,8 +23,10 @@ kind: Namespace
 metadata:
   name: {{ $key }}
 {{- $nsAnnotations := deepCopy (default dict $.Values.namespace.annotations) -}}
-{{- if and $value $value.preserveOnRemoval -}}
-{{- $_ := set $nsAnnotations "argocd.argoproj.io/sync-options" "Prune=false,Delete=false" -}}
+{{- /* onRemoval: protect the namespace (and everything in it) from being pruned/deleted by the parent app; an explicit namespace.annotations entry wins */ -}}
+{{- $nsSyncOptions := include "apps.onRemovalSyncOptions" (include "apps.onRemoval" (dict "app" $value "root" $)) -}}
+{{- if $nsSyncOptions -}}
+{{- $_ := set $nsAnnotations "argocd.argoproj.io/sync-options" (get $nsAnnotations "argocd.argoproj.io/sync-options" | default $nsSyncOptions) -}}
 {{- end }}
 {{ if $nsAnnotations }}
   annotations:

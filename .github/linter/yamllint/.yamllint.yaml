@@ -7,6 +7,8 @@ ignore: |
   .vscode/
   *.sops.*
   ansible/roles/xanmanning.k3s/
+  # Helm templates made of range/if logic; not parseable as plain YAML
+  apps-root-config/*/templates/
 
 extends: default
 

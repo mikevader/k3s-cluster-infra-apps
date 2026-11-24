@@ -17,12 +17,15 @@ roleBindings:
 #    clusterRoleName: "admin"
 
 clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
+  - group: "*"
+    kind: "*"
 
 namespaceResourceBlacklist:
 #  - group: 'apps'
 #    kind: 'DaemonSet'
+
+# Default onRemoval for this group (bootstrap apps (argo-cd etc.): never delete automatically); see values.yaml
+onRemoval: preserve
 
 applications:
   argo-cd:

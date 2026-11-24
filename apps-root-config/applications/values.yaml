@@ -24,3 +24,25 @@ podSecurity:
   warn: restricted
   # Policy version the levels are evaluated against ("latest" or e.g. "v1.35")
   version: latest
+
+# What Argo CD does with an application's resources when the application is removed from its
+# group file (or its Application is deleted). Applied to the Application and to the Namespace
+# this chart creates for it.
+#
+# - delete:   cascade-delete everything right away (resources finalizer, no sync-options).
+# - confirm:  cascade-delete only after manual approval. Sets Prune=confirm,Delete=confirm, so the
+#             parent's sync waits until you approve in the UI or annotate the parent Application
+#             with `argocd.argoproj.io/deletion-approved: <ISO timestamp>`. Moving an app to another
+#             group is safe: the new parent adopts the Application and Namespace and the pending
+#             prune goes away.
+# - preserve: never delete. No resources finalizer and Prune=false,Delete=false; leftovers are
+#             cleaned up by hand.
+#
+# Override per group in cluster-*.yaml (top-level `onRemoval:`) and per application:
+#
+#   applications:
+#     actual:
+#       onRemoval: preserve
+#
+# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/
+onRemoval: confirm
