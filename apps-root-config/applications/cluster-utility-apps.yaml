@@ -25,7 +25,6 @@ namespaceResourceBlacklist:
 #    kind: 'DaemonSet'
 
 applications:
-  actual:
-    preserveOnRemoval: true
+  actual: {}
   heimdall: {}
   uptime-kuma: {}
