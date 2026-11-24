@@ -8,7 +8,11 @@ democratic-csi:
   storageClasses:
     - name: truenas-nfs
       defaultClass: false
-      reclaimPolicy: Delete
+      # Keep the TrueNAS dataset when its PVC is deleted.
+      reclaimPolicy: Retain
+      annotations:
+        # reclaimPolicy is immutable: let Argo CD delete and recreate the StorageClass on change.
+        argocd.argoproj.io/sync-options: Force=true,Replace=true
       volumeBindingMode: Immediate
       allowVolumeExpansion: true
       parameters:

@@ -3,10 +3,14 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: longhorn-nolock-nfs
+  annotations:
+    # reclaimPolicy is immutable: let Argo CD delete and recreate the StorageClass on change.
+    # Existing PVs keep their own reclaim policy and are not affected.
+    argocd.argoproj.io/sync-options: Force=true,Replace=true
 mountOptions:
   - nolock
 provisioner: driver.longhorn.io
-reclaimPolicy: Delete
+reclaimPolicy: Retain
 allowVolumeExpansion: true
 volumeBindingMode: Immediate
 parameters:

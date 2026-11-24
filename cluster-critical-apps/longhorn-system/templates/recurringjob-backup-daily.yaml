@@ -1,0 +1,21 @@
+---
+# Daily backup to the backup target, for the same volumes as the weekly backup job
+# (c-pymzhv: Mondays 07:00, keeps 5). Together: 7 daily + 5 weekly backups.
+# Snapshots (c-kgprz9) live inside the volume and do not survive its deletion.
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: backup-daily
+  namespace: longhorn-system
+spec:
+  name: backup-daily
+  task: backup
+  cron: "0 2 * * *"
+  groups:
+    - backup
+    - default
+  retain: 7
+  retentionPolicy: count-based
+  concurrency: 1
+  labels: {}
+  parameters: {}

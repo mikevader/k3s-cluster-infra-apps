@@ -3,9 +3,13 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: longhorn-nfs-v1
+  annotations:
+    # reclaimPolicy is immutable: let Argo CD delete and recreate the StorageClass on change.
+    # Existing PVs keep their own reclaim policy and are not affected.
+    argocd.argoproj.io/sync-options: Force=true,Replace=true
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
-reclaimPolicy: Delete
+reclaimPolicy: Retain
 volumeBindingMode: Immediate
 parameters:
   numberOfReplicas: "3"
