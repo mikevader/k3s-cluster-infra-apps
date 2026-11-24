@@ -24,6 +24,9 @@ namespaceResourceBlacklist:
 #  - group: 'apps'
 #    kind: 'DaemonSet'
 
+# Default onRemoval for this group (test apps: remove everything right away); see values.yaml
+onRemoval: delete
+
 applications:
   forecastle: {}
   hajimari: {}
