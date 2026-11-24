@@ -17,8 +17,8 @@ roleBindings:
 #    clusterRoleName: "admin"
 
 clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
+  - group: "*"
+    kind: "*"
 
 namespaceResourceBlacklist:
 #  - group: 'apps'
