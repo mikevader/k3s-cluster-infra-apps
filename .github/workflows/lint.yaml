@@ -49,7 +49,7 @@ jobs:
               )
             }}
           COPYPASTE_JSCPD_CONFIG_FILE: .github/linter/jscpd/jscpd.json
-          KUBERNETES_DIRECTORY: ''
+          KUBERNETES_DIRECTORY: ""
           KUBERNETES_KUBECONFORM_ARGUMENTS: --ignore-missing-schemas
           KUBERNETES_KUBECONFORM_FILTER_REGEX_EXCLUDE: "(Chart.yaml|values.yaml)"
           MARKDOWN_MARKDOWNLINT_CONFIG_FILE: .github/linter/markdownlint/markdownlint.yaml
