@@ -3,6 +3,9 @@ longhorn:
   persistence:
     defaultClassReplicaCount: 2
     backupTargetName: default
+    # Keep the Longhorn volume when its PVC is deleted. Longhorn recreates the
+    # `longhorn` StorageClass from its ConfigMap when this changes.
+    reclaimPolicy: Retain
   defaultSettings:
     concurrentAutomaticEngineUpgradePerNodeLimit: 1
     replicaAutoBalance: disabled # best-effort
