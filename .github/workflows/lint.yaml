@@ -22,7 +22,8 @@ jobs:
           fetch-depth: 0
 
       - name: MegaLinter
-        uses: oxsecurity/megalinter@v10.2.0
+        # documentation flavor (~1.35 GB vs ~4.3 GB full image) covers all ENABLE_LINTERS below
+        uses: oxsecurity/megalinter/flavors/documentation@v10.2.0
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           PRINT_ALPACA: false
