@@ -6,7 +6,7 @@ apiVersion: longhorn.io/v1beta2
 kind: RecurringJob
 metadata:
   name: backup-daily
-  namespace: {{ .Release.Namespace }}
+  namespace: longhorn-system
 spec:
   name: backup-daily
   task: backup
