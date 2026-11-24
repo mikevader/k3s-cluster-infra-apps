@@ -12,6 +12,26 @@
       '/cluster-platform-apps/renovate/.+\\.yaml$/',
     ],
   },
+  customManagers: [
+    {
+      // Same "# renovate:" annotation syntax as the charts repo, but for any
+      // YAML under cluster-*/ and for tag/appVersion/version keys, e.g.
+      //   # renovate: image=ghcr.io/bank-vaults/bank-vaults
+      //   tag: v1.33.2
+      //   # renovate: datasource=github-releases packageName=owner/repo
+      //   version: 1.2.3
+      customType: 'regex',
+      managerFilePatterns: [
+        '/^cluster-[^/]+/.+\\.ya?ml$/',
+      ],
+      matchStrings: [
+        '# renovate: image=(?<depName>\\S+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s+(?:tag|appVersion|version):\\s?"?(?<currentValue>[\\w+\\.\\-]+?)"?\\s',
+        '# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>\\S+?))? packageName=(?<packageName>\\S+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s+(?:tag|appVersion|version):\\s?"?(?<currentValue>[\\w+\\.\\-]+?)"?\\s',
+      ],
+      versioningTemplate: '{{#if versioning}}{{{versioning}}}{{else}}docker{{/if}}',
+      datasourceTemplate: '{{#if datasource}}{{{datasource}}}{{else}}docker{{/if}}',
+    },
+  ],
   packageRules: [
     {
       matchDatasources: [
