@@ -25,7 +25,8 @@ namespaceResourceBlacklist:
 #    kind: 'DaemonSet'
 
 applications:
-  actual: {}
+  actual:
+    preserveOnRemoval: true
   forecastle: {}
   hajimari: {}
   hermes: {}
