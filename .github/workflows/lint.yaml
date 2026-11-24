@@ -15,15 +15,53 @@ jobs:
   build:
     name: Lint
     runs-on: ubuntu-latest
+    env:
+      MEGALINTER_IMAGE: ghcr.io/oxsecurity/megalinter-documentation:v10.2.0
     steps:
       - name: Checkout
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
+      # The MegaLinter action would pull its image before any step runs, so the image is
+      # cached with docker save/load and run with docker run instead of `uses:`.
+      - name: Restore MegaLinter image
+        id: megalinter-cache
+        uses: actions/cache@v6
+        with:
+          path: ${{ runner.temp }}/megalinter-image.tar
+          key: megalinter-image-${{ env.MEGALINTER_IMAGE }}
+
+      - name: Load MegaLinter image
+        if: steps.megalinter-cache.outputs.cache-hit == 'true'
+        run: docker load --input "$RUNNER_TEMP/megalinter-image.tar"
+
+      - name: Pull MegaLinter image
+        if: steps.megalinter-cache.outputs.cache-hit != 'true'
+        run: |
+          docker pull "$MEGALINTER_IMAGE"
+          docker save --output "$RUNNER_TEMP/megalinter-image.tar" "$MEGALINTER_IMAGE"
+
       - name: MegaLinter
-        # documentation flavor (~1.35 GB vs ~4.3 GB full image) covers all ENABLE_LINTERS below
-        uses: oxsecurity/megalinter/flavors/documentation@v10.2.0
+        # documentation flavor (~1.35 GB vs ~4.3 GB full image) covers all ENABLE_LINTERS below.
+        # /home/runner/work is mounted at the same path, so GITHUB_WORKSPACE, GITHUB_EVENT_PATH,
+        # GITHUB_OUTPUT and GITHUB_STEP_SUMMARY stay valid inside the container.
+        run: |
+          args=()
+          for name in $(compgen -e | grep -E '^(GITHUB_|RUNNER_|ACTIONS_|CI$)'); do
+            args+=(--env "$name")
+          done
+          for name in PRINT_ALPACA VALIDATE_ALL_CODEBASE ENABLE_LINTERS \
+            COPYPASTE_JSCPD_CONFIG_FILE KUBERNETES_DIRECTORY KUBERNETES_KUBECONFORM_ARGUMENTS \
+            KUBERNETES_KUBECONFORM_FILTER_REGEX_EXCLUDE MARKDOWN_MARKDOWNLINT_CONFIG_FILE \
+            YAML_YAMLLINT_CONFIG_FILE YAML_PRETTIER_CONFIG_FILE; do
+            args+=(--env "$name")
+          done
+          docker run --rm "${args[@]}" \
+            --volume /var/run/docker.sock:/var/run/docker.sock \
+            --volume /home/runner/work:/home/runner/work \
+            --workdir "$GITHUB_WORKSPACE" \
+            "$MEGALINTER_IMAGE"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           PRINT_ALPACA: false
