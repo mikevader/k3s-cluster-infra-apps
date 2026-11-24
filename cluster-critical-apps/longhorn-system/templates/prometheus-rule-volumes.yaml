@@ -1,7 +1,7 @@
-{{- /*
-  Recording and alerting rules for persistent volumes / PVCs.
-
-  Rendered verbatim from files/ so that Helm leaves the Prometheus alert
-  templating ({{ $labels.x }}, {{ $value }}) alone.
-*/ -}}
-{{ .Files.Get "files/prometheus-rule-volumes.yaml" }}
+# Recording and alerting rules for persistent volumes / PVCs.
+#
+# Rendered verbatim from files/ so that Helm leaves the Prometheus alert
+# templating ($labels.x, $value in double braces) alone. The include sits
+# behind a YAML comment so this file stays valid YAML for the linters;
+# nindent starts the manifest on the line after the "#".
+# {{- .Files.Get "files/prometheus-rule-volumes.yaml" | trimPrefix "---\n" | nindent 0 }}

@@ -8,4 +8,4 @@ metadata:
 data:
   # Loaded via .Files.Get so Grafana's double-brace legend syntax is not interpreted by Helm
   pod-security.json: |-
-{{ .Files.Get "dashboards/pod-security.json" | indent 4 }}
+    {{- .Files.Get "dashboards/pod-security.json" | nindent 4 }}
