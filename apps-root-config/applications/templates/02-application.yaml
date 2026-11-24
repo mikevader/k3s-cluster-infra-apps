@@ -13,8 +13,9 @@
 {{- $ignoreDifferences := default false .ignoreDifferences }}
 {{- $serverSideDiff := default false .serverSideDiff }}
 {{- $syncWave := default 10 .syncWave }}
-{{- /* preserveOnRemoval: no cascade-delete finalizer and Prune=false,Delete=false, so the app can be moved between groups without deleting its resources */ -}}
-{{- $preserveOnRemoval := default false .preserveOnRemoval }}
+{{- /* onRemoval (delete|confirm|preserve): see values.yaml */ -}}
+{{- $onRemoval := include "apps.onRemoval" (dict "app" $value "root" $) }}
+{{- $onRemovalSyncOptions := include "apps.onRemovalSyncOptions" $onRemoval }}
 {{- if not $disabled }}
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -25,12 +26,12 @@ metadata:
     {{ if $serverSideDiff -}}
     argocd.argoproj.io/compare-options: ServerSideDiff=true
     {{- end }}
-    {{- if $preserveOnRemoval }}
-    argocd.argoproj.io/sync-options: Prune=false,Delete=false
+    {{- with $onRemovalSyncOptions }}
+    argocd.argoproj.io/sync-options: {{ . }}
     {{- end }}
   name: {{ $key }}
   namespace: {{ default "argocd-system" $.Values.argocdNamespace }}
-  {{- if not $preserveOnRemoval }}
+  {{- if ne $onRemoval "preserve" }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   {{- end }}

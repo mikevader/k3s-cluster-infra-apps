@@ -68,3 +68,31 @@ Replace [@, &] sign in email
 {{- define "apps.responsible" -}}
 {{ .Values.responsible | replace "@" "__at__" | replace "&" "__and__" }}
 {{- end -}}
+
+{{/*
+Resolve the onRemoval mode for one application.
+Precedence: application `onRemoval` > group/chart `onRemoval` > "confirm".
+Usage: include "apps.onRemoval" (dict "app" $value "root" $)
+*/}}
+{{- define "apps.onRemoval" -}}
+{{- $mode := default "confirm" .root.Values.onRemoval -}}
+{{- if and .app .app.onRemoval -}}
+{{- $mode = .app.onRemoval -}}
+{{- end -}}
+{{- if not (has $mode (list "delete" "confirm" "preserve")) -}}
+{{- fail (printf "onRemoval must be one of delete, confirm, preserve (got %q)" $mode) -}}
+{{- end -}}
+{{- $mode -}}
+{{- end -}}
+
+{{/*
+Argo CD sync-options value for an onRemoval mode; empty for "delete".
+Usage: include "apps.onRemovalSyncOptions" "confirm"
+*/}}
+{{- define "apps.onRemovalSyncOptions" -}}
+{{- if eq . "confirm" -}}
+Prune=confirm,Delete=confirm
+{{- else if eq . "preserve" -}}
+Prune=false,Delete=false
+{{- end -}}
+{{- end -}}
