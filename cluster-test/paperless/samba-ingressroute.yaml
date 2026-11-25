@@ -6,6 +6,9 @@ kind: IngressRouteTCP
 metadata:
   name: paperless-samba
 spec:
+  # Traefik runs with --providers.kubernetescrd.ingressClass=traefik and ignores
+  # CRD routes that set neither this nor the kubernetes.io/ingress.class annotation.
+  ingressClassName: traefik
   entryPoints:
     - smb
   routes:
