@@ -1,0 +1,64 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: paperless
+spec:
+  instances: 2
+  imageName: ghcr.io/cloudnative-pg/postgresql:18
+  primaryUpdateStrategy: unsupervised
+
+  # Creates database/owner "paperless" and the secret "paperless-app"
+  bootstrap:
+    initdb:
+      database: paperless
+      owner: paperless
+
+  storage:
+    size: 5Gi
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: paperless-backup-store
+
+  affinity:
+    enablePodAntiAffinity: true
+
+  monitoring:
+    enablePodMonitor: true
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: backup-paperless
+spec:
+  schedule: "0 0 12 * * *"
+  backupOwnerReference: self
+  cluster:
+    name: paperless
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: paperless-backup-store
+spec:
+  retentionPolicy: "32d"
+  configuration:
+    destinationPath: s3://cnpg/backups
+    endpointURL: https://minio2.framsburg.net:9000
+    s3Credentials:
+      accessKeyId:
+        name: cnpg-minio-access
+        key: AWS_ACCESS_KEY_ID
+      secretAccessKey:
+        name: cnpg-minio-access
+        key: AWS_SECRET_ACCESS_KEY
+    tags:
+      backupRetentionPolicy: "expire"
+    historyTags:
+      backupRetentionPolicy: "keep"

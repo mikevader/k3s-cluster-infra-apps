@@ -150,12 +150,13 @@ traefik:
     #     default: true
     #   exposedPort: 139
     #   protocol: TCP
+    # SMB for the paperless scan drop-box (cluster-test/paperless). SMB has no SNI,
+    # so a single IngressRouteTCP with HostSNI(`*`) owns this entrypoint.
     smb:
-      port: 4445
-    #   hostPort: 445
+      port: 8445
       expose:
         default: true
-      exposedPort: 4445
+      exposedPort: 445
       protocol: TCP
     metrics:
       port: 9100

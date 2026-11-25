@@ -1,0 +1,18 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: paperless
+resources:
+  - pvc.yaml
+  - secret-minio-access.yaml
+  - secret-paperless.yaml
+  - secret-samba.yaml
+  - cnpg-paperless.yaml
+  - redis.yaml
+  - paperless-deployment.yaml
+  - paperless-service.yaml
+  - paperless-ingress.yaml
+  - samba-configmap.yaml
+  - samba-deployment.yaml
+  - samba-service.yaml
+  - samba-ingressroute.yaml

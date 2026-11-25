@@ -1,0 +1,44 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-data
+  labels:
+    app.kubernetes.io/name: paperless
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-media
+  labels:
+    app.kubernetes.io/name: paperless
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 50Gi
+---
+# Shared between samba (writes) and paperless (consumes). Longhorn RWX is NFS-backed,
+# so paperless uses polling instead of inotify (PAPERLESS_CONSUMER_POLLING).
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-consume
+  labels:
+    app.kubernetes.io/name: paperless
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: longhorn-nfs-v1
+  resources:
+    requests:
+      storage: 5Gi

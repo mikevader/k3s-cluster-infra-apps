@@ -38,6 +38,7 @@ applications:
     helmServerSideApply: true
     serverSideDiff: true
   openclaw: {}
+  paperless: {}
   # bouncer: {}
   # test-helm-test:
   #   path: cluster-test/test-helm
