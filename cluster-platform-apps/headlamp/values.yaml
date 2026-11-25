@@ -42,6 +42,12 @@ headlamp:
       kubernetes.io/tls-acme: "true"
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
       traefik.ingress.kubernetes.io/router.middlewares: headlamp-forward-headers@kubernetescrd
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/name: "Headlamp"
+      gethomepage.dev/group: "Platform"
+      gethomepage.dev/icon: "headlamp.png"
+      gethomepage.dev/description: "Kubernetes web UI"
+      gethomepage.dev/pod-selector: ""
     ingressClassName: traefik
     hosts:
       - host: headlamp.framsburg.ch

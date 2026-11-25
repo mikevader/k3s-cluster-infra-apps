@@ -27,6 +27,12 @@ actual:
     annotations:
       kubernetes.io/tls-acme: "true"
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/name: "Actual"
+      gethomepage.dev/group: "Utilities"
+      gethomepage.dev/icon: "actual-budget.png"
+      gethomepage.dev/description: "Personal finance"
+      gethomepage.dev/pod-selector: ""
     hosts:
       - host: 'actual.framsburg.ch'
         paths:

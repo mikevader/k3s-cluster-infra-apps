@@ -44,6 +44,12 @@ transmission:
         traefik.passHostHeader: "true"
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         # traefik.ingress.kubernetes.io/router.priority: "10"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/name: "Transmission"
+        gethomepage.dev/group: "Media"
+        gethomepage.dev/icon: "transmission.png"
+        gethomepage.dev/description: "Torrent client"
+        gethomepage.dev/pod-selector: ""
       ingressClassName: traefik
       hosts:
         - host: 'transmission.framsburg.ch'
@@ -104,6 +110,12 @@ flood:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         # traefik.ingress.kubernetes.io/router.priority: "10"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/name: "Flood"
+        gethomepage.dev/group: "Media"
+        gethomepage.dev/icon: "flood.png"
+        gethomepage.dev/description: "Torrent web UI"
+        gethomepage.dev/pod-selector: ""
       ingressClassName: traefik
       hosts:
         - host: 'flood.framsburg.ch'

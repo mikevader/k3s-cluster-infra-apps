@@ -1,0 +1,19 @@
+---
+host: home.framsburg.ch
+
+image:
+  repository: ghcr.io/gethomepage/homepage
+  # renovate: image=ghcr.io/gethomepage/homepage
+  tag: v2.8.0
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    memory: 256Mi
+
+# Vault path holding widget API keys (HOMEPAGE_VAR_* env vars).
+# The keys themselves are listed in templates/secret-api-keys.yaml.
+apiKeys:
+  vaultKey: secret/data/framsburg/homepage

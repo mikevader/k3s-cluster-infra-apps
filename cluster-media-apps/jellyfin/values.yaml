@@ -107,6 +107,7 @@ jellyfin:
       gethomepage.dev/name: Jellyfin
       gethomepage.dev/widget.type: "jellyfin"
       gethomepage.dev/widget.url: "https://jellyfin.framsburg.ch"
+      gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_JELLYFIN_KEY}}"
       gethomepage.dev/pod-selector: ""
       hajimari.io/enable: "true"
       hajimari.io/icon: simple-icons:jellyfin

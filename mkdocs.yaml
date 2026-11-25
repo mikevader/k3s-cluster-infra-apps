@@ -150,11 +150,16 @@ nav:
           - AdGuard Home: apps/adguard.md
           - Airprint: apps/airprint.md
           - VPN: apps/vpn.md
+      - Dashboard:
+          - Homepage: apps/homepage.md
       - Monitoring:
           - Uptime Kuma: apps/uptime-kuma.md
       - Other:
           - Security Camera: apps/securitycam.md
           - Rails Demo: apps/rails-app.md
+  - Decisions:
+      - Homepage Dashboard: adr/homepage-dashboard.md
+      - Storage Network: adr/storage-network.md
   - How-To Guides:
       - Deploy New Application: howto/deploy-app.md
       - Setup OIDC for App: howto/setup-oidc.md
