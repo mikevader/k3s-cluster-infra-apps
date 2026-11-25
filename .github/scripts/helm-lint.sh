@@ -10,6 +10,7 @@
 # directory, as the Applications in apps-root-config/applications do.
 # apps-root-config/applications itself renders once per group values file.
 # kubeconform is skipped with a warning when it is not installed.
+# With RENDER_DIR set, each rendered chart is also saved there (for kubescape).
 set -uo pipefail
 
 cd "$(git rev-parse --show-toplevel)" || exit 1
@@ -76,12 +77,21 @@ else
   validate() { cat >/dev/null; }
 fi
 
+# save <file>: copy stdin to RENDER_DIR/<file> when RENDER_DIR is set
+if [ -n "${RENDER_DIR:-}" ]; then
+  mkdir -p "$RENDER_DIR"
+  save() { tee "$RENDER_DIR/$1"; }
+else
+  save() { cat; }
+fi
+
 # render <chart> <release/namespace> [helm args...]
 render() {
   local chart=$1 name=$2
   shift 2
   helm lint --quiet "$chart" --namespace "$name" "$@" &&
-    helm template "$name" "$chart" --namespace "$name" "$@" | validate
+    helm template "$name" "$chart" --namespace "$name" "$@" |
+    save "${chart//\//_}_$name.yaml" | validate
 }
 
 failed=()

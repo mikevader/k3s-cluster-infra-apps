@@ -79,7 +79,28 @@ jobs:
           curl -sSfL "https://github.com/yannh/kubeconform/releases/download/${KUBECONFORM_VERSION}/kubeconform-linux-amd64.tar.gz"
           | sudo tar xz -C /usr/local/bin kubeconform
 
+      - name: Install kubescape
+        env:
+          KUBESCAPE_VERSION: v4.0.19
+        run: >-
+          curl -sSfL "https://github.com/kubescape/kubescape/releases/download/${KUBESCAPE_VERSION}/kubescape_${KUBESCAPE_VERSION#v}_linux_amd64"
+          -o kubescape && sudo install kubescape /usr/local/bin/kubescape && rm kubescape
+
       - name: Lint and validate charts
         env:
           SCOPE: ${{ github.event_name == 'workflow_dispatch' && '--all' || format('origin/{0}', github.base_ref) }}
+          RENDER_DIR: ${{ runner.temp }}/rendered
         run: .github/scripts/helm-lint.sh "$SCOPE"
+
+      - name: Kubescape scan of rendered charts
+        # report only: no thresholds set, so findings never fail the job
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        env:
+          RENDER_DIR: ${{ runner.temp }}/rendered
+        run: |
+          if [ ! -d "$RENDER_DIR" ]; then
+            echo "No rendered charts to scan."
+            exit 0
+          fi
+          kubescape scan "$RENDER_DIR" --format pretty-printer
