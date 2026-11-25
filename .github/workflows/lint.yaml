@@ -49,7 +49,7 @@ jobs:
               )
             }}
           COPYPASTE_JSCPD_CONFIG_FILE: .github/linter/jscpd/jscpd.json
-          KUBERNETES_DIRECTORY: ""
+          KUBERNETES_DIRECTORY: any
           KUBERNETES_KUBECONFORM_ARGUMENTS: --ignore-missing-schemas
           # apps-root-config/*/templates/ are Helm templates made of range/if logic, not
           # parseable as plain YAML (yamllint skips them via its own ignore list)
