@@ -18,6 +18,8 @@ argo-cd:
     cm: # config
       kustomize.buildOptions: "--enable-helm"
       url: https://argocd.framsburg.ch
+      # local API-only account for the homepage dashboard widget (read-only via policy.default)
+      accounts.homepage: apiKey
 #      oidc.config: |
 #        name: Authentik
 #        issuer: https://authentik.framsburg.ch/application/o/argocd/
