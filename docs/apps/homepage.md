@@ -20,8 +20,10 @@ Add annotations to the service's Ingress/IngressRoute in git. There is nothing t
 annotations:
   gethomepage.dev/enabled: "true"
   gethomepage.dev/name: "Radarr"
-  gethomepage.dev/group: "Media"          # Infrastructure | Platform | Media | Utilities | RPG
-  gethomepage.dev/icon: "radarr.png"      # dashboard-icons name, or mdi-<icon> / si-<icon>
+  # group: Infrastructure | Platform | Media | Utilities | RPG
+  gethomepage.dev/group: "Media"
+  # icon: dashboard-icons name, or mdi-<icon> / si-<icon>
+  gethomepage.dev/icon: "radarr.png"
   gethomepage.dev/description: "Movies"
   gethomepage.dev/pod-selector: ""        # "" = no status dot; see below
 ```
@@ -29,7 +31,7 @@ annotations:
 Optional annotations:
 
 | Annotation | Use |
-|---|---|
+| --- | --- |
 | `gethomepage.dev/href` | Link target when it differs from the ingress host (e.g. a sub-path) |
 | `gethomepage.dev/pod-selector` | Label selector for the status dot, e.g. `app.kubernetes.io/name=argocd-server`. Without it Homepage looks for pods labelled `app.kubernetes.io/name=<ingress name>` |
 | `gethomepage.dev/widget.type` | Enable a [service widget](https://gethomepage.dev/widgets/) |
@@ -50,7 +52,7 @@ Keys live in Vault at `secret/framsburg/homepage` (KV v2). The ExternalSecret `h
 `HOMEPAGE_VAR_*` environment variables. Reloader restarts the pod when the secret changes.
 
 | Vault property | Where it comes from |
-|---|---|
+| --- | --- |
 | `HOMEPAGE_VAR_ARGOCD_KEY` | ArgoCD local account `homepage` (`accounts.homepage: apiKey` in `cluster-init-apps/argo-cd/values.yaml`, read-only via `policy.default: role:readonly`) |
 | `HOMEPAGE_VAR_JELLYFIN_KEY` | Jellyfin → Dashboard → API Keys |
 
@@ -76,7 +78,7 @@ vault kv put -mount=secret framsburg/homepage \
 To add a key for another widget:
 
 1. Add the property in Vault with `vault kv patch`, not `put`, which replaces all properties.
-2. Add its name to `apiKeys.keys` in `cluster-utility-apps/homepage/values.yaml`.
+2. Add a `data` entry for it in `cluster-utility-apps/homepage/templates/secret-api-keys.yaml`.
 3. Reference it in the annotation as `"{{HOMEPAGE_VAR_<NAME>}}"`.
 
 ## One-time setup
@@ -90,7 +92,7 @@ To add a key for another widget:
 ## Troubleshooting
 
 | Symptom | Cause / fix |
-|---|---|
+| --- | --- |
 | Service missing | Check `gethomepage.dev/enabled: "true"` is quoted. Run `kubectl -n homepage logs deploy/homepage` and look for RBAC errors. New resource kinds need a rule in `templates/clusterrole.yaml` |
 | Card shows **NOT FOUND** | Pod lookup failed. Set `gethomepage.dev/pod-selector` to a matching selector, or `""` |
 | Widget shows **API Error** | Key missing or wrong in Vault. Check `kubectl -n homepage get secret homepage-api-keys` and the ExternalSecret status |

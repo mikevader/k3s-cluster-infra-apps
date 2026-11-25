@@ -19,7 +19,7 @@ in `cluster-utility-apps` but has to be configured by hand.
 ## Options
 
 | Tool | Maintained | Kubernetes auto-discovery | Auth | Per-user view |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | **Homepage (gethomepage)** | yes, ~monthly releases | yes: Ingress, IngressRoute, HTTPRoute annotations | forward-auth middleware | no (only via separate instances) |
 | Homarr v1 | yes | no: Kubernetes integration shows workloads, apps are added in the UI | built-in OIDC | partly, groups managed inside Homarr |
 | Hajimari | no (stale) | yes (Ingress annotations) | middleware | no |

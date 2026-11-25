@@ -12,7 +12,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: {{ .Values.host | quote }}
+    - host: '{{ .Values.host }}'
       http:
         paths:
           - path: /
@@ -24,5 +24,5 @@ spec:
                   name: http
   tls:
     - hosts:
-        - {{ .Values.host | quote }}
-      secretName: {{ .Values.host | replace "." "-" }}-tls
+        - '{{ .Values.host }}'
+      secretName: '{{ .Values.host | replace "." "-" }}-tls'

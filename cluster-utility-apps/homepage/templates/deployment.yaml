@@ -66,13 +66,39 @@ spec:
             initialDelaySeconds: 15
             periodSeconds: 15
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            requests:
+              cpu: '{{ .Values.resources.requests.cpu }}'
+              memory: '{{ .Values.resources.requests.memory }}'
+            limits:
+              memory: '{{ .Values.resources.limits.memory }}'
           volumeMounts:
-            {{- range list "custom.js" "custom.css" "bookmarks.yaml" "docker.yaml" "kubernetes.yaml" "proxmox.yaml" "services.yaml" "settings.yaml" "widgets.yaml" }}
-            - mountPath: /app/config/{{ . }}
+            - mountPath: /app/config/custom.js
               name: homepage-config
-              subPath: {{ . }}
-            {{- end }}
+              subPath: custom.js
+            - mountPath: /app/config/custom.css
+              name: homepage-config
+              subPath: custom.css
+            - mountPath: /app/config/bookmarks.yaml
+              name: homepage-config
+              subPath: bookmarks.yaml
+            - mountPath: /app/config/docker.yaml
+              name: homepage-config
+              subPath: docker.yaml
+            - mountPath: /app/config/kubernetes.yaml
+              name: homepage-config
+              subPath: kubernetes.yaml
+            - mountPath: /app/config/proxmox.yaml
+              name: homepage-config
+              subPath: proxmox.yaml
+            - mountPath: /app/config/services.yaml
+              name: homepage-config
+              subPath: services.yaml
+            - mountPath: /app/config/settings.yaml
+              name: homepage-config
+              subPath: settings.yaml
+            - mountPath: /app/config/widgets.yaml
+              name: homepage-config
+              subPath: widgets.yaml
             - mountPath: /app/config/logs
               name: logs
       volumes:

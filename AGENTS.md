@@ -46,5 +46,5 @@ This is a multi-repo workspace for a home k3s cluster ecosystem. Six repos work 
 - Timezone: `Europe/Zurich`
 - Cluster domain: `framsburg.ch` (e.g., `k3s.framsburg.ch`, `rancher.framsburg.ch`)
 - Infrastructure: k3s with etcd, MetalLB for load balancing, Longhorn for storage, cert-manager for TLS, nginx ingress
-- Dashboard: every user-facing Ingress/IngressRoute gets `gethomepage.dev/*` annotations (`enabled`, `name`, `group`, `icon`, `description`) so it appears on `home.framsburg.ch`. Groups: Infrastructure, Platform, Media, Utilities, RPG. See `docs/apps/homepage.md`.
-
+- Dashboard: every user-facing Ingress/IngressRoute gets `gethomepage.dev/*` annotations (`enabled`, `name`, `group`, `icon`, `description`) so it appears on `home.framsburg.ch`.
+  Groups: Infrastructure, Platform, Media, Utilities, RPG. See `docs/apps/homepage.md`.
