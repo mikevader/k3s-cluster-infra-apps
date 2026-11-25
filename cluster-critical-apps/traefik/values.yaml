@@ -176,6 +176,7 @@ traefik:
         gethomepage.dev/href: "https://traefik.framsburg.ch/dashboard/"
         gethomepage.dev/widget.type: "traefik"
         gethomepage.dev/widget.url: "http://traefik.traefik:80"
+        gethomepage.dev/pod-selector: "app.kubernetes.io/name=traefik"
       labels:
         app.kubernetes.io/instance: "traefik"
       tls:

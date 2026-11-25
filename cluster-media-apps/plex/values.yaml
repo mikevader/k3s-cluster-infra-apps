@@ -213,7 +213,7 @@ plex:
         gethomepage.dev/name: Plex
         gethomepage.dev/widget.type: "plex"
         gethomepage.dev/widget.url: "https://plex.framsburg.ch"
-        gethomepage.dev/widget.headers.X-Auth-Key: ""
+        gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_PLEX_KEY}}"
         gethomepage.dev/pod-selector: ""
         hajimari.io/enable: "true"
         hajimari.io/icon: mdi:plex

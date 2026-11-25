@@ -55,6 +55,7 @@ Keys live in Vault at `secret/framsburg/homepage` (KV v2). The ExternalSecret `h
 | --- | --- |
 | `HOMEPAGE_VAR_ARGOCD_KEY` | ArgoCD local account `homepage` (`accounts.homepage: apiKey` in `cluster-init-apps/argo-cd/values.yaml`, read-only via `policy.default: role:readonly`) |
 | `HOMEPAGE_VAR_JELLYFIN_KEY` | Jellyfin → Dashboard → API Keys |
+| `HOMEPAGE_VAR_PLEX_KEY` | Plex token of the server owner (see below) |
 
 ### Create the ArgoCD token
 
@@ -67,12 +68,28 @@ argocd account generate-token --account homepage
 
 Jellyfin → *Dashboard* → *Advanced* → *API Keys* → **+** → app name `homepage`.
 
+### Get the Plex token
+
+Use one of these:
+
+- In Plex Web, open any library item → **⋯** → *Get Info* → *View XML*. The URL ends in `X-Plex-Token=<token>`.
+- From the server's `Preferences.xml`, read the `PlexOnlineToken` attribute:
+
+```bash
+kubectl -n plex exec deploy/plex -- \
+  grep -o 'PlexOnlineToken="[^"]*"' \
+  "/config/Library/Application Support/Plex Media Server/Preferences.xml"
+```
+
+The token belongs to the Plex account, so treat it like a password.
+
 ### Store them in Vault
 
 ```bash
 vault kv put -mount=secret framsburg/homepage \
   HOMEPAGE_VAR_ARGOCD_KEY='<argocd token>' \
-  HOMEPAGE_VAR_JELLYFIN_KEY='<jellyfin key>'
+  HOMEPAGE_VAR_JELLYFIN_KEY='<jellyfin key>' \
+  HOMEPAGE_VAR_PLEX_KEY='<plex token>'
 ```
 
 To add a key for another widget:
@@ -95,5 +112,6 @@ To add a key for another widget:
 | --- | --- |
 | Service missing | Check `gethomepage.dev/enabled: "true"` is quoted. Run `kubectl -n homepage logs deploy/homepage` and look for RBAC errors. New resource kinds need a rule in `templates/clusterrole.yaml` |
 | Card shows **NOT FOUND** | Pod lookup failed. Set `gethomepage.dev/pod-selector` to a matching selector, or `""` |
+| Jellyfin widget 404 on `/emby/...` | Jellyfin ≥ 10.12 needs `gethomepage.dev/widget.version: "2"` |
 | Widget shows **API Error** | Key missing or wrong in Vault. Check `kubectl -n homepage get secret homepage-api-keys` and the ExternalSecret status |
 | `Host validation failed` | Hostname not in `HOMEPAGE_ALLOWED_HOSTS` (set from `host` in `values.yaml`) |

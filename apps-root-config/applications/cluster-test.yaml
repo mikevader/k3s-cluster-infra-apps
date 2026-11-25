@@ -32,7 +32,6 @@ applications:
   hajimari: {}
   hermes: {}
   homarr: {}
-  homepage: {}
   # homer: {}
   httpbin:
     helmServerSideApply: true

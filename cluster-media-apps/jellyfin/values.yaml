@@ -108,6 +108,8 @@ jellyfin:
       gethomepage.dev/widget.type: "jellyfin"
       gethomepage.dev/widget.url: "https://jellyfin.framsburg.ch"
       gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_JELLYFIN_KEY}}"
+      # Jellyfin >= 10.12 needs the v2 API (legacy /emby routes are gone)
+      gethomepage.dev/widget.version: "2"
       gethomepage.dev/pod-selector: ""
       hajimari.io/enable: "true"
       hajimari.io/icon: simple-icons:jellyfin
