@@ -89,17 +89,29 @@ spec:
             httpGet:
               path: /
               port: http
+              # Django ALLOWED_HOSTS (from PAPERLESS_URL) rejects the pod IP with 400
+              httpHeaders:
+                - name: Host
+                  value: paperless.framsburg.ch
             periodSeconds: 10
             failureThreshold: 60
           readinessProbe:
             httpGet:
               path: /
               port: http
+              # Django ALLOWED_HOSTS (from PAPERLESS_URL) rejects the pod IP with 400
+              httpHeaders:
+                - name: Host
+                  value: paperless.framsburg.ch
             periodSeconds: 15
           livenessProbe:
             httpGet:
               path: /
               port: http
+              # Django ALLOWED_HOSTS (from PAPERLESS_URL) rejects the pod IP with 400
+              httpHeaders:
+                - name: Host
+                  value: paperless.framsburg.ch
             periodSeconds: 30
             failureThreshold: 5
           resources:
