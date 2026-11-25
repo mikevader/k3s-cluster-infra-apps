@@ -20,6 +20,9 @@ spec:
         reloader.stakater.com/auto: "true"
     spec:
       automountServiceAccountToken: false
+      # The Service is named "paperless", so k8s would inject PAPERLESS_PORT=tcp://...
+      # which paperless reads as its own config and fails to start.
+      enableServiceLinks: false
       securityContext:
         seccompProfile:
           type: RuntimeDefault
