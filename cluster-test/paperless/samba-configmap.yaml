@@ -1,0 +1,76 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: samba-config
+  labels:
+    app.kubernetes.io/name: paperless-samba
+data:
+  smb.conf: |
+    [global]
+      server role = standalone server
+      workgroup = WORKGROUP
+      server string = Paperless scan drop-box
+      # SMB2/3 only, NTLMv2 only, no guests
+      server min protocol = SMB2_02
+      ntlm auth = ntlmv2-only
+      map to guest = never
+      restrict anonymous = 2
+      # Clients arrive via Traefik (pod network), LAN listed for direct access
+      hosts allow = 127.0.0.1 10.42.0.0/16 192.168.42.0/24
+      hosts deny = ALL
+      disable netbios = yes
+      smb ports = 445
+      load printers = no
+      printing = bsd
+      printcap name = /dev/null
+      disable spoolss = yes
+      log level = 1
+      passdb backend = tdbsam
+      # macOS compatibility
+      vfs objects = fruit streams_xattr worm
+      fruit:metadata = stream
+      fruit:model = MacSamba
+      fruit:posix_rename = yes
+      fruit:veto_appledouble = no
+      fruit:wipe_intentionally_left_blank_rfork = yes
+      fruit:delete_empty_adfiles = yes
+      # WORM: once a file is older than the grace period, it can no longer be
+      # modified, renamed or deleted over SMB (paperless works on the volume directly)
+      worm:grace_period = 60
+      veto files = /._*/.DS_Store/Thumbs.db/
+      delete veto files = yes
+
+    [scans]
+      comment = Drop documents here for paperless
+      path = /scans
+      valid users = scanner
+      browseable = yes
+      writable = yes
+      guest ok = no
+      # The share root is mode 3733 (setgid + sticky, no read bit for the SMB user):
+      # clients can create files but cannot list the directory.
+      # setgid makes new files group "paperless" so the consumer can read them.
+      create mask = 0640
+      force create mode = 0640
+      # Sub-directories (some scanners create per-job folders) get the same treatment:
+      # owner (scanner) -wx, group paperless rwx, setgid (no sticky: paperless must be able to delete)
+      directory mask = 2370
+      force directory mode = 2370
+      inherit permissions = no
+      # Don't let clients change permissions/ownership via NT ACLs
+      nt acl support = no
+      spotlight = no
+  start.sh: |
+    #!/bin/sh
+    set -eu
+    : "${SCANNER_PASSWORD:?SCANNER_PASSWORD must be set}"
+    # gid 1000 = paperless (USERMAP_GID); scanner deliberately NOT a member
+    getent group paperless >/dev/null || addgroup -g 1000 paperless
+    getent group scanner >/dev/null || addgroup -g 1001 scanner
+    id scanner >/dev/null 2>&1 || adduser -D -H -h /nonexistent -s /sbin/nologin -u 1001 -G scanner scanner
+    mkdir -p /var/lib/samba/private /var/cache/samba /run/samba
+    printf '%s\n%s\n' "$SCANNER_PASSWORD" "$SCANNER_PASSWORD" | smbpasswd -c /etc/samba/smb.conf -s -a scanner >/dev/null
+    smbpasswd -c /etc/samba/smb.conf -e scanner >/dev/null
+    testparm -s /etc/samba/smb.conf >/dev/null
+    exec smbd --foreground --no-process-group --debug-stdout --configfile=/etc/samba/smb.conf

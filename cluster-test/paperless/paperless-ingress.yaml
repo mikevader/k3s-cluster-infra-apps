@@ -1,0 +1,32 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: paperless
+  labels:
+    app.kubernetes.io/name: paperless
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/name: Paperless
+    gethomepage.dev/group: Utilities
+    gethomepage.dev/icon: paperless-ngx.png
+    gethomepage.dev/description: Document archive
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: paperless.framsburg.ch
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: paperless
+                port:
+                  name: http
+  tls:
+    - hosts:
+        - paperless.framsburg.ch
+      secretName: paperless-framsburg-ch-tls
