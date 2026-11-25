@@ -27,4 +27,5 @@ namespaceResourceBlacklist:
 applications:
   actual: {}
   heimdall: {}
+  homepage: {}
   uptime-kuma: {}

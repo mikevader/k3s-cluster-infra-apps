@@ -112,6 +112,12 @@ kube-prometheus-stack:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/name: "Grafana"
+        gethomepage.dev/group: "Infrastructure"
+        gethomepage.dev/icon: "grafana.png"
+        gethomepage.dev/description: "Dashboards & metrics"
+        gethomepage.dev/pod-selector: ""
       hosts:
         - grafana.framsburg.ch
       tls:
@@ -363,6 +369,12 @@ kube-prometheus-stack:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/name: "Alertmanager"
+        gethomepage.dev/group: "Infrastructure"
+        gethomepage.dev/icon: "alertmanager.png"
+        gethomepage.dev/description: "Prometheus alerts"
+        gethomepage.dev/pod-selector: ""
       hosts:
         - alertmanager.framsburg.ch
       tls:
@@ -466,6 +478,12 @@ kube-prometheus-stack:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/name: "Prometheus"
+        gethomepage.dev/group: "Infrastructure"
+        gethomepage.dev/icon: "prometheus.png"
+        gethomepage.dev/description: "Metrics database"
+        gethomepage.dev/pod-selector: ""
       hosts:
         - prometheus.framsburg.ch
       tls:

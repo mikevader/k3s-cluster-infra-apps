@@ -10,6 +10,12 @@ sabnzbd:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/name: "SABnzbd"
+        gethomepage.dev/group: "Media"
+        gethomepage.dev/icon: "sabnzbd.png"
+        gethomepage.dev/description: "Usenet downloader"
+        gethomepage.dev/pod-selector: ""
       hosts:
         - host: 'sabnzbd.framsburg.ch'
           paths:

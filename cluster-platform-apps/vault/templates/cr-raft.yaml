@@ -30,6 +30,12 @@ spec:
       kubernetes.io/ingress.class: "traefik"
       cert-manager.io/cluster-issuer: letsencrypt-prod
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/name: "Vault"
+      gethomepage.dev/group: "Platform"
+      gethomepage.dev/icon: "vault.png"
+      gethomepage.dev/description: "Secrets management"
+      gethomepage.dev/pod-selector: ""
     # Override the default Ingress specification here
     # This follows the same format as the standard Kubernetes Ingress
     # See: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#ingressspec-v1beta1-extensions

@@ -1,0 +1,5 @@
+---
+apiVersion: v2
+name: homepage
+description: "Homepage: cluster start page with Kubernetes service discovery"
+version: 1.0.0
