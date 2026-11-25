@@ -2933,6 +2933,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#get-the-plex-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get the Plex token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#store-them-in-vault" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3799,6 +3810,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#get-the-plex-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get the Plex token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#store-them-in-vault" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4012,6 +4034,10 @@ New groups appear after the listed ones.</p>
 <td><code>HOMEPAGE_VAR_JELLYFIN_KEY</code></td>
 <td>Jellyfin → Dashboard → API Keys</td>
 </tr>
+<tr>
+<td><code>HOMEPAGE_VAR_PLEX_KEY</code></td>
+<td>Plex token of the server owner (see below)</td>
+</tr>
 </tbody>
 </table>
 <h3 id="create-the-argocd-token">Create the ArgoCD token<a class="headerlink" href="#create-the-argocd-token" title="Permanent link">&para;</a></h3>
@@ -4020,10 +4046,22 @@ New groups appear after the listed ones.</p>
 </span></code></pre></div>
 <h3 id="create-the-jellyfin-key">Create the Jellyfin key<a class="headerlink" href="#create-the-jellyfin-key" title="Permanent link">&para;</a></h3>
 <p>Jellyfin → <em>Dashboard</em> → <em>Advanced</em> → <em>API Keys</em> → <strong>+</strong> → app name <code>homepage</code>.</p>
+<h3 id="get-the-plex-token">Get the Plex token<a class="headerlink" href="#get-the-plex-token" title="Permanent link">&para;</a></h3>
+<p>Use one of these:</p>
+<ul>
+<li>In Plex Web, open any library item → <strong>⋯</strong> → <em>Get Info</em> → <em>View XML</em>. The URL ends in <code>X-Plex-Token=&lt;token&gt;</code>.</li>
+<li>From the server's <code>Preferences.xml</code>, read the <code>PlexOnlineToken</code> attribute:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>plex<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>deploy/plex<span class="w"> </span>--<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>grep<span class="w"> </span>-o<span class="w"> </span><span class="s1">'PlexOnlineToken="[^"]*"'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="s2">"/config/Library/Application Support/Plex Media Server/Preferences.xml"</span>
+</span></code></pre></div>
+<p>The token belongs to the Plex account, so treat it like a password.</p>
 <h3 id="store-them-in-vault">Store them in Vault<a class="headerlink" href="#store-them-in-vault" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>vault<span class="w"> </span>kv<span class="w"> </span>put<span class="w"> </span>-mount<span class="o">=</span>secret<span class="w"> </span>framsburg/homepage<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_ARGOCD_KEY</span><span class="o">=</span><span class="s1">'&lt;argocd token&gt;'</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_JELLYFIN_KEY</span><span class="o">=</span><span class="s1">'&lt;jellyfin key&gt;'</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>vault<span class="w"> </span>kv<span class="w"> </span>put<span class="w"> </span>-mount<span class="o">=</span>secret<span class="w"> </span>framsburg/homepage<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_ARGOCD_KEY</span><span class="o">=</span><span class="s1">'&lt;argocd token&gt;'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_JELLYFIN_KEY</span><span class="o">=</span><span class="s1">'&lt;jellyfin key&gt;'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_PLEX_KEY</span><span class="o">=</span><span class="s1">'&lt;plex token&gt;'</span>
 </span></code></pre></div>
 <p>To add a key for another widget:</p>
 <ol>
@@ -4055,6 +4093,10 @@ New groups appear after the listed ones.</p>
 <tr>
 <td>Card shows <strong>NOT FOUND</strong></td>
 <td>Pod lookup failed. Set <code>gethomepage.dev/pod-selector</code> to a matching selector, or <code>""</code></td>
+</tr>
+<tr>
+<td>Jellyfin widget 404 on <code>/emby/...</code></td>
+<td>Jellyfin ≥ 10.12 needs <code>gethomepage.dev/widget.version: "2"</code></td>
 </tr>
 <tr>
 <td>Widget shows <strong>API Error</strong></td>
