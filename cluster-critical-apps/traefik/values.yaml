@@ -175,7 +175,8 @@ traefik:
         gethomepage.dev/description: "Ingress controller"
         gethomepage.dev/href: "https://traefik.framsburg.ch/dashboard/"
         gethomepage.dev/widget.type: "traefik"
-        gethomepage.dev/widget.url: "http://traefik.traefik:80"
+        # API is only served by the dashboard IngressRoute (api@internal)
+        gethomepage.dev/widget.url: "https://traefik.framsburg.ch"
         gethomepage.dev/pod-selector: "app.kubernetes.io/name=traefik"
       labels:
         app.kubernetes.io/instance: "traefik"
