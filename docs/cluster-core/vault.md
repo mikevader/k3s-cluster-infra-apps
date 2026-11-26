@@ -125,6 +125,38 @@ Instead of environment variables or secrets you can use the vault key reference
 anywhere in resources and the webhook will replace it with the secret.
 
 
+## CLI access
+
+The `vault` CLI reads the server address from `VAULT_ADDR`. There is no config
+file for it. Set it in `~/.zshrc`, including the scheme:
+
+```bash
+export VAULT_ADDR=https://vault.framsburg.ch
+```
+
+Log in through Authentik:
+
+```bash
+vault login -method=oidc
+```
+
+This opens the browser and receives the callback on
+`http://localhost:8250/oidc/callback`. The token lands in `~/.vault-token`
+and is valid for 1h. Check it with `vault token lookup`.
+
+The callback URL must be allowed in two places:
+
+- the Vault OIDC role (`allowed_redirect_uris` in
+  `cluster-platform-apps/vault/templates/cr-raft.yaml`)
+- the redirect URIs of the Vault provider in Authentik, which you set up by
+  hand
+
+If either one is missing, the login fails with a redirect URI error.
+
+Logins get the `allow_secrets` policy. It includes the `patch` capability, so
+`vault kv patch` works on KV v2. Without `patch`, use
+`vault kv patch -method=rw`, which only needs `read` and `update`.
+
 ## Monitoring
 
 * https://github.com/hashicorp/vault/issues/13978

@@ -83,7 +83,7 @@ spec:
     policies:
       - name: allow_secrets
         rules: path "secret/*" {
-          capabilities = ["create", "read", "update", "delete", "list"]
+          capabilities = ["create", "read", "update", "patch", "delete", "list"]
           }
     auth:
       - type: kubernetes
@@ -139,7 +139,11 @@ spec:
             oidc_scopes: ["openid", "profile", "email"]
             user_claim: sub
             policies: allow_secrets
-            allowed_redirect_uris: ["https://vault.framsburg.ch", "https://vault.framsburg.ch/ui/vault/auth/oidc/oidc/callback"]
+            # localhost callback is used by `vault login -method=oidc` (CLI)
+            allowed_redirect_uris:
+              - "https://vault.framsburg.ch"
+              - "https://vault.framsburg.ch/ui/vault/auth/oidc/oidc/callback"
+              - "http://localhost:8250/oidc/callback"
             ttl: 1h
 
     secrets:
