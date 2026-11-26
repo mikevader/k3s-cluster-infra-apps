@@ -5,5 +5,5 @@ description: An easy-to-deploy Dockerized Foundry Virtual Tabletop server
 version: 1.0.0
 dependencies:
   - name: foundryvtt
-    version: 4.0.0
+    version: 4.0.1
     repository: https://mikevader.github.io/charts
