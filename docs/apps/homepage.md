@@ -59,10 +59,49 @@ Keys live in Vault at `secret/framsburg/homepage` (KV v2). The ExternalSecret `h
 
 ### Create the ArgoCD token
 
-```bash
-argocd login argocd.framsburg.ch --sso          # as an fb-admins member
-argocd account generate-token --account homepage
-```
+`argocd-secret` is fully owned by the `argocd-secret-ext` ExternalSecret
+(`cluster-init-apps/argo-cd/templates/argocd-secret-ext.yaml`). It rewrites the
+secret from Vault every minute.
+
+ArgoCD only accepts a token whose ID is listed in `accounts.homepage.tokens`. The
+entry that `argocd account generate-token` writes disappears on the next refresh,
+so the token ID list lives in Vault as well (`secret/framsburg/argocd/secrets`).
+Without it the widget gets **401**.
+
+1. As an `fb-admins` member, generate the token straight into Vault:
+
+    ```bash
+    argocd login argocd.framsburg.ch --sso --grpc-web
+    vault kv patch -mount=secret framsburg/homepage \
+      HOMEPAGE_VAR_ARGOCD_KEY="$(argocd account generate-token \
+        --account homepage)"
+    ```
+
+    If the SSO session is broken, add `--core` to `generate-token`. Core mode
+    uses your kubeconfig, which must be set to the `argocd-system` namespace.
+
+2. Store the token ID, built from the token's `jti` and `iat` claims:
+
+    ```bash
+    TOKEN=$(vault kv get -mount=secret -field=HOMEPAGE_VAR_ARGOCD_KEY \
+      framsburg/homepage)
+    TOKENS=$(python3 - "$TOKEN" <<'EOF'
+    import sys, json, base64
+    p = sys.argv[1].split(".")[1]
+    p += "=" * (-len(p) % 4)
+    c = json.loads(base64.urlsafe_b64decode(p))
+    print(json.dumps([{"id": c["jti"], "iat": c["iat"]}]))
+    EOF
+    )
+    vault kv patch -mount=secret framsburg/argocd/secrets \
+      accounts.homepage.tokens="$TOKENS"
+    unset TOKEN TOKENS
+    ```
+
+!!! warning
+    Write the Vault property before an ExternalSecret references it. If a
+    referenced property is missing, `argocd-secret-ext` stops updating
+    `argocd-secret`, which also holds the admin password and OIDC keys.
 
 ### Create the Jellyfin key
 
@@ -113,5 +152,6 @@ To add a key for another widget:
 | Service missing | Check `gethomepage.dev/enabled: "true"` is quoted. Run `kubectl -n homepage logs deploy/homepage` and look for RBAC errors. New resource kinds need a rule in `templates/clusterrole.yaml` |
 | Card shows **NOT FOUND** | Pod lookup failed. Set `gethomepage.dev/pod-selector` to a matching selector, or `""` |
 | Jellyfin widget 404 on `/emby/...` | Jellyfin ≥ 10.12 needs `gethomepage.dev/widget.version: "2"` |
+| ArgoCD widget **401** with a valid token | Token ID missing from `accounts.homepage.tokens` in Vault (see *Create the ArgoCD token*) |
 | Widget shows **API Error** | Key missing or wrong in Vault. Check `kubectl -n homepage get secret homepage-api-keys` and the ExternalSecret status |
 | `Host validation failed` | Hostname not in `HOMEPAGE_ALLOWED_HOSTS` (set from `host` in `values.yaml`) |
