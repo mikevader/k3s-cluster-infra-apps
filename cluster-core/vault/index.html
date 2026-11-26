@@ -3905,6 +3905,28 @@ have to provide the path to the secret <strong>base64</strong> encoded.</p>
 <h3 id="inline">Inline<a class="headerlink" href="#inline" title="Permanent link">&para;</a></h3>
 <p>Instead of environment variables or secrets you can use the vault key reference
 anywhere in resources and the webhook will replace it with the secret.</p>
+<h2 id="cli-access">CLI access<a class="headerlink" href="#cli-access" title="Permanent link">&para;</a></h2>
+<p>The <code>vault</code> CLI reads the server address from <code>VAULT_ADDR</code>. There is no config
+file for it. Set it in <code>~/.zshrc</code>, including the scheme:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">VAULT_ADDR</span><span class="o">=</span>https://vault.framsburg.ch
+</span></code></pre></div>
+<p>Log in through Authentik:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>vault<span class="w"> </span>login<span class="w"> </span>-method<span class="o">=</span>oidc
+</span></code></pre></div>
+<p>This opens the browser and receives the callback on
+<code>http://localhost:8250/oidc/callback</code>. The token lands in <code>~/.vault-token</code>
+and is valid for 1h. Check it with <code>vault token lookup</code>.</p>
+<p>The callback URL must be allowed in two places:</p>
+<ul>
+<li>the Vault OIDC role (<code>allowed_redirect_uris</code> in
+  <code>cluster-platform-apps/vault/templates/cr-raft.yaml</code>)</li>
+<li>the redirect URIs of the Vault provider in Authentik, which you set up by
+  hand</li>
+</ul>
+<p>If either one is missing, the login fails with a redirect URI error.</p>
+<p>Logins get the <code>allow_secrets</code> policy. It includes the <code>patch</code> capability, so
+<code>vault kv patch</code> works on KV v2. Without <code>patch</code>, use
+<code>vault kv patch -method=rw</code>, which only needs <code>read</code> and <code>update</code>.</p>
 <h2 id="monitoring">Monitoring<a class="headerlink" href="#monitoring" title="Permanent link">&para;</a></h2>
 <ul>
 <li>https://github.com/hashicorp/vault/issues/13978</li>
@@ -3917,20 +3939,20 @@ bank-vaults operator (<code>cluster-platform-apps/vault-operator</code>) from th
 <code>cluster-platform-apps/vault/templates/cr-raft.yaml</code>.</p>
 <p>Most commands below need the root token. This helper runs the Vault CLI on a pod
 without printing the token:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>v<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault-2<span class="w"> </span>-c<span class="w"> </span>vault<span class="w"> </span>--<span class="w"> </span>env<span class="w"> </span><span class="nv">VAULT_ADDR</span><span class="o">=</span>http://127.0.0.1:8200<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nv">VAULT_TOKEN</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>vault-unseal-keys<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.data.vault-root}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="k">)</span><span class="s2">"</span><span class="w"> </span>vault<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>v<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault-2<span class="w"> </span>-c<span class="w"> </span>vault<span class="w"> </span>--<span class="w"> </span>env<span class="w"> </span><span class="nv">VAULT_ADDR</span><span class="o">=</span>http://127.0.0.1:8200<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nv">VAULT_TOKEN</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>vault-unseal-keys<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.data.vault-root}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="k">)</span><span class="s2">"</span><span class="w"> </span>vault<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
 </span></code></pre></div>
 <p>If <code>vault-2</code> is the broken node, change the pod in the helper to a healthy one.</p>
 <h3 id="health-check">Health check<a class="headerlink" href="#health-check" title="Permanent link">&para;</a></h3>
 <p>Run this before and after every change:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>get<span class="w"> </span>pods<span class="w">                       </span><span class="c1"># all vault-X pods 3/3</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>list-peers<span class="w">                      </span><span class="c1"># 3 voters, one leader</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>autopilot<span class="w"> </span>state<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">'^Healthy|Failure Tolerance'</span><span class="w">   </span><span class="c1"># true / 1</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">for</span><span class="w"> </span>p<span class="w"> </span><span class="k">in</span><span class="w"> </span>vault-0<span class="w"> </span>vault-1<span class="w"> </span>vault-2<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$p</span><span class="w"> </span>-c<span class="w"> </span>vault<span class="w"> </span>--<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">'VAULT_ADDR=http://127.0.0.1:8200 vault status'</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">'Version|Sealed|Applied Index'</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">done</span><span class="w">                                            </span><span class="c1"># same version, unsealed, same index</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>kubectl<span class="w"> </span>get<span class="w"> </span>externalsecret<span class="w"> </span>-A<span class="w">                   </span><span class="c1"># all Ready=True</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>get<span class="w"> </span>pods<span class="w">                       </span><span class="c1"># all vault-X pods 3/3</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>list-peers<span class="w">                      </span><span class="c1"># 3 voters, one leader</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>autopilot<span class="w"> </span>state<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">'^Healthy|Failure Tolerance'</span><span class="w">   </span><span class="c1"># true / 1</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">for</span><span class="w"> </span>p<span class="w"> </span><span class="k">in</span><span class="w"> </span>vault-0<span class="w"> </span>vault-1<span class="w"> </span>vault-2<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$p</span><span class="w"> </span>-c<span class="w"> </span>vault<span class="w"> </span>--<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">'VAULT_ADDR=http://127.0.0.1:8200 vault status'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">'Version|Sealed|Applied Index'</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="k">done</span><span class="w">                                            </span><span class="c1"># same version, unsealed, same index</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>kubectl<span class="w"> </span>get<span class="w"> </span>externalsecret<span class="w"> </span>-A<span class="w">                   </span><span class="c1"># all Ready=True</span>
 </span></code></pre></div>
 <p>Also log in once through OIDC at https://vault.framsburg.ch.</p>
 <p><strong>Do not start an upgrade unless all three nodes are healthy.</strong> A rolling restart takes
@@ -3941,9 +3963,9 @@ one node down at a time, and with only two healthy nodes that loses quorum.</p>
    <a href="#recovering-a-corrupted-raft-node">Recovering a corrupted raft node</a>).</li>
 <li><strong>Take a snapshot</strong> and copy it off the cluster. Store it outside this repo: it
    contains the (encrypted) contents of the whole Vault.
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>snapshot<span class="w"> </span>save<span class="w"> </span>/tmp/vault.snap
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>cp<span class="w"> </span>-c<span class="w"> </span>vault<span class="w"> </span>vault-2:/tmp/vault.snap<span class="w"> </span>./vault-<span class="k">$(</span>date<span class="w"> </span>+%F<span class="k">)</span>.snap
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault-2<span class="w"> </span>-c<span class="w"> </span>vault<span class="w"> </span>--<span class="w"> </span>rm<span class="w"> </span>/tmp/vault.snap
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>snapshot<span class="w"> </span>save<span class="w"> </span>/tmp/vault.snap
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>cp<span class="w"> </span>-c<span class="w"> </span>vault<span class="w"> </span>vault-2:/tmp/vault.snap<span class="w"> </span>./vault-<span class="k">$(</span>date<span class="w"> </span>+%F<span class="k">)</span>.snap
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>vault-2<span class="w"> </span>-c<span class="w"> </span>vault<span class="w"> </span>--<span class="w"> </span>rm<span class="w"> </span>/tmp/vault.snap
 </span></code></pre></div></li>
 <li><strong>Read the release notes</strong> for every version you pass, especially the
    <a href="https://developer.hashicorp.com/vault/docs/updates/important-changes">important changes</a>
@@ -3979,11 +4001,11 @@ for example
 <code>panic: freepages: failed to get all reachable pages (page 254: multiple references ...)</code>.</p>
 <p>While the other two nodes are healthy, rebuild the broken node from the leader
 (this example uses <code>vault-1</code>):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>snapshot<span class="w"> </span>save<span class="w"> </span>/tmp/vault.snap<span class="w">          </span><span class="c1"># backup first (see above)</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>list-peers
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>remove-peer<span class="w"> </span>vault-1<span class="w">                    </span><span class="c1"># or the node ID from list-peers</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>delete<span class="w"> </span>pvc<span class="w"> </span>vault-raft-vault-1<span class="w"> </span>--wait<span class="o">=</span><span class="nb">false</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>vault-1
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>snapshot<span class="w"> </span>save<span class="w"> </span>/tmp/vault.snap<span class="w">          </span><span class="c1"># backup first (see above)</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>list-peers
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>v<span class="w"> </span>operator<span class="w"> </span>raft<span class="w"> </span>remove-peer<span class="w"> </span>vault-1<span class="w">                    </span><span class="c1"># or the node ID from list-peers</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>delete<span class="w"> </span>pvc<span class="w"> </span>vault-raft-vault-1<span class="w"> </span>--wait<span class="o">=</span><span class="nb">false</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>vault-1
 </span></code></pre></div>
 <p>The StatefulSet creates a fresh PVC. The bank-vaults sidecar then unseals the node
 and rejoins it to the leader, which sends it a snapshot. Run the health check
@@ -3991,8 +4013,8 @@ afterwards. A single <code>storage.raft: failed to get previous log ... log not 
 warning on the new node is expected while it catches up.</p>
 <h3 id="resizing-raft-volumes">Resizing raft volumes<a class="headerlink" href="#resizing-raft-volumes" title="Permanent link">&para;</a></h3>
 <p>Longhorn supports online expansion, so patch each PVC directly:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>patch<span class="w"> </span>pvc<span class="w"> </span>vault-raft-vault-1<span class="w"> </span>--type<span class="w"> </span>merge<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>-p<span class="w"> </span><span class="s1">'{"spec":{"resources":{"requests":{"storage":"2Gi"}}}}'</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>patch<span class="w"> </span>pvc<span class="w"> </span>vault-raft-vault-1<span class="w"> </span>--type<span class="w"> </span>merge<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>-p<span class="w"> </span><span class="s1">'{"spec":{"resources":{"requests":{"storage":"2Gi"}}}}'</span>
 </span></code></pre></div>
 <p>Also update <code>volumeClaimTemplates</code> in <code>cr-raft.yaml</code>, so rebuilt nodes get the same size.
 Kubernetes does not let the operator change the template on the existing
@@ -4001,7 +4023,7 @@ persists the operator applies no other changes either. After pushing the change,
 delete only the StatefulSet object. The pods and volumes keep running, and the
 operator recreates the StatefulSet and takes over the existing pods without
 restarting them:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>delete<span class="w"> </span>sts<span class="w"> </span>vault<span class="w"> </span>--cascade<span class="o">=</span>orphan
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>vault<span class="w"> </span>delete<span class="w"> </span>sts<span class="w"> </span>vault<span class="w"> </span>--cascade<span class="o">=</span>orphan
 </span></code></pre></div>
 <ul>
 <li>[CSI]: Container Storage Interface</li>
