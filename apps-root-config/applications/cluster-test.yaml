@@ -6,7 +6,9 @@ subFolder: cluster-test
 namespace:
   annotations: {}
   labels:
-    client: cluster-infra
+    # selects the vault-test ClusterSecretStore and excludes vault-backend
+    # (cluster-platform-apps/external-secrets/templates/secret-store.yaml)
+    client: cluster-test
 
 # Guardrails: test apps must not be able to affect the rest of the cluster.
 # Chart defaults and per-application overrides: see values.yaml.
@@ -83,6 +85,12 @@ namespaceResourceBlacklist:
     kind: LimitRange
   - group: networking.k8s.io
     kind: NetworkPolicy
+  # Own stores or generators would authenticate to Vault from the ESO controller,
+  # bypassing the vault-test store and the egress policy
+  - group: external-secrets.io
+    kind: SecretStore
+  - group: generators.external-secrets.io
+    kind: "*"
 
 # Egress rule for apps that read the Kubernetes API (hajimari, forecastle, CNPG instances).
 # Policies see the API server after DNAT, i.e. on the control-plane node IPs.
