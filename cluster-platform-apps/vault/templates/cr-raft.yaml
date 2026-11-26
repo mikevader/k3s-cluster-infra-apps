@@ -105,24 +105,28 @@ spec:
             bound_service_account_namespaces: ["default", "vault-infra"]
             policies: ["allow_secrets", "allow_pki"]
             ttl: 1h
+          # The roles below are bound to the workload they were named for instead of "*".
+          # Nothing in Git logs in with them today (apps get secrets through External
+          # Secrets, role externalsecrets), and with "*" any ServiceAccount in any namespace
+          # could read and write all of secret/*.
           - name: grafana
-            bound_service_account_names: ["*"] # ["default", "monitoring-stack-grafana"]
-            bound_service_account_namespaces: ["*"] # ["monitoring-stack"]
+            bound_service_account_names: ["monitoring-stack-grafana"]
+            bound_service_account_namespaces: ["monitoring-stack"]
             policies: ["allow_secrets"]
             ttl: 1h
           - name: argocd
-            bound_service_account_names: ["*"] # ["default", "argocd-server"]
-            bound_service_account_namespaces: ["*"] # ["argocd-system"]
+            bound_service_account_names: ["argocd-server"]
+            bound_service_account_namespaces: ["argocd-system"]
             policies: ["allow_secrets"]
             ttl: 1h
           - name: renovate
-            bound_service_account_names: ["*"] # ["default", "argocd-server"]
-            bound_service_account_namespaces: ["renovate"] # ["argocd-system"]
+            bound_service_account_names: ["default"]
+            bound_service_account_namespaces: ["renovate"]
             policies: ["allow_secrets"]
             ttl: 1h
           - name: vault
-            bound_service_account_names: ["*"] # ["default", "argocd-server"]
-            bound_service_account_namespaces: ["*"] # ["argocd-system"]
+            bound_service_account_names: ["vault"]
+            bound_service_account_namespaces: ["vault"]
             policies: ["allow_secrets"]
             ttl: 1h
           - name: externalsecrets
