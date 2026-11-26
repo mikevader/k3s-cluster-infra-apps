@@ -99,12 +99,9 @@ spec:
     auth:
       - type: kubernetes
         roles:
-          # Allow every pod in the default namespace to use the secret kv store
-          - name: default
-            bound_service_account_names: ["default", "vault-infra-vault-secrets-webhook", "vault"]
-            bound_service_account_namespaces: ["default", "vault-infra"]
-            policies: ["allow_secrets", "allow_pki"]
-            ttl: 1h
+          # Removed roles (default, test) are not deleted by the configurer; delete them in
+          # Vault by hand: vault delete auth/kubernetes/role/<name>
+          #
           # The roles below are bound to the workload they were named for instead of "*".
           # Nothing in Git logs in with them today (apps get secrets through External
           # Secrets, role externalsecrets), and with "*" any ServiceAccount in any namespace
@@ -138,11 +135,6 @@ spec:
             bound_service_account_names: ["vault-account-test"]
             bound_service_account_namespaces: ["external-secrets"]
             policies: ["test_secrets"]
-            ttl: 1h
-          - name: test
-            bound_service_account_names: ["default", "vault-infra-vault-secrets-webhook", "vault", "webapp-sa"]
-            bound_service_account_namespaces: ["default", "vault-infra", "test"]
-            policies: ["allow_secrets"]
             ttl: 1h
 
       - type: oidc
