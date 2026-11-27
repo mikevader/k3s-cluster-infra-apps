@@ -36,7 +36,8 @@ metadata:
   labels:
 {{ toYaml $labels | indent 4 }}
 {{- end }}
-{{ if $.Values.enableDefaultLimitRange }}
+{{- if $.Values.enableDefaultLimitRange }}
+{{- $limitRange := include "apps.appSetting" (dict "key" "limitRange" "app" $value "root" $) | fromYaml }}
 ---
 apiVersion: v1
 kind: LimitRange
@@ -45,22 +46,25 @@ metadata:
   namespace: "{{ $key }}"
 spec:
   limits:
-    - type: Pod
-      max:
-        cpu: "4"
-        memory: 8Gi
-      min:
-        cpu: 1m
-        memory: 1
-    - type: Container
-      default:
-        cpu: 2
-        memory: 1Gi
-      defaultRequest:
-        cpu: 25m
-        memory: 512Mi
+{{ toYaml $limitRange.limits | indent 4 }}
+{{- end }}
+{{- if $.Values.enableDefaultResourceQuota }}
+{{- $resourceQuota := include "apps.appSetting" (dict "key" "resourceQuota" "app" $value "root" $) | fromYaml }}
+{{- if $resourceQuota.hard }}
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: core-resource-quota
+  namespace: "{{ $key }}"
+spec:
+  hard:
+{{ toYaml $resourceQuota.hard | indent 4 }}
+{{- end }}
 {{- end }}
 {{- if $.Values.enableDefaultNetworkPolicy }}
+{{- $networkPolicy := include "apps.appSetting" (dict "key" "networkPolicy" "app" $value "root" $) | fromYaml }}
+{{- with $networkPolicy.ingressFromNamespaces }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -71,11 +75,29 @@ spec:
   ingress:
     - from:
         - namespaceSelector:
-            matchLabels:
-              traefik.io/policy-group: ingress
+            matchExpressions:
+              - key: kubernetes.io/metadata.name
+                operator: In
+                values:
+{{ toYaml . | indent 18 }}
   podSelector: {}
   policyTypes:
     - Ingress
+{{- end }}
+{{- with $networkPolicy.extraIngress }}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-extra-ingress
+  namespace: {{ $key }}
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+  ingress:
+{{ toYaml . | indent 4 }}
+{{- end }}
 ---
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
@@ -96,7 +118,50 @@ metadata:
 spec:
   podSelector: {}
   ingress: []
-{{ end }}
+{{- $egress := default dict $networkPolicy.egress }}
+{{- if $egress.enabled }}
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: restrict-egress
+  namespace: {{ $key }}
+spec:
+  podSelector: {}
+  policyTypes:
+    - Egress
+  egress:
+    # same namespace
+    - to:
+        - podSelector: {}
+    # cluster DNS
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+{{- if $egress.allowInternet }}
+    # internet (everything outside the cluster and LAN ranges)
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+{{- with $egress.internetExcept }}
+            except:
+{{ toYaml . | indent 14 }}
+{{- end }}
+{{- end }}
+{{- with $networkPolicy.extraEgress }}
+{{ toYaml . | indent 4 }}
+{{- end }}
+{{- end }}
+{{- end }}
 {{ range $.Values.roleBindings -}}
 ---
 apiVersion: rbac.authorization.k8s.io/v1

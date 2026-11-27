@@ -46,3 +46,61 @@ podSecurity:
 #
 # https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/
 onRemoval: confirm
+
+# ---------------------------------------------------------------------------------------------
+# Namespace guardrails. Each block is switched on per group with its `enableDefault*` flag in
+# cluster-*.yaml and can be overridden per application (keys are overlaid on the group value):
+#
+#   applications:
+#     openclaw:
+#       resourceQuota:
+#         hard:
+#           requests.storage: 60Gi
+# ---------------------------------------------------------------------------------------------
+
+# LimitRange "core-resource-limits" (enableDefaultLimitRange). `limits` is the LimitRange spec.
+limitRange:
+  limits:
+    - type: Pod
+      max:
+        cpu: "4"
+        memory: 8Gi
+      min:
+        cpu: 1m
+        memory: 1
+    - type: Container
+      default:
+        cpu: 2
+        memory: 1Gi
+      defaultRequest:
+        cpu: 25m
+        memory: 512Mi
+
+# ResourceQuota "core-resource-quota" (enableDefaultResourceQuota). `hard` is the quota spec.
+# A quota on requests.*/limits.* rejects pods without them, so pair it with the LimitRange.
+resourceQuota:
+  hard: {}
+
+# NetworkPolicies (enableDefaultNetworkPolicy).
+networkPolicy:
+  # Namespaces allowed to reach every pod (ingress controllers). Same-namespace traffic is
+  # always allowed; everything else inbound is denied.
+  ingressFromNamespaces:
+    - traefik
+    - nginx
+  # Additional raw NetworkPolicy ingress rules (allow-extra-ingress)
+  extraIngress: []
+  egress:
+    # Restrict outbound traffic (restrict-egress). Allowed: same namespace, cluster DNS,
+    # the internet (if allowInternet), plus extraEgress.
+    enabled: false
+    allowInternet: true
+    # Destinations excluded from "the internet": pod/service CIDRs, LAN, link-local, CGNAT
+    internetExcept:
+      - 10.0.0.0/8
+      - 172.16.0.0/12
+      - 192.168.0.0/16
+      - 100.64.0.0/10
+      - 169.254.0.0/16
+  # Additional raw NetworkPolicy egress rules (only used when egress.enabled)
+  extraEgress: []
