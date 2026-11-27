@@ -14,9 +14,3 @@ metadata:
   annotations:
     kubernetes.io/service-account.name: vault-account
 type: kubernetes.io/service-account-token
----
-# Identity of the vault-test ClusterSecretStore (Vault role externalsecrets-test)
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: vault-account-test

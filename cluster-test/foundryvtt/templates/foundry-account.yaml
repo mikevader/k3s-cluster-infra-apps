@@ -6,20 +6,20 @@ metadata:
 spec:
   refreshInterval: 1m
   secretStoreRef:
-    name: vault-test
-    kind: ClusterSecretStore
+    name: vault
+    kind: SecretStore
   target:
     name: foundry-account-secret
   data:
     - secretKey: username
       remoteRef:
-        key: secret/data/framsburg/foundryvtt/account
+        key: secret/data/framsburg/test/foundryvtt/account
         property: username
     - secretKey: password
       remoteRef:
-        key: secret/data/framsburg/foundryvtt/account
+        key: secret/data/framsburg/test/foundryvtt/account
         property: password
     - secretKey: admin-key
       remoteRef:
-        key: secret/data/framsburg/foundryvtt/config
+        key: secret/data/framsburg/test/foundryvtt/config
         property: admin-key

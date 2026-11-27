@@ -104,3 +104,16 @@ networkPolicy:
       - 169.254.0.0/16
   # Additional raw NetworkPolicy egress rules (only used when egress.enabled)
   extraEgress: []
+
+# Namespaced Vault SecretStore (enableVaultSecretStore): a ServiceAccount and an External
+# Secrets SecretStore in every namespace. The Vault role decides what the namespace may read
+# (role test-namespace: secret/framsburg/test/<namespace>[/...], see
+# cluster-platform-apps/vault/templates/cr-raft.yaml). Apps reference it with
+#   secretStoreRef: { kind: SecretStore, name: vault }
+vaultSecretStore:
+  name: vault
+  serviceAccountName: vault-reader
+  server: http://vault.vault.svc:8200
+  path: secret
+  mountPath: kubernetes
+  role: ""

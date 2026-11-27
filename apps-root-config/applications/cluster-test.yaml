@@ -6,8 +6,8 @@ subFolder: cluster-test
 namespace:
   annotations: {}
   labels:
-    # selects the vault-test ClusterSecretStore and excludes vault-backend
-    # (cluster-platform-apps/external-secrets/templates/secret-store.yaml)
+    # matched by the Vault role test-namespace (cluster-platform-apps/vault/templates/cr-raft.yaml)
+    # and excluded from vault-backend (cluster-platform-apps/external-secrets/templates/secret-store.yaml)
     client: cluster-test
 
 # Guardrails: test apps must not be able to affect the rest of the cluster.
@@ -45,6 +45,11 @@ resourceQuota:
     pods: "10"
     services.loadbalancers: "0"
     services.nodeports: "0"
+
+# Secrets: SecretStore "vault" per namespace, reading only secret/framsburg/test/<namespace>[/...]
+enableVaultSecretStore: true
+vaultSecretStore:
+  role: test-namespace
 
 # Inbound: same namespace + ingress controllers. Outbound: same namespace, DNS, internet.
 enableDefaultNetworkPolicy: true
@@ -86,7 +91,7 @@ namespaceResourceBlacklist:
   - group: networking.k8s.io
     kind: NetworkPolicy
   # Own stores or generators would authenticate to Vault from the ESO controller,
-  # bypassing the vault-test store and the egress policy
+  # bypassing the namespace's SecretStore "vault" and the egress policy
   - group: external-secrets.io
     kind: SecretStore
   - group: generators.external-secrets.io
