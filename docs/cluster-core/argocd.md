@@ -201,6 +201,9 @@ Add your app to the new app of apps for example under
 **This assumes the application name has not changed!**. You can now remove the
 app files from the old folder.
 
+The group file also sets the guardrails for the group's namespaces (quota, network
+policies, secret store). See [App-of-apps groups and guardrails](app-groups.md).
+
 
 ## GitHub Webhook
 

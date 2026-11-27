@@ -32,38 +32,26 @@ That will create the very basic setup for External Secrets.
 
 ## Setup Store
 
-The next and most important part is the Secret Store. This is the actual
-connection to the vault and has the vault coordinates as well as access keys.
-To make it an easy setup, this is part of the external secrets application.
+The store is the connection to Vault. There are two kinds:
 
-``` yaml title="templates/secret-store.yaml"
-apiVersion: external-secrets.io/v1
-kind: ClusterSecretStore
-metadata:
-  name: vault-backend
-spec:
-  provider:
-    vault:
-      server: "http://vault.vault.svc:8200"
-      path: "kubernetes"
-      version: "v2"
-      auth:
-        # Authenticate against Vault using a Kubernetes ServiceAccount
-        # token stored in a Secret.
-        # https://www.vaultproject.io/docs/auth/kubernetes
-        kubernetes:
-          # Path where the Kubernetes authentication backend is mounted in Vault
-          mountPath: "kubernetes"
-          # A required field containing the Vault Role to assume.
-          role: "externalSecret" # (1)
-          # Optional service account field containing the name
-          # of a kubernetes ServiceAccount
-          serviceAccountRef:
-            name: "external-secrets"
-```
+- **ClusterSecretStore `vault-backend`**
+  (`cluster-platform-apps/external-secrets/templates/secret-store.yaml`) for production
+  apps. It logs in with Vault role `externalsecrets` (policy `framsburg_read`: read-only on
+  `secret/framsburg/*`). Its `conditions` refuse namespaces labelled `client=cluster-test`.
+- **SecretStore `vault`** in every `cluster-test` namespace, rendered by
+  `apps-root-config/applications` (`enableVaultSecretStore`, see
+  [App-of-apps groups](../cluster-core/app-groups.md)). It logs in with the namespace's
+  ServiceAccount `vault-reader` and Vault role `test-namespace`, which only accepts
+  namespaces labelled `client=cluster-test`. Vault needs `get namespaces` for that check
+  (ClusterRole `vault-namespace-reader`).
 
-1.  This role name has to be created in the Vault or configured for the operator
-    to create it.
+Policies and roles are defined in `externalConfig` of
+`cluster-platform-apps/vault/templates/cr-raft.yaml`.
+
+!!! warning "Removed roles and policies stay in Vault"
+    The bank-vaults configurer creates and updates roles and policies, but never deletes
+    them. After removing one from `cr-raft.yaml`, delete it by hand:
+    `vault delete auth/kubernetes/role/<name>` or `vault policy delete <name>`.
 
 ## Use/Create external secret
 
@@ -71,7 +59,9 @@ Last step: create a secret over the external secrets operator. Because the store
 is clusterwide available, the only missing part is the `ExternalSecret`
 definition.
 
-As an example, the following is the OIDC client id and secret for grafana. I
+As an example, the following is the OIDC client id and secret for grafana (a production
+app). A `cluster-test` app uses `secretStoreRef: { kind: SecretStore, name: vault }`
+instead. I
 stored all the authentik OIDC clients in the vault. The external secret
 manifest resides in the templates folder of the monitoring stack.
 
@@ -166,6 +156,17 @@ Moving a cluster to `s3://cnpg/test/` starts a new, empty archive: take a backup
 the switch (`kubectl cnpg backup <cluster> -n <namespace> --method plugin
 --plugin-name barman-cloud.cloudnative-pg.io`). The old backups stay under
 `s3://cnpg/backups/<cluster>/` for restores and are no longer pruned by the retention policy.
+
+## Moving secrets
+
+`hack/vault-kv-mv.sh` moves, renames or copies KV v2 secrets and folders, for example when
+an app moves into or out of `cluster-test`. It checks for conflicts before writing, verifies
+every copy and never prints values. See `hack/vault-kv-mv.sh --help`.
+
+```sh
+hack/vault-kv-mv.sh -n --copy framsburg/paperless/ framsburg/test/paperless/   # preview
+hack/vault-kv-mv.sh --copy framsburg/paperless/ framsburg/test/paperless/
+```
 
 ## Reference
 
