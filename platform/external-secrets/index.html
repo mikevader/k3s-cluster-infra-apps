@@ -2475,6 +2475,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#secret-layout-in-vault" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secret layout in Vault
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Secret layout in Vault">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cnpg-backups-in-cluster-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CNPG backups in cluster-test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#reference" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3739,6 +3767,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#secret-layout-in-vault" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secret layout in Vault
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Secret layout in Vault">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cnpg-backups-in-cluster-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CNPG backups in cluster-test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#reference" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3966,6 +4022,69 @@ manifest resides in the templates folder of the monitoring stack.</p>
 <p>The generated secret will look like this:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>
 </span></code></pre></div>
+<h2 id="secret-layout-in-vault">Secret layout in Vault<a class="headerlink" href="#secret-layout-in-vault" title="Permanent link">&para;</a></h2>
+<p>All workload secrets live in the KV v2 mount <code>secret</code> under <code>framsburg/</code>. Everything
+outside <code>framsburg/</code> is personal and only readable with an OIDC login.</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Who reads it</th>
+<th>Store</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>framsburg/&lt;app&gt;[/...]</code></td>
+<td>production apps (all of <code>framsburg/*</code>, read-only)</td>
+<td>ClusterSecretStore <code>vault-backend</code></td>
+</tr>
+<tr>
+<td><code>framsburg/test/&lt;namespace&gt;[/...]</code></td>
+<td>only that <code>cluster-test</code> namespace</td>
+<td>SecretStore <code>vault</code> in the namespace</td>
+</tr>
+<tr>
+<td><code>framsburg/test/shared/&lt;name&gt;</code></td>
+<td>every <code>cluster-test</code> namespace</td>
+<td>SecretStore <code>vault</code> in the namespace</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>test_namespace_read</code> policy grants exactly the last two rows. A <code>cluster-test</code>
+namespace called <code>shared</code> would read <code>framsburg/test/shared/</code> as its own folder; every test
+namespace can read it anyway, so this gives it nothing extra.</p>
+<h3 id="cnpg-backups-in-cluster-test">CNPG backups in cluster-test<a class="headerlink" href="#cnpg-backups-in-cluster-test" title="Permanent link">&para;</a></h3>
+<p><code>cluster-test</code> has its own MinIO user for CNPG backups, stored as
+<code>framsburg/test/shared/cnpg-minio-access</code> (<code>AWS_ACCESS_KEY_ID</code>, <code>AWS_SECRET_ACCESS_KEY</code>).
+Test clusters back up to <code>s3://cnpg/test/</code> (barman adds <code>&lt;cluster&gt;/</code> below it), and the
+MinIO user is limited to that prefix. Production clusters keep using
+<code>framsburg/cnpg/minio-access</code> and <code>s3://cnpg/backups/</code>.</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>cnpg-test.json<span class="w"> </span><span class="s">&lt;&lt;'EOF'</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="s">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="s">  "Version": "2012-10-17",</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="s">  "Statement": [</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="s">    { "Effect": "Allow", "Action": ["s3:GetBucketLocation"], "Resource": ["arn:aws:s3:::cnpg"] },</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="s">    { "Effect": "Allow", "Action": ["s3:ListBucket"], "Resource": ["arn:aws:s3:::cnpg"],</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="s">      "Condition": { "StringLike": { "s3:prefix": ["test", "test/*"] } } },</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="s">    { "Effect": "Allow",</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="s">      "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject",</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="s">                 "s3:GetObjectTagging", "s3:PutObjectTagging",</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="s">                 "s3:AbortMultipartUpload", "s3:ListMultipartUploadParts"],</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="s">      "Resource": ["arn:aws:s3:::cnpg/test/*"] }</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="s">  ]</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="s">}</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="s">EOF</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>mc<span class="w"> </span>admin<span class="w"> </span>policy<span class="w"> </span>create<span class="w"> </span>minio2<span class="w"> </span>cnpg-test<span class="w"> </span>cnpg-test.json
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>mc<span class="w"> </span>admin<span class="w"> </span>user<span class="w"> </span>add<span class="w"> </span>minio2<span class="w"> </span>cnpg-test<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>openssl<span class="w"> </span>rand<span class="w"> </span>-hex<span class="w"> </span><span class="m">24</span><span class="k">)</span><span class="s2">"</span><span class="w">   </span><span class="c1"># note the secret key</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>mc<span class="w"> </span>admin<span class="w"> </span>policy<span class="w"> </span>attach<span class="w"> </span>minio2<span class="w"> </span>cnpg-test<span class="w"> </span>--user<span class="w"> </span>cnpg-test
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>vault<span class="w"> </span>kv<span class="w"> </span>put<span class="w"> </span>-mount<span class="o">=</span>secret<span class="w"> </span>framsburg/test/shared/cnpg-minio-access<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">  </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>cnpg-test<span class="w"> </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>&lt;secret<span class="w"> </span>key&gt;
+</span></code></pre></div>
+<p>Moving a cluster to <code>s3://cnpg/test/</code> starts a new, empty archive: take a backup right after
+the switch (<code>kubectl cnpg backup &lt;cluster&gt; -n &lt;namespace&gt; --method plugin
+--plugin-name barman-cloud.cloudnative-pg.io</code>). The old backups stay under
+<code>s3://cnpg/backups/&lt;cluster&gt;/</code> for restores and are no longer pruned by the retention policy.</p>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
 <li>[CSI]: Container Storage Interface</li>
