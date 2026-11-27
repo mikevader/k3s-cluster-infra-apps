@@ -28,10 +28,7 @@ namespaceResourceBlacklist:
 onRemoval: delete
 
 applications:
-  forecastle: {}
-  hajimari: {}
   hermes: {}
-  homarr: {}
   # homer: {}
   httpbin:
     helmServerSideApply: true
@@ -50,6 +47,6 @@ applications:
   # databases: {}
   # dmw-test: {}
   # firefly: {}
-  # foundryvtt: {}
+  foundryvtt: {}
   # open-telemetry: {}
   # home-assistant: {}
