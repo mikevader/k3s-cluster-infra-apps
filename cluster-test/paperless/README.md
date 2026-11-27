@@ -42,7 +42,8 @@ to `chmod 3773` in `samba-deployment.yaml`.
      `admin_user`, `admin_password`
    - `oidc`: `clientId`, `clientSecret`
    - `smb`: `password` (SMB password for user `scanner`)
-   - existing `secret/framsburg/cnpg/minio-access` is reused for DB backups
+   - DB backups use the cluster-test group credential `secret/framsburg/shared/test/cnpg-minio-access`
+     (MinIO user limited to `s3://cnpg/test/`, see docs/platform/external-secrets.md)
 2. **authentik**: OAuth2/OpenID provider + application with slug `paperless`,
    redirect URI `https://paperless.framsburg.ch/accounts/oidc/authentik/login/callback/`.
 3. **DNS**: `paperless.framsburg.ch` and `scan.framsburg.ch` → Traefik LB `192.168.42.150`.

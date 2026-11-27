@@ -17,9 +17,9 @@ spec:
   data:
     - secretKey: AWS_ACCESS_KEY_ID
       remoteRef:
-        key: secret/data/framsburg/cnpg/minio-access
+        key: secret/data/framsburg/shared/utility/cnpg-minio-access
         property: AWS_ACCESS_KEY_ID
     - secretKey: AWS_SECRET_ACCESS_KEY
       remoteRef:
-        key: secret/data/framsburg/cnpg/minio-access
+        key: secret/data/framsburg/shared/utility/cnpg-minio-access
         property: AWS_SECRET_ACCESS_KEY

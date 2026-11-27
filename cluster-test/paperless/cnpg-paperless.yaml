@@ -49,7 +49,8 @@ metadata:
 spec:
   retentionPolicy: "32d"
   configuration:
-    destinationPath: s3://cnpg/backups
+    # One prefix per app-of-apps group, so the group's MinIO user can be limited to it
+    destinationPath: s3://cnpg/test
     endpointURL: https://minio2.framsburg.net:9000
     s3Credentials:
       accessKeyId:

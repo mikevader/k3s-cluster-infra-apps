@@ -99,6 +99,8 @@ spec:
         rules: |
           path "secret/data/framsburg/test/{{ "{{" }}identity.entity.aliases.${ accessor `kubernetes/` }.metadata.service_account_namespace{{ "}}" }}" { capabilities = ["read"] }
           path "secret/data/framsburg/test/{{ "{{" }}identity.entity.aliases.${ accessor `kubernetes/` }.metadata.service_account_namespace{{ "}}" }}/*" { capabilities = ["read"] }
+          # secrets shared by the whole cluster-test group (framsburg/shared/<group>/)
+          path "secret/data/framsburg/shared/test/*" { capabilities = ["read"] }
     auth:
       - type: kubernetes
         roles:

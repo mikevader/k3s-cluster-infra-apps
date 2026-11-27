@@ -116,6 +116,68 @@ The generated secret will look like this:
 
 ```
 
+## Secret layout in Vault
+
+All workload secrets live in the KV v2 mount `secret` under `framsburg/`. Everything
+outside `framsburg/` is personal and only readable with an OIDC login.
+
+| Path | Who reads it | Store |
+|---|---|---|
+| `framsburg/<app>[/...]` | production groups (all of `framsburg/*`, read-only) | ClusterSecretStore `vault-backend` |
+| `framsburg/test/<namespace>[/...]` | only that `cluster-test` namespace | SecretStore `vault` in the namespace |
+| `framsburg/shared/<group>/<name>` | every app of one app-of-apps group | the group's store (above) |
+
+`<group>` is the app-of-apps folder without `cluster-` and `-apps`: `critical`, `platform`,
+`utility`, `media`, `rpg`, `test`.
+
+Production groups can technically read every group's shared folder (`vault-backend` reads
+all of `framsburg/*`); the split still keeps one credential per group, so it can be limited,
+rotated or revoked without touching the other groups. For `cluster-test` it is enforced:
+the `test_namespace_read` policy only adds `framsburg/shared/test/*`.
+
+### Shared credentials: CNPG backups
+
+Each group has its own MinIO user for CNPG backups, stored as
+`framsburg/shared/<group>/cnpg-minio-access` (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`).
+A group's clusters back up to their own prefix, `s3://cnpg/<group>/` (barman adds
+`<cluster>/` below it), so the MinIO user can be limited to that prefix:
+
+```sh
+group=test
+cat > cnpg-$group.json <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    { "Effect": "Allow", "Action": ["s3:GetBucketLocation"], "Resource": ["arn:aws:s3:::cnpg"] },
+    { "Effect": "Allow", "Action": ["s3:ListBucket"], "Resource": ["arn:aws:s3:::cnpg"],
+      "Condition": { "StringLike": { "s3:prefix": ["$group", "$group/*"] } } },
+    { "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject",
+                 "s3:GetObjectTagging", "s3:PutObjectTagging",
+                 "s3:AbortMultipartUpload", "s3:ListMultipartUploadParts"],
+      "Resource": ["arn:aws:s3:::cnpg/$group/*"] }
+  ]
+}
+EOF
+mc admin policy create minio2 cnpg-$group cnpg-$group.json
+mc admin user add minio2 cnpg-$group "$(openssl rand -hex 24)"   # note the secret key
+mc admin policy attach minio2 cnpg-$group --user cnpg-$group
+vault kv put -mount=secret framsburg/shared/$group/cnpg-minio-access \
+  AWS_ACCESS_KEY_ID=cnpg-$group AWS_SECRET_ACCESS_KEY=<secret key>
+```
+
+Until a group has its own user, copy the existing credential (this grants the old, broad
+access) with [`hack/vault-kv-mv.sh`](https://github.com/mikevader/k3s-cluster-infra-apps/blob/master/hack/vault-kv-mv.sh):
+
+```sh
+hack/vault-kv-mv.sh --copy framsburg/cnpg/minio-access framsburg/shared/<group>/cnpg-minio-access
+```
+
+Moving an existing cluster to `s3://cnpg/<group>/` starts a new, empty archive: take a
+backup right after the switch (`kubectl cnpg backup <cluster> -n <namespace> --method plugin
+--plugin-name barman-cloud.cloudnative-pg.io`). The old backups stay under
+`s3://cnpg/backups/<cluster>/` for restores and are no longer pruned by the retention policy.
+
 ## Reference
 
 [es]: https://external-secrets.io/ 
