@@ -52,6 +52,7 @@ applications:
   # firefly: {}
   # foundryvtt: {}
   # open-telemetry: {}
-  mealie: {}
+  mealie:
+    onRemoval: preserve
   recipes: {}
   # home-assistant: {}
