@@ -1,9 +1,0 @@
----
-apiVersion: v2
-name: dmw-test
-description: Dungeon Master Workshop app
-version: 1.0.0
-dependencies:
-  - name: dmw
-    repository: https://mikevader.github.io/dm-workshop
-    version: 1.7.39

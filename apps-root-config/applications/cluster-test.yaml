@@ -115,12 +115,6 @@ x-egress-kube-api: &egressKubeApi
 onRemoval: delete
 
 applications:
-  forecastle:
-    networkPolicy:
-      extraEgress: *egressKubeApi
-  hajimari:
-    networkPolicy:
-      extraEgress: *egressKubeApi
   hermes:
     # requests 2 CPU / 4Gi, limits 4 CPU / 8Gi
     resourceQuota:
@@ -128,7 +122,6 @@ applications:
         requests.cpu: "2"
         requests.memory: 4Gi
         limits.memory: 8Gi
-  homarr: {}
   # homer: {}
   httpbin:
     helmServerSideApply: true
@@ -206,7 +199,6 @@ applications:
   # databases: {}
   # dmw-test: {}
   # firefly: {}
-  # foundryvtt: {}
+  foundryvtt: {}
   # open-telemetry: {}
-  # recipes: {}
   # home-assistant: {}

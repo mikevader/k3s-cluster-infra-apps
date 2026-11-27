@@ -126,10 +126,10 @@ apart is correct — but one layout is best.
 
 ### Recommended two-NIC layout
 
-| Physical port | Logical classes (VLANs) | k3s flag |
-|---|---|---|
-| **NIC1 — control** | etcd/control-plane + mgmt | `--node-ip` on this subnet |
-| **NIC2 — data** | pod overlay + Longhorn replication + TrueNAS NFS/iSCSI | `--flannel-iface` = this interface |
+| Physical port      | Logical classes (VLANs)                                | k3s flag                           |
+|--------------------|--------------------------------------------------------|------------------------------------|
+| **NIC1 — control** | etcd/control-plane + mgmt                              | `--node-ip` on this subnet         |
+| **NIC2 — data**    | pod overlay + Longhorn replication + TrueNAS NFS/iSCSI | `--flannel-iface` = this interface |
 
 **Why this is the strongest two-NIC layout:** NIC1 carries only etcd + mgmt — both tiny and
 predictable — so etcd gets a wire essentially to itself. That is the safest home for the one
