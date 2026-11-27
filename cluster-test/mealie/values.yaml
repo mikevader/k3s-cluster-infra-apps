@@ -6,13 +6,31 @@ mealie:
   controller:
     enabled: true
 
+  env:
+    TZ: Europe/Zurich
+    LOG_LEVEL: info
+    # Used to build the OIDC callback URL (https://mealie.framsburg.ch/login)
+    BASE_URL: https://mealie.framsburg.ch
+    OIDC_AUTH_ENABLED: "true"
+    OIDC_SIGNUP_ENABLED: "true"
+    OIDC_PROVIDER_NAME: Authentik
+    OIDC_CONFIGURATION_URL: https://authentik.framsburg.ch/application/o/mealie/.well-known/openid-configuration
+    OIDC_ADMIN_GROUP: fb-admins
+    OIDC_AUTO_REDIRECT: "false"
+    OIDC_REMEMBER_ME: "true"
+    # Keep local login as fallback while testing; set to "false" once OIDC works
+    ALLOW_PASSWORD_LOGIN: "true"
+
+  envFrom:
+    - secretRef:
+        name: mealie-oidc-secret
+
   ingress:
     main:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
       ingressClassName: traefik
       hosts:
         - host: '{{ .Values.global.domainName }}'
