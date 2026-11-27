@@ -52,5 +52,6 @@ applications:
   # firefly: {}
   # foundryvtt: {}
   # open-telemetry: {}
-  # recipes: {}
+  mealie: {}
+  recipes: {}
   # home-assistant: {}
