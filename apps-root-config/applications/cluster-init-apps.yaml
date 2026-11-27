@@ -28,6 +28,9 @@ namespaceResourceBlacklist:
 onRemoval: preserve
 
 applications:
+  # Parked: not deployed by this group (hack/sync-apps.py skips them)
+  # flux: {}
+  # root: {}
   argo-cd:
     disableNamespaceCreation: true
     destinationNamespace: argocd-system
