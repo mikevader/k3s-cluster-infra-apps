@@ -37,8 +37,6 @@ jobs:
                     "ANSIBLE_ANSIBLE_LINT",
                     "COPYPASTE_JSCPD",
                     "KUBERNETES_KUBECONFORM",
-                    "KUBERNETES_HELM",
-                    "KUBERNETES_KUBESCAPE",
                     "MARKDOWN_MARKDOWNLINT",
                     "REPOSITORY_GIT_DIFF",
                     "YAML_PRETTIER",
@@ -51,10 +49,58 @@ jobs:
           COPYPASTE_JSCPD_CONFIG_FILE: .github/linter/jscpd/jscpd.json
           KUBERNETES_DIRECTORY: any
           KUBERNETES_KUBECONFORM_ARGUMENTS: --ignore-missing-schemas
-          # apps-root-config/*/templates/ are Helm templates made of range/if logic, not
-          # parseable as plain YAML (yamllint skips them via its own ignore list)
-          KUBERNETES_KUBECONFORM_FILTER_REGEX_EXCLUDE: "(Chart.yaml|values.yaml|apps-root-config/[^/]+/templates/)"
+          # Helm templates are not plain YAML; the helm job lints them rendered
+          # (yamllint skips them via its own ignore list)
+          KUBERNETES_KUBECONFORM_FILTER_REGEX_EXCLUDE: "(Chart.yaml|values.yaml|/templates/)"
           MARKDOWN_MARKDOWNLINT_CONFIG_FILE: .github/linter/markdownlint/markdownlint.yaml
           YAML_YAMLLINT_CONFIG_FILE: .github/linter/yamllint/.yamllint.yaml
           YAML_PRETTIER_CONFIG_FILE: .github/linter/prettier/.prettierrc.yaml
-          YAML_PRETTIER_FILTER_REGEX_EXCLUDE: "apps-root-config/[^/]+/templates/"
+          YAML_PRETTIER_FILTER_REGEX_EXCLUDE: "/templates/"
+
+  helm:
+    name: Helm charts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v5.1.0
+        with:
+          # Helm 3, as bundled with Argo CD
+          version: v3.22.1
+
+      - name: Install kubeconform
+        env:
+          KUBECONFORM_VERSION: v0.8.0
+        run: >-
+          curl -sSfL "https://github.com/yannh/kubeconform/releases/download/${KUBECONFORM_VERSION}/kubeconform-linux-amd64.tar.gz"
+          | sudo tar xz -C /usr/local/bin kubeconform
+
+      - name: Install kubescape
+        env:
+          KUBESCAPE_VERSION: v4.0.19
+        run: >-
+          curl -sSfL "https://github.com/kubescape/kubescape/releases/download/${KUBESCAPE_VERSION}/kubescape_${KUBESCAPE_VERSION#v}_linux_amd64"
+          -o kubescape && sudo install kubescape /usr/local/bin/kubescape && rm kubescape
+
+      - name: Lint and validate charts
+        env:
+          SCOPE: ${{ github.event_name == 'workflow_dispatch' && '--all' || format('origin/{0}', github.base_ref) }}
+          RENDER_DIR: ${{ runner.temp }}/rendered
+        run: .github/scripts/helm-lint.sh "$SCOPE"
+
+      - name: Kubescape scan of rendered charts
+        # report only: no thresholds set, so findings never fail the job
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        env:
+          RENDER_DIR: ${{ runner.temp }}/rendered
+        run: |
+          if [ ! -d "$RENDER_DIR" ]; then
+            echo "No rendered charts to scan."
+            exit 0
+          fi
+          kubescape scan "$RENDER_DIR" --format pretty-printer
