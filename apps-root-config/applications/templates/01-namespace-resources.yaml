@@ -62,6 +62,33 @@ spec:
 {{ toYaml $resourceQuota.hard | indent 4 }}
 {{- end }}
 {{- end }}
+{{- if $.Values.enableVaultSecretStore }}
+{{- $vaultStore := include "apps.appSetting" (dict "key" "vaultSecretStore" "app" $value "root" $) | fromYaml }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ $vaultStore.serviceAccountName }}
+  namespace: {{ $key }}
+---
+apiVersion: external-secrets.io/v1
+kind: SecretStore
+metadata:
+  name: {{ $vaultStore.name }}
+  namespace: {{ $key }}
+spec:
+  provider:
+    vault:
+      server: {{ $vaultStore.server | quote }}
+      path: {{ $vaultStore.path | quote }}
+      version: "v2"
+      auth:
+        kubernetes:
+          mountPath: {{ $vaultStore.mountPath | quote }}
+          role: {{ required "vaultSecretStore.role is required with enableVaultSecretStore" $vaultStore.role | quote }}
+          serviceAccountRef:
+            name: {{ $vaultStore.serviceAccountName }}
+{{- end }}
 {{- if $.Values.enableDefaultNetworkPolicy }}
 {{- $networkPolicy := include "apps.appSetting" (dict "key" "networkPolicy" "app" $value "root" $) | fromYaml }}
 {{- with $networkPolicy.ingressFromNamespaces }}
