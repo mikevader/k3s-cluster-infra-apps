@@ -1,0 +1,90 @@
+---
+global:
+  domainName: mealie.framsburg.ch
+
+mealie:
+  controller:
+    enabled: true
+
+  env:
+    TZ: Europe/Zurich
+    LOG_LEVEL: info
+    # Used to build the OIDC callback URL (https://mealie.framsburg.ch/login)
+    BASE_URL: https://mealie.framsburg.ch
+    ALLOW_SIGNUP: "false"
+
+    # Database: CNPG cluster "mealie" (templates/cnpg-mealie.yaml)
+    DB_ENGINE: postgres
+    POSTGRES_SERVER:
+      secretKeyRef:
+        name: mealie-app
+        key: host
+    POSTGRES_PORT:
+      secretKeyRef:
+        name: mealie-app
+        key: port
+    POSTGRES_DB:
+      secretKeyRef:
+        name: mealie-app
+        key: dbname
+    POSTGRES_USER:
+      secretKeyRef:
+        name: mealie-app
+        key: username
+    POSTGRES_PASSWORD:
+      secretKeyRef:
+        name: mealie-app
+        key: password
+
+    # OIDC via Authentik (application "mealie"). Client credentials come from mealie-oidc-secret.
+    OIDC_AUTH_ENABLED: "true"
+    OIDC_SIGNUP_ENABLED: "true"
+    OIDC_PROVIDER_NAME: Authentik
+    OIDC_CONFIGURATION_URL: https://authentik.framsburg.ch/application/o/mealie/.well-known/openid-configuration
+    OIDC_ADMIN_GROUP: fb-admins
+    OIDC_AUTO_REDIRECT: "true"
+    OIDC_REMEMBER_ME: "true"
+    # The local login form stays reachable at /login?direct=1 for break-glass access
+    ALLOW_PASSWORD_LOGIN: "false"
+
+  envFrom:
+    - secretRef:
+        name: mealie-oidc-secret
+
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/name: "Mealie"
+        gethomepage.dev/group: "Utilities"
+        gethomepage.dev/icon: "mealie.png"
+        gethomepage.dev/description: "Recipes and meal planning"
+        gethomepage.dev/pod-selector: ""
+      ingressClassName: traefik
+      hosts:
+        - host: '{{ .Values.global.domainName }}'
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts: ['{{ .Values.global.domainName }}']
+          secretName: '{{ .Values.global.domainName | replace "." "-" }}-tls'
+
+  # Still needed with Postgres: recipe images and backups live under /app/data
+  persistence:
+    app-data:
+      enabled: true
+      mountPath: /app/data/
+      accessMode: ReadWriteOnce
+      size: 10Gi
+
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: '1'
+      memory: 1024Mi
