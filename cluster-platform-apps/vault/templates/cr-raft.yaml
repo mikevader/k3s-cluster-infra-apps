@@ -90,6 +90,7 @@ spec:
       - name: test_secrets
         rules: |
           path "secret/data/framsburg/test/*" { capabilities = ["read"] }
+          path "secret/data/framsburg/foundryvtt/*" { capabilities = ["read"] }
           path "secret/data/framsburg/hermes" { capabilities = ["read"] }
           path "secret/data/framsburg/openclaw" { capabilities = ["read"] }
           path "secret/data/framsburg/paperless/*" { capabilities = ["read"] }
