@@ -116,6 +116,57 @@ The generated secret will look like this:
 
 ```
 
+## Secret layout in Vault
+
+All workload secrets live in the KV v2 mount `secret` under `framsburg/`. Everything
+outside `framsburg/` is personal and only readable with an OIDC login.
+
+| Path | Who reads it | Store |
+|---|---|---|
+| `framsburg/<app>[/...]` | production apps (all of `framsburg/*`, read-only) | ClusterSecretStore `vault-backend` |
+| `framsburg/test/<namespace>[/...]` | only that `cluster-test` namespace | SecretStore `vault` in the namespace |
+| `framsburg/test/shared/<name>` | every `cluster-test` namespace | SecretStore `vault` in the namespace |
+
+The `test_namespace_read` policy grants exactly the last two rows. A `cluster-test`
+namespace called `shared` would read `framsburg/test/shared/` as its own folder; every test
+namespace can read it anyway, so this gives it nothing extra.
+
+### CNPG backups in cluster-test
+
+`cluster-test` has its own MinIO user for CNPG backups, stored as
+`framsburg/test/shared/cnpg-minio-access` (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`).
+Test clusters back up to `s3://cnpg/test/` (barman adds `<cluster>/` below it), and the
+MinIO user is limited to that prefix. Production clusters keep using
+`framsburg/cnpg/minio-access` and `s3://cnpg/backups/`.
+
+```sh
+cat > cnpg-test.json <<'EOF'
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    { "Effect": "Allow", "Action": ["s3:GetBucketLocation"], "Resource": ["arn:aws:s3:::cnpg"] },
+    { "Effect": "Allow", "Action": ["s3:ListBucket"], "Resource": ["arn:aws:s3:::cnpg"],
+      "Condition": { "StringLike": { "s3:prefix": ["test", "test/*"] } } },
+    { "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject",
+                 "s3:GetObjectTagging", "s3:PutObjectTagging",
+                 "s3:AbortMultipartUpload", "s3:ListMultipartUploadParts"],
+      "Resource": ["arn:aws:s3:::cnpg/test/*"] }
+  ]
+}
+EOF
+mc admin policy create minio2 cnpg-test cnpg-test.json
+mc admin user add minio2 cnpg-test "$(openssl rand -hex 24)"   # note the secret key
+mc admin policy attach minio2 cnpg-test --user cnpg-test
+vault kv put -mount=secret framsburg/test/shared/cnpg-minio-access \
+  AWS_ACCESS_KEY_ID=cnpg-test AWS_SECRET_ACCESS_KEY=<secret key>
+```
+
+Moving a cluster to `s3://cnpg/test/` starts a new, empty archive: take a backup right after
+the switch (`kubectl cnpg backup <cluster> -n <namespace> --method plugin
+--plugin-name barman-cloud.cloudnative-pg.io`). The old backups stay under
+`s3://cnpg/backups/<cluster>/` for restores and are no longer pruned by the retention policy.
+
 ## Reference
 
 [es]: https://external-secrets.io/ 
