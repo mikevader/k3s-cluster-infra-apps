@@ -54,5 +54,4 @@ applications:
   # open-telemetry: {}
   mealie:
     onRemoval: preserve
-  recipes: {}
   # home-assistant: {}
