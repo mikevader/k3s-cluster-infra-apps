@@ -6,7 +6,7 @@ metadata:
 spec:
   refreshInterval: 1m
   secretStoreRef:
-    name: vault-backend
+    name: vault-test
     kind: ClusterSecretStore
   target:
     name: foundry-account-secret
