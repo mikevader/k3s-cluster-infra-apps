@@ -7,3 +7,4 @@ dependencies:
   - name: app-of-apps-bootstrap
     repository: https://mikevader.github.io/charts
     version: 1.0.0
+    alias: config

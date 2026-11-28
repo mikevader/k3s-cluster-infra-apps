@@ -1,5 +1,5 @@
 ---
-app-of-apps-bootstrap:
+config:
   repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
   bootstrap:
     - name: cluster-init-apps
