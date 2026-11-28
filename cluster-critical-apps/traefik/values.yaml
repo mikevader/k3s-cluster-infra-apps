@@ -170,7 +170,7 @@ traefik:
       annotations:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Traefik"
-        gethomepage.dev/group: "Infrastructure"
+        gethomepage.dev/group: "Cluster"
         gethomepage.dev/icon: "traefik.png"
         gethomepage.dev/description: "Ingress controller"
         gethomepage.dev/href: "https://traefik.framsburg.ch/dashboard/"

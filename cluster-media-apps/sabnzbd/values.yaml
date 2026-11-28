@@ -12,7 +12,7 @@ sabnzbd:
         traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "SABnzbd"
-        gethomepage.dev/group: "Media"
+        gethomepage.dev/group: "Downloads"
         gethomepage.dev/icon: "sabnzbd.png"
         gethomepage.dev/description: "Usenet downloader"
         gethomepage.dev/pod-selector: ""

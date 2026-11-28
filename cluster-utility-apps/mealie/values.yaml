@@ -59,7 +59,7 @@ mealie:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Mealie"
-        gethomepage.dev/group: "Utilities"
+        gethomepage.dev/group: "Household"
         gethomepage.dev/icon: "mealie.png"
         gethomepage.dev/description: "Recipes and meal planning"
         gethomepage.dev/pod-selector: ""

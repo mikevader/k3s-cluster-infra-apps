@@ -20,8 +20,8 @@ Add annotations to the service's Ingress/IngressRoute in git. There is nothing t
 annotations:
   gethomepage.dev/enabled: "true"
   gethomepage.dev/name: "Radarr"
-  # group: Entertainment | Utilities | RPG | Media | Platform | Infrastructure
-  gethomepage.dev/group: "Media"
+  # group: one of the groups in the table below
+  gethomepage.dev/group: "Media Automation"
   # icon: dashboard-icons name, or mdi-<icon> / si-<icon>
   gethomepage.dev/icon: "radarr.png"
   gethomepage.dev/description: "Movies"
@@ -43,12 +43,37 @@ Optional annotations:
     `gethomepage.dev/widget.key: {{ "\"{{HOMEPAGE_VAR_ARGOCD_KEY}}\"" }}`.
     In `values.yaml` the plain string works, unless the upstream chart runs annotations through `tpl`.
 
-Group order and layout are set in `cluster-utility-apps/homepage/templates/configmap.yaml` (`settings.yaml`).
-New groups appear after the listed ones.
+## Groups and tabs
+
+Services are grouped by what you go there to do. The **Home** tab holds everyday apps; **Admin** holds the tools
+for running the cluster. Everyone who passes Authentik sees both tabs.
+
+| Tab | Group | For |
+| --- | --- | --- |
+| Home | Watch | Streaming and media requests (Plex, Jellyfin, Seerr) |
+| Home | Household | Finance, recipes, documents (Actual, Mealie, Paperless) |
+| Home | RPG | Tabletop tools (DM Workshop, Foundry VTT) |
+| Admin | Media Automation | *arr apps, Tautulli, Filebrowser |
+| Admin | Downloads | Download clients (Transmission, Flood, SABnzbd) |
+| Admin | Cluster | Argo CD, Headlamp, Traefik, Longhorn |
+| Admin | Observability | Grafana, Prometheus, Alertmanager, Uptime Kuma |
+| Admin | Identity & Secrets | Authentik, Vault |
+| Admin | Lab | Test and debug tools (httpbin) |
+
+Group order, tabs and columns are set in `layout` of `settings.yaml` in
+`cluster-utility-apps/homepage/templates/configmap.yaml`. A group that isn't listed there ends up on the first tab,
+so add new groups to `layout` with their `tab`.
+
+## Bookmarks
+
+External links live in `bookmarks.yaml` in the same ConfigMap. Bookmark groups are laid out like service groups:
+
+- **Home:** Weather & Travel (MeteoSwiss, SBB), RPG Reference (D&D Beyond, 5e.tools, Kobold Plus Fight Club)
+- **Admin:** GitOps (GitHub repos, Renovate dashboard, GHCR, docs), Network (OPNsense, TrueNAS), References
 
 Apps deployed from `cluster-test/` start their description with `🧪 Test · ` so they stand out on the dashboard.
 
-The header shows the cluster CPU/memory (`kubernetes`), Longhorn storage (`longhorn`, via the in-cluster
+The header shows the cluster and per-node CPU/memory (`kubernetes`), Longhorn storage (`longhorn`, via the in-cluster
 `longhorn-frontend` service) and the Open-Meteo weather for Basel (`openmeteo`), set in `widgets.yaml`.
 The background image URL is `background.image` in `values.yaml`.
 

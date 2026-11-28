@@ -20,7 +20,7 @@ radarr:
 
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Radarr"
-        gethomepage.dev/group: "Media"
+        gethomepage.dev/group: "Media Automation"
         gethomepage.dev/icon: "radarr.png"
         gethomepage.dev/description: "Movies"
         gethomepage.dev/pod-selector: ""
@@ -102,7 +102,7 @@ radarr-4k:
 
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Radarr 4K"
-        gethomepage.dev/group: "Media"
+        gethomepage.dev/group: "Media Automation"
         gethomepage.dev/icon: "radarr.png"
         gethomepage.dev/description: "Movies (4K)"
         gethomepage.dev/pod-selector: ""
@@ -185,7 +185,7 @@ sonarr:
 
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Sonarr"
-        gethomepage.dev/group: "Media"
+        gethomepage.dev/group: "Media Automation"
         gethomepage.dev/icon: "sonarr.png"
         gethomepage.dev/description: "TV shows"
         gethomepage.dev/pod-selector: ""
@@ -267,7 +267,7 @@ sonarr-4k:
 
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Sonarr 4K"
-        gethomepage.dev/group: "Media"
+        gethomepage.dev/group: "Media Automation"
         gethomepage.dev/icon: "sonarr.png"
         gethomepage.dev/description: "TV shows (4K)"
         gethomepage.dev/pod-selector: ""
@@ -359,7 +359,7 @@ prowlarr:
 
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Prowlarr"
-        gethomepage.dev/group: "Media"
+        gethomepage.dev/group: "Media Automation"
         gethomepage.dev/icon: "prowlarr.png"
         gethomepage.dev/description: "Indexer manager"
         gethomepage.dev/pod-selector: ""
@@ -391,49 +391,6 @@ prowlarr:
             - curl --fail localhost:${APP_PORT}/${APP_NAME/-//}/api/v1/system/status?apiKey=`IFS=\> && while
               read -d \< E C; do if [[ $E = "ApiKey" ]]; then echo $C; fi; done < /config/config.xml`
 
-# tdarr:
-#  controller:
-#    enabled: true
-#
-#  env:
-#    TZ: Europe/Zurich
-#    JAEGER_AGENT_HOST:
-#      valueFrom:
-#        fieldRef:
-#          fieldPath: status.hostIP
-#    JAEGER_AGENT_PORT: "6831"
-#
-#  ingress:
-#    main:
-#      enabled: true
-#      annotations:
-#        cert-manager.io/cluster-issuer: letsencrypt-prod
-#        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-#        traefik.ingress.kubernetes.io/router.priority: "10"
-#        traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
-#
-#      hosts:
-#        - host: 'tdarr.framsburg.ch'
-#          paths:
-#            - path: '/'
-#              pathType: Prefix
-#      tls:
-#        - hosts: ['tdarr.framsburg.ch']
-#          secretName: 'tdarr-framsburg-ch-tls'
-#
-#  persistence:
-#    config:
-#      enabled: true
-#      type: pvc
-#      size: 1Gi
-#      accessMode: ReadWriteOnce
-#
-#    data:
-#      enabled: true
-#      type: pvc
-#      size: 10Gi
-#      accessMode: ReadWriteOnce
-
 overseerr:
   operator:
     verify:
@@ -452,7 +409,7 @@ overseerr:
         traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Seerr"
-        gethomepage.dev/group: "Entertainment"
+        gethomepage.dev/group: "Watch"
         gethomepage.dev/icon: "overseerr.png"
         gethomepage.dev/description: "Media requests"
         gethomepage.dev/pod-selector: ""
