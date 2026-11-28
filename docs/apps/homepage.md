@@ -74,7 +74,8 @@ External links live in `bookmarks.yaml` in the same ConfigMap. Bookmark groups a
 Apps deployed from `cluster-test/` start their description with `🧪 Test · ` so they stand out on the dashboard.
 
 The header shows the cluster and per-node CPU/memory (`kubernetes`), Longhorn storage (`longhorn`, via the in-cluster
-`longhorn-frontend` service) and the Open-Meteo weather for Basel (`openmeteo`), set in `widgets.yaml`.
+`longhorn-frontend` service, URL under `providers.longhorn` in `settings.yaml`) and the Open-Meteo weather for Basel
+(`openmeteo`), set in `widgets.yaml`.
 The background image URL is `background.image` in `values.yaml`.
 
 ## Widget API keys

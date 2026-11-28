@@ -28,6 +28,10 @@ data:
       saturate: 100
       brightness: 75
       opacity: 50
+    # Info widgets that read their endpoint from here instead of widgets.yaml
+    providers:
+      longhorn:
+        url: http://longhorn-frontend.longhorn-system.svc
     quicklaunch:
       searchDescriptions: true
     # Two tabs: Home for everyday apps, Admin for running the cluster.
@@ -101,7 +105,6 @@ data:
         nodes:
           show: false
     - longhorn:
-        url: http://longhorn-frontend.longhorn-system.svc
         expanded: false
         total: true
         labels: false
