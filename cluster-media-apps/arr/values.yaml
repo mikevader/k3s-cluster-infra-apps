@@ -109,6 +109,9 @@ radarr-4k:
         gethomepage.dev/icon: "radarr.png"
         gethomepage.dev/description: "Movies (4K)"
         gethomepage.dev/pod-selector: ""
+        gethomepage.dev/widget.type: "radarr"
+        gethomepage.dev/widget.url: "http://arr-radarr-4k.plex.svc:7878"
+        gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_RADARR_4K_KEY}}"
       hosts:
         - host: 'radarr4k.framsburg.ch'
           paths:
@@ -277,6 +280,9 @@ sonarr-4k:
         gethomepage.dev/icon: "sonarr.png"
         gethomepage.dev/description: "TV shows (4K)"
         gethomepage.dev/pod-selector: ""
+        gethomepage.dev/widget.type: "sonarr"
+        gethomepage.dev/widget.url: "http://arr-sonarr-4k.plex.svc:8989"
+        gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_SONARR_4K_KEY}}"
       hosts:
         - host: 'sonarr4k.framsburg.ch'
           paths:

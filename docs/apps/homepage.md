@@ -65,6 +65,8 @@ secret changes.
 | `HOMEPAGE_VAR_PLEX_KEY` | Plex token of the server owner (see below) |
 | `HOMEPAGE_VAR_RADARR_KEY` | Radarr → Settings → General → API Key |
 | `HOMEPAGE_VAR_SONARR_KEY` | Sonarr → Settings → General → API Key |
+| `HOMEPAGE_VAR_RADARR_4K_KEY` | Radarr 4K → Settings → General → API Key |
+| `HOMEPAGE_VAR_SONARR_4K_KEY` | Sonarr 4K → Settings → General → API Key |
 | `HOMEPAGE_VAR_PROWLARR_KEY` | Prowlarr → Settings → General → API Key |
 | `HOMEPAGE_VAR_SEERR_KEY` | Seerr → Settings → General → API Key |
 | `HOMEPAGE_VAR_SABNZBD_KEY` | SABnzbd → Config → General → API Key |
@@ -149,6 +151,8 @@ key() { kubectl -n plex exec deploy/"$1" -c "$1" -- cat /config/config.xml | sed
 vault kv patch -mount=secret framsburg/homepage \
   HOMEPAGE_VAR_RADARR_KEY="$(key arr-radarr)" \
   HOMEPAGE_VAR_SONARR_KEY="$(key arr-sonarr)" \
+  HOMEPAGE_VAR_RADARR_4K_KEY="$(key arr-radarr-4k)" \
+  HOMEPAGE_VAR_SONARR_4K_KEY="$(key arr-sonarr-4k)" \
   HOMEPAGE_VAR_PROWLARR_KEY="$(key arr-prowlarr)" \
   HOMEPAGE_VAR_SEERR_KEY="$(kubectl -n plex exec deploy/arr-overseerr -- cat /app/config/settings.json | jq -r .main.apiKey)" \
   HOMEPAGE_VAR_SABNZBD_KEY="$(kubectl -n plex exec deploy/sabnzbd -- sed -n 's/^api_key = //p' /config/sabnzbd.ini)"
