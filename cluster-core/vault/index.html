@@ -1498,6 +1498,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../app-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App-of-apps Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../gitops-workflow.md" class="md-nav__link">
         
   
@@ -3955,6 +3983,12 @@ and is valid for 1h. Check it with <code>vault token lookup</code>.</p>
 <p>Logins get the <code>allow_secrets</code> policy. It includes the <code>patch</code> capability, so
 <code>vault kv patch</code> works on KV v2. Without <code>patch</code>, use
 <code>vault kv patch -method=rw</code>, which only needs <code>read</code> and <code>update</code>.</p>
+<h2 id="policies-and-roles">Policies and roles<a class="headerlink" href="#policies-and-roles" title="Permanent link">&para;</a></h2>
+<p>Workloads only read secrets, and only under <code>secret/framsburg/</code>; everything else in the
+<code>secret</code> mount is for OIDC logins. Which store reads which path is described in
+<a href="../../platform/external-secrets/#secret-layout-in-vault">External Secrets → Secret layout</a>.
+Removed roles and policies must be deleted by hand, see
+<a href="../../platform/external-secrets/#setup-store">Setup Store</a>.</p>
 <h2 id="monitoring">Monitoring<a class="headerlink" href="#monitoring" title="Permanent link">&para;</a></h2>
 <ul>
 <li>https://github.com/hashicorp/vault/issues/13978</li>

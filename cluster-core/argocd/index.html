@@ -18,7 +18,7 @@
         <link rel="prev" href="../../setup/custom-images/">
       
       
-        <link rel="next" href="../traefik/">
+        <link rel="next" href="../app-groups/">
       
       
         
@@ -1717,6 +1717,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../app-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App-of-apps Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -4323,6 +4351,8 @@ would sync your change aka remove the app!</p>
 <code>apps-root-config/applications/cluster-utility-apps.yaml</code></p>
 <p><strong>This assumes the application name has not changed!</strong>. You can now remove the
 app files from the old folder.</p>
+<p>The group file also sets the guardrails for the group's namespaces (quota, network
+policies, secret store). See <a href="../app-groups/">App-of-apps groups and guardrails</a>.</p>
 <h2 id="github-webhook">GitHub Webhook<a class="headerlink" href="#github-webhook" title="Permanent link">&para;</a></h2>
 <p>This documentation describes how to setup a git webhook which notifies Argo CD
 on any source changes immedietly. Otherwise Argo CD will pull changes on a three
