@@ -3969,7 +3969,7 @@ service's own auth. See <a href="../../adr/homepage-dashboard/">the decision rec
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">annotations</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">gethomepage.dev/enabled</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">gethomepage.dev/name</span><span class="p">:</span><span class="w"> </span><span class="s">"Radarr"</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="c1"># group: Infrastructure | Platform | Media | Utilities | RPG</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="c1"># group: Entertainment | Utilities | RPG | Media | Platform | Infrastructure</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">gethomepage.dev/group</span><span class="p">:</span><span class="w"> </span><span class="s">"Media"</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="c1"># icon: dashboard-icons name, or mdi-&lt;icon&gt; / si-&lt;icon&gt;</span>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">gethomepage.dev/icon</span><span class="p">:</span><span class="w"> </span><span class="s">"radarr.png"</span>
@@ -4015,6 +4015,10 @@ In <code>values.yaml</code> the plain string works, unless the upstream chart ru
 </div>
 <p>Group order and layout are set in <code>cluster-utility-apps/homepage/templates/configmap.yaml</code> (<code>settings.yaml</code>).
 New groups appear after the listed ones.</p>
+<p>Apps deployed from <code>cluster-test/</code> start their description with <code>🧪 Test ·</code> so they stand out on the dashboard.</p>
+<p>The header shows the cluster CPU/memory (<code>kubernetes</code>), Longhorn storage (<code>longhorn</code>, via the in-cluster
+<code>longhorn-frontend</code> service) and the Open-Meteo weather for Basel (<code>openmeteo</code>), set in <code>widgets.yaml</code>.
+The background image URL is <code>background.image</code> in <code>values.yaml</code>.</p>
 <h2 id="widget-api-keys">Widget API keys<a class="headerlink" href="#widget-api-keys" title="Permanent link">&para;</a></h2>
 <p>Keys live in Vault at <code>secret/framsburg/homepage</code> (KV v2). The ExternalSecret <code>homepage-api-keys</code> turns them into
 <code>HOMEPAGE_VAR_*</code> environment variables. Reloader restarts the pod when the secret changes.</p>
