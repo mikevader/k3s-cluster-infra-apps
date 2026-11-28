@@ -1,28 +1,29 @@
 ---
-repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
-# argocdNamespace: "argocd"
-# server: "https://kubernetes.default.svc"
-subFolder: cluster-rpg-apps
-namespace:
-  annotations: {}
-  labels:
-    client: cluster-infra
+config:
+  repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
+  # argocdNamespace: "argocd"
+  # server: "https://kubernetes.default.svc"
+  subFolder: cluster-rpg-apps
+  namespace:
+    annotations: {}
+    labels:
+      client: cluster-infra
 
-enableDefaultNetworkPolicy: false
-enableDefaultLimitRange: false
-allowAllNamespaces: true
+  enableDefaultNetworkPolicy: false
+  enableDefaultLimitRange: false
+  allowAllNamespaces: true
 
-roleBindings:
-#  - groupName: "team1"
-#    clusterRoleName: "admin"
+  roleBindings:
+  #  - groupName: "team1"
+  #    clusterRoleName: "admin"
 
-clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
 
-namespaceResourceBlacklist:
-#  - group: 'apps'
-#    kind: 'DaemonSet'
+  namespaceResourceBlacklist:
+  #  - group: 'apps'
+  #    kind: 'DaemonSet'
 
-applications:
-  dmw: {}
+  applications:
+    dmw: {}

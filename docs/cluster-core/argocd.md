@@ -187,7 +187,14 @@ This can be done anytime even before you start, if your new app of apps does not
 share the name with an existing application.
 
 This is quite straight forward. Add new app of apps to the bootstrap start under
-`apps-root-config/bootstrap/values.yaml`.
+`config.bootstrap` in `apps-root-config/bootstrap/values.yaml`, and
+create its group file `apps-root-config/applications/<name>.yaml`.
+
+Both folders are thin wrapper charts around the published
+[app-of-apps-bootstrap](https://github.com/mikevader/charts/tree/master/charts/stable/app-of-apps-bootstrap)
+and [app-of-apps](https://github.com/mikevader/charts/tree/master/charts/stable/app-of-apps)
+charts. Both dependencies use the alias `config`, so all values sit under the `config:` key.
+The chart READMEs document every value; Renovate bumps the chart versions in `Chart.yaml`.
 
 ### Add app to app of apps
 
@@ -195,7 +202,7 @@ First make sure the application you want to add is in the right folder. Don't
 move aka remove it from the old folder as the old application still exists and 
 would sync your change aka remove the app!
 
-Add your app to the new app of apps for example under
+Add your app to the new app of apps for example under `config.applications` in
 `apps-root-config/applications/cluster-utility-apps.yaml`
 
 **This assumes the application name has not changed!**. You can now remove the

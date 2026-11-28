@@ -1,5 +1,10 @@
 ---
 apiVersion: v2
 name: bootstrap
-version: 0.1.0
+version: 0.2.0
 description: Bootstrap Chart for Argo CD App of Apps
+dependencies:
+  - name: app-of-apps-bootstrap
+    repository: https://mikevader.github.io/charts
+    version: 1.0.0
+    alias: config

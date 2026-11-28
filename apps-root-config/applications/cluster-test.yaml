@@ -1,209 +1,211 @@
 ---
-repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
-# argocdNamespace: "argocd"
-# server: "https://kubernetes.default.svc"
-subFolder: cluster-test
-namespace:
-  annotations: {}
-  labels:
-    # matched by the Vault role test-namespace (cluster-platform-apps/vault/templates/cr-raft.yaml)
-    # and excluded from vault-backend (cluster-platform-apps/external-secrets/templates/secret-store.yaml)
-    client: cluster-test
+config:
+  repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
+  # argocdNamespace: "argocd"
+  # server: "https://kubernetes.default.svc"
+  subFolder: cluster-test
+  namespace:
+    annotations: {}
+    labels:
+      # matched by the Vault role test-namespace (cluster-platform-apps/vault/templates/cr-raft.yaml)
+      # and excluded from vault-backend (cluster-platform-apps/external-secrets/templates/secret-store.yaml)
+      client: cluster-test
 
-# Guardrails: test apps must not be able to affect the rest of the cluster.
-# Chart defaults and per-application overrides: see values.yaml.
+  # Guardrails: test apps must not be able to affect the rest of the cluster.
+  # Chart defaults and per-application overrides: see the app-of-apps chart values
+  # (mikevader/charts: charts/stable/app-of-apps/values.yaml).
 
-# Only the namespaces of the applications below may be deployed to
-allowAllNamespaces: false
+  # Only the namespaces of the applications below may be deployed to
+  allowAllNamespaces: false
 
-enableDefaultLimitRange: true
-limitRange:
-  limits:
-    - type: Container
-      # applied to containers without resources (also needed for the quota below)
-      default:
-        cpu: 500m
-        memory: 512Mi
-      defaultRequest:
-        cpu: 10m
-        memory: 64Mi
-      max:
-        cpu: "4"
-        memory: 8Gi
+  enableDefaultLimitRange: true
+  limitRange:
+    limits:
+      - type: Container
+        # applied to containers without resources (also needed for the quota below)
+        default:
+          cpu: 500m
+          memory: 512Mi
+        defaultRequest:
+          cpu: 10m
+          memory: 64Mi
+        max:
+          cpu: "4"
+          memory: 8Gi
 
-# Per namespace. LoadBalancer/NodePort services are blocked so test apps can't take
-# MetalLB IPs or node ports.
-enableDefaultResourceQuota: true
-resourceQuota:
-  hard:
-    requests.cpu: "1"
-    requests.memory: 2Gi
-    limits.cpu: "4"
-    limits.memory: 4Gi
-    requests.storage: 20Gi
-    persistentvolumeclaims: "5"
-    pods: "10"
-    services.loadbalancers: "0"
-    services.nodeports: "0"
+  # Per namespace. LoadBalancer/NodePort services are blocked so test apps can't take
+  # MetalLB IPs or node ports.
+  enableDefaultResourceQuota: true
+  resourceQuota:
+    hard:
+      requests.cpu: "1"
+      requests.memory: 2Gi
+      limits.cpu: "4"
+      limits.memory: 4Gi
+      requests.storage: 20Gi
+      persistentvolumeclaims: "5"
+      pods: "10"
+      services.loadbalancers: "0"
+      services.nodeports: "0"
 
-# Secrets: SecretStore "vault" per namespace, reading only secret/framsburg/test/<namespace>[/...]
-enableVaultSecretStore: true
-vaultSecretStore:
-  role: test-namespace
+  # Secrets: SecretStore "vault" per namespace, reading only secret/framsburg/test/<namespace>[/...]
+  enableVaultSecretStore: true
+  vaultSecretStore:
+    role: test-namespace
 
-# Inbound: same namespace + ingress controllers. Outbound: same namespace, DNS, internet.
-enableDefaultNetworkPolicy: true
-networkPolicy:
-  egress:
-    enabled: true
+  # Inbound: same namespace + ingress controllers. Outbound: same namespace, DNS, internet.
+  enableDefaultNetworkPolicy: true
+  networkPolicy:
+    egress:
+      enabled: true
 
-roleBindings:
-#  - name: "team1"
-#    kind: Group
-#    clusterRoleName: "admin"
+  roleBindings:
+  #  - name: "team1"
+  #    kind: Group
+  #    clusterRoleName: "admin"
 
-# Cluster-scoped resources test apps actually need, by name. Note: Argo CD syncs as
-# cluster-admin, so a whitelisted ClusterRoleBinding can still bind any ClusterRole.
-clusterResourceWhitelist:
-  - group: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: forecastle-cluster-ingress-role
-  - group: rbac.authorization.k8s.io
-    kind: ClusterRoleBinding
-    name: forecastle-cluster-ingress-role-binding
-  - group: apiextensions.k8s.io
-    kind: CustomResourceDefinition
-    name: forecastleapps.forecastle.stakater.com
-  - group: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: hajimari
-  - group: rbac.authorization.k8s.io
-    kind: ClusterRoleBinding
-    name: hajimari
+  # Cluster-scoped resources test apps actually need, by name. Note: Argo CD syncs as
+  # cluster-admin, so a whitelisted ClusterRoleBinding can still bind any ClusterRole.
+  clusterResourceWhitelist:
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: forecastle-cluster-ingress-role
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+      name: forecastle-cluster-ingress-role-binding
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: forecastleapps.forecastle.stakater.com
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: hajimari
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+      name: hajimari
 
-# The guardrails above are owned by the parent app (project "default"); test apps must not
-# create their own to loosen them.
-namespaceResourceBlacklist:
-  - group: ""
-    kind: ResourceQuota
-  - group: ""
-    kind: LimitRange
-  - group: networking.k8s.io
-    kind: NetworkPolicy
-  # Own stores or generators would authenticate to Vault from the ESO controller,
-  # bypassing the namespace's SecretStore "vault" and the egress policy
-  - group: external-secrets.io
-    kind: SecretStore
-  - group: generators.external-secrets.io
-    kind: "*"
+  # The guardrails above are owned by the parent app (project "default"); test apps must not
+  # create their own to loosen them.
+  namespaceResourceBlacklist:
+    - group: ""
+      kind: ResourceQuota
+    - group: ""
+      kind: LimitRange
+    - group: networking.k8s.io
+      kind: NetworkPolicy
+    # Own stores or generators would authenticate to Vault from the ESO controller,
+    # bypassing the namespace's SecretStore "vault" and the egress policy
+    - group: external-secrets.io
+      kind: SecretStore
+    - group: generators.external-secrets.io
+      kind: "*"
 
-# Egress rule for apps that read the Kubernetes API (hajimari, forecastle, CNPG instances).
-# Policies see the API server after DNAT, i.e. on the control-plane node IPs.
-x-egress-kube-api: &egressKubeApi
-  - &egressKubeApiRule
-    to:
-      - ipBlock:
-          cidr: 192.168.42.120/32
-      - ipBlock:
-          cidr: 192.168.42.121/32
-      - ipBlock:
-          cidr: 192.168.42.123/32
-      - ipBlock:
-          cidr: 10.43.0.1/32
-    ports:
-      - protocol: TCP
-        port: 6443
-      - protocol: TCP
-        port: 443
+  # Egress rule for apps that read the Kubernetes API (hajimari, forecastle, CNPG instances).
+  # Policies see the API server after DNAT, i.e. on the control-plane node IPs.
+  x-egress-kube-api: &egressKubeApi
+    - &egressKubeApiRule
+      to:
+        - ipBlock:
+            cidr: 192.168.42.120/32
+        - ipBlock:
+            cidr: 192.168.42.121/32
+        - ipBlock:
+            cidr: 192.168.42.123/32
+        - ipBlock:
+            cidr: 10.43.0.1/32
+      ports:
+        - protocol: TCP
+          port: 6443
+        - protocol: TCP
+          port: 443
 
-# Default onRemoval for this group (test apps: remove everything right away); see values.yaml
-onRemoval: delete
+  # Default onRemoval for this group (test apps: remove everything right away); see the app-of-apps chart values
+  onRemoval: delete
 
-applications:
-  hermes:
-    # requests 2 CPU / 4Gi, limits 4 CPU / 8Gi
-    resourceQuota:
-      hard:
-        requests.cpu: "2"
-        requests.memory: 4Gi
-        limits.memory: 8Gi
-  # homer: {}
-  httpbin:
-    helmServerSideApply: true
-    serverSideDiff: true
-  openclaw:
-    # 5 x 10Gi PVCs; gateway limits 4 CPU / 8Gi plus the vault-puller sidecar
-    resourceQuota:
-      hard:
-        requests.storage: 50Gi
-        limits.cpu: "4500m"
-        limits.memory: 9Gi
-  paperless:
-    # CNPG Postgres (2 instances) without explicit resources: give its containers 1Gi
-    limitRange:
-      limits:
-        - type: Container
-          default:
-            cpu: 500m
-            memory: 1Gi
-          defaultRequest:
-            cpu: 10m
-            memory: 64Mi
-          max:
-            cpu: "4"
-            memory: 8Gi
-    # 3 app PVCs (60Gi) + one 5Gi PVC per Postgres instance
-    resourceQuota:
-      hard:
-        requests.cpu: "2"
-        requests.memory: 4Gi
-        limits.cpu: "8"
-        limits.memory: 12Gi
-        requests.storage: 90Gi
-        persistentvolumeclaims: "8"
-        pods: "15"
-    networkPolicy:
-      extraIngress:
-        # CNPG operator: instance status (8000) and Postgres (5432)
-        - from:
-            - namespaceSelector:
-                matchLabels:
-                  kubernetes.io/metadata.name: cnpg-system
-          ports:
-            - protocol: TCP
-              port: 8000
-            - protocol: TCP
-              port: 5432
-        # PodMonitor scrape of the Postgres exporter
-        - from:
-            - namespaceSelector:
-                matchLabels:
-                  kubernetes.io/metadata.name: monitoring-stack
-          ports:
-            - protocol: TCP
-              port: 9187
-      extraEgress:
-        # CNPG instance manager talks to the Kubernetes API
-        - *egressKubeApiRule
-        # barman-cloud WAL archive / backups to minio2.framsburg.net
-        - to:
-            - ipBlock:
-                cidr: 192.168.42.180/32
-          ports:
-            - protocol: TCP
-              port: 9000
-  # bouncer: {}
-  # test-helm-test:
-  #   path: cluster-test/test-helm
-  #   destinationNamespace: test-helm-test
-  # test-kustomize-test:
-  #   path: cluster-test/test-kustomize
-  #   destinationNamespace: test-kustomize-test
-  # test-raw-test:
-  #   path: cluster-test/test-raw
-  # databases: {}
-  # dmw-test: {}
-  # firefly: {}
-  foundryvtt: {}
-  # open-telemetry: {}
-  # home-assistant: {}
+  applications:
+    hermes:
+      # requests 2 CPU / 4Gi, limits 4 CPU / 8Gi
+      resourceQuota:
+        hard:
+          requests.cpu: "2"
+          requests.memory: 4Gi
+          limits.memory: 8Gi
+    # homer: {}
+    httpbin:
+      helmServerSideApply: true
+      serverSideDiff: true
+    openclaw:
+      # 5 x 10Gi PVCs; gateway limits 4 CPU / 8Gi plus the vault-puller sidecar
+      resourceQuota:
+        hard:
+          requests.storage: 50Gi
+          limits.cpu: "4500m"
+          limits.memory: 9Gi
+    paperless:
+      # CNPG Postgres (2 instances) without explicit resources: give its containers 1Gi
+      limitRange:
+        limits:
+          - type: Container
+            default:
+              cpu: 500m
+              memory: 1Gi
+            defaultRequest:
+              cpu: 10m
+              memory: 64Mi
+            max:
+              cpu: "4"
+              memory: 8Gi
+      # 3 app PVCs (60Gi) + one 5Gi PVC per Postgres instance
+      resourceQuota:
+        hard:
+          requests.cpu: "2"
+          requests.memory: 4Gi
+          limits.cpu: "8"
+          limits.memory: 12Gi
+          requests.storage: 90Gi
+          persistentvolumeclaims: "8"
+          pods: "15"
+      networkPolicy:
+        extraIngress:
+          # CNPG operator: instance status (8000) and Postgres (5432)
+          - from:
+              - namespaceSelector:
+                  matchLabels:
+                    kubernetes.io/metadata.name: cnpg-system
+            ports:
+              - protocol: TCP
+                port: 8000
+              - protocol: TCP
+                port: 5432
+          # PodMonitor scrape of the Postgres exporter
+          - from:
+              - namespaceSelector:
+                  matchLabels:
+                    kubernetes.io/metadata.name: monitoring-stack
+            ports:
+              - protocol: TCP
+                port: 9187
+        extraEgress:
+          # CNPG instance manager talks to the Kubernetes API
+          - *egressKubeApiRule
+          # barman-cloud WAL archive / backups to minio2.framsburg.net
+          - to:
+              - ipBlock:
+                  cidr: 192.168.42.180/32
+            ports:
+              - protocol: TCP
+                port: 9000
+    # bouncer: {}
+    # test-helm-test:
+    #   path: cluster-test/test-helm
+    #   destinationNamespace: test-helm-test
+    # test-kustomize-test:
+    #   path: cluster-test/test-kustomize
+    #   destinationNamespace: test-kustomize-test
+    # test-raw-test:
+    #   path: cluster-test/test-raw
+    # databases: {}
+    # dmw-test: {}
+    # firefly: {}
+    foundryvtt: {}
+    # open-telemetry: {}
+    # home-assistant: {}

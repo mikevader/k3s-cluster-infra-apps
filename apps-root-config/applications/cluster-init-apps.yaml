@@ -1,56 +1,57 @@
 ---
-repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
-# argocdNamespace: "argocd"
-# server: "https://kubernetes.default.svc"
-subFolder: cluster-init-apps
-namespace:
-  annotations: {}
-  labels:
-    client: cluster-infra
+config:
+  repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
+  # argocdNamespace: "argocd"
+  # server: "https://kubernetes.default.svc"
+  subFolder: cluster-init-apps
+  namespace:
+    annotations: {}
+    labels:
+      client: cluster-infra
 
-enableDefaultNetworkPolicy: false
-enableDefaultLimitRange: false
-allowAllNamespaces: true
+  enableDefaultNetworkPolicy: false
+  enableDefaultLimitRange: false
+  allowAllNamespaces: true
 
-roleBindings:
-#  - groupName: "team1"
-#    clusterRoleName: "admin"
+  roleBindings:
+  #  - groupName: "team1"
+  #    clusterRoleName: "admin"
 
-clusterResourceWhitelist:
-  - group: "*"
-    kind: "*"
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
 
-namespaceResourceBlacklist:
-#  - group: 'apps'
-#    kind: 'DaemonSet'
+  namespaceResourceBlacklist:
+  #  - group: 'apps'
+  #    kind: 'DaemonSet'
 
-# Default onRemoval for this group (bootstrap apps (argo-cd etc.): never delete automatically); see values.yaml
-onRemoval: preserve
+  # Default onRemoval for this group (bootstrap apps (argo-cd etc.): never delete automatically); see the app-of-apps chart values
+  onRemoval: preserve
 
-applications:
-  argo-cd:
-    disableNamespaceCreation: true
-    destinationNamespace: argocd-system
-    disableAutoSync: true
-    # ignoreDifferences:
-    #   - group: ""
-    #     name: argocd-secret
-    #     namespace: argocd-system
-    #     kind: Secret
-    #     jsonPointers:
-    #       - /data/webhook.github.secret
-    #       - /metadata/labels
-  bootstrap:
-    disableNamespaceCreation: true
-    destinationNamespace: argocd-system
-    project: default
-    path: apps-root-config/bootstrap
-    source:
-      helm:
-        valueFiles:
-          - values.yaml
-  etcd:
-    disableNamespaceCreation: true
-    destinationNamespace: argocd-system
-  cluster-resources:
-    disableNamespaceCreation: true
+  applications:
+    argo-cd:
+      disableNamespaceCreation: true
+      destinationNamespace: argocd-system
+      disableAutoSync: true
+      # ignoreDifferences:
+      #   - group: ""
+      #     name: argocd-secret
+      #     namespace: argocd-system
+      #     kind: Secret
+      #     jsonPointers:
+      #       - /data/webhook.github.secret
+      #       - /metadata/labels
+    bootstrap:
+      disableNamespaceCreation: true
+      destinationNamespace: argocd-system
+      project: default
+      path: apps-root-config/bootstrap
+      source:
+        helm:
+          valueFiles:
+            - values.yaml
+    etcd:
+      disableNamespaceCreation: true
+      destinationNamespace: argocd-system
+    cluster-resources:
+      disableNamespaceCreation: true

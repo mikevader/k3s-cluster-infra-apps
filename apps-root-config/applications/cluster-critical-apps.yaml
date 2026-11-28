@@ -1,66 +1,67 @@
 ---
-repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
-# argocdNamespace: "argocd"
-# server: "https://kubernetes.default.svc"
-subFolder: cluster-critical-apps
-namespace:
-  annotations: {}
-  labels:
-    client: cluster-infra
+config:
+  repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
+  # argocdNamespace: "argocd"
+  # server: "https://kubernetes.default.svc"
+  subFolder: cluster-critical-apps
+  namespace:
+    annotations: {}
+    labels:
+      client: cluster-infra
 
-enableDefaultNetworkPolicy: false
-enableDefaultLimitRange: false
-allowAllNamespaces: true
+  enableDefaultNetworkPolicy: false
+  enableDefaultLimitRange: false
+  allowAllNamespaces: true
 
-roleBindings:
-#  - groupName: "team1"
-#    clusterRoleName: "admin"
+  roleBindings:
+  #  - groupName: "team1"
+  #    clusterRoleName: "admin"
 
-clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
 
-namespaceResourceBlacklist:
-#  - group: 'apps'
-#    kind: 'DaemonSet'
+  namespaceResourceBlacklist:
+  #  - group: 'apps'
+  #    kind: 'DaemonSet'
 
-applications:
-  cert-manager: {}
-  error-pages: {}
-  democratic-csi:
-    # CSI node plugin: privileged, host namespaces, hostPath
-    podSecurity: &privileged
-      enforce: privileged
-      warn: privileged
-  loki:
-    helmServerSideApply: true
-    serverSideDiff: true
-    # source:
-    #   helm:
-    #     skipCrds: true
-  longhorn-system:
-    helmServerSideApply: true
-    serverSideDiff: true
-    # engine image / CSI plugin / instance manager: privileged, hostPath
-    podSecurity: *privileged
-  metallb-system:
-    # FRR speaker: host network, NET_ADMIN/NET_RAW, hostPort
-    podSecurity: *privileged
-  minio: {}
-  monitoring-stack:
-    helmServerSideApply: true
-    # node-exporter: host namespaces, hostPath, hostPort
-    podSecurity: *privileged
-  nginx: {}
-  nvidia:
-    helmServerSideApply: true
-    serverSideDiff: true
-    # device plugin / feature discovery: privileged, hostPath
-    podSecurity: *privileged
-  opnsense: {}
-  promtail:
-    # reads node logs via hostPath
-    podSecurity: *privileged
-  snapshot-controller: {}
-  traefik: {}
-#  traefik-external: {}
+  applications:
+    cert-manager: {}
+    error-pages: {}
+    democratic-csi:
+      # CSI node plugin: privileged, host namespaces, hostPath
+      podSecurity: &privileged
+        enforce: privileged
+        warn: privileged
+    loki:
+      helmServerSideApply: true
+      serverSideDiff: true
+      # source:
+      #   helm:
+      #     skipCrds: true
+    longhorn-system:
+      helmServerSideApply: true
+      serverSideDiff: true
+      # engine image / CSI plugin / instance manager: privileged, hostPath
+      podSecurity: *privileged
+    metallb-system:
+      # FRR speaker: host network, NET_ADMIN/NET_RAW, hostPort
+      podSecurity: *privileged
+    minio: {}
+    monitoring-stack:
+      helmServerSideApply: true
+      # node-exporter: host namespaces, hostPath, hostPort
+      podSecurity: *privileged
+    nginx: {}
+    nvidia:
+      helmServerSideApply: true
+      serverSideDiff: true
+      # device plugin / feature discovery: privileged, hostPath
+      podSecurity: *privileged
+    opnsense: {}
+    promtail:
+      # reads node logs via hostPath
+      podSecurity: *privileged
+    snapshot-controller: {}
+    traefik: {}
+    # traefik-external: {}
