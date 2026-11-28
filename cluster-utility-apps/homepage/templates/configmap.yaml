@@ -37,6 +37,7 @@ data:
     # Two tabs: Home for everyday apps, Admin for running the cluster.
     # Top to bottom within a tab. Groups not listed here are appended after these (first tab).
     # Service groups come from gethomepage.dev/group annotations, bookmark groups from bookmarks.yaml.
+    # Bookmark groups have no style: row, so they sit side by side with their links listed vertically.
     layout:
       Watch:
         tab: Home
@@ -52,12 +53,8 @@ data:
         columns: 3
       "Weather & Travel":
         tab: Home
-        style: row
-        columns: 4
       "RPG Reference":
         tab: Home
-        style: row
-        columns: 4
       "Media Automation":
         tab: Admin
         style: row
@@ -84,16 +81,10 @@ data:
         columns: 3
       GitOps:
         tab: Admin
-        style: row
-        columns: 4
       Network:
         tab: Admin
-        style: row
-        columns: 4
       References:
         tab: Admin
-        style: row
-        columns: 4
   widgets.yaml: |
     - kubernetes:
         cluster:
