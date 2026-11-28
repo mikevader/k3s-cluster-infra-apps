@@ -99,10 +99,7 @@ data:
           showLabel: true
           label: "cluster"
         nodes:
-          show: true
-          cpu: true
-          memory: true
-          showLabel: true
+          show: false
     - longhorn:
         url: http://longhorn-frontend.longhorn-system.svc
         expanded: false
