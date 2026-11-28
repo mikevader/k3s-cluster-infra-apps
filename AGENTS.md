@@ -32,6 +32,19 @@ This is a multi-repo workspace for a home k3s cluster ecosystem. Six repos work 
 - **Private apps** (`gitops-private/`): Flux CD Kustomization pattern. Each app has `ks.yaml` (Flux Kustomization) + `app/` subdirectory with k8s manifests. All live under `apps/hidden/` namespace.
 - Infra-apps addons chart (`addons/`) provides shared Helm templates via `addons/templates/`.
 
+### App-of-apps groups (`k3s-cluster-infra-apps/`)
+
+- Each group is `apps-root-config/applications/cluster-*.yaml` over the chart defaults in `values.yaml`; the chart renders each app's Application, Namespace and guardrails (LimitRange, ResourceQuota, NetworkPolicies, Vault SecretStore, AppProject limits).
+  Before adding, moving or resizing an app, or when an app is blocked by quota, network policy or the AppProject, read `docs/cluster-core/app-groups.md`.
+- Raise a guardrail per application in the group file (overlaid on the group value), with a comment explaining why. `cluster-test` apps can't ship their own ResourceQuota, LimitRange, NetworkPolicy or SecretStore (blacklisted in the AppProject).
+
+### Vault secrets (`k3s-cluster-infra-apps/`)
+
+- Workloads read only, under `secret/framsburg/`: production apps via ClusterSecretStore `vault-backend` at `framsburg/<app>`, `cluster-test` apps via their namespace's SecretStore `vault` at `framsburg/test/<namespace>` or `framsburg/test/shared/`.
+  Before adding a secret, an ExternalSecret, or a Vault policy or role, read `docs/platform/external-secrets.md`.
+- Move, rename or copy secrets with `hack/vault-kv-mv.sh` (`--help`).
+- Vault commands need the user's login: give them the command to run instead of running it.
+
 ## Monitoring (`monitoring/`)
 
 - Ansible-managed. Entry point: `ansible-playbook site.yml` (runs system, webserver, monitoring, airprint playbooks).

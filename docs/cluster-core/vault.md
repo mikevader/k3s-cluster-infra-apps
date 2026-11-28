@@ -157,6 +157,14 @@ Logins get the `allow_secrets` policy. It includes the `patch` capability, so
 `vault kv patch` works on KV v2. Without `patch`, use
 `vault kv patch -method=rw`, which only needs `read` and `update`.
 
+## Policies and roles
+
+Workloads only read secrets, and only under `secret/framsburg/`; everything else in the
+`secret` mount is for OIDC logins. Which store reads which path is described in
+[External Secrets → Secret layout](../platform/external-secrets.md#secret-layout-in-vault).
+Removed roles and policies must be deleted by hand, see
+[Setup Store](../platform/external-secrets.md#setup-store).
+
 ## Monitoring
 
 * https://github.com/hashicorp/vault/issues/13978

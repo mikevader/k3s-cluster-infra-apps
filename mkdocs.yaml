@@ -117,6 +117,7 @@ nav:
   - Cluster Core:
       - GitOps & CD:
           - ArgoCD: cluster-core/argocd.md
+          - App-of-apps Groups: cluster-core/app-groups.md
           - GitOps Workflow: cluster-core/gitops-workflow.md
       - Networking:
           - Traefik Ingress: cluster-core/traefik.md
