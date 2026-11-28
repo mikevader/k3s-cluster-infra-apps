@@ -63,6 +63,10 @@ mealie:
         gethomepage.dev/icon: "mealie.png"
         gethomepage.dev/description: "Recipes and meal planning"
         gethomepage.dev/pod-selector: ""
+        gethomepage.dev/widget.type: "mealie"
+        gethomepage.dev/widget.url: "http://mealie.mealie.svc:9000"
+        gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_MEALIE_KEY}}"
+        gethomepage.dev/widget.version: "2"
       ingressClassName: traefik
       hosts:
         - host: '{{ .Values.global.domainName }}'

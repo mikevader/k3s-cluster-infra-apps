@@ -79,14 +79,28 @@ The background image URL is `background.image` in `values.yaml`.
 
 ## Widget API keys
 
-Keys live in Vault at `secret/framsburg/homepage` (KV v2). The ExternalSecret `homepage-api-keys` turns them into
-`HOMEPAGE_VAR_*` environment variables. Reloader restarts the pod when the secret changes.
+Keys live in Vault at `secret/framsburg/homepage` (KV v2). The ExternalSecret `homepage-api-keys` turns **every**
+property there into an environment variable of the same name (`dataFrom.extract`). Reloader restarts the pod when the
+secret changes.
 
 | Vault property | Where it comes from |
 | --- | --- |
 | `HOMEPAGE_VAR_ARGOCD_KEY` | ArgoCD local account `homepage` (`accounts.homepage: apiKey` in `cluster-init-apps/argo-cd/values.yaml`, read-only via `policy.default: role:readonly`) |
 | `HOMEPAGE_VAR_JELLYFIN_KEY` | Jellyfin → Dashboard → API Keys |
 | `HOMEPAGE_VAR_PLEX_KEY` | Plex token of the server owner (see below) |
+| `HOMEPAGE_VAR_RADARR_KEY` | Radarr → Settings → General → API Key |
+| `HOMEPAGE_VAR_SONARR_KEY` | Sonarr → Settings → General → API Key |
+| `HOMEPAGE_VAR_RADARR_4K_KEY` | Radarr 4K → Settings → General → API Key |
+| `HOMEPAGE_VAR_SONARR_4K_KEY` | Sonarr 4K → Settings → General → API Key |
+| `HOMEPAGE_VAR_PROWLARR_KEY` | Prowlarr → Settings → General → API Key |
+| `HOMEPAGE_VAR_SEERR_KEY` | Seerr → Settings → General → API Key |
+| `HOMEPAGE_VAR_SABNZBD_KEY` | SABnzbd → Config → General → API Key |
+| `HOMEPAGE_VAR_MEALIE_KEY` | Mealie → Profile → Manage Your API Tokens (see below) |
+| `HOMEPAGE_VAR_AUTHENTIK_KEY` | Authentik API token of a read-only service account (see below) |
+
+Widgets call the apps on their in-cluster service URL, which bypasses the Authentik forward-auth middleware.
+SABnzbd is the exception: its host whitelist rejects the service hostname, so the widget uses
+`https://sabnzbd.framsburg.ch`.
 
 ### Create the ArgoCD token
 
@@ -153,6 +167,47 @@ kubectl -n plex exec deploy/plex -- \
 
 The token belongs to the Plex account, so treat it like a password.
 
+### Read the *arr, Seerr and SABnzbd keys
+
+These apps keep the key in their config file, so it can go straight into Vault:
+
+```bash
+key() { kubectl -n plex exec deploy/"$1" -c "$1" -- cat /config/config.xml | sed -n 's:.*<ApiKey>\(.*\)</ApiKey>.*:\1:p'; }
+vault kv patch -mount=secret framsburg/homepage \
+  HOMEPAGE_VAR_RADARR_KEY="$(key arr-radarr)" \
+  HOMEPAGE_VAR_SONARR_KEY="$(key arr-sonarr)" \
+  HOMEPAGE_VAR_RADARR_4K_KEY="$(key arr-radarr-4k)" \
+  HOMEPAGE_VAR_SONARR_4K_KEY="$(key arr-sonarr-4k)" \
+  HOMEPAGE_VAR_PROWLARR_KEY="$(key arr-prowlarr)" \
+  HOMEPAGE_VAR_SEERR_KEY="$(kubectl -n plex exec deploy/arr-overseerr -- cat /app/config/settings.json | jq -r .main.apiKey)" \
+  HOMEPAGE_VAR_SABNZBD_KEY="$(kubectl -n plex exec deploy/sabnzbd -- sed -n 's/^api_key = //p' /config/sabnzbd.ini)"
+```
+
+### Create the Mealie token
+
+Mealie API tokens belong to a user and carry that user's rights. In Mealie, open your profile → *Manage Your API
+Tokens*, enter the name `homepage` and click *Generate*. The token is shown only once:
+
+```bash
+vault kv patch -mount=secret framsburg/homepage HOMEPAGE_VAR_MEALIE_KEY='<mealie token>'
+```
+
+### Create the Authentik token
+
+Use a dedicated service account with view-only permissions instead of an admin token:
+
+1. *Admin interface* → *Directory* → *Users* → *New Service Account*: username `homepage`, untick *Create group*,
+   untick *Expiring*. Ignore the token it shows.
+2. Open the user → *Permissions* → *Assign permission* and add these global permissions:
+   - *authentik Core* → *Can view User*
+   - *authentik Events* → *Can view Event*
+3. *Directory* → *Tokens and App passwords* → *Create*: identifier `homepage`, user `homepage`, intent **API Token**,
+   untick *Expiring*. Copy the key with the copy button in the token list.
+
+```bash
+vault kv patch -mount=secret framsburg/homepage HOMEPAGE_VAR_AUTHENTIK_KEY='<authentik token>'
+```
+
 ### Store them in Vault
 
 ```bash
@@ -165,8 +220,10 @@ vault kv put -mount=secret framsburg/homepage \
 To add a key for another widget:
 
 1. Add the property in Vault with `vault kv patch`, not `put`, which replaces all properties.
-2. Add a `data` entry for it in `cluster-utility-apps/homepage/templates/secret-api-keys.yaml`.
-3. Reference it in the annotation as `"{{HOMEPAGE_VAR_<NAME>}}"`.
+2. Reference it in the annotation as `"{{HOMEPAGE_VAR_<NAME>}}"`.
+
+The ExternalSecret refreshes hourly. To pick up a new key right away:
+`kubectl -n homepage annotate externalsecret homepage-api-keys force-sync=$(date +%s) --overwrite`.
 
 ## One-time setup
 

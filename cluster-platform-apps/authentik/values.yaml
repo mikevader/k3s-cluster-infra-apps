@@ -79,6 +79,10 @@ authentik:
         gethomepage.dev/icon: "authentik.png"
         gethomepage.dev/description: "Identity provider / SSO"
         gethomepage.dev/pod-selector: ""
+        gethomepage.dev/widget.type: "authentik"
+        gethomepage.dev/widget.url: "http://authentik-server.authentik.svc"
+        gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_AUTHENTIK_KEY}}"
+        gethomepage.dev/widget.version: "2"
       hosts:
         - 'authentik.framsburg.ch'
       tls:

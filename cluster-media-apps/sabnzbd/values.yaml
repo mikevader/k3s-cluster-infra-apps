@@ -16,6 +16,9 @@ sabnzbd:
         gethomepage.dev/icon: "sabnzbd.png"
         gethomepage.dev/description: "Usenet downloader"
         gethomepage.dev/pod-selector: ""
+        gethomepage.dev/widget.type: "sabnzbd"
+        gethomepage.dev/widget.url: "https://sabnzbd.framsburg.ch"
+        gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_SABNZBD_KEY}}"
       hosts:
         - host: 'sabnzbd.framsburg.ch'
           paths:
