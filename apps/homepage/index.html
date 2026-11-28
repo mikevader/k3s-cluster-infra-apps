@@ -3022,6 +3022,39 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#read-the-arr-seerr-and-sabnzbd-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read the *arr, Seerr and SABnzbd keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-mealie-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the Mealie token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-authentik-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the Authentik token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#store-them-in-vault" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3921,6 +3954,39 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#read-the-arr-seerr-and-sabnzbd-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read the *arr, Seerr and SABnzbd keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-mealie-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the Mealie token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-authentik-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the Authentik token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#store-them-in-vault" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4186,8 +4252,9 @@ so add new groups to <code>layout</code> with their <code>tab</code>.</p>
 <code>longhorn-frontend</code> service) and the Open-Meteo weather for Basel (<code>openmeteo</code>), set in <code>widgets.yaml</code>.
 The background image URL is <code>background.image</code> in <code>values.yaml</code>.</p>
 <h2 id="widget-api-keys">Widget API keys<a class="headerlink" href="#widget-api-keys" title="Permanent link">&para;</a></h2>
-<p>Keys live in Vault at <code>secret/framsburg/homepage</code> (KV v2). The ExternalSecret <code>homepage-api-keys</code> turns them into
-<code>HOMEPAGE_VAR_*</code> environment variables. Reloader restarts the pod when the secret changes.</p>
+<p>Keys live in Vault at <code>secret/framsburg/homepage</code> (KV v2). The ExternalSecret <code>homepage-api-keys</code> turns <strong>every</strong>
+property there into an environment variable of the same name (<code>dataFrom.extract</code>). Reloader restarts the pod when the
+secret changes.</p>
 <table>
 <thead>
 <tr>
@@ -4208,8 +4275,47 @@ The background image URL is <code>background.image</code> in <code>values.yaml</
 <td><code>HOMEPAGE_VAR_PLEX_KEY</code></td>
 <td>Plex token of the server owner (see below)</td>
 </tr>
+<tr>
+<td><code>HOMEPAGE_VAR_RADARR_KEY</code></td>
+<td>Radarr → Settings → General → API Key</td>
+</tr>
+<tr>
+<td><code>HOMEPAGE_VAR_SONARR_KEY</code></td>
+<td>Sonarr → Settings → General → API Key</td>
+</tr>
+<tr>
+<td><code>HOMEPAGE_VAR_RADARR_4K_KEY</code></td>
+<td>Radarr 4K → Settings → General → API Key</td>
+</tr>
+<tr>
+<td><code>HOMEPAGE_VAR_SONARR_4K_KEY</code></td>
+<td>Sonarr 4K → Settings → General → API Key</td>
+</tr>
+<tr>
+<td><code>HOMEPAGE_VAR_PROWLARR_KEY</code></td>
+<td>Prowlarr → Settings → General → API Key</td>
+</tr>
+<tr>
+<td><code>HOMEPAGE_VAR_SEERR_KEY</code></td>
+<td>Seerr → Settings → General → API Key</td>
+</tr>
+<tr>
+<td><code>HOMEPAGE_VAR_SABNZBD_KEY</code></td>
+<td>SABnzbd → Config → General → API Key</td>
+</tr>
+<tr>
+<td><code>HOMEPAGE_VAR_MEALIE_KEY</code></td>
+<td>Mealie → Profile → Manage Your API Tokens (see below)</td>
+</tr>
+<tr>
+<td><code>HOMEPAGE_VAR_AUTHENTIK_KEY</code></td>
+<td>Authentik API token of a read-only service account (see below)</td>
+</tr>
 </tbody>
 </table>
+<p>Widgets call the apps on their in-cluster service URL, which bypasses the Authentik forward-auth middleware.
+SABnzbd is the exception: its host whitelist rejects the service hostname, so the widget uses
+<code>https://sabnzbd.framsburg.ch</code>.</p>
 <h3 id="create-the-argocd-token">Create the ArgoCD token<a class="headerlink" href="#create-the-argocd-token" title="Permanent link">&para;</a></h3>
 <p><code>argocd-secret</code> is fully owned by the <code>argocd-secret-ext</code> ExternalSecret
 (<code>cluster-init-apps/argo-cd/templates/argocd-secret-ext.yaml</code>). It rewrites the
@@ -4266,18 +4372,49 @@ referenced property is missing, <code>argocd-secret-ext</code> stops updating
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="s2">"/config/Library/Application Support/Plex Media Server/Preferences.xml"</span>
 </span></code></pre></div>
 <p>The token belongs to the Plex account, so treat it like a password.</p>
+<h3 id="read-the-arr-seerr-and-sabnzbd-keys">Read the *arr, Seerr and SABnzbd keys<a class="headerlink" href="#read-the-arr-seerr-and-sabnzbd-keys" title="Permanent link">&para;</a></h3>
+<p>These apps keep the key in their config file, so it can go straight into Vault:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>key<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>kubectl<span class="w"> </span>-n<span class="w"> </span>plex<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>deploy/<span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span><span class="w"> </span>-c<span class="w"> </span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span><span class="w"> </span>--<span class="w"> </span>cat<span class="w"> </span>/config/config.xml<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">'s:.*&lt;ApiKey&gt;\(.*\)&lt;/ApiKey&gt;.*:\1:p'</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>vault<span class="w"> </span>kv<span class="w"> </span>patch<span class="w"> </span>-mount<span class="o">=</span>secret<span class="w"> </span>framsburg/homepage<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_RADARR_KEY</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>key<span class="w"> </span>arr-radarr<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_SONARR_KEY</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>key<span class="w"> </span>arr-sonarr<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_RADARR_4K_KEY</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>key<span class="w"> </span>arr-radarr-4k<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_SONARR_4K_KEY</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>key<span class="w"> </span>arr-sonarr-4k<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_PROWLARR_KEY</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>key<span class="w"> </span>arr-prowlarr<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_SEERR_KEY</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>kubectl<span class="w"> </span>-n<span class="w"> </span>plex<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>deploy/arr-overseerr<span class="w"> </span>--<span class="w"> </span>cat<span class="w"> </span>/app/config/settings.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span>.main.apiKey<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_SABNZBD_KEY</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>kubectl<span class="w"> </span>-n<span class="w"> </span>plex<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>deploy/sabnzbd<span class="w"> </span>--<span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">'s/^api_key = //p'</span><span class="w"> </span>/config/sabnzbd.ini<span class="k">)</span><span class="s2">"</span>
+</span></code></pre></div>
+<h3 id="create-the-mealie-token">Create the Mealie token<a class="headerlink" href="#create-the-mealie-token" title="Permanent link">&para;</a></h3>
+<p>Mealie API tokens belong to a user and carry that user's rights. In Mealie, open your profile → <em>Manage Your API
+Tokens</em>, enter the name <code>homepage</code> and click <em>Generate</em>. The token is shown only once:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>vault<span class="w"> </span>kv<span class="w"> </span>patch<span class="w"> </span>-mount<span class="o">=</span>secret<span class="w"> </span>framsburg/homepage<span class="w"> </span><span class="nv">HOMEPAGE_VAR_MEALIE_KEY</span><span class="o">=</span><span class="s1">'&lt;mealie token&gt;'</span>
+</span></code></pre></div>
+<h3 id="create-the-authentik-token">Create the Authentik token<a class="headerlink" href="#create-the-authentik-token" title="Permanent link">&para;</a></h3>
+<p>Use a dedicated service account with view-only permissions instead of an admin token:</p>
+<ol>
+<li><em>Admin interface</em> → <em>Directory</em> → <em>Users</em> → <em>New Service Account</em>: username <code>homepage</code>, untick <em>Create group</em>,
+   untick <em>Expiring</em>. Ignore the token it shows.</li>
+<li>Open the user → <em>Permissions</em> → <em>Assign permission</em> and add these global permissions:</li>
+<li><em>authentik Core</em> → <em>Can view User</em></li>
+<li><em>authentik Events</em> → <em>Can view Event</em></li>
+<li><em>Directory</em> → <em>Tokens and App passwords</em> → <em>Create</em>: identifier <code>homepage</code>, user <code>homepage</code>, intent <strong>API Token</strong>,
+   untick <em>Expiring</em>. Copy the key with the copy button in the token list.</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>vault<span class="w"> </span>kv<span class="w"> </span>patch<span class="w"> </span>-mount<span class="o">=</span>secret<span class="w"> </span>framsburg/homepage<span class="w"> </span><span class="nv">HOMEPAGE_VAR_AUTHENTIK_KEY</span><span class="o">=</span><span class="s1">'&lt;authentik token&gt;'</span>
+</span></code></pre></div>
 <h3 id="store-them-in-vault">Store them in Vault<a class="headerlink" href="#store-them-in-vault" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>vault<span class="w"> </span>kv<span class="w"> </span>put<span class="w"> </span>-mount<span class="o">=</span>secret<span class="w"> </span>framsburg/homepage<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_ARGOCD_KEY</span><span class="o">=</span><span class="s1">'&lt;argocd token&gt;'</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_JELLYFIN_KEY</span><span class="o">=</span><span class="s1">'&lt;jellyfin key&gt;'</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_PLEX_KEY</span><span class="o">=</span><span class="s1">'&lt;plex token&gt;'</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>vault<span class="w"> </span>kv<span class="w"> </span>put<span class="w"> </span>-mount<span class="o">=</span>secret<span class="w"> </span>framsburg/homepage<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_ARGOCD_KEY</span><span class="o">=</span><span class="s1">'&lt;argocd token&gt;'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_JELLYFIN_KEY</span><span class="o">=</span><span class="s1">'&lt;jellyfin key&gt;'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nv">HOMEPAGE_VAR_PLEX_KEY</span><span class="o">=</span><span class="s1">'&lt;plex token&gt;'</span>
 </span></code></pre></div>
 <p>To add a key for another widget:</p>
 <ol>
 <li>Add the property in Vault with <code>vault kv patch</code>, not <code>put</code>, which replaces all properties.</li>
-<li>Add a <code>data</code> entry for it in <code>cluster-utility-apps/homepage/templates/secret-api-keys.yaml</code>.</li>
 <li>Reference it in the annotation as <code>"{{HOMEPAGE_VAR_&lt;NAME&gt;}}"</code>.</li>
 </ol>
+<p>The ExternalSecret refreshes hourly. To pick up a new key right away:
+<code>kubectl -n homepage annotate externalsecret homepage-api-keys force-sync=$(date +%s) --overwrite</code>.</p>
 <h2 id="one-time-setup">One-time setup<a class="headerlink" href="#one-time-setup" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Authentik:</strong> the forward-auth proxy provider of the embedded outpost has to cover <code>home.framsburg.ch</code>.</li>
