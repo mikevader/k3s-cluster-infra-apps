@@ -116,9 +116,6 @@ data:
         timezone: Europe/Zurich
         units: metric
         cache: 5
-    - search:
-        provider: duckduckgo
-        target: _blank
   services.yaml: ""
   bookmarks.yaml: |
     - Weather & Travel:
