@@ -20,7 +20,7 @@ Add annotations to the service's Ingress/IngressRoute in git. There is nothing t
 annotations:
   gethomepage.dev/enabled: "true"
   gethomepage.dev/name: "Radarr"
-  # group: Infrastructure | Platform | Media | Utilities | RPG
+  # group: Entertainment | Utilities | RPG | Media | Platform | Infrastructure
   gethomepage.dev/group: "Media"
   # icon: dashboard-icons name, or mdi-<icon> / si-<icon>
   gethomepage.dev/icon: "radarr.png"
@@ -45,6 +45,12 @@ Optional annotations:
 
 Group order and layout are set in `cluster-utility-apps/homepage/templates/configmap.yaml` (`settings.yaml`).
 New groups appear after the listed ones.
+
+Apps deployed from `cluster-test/` start their description with `🧪 Test · ` so they stand out on the dashboard.
+
+The header shows the cluster CPU/memory (`kubernetes`), Longhorn storage (`longhorn`, via the in-cluster
+`longhorn-frontend` service) and the Open-Meteo weather for Zürich (`openmeteo`), set in `widgets.yaml`.
+The background image URL is `background.image` in `values.yaml`.
 
 ## Widget API keys
 

@@ -452,7 +452,7 @@ overseerr:
         traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Seerr"
-        gethomepage.dev/group: "Media"
+        gethomepage.dev/group: "Entertainment"
         gethomepage.dev/icon: "overseerr.png"
         gethomepage.dev/description: "Media requests"
         gethomepage.dev/pod-selector: ""

@@ -12,7 +12,7 @@ metadata:
     gethomepage.dev/name: Paperless
     gethomepage.dev/group: Utilities
     gethomepage.dev/icon: paperless-ngx.png
-    gethomepage.dev/description: Document archive
+    gethomepage.dev/description: "🧪 Test · Document archive"
 spec:
   ingressClassName: traefik
   rules:
