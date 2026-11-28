@@ -24,6 +24,9 @@ radarr:
         gethomepage.dev/icon: "radarr.png"
         gethomepage.dev/description: "Movies"
         gethomepage.dev/pod-selector: ""
+        gethomepage.dev/widget.type: "radarr"
+        gethomepage.dev/widget.url: "http://arr-radarr.plex.svc:7878"
+        gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_RADARR_KEY}}"
       hosts:
         - host: 'radarr.framsburg.ch'
           paths:
@@ -189,6 +192,9 @@ sonarr:
         gethomepage.dev/icon: "sonarr.png"
         gethomepage.dev/description: "TV shows"
         gethomepage.dev/pod-selector: ""
+        gethomepage.dev/widget.type: "sonarr"
+        gethomepage.dev/widget.url: "http://arr-sonarr.plex.svc:8989"
+        gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_SONARR_KEY}}"
       hosts:
         - host: 'sonarr.framsburg.ch'
           paths:
@@ -363,6 +369,9 @@ prowlarr:
         gethomepage.dev/icon: "prowlarr.png"
         gethomepage.dev/description: "Indexer manager"
         gethomepage.dev/pod-selector: ""
+        gethomepage.dev/widget.type: "prowlarr"
+        gethomepage.dev/widget.url: "http://arr-prowlarr.plex.svc:9696"
+        gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_PROWLARR_KEY}}"
       hosts:
         - host: 'prowlarr.framsburg.ch'
           paths:
@@ -456,6 +465,9 @@ overseerr:
         gethomepage.dev/icon: "overseerr.png"
         gethomepage.dev/description: "Media requests"
         gethomepage.dev/pod-selector: ""
+        gethomepage.dev/widget.type: "seerr"
+        gethomepage.dev/widget.url: "http://arr-overseerr.plex.svc:5055"
+        gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_SEERR_KEY}}"
       hosts:
         - host: 'overseerr.framsburg.ch'
           paths:
