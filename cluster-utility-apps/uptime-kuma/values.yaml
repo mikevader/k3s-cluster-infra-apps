@@ -20,7 +20,7 @@ uptime-kuma:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Uptime Kuma"
-        gethomepage.dev/group: "Utilities"
+        gethomepage.dev/group: "Observability"
         gethomepage.dev/icon: "uptime-kuma.png"
         gethomepage.dev/description: "Service uptime monitoring"
         gethomepage.dev/pod-selector: ""

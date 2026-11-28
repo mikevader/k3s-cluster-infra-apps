@@ -28,7 +28,7 @@ longhorn:
       traefik.ingress.kubernetes.io/router.middlewares: longhorn-system-svc-longhorn-headers@kubernetescrd,authentik-authentik@kubernetescrd
       gethomepage.dev/enabled: "true"
       gethomepage.dev/name: "Longhorn"
-      gethomepage.dev/group: "Infrastructure"
+      gethomepage.dev/group: "Cluster"
       gethomepage.dev/icon: "longhorn.png"
       gethomepage.dev/description: "Distributed block storage"
       gethomepage.dev/pod-selector: ""

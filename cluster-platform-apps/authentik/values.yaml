@@ -75,7 +75,7 @@ authentik:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Authentik"
-        gethomepage.dev/group: "Platform"
+        gethomepage.dev/group: "Identity & Secrets"
         gethomepage.dev/icon: "authentik.png"
         gethomepage.dev/description: "Identity provider / SSO"
         gethomepage.dev/pod-selector: ""

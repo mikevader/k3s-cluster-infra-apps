@@ -28,24 +28,66 @@ data:
       saturate: 100
       brightness: 75
       opacity: 50
-    # Top to bottom. Groups not listed here are appended after these.
+    quicklaunch:
+      searchDescriptions: true
+    # Two tabs: Home for everyday apps, Admin for running the cluster.
+    # Top to bottom within a tab. Groups not listed here are appended after these (first tab).
+    # Service groups come from gethomepage.dev/group annotations, bookmark groups from bookmarks.yaml.
     layout:
-      Entertainment:
+      Watch:
+        tab: Home
         style: row
         columns: 3
-      Utilities:
+      Household:
+        tab: Home
         style: row
-        columns: 4
+        columns: 3
       RPG:
+        tab: Home
+        style: row
+        columns: 3
+      "Weather & Travel":
+        tab: Home
         style: row
         columns: 4
-      Media:
+      "RPG Reference":
+        tab: Home
         style: row
         columns: 4
-      Platform:
+      "Media Automation":
+        tab: Admin
         style: row
         columns: 4
-      Infrastructure:
+      Downloads:
+        tab: Admin
+        style: row
+        columns: 3
+      Cluster:
+        tab: Admin
+        style: row
+        columns: 4
+      Observability:
+        tab: Admin
+        style: row
+        columns: 4
+      "Identity & Secrets":
+        tab: Admin
+        style: row
+        columns: 3
+      Lab:
+        tab: Admin
+        style: row
+        columns: 3
+      GitOps:
+        tab: Admin
+        style: row
+        columns: 4
+      Network:
+        tab: Admin
+        style: row
+        columns: 4
+      References:
+        tab: Admin
         style: row
         columns: 4
   widgets.yaml: |
@@ -57,7 +99,10 @@ data:
           showLabel: true
           label: "cluster"
         nodes:
-          show: false
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
     - longhorn:
         url: http://longhorn-frontend.longhorn-system.svc
         expanded: false
@@ -75,7 +120,88 @@ data:
         provider: duckduckgo
         target: _blank
   services.yaml: ""
-  bookmarks.yaml: ""
+  bookmarks.yaml: |
+    - Weather & Travel:
+        - MeteoSwiss:
+            - abbr: MS
+              icon: mdi-weather-partly-cloudy
+              href: https://www.meteoschweiz.admin.ch/
+        - SBB:
+            - abbr: SBB
+              icon: mdi-train
+              href: https://www.sbb.ch/
+    - RPG Reference:
+        - D&D Beyond:
+            - abbr: DDB
+              icon: si-dungeonsanddragons
+              href: https://www.dndbeyond.com/
+        - 5e.tools:
+            - abbr: 5e
+              icon: mdi-book-open-page-variant
+              href: https://5e.tools/
+        - Kobold Plus Fight Club:
+            - abbr: KFC
+              icon: mdi-sword-cross
+              href: https://koboldplus.club/
+    - GitOps:
+        - Infra apps:
+            - abbr: IA
+              icon: github.png
+              href: https://github.com/mikevader/k3s-cluster-infra-apps
+        - Dev apps:
+            - abbr: DA
+              icon: github.png
+              href: https://github.com/mikevader/k3s-cluster-dev-apps
+        - Charts:
+            - abbr: CH
+              icon: helm.png
+              href: https://github.com/mikevader/charts
+        - Container images:
+            - abbr: CI
+              icon: github.png
+              href: https://github.com/mikevader/container-images
+        - GitOps private:
+            - abbr: GP
+              icon: github.png
+              href: https://github.com/mikevader/gitops-private
+        - Renovate dashboard:
+            - abbr: RD
+              icon: renovate.png
+              href: https://github.com/mikevader/k3s-cluster-infra-apps/issues/502
+        - Packages (GHCR):
+            - abbr: GH
+              icon: github.png
+              href: https://github.com/mikevader?tab=packages
+        - Cluster docs:
+            - abbr: DO
+              icon: mdi-book-open-variant
+              href: https://mikevader.github.io/k3s-cluster-infra-apps/
+    - Network:
+        - OPNsense:
+            - abbr: OP
+              icon: opnsense.png
+              href: https://opnsense.framsburg.net
+        - TrueNAS:
+            - abbr: NAS
+              icon: truenas.png
+              href: https://truenas.framsburg.net
+    - References:
+        - Homepage docs:
+            - abbr: HP
+              icon: homepage.png
+              href: https://gethomepage.dev/
+        - Dashboard icons:
+            - abbr: DI
+              icon: mdi-image-multiple
+              href: https://dashboardicons.com/
+        - Artifact Hub:
+            - abbr: AH
+              icon: artifacthub.png
+              href: https://artifacthub.io/
+        - k3s docs:
+            - abbr: K3
+              icon: k3s.png
+              href: https://docs.k3s.io/
   custom.css: ""
   custom.js: ""
   docker.yaml: ""

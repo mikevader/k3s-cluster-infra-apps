@@ -8,7 +8,7 @@ metadata:
     kubernetes.io/ingress.class: "traefik"
     gethomepage.dev/enabled: "true"
     gethomepage.dev/name: "Argo CD"
-    gethomepage.dev/group: "Infrastructure"
+    gethomepage.dev/group: "Cluster"
     gethomepage.dev/icon: "argo-cd.png"
     gethomepage.dev/description: "GitOps continuous delivery"
     gethomepage.dev/href: "https://argocd.framsburg.ch"

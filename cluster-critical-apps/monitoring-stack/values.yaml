@@ -114,7 +114,7 @@ kube-prometheus-stack:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Grafana"
-        gethomepage.dev/group: "Infrastructure"
+        gethomepage.dev/group: "Observability"
         gethomepage.dev/icon: "grafana.png"
         gethomepage.dev/description: "Dashboards & metrics"
         gethomepage.dev/pod-selector: ""
@@ -371,7 +371,7 @@ kube-prometheus-stack:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Alertmanager"
-        gethomepage.dev/group: "Infrastructure"
+        gethomepage.dev/group: "Observability"
         gethomepage.dev/icon: "alertmanager.png"
         gethomepage.dev/description: "Prometheus alerts"
         gethomepage.dev/pod-selector: ""
@@ -480,10 +480,12 @@ kube-prometheus-stack:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Prometheus"
-        gethomepage.dev/group: "Infrastructure"
+        gethomepage.dev/group: "Observability"
         gethomepage.dev/icon: "prometheus.png"
         gethomepage.dev/description: "Metrics database"
         gethomepage.dev/pod-selector: ""
+        gethomepage.dev/widget.type: "prometheus"
+        gethomepage.dev/widget.url: "http://monitoring-stack-kube-prom-prometheus.monitoring-stack:9090"
       hosts:
         - prometheus.framsburg.ch
       tls:

@@ -224,7 +224,7 @@ filebrowser:
         traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Filebrowser"
-        gethomepage.dev/group: "Media"
+        gethomepage.dev/group: "Media Automation"
         gethomepage.dev/icon: "filebrowser.png"
         gethomepage.dev/description: "Media library files"
         gethomepage.dev/pod-selector: ""

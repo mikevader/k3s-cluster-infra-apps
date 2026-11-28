@@ -101,8 +101,8 @@ jellyfin:
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
       # traefik.ingress.kubernetes.io/router.middlewares: jellyfin-jellyfin-headers@kubernetescrd,jellyfin-jellyfin-buffering@kubernetescrd,authentik-authentik@kubernetescrd
       gethomepage.dev/enabled: "true"
-      gethomepage.dev/description: "Jellyfin is a free media server for streaming your media library."
-      gethomepage.dev/group: "Entertainment"
+      gethomepage.dev/description: "Movies & TV"
+      gethomepage.dev/group: "Watch"
       gethomepage.dev/icon: jellyfin.png
       gethomepage.dev/name: Jellyfin
       gethomepage.dev/widget.type: "jellyfin"
@@ -111,14 +111,6 @@ jellyfin:
       # Jellyfin >= 10.12 needs the v2 API (legacy /emby routes are gone)
       gethomepage.dev/widget.version: "2"
       gethomepage.dev/pod-selector: ""
-      hajimari.io/enable: "true"
-      hajimari.io/icon: simple-icons:jellyfin
-      hajimari.io/appName: Jellyfin
-      hajimari.io/group: Media
-      forecastle.stakater.com/expose: "true"
-      forecastle.stakater.com/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/jellyfin.png
-      forecastle.stakater.com/appName: Jellyfin
-      forecastle.stakater.com/group: Media
     hosts:
       - host: jellyfin.framsburg.ch
         paths:

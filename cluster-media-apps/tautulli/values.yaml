@@ -17,7 +17,7 @@ tautulli:
         traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
         gethomepage.dev/enabled: "true"
         gethomepage.dev/name: "Tautulli"
-        gethomepage.dev/group: "Media"
+        gethomepage.dev/group: "Media Automation"
         gethomepage.dev/icon: "tautulli.png"
         gethomepage.dev/description: "Plex statistics"
         gethomepage.dev/pod-selector: ""

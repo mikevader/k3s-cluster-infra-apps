@@ -32,7 +32,7 @@ spec:
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
       gethomepage.dev/enabled: "true"
       gethomepage.dev/name: "Vault"
-      gethomepage.dev/group: "Platform"
+      gethomepage.dev/group: "Identity & Secrets"
       gethomepage.dev/icon: "vault.png"
       gethomepage.dev/description: "Secrets management"
       gethomepage.dev/pod-selector: ""

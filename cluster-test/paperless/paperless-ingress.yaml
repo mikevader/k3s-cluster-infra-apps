@@ -10,7 +10,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     gethomepage.dev/enabled: "true"
     gethomepage.dev/name: Paperless
-    gethomepage.dev/group: Utilities
+    gethomepage.dev/group: "Household"
     gethomepage.dev/icon: paperless-ngx.png
     gethomepage.dev/description: "🧪 Test · Document archive"
 spec:
