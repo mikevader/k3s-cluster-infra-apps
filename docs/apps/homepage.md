@@ -49,7 +49,7 @@ New groups appear after the listed ones.
 Apps deployed from `cluster-test/` start their description with `🧪 Test · ` so they stand out on the dashboard.
 
 The header shows the cluster CPU/memory (`kubernetes`), Longhorn storage (`longhorn`, via the in-cluster
-`longhorn-frontend` service) and the Open-Meteo weather for Zürich (`openmeteo`), set in `widgets.yaml`.
+`longhorn-frontend` service) and the Open-Meteo weather for Basel (`openmeteo`), set in `widgets.yaml`.
 The background image URL is `background.image` in `values.yaml`.
 
 ## Widget API keys

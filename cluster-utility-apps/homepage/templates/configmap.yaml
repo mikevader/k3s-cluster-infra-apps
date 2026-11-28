@@ -65,9 +65,9 @@ data:
         labels: false
         nodes: false
     - openmeteo:
-        label: Zürich
-        latitude: 47.3769
-        longitude: 8.5417
+        label: Basel
+        latitude: 47.5596
+        longitude: 7.5886
         timezone: Europe/Zurich
         units: metric
         cache: 5
