@@ -1,46 +1,47 @@
 ---
-repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
-# argocdNamespace: "argocd"
-# server: "https://kubernetes.default.svc"
-subFolder: cluster-platform-apps
-namespace:
-  annotations: {}
-  labels:
-    client: cluster-infra
+app-of-apps:
+  repository: https://github.com/mikevader/k3s-cluster-infra-apps.git
+  # argocdNamespace: "argocd"
+  # server: "https://kubernetes.default.svc"
+  subFolder: cluster-platform-apps
+  namespace:
+    annotations: {}
+    labels:
+      client: cluster-infra
 
-enableDefaultNetworkPolicy: false
-enableDefaultLimitRange: false
-allowAllNamespaces: true
+  enableDefaultNetworkPolicy: false
+  enableDefaultLimitRange: false
+  allowAllNamespaces: true
 
-roleBindings:
-#  - groupName: "team1"
-#    clusterRoleName: "admin"
+  roleBindings:
+  #  - groupName: "team1"
+  #    clusterRoleName: "admin"
 
-clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
 
-namespaceResourceBlacklist:
-#  - group: 'apps'
-#    kind: 'DaemonSet'
+  namespaceResourceBlacklist:
+  #  - group: 'apps'
+  #    kind: 'DaemonSet'
 
-applications:
-  authentik: {}
-  cnpg-system:
-    helmServerSideApply: true
-    serverSideDiff: true
-  external-secrets:
-    helmServerSideApply: true
-  headlamp: {}
-  reloader: {}
-  renovate: {}
-  sloth: {}
-  # tracing: {}
-  vault:
-    serverSideDiff: true
-    # vault server needs IPC_LOCK for mlock (alternative: disable_mlock in vault config)
-    podSecurity:
-      enforce: privileged
-      warn: privileged
-  vault-operator:
-    serverSideDiff: true
+  applications:
+    authentik: {}
+    cnpg-system:
+      helmServerSideApply: true
+      serverSideDiff: true
+    external-secrets:
+      helmServerSideApply: true
+    headlamp: {}
+    reloader: {}
+    renovate: {}
+    sloth: {}
+    # tracing: {}
+    vault:
+      serverSideDiff: true
+      # vault server needs IPC_LOCK for mlock (alternative: disable_mlock in vault config)
+      podSecurity:
+        enforce: privileged
+        warn: privileged
+    vault-operator:
+      serverSideDiff: true

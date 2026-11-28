@@ -1,5 +1,9 @@
 ---
 apiVersion: v2
 name: apps
-version: 0.1.0
+version: 0.2.0
 description: App of Apps Chart for Argo CD
+dependencies:
+  - name: app-of-apps
+    repository: https://mikevader.github.io/charts
+    version: 1.0.0
