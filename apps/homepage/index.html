@@ -4249,7 +4249,8 @@ so add new groups to <code>layout</code> with their <code>tab</code>.</p>
 </ul>
 <p>Apps deployed from <code>cluster-test/</code> start their description with <code>🧪 Test ·</code> so they stand out on the dashboard.</p>
 <p>The header shows the cluster and per-node CPU/memory (<code>kubernetes</code>), Longhorn storage (<code>longhorn</code>, via the in-cluster
-<code>longhorn-frontend</code> service) and the Open-Meteo weather for Basel (<code>openmeteo</code>), set in <code>widgets.yaml</code>.
+<code>longhorn-frontend</code> service, URL under <code>providers.longhorn</code> in <code>settings.yaml</code>) and the Open-Meteo weather for Basel
+(<code>openmeteo</code>), set in <code>widgets.yaml</code>.
 The background image URL is <code>background.image</code> in <code>values.yaml</code>.</p>
 <h2 id="widget-api-keys">Widget API keys<a class="headerlink" href="#widget-api-keys" title="Permanent link">&para;</a></h2>
 <p>Keys live in Vault at <code>secret/framsburg/homepage</code> (KV v2). The ExternalSecret <code>homepage-api-keys</code> turns <strong>every</strong>
@@ -4394,9 +4395,12 @@ Tokens</em>, enter the name <code>homepage</code> and click <em>Generate</em>. T
 <ol>
 <li><em>Admin interface</em> → <em>Directory</em> → <em>Users</em> → <em>New Service Account</em>: username <code>homepage</code>, untick <em>Create group</em>,
    untick <em>Expiring</em>. Ignore the token it shows.</li>
-<li>Open the user → <em>Permissions</em> → <em>Assign permission</em> and add these global permissions:</li>
+<li><em>Directory</em> → <em>Roles</em> → <em>Create</em>: name <code>homepage-readonly</code>. Open the role → <em>Permissions</em> → <em>Assign permission</em>
+   and add these global permissions:</li>
 <li><em>authentik Core</em> → <em>Can view User</em></li>
 <li><em>authentik Events</em> → <em>Can view Event</em></li>
+<li>Give the <code>homepage</code> user that role (user → <em>Roles</em> → <em>Assign role</em>). Authentik ≥ 2025.12 grants permissions only
+   through roles; without it the widget gets <strong>403</strong>.</li>
 <li><em>Directory</em> → <em>Tokens and App passwords</em> → <em>Create</em>: identifier <code>homepage</code>, user <code>homepage</code>, intent <strong>API Token</strong>,
    untick <em>Expiring</em>. Copy the key with the copy button in the token list.</li>
 </ol>
