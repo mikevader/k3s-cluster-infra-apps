@@ -2899,6 +2899,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#groups-and-tabs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Groups and tabs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bookmarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bookmarks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#widget-api-keys" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3776,6 +3798,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#groups-and-tabs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Groups and tabs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bookmarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bookmarks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#widget-api-keys" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3969,8 +4013,8 @@ service's own auth. See <a href="../../adr/homepage-dashboard/">the decision rec
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">annotations</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">gethomepage.dev/enabled</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">gethomepage.dev/name</span><span class="p">:</span><span class="w"> </span><span class="s">"Radarr"</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="c1"># group: Entertainment | Utilities | RPG | Media | Platform | Infrastructure</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">gethomepage.dev/group</span><span class="p">:</span><span class="w"> </span><span class="s">"Media"</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="c1"># group: one of the groups in the table below</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">gethomepage.dev/group</span><span class="p">:</span><span class="w"> </span><span class="s">"Media</span><span class="nv"> </span><span class="s">Automation"</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="c1"># icon: dashboard-icons name, or mdi-&lt;icon&gt; / si-&lt;icon&gt;</span>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">gethomepage.dev/icon</span><span class="p">:</span><span class="w"> </span><span class="s">"radarr.png"</span>
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">gethomepage.dev/description</span><span class="p">:</span><span class="w"> </span><span class="s">"Movies"</span>
@@ -4013,10 +4057,76 @@ service's own auth. See <a href="../../adr/homepage-dashboard/">the decision rec
 <code>gethomepage.dev/widget.key: {{ "\"{{HOMEPAGE_VAR_ARGOCD_KEY}}\"" }}</code>.
 In <code>values.yaml</code> the plain string works, unless the upstream chart runs annotations through <code>tpl</code>.</p>
 </div>
-<p>Group order and layout are set in <code>cluster-utility-apps/homepage/templates/configmap.yaml</code> (<code>settings.yaml</code>).
-New groups appear after the listed ones.</p>
+<h2 id="groups-and-tabs">Groups and tabs<a class="headerlink" href="#groups-and-tabs" title="Permanent link">&para;</a></h2>
+<p>Services are grouped by what you go there to do. The <strong>Home</strong> tab holds everyday apps; <strong>Admin</strong> holds the tools
+for running the cluster. Everyone who passes Authentik sees both tabs.</p>
+<table>
+<thead>
+<tr>
+<th>Tab</th>
+<th>Group</th>
+<th>For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Home</td>
+<td>Watch</td>
+<td>Streaming and media requests (Plex, Jellyfin, Seerr)</td>
+</tr>
+<tr>
+<td>Home</td>
+<td>Household</td>
+<td>Finance, recipes, documents (Actual, Mealie, Paperless)</td>
+</tr>
+<tr>
+<td>Home</td>
+<td>RPG</td>
+<td>Tabletop tools (DM Workshop, Foundry VTT)</td>
+</tr>
+<tr>
+<td>Admin</td>
+<td>Media Automation</td>
+<td>*arr apps, Tautulli, Filebrowser</td>
+</tr>
+<tr>
+<td>Admin</td>
+<td>Downloads</td>
+<td>Download clients (Transmission, Flood, SABnzbd)</td>
+</tr>
+<tr>
+<td>Admin</td>
+<td>Cluster</td>
+<td>Argo CD, Headlamp, Traefik, Longhorn</td>
+</tr>
+<tr>
+<td>Admin</td>
+<td>Observability</td>
+<td>Grafana, Prometheus, Alertmanager, Uptime Kuma</td>
+</tr>
+<tr>
+<td>Admin</td>
+<td>Identity &amp; Secrets</td>
+<td>Authentik, Vault</td>
+</tr>
+<tr>
+<td>Admin</td>
+<td>Lab</td>
+<td>Test and debug tools (httpbin)</td>
+</tr>
+</tbody>
+</table>
+<p>Group order, tabs and columns are set in <code>layout</code> of <code>settings.yaml</code> in
+<code>cluster-utility-apps/homepage/templates/configmap.yaml</code>. A group that isn't listed there ends up on the first tab,
+so add new groups to <code>layout</code> with their <code>tab</code>.</p>
+<h2 id="bookmarks">Bookmarks<a class="headerlink" href="#bookmarks" title="Permanent link">&para;</a></h2>
+<p>External links live in <code>bookmarks.yaml</code> in the same ConfigMap. Bookmark groups are laid out like service groups:</p>
+<ul>
+<li><strong>Home:</strong> Weather &amp; Travel (MeteoSwiss, SBB), RPG Reference (D&amp;D Beyond, 5e.tools, Kobold Plus Fight Club)</li>
+<li><strong>Admin:</strong> GitOps (GitHub repos, Renovate dashboard, GHCR, docs), Network (OPNsense, TrueNAS), References</li>
+</ul>
 <p>Apps deployed from <code>cluster-test/</code> start their description with <code>🧪 Test ·</code> so they stand out on the dashboard.</p>
-<p>The header shows the cluster CPU/memory (<code>kubernetes</code>), Longhorn storage (<code>longhorn</code>, via the in-cluster
+<p>The header shows the cluster and per-node CPU/memory (<code>kubernetes</code>), Longhorn storage (<code>longhorn</code>, via the in-cluster
 <code>longhorn-frontend</code> service) and the Open-Meteo weather for Basel (<code>openmeteo</code>), set in <code>widgets.yaml</code>.
 The background image URL is <code>background.image</code> in <code>values.yaml</code>.</p>
 <h2 id="widget-api-keys">Widget API keys<a class="headerlink" href="#widget-api-keys" title="Permanent link">&para;</a></h2>
