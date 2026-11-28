@@ -9,12 +9,12 @@ image:
 resources:
   requests:
     cpu: 100m
-    memory: 128Mi
+    memory: 192Mi
   limits:
-    memory: 256Mi
+    memory: 512Mi
 
 # Vault path holding widget API keys (HOMEPAGE_VAR_* env vars).
-# The keys themselves are listed in templates/secret-api-keys.yaml.
+# Every property there becomes an env var (dataFrom.extract), see docs/apps/homepage.md.
 apiKeys:
   vaultKey: secret/data/framsburg/homepage
 
