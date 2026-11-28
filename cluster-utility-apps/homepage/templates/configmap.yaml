@@ -15,23 +15,37 @@ data:
     title: Framsburg
     theme: dark
     color: slate
-    headerStyle: clean
+    headerStyle: boxed
     hideVersion: true
     statusStyle: dot
+    useEqualHeights: true
+    cardBlur: md
+    # Background: "A futuristic city at night with neon lights" by Nathan Watson (Unsplash License)
+    # https://unsplash.com/photos/dA0-qxdbyyY
+    background:
+      image: {{ .Values.background.image | quote }}
+      blur: sm
+      saturate: 100
+      brightness: 75
+      opacity: 50
+    # Top to bottom. Groups not listed here are appended after these.
     layout:
-      Infrastructure:
+      Entertainment:
+        style: row
+        columns: 3
+      Utilities:
         style: row
         columns: 4
-      Platform:
+      RPG:
         style: row
         columns: 4
       Media:
         style: row
         columns: 4
-      Utilities:
+      Platform:
         style: row
         columns: 4
-      RPG:
+      Infrastructure:
         style: row
         columns: 4
   widgets.yaml: |
@@ -43,10 +57,20 @@ data:
           showLabel: true
           label: "cluster"
         nodes:
-          show: true
-          cpu: true
-          memory: true
-          showLabel: true
+          show: false
+    - longhorn:
+        url: http://longhorn-frontend.longhorn-system.svc
+        expanded: false
+        total: true
+        labels: false
+        nodes: false
+    - openmeteo:
+        label: Basel
+        latitude: 47.5596
+        longitude: 7.5886
+        timezone: Europe/Zurich
+        units: metric
+        cache: 5
     - search:
         provider: duckduckgo
         target: _blank

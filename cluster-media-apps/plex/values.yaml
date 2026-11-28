@@ -208,7 +208,7 @@ plex:
         traefik.ingress.kubernetes.io/router.middlewares: plex-svc-plex-headers@kubernetescrd
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: "Plex is a media server that organizes your media and allows you to stream it to various devices."
-        gethomepage.dev/group: "Media"
+        gethomepage.dev/group: "Entertainment"
         gethomepage.dev/icon: plex.png
         gethomepage.dev/name: Plex
         gethomepage.dev/widget.type: "plex"

@@ -31,6 +31,12 @@ foundryvtt:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/name: "Foundry VTT"
+        gethomepage.dev/group: "RPG"
+        gethomepage.dev/icon: "foundry-vtt.png"
+        gethomepage.dev/description: "🧪 Test · Virtual tabletop"
+        gethomepage.dev/pod-selector: ""
       ingressClassName: traefik
       hosts:
         - host: '{{ .Values.global.domainName }}'
