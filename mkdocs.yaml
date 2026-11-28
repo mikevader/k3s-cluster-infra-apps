@@ -103,6 +103,7 @@ nav:
       - Network Debugging: troubleshooting/network.md
       - Application Debugging: troubleshooting/applications.md
       - Maintenance Tasks: troubleshooting/maintenance.md
+      - Storage Benchmark: runbooks/storage-benchmark.md
   - Infrastructure Setup:
       - Hardware:
           - Raspberry Pi Setup: hardware/raspberry-pi.md

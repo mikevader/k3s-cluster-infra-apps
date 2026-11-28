@@ -159,6 +159,8 @@ kubectl get pods -n longhorn-system | grep engine
 kubectl top pods -n longhorn-system | grep engine
 ```
 
+To measure the difference between storage classes, run the [Storage Benchmark](../runbooks/storage-benchmark.md).
+
 **Fixes**:
 
 1. **Use faster storage**: Migrate to NVMe-backed nodes
